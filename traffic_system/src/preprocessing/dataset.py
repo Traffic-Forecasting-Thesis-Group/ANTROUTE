@@ -13,6 +13,8 @@ class TwitterTrafficDataset(Dataset):
         return len(self.data)
 
     def __getitem__(self, idx):
-        # Target the text field inside the JSON
-        raw_tweet = self.data[idx]['text'] 
+        # Safely extract text, defaulting to an empty string if missing
+        tweet_obj = self.data[idx]
+        raw_tweet = tweet_obj.get('text', '') if isinstance(tweet_obj, dict) else str(tweet_obj)
+        
         return self.cleaner.clean(raw_tweet)
