@@ -1,12 +1,23 @@
 import json
+from pathlib import Path
 from torch.utils.data import Dataset
 
 class TwitterTrafficDataset(Dataset):
     def __init__(self, filepath: str, cleaner):
-        with open(filepath, 'r', encoding='utf-8') as f:
-            raw_content = json.load(f)
-            # Adjust the key based on the actual twitterapi.io JSON response structure
-            self.data = raw_content.get('data', raw_content) if isinstance(raw_content, dict) else raw_content
+        """Load one raw JSON file or every organized JSON file below a folder."""
+        source = Path(filepath)
+        paths = [source] if source.is_file() else sorted(source.rglob("tweets_*.json"))
+        if not paths:
+            raise FileNotFoundError(f"No tweet datasets found at {source}")
+
+        self.data = []
+        for path in paths:
+            with path.open(encoding='utf-8') as file:
+                raw_content = json.load(file)
+            tweets = raw_content.get('data', raw_content) if isinstance(raw_content, dict) else raw_content
+            if not isinstance(tweets, list):
+                raise ValueError(f"Expected a list of tweets in {path}")
+            self.data.extend(tweets)
         self.cleaner = cleaner
 
     def __len__(self):

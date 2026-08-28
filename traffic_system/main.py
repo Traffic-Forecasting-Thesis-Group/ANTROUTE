@@ -8,7 +8,8 @@ from src.preprocessing.nlp_pipeline import BatchNLPPipeline
 def main():
     # File paths
     gazetteer_path = "configs/gazetteer.json"
-    raw_data_path = "data/raw/tweets.json"
+    # Uses all date/time partitions created by the CCTV-aligned collector.
+    raw_data_path = "data/raw/twitter"
     output_path = "data/processed/embeddings.pt"
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
