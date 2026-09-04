@@ -7,6 +7,7 @@ small, non-overlapping time slices and saved as one auditable JSON dataset.
 
 import json
 import os
+import time
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
@@ -18,30 +19,16 @@ from dotenv import load_dotenv
 
 API_URL = "https://api.twitterapi.io/twitter/tweet/advanced_search"
 MANILA_TZ = pytz.timezone("Asia/Manila")
-WINDOW_DATES = (
-    (2026, 5, 4), (2026, 5, 6), (2026, 5, 8),
-    (2026, 5, 11), (2026, 5, 13), (2026, 5, 15),
-    (2026, 5, 18), (2026, 5, 20), (2026, 5, 22), (2026, 5, 25),
-)
-PEAK_HOURS = ((7, 9), (17, 19))
+DEFAULT_OUTPUT_ROOT = Path(__file__).resolve().parents[2] / "data" / "raw" / "twitter"
 
 INCIDENTS = (
-    '(traffic OR trapik OR "traffic jam" OR "bumper to bumper" OR standstill OR '
-    '"heavy traffic" OR "mabagal na trapik" OR "mabigat na trapik" OR '
-    '"light traffic" OR "magaan na trapik" OR "moving traffic" OR dumadaloy OR '
-    'congestion OR congested OR gridlock OR "slow moving" OR "creeping traffic" OR '
-    'contraflow OR counterflow OR "number coding" OR "coding scheme" OR UVVRP OR '
-    'accident OR aksidente OR banggaan OR collision OR nabangga OR nabunggo OR '
-    '"vehicular accident" OR "road crash" OR "road mishap" OR pileup OR '
-    'flooding OR baha OR bumabaha OR "flash flood" OR "heavy rain" OR "malakas na ulan" OR '
-    'storm OR bagyo OR typhoon OR impassable OR "hindi madaanan" OR landslide OR guho OR '
-    '"road closure" OR "sarado ang daan" OR "lane closure" OR "road construction" OR '
-    'roadwork OR detour OR rerouting OR pothole OR protest OR rally OR strike OR '
-    '"transport strike" OR fire OR sunog OR ambulansya OR explosion OR breakdown OR '
-    '"stalled vehicle" OR "flat tire" OR overheating OR towed)'
+    '(traffic OR trapik OR standstill OR "heavy traffic" OR congestion OR gridlock OR '
+    '"slow moving" OR contraflow OR "number coding" OR accident OR aksidente OR '
+    'banggaan OR pileup OR flooding OR baha OR landslide OR "road closure" OR '
+    'protest OR rally OR "transport strike" OR fire)'
 )
-LOCATIONS = '(EDSA OR "Roxas Boulevard" OR "Roxas Blvd" OR Makati OR Pasay OR "Quezon City" OR Manila)'
-MMDA_TAGS = '(#MMDAAlert OR #MetroManila OR #TrafficUpdate OR #EDSAUpdate OR #EDSATraffic OR #RoadClosure OR #TrafficAdvisory OR "MMDA advisory" OR "traffic advisory" OR Metrobase)'
+LOCATIONS = '(EDSA OR "Roxas Blvd" OR Makati OR "Quezon City" OR Manila)'
+MMDA_TAGS = '(#MMDAAlert OR #TrafficUpdate OR Metrobase)'
 
 
 def build_query(start_dt: datetime, end_dt: datetime) -> str:
@@ -80,7 +67,7 @@ def retrieve_twitter_data(
     end_dt: datetime,
     *,
     slice_minutes: int = 5,
-    output_root: Path | str = Path("data/raw/twitter"),
+    output_root: Path | str = DEFAULT_OUTPUT_ROOT,
     session: requests.Session | None = None,
 ) -> Path:
     """Retrieve and organize posts for one CCTV interval.
@@ -93,7 +80,7 @@ def retrieve_twitter_data(
     if end_dt <= start_dt or slice_minutes <= 0:
         raise ValueError("end_dt must be later than start_dt and slice_minutes must be positive")
 
-    load_dotenv()
+    load_dotenv(Path(__file__).resolve().parents[2] / ".env")
     api_key = os.getenv("TWITTER_API_KEY")
     if not api_key:
         raise RuntimeError("TWITTER_API_KEY is not set. Add it to traffic_system/.env.")
@@ -107,38 +94,44 @@ def retrieve_twitter_data(
 
     while cursor < end_dt:
         slice_end = min(cursor + timedelta(minutes=slice_minutes), end_dt)
-        response = client.get(
-            API_URL,
-            headers=headers,
-            params={"query": build_query(cursor, slice_end), "queryType": "Latest"},
-            timeout=30,
-        )
         entry: dict[str, Any] = {
             "start": cursor.isoformat(), "end": slice_end.isoformat(),
-            "status_code": response.status_code,
         }
-        try:
-            response.raise_for_status()
-            payload = response.json()
-            tweets = payload.get("tweets", []) if isinstance(payload, dict) else []
-            accepted = 0
-            for tweet in tweets:
-                if not isinstance(tweet, dict) or not _is_in_window(tweet, cursor, slice_end):
+        for attempt in range(1, 4):
+            try:
+                response = client.get(
+                    API_URL,
+                    headers=headers,
+                    params={"query": build_query(cursor, slice_end), "queryType": "Latest"},
+                    timeout=30,
+                )
+                entry["status_code"] = response.status_code
+                if response.status_code == 429 and attempt < 3:
+                    wait_time = 5 * (2 ** (attempt - 1))
+                    print(f"Rate limited for {cursor.isoformat()}; retrying in {wait_time}s")
+                    time.sleep(wait_time)
                     continue
-                tweet_id = str(tweet.get("id") or "")
-                unique_key = tweet_id or json.dumps(tweet, sort_keys=True, ensure_ascii=False)
-                if unique_key not in seen_ids:
-                    records.append(tweet)
-                    seen_ids.add(unique_key)
-                    accepted += 1
-            entry.update({"returned": len(tweets), "accepted": accepted})
-            # The provider documents advanced-search pagination as unreliable.
-            # A response is only potentially truncated when it reaches its
-            # documented 20-post result limit, not merely when it has a cursor.
-            if len(tweets) >= 20:
-                entry["warning"] = "Result cap may have been reached; rerun with a smaller slice_minutes value."
-        except (requests.RequestException, ValueError) as error:
-            entry["error"] = str(error)
+                response.raise_for_status()
+                payload = response.json()
+                tweets = payload.get("tweets", []) if isinstance(payload, dict) else []
+                accepted = 0
+                for tweet in tweets:
+                    if not isinstance(tweet, dict) or not _is_in_window(tweet, cursor, slice_end):
+                        continue
+                    tweet_id = str(tweet.get("id") or "")
+                    unique_key = tweet_id or json.dumps(tweet, sort_keys=True, ensure_ascii=False)
+                    if unique_key not in seen_ids:
+                        records.append(tweet)
+                        seen_ids.add(unique_key)
+                        accepted += 1
+                entry.update({"returned": len(tweets), "accepted": accepted})
+                if len(tweets) >= 20:
+                    entry["warning"] = "Result cap may have been reached; rerun with a smaller slice_minutes value."
+                break
+            except (requests.RequestException, ValueError) as error:
+                entry["error"] = str(error)
+                if attempt < 3:
+                    time.sleep(5 * (2 ** (attempt - 1)))
         slice_log.append(entry)
         cursor = slice_end
 
@@ -155,17 +148,28 @@ def retrieve_twitter_data(
     return output_path
 
 
-def collect_cctv_matched_windows() -> list[Path]:
-    """Collect the 20 specified M/W/F morning and evening CCTV windows."""
+def collect_full_month() -> list[Path]:
+    """Collect tweets for the entire month of May 2026, 24-hour continuous capture."""
     outputs = []
-    for year, month, day in WINDOW_DATES:
-        for start_hour, end_hour in PEAK_HOURS:
-            start = MANILA_TZ.localize(datetime(year, month, day, start_hour))
-            end = MANILA_TZ.localize(datetime(year, month, day, end_hour))
-            print(f"Collecting {start:%Y-%m-%d %H:%M}–{end:%H:%M} Asia/Manila")
-            outputs.append(retrieve_twitter_data(start, end))
+
+    # Use a half-open interval so every instant in May is collected.
+    start_date = MANILA_TZ.localize(datetime(2026, 5, 1, 0, 0, 0))
+    end_date = MANILA_TZ.localize(datetime(2026, 6, 1, 0, 0, 0))
+
+    current_start = start_date
+    batch_duration = timedelta(hours=2)
+    while current_start < end_date:
+        day_end = min(current_start + timedelta(days=1), end_date)
+        batch_start = current_start
+        while batch_start < day_end:
+            batch_end = min(batch_start + batch_duration, day_end)
+            print(f"Collecting {batch_start:%Y-%m-%d %H:%M}–{batch_end:%H:%M} Asia/Manila")
+            outputs.append(retrieve_twitter_data(batch_start, batch_end))
+            batch_start = batch_end
+        current_start = day_end
+
     return outputs
 
 
 if __name__ == "__main__":
-    collect_cctv_matched_windows()
+    collect_full_month()
