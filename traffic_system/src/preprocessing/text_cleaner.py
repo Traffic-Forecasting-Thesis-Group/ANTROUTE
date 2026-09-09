@@ -9,8 +9,14 @@ class TextCleaner:
         else:
             # Fallback gazetteer based on pipeline_context
             self.locations = [
-                "EDSA", "Roxas Blvd", "Makati", "Quezon City", "Manila",
-                "Pasay", "C5", "NLEX", "SLEX", "Skyway"
+                "EDSA", "EDSA Guadalupe", "EDSA Ortigas", "EDSA Cubao",
+                "EDSA Kamuning", "EDSA Balintawak", "EDSA Taft",
+                "Roxas Boulevard", "Roxas Blvd", "Makati", "Quezon City",
+                "Manila", "Metro Manila", "Pasay", "Ortigas", "Pasig",
+                "Novaliches", "Navotas", "Mandaluyong", "Paranaque",
+                "Las Pinas", "Muntinlupa", "San Juan", "Taguig", "Marikina",
+                "Caloocan", "Malabon", "Philippines", "Pilipinas", "C5",
+                "NLEX", "SLEX", "Skyway"
             ]
 
         # Address OOV slangs that trip up MarianMT

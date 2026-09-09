@@ -21,14 +21,53 @@ API_URL = "https://api.twitterapi.io/twitter/tweet/advanced_search"
 MANILA_TZ = pytz.timezone("Asia/Manila")
 DEFAULT_OUTPUT_ROOT = Path(__file__).resolve().parents[2] / "data" / "raw" / "twitter"
 
-INCIDENTS = (
-    '(traffic OR trapik OR standstill OR "heavy traffic" OR congestion OR gridlock OR '
-    '"slow moving" OR contraflow OR "number coding" OR accident OR aksidente OR '
-    'banggaan OR pileup OR flooding OR baha OR landslide OR "road closure" OR '
-    'protest OR rally OR "transport strike" OR fire)'
+TRAFFIC_KEYWORDS = (
+    'traffic', 'trapik', '"traffic jam"', '"bumper to bumper"', 'standstill',
+    '"heavy traffic"', '"mabagal na trapik"', '"mabigat na trapik"',
+    '"light traffic"', '"magaan na trapik"', '"moving traffic"', 'dumadaloy',
+    'congestion', 'congested', 'gridlock', '"slow moving"', '"creeping traffic"',
+    'contraflow', 'counterflow', '"number coding"', '"coding scheme"', 'UVVRP',
+    'accident', 'aksidente', 'banggaan', 'collision', 'nabangga', 'nabunggo',
+    '"vehicular accident"', '"road crash"', '"road mishap"',
+    '"multi-vehicle collision"', '"chain collision"', 'pileup', '"hit and run"',
+    'tumakas', 'overturned', 'tumaob', 'natumba', '"motorcycle accident"',
+    '"sakay ng motor aksidente"', 'flooding', 'baha', 'bumabaha', '"flash flood"',
+    '"biglaang baha"', '"heavy rain"', '"malakas na ulan"', 'storm', 'bagyo',
+    'typhoon', '"waist-deep"', 'tuhod', 'baywang', 'impassable', '"hindi madaanan"',
+    'landslide', 'guho', '"pagguho ng lupa"', '"PAGASA warning"', '"signal no."',
+    '"road closure"', '"sarado ang daan"', '"lane closure"', '"isang lane lang"',
+    '"road construction"', '"kalsada gawa"', 'roadwork', '"ongoing repair"',
+    'detour', '"alternate route"', '"alternative route"', 'rerouting', 'biniyahe',
+    '"underpass closed"', '"flyover closed"', 'pothole', 'guwang', '"butas sa kalsada"',
+    'protest', 'rally', 'welga', 'demonstration', 'martsa', '"barangay fiesta"',
+    'procession', 'parada', 'motorcade', 'strike', '"transport strike"',
+    '"tigil pasada"', 'fire', 'sunog', '"fire truck"', 'bumbero',
+    '"emergency response"', 'ambulansya', 'explosion', 'sabog', 'breakdown',
+    '"nasira ang sasakyan"', '"stalled vehicle"', '"tumigil sa gitna"',
+    '"flat tire"', 'overheating', '"nag-overheat"', 'towed',
 )
-LOCATIONS = '(EDSA OR "Roxas Blvd" OR Makati OR "Quezon City" OR Manila)'
-MMDA_TAGS = '(#MMDAAlert OR #TrafficUpdate OR Metrobase)'
+LOCATION_ANCHORS = (
+    'EDSA', '"EDSA Guadalupe"', '"EDSA Ortigas"', '"EDSA Cubao"',
+    '"EDSA Kamuning"', '"EDSA Balintawak"', '"EDSA Taft"', '"Roxas Boulevard"',
+    '"Roxas Blvd"', 'Makati', 'Pasay', '"Quezon City"', 'Manila', 'Ortigas',
+    'Pasig', 'Novaliches', 'Navotas', 'Mandaluyong', 'Paranaque', '"Las Pinas"',
+    'Muntinlupa', 'San Juan', 'Taguig', 'Marikina', 'Caloocan', 'Malabon', 'Valenzuela',
+    '"Metro Manila"', 'Philippines', 'Pilipinas',
+)
+MMDA_TERMS = (
+    '#MMDAAlert', '#MetroManila', '#TrafficUpdate', '#EDSAUpdate', '#EDSATraffic',
+    '#RoadClosure', '#TrafficAdvisory', '"MMDA advisory"', '"traffic advisory"',
+    'Metrobase',
+)
+
+
+def _or_group(terms: tuple[str, ...]) -> str:
+    return '(' + ' OR '.join(terms) + ')'
+
+
+INCIDENTS = _or_group(TRAFFIC_KEYWORDS)
+LOCATIONS = _or_group(LOCATION_ANCHORS)
+MMDA_TAGS = _or_group(MMDA_TERMS)
 
 
 def build_query(start_dt: datetime, end_dt: datetime) -> str:
@@ -149,11 +188,11 @@ def retrieve_twitter_data(
 
 
 def collect_full_month() -> list[Path]:
-    """Collect tweets for the entire month of May 2026, 24-hour continuous capture."""
+    """Collect tweets from June 2025 through May 2026 in daily batches."""
     outputs = []
 
-    # Use a half-open interval so every instant in May is collected.
-    start_date = MANILA_TZ.localize(datetime(2026, 5, 1, 0, 0, 0))
+    # Use a half-open interval so every instant in the requested period is collected.
+    start_date = MANILA_TZ.localize(datetime(2025, 11, 27, 22, 0, 0))
     end_date = MANILA_TZ.localize(datetime(2026, 6, 1, 0, 0, 0))
 
     current_start = start_date

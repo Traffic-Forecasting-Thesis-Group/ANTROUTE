@@ -256,12 +256,12 @@
               "monetizable": false,
               "source_user": {
                 "user_results": {
-                  "rest_id": "1503919452995346433",
                   "result": {
                     "__typename": "User",
                     "action_counts": {
-                      "favorites_count": 23764
+                      "favorites_count": 23771
                     },
+                    "affiliates_highlighted_label": {},
                     "avatar": {
                       "image_url": "https://pbs.twimg.com/profile_images/1715676075202670592/Anw8DH5z_normal.jpg"
                     },
@@ -276,9 +276,34 @@
                     "dm_permissions": {
                       "can_dm": true
                     },
-                    "exclusive_tweet_following": false,
                     "follow_request_sent": false,
-                    "identity_profile_labels_highlighted_label": {},
+                    "grok_translated_bio_with_availability": {
+                      "data": {
+                        "destination_language": "en",
+                        "entities": {
+                          "hashtags": [],
+                          "symbols": [],
+                          "urls": [
+                            {
+                              "display_url": "facebook.com/MOSCOWO",
+                              "expanded_url": "https://www.facebook.com/MOSCOWO",
+                              "indices": [
+                                118,
+                                141
+                              ],
+                              "url": "https://t.co/xyjton6Shj"
+                            }
+                          ],
+                          "user_mentions": []
+                        },
+                        "source_language": "ar",
+                        "translation": "The platform and primary source for delivering Russian and global news and affairs first and foremost in Arabic 🛰️    https://t.co/xyjton6Shj"
+                      },
+                      "is_available": true
+                    },
+                    "has_graduated_access": true,
+                    "id": "VXNlcjoxNTAzOTE5NDUyOTk1MzQ2NDMz",
+                    "is_blue_verified": true,
                     "location": {
                       "location": ""
                     },
@@ -288,12 +313,12 @@
                     "notifications_settings": {
                       "notifications_enabled": false
                     },
+                    "parody_commentary_fan_label": "None",
                     "pinned_items": {},
+                    "possibly_sensitive": false,
                     "privacy": {
-                      "protected": false,
-                      "suspended": false
+                      "protected": false
                     },
-                    "private_super_following": false,
                     "profile_bio": {
                       "description": "المنصة والمصدر الأول لنقل الأخبار والشؤون الروسية والعالمية اولاً بأول باللغة العربية 🛰️    https://t.co/xyjton6Shj",
                       "entities": {
@@ -323,22 +348,21 @@
                             }
                           ]
                         }
-                      }
+                      },
+                      "withheld_in_countries": [
+                        "AE"
+                      ]
                     },
+                    "profile_description_language": "ar",
                     "profile_image_shape": "Circle",
                     "profile_metadata": {
-                      "profile_interstitial_type": "",
-                      "profile_link_color": "1DA1F2"
+                      "profile_interstitial_type": ""
                     },
                     "profile_translation": {
-                      "translator_type_enum": "None"
-                    },
-                    "properties": {
-                      "has_extended_profile": true,
-                      "has_no_screen_name": false
+                      "translator_type": "none"
                     },
                     "relationship_counts": {
-                      "followers": 924802,
+                      "followers": 925384,
                       "following": 2
                     },
                     "relationship_perspectives": {
@@ -350,17 +374,14 @@
                       "muting": false
                     },
                     "rest_id": "1503919452995346433",
-                    "smart_blocked_by": false,
-                    "smart_blocking": false,
                     "super_follow_eligible": true,
                     "super_followed_by": false,
                     "super_following": false,
                     "tweet_counts": {
-                      "media_tweets": 114894,
-                      "tweets": 157004
+                      "media_tweets": 115211,
+                      "tweets": 157341
                     },
                     "verification": {
-                      "is_blue_verified": true,
                       "verified": false
                     },
                     "website": {
@@ -372,11 +393,9 @@
             },
             "display_url": "pic.x.com/P2QaEez0Eo",
             "expanded_url": "https://x.com/M0SC0W0/status/2058163222054900181/video/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "id_str": "2058163114013847552",
             "indices": [
               63,
@@ -384,10 +403,7 @@
             ],
             "media_key": "7_2058163114013847552",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAwoAARyQEHKUm3AACgACHJCBpFYaER0AAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAADCgABHJAQcpSbcAAKAAIckIGkVhoRHQAA",
                 "media_key": "7_2058163114013847552"
               }
             },
@@ -400,7 +416,23 @@
             "sizes": {
               "large": {
                 "h": 1080,
+                "resize": "fit",
                 "w": 1920
+              },
+              "medium": {
+                "h": 675,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 383,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "source_status_id_str": "2058163222054900181",
@@ -445,11 +477,234 @@
       },
       "card": null,
       "place": {},
-      "entities": {},
+      "entities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false,
+              "source_user": {
+                "user_results": {
+                  "result": {
+                    "__typename": "User",
+                    "action_counts": {
+                      "favorites_count": 23771
+                    },
+                    "affiliates_highlighted_label": {},
+                    "avatar": {
+                      "image_url": "https://pbs.twimg.com/profile_images/1715676075202670592/Anw8DH5z_normal.jpg"
+                    },
+                    "banner": {
+                      "image_url": "https://pbs.twimg.com/profile_banners/1503919452995346433/1699750947"
+                    },
+                    "core": {
+                      "created_at": "Wed Mar 16 02:22:54 +0000 2022",
+                      "name": "موسكو | 🇷🇺 MOSCOW NEWS",
+                      "screen_name": "M0SC0W0"
+                    },
+                    "dm_permissions": {
+                      "can_dm": true
+                    },
+                    "follow_request_sent": false,
+                    "grok_translated_bio_with_availability": {
+                      "data": {
+                        "destination_language": "en",
+                        "entities": {
+                          "hashtags": [],
+                          "symbols": [],
+                          "urls": [
+                            {
+                              "display_url": "facebook.com/MOSCOWO",
+                              "expanded_url": "https://www.facebook.com/MOSCOWO",
+                              "indices": [
+                                118,
+                                141
+                              ],
+                              "url": "https://t.co/xyjton6Shj"
+                            }
+                          ],
+                          "user_mentions": []
+                        },
+                        "source_language": "ar",
+                        "translation": "The platform and primary source for delivering Russian and global news and affairs first and foremost in Arabic 🛰️    https://t.co/xyjton6Shj"
+                      },
+                      "is_available": true
+                    },
+                    "has_graduated_access": true,
+                    "id": "VXNlcjoxNTAzOTE5NDUyOTk1MzQ2NDMz",
+                    "is_blue_verified": true,
+                    "location": {
+                      "location": ""
+                    },
+                    "media_permissions": {
+                      "can_media_tag": true
+                    },
+                    "notifications_settings": {
+                      "notifications_enabled": false
+                    },
+                    "parody_commentary_fan_label": "None",
+                    "pinned_items": {},
+                    "possibly_sensitive": false,
+                    "privacy": {
+                      "protected": false
+                    },
+                    "profile_bio": {
+                      "description": "المنصة والمصدر الأول لنقل الأخبار والشؤون الروسية والعالمية اولاً بأول باللغة العربية 🛰️    https://t.co/xyjton6Shj",
+                      "entities": {
+                        "description": {
+                          "urls": [
+                            {
+                              "display_url": "facebook.com/MOSCOWO",
+                              "expanded_url": "https://www.facebook.com/MOSCOWO",
+                              "indices": [
+                                92,
+                                115
+                              ],
+                              "url": "https://t.co/xyjton6Shj"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "urls": [
+                            {
+                              "display_url": "t.me/M0SC0WO",
+                              "expanded_url": "https://t.me/M0SC0WO",
+                              "indices": [
+                                0,
+                                23
+                              ],
+                              "url": "https://t.co/jnbxl4luXN"
+                            }
+                          ]
+                        }
+                      },
+                      "withheld_in_countries": [
+                        "AE"
+                      ]
+                    },
+                    "profile_description_language": "ar",
+                    "profile_image_shape": "Circle",
+                    "profile_metadata": {
+                      "profile_interstitial_type": ""
+                    },
+                    "profile_translation": {
+                      "translator_type": "none"
+                    },
+                    "relationship_counts": {
+                      "followers": 925384,
+                      "following": 2
+                    },
+                    "relationship_perspectives": {
+                      "blocked_by": false,
+                      "blocking": false,
+                      "followed_by": false,
+                      "following": false,
+                      "live_following": false,
+                      "muting": false
+                    },
+                    "rest_id": "1503919452995346433",
+                    "super_follow_eligible": true,
+                    "super_followed_by": false,
+                    "super_following": false,
+                    "tweet_counts": {
+                      "media_tweets": 115211,
+                      "tweets": 157341
+                    },
+                    "verification": {
+                      "verified": false
+                    },
+                    "website": {
+                      "url": "https://t.co/jnbxl4luXN"
+                    }
+                  }
+                }
+              }
+            },
+            "display_url": "pic.x.com/P2QaEez0Eo",
+            "expanded_url": "https://x.com/M0SC0W0/status/2058163222054900181/video/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "id_str": "2058163114013847552",
+            "indices": [
+              63,
+              86
+            ],
+            "media_key": "7_2058163114013847552",
+            "media_results": {
+              "result": {
+                "media_key": "7_2058163114013847552"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/2058163114013847552/pu/img/VCgz0NNFqOmzkNYu.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1080,
+              "width": 1920
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "resize": "fit",
+                "w": 1920
+              },
+              "medium": {
+                "h": 675,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 383,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "source_status_id_str": "2058163222054900181",
+            "source_user_id_str": "1503919452995346433",
+            "type": "video",
+            "url": "https://t.co/P2QaEez0Eo",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 14001,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/ext_tw_video/2058163114013847552/pu/pl/5Dsz6PQFFB2kmoLW.m3u8?tag=25&v=cfc"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/2058163114013847552/pu/vid/avc1/480x270/cZSmcj8EH2X4nzAT.mp4?tag=25"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/2058163114013847552/pu/vid/avc1/640x360/IzgOMNZ4PssPkFDn.mp4?tag=25"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/2058163114013847552/pu/vid/avc1/1280x720/Wuf4ZiRETqZt7SWK.mp4?tag=25"
+                },
+                {
+                  "bitrate": 10368000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/2058163114013847552/pu/vid/avc1/1920x1080/MdOG86looIqc4zqJ.mp4?tag=25"
+                }
+              ]
+            }
+          }
+        ]
+      },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -490,7 +745,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967287,
+        "followers": 3967068,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -506,8 +761,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61670,
-        "statusesCount": 888174,
+        "mediaCount": 61685,
+        "statusesCount": 888295,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
