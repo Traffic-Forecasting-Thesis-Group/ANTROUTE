@@ -5,7 +5,7 @@
     "window_start": "2025-06-11T00:00:00+08:00",
     "window_end": "2025-06-11T02:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 3,
+    "tweet_count": 7,
     "slices": [
       {
         "start": "2025-06-11T00:00:00+08:00",
@@ -60,8 +60,8 @@
         "start": "2025-06-11T00:35:00+08:00",
         "end": "2025-06-11T00:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-06-11T00:40:00+08:00",
@@ -116,8 +116,8 @@
         "start": "2025-06-11T01:15:00+08:00",
         "end": "2025-06-11T01:20:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-06-11T01:20:00+08:00",
@@ -137,15 +137,15 @@
         "start": "2025-06-11T01:30:00+08:00",
         "end": "2025-06-11T01:35:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-06-11T01:35:00+08:00",
         "end": "2025-06-11T01:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-06-11T01:40:00+08:00",
@@ -216,8 +216,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/68915103/1756654273",
         "description": "",
         "location": "",
-        "followers": 40409,
-        "following": 3798,
+        "followers": 40393,
+        "following": 3796,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -229,7 +229,7 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 5881,
+        "favouritesCount": 5882,
         "hasCustomTimelines": true,
         "isTranslator": false,
         "mediaCount": 5785,
@@ -489,7 +489,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/472122299/1601895131",
         "description": "",
         "location": "Philippines",
-        "followers": 1818648,
+        "followers": 1819655,
         "following": 867,
         "status": "",
         "canDm": false,
@@ -505,8 +505,8 @@
         "favouritesCount": 3252,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 256940,
-        "statusesCount": 802633,
+        "mediaCount": 257602,
+        "statusesCount": 803682,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -607,7 +607,7 @@
             "result": {
               "__typename": "User",
               "action_counts": {
-                "favorites_count": 3518
+                "favorites_count": 3517
               },
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/2029769610594295808/NbrsBCdS_normal.jpg"
@@ -677,7 +677,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1136496,
+                "followers": 1137255,
                 "following": 158
               },
               "relationship_perspectives": {
@@ -695,8 +695,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 78863,
-                "tweets": 411826
+                "media_tweets": 79167,
+                "tweets": 412783
               },
               "verification": {
                 "is_blue_verified": true,
@@ -712,7 +712,7 @@
             "result": {
               "__typename": "User",
               "action_counts": {
-                "favorites_count": 3518
+                "favorites_count": 3517
               },
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/2029769610594295808/NbrsBCdS_normal.jpg"
@@ -782,7 +782,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1136496,
+                "followers": 1137255,
                 "following": 158
               },
               "relationship_perspectives": {
@@ -800,8 +800,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 78863,
-                "tweets": 411826
+                "media_tweets": 79167,
+                "tweets": 412783
               },
               "verification": {
                 "is_blue_verified": true,
@@ -825,6 +825,595 @@
               227
             ],
             "url": "https://t.co/hH0ojDBOuU"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1932476903895805990",
+      "url": "https://x.com/ccamp___/status/1932476903895805990",
+      "twitterUrl": "https://twitter.com/ccamp___/status/1932476903895805990",
+      "text": "Idea for getting enough data to solve robotics gpt moment:\n\nContext: there is not enough data for robotics model GPT moment like there is text and video data for those models. Robotics labs are lighting $100s of mm on fire paying people to teleoperate robots in Pittsburgh and the Philippines to collect data.\n\nIdea:\n—lots of startups are building teleoperated robots for various industries (eg replace hotel maids w robot controlled by guy in Philippines)\n—theoretically this is cheaper than human labor (teleoperator wages + amortized robot capex < in person labor wages)\n—widespread adoption = collective dataset potentially big enough for gpt moment training\n\n@SkildAI and @physical_int win because this data allows for GPT moment. Teleop hardware vendors win because they then get this model and already have distribution.\n\nBut, we would need a way to get all this data back for robotics model developers.\n\nThoughts?",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 4,
+      "quoteCount": 0,
+      "viewCount": 534,
+      "createdAt": "Tue Jun 10 16:36:12 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1932476903895805990",
+      "displayTextRange": [
+        0,
+        280
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ccamp___",
+        "url": "https://x.com/ccamp___",
+        "twitterUrl": "https://twitter.com/ccamp___",
+        "id": "1502381909074194440",
+        "name": "Colin Campbell",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2023083316833107968/nDeESSaR_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1502381909074194440/1740957479",
+        "description": "",
+        "location": "San Francisco, CA",
+        "followers": 1477,
+        "following": 1617,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri Mar 11 20:32:37 +0000 2022",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 13156,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 103,
+        "statusesCount": 599,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "These are the good ol days",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "1664370972869398529",
+            "indices": [
+              664,
+              672
+            ],
+            "name": "Skild AI",
+            "screen_name": "SkildAI"
+          },
+          {
+            "id_str": "1767285662087348224",
+            "indices": [
+              677,
+              690
+            ],
+            "name": "Physical Intelligence",
+            "screen_name": "physical_int"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1932487466646450618",
+      "url": "https://x.com/atlantic_county/status/1932487466646450618",
+      "twitterUrl": "https://twitter.com/atlantic_county/status/1932487466646450618",
+      "text": "Traffic Advisory - Weymouth Road, Hammonton\nhttps://t.co/OtawiQeIpx",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 101,
+      "createdAt": "Tue Jun 10 17:18:10 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1932487466646450618",
+      "displayTextRange": [
+        0,
+        67
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "atlantic_county",
+        "url": "https://x.com/atlantic_county",
+        "twitterUrl": "https://twitter.com/atlantic_county",
+        "id": "20248450",
+        "name": "Atlantic County",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1689721792/ac-twitter_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/20248450/1493732323",
+        "description": "",
+        "location": "New Jersey",
+        "followers": 5238,
+        "following": 5,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Fri Feb 06 16:20:17 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 0,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 12,
+        "statusesCount": 8799,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Atlantic County, NJ – Serving the needs of county residents, businesses and visitors.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "atlanticcountynj.gov",
+                  "expanded_url": "https://atlanticcountynj.gov",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/tMDGodLBgN"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "atlanticcountynj.gov/Home/Component…",
+            "expanded_url": "https://www.atlanticcountynj.gov/Home/Components/News/News/1126/86",
+            "indices": [
+              44,
+              67
+            ],
+            "url": "https://t.co/OtawiQeIpx"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1932491654063149249",
+      "url": "https://x.com/WarringtonTwpPD/status/1932491654063149249",
+      "twitterUrl": "https://twitter.com/WarringtonTwpPD/status/1932491654063149249",
+      "text": "Traffic Advisory: Lane Restrictions on Easton Road Due to Accident - https://t.co/cZXYzucDGp",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 138,
+      "createdAt": "Tue Jun 10 17:34:48 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1932491654063149249",
+      "displayTextRange": [
+        0,
+        92
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "WarringtonTwpPD",
+        "url": "https://x.com/WarringtonTwpPD",
+        "twitterUrl": "https://twitter.com/WarringtonTwpPD",
+        "id": "902219312450195456",
+        "name": "Warrington Twp PD",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/902235071368843264/YtFcnUJP_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/902219312450195456/1503944943",
+        "description": "",
+        "location": "Warrington, PA",
+        "followers": 1096,
+        "following": 42,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Mon Aug 28 17:20:21 +0000 2017",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 11,
+        "statusesCount": 991,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "News and updates from the Warrington Township (Bucks County) PA Police Department. Account not monitored. Call 911 for emergencies.",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "bucks.crimewatchpa.com/warringtontwpp…",
+            "expanded_url": "https://bucks.crimewatchpa.com/warringtontwppd/34642/post/traffic-advisory-lane-restrictions-easton-road-due-accident",
+            "indices": [
+              69,
+              92
+            ],
+            "url": "https://t.co/cZXYzucDGp"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1932491921643213065",
+      "url": "https://x.com/BrownSpiderCLE/status/1932491921643213065",
+      "twitterUrl": "https://twitter.com/BrownSpiderCLE/status/1932491921643213065",
+      "text": "I just got a notification from the Ohio Bureau of Motor Vehicles Office in the Philippines. They say I owe on a traffic ticket and my license will be suspended if I don’t pay. Luckily there’s a link for me to click where I can make a payment!!! #ScamAlert https://t.co/g8pGBBkCfl",
+      "source": "Twitter for iPhone",
+      "retweetCount": 8,
+      "replyCount": 92,
+      "likeCount": 200,
+      "quoteCount": 2,
+      "viewCount": 13271,
+      "createdAt": "Tue Jun 10 17:35:52 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 2,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1932491921643213065",
+      "displayTextRange": [
+        0,
+        255
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "BrownSpiderCLE",
+        "url": "https://x.com/BrownSpiderCLE",
+        "twitterUrl": "https://twitter.com/BrownSpiderCLE",
+        "id": "1064312738732785664",
+        "name": "🇺🇸BROWN SPIDER ADVENTURES!!!🇱🇷2026 Browns 17-0",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1962634695033679873/AIXaTeqy_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1064312738732785664/1783029187",
+        "description": "",
+        "location": "THE LAIR",
+        "followers": 29092,
+        "following": 11384,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Nov 19 00:21:45 +0000 2018",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 186777,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 35500,
+        "statusesCount": 93274,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2098393694227325124"
+        ],
+        "profile_bio": {
+          "description": "2026 RAMS 0-17. To build great power, take great responsibility. On The Hero's Journey. Faster than the speed of entropy. Married to @FirstLady_888.",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    133,
+                    147
+                  ],
+                  "name": "",
+                  "screen_name": "FirstLady_888"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "MuniLotWedding2025.com",
+                  "expanded_url": "http://MuniLotWedding2025.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/dhkIUBnQSC"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/g8pGBBkCfl",
+            "expanded_url": "https://x.com/BrownSpiderCLE/status/1932491921643213065/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 65,
+                    "w": 65,
+                    "x": 666,
+                    "y": 35
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 65,
+                    "w": 65,
+                    "x": 666,
+                    "y": 35
+                  }
+                ]
+              }
+            },
+            "id_str": "1932491915275984896",
+            "indices": [
+              256,
+              279
+            ],
+            "media_key": "3_1932491915275984896",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARrRlyh9VuAACgACGtGXKfjbEQkAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGtGXKH1W4AAKAAIa0Zcp+NsRCQAA",
+                "media_key": "3_1932491915275984896"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GtGXKH1W4AAhBib.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 722,
+                  "w": 1290,
+                  "x": 0,
+                  "y": 379
+                },
+                {
+                  "h": 1200,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1200,
+                  "w": 1053,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1200,
+                  "w": 600,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1200,
+                  "w": 1290,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1200,
+              "width": 1290
+            },
+            "sizes": {
+              "large": {
+                "h": 1200,
+                "w": 1290
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/g8pGBBkCfl"
+          },
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/g8pGBBkCfl",
+            "expanded_url": "https://x.com/BrownSpiderCLE/status/1932491921643213065/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1932491915275935744",
+            "indices": [
+              256,
+              279
+            ],
+            "media_key": "3_1932491915275935744",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARrRlyh9ViAACgACGtGXKfjbEQkAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGtGXKH1WIAAKAAIa0Zcp+NsRCQAA",
+                "media_key": "3_1932491915275935744"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GtGXKH1WIAApBML.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 529,
+                  "w": 944,
+                  "x": 0,
+                  "y": 807
+                },
+                {
+                  "h": 944,
+                  "w": 944,
+                  "x": 0,
+                  "y": 599
+                },
+                {
+                  "h": 1076,
+                  "w": 944,
+                  "x": 0,
+                  "y": 533
+                },
+                {
+                  "h": 1888,
+                  "w": 944,
+                  "x": 0,
+                  "y": 127
+                },
+                {
+                  "h": 2048,
+                  "w": 944,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 944
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 944
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/g8pGBBkCfl"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              245,
+              255
+            ],
+            "text": "ScamAlert"
           }
         ]
       },
@@ -872,8 +1461,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186993,
-        "following": 87,
+        "followers": 187132,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -885,16 +1474,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31256,
-        "statusesCount": 146771,
+        "mediaCount": 31368,
+        "statusesCount": 146896,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",

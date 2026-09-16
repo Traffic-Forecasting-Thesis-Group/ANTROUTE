@@ -5,7 +5,7 @@
     "window_start": "2026-02-05T02:00:00+08:00",
     "window_end": "2026-02-05T04:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 4,
+    "tweet_count": 9,
     "slices": [
       {
         "start": "2026-02-05T02:00:00+08:00",
@@ -60,8 +60,8 @@
         "start": "2026-02-05T02:35:00+08:00",
         "end": "2026-02-05T02:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-05T02:40:00+08:00",
@@ -81,15 +81,15 @@
         "start": "2026-02-05T02:50:00+08:00",
         "end": "2026-02-05T02:55:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-05T02:55:00+08:00",
         "end": "2026-02-05T03:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-05T03:00:00+08:00",
@@ -102,8 +102,8 @@
         "start": "2026-02-05T03:05:00+08:00",
         "end": "2026-02-05T03:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-05T03:10:00+08:00",
@@ -172,8 +172,8 @@
         "start": "2026-02-05T03:55:00+08:00",
         "end": "2026-02-05T04:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       }
     ]
   },
@@ -211,12 +211,12 @@
         "name": "Official MMDA",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": null,
+        "verifiedType": "Government",
         "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967082,
+        "followers": 3966602,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -232,8 +232,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888278,
+        "mediaCount": 61733,
+        "statusesCount": 888707,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -276,6 +276,8 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -287,9 +289,9 @@
       "source": "Twitter for iPhone",
       "retweetCount": 3,
       "replyCount": 1,
-      "likeCount": 148,
+      "likeCount": 147,
       "quoteCount": 0,
-      "viewCount": 14990,
+      "viewCount": 14994,
       "createdAt": "Wed Feb 04 18:30:13 +0000 2026",
       "lang": "en",
       "bookmarkCount": 22,
@@ -316,7 +318,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/14985448/1682289675",
         "description": "",
         "location": "United States",
-        "followers": 165996,
+        "followers": 165836,
         "following": 11,
         "status": "",
         "canDm": true,
@@ -360,9 +362,11 @@
             },
             "display_url": "pic.x.com/UyRBKXcnvY",
             "expanded_url": "https://x.com/wars/status/2019116299700551905/video/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "id_str": "2019116140773933056",
             "indices": [
               212,
@@ -370,7 +374,10 @@
             ],
             "media_key": "13_2019116140773933056",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARwFV26rFoAAAAA=",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABHAVXbqsWgAAAAA==",
                 "media_key": "13_2019116140773933056"
               }
             },
@@ -383,23 +390,7 @@
             "sizes": {
               "large": {
                 "h": 428,
-                "resize": "fit",
                 "w": 640
-              },
-              "medium": {
-                "h": 428,
-                "resize": "fit",
-                "w": 640
-              },
-              "small": {
-                "h": 428,
-                "resize": "fit",
-                "w": 640
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "video",
@@ -432,89 +423,299 @@
       },
       "card": null,
       "place": {},
-      "entities": {
-        "media": [
-          {
-            "additional_media_info": {
-              "monetizable": false
-            },
-            "allow_download_status": {
-              "allow_download": true
-            },
-            "display_url": "pic.x.com/UyRBKXcnvY",
-            "expanded_url": "https://x.com/wars/status/2019116299700551905/video/1",
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "id_str": "2019116140773933056",
-            "indices": [
-              212,
-              235
-            ],
-            "media_key": "13_2019116140773933056",
-            "media_results": {
-              "result": {
-                "media_key": "13_2019116140773933056"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2019116140773933056/img/iVB-VSaNcHb1UCKp.jpg",
-            "original_info": {
-              "focus_rects": [],
-              "height": 428,
-              "width": 640
-            },
-            "sizes": {
-              "large": {
-                "h": 428,
-                "resize": "fit",
-                "w": 640
-              },
-              "medium": {
-                "h": 428,
-                "resize": "fit",
-                "w": 640
-              },
-              "small": {
-                "h": 428,
-                "resize": "fit",
-                "w": 640
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
-              }
-            },
-            "type": "video",
-            "url": "https://t.co/UyRBKXcnvY",
-            "video_info": {
-              "aspect_ratio": [
-                160,
-                107
-              ],
-              "duration_millis": 190100,
-              "variants": [
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2019118097530335466",
+      "url": "https://x.com/WestwoodPD/status/2019118097530335466",
+      "twitterUrl": "https://twitter.com/WestwoodPD/status/2019118097530335466",
+      "text": "TRAFFIC ADVISORY\nOfficers will be conducting an escort from the Westwood High School to the Oak St area at approximately 4:00 PM today.\nMultiple emergency vehicles will be operating with lights &amp; sirens during this time. This is a planned escort &amp; there is no cause for concern.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 4,
+      "quoteCount": 0,
+      "viewCount": 1103,
+      "createdAt": "Wed Feb 04 18:37:22 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2019118097530335466",
+      "displayTextRange": [
+        0,
+        286
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "WestwoodPD",
+        "url": "https://x.com/WestwoodPD",
+        "twitterUrl": "https://twitter.com/WestwoodPD",
+        "id": "34927152",
+        "name": "Westwood Police",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1267653536638255105/24530fr__normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/34927152/1400622328",
+        "description": "",
+        "location": "Westwood, MA",
+        "followers": 6942,
+        "following": 537,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Fri Apr 24 13:42:32 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2439,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 533,
+        "statusesCount": 1785,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official X Feed of the Westwood, Massachusetts Police Department. NOT monitored 24 hrs/day. Call 911 for emergencies. Call 781.320.1000 for routine business.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
                 {
-                  "content_type": "application/x-mpegURL",
-                  "url": "https://video.twimg.com/amplify_video/2019116140773933056/pl/g7zosrBMyQFj4UOA.m3u8?tag=21"
-                },
-                {
-                  "bitrate": 256000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2019116140773933056/vid/avc1/402x270/22LGkcGyWQYxPoV1.mp4?tag=21"
-                },
-                {
-                  "bitrate": 832000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2019116140773933056/vid/avc1/640x428/YLZdrsIvslzGveTN.mp4?tag=21"
+                  "display_url": "WestwoodPD.org",
+                  "expanded_url": "http://WestwoodPD.org",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/SUSIUUQ2Ln"
                 }
               ]
             }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": true,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2019121640349790469",
+      "url": "https://x.com/LAPDCentral/status/2019121640349790469",
+      "twitterUrl": "https://twitter.com/LAPDCentral/status/2019121640349790469",
+      "text": "⚠️Traffic Advisory⚠️ \n\nFlower St at 3rd St. \n\nThere is a demonstration in progress. Demonstration is marching on Flower towards 3rd St heading Northbound. \n\nPlease use caution in the area as pedestrians may be in the roadway.  \n@LAPDHQ",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 10,
+      "quoteCount": 1,
+      "viewCount": 1227,
+      "createdAt": "Wed Feb 04 18:51:27 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2019121640349790469",
+      "displayTextRange": [
+        0,
+        235
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "LAPDCentral",
+        "url": "https://x.com/LAPDCentral",
+        "twitterUrl": "https://twitter.com/LAPDCentral",
+        "id": "1608131025774993408",
+        "name": "LAPD Central Division",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1810395052855926784/R0pSVKzE_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1608131025774993408/1705187163",
+        "description": "",
+        "location": "251 E 6th Street Los Angeles",
+        "followers": 10792,
+        "following": 128,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Dec 28 16:02:18 +0000 2022",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 746,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 486,
+        "statusesCount": 3132,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Offical Account of LAPD Central Division. Serving Downtown Los Angeles. *This account is not monitored 24/7*",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "lapdonline.org",
+                  "expanded_url": "http://lapdonline.org",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/W4L7E504v2"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "115705583",
+            "indices": [
+              228,
+              235
+            ],
+            "name": "LAPD HQ",
+            "screen_name": "LAPDHQ"
           }
         ]
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2019123403052183751",
+      "url": "https://x.com/LAPDCentral/status/2019123403052183751",
+      "twitterUrl": "https://twitter.com/LAPDCentral/status/2019123403052183751",
+      "text": "⚠️Traffic Advisory⚠️ \n\nAlameda is closed between Temple and Aliso due to a demonstration.  \n\nPlease use alternate route.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 1,
+      "likeCount": 3,
+      "quoteCount": 1,
+      "viewCount": 845,
+      "createdAt": "Wed Feb 04 18:58:27 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2019123403052183751",
+      "displayTextRange": [
+        0,
+        120
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "LAPDCentral",
+        "url": "https://x.com/LAPDCentral",
+        "twitterUrl": "https://twitter.com/LAPDCentral",
+        "id": "1608131025774993408",
+        "name": "LAPD Central Division",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1810395052855926784/R0pSVKzE_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1608131025774993408/1705187163",
+        "description": "",
+        "location": "251 E 6th Street Los Angeles",
+        "followers": 10792,
+        "following": 128,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Dec 28 16:02:18 +0000 2022",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 746,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 486,
+        "statusesCount": 3132,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Offical Account of LAPD Central Division. Serving Downtown Los Angeles. *This account is not monitored 24/7*",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "lapdonline.org",
+                  "expanded_url": "http://lapdonline.org",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/W4L7E504v2"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -524,14 +725,14 @@
       "twitterUrl": "https://twitter.com/SpencerGuard/status/2019124749293465750",
       "text": "I hate to see this from the CEO of the very respected military forum @WarOnTheRocks Not just because it opens with ad hominem attacks, but because it doubles down on defending an article full of unsubstantiated claims, faulty sourcing, and analytical errors that have already been called out by numerous serious analysts.\n\nI was not involved in the earlier exchanges. But since the author at’d me, I assume he wants my input.\n\nFirst, on the ad hominem of “Likudnik influencers,” which appears to infer biased analysis based on alleged political affiliation/association/influence with/of a foreign government. This accusation itself reflects a continued failure to do basic fact checking. The irony is that the post responds to Andrew Fox, whose public record includes sustained criticism of decisions made by Israel’s political leadership. Calling him a Likudnik influencer is demonstrably false.\n\nAs for me, I do not infer intent from social media posts or selective quotes. I have interviewed Israel’s prime minister, minister of defense, and multiple chiefs of staff directly about war objectives, strategy, and intent. That is fundamentally different from the approach taken in the Milburn article, which relies on inference, misused quotations, and effects-based assertions rather than evidence of orders, policy, or command intent.\n\nThis post mirrors the original article in its reliance on bad logic, faulty comparative analysis, and arguments driven by feeling rather than rigor.\n\n“Evidence of civilians targeted.” There is no evidence that Israel targeted civilians. Even the Biden administration explicitly clarified this point. Conflating civilian harm with civilian targeting is analytically sloppy and legally wrong. One can argue about collateral damage thresholds, or whether different forces might have accepted different risk. But asserting intentional targeting without evidence reflects bias, not analysis.\n\n“Senior ministers calling for collective punishment and mass displacement.” If this refers to figures like Smotrich or Ben Gvir, their statements were repeatedly contradicted by Israel’s senior military and political leadership and never translated into operational orders. If it refers to the continued misuse of Gallant’s and Herzog’s statements, those claims have been systematically debunked. This includes direct, detailed rebuttals showing how such quotes are routinely misused to infer intent. Repeating debunked claims does not strengthen an argument. See @Aizenberg55 https://t.co/OFccTv4lQx\n\n“Systematic destruction of civilian infrastructure untethered from military necessity.” No evidence is provided to demonstrate a lack of military necessity. Photos of destruction are not proof of unlawful conduct. As Professor Brian Cox, a law of war scholar, has explained in detail, effects-based criticism is not evidence of illegality or intent. https://t.co/yMhZsn6qqr\n\n“Scale and duration of civilian displacement.” Moving civilians out of combat zones is the single most widely used civilian harm mitigation tactic in the history of urban warfare. One can debate the execution, sequencing, or repetition of displacement. But treating civilian evacuation itself as evidence of wrongdoing ignores both law and history, particularly when Hamas deliberately forced civilians back into combat areas.\n\n“Israeli sources prove the case.” No credible Israeli sources are presented that substantiate claims of intentional civilian targeting or unlawful strategy. Disagreement within Israeli society is not evidence of war crimes.\n\n“Dresden.” I have never used Dresden as justification. I have cited it only to demonstrate how propaganda-driven casualty figures persisted for decades before being corrected. Using historical false equivalence to dismiss analysis is not a rebuttal.\n\nNotably absent from this post is any engagement with Professor Brian Cox’s extensive, point-by-point critique of the analytical and legal errors in the Milburn argument. Ignoring expert rebuttal while claiming good-faith debate is telling. https://t.co/yMhZsn6qqr\n\nThe reference to “postwar civilian protection law” appears to conflate the evolution of the law of armed conflict with modern civilian harm mitigation practices. These are not the same. Contemporary mitigation practices emerged primarily over the last twenty years in Iraq, Afghanistan, and Syria under counterinsurgency conditions that are not direct analogies to Gaza, but I have also documented how the IDF has used every civilian harm mitigation procedure created in the last 20 years of counterterrorism and counterinsurgency campaigns and then invented many never used in the history of war - https://t.co/8bZ9pWdvCH\n\nOn WWII comparisons, I personally have cited Manila 1945 precisely because it included US hostages, an entrenched enemy, tunnels, dense urban terrain, and massive civilian harm despite the absence of bombing the city proper. Nearly 100,000 civilians died. Context matters. This position also discounts post-WWII history like the Korean War. But the fact is there is no precedence for Gaza - https://t.co/w3qmI0kDKT\n\nMosul is an even weaker comparison. It was a counterinsurgency campaign, not a cross-border war. It involved no threat to US territory, no US hostages, different ROEs, different time horizons, and vastly different political variables. What is consistently omitted is the cost. Iraqi security forces suffered an estimated five to ten thousand killed to defeat a force of roughly 5,000 ISIS fighters.\n\nHere is a quote from the commanding general of the U.S. support to the liberation of Mosul in 2017, General Stephen Townsend:\n\n“I saw things I have only ever read about in history book… it was the last week…around July 10th… Mosul had been cleared except for a 400 x 400 meter postage stamp…then it shrunk to 200 x 200 … it took about a week to take that…the buildings had been turned into bunkers…rubble 20 to 30 feet on top of the first and basement floors…you couldn’t build a better bomb proof shelter…ISIS was dug in there and he wasn’t giving up…on the last day I watched reconnaissance video feed of the final Iraqi assault…there was an Iraqi bulldozer driver driving through that field of rubble and on each side of the bulldozer was a squad of Iraqi infantry walking along protecting the bulldozer and as ISIS fighters popped up out of the rubble, the bulldozer would turn towards them and bury them whole, infantry walking along would drop grenades in holes and shoot guys trying to fire rockets to knock it out…we found ourselves wondering if we still have flamethrowers in our inventory, turns out we don’t, some armies do, but we didn’t, I couldn’t get my hands on flamethrowers fast or I would have.”\n\nGeneral Stephen Townsend’s description of the final days of Mosul underscores the brutal reality of dense urban combat against an entrenched defender. That reality does not disappear because one prefers a cleaner narrative.\n\nNeither this post nor the Milburn article has demonstrated that Israeli forces used excessive collateral damage given the context, nor that US forces would have performed better under the same conditions. Although, I have publicly stated that the US would likely have fought Gaza differently. But I base that on strategic, operational, and mission variables, not moralized inference.\n\nThis post and the defended article continue to disregard all analysis that opposes its narratives. As well of those by numerous senior, experienced commanders, scholars that have visited Israel, Gaza and did their analysis of the above and come to a completely different conclusion. Again, just a few of them:\n\nhttps://t.co/9nFTeGiAdb\n\nhttps://t.co/9QTpFUiAeZ\n\nhttps://t.co/LGFSVb617p\n\nhttps://t.co/xLQ8uQU4ZC\n\nI agree with one sentence in the post. There are reasonable, good-faith ways to debate this issue. This is not one of them. To include the authors post.",
       "source": "Twitter for iPhone",
-      "retweetCount": 292,
+      "retweetCount": 293,
       "replyCount": 60,
-      "likeCount": 1178,
+      "likeCount": 1177,
       "quoteCount": 31,
-      "viewCount": 184845,
+      "viewCount": 184876,
       "createdAt": "Wed Feb 04 19:03:48 +0000 2026",
       "lang": "en",
-      "bookmarkCount": 254,
+      "bookmarkCount": 253,
       "isReply": false,
       "inReplyToId": null,
       "conversationId": "2019124749293465750",
@@ -555,8 +756,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/792054557501038592/1705079644",
         "description": "",
         "location": "United States",
-        "followers": 356235,
-        "following": 1492,
+        "followers": 356753,
+        "following": 1499,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -568,11 +769,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 113647,
+        "favouritesCount": 114101,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 3290,
-        "statusesCount": 45673,
+        "mediaCount": 3299,
+        "statusesCount": 45846,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -582,7 +783,19 @@
         "profile_bio": {
           "description": "War Scholar | Chair of War Studies Madison Policy Forum | Executive Director @urbanwarfareins | UWP podcast | Thoughts/Posts my own RT/Quote/Like ≠ Official Gov",
           "entities": {
-            "description": {},
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    77,
+                    93
+                  ],
+                  "name": "",
+                  "screen_name": "urbanwarfareins"
+                }
+              ]
+            },
             "url": {
               "urls": [
                 {
@@ -720,9 +933,9 @@
         "source": "Twitter for iPhone",
         "retweetCount": 93,
         "replyCount": 92,
-        "likeCount": 376,
+        "likeCount": 375,
         "quoteCount": 15,
-        "viewCount": 169676,
+        "viewCount": 169719,
         "createdAt": "Wed Feb 04 15:18:56 +0000 2026",
         "lang": "en",
         "bookmarkCount": 114,
@@ -749,8 +962,8 @@
           "coverPicture": "https://pbs.twimg.com/profile_banners/418609418/1353361591",
           "description": "",
           "location": "Washington, DC",
-          "followers": 44185,
-          "following": 3401,
+          "followers": 44190,
+          "following": 3404,
           "status": "",
           "canDm": false,
           "canMediaTag": false,
@@ -762,11 +975,11 @@
             "url": {}
           },
           "fastFollowersCount": 0,
-          "favouritesCount": 15833,
+          "favouritesCount": 15873,
           "hasCustomTimelines": true,
-          "isTranslator": false,
+          "isTranslator": true,
           "mediaCount": 457,
-          "statusesCount": 13653,
+          "statusesCount": 13684,
           "withheldInCountries": [],
           "affiliatesHighlightedLabel": {},
           "possiblySensitive": false,
@@ -776,7 +989,19 @@
           "profile_bio": {
             "description": "CEO & Founder @WarontheRocks",
             "entities": {
-              "description": {},
+              "description": {
+                "user_mentions": [
+                  {
+                    "id_str": "",
+                    "indices": [
+                      14,
+                      28
+                    ],
+                    "name": "",
+                    "screen_name": "WarontheRocks"
+                  }
+                ]
+              },
               "url": {
                 "urls": [
                   {
@@ -814,11 +1039,138 @@
             }
           ]
         },
-        "quoted_tweet": null,
+        "quoted_tweet": {
+          "type": "tweet",
+          "id": "2018744160451494370",
+          "url": "",
+          "twitterUrl": "",
+          "text": "",
+          "source": "Twitter for iPhone",
+          "retweetCount": 0,
+          "replyCount": 0,
+          "likeCount": 0,
+          "quoteCount": 0,
+          "viewCount": 0,
+          "createdAt": "",
+          "lang": "",
+          "bookmarkCount": 0,
+          "isReply": false,
+          "inReplyToId": null,
+          "conversationId": "",
+          "displayTextRange": [],
+          "inReplyToUserId": null,
+          "inReplyToUsername": null,
+          "author": {},
+          "extendedEntities": {},
+          "card": null,
+          "place": {},
+          "entities": {},
+          "quoted_tweet": null,
+          "retweeted_tweet": null,
+          "isLimitedReply": false,
+          "communityInfo": null,
+          "article": null
+        },
         "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
         "article": null
       },
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2019125171714683197",
+      "url": "https://x.com/LAPDCentral/status/2019125171714683197",
+      "twitterUrl": "https://twitter.com/LAPDCentral/status/2019125171714683197",
+      "text": "⚠️Traffic Advisory⚠️ \n\nMarch is Northbound Spring St from 1st St and joining the other demonstration already in progress at City Hall. \n\nSpring St is closed between Temple and 1st St due to a demonstration.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 4,
+      "replyCount": 0,
+      "likeCount": 10,
+      "quoteCount": 1,
+      "viewCount": 1937,
+      "createdAt": "Wed Feb 04 19:05:29 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2019125171714683197",
+      "displayTextRange": [
+        0,
+        206
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "LAPDCentral",
+        "url": "https://x.com/LAPDCentral",
+        "twitterUrl": "https://twitter.com/LAPDCentral",
+        "id": "1608131025774993408",
+        "name": "LAPD Central Division",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1810395052855926784/R0pSVKzE_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1608131025774993408/1705187163",
+        "description": "",
+        "location": "251 E 6th Street Los Angeles",
+        "followers": 10792,
+        "following": 128,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Dec 28 16:02:18 +0000 2022",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 746,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 486,
+        "statusesCount": 3132,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Offical Account of LAPD Central Division. Serving Downtown Los Angeles. *This account is not monitored 24/7*",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "lapdonline.org",
+                  "expanded_url": "http://lapdonline.org",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/W4L7E504v2"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -854,12 +1206,12 @@
         "name": "Official MMDA",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": null,
+        "verifiedType": "Government",
         "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967082,
+        "followers": 3966602,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -875,8 +1227,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888278,
+        "mediaCount": 61733,
+        "statusesCount": 888707,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -919,6 +1271,222 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2019138573174460449",
+      "url": "https://x.com/hurricane_chase/status/2019138573174460449",
+      "twitterUrl": "https://twitter.com/hurricane_chase/status/2019138573174460449",
+      "text": "Tropical Storm #Penha (#BasyangPH) is beginning to intensify but fortunately is running out of time before it makes landfall in the #Philippines and begins to weaken. Moderate Impacts in the form of flooding are possible. May have a stream up later this morning!\n\n#wx #typhoon https://t.co/KQHPcoQuhO",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 10,
+      "quoteCount": 1,
+      "viewCount": 868,
+      "createdAt": "Wed Feb 04 19:58:44 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 2,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2019138573174460449",
+      "displayTextRange": [
+        0,
+        276
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "hurricane_chase",
+        "url": "https://x.com/hurricane_chase",
+        "twitterUrl": "https://twitter.com/hurricane_chase",
+        "id": "1389671839803260936",
+        "name": "Hurricane Chaser Chase",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1986777958325833728/ZZDx97uz_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1389671839803260936/1740350856",
+        "description": "",
+        "location": "",
+        "followers": 9789,
+        "following": 601,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue May 04 20:03:02 +0000 2021",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 30979,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 5159,
+        "statusesCount": 8913,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1844402220848251069"
+        ],
+        "profile_bio": {
+          "description": "I'm a South Florida storm chaser who animates and provides updates on tropical cyclones worldwide! Trying to save as many lives as I can internationally! 4HU",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "beacons.ai/hurricanechase…",
+                  "expanded_url": "https://beacons.ai/hurricanechaserchase",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/7XdZGaEFPB"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/KQHPcoQuhO",
+            "expanded_url": "https://x.com/hurricane_chase/status/2019138573174460449/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2019138184441995264",
+            "indices": [
+              277,
+              300
+            ],
+            "media_key": "3_2019138184441995264",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwFa3scF6AACgACHAVr1Z5aUCEAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHAVrexwXoAAKAAIcBWvVnlpQIQAA",
+                "media_key": "3_2019138184441995264"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HAVrexwXoAAyqFo.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 491,
+                  "w": 877,
+                  "x": 0,
+                  "y": 314
+                },
+                {
+                  "h": 805,
+                  "w": 805,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 805,
+                  "w": 706,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 805,
+                  "w": 403,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 805,
+                  "w": 877,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 805,
+              "width": 877
+            },
+            "sizes": {
+              "large": {
+                "h": 805,
+                "w": 877
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/KQHPcoQuhO"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              15,
+              21
+            ],
+            "text": "Penha"
+          },
+          {
+            "indices": [
+              23,
+              33
+            ],
+            "text": "BasyangPH"
+          },
+          {
+            "indices": [
+              132,
+              144
+            ],
+            "text": "Philippines"
+          },
+          {
+            "indices": [
+              264,
+              267
+            ],
+            "text": "wx"
+          },
+          {
+            "indices": [
+              268,
+              276
+            ],
+            "text": "typhoon"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     }
   ]

@@ -5,7 +5,7 @@
     "window_start": "2025-07-07T14:00:00+08:00",
     "window_end": "2025-07-07T16:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 6,
+    "tweet_count": 8,
     "slices": [
       {
         "start": "2025-07-07T14:00:00+08:00",
@@ -46,8 +46,8 @@
         "start": "2025-07-07T14:25:00+08:00",
         "end": "2025-07-07T14:30:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-07-07T14:30:00+08:00",
@@ -102,8 +102,8 @@
         "start": "2025-07-07T15:05:00+08:00",
         "end": "2025-07-07T15:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-07-07T15:10:00+08:00",
@@ -216,8 +216,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/74886399/1762132752",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 143640,
-        "following": 1036,
+        "followers": 143749,
+        "following": 1035,
         "status": "",
         "canDm": false,
         "canMediaTag": true,
@@ -232,8 +232,8 @@
         "favouritesCount": 8103,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 299656,
-        "statusesCount": 861616,
+        "mediaCount": 300599,
+        "statusesCount": 863021,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -271,11 +271,9 @@
             },
             "display_url": "pic.x.com/043RK9CiYS",
             "expanded_url": "https://x.com/dzrhnews/status/1942101591584391426/video/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "id_str": "1942101474831405056",
             "indices": [
               188,
@@ -283,10 +281,7 @@
             ],
             "media_key": "13_1942101474831405056",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARrzuwBtFpAAAAA=",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAAECgABGvO7AG0WkAAAAA==",
                 "media_key": "13_1942101474831405056"
               }
             },
@@ -299,7 +294,23 @@
             "sizes": {
               "large": {
                 "h": 576,
+                "resize": "fit",
                 "w": 1024
+              },
+              "medium": {
+                "h": 576,
+                "resize": "fit",
+                "w": 1024
+              },
+              "small": {
+                "h": 383,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "video",
@@ -338,6 +349,90 @@
       "card": null,
       "place": {},
       "entities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/043RK9CiYS",
+            "expanded_url": "https://x.com/dzrhnews/status/1942101591584391426/video/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "id_str": "1942101474831405056",
+            "indices": [
+              188,
+              211
+            ],
+            "media_key": "13_1942101474831405056",
+            "media_results": {
+              "result": {
+                "media_key": "13_1942101474831405056"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1942101474831405056/img/rgo9KA-DZL1LSpLs.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 576,
+              "width": 1024
+            },
+            "sizes": {
+              "large": {
+                "h": 576,
+                "resize": "fit",
+                "w": 1024
+              },
+              "medium": {
+                "h": 576,
+                "resize": "fit",
+                "w": 1024
+              },
+              "small": {
+                "h": 383,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/043RK9CiYS",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 59209,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1942101474831405056/pl/iY0IWdbetVlE6mBB.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1942101474831405056/vid/avc1/480x270/GenIsy5SSNKE6CRB.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1942101474831405056/vid/avc1/640x360/t888YL225sIvRwwW.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1942101474831405056/vid/avc1/1024x576/V8Sz_CIOZiB-nG7-.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ],
         "user_mentions": [
           {
             "id_str": "148291929",
@@ -352,8 +447,6 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -394,7 +487,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197125,
+        "followers": 1197849,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -410,8 +503,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219263,
-        "statusesCount": 941821,
+        "mediaCount": 219464,
+        "statusesCount": 942852,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -595,7 +688,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1197125,
+                "followers": 1197849,
                 "following": 141
               },
               "relationship_perspectives": {
@@ -613,8 +706,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 219263,
-                "tweets": 941821
+                "media_tweets": 219464,
+                "tweets": 942852
               },
               "verification": {
                 "is_blue_verified": true,
@@ -685,7 +778,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437304,
+        "followers": 1437192,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -701,8 +794,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411294,
+        "mediaCount": 17208,
+        "statusesCount": 411900,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -787,8 +880,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1347078670205087745/1786259119",
         "description": "",
         "location": "",
-        "followers": 123,
-        "following": 483,
+        "followers": 124,
+        "following": 482,
         "status": "",
         "canDm": false,
         "canMediaTag": false,
@@ -800,11 +893,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 34939,
+        "favouritesCount": 35135,
         "hasCustomTimelines": true,
         "isTranslator": false,
         "mediaCount": 1425,
-        "statusesCount": 10659,
+        "statusesCount": 10661,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -837,6 +930,235 @@
       "card": null,
       "place": {},
       "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1942107705252175894",
+      "url": "https://x.com/dzrhnews/status/1942107705252175894",
+      "twitterUrl": "https://twitter.com/dzrhnews/status/1942107705252175894",
+      "text": "Text at email notification para sa mga lalabag sa NCAP, inilunsad ng @MMDA | RH 52 @ednielparrosa, DZRH News\n\n#RapidoHatawBalita\n\nWATCH: https://t.co/ne9m2GlaKF https://t.co/1s4ZdmxNS4",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 209,
+      "createdAt": "Mon Jul 07 06:25:34 +0000 2025",
+      "lang": "tl",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1942107705252175894",
+      "displayTextRange": [
+        0,
+        160
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "dzrhnews",
+        "url": "https://x.com/dzrhnews",
+        "twitterUrl": "https://twitter.com/dzrhnews",
+        "id": "74886399",
+        "name": "DZRH NEWS",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2077640307458633728/kXNIDvgI_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/74886399/1762132752",
+        "description": "",
+        "location": "Manila, Philippines",
+        "followers": 143751,
+        "following": 1036,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Thu Sep 17 00:35:08 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 8103,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 300599,
+        "statusesCount": 863021,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The official X account of MBC Media Group's flagship radio station DZRH 666 kHz: Una sa Pilipinas, Una sa Pilipino",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "dzrh.com.ph",
+                  "expanded_url": "http://www.dzrh.com.ph",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/rKJXaTpAtz"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/1s4ZdmxNS4",
+            "expanded_url": "https://x.com/dzrhnews/status/1942107705252175894/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 35,
+                    "w": 35,
+                    "x": 554,
+                    "y": 256
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 35,
+                    "w": 35,
+                    "x": 554,
+                    "y": 256
+                  }
+                ]
+              }
+            },
+            "id_str": "1942107679062646784",
+            "indices": [
+              161,
+              184
+            ],
+            "media_key": "3_1942107679062646784",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARrzwKT2FmAACgACGvPAqw8a4BYAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGvPApPYWYAAKAAIa88CrDxrgFgAA",
+                "media_key": "3_1942107679062646784"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GvPApPYWYAAdtbA.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 353,
+                  "w": 630,
+                  "x": 0,
+                  "y": 1
+                },
+                {
+                  "h": 354,
+                  "w": 354,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 354,
+                  "w": 311,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 354,
+                  "w": 177,
+                  "x": 53,
+                  "y": 0
+                },
+                {
+                  "h": 354,
+                  "w": 630,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 354,
+              "width": 630
+            },
+            "sizes": {
+              "large": {
+                "h": 354,
+                "w": 630
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/1s4ZdmxNS4"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              110,
+              128
+            ],
+            "text": "RapidoHatawBalita"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "facebook.com/share/v/1CxjQr…",
+            "expanded_url": "https://www.facebook.com/share/v/1CxjQre2jR/",
+            "indices": [
+              137,
+              160
+            ],
+            "url": "https://t.co/ne9m2GlaKF"
+          }
+        ],
+        "user_mentions": [
+          {
+            "id_str": "171574926",
+            "indices": [
+              69,
+              74
+            ],
+            "name": "Official MMDA",
+            "screen_name": "MMDA"
+          },
+          {
+            "id_str": "561533671",
+            "indices": [
+              83,
+              97
+            ],
+            "name": "Edniel Parrosa",
+            "screen_name": "ednielparrosa"
+          }
+        ]
+      },
       "quoted_tweet": null,
       "retweeted_tweet": null,
       "isLimitedReply": false,
@@ -881,7 +1203,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197125,
+        "followers": 1197849,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -897,8 +1219,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219263,
-        "statusesCount": 941821,
+        "mediaCount": 219464,
+        "statusesCount": 942852,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1076,7 +1398,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437304,
+        "followers": 1437192,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1092,8 +1414,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411294,
+        "mediaCount": 17208,
+        "statusesCount": 411900,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1133,6 +1455,102 @@
             "text": "MakatiTraffic"
           }
         ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1942117999705501703",
+      "url": "https://x.com/ZackEiseman/status/1942117999705501703",
+      "twitterUrl": "https://twitter.com/ZackEiseman/status/1942117999705501703",
+      "text": "ICYMI O/N & WEEKEND:\n\nTRADE:\n\nTrump posted on Truth, \"I am pleased to announce that the UNITED STATES TARIFF Letters, and/or Deals, with various Countries from around the World, will be delivered starting 12:00 P.M. (Eastern), Monday, July 7th.\" (Truth Social)\n\nUS Treasury Secretary Bessent said on CNN on Sunday that the tone of the letters might not be a declaration of immediate tariffs on dozens of countries. Bessent said, “President Trump is going to send letters to some of our trading partners saying that ‘if you don’t move things along, then on August 1st, you will boomerang back to your April 2nd tariff level’”. (CNN)\n\nTrump posted on Truth, \"Any Country aligning themselves with the Anti-American policies of BRICS, will be charged an ADDITIONAL 10% Tariff. There will be no exceptions to this policy. Thank you for your attention to this matter!\" (Truth Social)\n\nUS National Economic Council director Kevin Hassett said on CBS on Sunday that the administration plans to complete a variety of trade deals before the Wednesday deadline on the 90-day pause on reciprocal tariffs. (WSJ)\n\nEU Commission president von der Leyen reached out to European leaders over the weekend to get guidance on whether she should accept a deal with some higher tariffs, which many favour, or raise the pressure on the US. The bloc is still divided on the best strategy. (FT)\n\nJapan's tariff negotiator Ryosei Akazawa held \"in-depth exchanges\" over the phone with U.S. Commerce Secretary Howard Lutnick on Thursday and Saturday, the Japanese government said. (RTRS)\n\nWhile Trump posted that all U.S. goods would enter Vietnam tariff-free, the Vietnamese are working on exemptions to that rule that would still see some U.S. goods hit by tariffs, according to WSJ sources. (WSJ)\n\nIndonesia, the world’s second-biggest wheat buyer, plans to purchase more wheat from the US as it seeks to secure a trade deal ahead of the looming tariff deadline. (BBG)\n\nChina's finance ministry said on Sunday it was restricting government purchases of medical devices from the EU that exceed 45 million yuan ($6.3 million) in value, in retaliation to Brussels' own curbs last month. (RTRS)\n\nCanada has discussed offering financial support to large aluminum producers like Rio Tinto impacted by the US trade war, in the event that Washington's 50% tariff on imports of the metal persist in the medium term, the CEO of a key industry trade group said on Saturday. (RTRS)\n\nRussian President Putin told BRICS leaders on Sunday that the era of liberal globalisation was obsolete and that the future belonged to swiftly growing emerging markets which should enhance the use of their national currencies for trade. (RTRS)\n\nMACRO: \n\nOil prices are pressured after OPEC+ agreed on Saturday to raise production by 548,000 barrels per day in August, a jump from monthly increases of 411,000 bpd OPEC+ had approved for May, June and July, and 138,000 bpd in April. (RTRS)\n\nTrump posted on Truth, \"I am saddened to watch Elon Musk go completely “off the rails,” essentially becoming a TRAIN WRECK over the past five weeks.\" Trump critcised Elon's attempts to start a third party, highlighted the new fiscal bill's lack of EV mandates as a problem for Elon, in addition to questioning Elon's connections to NASA. (Truth Social)\n\nTraders are seeking alternatives to the euro when shorting the dollar, betting on currencies such as the Chinese yuan, Australian dollar, and South Korean won to strengthen versus the US dollar, driven by expectations of Federal Reserve interest-rate cuts and fading American exceptionalism. (BBG)\n\nCrypto companies and traders are pouring billions of dollars into tokenised versions of money market and Treasury bond mutual funds, as they look beyond stablecoins to other places to park excess cash that can also give them some yield. (FT)\n\nPolls released by Japanese local media over the weekend raised concerns that the Liberal Democratic Party and coalition partner Komeito could lose their majority at the July 20 election, raising the prospect of more expansive fiscal policy in order to appease other parties. (RTRS)\n\nJapanese workers’ real wages dropped by the most since September 2023 as inflation continued to outpace salary growth. (BBG)\n\nChina is amassing huge quantities of nickel, taking advantage of low prices to bolster its reserves of the metal vital to stainless steel and electric vehicle batteries in the face of an escalating trade war with the US. (FT)\n\nChina on Monday released a plan outlining 14 specific tasks to promote retraining of the rural workforce to improve their job prospects. (CCTV) \n\nGerman industrial production unexpectedly rose in May, suggesting companies rushed production before potentially much higher tariffs on exports to the US. (BBG)\n\nA German pension fund has tapped a Chinese firm’s Hong Kong arm to help it invest in local stocks, in a rare move among global allocators that have been cautious about gaining exposure to the nation’s equities. (BBG)\n\nUK house prices failed to grow for a second straight month, as the housing market struggles to gain traction after a tax break expired and a sharp increase in sellers coming to market, according to Halifax data. (BBG)\n\nThe boss of Lloyds Banking Group has likened forcing pension funds to invest in UK assets to “capital controls”, arguing that tackling the housing crisis and improving Britons’ financial resilience would be a better way to grow the economy. (FT)\n\nSouth Korea’s legislature has approved extra fiscal stimulus of more than $20 billion for the new government under President Lee Jae-myung to support the sagging economy. (WSJ)\n\nTurkey launched an investigation into the main opposition party’s leader and arrested more of its mayors, in a widening crackdown that’s likely to stoke investor anxiety over risks to the rule of law and political stability. (BBG)\n\nThailand will push ahead with plans to stimulate the economy and pass the budget for next year as planned, Finance Minister Pichai Chunhavajira said, easing concerns that an ongoing political crisis could derail economic policy. (BBG)\n\nGEOPOLITICAL:\n\nIsrael's PM Netanyahu said he believed his discussions with US President Trump on Monday would help advance talks on a Gaza hostage release and ceasefire deal, as Trump predicted an agreement could be reached this week. (RTRS)\n\nIsrael has attacked Houthi targets in three Yemeni ports and a power plant, the Israeli military said early on Monday, marking the first Israeli attack on Yemen in almost a month. (RTRS)\n\nJapan will export used navy destroyers to the Philippines to strengthen its deterrence against China's maritime expansion, as the two U.S. allies increase cooperation to counter Beijing. (Yomiuri)\n\nChina said it has opened a third extension of the M503 flight route, which is just west of an unofficial dividing line in the Taiwan Strait, with Taipei protesting this was a \"unilateral\" move aimed at changing the strait's status quo. (RTRS)\n\nEQUITIES:\n\n'Elon Musk Is Running Out of Road in China' WSJ article notes as Tesla falls behind the local competitors it helped create, the billionaire’s rupture with Trump is limiting his value to Beijing. (WSJ)\n\nOracle is cutting the cost of its database software and cloud-computing service for the federal government, making it the latest tech giant to offer the Trump administration a significant discount on its services. (WSJ)\n\nUS industrial companies are pivoting into the data centre market to boost growth, seeking a share of the hundreds of billions of dollars flooding into the sector as part of the artificial intelligence boom. (FT)\n\nArtificial intelligence semiconductor startup Groq announced Monday it has established its first data center in Europe as it steps up its international expansion. (CNBC)\n\nShell expects its upstream production to fall on quarter after output was hit by scheduled maintenance and the completed sale of SPDC in Nigeria. (WSJ)\n\nCapgemini agreed to buy the provider of business process-management technology WNS for $3.3 billion in cash. (WSJ)\n\nFoxconn reported 15.8% growth in quarterly sales due to strong demand for AI servers and iPhones. The company expects third-quarter sales to grow sequentially and year-on-year, driven by a strong AI supply chain and potential upside to iPhone production volume. (BBG)\n\nHuawei's AI research division has rejected claims that a version of its Pangu Pro large language model has copied elements from an Alibaba model, saying that it was independently developed and trained. (RTRS)\n\nNissan Motor is in talks to allow Taiwan's Foxconn to use one of the automaker's domestic factories to build electric vehicles, according to Reuters sources, a deal that could save the plant from closure. (RTRS)\n\nLG Electronics guided for quarterly operating profit to nearly halve from a year earlier, a weaker-than-expected forecast that sent its shares sharply lower. (WSJ)\n\nDATA RECAP (Newsquawk):\n\nJapanese Labour Cash Earnings (May) 1.0% vs Exp. 2.4% (Prev. 2.3%, Rev. 2.0%)\nJapanese Real Cash Earnings (May) -2.9% vs Exp. -1.7% (Prev. -1.8%, Rev. -2.0%)\nGerman Industrial Output MM* (May) 1.2% (Prev. -1.4%)\nSwedish CPIF Flash YY (Jun) 2.9% vs. Exp. 2.5% (Prev. 2.3%)\nSwedish CPIF Ex Energy FlashYY (Jun) 3.3% vs. Exp. 3.0% (Prev. 2.5%)\nUK Halifax House Prices YY (Jun) 2.5% (Prev. 2.50%, Rev. 2.6%)\nUK Halifax House Prices MM* (Jun) 0.0% vs. Exp. 0.0% (Prev. -0.4%, Rev. -0.3%)",
+      "source": "Twitter for iPhone",
+      "retweetCount": 5,
+      "replyCount": 0,
+      "likeCount": 13,
+      "quoteCount": 0,
+      "viewCount": 2801,
+      "createdAt": "Mon Jul 07 07:06:28 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1942117999705501703",
+      "displayTextRange": [
+        0,
+        277
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ZackEiseman",
+        "url": "https://x.com/ZackEiseman",
+        "twitterUrl": "https://twitter.com/ZackEiseman",
+        "id": "86709660",
+        "name": "trap_zack",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1860013962483355649/9TgvY6w-_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/86709660/1675343268",
+        "description": "",
+        "location": "",
+        "followers": 6517,
+        "following": 1413,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Sun Nov 01 12:06:30 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 27204,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 4193,
+        "statusesCount": 21649,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "in case you missed it overnight: https://t.co/7ntORn0mGV",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "zackeiseman.substack.com",
+                  "expanded_url": "https://zackeiseman.substack.com/",
+                  "indices": [
+                    33,
+                    56
+                  ],
+                  "url": "https://t.co/7ntORn0mGV"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,

@@ -5,7 +5,7 @@
     "window_start": "2026-05-16T06:00:00+08:00",
     "window_end": "2026-05-16T08:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 5,
+    "tweet_count": 10,
     "slices": [
       {
         "start": "2026-05-16T06:00:00+08:00",
@@ -32,8 +32,8 @@
         "start": "2026-05-16T06:15:00+08:00",
         "end": "2026-05-16T06:20:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-05-16T06:20:00+08:00",
@@ -95,15 +95,15 @@
         "start": "2026-05-16T07:00:00+08:00",
         "end": "2026-05-16T07:05:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-05-16T07:05:00+08:00",
         "end": "2026-05-16T07:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-05-16T07:10:00+08:00",
@@ -151,8 +151,8 @@
         "start": "2026-05-16T07:40:00+08:00",
         "end": "2026-05-16T07:45:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-05-16T07:45:00+08:00",
@@ -178,6 +178,129 @@
     ]
   },
   "data": [
+    {
+      "type": "tweet",
+      "id": "2055412561823289683",
+      "url": "https://x.com/lumenloop/status/2055412561823289683",
+      "twitterUrl": "https://twitter.com/lumenloop/status/2055412561823289683",
+      "text": "https://t.co/R1s77VlOTe",
+      "source": "Twitter for iPhone",
+      "retweetCount": 9,
+      "replyCount": 1,
+      "likeCount": 29,
+      "quoteCount": 1,
+      "viewCount": 2483,
+      "createdAt": "Fri May 15 22:18:37 +0000 2026",
+      "lang": "zxx",
+      "bookmarkCount": 4,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2055412561823289683",
+      "displayTextRange": [
+        0,
+        23
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "lumenloop",
+        "url": "https://x.com/lumenloop",
+        "twitterUrl": "https://twitter.com/lumenloop",
+        "id": "1762845495305932800",
+        "name": "Lumen Loop",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2056271017300160512/kzj3oLKD_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1762845495305932800/1779088792",
+        "description": "",
+        "location": "",
+        "followers": 3761,
+        "following": 1195,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Feb 28 14:22:03 +0000 2024",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 6146,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 493,
+        "statusesCount": 5051,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {
+          "label": {
+            "badge": {
+              "url": "https://pbs.twimg.com/profile_images/1701613652091322368/fmpFRHHQ_bigger.jpg"
+            },
+            "description": "Stellar",
+            "url": {
+              "url": "https://twitter.com/StellarOrg",
+              "url_type": "DeepLink"
+            },
+            "user_label_display_type": "Badge",
+            "user_label_type": "BusinessLabel"
+          }
+        },
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2098465076957376991"
+        ],
+        "profile_bio": {
+          "description": "Bringing you the most up-to-date news from around the Stellar ecosystem.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "lumenloop.com",
+                  "expanded_url": "http://lumenloop.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/CT8kI4Dchw"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/i/article/2055…",
+            "expanded_url": "http://x.com/i/article/2055410843932909568",
+            "indices": [
+              0,
+              23
+            ],
+            "url": "https://t.co/R1s77VlOTe"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": {
+        "title": "Stellar Weekly Roundup — week of May 8, 2026",
+        "preview_text": "Bermuda announced on May 12, 2026, that it will move national payment and financial services infrastructure onto Stellar, becoming the first sovereign government to commit to a fully onchain economy.",
+        "cover_media_img_url": "https://pbs.twimg.com/media/HIZJrdaaAAAe1Mi.jpg"
+      }
+    },
     {
       "type": "tweet",
       "id": "2055412327168835675",
@@ -216,7 +339,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437245,
+        "followers": 1437170,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +355,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411435,
+        "mediaCount": 17208,
+        "statusesCount": 412031,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -318,7 +441,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437245,
+        "followers": 1437170,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -334,8 +457,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411435,
+        "mediaCount": 17208,
+        "statusesCount": 412031,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -420,7 +543,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967068,
+        "followers": 3966537,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -433,11 +556,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 5284,
+        "favouritesCount": 5282,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61685,
-        "statusesCount": 888292,
+        "mediaCount": 61737,
+        "statusesCount": 888716,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -486,6 +609,826 @@
     },
     {
       "type": "tweet",
+      "id": "2055423378501034411",
+      "url": "https://x.com/RCMPNL/status/2055423378501034411",
+      "twitterUrl": "https://twitter.com/RCMPNL/status/2055423378501034411",
+      "text": "TRAFFIC ADVISORY: Bay Roberts RCMP advises that that Bareneed Road is closed in both directions between the communities of Bareneed and Port de Grave due to a motor vehicle collision.\n\nAn update will be provided when the road has re-opened. https://t.co/qnjwZuLzTG",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 0,
+      "likeCount": 4,
+      "quoteCount": 1,
+      "viewCount": 3643,
+      "createdAt": "Fri May 15 23:01:36 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2055423378501034411",
+      "displayTextRange": [
+        0,
+        240
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "RCMPNL",
+        "url": "https://x.com/RCMPNL",
+        "twitterUrl": "https://twitter.com/RCMPNL",
+        "id": "97031461",
+        "name": "RCMP Newfoundland and Labrador",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1882109592554856448/tAF8CEPt_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/97031461/1710336961",
+        "description": "",
+        "location": "Canada",
+        "followers": 65130,
+        "following": 387,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Dec 15 18:21:12 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2791,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 8420,
+        "statusesCount": 15414,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "This account is not monitored 24/7. Call your local detachment to report a crime. Emergencies: 911. Français: @grctnl Terms: https://t.co/x78A8qxEtL",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "sm.rcmp.ca",
+                  "expanded_url": "http://sm.rcmp.ca",
+                  "indices": [
+                    125,
+                    148
+                  ],
+                  "url": "https://t.co/x78A8qxEtL"
+                }
+              ],
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    110,
+                    117
+                  ],
+                  "name": "",
+                  "screen_name": "grctnl"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "rcmp.ca/nl",
+                  "expanded_url": "http://rcmp.ca/nl",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/LZWB1337gg"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/qnjwZuLzTG",
+            "expanded_url": "https://x.com/RCMPNL/status/2055423378501034411/photo/1",
+            "ext_alt_text": " An image of the front end of an RCMP vehicle is shown, on the shoulder of a paved road. The words \"RCMP NEWFOUNDLAND AND LABRADOR\" and \"ROAD CLOSURE\" are visible on the image.  ",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2055423319105552384",
+            "indices": [
+              241,
+              264
+            ],
+            "media_key": "3_2055423319105552384",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARyGVJ5eV0AACgACHIZUrDKWYasAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHIZUnl5XQAAKAAIchlSsMpZhqwAA",
+                "media_key": "3_2055423319105552384"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HIZUnl5XQAAI-yW.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 475
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 947,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 540,
+                  "x": 135,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1080,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/qnjwZuLzTG"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": true,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2055422977999618462",
+      "url": "https://x.com/3d_Marine_Div/status/2055422977999618462",
+      "twitterUrl": "https://twitter.com/3d_Marine_Div/status/2055422977999618462",
+      "text": "Marines with 3rd Littoral Combat Team, alongside Canadian forces, participate in a counter landing live-fire training event as part of Exercise Balikatan 2026 at Paoay Sand Dunes, Philippines. \n\n(@USMC 📸 by Sgt. Jonathan Beauchamp) https://t.co/8hCCibJe7L",
+      "source": "Twitter for iPhone",
+      "retweetCount": 27,
+      "replyCount": 2,
+      "likeCount": 125,
+      "quoteCount": 1,
+      "viewCount": 1733,
+      "createdAt": "Fri May 15 23:00:00 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 5,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2055422977999618462",
+      "displayTextRange": [
+        0,
+        231
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "3d_Marine_Div",
+        "url": "https://x.com/3d_Marine_Div",
+        "twitterUrl": "https://twitter.com/3d_Marine_Div",
+        "id": "1122760625283670016",
+        "name": "3d Marine Division",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1324315144512397313/t_oP6kBC_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1122760625283670016/1769063988",
+        "description": "",
+        "location": "Camp Courtney, Okinawa, Japan",
+        "followers": 16061,
+        "following": 245,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Mon Apr 29 07:12:47 +0000 2019",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 4546,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1738,
+        "statusesCount": 3448,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The official account of the 3d Marine Division. Likes & retweets ≠ endorsement. We are trained and #ReadytoFightNow",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    99,
+                    115
+                  ],
+                  "text": "ReadytoFightNow"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/3dmardiv",
+                  "expanded_url": "https://linktr.ee/3dmardiv",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/VKL4yWu0mQ"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/8hCCibJe7L",
+            "expanded_url": "https://x.com/3d_Marine_Div/status/2055422977999618462/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2055269478447874049",
+            "indices": [
+              232,
+              255
+            ],
+            "media_key": "3_2055269478447874049",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARyFyLOMloABCgACHIZUTvLXwZ4AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHIXIs4yWgAEKAAIchlRO8tfBngAA",
+                "media_key": "3_2055269478447874049"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HIXIs4yWgAEi0PH.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 3573,
+                  "w": 6381,
+                  "x": 0,
+                  "y": 287
+                },
+                {
+                  "h": 4254,
+                  "w": 4254,
+                  "x": 1542,
+                  "y": 0
+                },
+                {
+                  "h": 4254,
+                  "w": 3732,
+                  "x": 1803,
+                  "y": 0
+                },
+                {
+                  "h": 4254,
+                  "w": 2127,
+                  "x": 2606,
+                  "y": 0
+                },
+                {
+                  "h": 4254,
+                  "w": 6381,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 4254,
+              "width": 6381
+            },
+            "sizes": {
+              "large": {
+                "h": 1365,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/8hCCibJe7L"
+          },
+          {
+            "display_url": "pic.x.com/8hCCibJe7L",
+            "expanded_url": "https://x.com/3d_Marine_Div/status/2055422977999618462/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2055269538309054464",
+            "indices": [
+              232,
+              255
+            ],
+            "media_key": "3_2055269538309054464",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARyFyMF8l6AACgACHIZUTvLXwZ4AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHIXIwXyXoAAKAAIchlRO8tfBngAA",
+                "media_key": "3_2055269538309054464"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HIXIwXyXoAAX_C4.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 3763,
+                  "w": 6720,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 4480,
+                  "w": 4480,
+                  "x": 952,
+                  "y": 0
+                },
+                {
+                  "h": 4480,
+                  "w": 3930,
+                  "x": 1227,
+                  "y": 0
+                },
+                {
+                  "h": 4480,
+                  "w": 2240,
+                  "x": 2072,
+                  "y": 0
+                },
+                {
+                  "h": 4480,
+                  "w": 6720,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 4480,
+              "width": 6720
+            },
+            "sizes": {
+              "large": {
+                "h": 1365,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/8hCCibJe7L"
+          },
+          {
+            "display_url": "pic.x.com/8hCCibJe7L",
+            "expanded_url": "https://x.com/3d_Marine_Div/status/2055422977999618462/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2055269551923691520",
+            "indices": [
+              232,
+              255
+            ],
+            "media_key": "3_2055269551923691520",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARyFyMSoFoAACgACHIZUTvLXwZ4AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHIXIxKgWgAAKAAIchlRO8tfBngAA",
+                "media_key": "3_2055269551923691520"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HIXIxKgWgAARPah.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 895,
+                  "w": 1598,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1065,
+                  "w": 1065,
+                  "x": 533,
+                  "y": 0
+                },
+                {
+                  "h": 1065,
+                  "w": 934,
+                  "x": 664,
+                  "y": 0
+                },
+                {
+                  "h": 1065,
+                  "w": 533,
+                  "x": 1065,
+                  "y": 0
+                },
+                {
+                  "h": 1065,
+                  "w": 1598,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1065,
+              "width": 1598
+            },
+            "sizes": {
+              "large": {
+                "h": 1065,
+                "w": 1598
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/8hCCibJe7L"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "10126672",
+            "indices": [
+              196,
+              201
+            ],
+            "name": "U.S. Marines",
+            "screen_name": "USMC"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2055424238098559253",
+      "url": "https://x.com/disneyplusph/status/2055424238098559253",
+      "twitterUrl": "https://twitter.com/disneyplusph/status/2055424238098559253",
+      "text": "Not even literal fire can stop this burning love 😭🔥💘  Nakahabol na ba ang lahat? \n\nFinale weekend of #PerfectCrown, only on #DisneyPlusPH! \n#KDrama #21세기대군부인 #IU #ByeonWooseok https://t.co/ETvATNy6Q9",
+      "source": "Twitter for iPhone",
+      "retweetCount": 34,
+      "replyCount": 0,
+      "likeCount": 212,
+      "quoteCount": 0,
+      "viewCount": 2429,
+      "createdAt": "Fri May 15 23:05:00 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 9,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2055424238098559253",
+      "displayTextRange": [
+        0,
+        175
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "disneyplusph",
+        "url": "https://x.com/disneyplusph",
+        "twitterUrl": "https://twitter.com/disneyplusph",
+        "id": "1357486053964193793",
+        "name": "Disney+ Philippines",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Business",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1788025008692006912/MD_LhdRI_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1357486053964193793/1789099961",
+        "description": "",
+        "location": "",
+        "followers": 52359,
+        "following": 23,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Fri Feb 05 00:28:02 +0000 2021",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 359,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 4578,
+        "statusesCount": 6124,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2095025194205147624"
+        ],
+        "profile_bio": {
+          "description": "#Furious Aug 31 Finale\n#TheMandalorianAndGrogu Sept 2\n#MadeInKoreaS2 Sept 9\n#TheShards Sept 10 Finale\n#FlexXCopS2 Sept 18 Finale\n#DeadlyTag Sept 30",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    0,
+                    8
+                  ],
+                  "text": "Furious"
+                },
+                {
+                  "indices": [
+                    23,
+                    46
+                  ],
+                  "text": "TheMandalorianAndGrogu"
+                },
+                {
+                  "indices": [
+                    54,
+                    68
+                  ],
+                  "text": "MadeInKoreaS2"
+                },
+                {
+                  "indices": [
+                    76,
+                    86
+                  ],
+                  "text": "TheShards"
+                },
+                {
+                  "indices": [
+                    102,
+                    113
+                  ],
+                  "text": "FlexXCopS2"
+                },
+                {
+                  "indices": [
+                    129,
+                    139
+                  ],
+                  "text": "DeadlyTag"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "disneyplus.com",
+                  "expanded_url": "https://www.disneyplus.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/TuvbhO0TH2"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/ETvATNy6Q9",
+            "expanded_url": "https://x.com/disneyplusph/status/2055424238098559253/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 188,
+                    "w": 188,
+                    "x": 445,
+                    "y": 69
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 188,
+                    "w": 188,
+                    "x": 445,
+                    "y": 69
+                  }
+                ]
+              }
+            },
+            "id_str": "2055312645780119552",
+            "indices": [
+              176,
+              199
+            ],
+            "media_key": "3_2055312645780119552",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARyF7/Y6F6AACgACHIZVdFaXsRUAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHIXv9joXoAAKAAIchlV0VpexFQAA",
+                "media_key": "3_2055312645780119552"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HIXv9joXoAAYoY2.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 236,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/ETvATNy6Q9"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              101,
+              114
+            ],
+            "text": "PerfectCrown"
+          },
+          {
+            "indices": [
+              124,
+              137
+            ],
+            "text": "DisneyPlusPH"
+          },
+          {
+            "indices": [
+              140,
+              147
+            ],
+            "text": "KDrama"
+          },
+          {
+            "indices": [
+              148,
+              157
+            ],
+            "text": "21세기대군부인"
+          },
+          {
+            "indices": [
+              158,
+              161
+            ],
+            "text": "IU"
+          },
+          {
+            "indices": [
+              162,
+              175
+            ],
+            "text": "ByeonWooseok"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2055425894374863203",
       "url": "https://x.com/MMDA/status/2055425894374863203",
       "twitterUrl": "https://twitter.com/MMDA/status/2055425894374863203",
@@ -522,7 +1465,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967068,
+        "followers": 3966535,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -535,11 +1478,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 5284,
+        "favouritesCount": 5282,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61685,
-        "statusesCount": 888292,
+        "mediaCount": 61737,
+        "statusesCount": 888716,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -588,6 +1531,189 @@
     },
     {
       "type": "tweet",
+      "id": "2055434137570255059",
+      "url": "https://x.com/bostonpolice/status/2055434137570255059",
+      "twitterUrl": "https://twitter.com/bostonpolice/status/2055434137570255059",
+      "text": "TRAFFIC ADVISORY: Columbia Road is closed in both directions from Quincy Street to Geneva Avenue due to a police investigation. All intersecting streets in the affected area are also closed. Motorists are advised to seek alternate routes and expect significant delays. https://t.co/rC53i6dxmi",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 0,
+      "likeCount": 6,
+      "quoteCount": 0,
+      "viewCount": 3819,
+      "createdAt": "Fri May 15 23:44:21 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2055434137570255059",
+      "displayTextRange": [
+        0,
+        268
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "bostonpolice",
+        "url": "https://x.com/bostonpolice",
+        "twitterUrl": "https://twitter.com/bostonpolice",
+        "id": "19185333",
+        "name": "Boston Police Dept.",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1681679396384456705/9r8m28Ah_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/19185333/1689705769",
+        "description": "",
+        "location": "Boston, MA",
+        "followers": 475486,
+        "following": 390,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Jan 19 14:49:36 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3516,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 14132,
+        "statusesCount": 28295,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Tweeting BPD News and real time emergency notifications. **For emergencies, please call 911. Account not monitored 24/7.\n\nhttps://t.co/fbZ2dpvaLw",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "police.boston.gov/mentalhealth",
+                  "expanded_url": "https://police.boston.gov/mentalhealth",
+                  "indices": [
+                    122,
+                    145
+                  ],
+                  "url": "https://t.co/fbZ2dpvaLw"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "bpdnews.com",
+                  "expanded_url": "http://bpdnews.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/chyt7oMh5w"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/rC53i6dxmi",
+            "expanded_url": "https://x.com/bostonpolice/status/2055434137570255059/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2055434032268083201",
+            "indices": [
+              269,
+              292
+            ],
+            "media_key": "3_2055434032268083201",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARyGXly4loABCgACHIZedT0WINMAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHIZeXLiWgAEKAAIchl51PRYg0wAA",
+                "media_key": "3_2055434032268083201"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HIZeXLiWgAEixgE.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 688,
+                  "w": 1229,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 688,
+                  "w": 688,
+                  "x": 1,
+                  "y": 0
+                },
+                {
+                  "h": 688,
+                  "w": 604,
+                  "x": 43,
+                  "y": 0
+                },
+                {
+                  "h": 688,
+                  "w": 344,
+                  "x": 173,
+                  "y": 0
+                },
+                {
+                  "h": 688,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 688,
+              "width": 1536
+            },
+            "sizes": {
+              "large": {
+                "h": 688,
+                "w": 1536
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/rC53i6dxmi"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2055434032066798021",
       "url": "https://x.com/EmmanuelNdema1/status/2055434032066798021",
       "twitterUrl": "https://twitter.com/EmmanuelNdema1/status/2055434032066798021",
@@ -597,7 +1723,7 @@
       "replyCount": 3,
       "likeCount": 12,
       "quoteCount": 1,
-      "viewCount": 375,
+      "viewCount": 377,
       "createdAt": "Fri May 15 23:43:56 +0000 2026",
       "lang": "zxx",
       "bookmarkCount": 0,
@@ -624,8 +1750,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1482781552153137153/1776713004",
         "description": "",
         "location": "coffee shop",
-        "followers": 1377,
-        "following": 822,
+        "followers": 1374,
+        "following": 823,
         "status": "",
         "canDm": false,
         "canMediaTag": false,
@@ -637,19 +1763,19 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 16976,
+        "favouritesCount": 17116,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 1794,
-        "statusesCount": 14143,
+        "mediaCount": 1827,
+        "statusesCount": 14497,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2096368892553937026"
+          "2098804274511687892"
         ],
         "profile_bio": {
-          "description": "Rebuilding Arc",
+          "description": "interested in many things",
           "entities": {
             "description": {},
             "url": {

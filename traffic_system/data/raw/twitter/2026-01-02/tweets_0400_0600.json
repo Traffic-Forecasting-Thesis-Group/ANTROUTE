@@ -5,7 +5,7 @@
     "window_start": "2026-01-02T04:00:00+08:00",
     "window_end": "2026-01-02T06:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 1,
+    "tweet_count": 3,
     "slices": [
       {
         "start": "2026-01-02T04:00:00+08:00",
@@ -46,15 +46,15 @@
         "start": "2026-01-02T04:25:00+08:00",
         "end": "2026-01-02T04:30:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-02T04:30:00+08:00",
         "end": "2026-01-02T04:35:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-02T04:35:00+08:00",
@@ -180,6 +180,446 @@
   "data": [
     {
       "type": "tweet",
+      "id": "2006825227603554634",
+      "url": "https://x.com/209TimesCA/status/2006825227603554634",
+      "twitterUrl": "https://twitter.com/209TimesCA/status/2006825227603554634",
+      "text": "Traffic Advisory: Traffic stopped on Crosstown freeway at Filbert Exit. #stockton https://t.co/1XinAWvoAg",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 7,
+      "quoteCount": 0,
+      "viewCount": 1118,
+      "createdAt": "Thu Jan 01 20:29:53 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2006825227603554634",
+      "displayTextRange": [
+        0,
+        81
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "209TimesCA",
+        "url": "https://x.com/209TimesCA",
+        "twitterUrl": "https://twitter.com/209TimesCA",
+        "id": "828800194355437573",
+        "name": "209 Times",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1099378975778889729/VUyUpAl0_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/828800194355437573/1486492341",
+        "description": "",
+        "location": "Stockton, CA",
+        "followers": 12480,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Feb 07 02:58:59 +0000 2017",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2762,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2651,
+        "statusesCount": 3946,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "News Government & Politics Politics General News Business & Finance",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "209times.com",
+                  "expanded_url": "http://209times.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/asnVQ0CfIn"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/1XinAWvoAg",
+            "expanded_url": "https://x.com/209TimesCA/status/2006825227603554634/video/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "id_str": "2006825169692798976",
+            "indices": [
+              82,
+              105
+            ],
+            "media_key": "13_2006825169692798976",
+            "media_results": {
+              "result": {
+                "media_key": "13_2006825169692798976"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2006825169692798976/img/8BB5Zn9epuok9hDP.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1920,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1920,
+                "resize": "fit",
+                "w": 1080
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 675
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 383
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/1XinAWvoAg",
+            "video_info": {
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration_millis": 9666,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/2006825169692798976/pl/jVFfVFbYNGBkYI29.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2006825169692798976/vid/avc1/320x568/pH2NJRYwOUVp3pLU.mp4?tag=21"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2006825169692798976/vid/avc1/480x852/ZkoH1A4wXPkBN1lJ.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2006825169692798976/vid/avc1/720x1280/d_FecgHn-MOlOT5U.mp4?tag=21"
+                },
+                {
+                  "bitrate": 10368000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2006825169692798976/vid/avc1/1080x1920/cJWgNnaDwSL6vTVU.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              72,
+              81
+            ],
+            "text": "stockton"
+          }
+        ],
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/1XinAWvoAg",
+            "expanded_url": "https://x.com/209TimesCA/status/2006825227603554634/video/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "id_str": "2006825169692798976",
+            "indices": [
+              82,
+              105
+            ],
+            "media_key": "13_2006825169692798976",
+            "media_results": {
+              "result": {
+                "media_key": "13_2006825169692798976"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2006825169692798976/img/8BB5Zn9epuok9hDP.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1920,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1920,
+                "resize": "fit",
+                "w": 1080
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 675
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 383
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/1XinAWvoAg",
+            "video_info": {
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration_millis": 9666,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/2006825169692798976/pl/jVFfVFbYNGBkYI29.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2006825169692798976/vid/avc1/320x568/pH2NJRYwOUVp3pLU.mp4?tag=21"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2006825169692798976/vid/avc1/480x852/ZkoH1A4wXPkBN1lJ.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2006825169692798976/vid/avc1/720x1280/d_FecgHn-MOlOT5U.mp4?tag=21"
+                },
+                {
+                  "bitrate": 10368000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2006825169692798976/vid/avc1/1080x1920/cJWgNnaDwSL6vTVU.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2006825836721086465",
+      "url": "https://x.com/TheManilaTimes/status/2006825836721086465",
+      "twitterUrl": "https://twitter.com/TheManilaTimes/status/2006825836721086465",
+      "text": "ANOMIE is social instability resulting from a breakdown of standards and values. Anomie describes a state of normlessness when society’s rules, values and expectations lose their power to guide behavior — leaving individuals disconnected, feeling adrift.... https://t.co/3kAq26BNSI",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 94,
+      "createdAt": "Thu Jan 01 20:32:19 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2006825836721086465",
+      "displayTextRange": [
+        0,
+        257
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "TheManilaTimes",
+        "url": "https://x.com/TheManilaTimes",
+        "twitterUrl": "https://twitter.com/TheManilaTimes",
+        "id": "63411616",
+        "name": "The Manila Times",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1807713937775042560/18c9mMV5_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
+        "description": "",
+        "location": "Philippines",
+        "followers": 190137,
+        "following": 481,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Thu Aug 06 07:56:49 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 20357,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 45189,
+        "statusesCount": 198696,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099480545550090734"
+        ],
+        "profile_bio": {
+          "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "manilatimes.net",
+                  "expanded_url": "http://www.manilatimes.net/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/rkmgx7wMNG"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "ANOMIE is social instability resulting from a breakdown of standards and values. Anomie describes a state of normlessness when society’s rules, values and expectations lose their power to guide...",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.manilatimes.net",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "manilatimes.net",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Anomie: Are we there yet?",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/3kAq26BNSI",
+              "type": "STRING"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "Swift",
+              "version": "12"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/3kAq26BNSI",
+        "user_refs_results": []
+      },
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [
+          {
+            "display_url": "manilatimes.net/2026/01/02/opi…",
+            "expanded_url": "https://www.manilatimes.net/2026/01/02/opinion/columns/anomie-are-we-there-yet/2251706?utm_campaign=mrf-twitter-TheManilaTimes&mrfcid=2026010169542f40836b2e58f23b73d6",
+            "indices": [
+              258,
+              281
+            ],
+            "url": "https://t.co/3kAq26BNSI"
+          }
+        ],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2006829452462854167",
       "url": "https://x.com/VALKYMETAL/status/2006829452462854167",
       "twitterUrl": "https://twitter.com/VALKYMETAL/status/2006829452462854167",
@@ -189,7 +629,7 @@
       "replyCount": 2,
       "likeCount": 118,
       "quoteCount": 0,
-      "viewCount": 4784,
+      "viewCount": 4789,
       "createdAt": "Thu Jan 01 20:46:41 +0000 2026",
       "lang": "en",
       "bookmarkCount": 8,
@@ -216,8 +656,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/162698211/1718086789",
         "description": "",
         "location": "🌍🌏🌎",
-        "followers": 2261,
-        "following": 2275,
+        "followers": 2272,
+        "following": 2280,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -229,11 +669,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 32791,
+        "favouritesCount": 32848,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 4518,
-        "statusesCount": 18412,
+        "mediaCount": 4559,
+        "statusesCount": 18465,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -254,11 +694,9 @@
           {
             "display_url": "pic.x.com/UFuxsmV4D7",
             "expanded_url": "https://x.com/VALKYMETAL/status/2006829452462854167/photo/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": [
@@ -339,6 +777,88 @@
                     "w": 117,
                     "x": 11,
                     "y": 676
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 40,
+                    "w": 40,
+                    "x": 422,
+                    "y": 13
+                  },
+                  {
+                    "h": 43,
+                    "w": 43,
+                    "x": 543,
+                    "y": 498
+                  },
+                  {
+                    "h": 43,
+                    "w": 43,
+                    "x": 786,
+                    "y": 528
+                  },
+                  {
+                    "h": 50,
+                    "w": 50,
+                    "x": 403,
+                    "y": 530
+                  },
+                  {
+                    "h": 52,
+                    "w": 52,
+                    "x": 438,
+                    "y": 629
+                  },
+                  {
+                    "h": 47,
+                    "w": 47,
+                    "x": 941,
+                    "y": 539
+                  },
+                  {
+                    "h": 56,
+                    "w": 56,
+                    "x": 1048,
+                    "y": 633
+                  },
+                  {
+                    "h": 65,
+                    "w": 65,
+                    "x": 560,
+                    "y": 634
+                  },
+                  {
+                    "h": 52,
+                    "w": 52,
+                    "x": 943,
+                    "y": 641
+                  },
+                  {
+                    "h": 65,
+                    "w": 65,
+                    "x": 1080,
+                    "y": 679
+                  },
+                  {
+                    "h": 78,
+                    "w": 78,
+                    "x": 594,
+                    "y": 745
+                  },
+                  {
+                    "h": 75,
+                    "w": 75,
+                    "x": 195,
+                    "y": 577
+                  },
+                  {
+                    "h": 108,
+                    "w": 108,
+                    "x": 10,
+                    "y": 628
                   }
                 ]
               },
@@ -423,6 +943,88 @@
                     "y": 676
                   }
                 ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 23,
+                    "w": 23,
+                    "x": 239,
+                    "y": 7
+                  },
+                  {
+                    "h": 24,
+                    "w": 24,
+                    "x": 307,
+                    "y": 282
+                  },
+                  {
+                    "h": 24,
+                    "w": 24,
+                    "x": 445,
+                    "y": 299
+                  },
+                  {
+                    "h": 28,
+                    "w": 28,
+                    "x": 228,
+                    "y": 300
+                  },
+                  {
+                    "h": 29,
+                    "w": 29,
+                    "x": 248,
+                    "y": 356
+                  },
+                  {
+                    "h": 26,
+                    "w": 26,
+                    "x": 533,
+                    "y": 305
+                  },
+                  {
+                    "h": 32,
+                    "w": 32,
+                    "x": 594,
+                    "y": 358
+                  },
+                  {
+                    "h": 36,
+                    "w": 36,
+                    "x": 317,
+                    "y": 359
+                  },
+                  {
+                    "h": 29,
+                    "w": 29,
+                    "x": 534,
+                    "y": 363
+                  },
+                  {
+                    "h": 36,
+                    "w": 36,
+                    "x": 612,
+                    "y": 384
+                  },
+                  {
+                    "h": 44,
+                    "w": 44,
+                    "x": 336,
+                    "y": 422
+                  },
+                  {
+                    "h": 42,
+                    "w": 42,
+                    "x": 110,
+                    "y": 327
+                  },
+                  {
+                    "h": 61,
+                    "w": 61,
+                    "x": 5,
+                    "y": 356
+                  }
+                ]
               }
             },
             "id_str": "2006829028921974785",
@@ -432,10 +1034,7 @@
             ],
             "media_key": "3_2006829028921974785",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARvZsF6B1iABCgACG9mwwR7XEBcAAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABG9mwXoHWIAEKAAIb2bDBHtcQFwAA",
                 "media_key": "3_2006829028921974785"
               }
             },
@@ -479,7 +1078,23 @@
             "sizes": {
               "large": {
                 "h": 1269,
+                "resize": "fit",
                 "w": 1290
+              },
+              "medium": {
+                "h": 1180,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 669,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "photo",
@@ -505,8 +1120,6 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     }
   ]

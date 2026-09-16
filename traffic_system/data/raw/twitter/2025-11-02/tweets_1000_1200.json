@@ -5,7 +5,7 @@
     "window_start": "2025-11-02T10:00:00+08:00",
     "window_end": "2025-11-02T12:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 4,
+    "tweet_count": 11,
     "slices": [
       {
         "start": "2025-11-02T10:00:00+08:00",
@@ -46,22 +46,22 @@
         "start": "2025-11-02T10:25:00+08:00",
         "end": "2025-11-02T10:30:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-11-02T10:30:00+08:00",
         "end": "2025-11-02T10:35:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-11-02T10:35:00+08:00",
         "end": "2025-11-02T10:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-11-02T10:40:00+08:00",
@@ -81,15 +81,15 @@
         "start": "2025-11-02T10:50:00+08:00",
         "end": "2025-11-02T10:55:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-11-02T10:55:00+08:00",
         "end": "2025-11-02T11:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-11-02T11:00:00+08:00",
@@ -137,8 +137,8 @@
         "start": "2025-11-02T11:30:00+08:00",
         "end": "2025-11-02T11:35:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-11-02T11:35:00+08:00",
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197173,
+        "followers": 1197882,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -232,8 +232,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219268,
-        "statusesCount": 941855,
+        "mediaCount": 219475,
+        "statusesCount": 942963,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -243,7 +243,17 @@
         "profile_bio": {
           "description": "Breaking news and stories from different sides. RTs from our journalists. Unparalleled journalism in the Philippines since 1900. #BeFullyInformed",
           "entities": {
-            "description": {},
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    129,
+                    145
+                  ],
+                  "text": "BeFullyInformed"
+                }
+              ]
+            },
             "url": {
               "urls": [
                 {
@@ -268,22 +278,19 @@
           {
             "key": "description",
             "value": {
-              "string_value": "NOVI SAD, Serbia (AP) — Tens of thousands of people from all over Serbia gathered on Saturday in the northern town of Novi Sad to commemorate the victims of a...",
-              "type": "STRING"
+              "string_value": "NOVI SAD, Serbia (AP) — Tens of thousands of people from all over Serbia gathered on Saturday in the northern town of Novi Sad to commemorate the victims of a..."
             }
           },
           {
             "key": "domain",
             "value": {
-              "string_value": "mb.com.ph",
-              "type": "STRING"
+              "string_value": "mb.com.ph"
             }
           },
           {
             "key": "site",
             "value": {
               "scribe_key": "publisher_id",
-              "type": "USER",
               "user_value": {
                 "id_str": "15375209",
                 "path": []
@@ -294,23 +301,20 @@
             "key": "vanity_url",
             "value": {
               "scribe_key": "vanity_url",
-              "string_value": "mb.com.ph",
-              "type": "STRING"
+              "string_value": "mb.com.ph"
             }
           },
           {
             "key": "title",
             "value": {
-              "string_value": "Serbia marks anniversary of deadly train station disaster with large rally",
-              "type": "STRING"
+              "string_value": "Serbia marks anniversary of deadly train station disaster with large rally"
             }
           },
           {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
-              "string_value": "https://t.co/8PUsylxjBm",
-              "type": "STRING"
+              "string_value": "https://t.co/8PUsylxjBm"
             }
           }
         ],
@@ -320,8 +324,8 @@
               "name": "production"
             },
             "device": {
-              "name": "Swift",
-              "version": "12"
+              "name": "iPhone",
+              "version": "13"
             }
           }
         },
@@ -329,12 +333,12 @@
         "url": "https://t.co/8PUsylxjBm",
         "user_refs_results": [
           {
+            "rest_id": "15375209",
             "result": {
               "__typename": "User",
               "action_counts": {
                 "favorites_count": 2416
               },
-              "affiliates_highlighted_label": {},
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/1923784408261115904/4xsy25CI_normal.jpg"
               },
@@ -349,13 +353,9 @@
               "dm_permissions": {
                 "can_dm": false
               },
+              "exclusive_tweet_following": false,
               "follow_request_sent": false,
-              "grok_translated_bio_with_availability": {
-                "is_available": false
-              },
-              "has_graduated_access": true,
-              "id": "VXNlcjoxNTM3NTIwOQ==",
-              "is_blue_verified": true,
+              "identity_profile_labels_highlighted_label": {},
               "location": {
                 "location": "Manila, Philippines"
               },
@@ -365,20 +365,30 @@
               "notifications_settings": {
                 "notifications_enabled": false
               },
-              "parody_commentary_fan_label": "None",
               "pinned_items": {
                 "tweet_ids_str": [
                   "1753236174330888263"
                 ]
               },
-              "possibly_sensitive": false,
               "privacy": {
-                "protected": false
+                "protected": false,
+                "suspended": false
               },
+              "private_super_following": false,
               "profile_bio": {
                 "description": "Breaking news and stories from different sides. RTs from our journalists. Unparalleled journalism in the Philippines since 1900. #BeFullyInformed",
                 "entities": {
-                  "description": {},
+                  "description": {
+                    "hashtags": [
+                      {
+                        "indices": [
+                          129,
+                          145
+                        ],
+                        "text": "BeFullyInformed"
+                      }
+                    ]
+                  },
                   "url": {
                     "urls": [
                       {
@@ -394,16 +404,20 @@
                   }
                 }
               },
-              "profile_description_language": "en",
               "profile_image_shape": "Circle",
               "profile_metadata": {
-                "profile_interstitial_type": ""
+                "profile_interstitial_type": "",
+                "profile_link_color": "303488"
               },
               "profile_translation": {
-                "translator_type": "none"
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1197173,
+                "followers": 1197882,
                 "following": 141
               },
               "relationship_perspectives": {
@@ -415,14 +429,17 @@
                 "muting": false
               },
               "rest_id": "15375209",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
               "super_follow_eligible": false,
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 219268,
-                "tweets": 941855
+                "media_tweets": 219475,
+                "tweets": 942963
               },
               "verification": {
+                "is_blue_verified": true,
                 "verified": false
               },
               "website": {
@@ -451,6 +468,8 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -491,7 +510,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437284,
+        "followers": 1437183,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -507,8 +526,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411326,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -557,6 +576,321 @@
     },
     {
       "type": "tweet",
+      "id": "1984810060565065857",
+      "url": "https://x.com/LAPDCentral/status/1984810060565065857",
+      "twitterUrl": "https://twitter.com/LAPDCentral/status/1984810060565065857",
+      "text": "⚠️Traffic Advisory⚠️ \n\nThe following streets will have HARD closures for all vehicle traffic until further notice. \n\nPico Blvd between LA Live Way and Grand. \nFlower St between 9th St and Venice Blvd. \nHope St between 9th St and Venice Blvd. \nOlympic Blvd between LA Live Way and Grand Ave. \n\nThere will be no share rides (Uber/Lyft/Waymo) permitted to enter the area.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 81,
+      "replyCount": 19,
+      "likeCount": 261,
+      "quoteCount": 14,
+      "viewCount": 69159,
+      "createdAt": "Sun Nov 02 02:29:29 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 24,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1984810060565065857",
+      "displayTextRange": [
+        0,
+        279
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "LAPDCentral",
+        "url": "https://x.com/LAPDCentral",
+        "twitterUrl": "https://twitter.com/LAPDCentral",
+        "id": "1608131025774993408",
+        "name": "LAPD Central Division",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1810395052855926784/R0pSVKzE_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1608131025774993408/1705187163",
+        "description": "",
+        "location": "251 E 6th Street Los Angeles",
+        "followers": 10783,
+        "following": 128,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Dec 28 16:02:18 +0000 2022",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 751,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 486,
+        "statusesCount": 3134,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Offical Account of LAPD Central Division. Serving Downtown Los Angeles. *This account is not monitored 24/7*",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "lapdonline.org",
+                  "expanded_url": "http://lapdonline.org",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/W4L7E504v2"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1984810191141929261",
+      "url": "https://x.com/MakatiTraffic/status/1984810191141929261",
+      "twitterUrl": "https://twitter.com/MakatiTraffic/status/1984810191141929261",
+      "text": "TRAFFIC UPDATE: As of 10:30 AM, along Makati Ave. from Gil Puyat Ave. to Ayala Ave. (LM), Opposite Direction (LM). #MakatiTraffic",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 424,
+      "createdAt": "Sun Nov 02 02:30:00 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1984810191141929261",
+      "displayTextRange": [
+        0,
+        129
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "MakatiTraffic",
+        "url": "https://x.com/MakatiTraffic",
+        "twitterUrl": "https://twitter.com/MakatiTraffic",
+        "id": "357433536",
+        "name": "MakatiTraffic",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1507416130/logoMakati_normal.png",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
+        "description": "",
+        "location": "City of Makati",
+        "followers": 1437183,
+        "following": 2,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Aug 18 10:52:33 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1218,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official Twitter Account of the City Government of Makati | Hotline 168 | makatitraffic@makati.gov.ph",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "makati.gov.ph",
+                  "expanded_url": "http://www.makati.gov.ph",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/DSZjZ3iXcA"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              115,
+              129
+            ],
+            "text": "MakatiTraffic"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1984812212314341644",
+      "url": "https://x.com/commsbynagi/status/1984812212314341644",
+      "twitterUrl": "https://twitter.com/commsbynagi/status/1984812212314341644",
+      "text": "good morning, commsX 🌞\n\ncurrently here in qc and will be heading back to cavite later this afternoon 🏡 hoping there’s no heavy traffic or crowd at pitx this time huhu 😭 fingers crossed i get home early so i can rest a bit before diving back into my tasks~\n\nright now, i’m working on a rush task for my regular client — always grateful for the trust and consistency 🫶 it’s been a productive streak lately, and i’m slowly getting back into my usual workflow. small wins, but they matter so much!\n\nas always, i’m open for rush and non-rush commissions! if you need help with academic projects, papers, or reports, my dms are open — just message me anytime, and i’ll assist you right away 💌\n\n⋆°·☁︎ lf client clients ph open commissions academic commissions pagawa academic help thesis and research paper writing feasibility and business plan guide essay and report writing reflection paper and case study help proofreading and editing academic outputs qualitative and quantitative research support academic workload sharing documentation formatting and writing assistance shs and college academic projects rush and nonrush academic commissions academic assistance philippines research consultation and paper review project-based academic work defense slide preparation business plan writing service module and homework completion help student academic support academic writer ph acad commissions open research writer and consultant paper writing services for students academic output polishing coursework guidance and writing aid online school help philippines\n\nMY TAGS. DO NOT COPY. 🧿",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 483,
+      "createdAt": "Sun Nov 02 02:38:02 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1984812212314341644",
+      "displayTextRange": [
+        0,
+        271
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "commsbynagi",
+        "url": "https://x.com/commsbynagi",
+        "twitterUrl": "https://twitter.com/commsbynagi",
+        "id": "1788936697306329088",
+        "name": "nagi ☁️ thesis, research, writeups, engineering",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1968241249493946368/mxfJdW0G_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1788936697306329088/1758100261",
+        "description": "",
+        "location": "Republic of the Philippines",
+        "followers": 1428,
+        "following": 193,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri May 10 14:19:00 +0000 2024",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3127,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 685,
+        "statusesCount": 8563,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1968241336806752633"
+        ],
+        "profile_bio": {
+          "description": "BSCE • 1.40 gwa • was @acadsbynagi • catered 2.7k+ fb&twt comms. s-worded@6.5k. @nagivouches - feedback acc 🪬 @_worksofnagi - backup acc ❤️‍🩹",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    22,
+                    34
+                  ],
+                  "name": "",
+                  "screen_name": "acadsbynagi"
+                },
+                {
+                  "id_str": "",
+                  "indices": [
+                    80,
+                    92
+                  ],
+                  "name": "",
+                  "screen_name": "nagivouches"
+                },
+                {
+                  "id_str": "",
+                  "indices": [
+                    110,
+                    123
+                  ],
+                  "name": "",
+                  "screen_name": "_worksofnagi"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1984813966372323649",
       "url": "https://x.com/MakatiTraffic/status/1984813966372323649",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/1984813966372323649",
@@ -593,7 +927,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437284,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -609,8 +943,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411326,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -659,6 +993,1063 @@
     },
     {
       "type": "tweet",
+      "id": "1984815888122446261",
+      "url": "https://x.com/_banzaan/status/1984815888122446261",
+      "twitterUrl": "https://twitter.com/_banzaan/status/1984815888122446261",
+      "text": "GM ALL and Goodbye to crypto hassles! \n\nPaying in real life just got an upgrade with @BitgetWallet scan & pay\n\nWhile everyones watching the charts something big is happening quietly in your wallet\n\nThe new scan & pay feature powered by national QR is turning @BitgetWallet into a genuine everyday payment tool for everyone not just for trading\n\nIts currently live and making waves in the Philippines Vietnam and Brazil with many more regions loading up soon\n\nNo extra apps or confusing steps just scan any compatible QR code and your crypto gets instantly converted to local currency to complete the payment\n\nHeres the breakdown of how easy it is: ​\n\nLoad up your @BitgetWallet with USDT on base BNB  ETH  SOL or TRON networks (all supported). ​\n\nKeep a small amount of the native token handy for those tiny gas fees\n\nTap scan confirm  pay\n\nBitget autoselects your highest token balance for the swap making the payment happen in real time No waiting no complicated forms and no conversion stress. \n\nIt’s fast simple local payments all fueled by your crypto! ​\n\nIf you're in one of the supported countries, you absolutely need to check this out\n\n concept its already here working right from your pocket",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 107,
+      "likeCount": 100,
+      "quoteCount": 0,
+      "viewCount": 1049,
+      "createdAt": "Sun Nov 02 02:52:38 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 14,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1984815888122446261",
+      "displayTextRange": [
+        0,
+        287
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "_banzaan",
+        "url": "https://x.com/_banzaan",
+        "twitterUrl": "https://twitter.com/_banzaan",
+        "id": "2257909884",
+        "name": "banzaan",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1754398076603637760/fGrDpxyy_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2257909884/1699254851",
+        "description": "",
+        "location": "",
+        "followers": 3865,
+        "following": 2569,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Sun Dec 22 16:37:05 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 48757,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1789,
+        "statusesCount": 43317,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2084689698107052072"
+        ],
+        "profile_bio": {
+          "description": "AI Agents Orchestrator | web4 researcher | full time onchain",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/LlZaCTQ1OZ",
+            "expanded_url": "https://x.com/_banzaan/status/1984815888122446261/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 108,
+                    "w": 108,
+                    "x": 606,
+                    "y": 539
+                  },
+                  {
+                    "h": 161,
+                    "w": 161,
+                    "x": 979,
+                    "y": 586
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 108,
+                    "w": 108,
+                    "x": 606,
+                    "y": 539
+                  },
+                  {
+                    "h": 161,
+                    "w": 161,
+                    "x": 979,
+                    "y": 586
+                  }
+                ]
+              }
+            },
+            "id_str": "1984815876239949824",
+            "indices": [
+              288,
+              311
+            ],
+            "media_key": "3_1984815876239949824",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARuLe4X/1oAACgACG4t7iMQXAbUAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG4t7hf/WgAAKAAIbi3uIxBcBtQAA",
+                "media_key": "3_1984815876239949824"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G4t7hf_WgAA5dbg.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 655,
+                  "w": 1170,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1170,
+                  "w": 1170,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1334,
+                  "w": 1170,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1355,
+                  "w": 678,
+                  "x": 246,
+                  "y": 0
+                },
+                {
+                  "h": 1355,
+                  "w": 1170,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1355,
+              "width": 1170
+            },
+            "sizes": {
+              "large": {
+                "h": 1355,
+                "w": 1170
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/LlZaCTQ1OZ"
+          },
+          {
+            "display_url": "pic.x.com/LlZaCTQ1OZ",
+            "expanded_url": "https://x.com/_banzaan/status/1984815888122446261/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1984815876235796480",
+            "indices": [
+              288,
+              311
+            ],
+            "media_key": "3_1984815876235796480",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARuLe4X/lyAACgACG4t7iMQXAbUAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG4t7hf+XIAAKAAIbi3uIxBcBtQAA",
+                "media_key": "3_1984815876235796480"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G4t7hf-XIAAbPo6.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1075,
+                  "w": 1920,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1075,
+                  "w": 1075,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1075,
+                  "w": 943,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1075,
+                  "w": 538,
+                  "x": 89,
+                  "y": 0
+                },
+                {
+                  "h": 1075,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1075,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 1075,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/LlZaCTQ1OZ"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "1040124936843550720",
+            "indices": [
+              85,
+              98
+            ],
+            "name": "Bitget Wallet 🩵",
+            "screen_name": "BitgetWallet"
+          },
+          {
+            "id_str": "1040124936843550720",
+            "indices": [
+              259,
+              272
+            ],
+            "name": "Bitget Wallet 🩵",
+            "screen_name": "BitgetWallet"
+          },
+          {
+            "id_str": "1040124936843550720",
+            "indices": [
+              664,
+              677
+            ],
+            "name": "Bitget Wallet 🩵",
+            "screen_name": "BitgetWallet"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1984817129343107457",
+      "url": "https://x.com/beckyfanclubph_/status/1984817129343107457",
+      "twitterUrl": "https://twitter.com/beckyfanclubph_/status/1984817129343107457",
+      "text": "[ Becky Philippines Space ] \n\nWe will be having a Space here on X later. Let's enjoy our talks, or maybe some angels will sing later? 🤭\n\nWe have an ongoing donation drive, and you can donate for Becky's concert ticket. If you have any questions, you can DM us.\n\n🔥 Tickets are on sale now!\nJoin us for B NEW ERA : Becky Happy Birthday Concert —\na night of fire, power, and unforgettable memories. \n\n🎫 Tickets on sale 30 October | 10.00 AM  (Thailand Time ) via Eventpop\n📅 Sunday, November 30, 2025\n🏟️ Queen Sirikit National Convention Center\n\n#BNewEra #HellOnHeels #beckysangels #BeckyArmstrong #BeckyEntertainment #WalkPrettyBurnSoftly #RebirthOfBecky",
+      "source": "Twitter for iPhone",
+      "retweetCount": 111,
+      "replyCount": 3,
+      "likeCount": 182,
+      "quoteCount": 2,
+      "viewCount": 10443,
+      "createdAt": "Sun Nov 02 02:57:34 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 7,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1984817129343107457",
+      "displayTextRange": [
+        0,
+        278
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "beckyfanclubph_",
+        "url": "https://x.com/beckyfanclubph_",
+        "twitterUrl": "https://twitter.com/beckyfanclubph_",
+        "id": "1629720690327982080",
+        "name": "BECKY PHILIPPINES OFFICIAL",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2082801841709178881/2brqyJrv_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1629720690327982080/1771400486",
+        "description": "",
+        "location": "",
+        "followers": 41957,
+        "following": 118,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Sun Feb 26 05:51:25 +0000 2023",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 9574,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 8111,
+        "statusesCount": 26255,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official Fanclub of Thai-British actress Becky Armstrong @AngelssBecky in the Philippines 🇵🇭🫶🏻🧚🧸🦦🤏🏻🧋🌹💖🤍 For projects, see Highlights.",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    57,
+                    70
+                  ],
+                  "name": "",
+                  "screen_name": "AngelssBecky"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "instagram.com/beckyfanclubph",
+                  "expanded_url": "http://instagram.com/beckyfanclubph",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/VjtAIEKcpu"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/GuzUjxWqgH",
+            "expanded_url": "https://x.com/beckyfanclubph_/status/1984817129343107457/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 181,
+                    "w": 181,
+                    "x": 635,
+                    "y": 438
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 181,
+                    "w": 181,
+                    "x": 635,
+                    "y": 438
+                  }
+                ]
+              }
+            },
+            "id_str": "1984817118760849408",
+            "indices": [
+              279,
+              302
+            ],
+            "media_key": "3_1984817118760849408",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARuLfKdL2tAACgACG4t8qcKbQYEAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG4t8p0va0AAKAAIbi3ypwptBgQAA",
+                "media_key": "3_1984817118760849408"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G4t8p0va0AAg_Tz.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 806,
+                  "w": 1440,
+                  "x": 0,
+                  "y": 452
+                },
+                {
+                  "h": 1440,
+                  "w": 1440,
+                  "x": 0,
+                  "y": 135
+                },
+                {
+                  "h": 1642,
+                  "w": 1440,
+                  "x": 0,
+                  "y": 34
+                },
+                {
+                  "h": 1802,
+                  "w": 901,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1802,
+                  "w": 1440,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1802,
+              "width": 1440
+            },
+            "sizes": {
+              "large": {
+                "h": 1802,
+                "w": 1440
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/GuzUjxWqgH"
+          },
+          {
+            "display_url": "pic.x.com/GuzUjxWqgH",
+            "expanded_url": "https://x.com/beckyfanclubph_/status/1984817129343107457/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 108,
+                    "w": 108,
+                    "x": 736,
+                    "y": 160
+                  },
+                  {
+                    "h": 158,
+                    "w": 158,
+                    "x": 160,
+                    "y": 142
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 108,
+                    "w": 108,
+                    "x": 736,
+                    "y": 160
+                  },
+                  {
+                    "h": 158,
+                    "w": 158,
+                    "x": 160,
+                    "y": 142
+                  }
+                ]
+              }
+            },
+            "id_str": "1984817122011463680",
+            "indices": [
+              279,
+              302
+            ],
+            "media_key": "3_1984817122011463680",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARuLfKgNm0AACgACG4t8qcKbQYEAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG4t8qA2bQAAKAAIbi3ypwptBgQAA",
+                "media_key": "3_1984817122011463680"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G4t8qA2bQAAtTDo.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 676
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 270
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 119
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/GuzUjxWqgH"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              542,
+              550
+            ],
+            "text": "BNewEra"
+          },
+          {
+            "indices": [
+              551,
+              563
+            ],
+            "text": "HellOnHeels"
+          },
+          {
+            "indices": [
+              564,
+              577
+            ],
+            "text": "beckysangels"
+          },
+          {
+            "indices": [
+              578,
+              593
+            ],
+            "text": "BeckyArmstrong"
+          },
+          {
+            "indices": [
+              594,
+              613
+            ],
+            "text": "BeckyEntertainment"
+          },
+          {
+            "indices": [
+              614,
+              635
+            ],
+            "text": "WalkPrettyBurnSoftly"
+          },
+          {
+            "indices": [
+              636,
+              651
+            ],
+            "text": "RebirthOfBecky"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1984826076959555603",
+      "url": "https://x.com/southcoastwx/status/1984826076959555603",
+      "twitterUrl": "https://twitter.com/southcoastwx/status/1984826076959555603",
+      "text": "❗️This is a potentially dangerous situation for the central Phillipines as typhoon Kalmaegi is forecast to make landfall Monday night over the eastern Visayas region as a high-end T4 or low-end T5 storm bringing locally destructive winds and flooding rains❗️ \n\n*Analasis created at 10:00 am Sunday PST, Nov 2nd* \n\nTyphoon Hazards for the Central Phillipines: \n• Wind gusts: Locally up to 200km/h or higher\n• Rainfall amounts: Locally 400 mm or more \n• Swells 20 to 25 feet over the Eastern Visayas shores, ranging 10 to 15 feet for the surrounding regions \n\nRegions in the Philippines in the path of Kalmaegi: \n• Eastern Visayas \n• Central Visayas\n• Western Visayas \n• Negros Island Region \n• Northern Mindanao • Caraga \n\nRecommended actions: \nPreparations to protect property for destructive winds should begin today and be completed on Monday. Heavy rains will begin over the Eastern Visayas in 24 hours, and spread inland, prepare for potential evacuation orders. \n\nOverview and Storm analysis: \n\nTropical Storm Kalmaegi has formed in the Phillipine Sea early this morning, and is traveling west towards the Eastern Visayas region. \nThe storm is 36 hours from landfall, and over the next 24 hours, is forecast to steadily intensify into a typhoon, with sustained winds of at least 120km/h. \nMost models are triggering a period of RI (Rapid intensification) beginning in 12 to 24 hours and continuing until landfall, with our peak intensity forecast currently increased from 140 to 160km/h at 2:00 this morning, to 170km/h for this update at 10:00 am. \n\nNote that this number is subject to modification in our next update, especially given the current model uncertainty. \n\nThe ECMWF projections are by far more severe then the rest of the models, suggesting Kalmaegi  explosively intensifying over the next 36 hours and possibly making landfall as a super typhoon with sustained winds of at least 240km/h. \nThe ECMWF is a highly reputable model, however the HAFS-A, a mesoscale model proven to be highly accurate during recent super hurricane Melissa, sits on the lower end of the intensity spectrum, and so our forecast currently lies in the middle of the uncertainty. \nICON is believed as an outlier at this time, projecting Kalmaegi never even reaches typhoon status, though this projection is not being taken account for in our model blend. \n\nA lot of details should be made clear over the next 12 to 24 hours, so please stay tuned for further forecasts for the Phillipines. \n\nOnce the Kalmaegi exits the Philippines, the storm should enter another favourable environment over the South China Sea, where it’ll stay on its westward track towards Vietnam. \n\nOur current peak intensity forecast for Kalmaegi over the South China Sea is 215km/h, a low-end T6 typhoon, which is currently expected to slam Vietnam with destructive winds and flooding rains on Nov 7th. \n\nPlease stay tuned for updates! \n#TyphoonKalmaegi #Typhoon #Kalmaegi #Phillipines #Vietnam",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 5,
+      "quoteCount": 0,
+      "viewCount": 821,
+      "createdAt": "Sun Nov 02 03:33:07 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1984826076959555603",
+      "displayTextRange": [
+        0,
+        278
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "southcoastwx",
+        "url": "https://x.com/southcoastwx",
+        "twitterUrl": "https://twitter.com/southcoastwx",
+        "id": "1847716671211069440",
+        "name": "Andrew Van Gameren",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1949568459429617664/11b-fjY3_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1847716671211069440/1754173629",
+        "description": "",
+        "location": "Chilliwack, British Columbia",
+        "followers": 1411,
+        "following": 236,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Sat Oct 19 19:09:33 +0000 2024",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2678,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 480,
+        "statusesCount": 1490,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1983989521063800921"
+        ],
+        "profile_bio": {
+          "description": "Tropical Cyclone Meteorologist",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "tiktok.com/@thatweatherbo…",
+                  "expanded_url": "https://www.tiktok.com/@thatweatherboi?_t=ZS-90JEv6Fb8m0&_r=1",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/Z4HvUggVNM"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/wqDrvX8EFE",
+            "expanded_url": "https://x.com/southcoastwx/status/1984826076959555603/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "1984825998530265095",
+            "indices": [
+              279,
+              302
+            ],
+            "media_key": "13_1984825998530265095",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARuLhLrHW0AHAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG4uEusdbQAcAAA==",
+                "media_key": "13_1984825998530265095"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1984825998530265095/img/NbgtxjaPWUbclaNA.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1280,
+              "width": 720
+            },
+            "sizes": {
+              "large": {
+                "h": 1280,
+                "w": 720
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/wqDrvX8EFE",
+            "video_info": {
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration_millis": 45466,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1984825998530265095/pl/jbrCg9Hh2x7aR74Q.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1984825998530265095/vid/avc1/320x568/qeLOKqDX2P8jgJlI.mp4?tag=21"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1984825998530265095/vid/avc1/480x852/507_ijRKAdrBJGY1.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1984825998530265095/vid/avc1/720x1280/XlX1MkKiAmwaiiD6.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              2902,
+              2918
+            ],
+            "text": "TyphoonKalmaegi"
+          },
+          {
+            "indices": [
+              2919,
+              2927
+            ],
+            "text": "Typhoon"
+          },
+          {
+            "indices": [
+              2928,
+              2937
+            ],
+            "text": "Kalmaegi"
+          },
+          {
+            "indices": [
+              2938,
+              2950
+            ],
+            "text": "Phillipines"
+          },
+          {
+            "indices": [
+              2951,
+              2959
+            ],
+            "text": "Vietnam"
+          }
+        ],
+        "symbols": [],
+        "timestamps": [
+          {
+            "indices": [
+              282,
+              287
+            ],
+            "seconds": 600,
+            "text": "10:00"
+          },
+          {
+            "indices": [
+              1495,
+              1499
+            ],
+            "seconds": 120,
+            "text": "2:00"
+          },
+          {
+            "indices": [
+              1544,
+              1549
+            ],
+            "seconds": 600,
+            "text": "10:00"
+          }
+        ],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1984825529405751650",
+      "url": "https://x.com/TheLaSallian/status/1984825529405751650",
+      "twitterUrl": "https://twitter.com/TheLaSallian/status/1984825529405751650",
+      "text": "NatSit: The Office of the City Prosecutor of Pasig has dismissed a complaint filed by police against activist Jonila Castro over attending a September 4 protest held outside the compound of contractors Curlee and Sarah Discaya. | via ABS-CBN https://t.co/IiCB0GGMH9",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 1,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 416,
+      "createdAt": "Sun Nov 02 03:30:57 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1984825529405751650",
+      "displayTextRange": [
+        0,
+        241
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "TheLaSallian",
+        "url": "https://x.com/TheLaSallian",
+        "twitterUrl": "https://twitter.com/TheLaSallian",
+        "id": "308855396",
+        "name": "The LaSallian",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2096517434538876928/px_AIXtI_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/308855396/1788683694",
+        "description": "",
+        "location": "Manila, Philippines",
+        "followers": 189556,
+        "following": 47,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Jun 01 03:28:10 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 0,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 27957,
+        "statusesCount": 80291,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2076837492226150578"
+        ],
+        "profile_bio": {
+          "description": "The official student publication of De La Salle University. The bastion of issue-oriented critical thinking. Email: me@thelasallian.com",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "thelasallian.com",
+                  "expanded_url": "http://thelasallian.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/fZ23EPN0F8"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/IiCB0GGMH9",
+            "expanded_url": "https://x.com/TheLaSallian/status/1984825529405751650/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1984825522288017416",
+            "indices": [
+              242,
+              265
+            ],
+            "media_key": "3_1984825522288017416",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARuLhEvlG0AICgACG4uETY1bQWIAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG4uES+UbQAgKAAIbi4RNjVtBYgAA",
+                "media_key": "3_1984825522288017416"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G4uES-UbQAgI2q0.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 717,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 720,
+                  "x": 56,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 632,
+                  "x": 100,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 360,
+                  "x": 236,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 720,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1280
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/IiCB0GGMH9"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1984826818604716113",
       "url": "https://x.com/PhilstarNews/status/1984826818604716113",
       "twitterUrl": "https://twitter.com/PhilstarNews/status/1984826818604716113",
@@ -695,7 +2086,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/55118669/1774942939",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1136594,
+        "followers": 1137275,
         "following": 158,
         "status": "",
         "canDm": false,
@@ -711,8 +2102,8 @@
         "favouritesCount": 3518,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 78875,
-        "statusesCount": 411865,
+        "mediaCount": 79211,
+        "statusesCount": 412949,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,

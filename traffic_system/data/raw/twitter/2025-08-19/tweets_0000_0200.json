@@ -5,7 +5,7 @@
     "window_start": "2025-08-19T00:00:00+08:00",
     "window_end": "2025-08-19T02:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 4,
+    "tweet_count": 7,
     "slices": [
       {
         "start": "2025-08-19T00:00:00+08:00",
@@ -25,8 +25,8 @@
         "start": "2025-08-19T00:10:00+08:00",
         "end": "2025-08-19T00:15:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-08-19T00:15:00+08:00",
@@ -46,8 +46,8 @@
         "start": "2025-08-19T00:25:00+08:00",
         "end": "2025-08-19T00:30:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-08-19T00:30:00+08:00",
@@ -137,8 +137,8 @@
         "start": "2025-08-19T01:30:00+08:00",
         "end": "2025-08-19T01:35:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-08-19T01:35:00+08:00",
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/474871087/1786481218",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 112048,
+        "followers": 112856,
         "following": 224,
         "status": "",
         "canDm": true,
@@ -232,8 +232,8 @@
         "favouritesCount": 530,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 75256,
-        "statusesCount": 137510,
+        "mediaCount": 75621,
+        "statusesCount": 137876,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -280,11 +280,9 @@
             },
             "display_url": "pic.x.com/IjkfrYR4wJ",
             "expanded_url": "https://x.com/mnlstandardph/status/1957473227183370645/photo/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": [
@@ -335,6 +333,58 @@
                     "w": 99,
                     "x": 1419,
                     "y": 1159
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 51,
+                    "w": 51,
+                    "x": 586,
+                    "y": 147
+                  },
+                  {
+                    "h": 57,
+                    "w": 57,
+                    "x": 517,
+                    "y": 304
+                  },
+                  {
+                    "h": 58,
+                    "w": 58,
+                    "x": 444,
+                    "y": 318
+                  },
+                  {
+                    "h": 56,
+                    "w": 56,
+                    "x": 403,
+                    "y": 356
+                  },
+                  {
+                    "h": 51,
+                    "w": 51,
+                    "x": 1039,
+                    "y": 442
+                  },
+                  {
+                    "h": 58,
+                    "w": 58,
+                    "x": 1023,
+                    "y": 592
+                  },
+                  {
+                    "h": 65,
+                    "w": 65,
+                    "x": 813,
+                    "y": 128
+                  },
+                  {
+                    "h": 58,
+                    "w": 58,
+                    "x": 831,
+                    "y": 679
                   }
                 ]
               },
@@ -389,6 +439,58 @@
                     "y": 2084
                   }
                 ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 29,
+                    "w": 29,
+                    "x": 332,
+                    "y": 83
+                  },
+                  {
+                    "h": 32,
+                    "w": 32,
+                    "x": 293,
+                    "y": 172
+                  },
+                  {
+                    "h": 33,
+                    "w": 33,
+                    "x": 251,
+                    "y": 180
+                  },
+                  {
+                    "h": 31,
+                    "w": 31,
+                    "x": 228,
+                    "y": 201
+                  },
+                  {
+                    "h": 29,
+                    "w": 29,
+                    "x": 588,
+                    "y": 250
+                  },
+                  {
+                    "h": 33,
+                    "w": 33,
+                    "x": 580,
+                    "y": 335
+                  },
+                  {
+                    "h": 37,
+                    "w": 37,
+                    "x": 460,
+                    "y": 72
+                  },
+                  {
+                    "h": 33,
+                    "w": 33,
+                    "x": 471,
+                    "y": 385
+                  }
+                ]
               }
             },
             "id_str": "1957473207004659712",
@@ -398,10 +500,7 @@
             ],
             "media_key": "3_1957473207004659712",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARsqV4K424AACgACGypXh2uaMZUAAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABGypXgrjbgAAKAAIbKleHa5oxlQAA",
                 "media_key": "3_1957473207004659712"
               }
             },
@@ -445,7 +544,23 @@
             "sizes": {
               "large": {
                 "h": 1367,
+                "resize": "fit",
                 "w": 2048
+              },
+              "medium": {
+                "h": 801,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 454,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "photo",
@@ -457,11 +572,9 @@
             },
             "display_url": "pic.x.com/IjkfrYR4wJ",
             "expanded_url": "https://x.com/mnlstandardph/status/1957473227183370645/photo/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": [
@@ -488,6 +601,34 @@
                     "w": 67,
                     "x": 581,
                     "y": 461
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 40,
+                    "w": 40,
+                    "x": 176,
+                    "y": 234
+                  },
+                  {
+                    "h": 42,
+                    "w": 42,
+                    "x": 265,
+                    "y": 258
+                  },
+                  {
+                    "h": 44,
+                    "w": 44,
+                    "x": 902,
+                    "y": 268
+                  },
+                  {
+                    "h": 39,
+                    "w": 39,
+                    "x": 340,
+                    "y": 270
                   }
                 ]
               },
@@ -518,6 +659,34 @@
                     "y": 830
                   }
                 ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 23,
+                    "w": 23,
+                    "x": 100,
+                    "y": 132
+                  },
+                  {
+                    "h": 23,
+                    "w": 23,
+                    "x": 150,
+                    "y": 146
+                  },
+                  {
+                    "h": 25,
+                    "w": 25,
+                    "x": 511,
+                    "y": 151
+                  },
+                  {
+                    "h": 22,
+                    "w": 22,
+                    "x": 193,
+                    "y": 153
+                  }
+                ]
               }
             },
             "id_str": "1957473207092654080",
@@ -527,10 +696,7 @@
             ],
             "media_key": "3_1957473207092654080",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARsqV4K+GjAACgACGypXh2uaMZUAAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABGypXgr4aMAAKAAIbKleHa5oxlQAA",
                 "media_key": "3_1957473207092654080"
               }
             },
@@ -574,7 +740,23 @@
             "sizes": {
               "large": {
                 "h": 1367,
+                "resize": "fit",
                 "w": 2048
+              },
+              "medium": {
+                "h": 801,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 454,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "photo",
@@ -586,11 +768,9 @@
             },
             "display_url": "pic.x.com/IjkfrYR4wJ",
             "expanded_url": "https://x.com/mnlstandardph/status/1957473227183370645/photo/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": [
@@ -599,6 +779,16 @@
                     "w": 139,
                     "x": 557,
                     "y": 263
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 81,
+                    "w": 81,
+                    "x": 326,
+                    "y": 154
                   }
                 ]
               },
@@ -611,6 +801,16 @@
                     "y": 474
                   }
                 ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 46,
+                    "w": 46,
+                    "x": 185,
+                    "y": 87
+                  }
+                ]
               }
             },
             "id_str": "1957473205456908288",
@@ -620,10 +820,7 @@
             ],
             "media_key": "3_1957473205456908288",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARsqV4JcmrAACgACGypXh2uaMZUAAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABGypXglyasAAKAAIbKleHa5oxlQAA",
                 "media_key": "3_1957473205456908288"
               }
             },
@@ -667,7 +864,23 @@
             "sizes": {
               "large": {
                 "h": 1367,
+                "resize": "fit",
                 "w": 2048
+              },
+              "medium": {
+                "h": 801,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 454,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "photo",
@@ -679,11 +892,9 @@
             },
             "display_url": "pic.x.com/IjkfrYR4wJ",
             "expanded_url": "https://x.com/mnlstandardph/status/1957473227183370645/photo/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": [
@@ -692,6 +903,16 @@
                     "w": 75,
                     "x": 1661,
                     "y": 463
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 44,
+                    "w": 44,
+                    "x": 973,
+                    "y": 271
                   }
                 ]
               },
@@ -704,6 +925,16 @@
                     "y": 833
                   }
                 ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 25,
+                    "w": 25,
+                    "x": 551,
+                    "y": 153
+                  }
+                ]
               }
             },
             "id_str": "1957473206975315968",
@@ -713,10 +944,7 @@
             ],
             "media_key": "3_1957473206975315968",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARsqV4K3G8AACgACGypXh2uaMZUAAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABGypXgrcbwAAKAAIbKleHa5oxlQAA",
                 "media_key": "3_1957473206975315968"
               }
             },
@@ -760,7 +988,23 @@
             "sizes": {
               "large": {
                 "h": 1367,
+                "resize": "fit",
                 "w": 2048
+              },
+              "medium": {
+                "h": 801,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 454,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "photo",
@@ -786,6 +1030,267 @@
         ],
         "user_mentions": []
       },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1957475978587918553",
+      "url": "https://x.com/LouMetroES/status/1957475978587918553",
+      "twitterUrl": "https://twitter.com/LouMetroES/status/1957475978587918553",
+      "text": "LENSAlert Traffic Advisory:  I 264 E between Shelbyville Rd and I71 have re-opened.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 537,
+      "createdAt": "Mon Aug 18 16:13:36 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1957475978587918553",
+      "displayTextRange": [
+        0,
+        83
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "LouMetroES",
+        "url": "https://x.com/LouMetroES",
+        "twitterUrl": "https://twitter.com/LouMetroES",
+        "id": "487728298",
+        "name": "Louisville Metro Emergency Services",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/667866118241910785/iW68liLn_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/487728298/1742308312",
+        "description": "",
+        "location": "",
+        "followers": 6258,
+        "following": 238,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Thu Feb 09 17:38:29 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 823,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1683,
+        "statusesCount": 6416,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "This is an official site of Louisville Metro Government. Please note this site is not monitored 24 hours a day. If you have an emergency please call 911.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "louisvilleky.gov/government/eme…",
+                  "expanded_url": "https://louisvilleky.gov/government/emergency-services",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/G4ZhN3EhaW"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1957479346610069519",
+      "url": "https://x.com/SheriffLeeFL/status/1957479346610069519",
+      "twitterUrl": "https://twitter.com/SheriffLeeFL/status/1957479346610069519",
+      "text": "‼️TRAFFIC ADVISORY‼️\n\nNorth and south bound lanes of N Tamiami Trail are closed at Avenue A due to a vehicle crash. Avoid the area or seek an alternate route. Wires are down in the roadway. https://t.co/9tF79Zr1Rs",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 1,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 1087,
+      "createdAt": "Mon Aug 18 16:26:59 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1957479346610069519",
+      "displayTextRange": [
+        0,
+        189
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "SheriffLeeFL",
+        "url": "https://x.com/SheriffLeeFL",
+        "twitterUrl": "https://twitter.com/SheriffLeeFL",
+        "id": "47961633",
+        "name": "Carmine Marceno - Lee County Sheriff",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1993327649410744320/F5t60cuk_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/47961633/1767980969",
+        "description": "",
+        "location": "Lee County, FL",
+        "followers": 44535,
+        "following": 1540,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Jun 17 13:36:41 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3426,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 4229,
+        "statusesCount": 15998,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The Official feed for Lee County Sheriff Carmine Marceno",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "sheriffleefl.org",
+                  "expanded_url": "http://www.sheriffleefl.org",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/Wa5PAhl4yj"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/9tF79Zr1Rs",
+            "expanded_url": "https://x.com/SheriffLeeFL/status/1957479346610069519/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1957479292692058117",
+            "indices": [
+              190,
+              213
+            ],
+            "media_key": "3_1957479292692058117",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARsqXQuoF9AFCgACGypdGDXbYA8AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGypdC6gX0AUKAAIbKl0YNdtgDwAA",
+                "media_key": "3_1957479292692058117"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GypdC6gX0AUaL_f.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 685,
+                  "w": 1224,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1224,
+                  "w": 1224,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1395,
+                  "w": 1224,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1024,
+                  "x": 200,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1224,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 1224
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 1224
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/9tF79Zr1Rs"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
       "quoted_tweet": null,
       "retweeted_tweet": null,
       "isLimitedReply": false,
@@ -830,8 +1335,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186995,
-        "following": 87,
+        "followers": 187153,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -843,16 +1348,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31261,
-        "statusesCount": 146776,
+        "mediaCount": 31371,
+        "statusesCount": 146899,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -1014,6 +1519,295 @@
     },
     {
       "type": "tweet",
+      "id": "1957495240777998591",
+      "url": "https://x.com/WFTV/status/1957495240777998591",
+      "twitterUrl": "https://twitter.com/WFTV/status/1957495240777998591",
+      "text": "Traffic advisory: Manhole work in St. Cloud between California and Vermont Avenues https://t.co/FRyOdbufG3",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 626,
+      "createdAt": "Mon Aug 18 17:30:08 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1957495240777998591",
+      "displayTextRange": [
+        0,
+        106
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "WFTV",
+        "url": "https://x.com/WFTV",
+        "twitterUrl": "https://twitter.com/WFTV",
+        "id": "15782216",
+        "name": "WFTV Channel 9",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/991727529898725376/5yNY1X3p_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/15782216/1625681664",
+        "description": "",
+        "location": "Orlando",
+        "followers": 211675,
+        "following": 2130,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri Aug 08 19:57:49 +0000 2008",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2919,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 87519,
+        "statusesCount": 281835,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Central Florida's @ABC news affiliate. Coverage you can count on for the latest news, weather, traffic from central Florida's news leader.",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    18,
+                    22
+                  ],
+                  "name": "",
+                  "screen_name": "ABC"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "wftv.com",
+                  "expanded_url": "http://www.wftv.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/T0zh9SBFZ1"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Commuters in St. Cloud should be aware that 10th Street between California and Vermont Avenues will be closed due to manhole work."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.wftv.com"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "15782216",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "wftv.com"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Traffic advisory: Manhole work in St. Cloud between California and Vermont Avenues"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/FRyOdbufG3"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/FRyOdbufG3",
+        "user_refs_results": [
+          {
+            "rest_id": "15782216",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 2919
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/991727529898725376/5yNY1X3p_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/15782216/1625681664"
+              },
+              "core": {
+                "created_at": "Fri Aug 08 19:57:49 +0000 2008",
+                "name": "WFTV Channel 9",
+                "screen_name": "WFTV"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Orlando"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {},
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Central Florida's @ABC news affiliate. Coverage you can count on for the latest news, weather, traffic from central Florida's news leader.",
+                "entities": {
+                  "description": {
+                    "user_mentions": [
+                      {
+                        "id_str": "",
+                        "indices": [
+                          18,
+                          22
+                        ],
+                        "name": "",
+                        "screen_name": "ABC"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "wftv.com",
+                        "expanded_url": "http://www.wftv.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/T0zh9SBFZ1"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "0084B4"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 211675,
+                "following": 2130
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "15782216",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 87519,
+                "tweets": 281835
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/T0zh9SBFZ1"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "wftv.com/news/local/osc…",
+            "expanded_url": "https://www.wftv.com/news/local/osceola-county/traffic-advisory-manhole-work-st-cloud-between-california-vermont-avenues/HSGTROTUOFH5BFZITLEO44YKWY/?taid=68a363200d37b30001779e95&utm_campaign=trueanthem&utm_medium=trueanthem&utm_source=twitter",
+            "indices": [
+              83,
+              106
+            ],
+            "url": "https://t.co/FRyOdbufG3"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1957497335975670221",
       "url": "https://x.com/ChandlerPolice/status/1957497335975670221",
       "twitterUrl": "https://twitter.com/ChandlerPolice/status/1957497335975670221",
@@ -1050,7 +1844,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/14333333/1723052577",
         "description": "",
         "location": "Chandler, Arizona",
-        "followers": 46130,
+        "followers": 46111,
         "following": 297,
         "status": "",
         "canDm": false,
@@ -1152,8 +1946,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186995,
-        "following": 87,
+        "followers": 187153,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -1165,16 +1959,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31261,
-        "statusesCount": 146776,
+        "mediaCount": 31371,
+        "statusesCount": 146899,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -1198,17 +1992,6 @@
                     140
                   ],
                   "url": "https://t.co/GBJZ6NWejV"
-                }
-              ],
-              "user_mentions": [
-                {
-                  "id_str": "",
-                  "indices": [
-                    64,
-                    75
-                  ],
-                  "name": "",
-                  "screen_name": "ekolastma_"
                 }
               ]
             },
@@ -1238,11 +2021,9 @@
             },
             "display_url": "pic.x.com/Zrykxns248",
             "expanded_url": "https://x.com/followlastma/status/1957501231624274420/video/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "id_str": "1957501155166027776",
             "indices": [
               278,
@@ -1250,10 +2031,7 @@
             ],
             "media_key": "7_1957501155166027776",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAwoAARsqcO3pFoAACgACGypw/7ZawfQAAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAADCgABGypw7ekWgAAKAAIbKnD/tlrB9AAA",
                 "media_key": "7_1957501155166027776"
               }
             },
@@ -1266,7 +2044,23 @@
             "sizes": {
               "large": {
                 "h": 640,
+                "resize": "fit",
                 "w": 360
+              },
+              "medium": {
+                "h": 640,
+                "resize": "fit",
+                "w": 360
+              },
+              "small": {
+                "h": 640,
+                "resize": "fit",
+                "w": 360
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "video",
@@ -1330,8 +2124,6 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     }
   ]

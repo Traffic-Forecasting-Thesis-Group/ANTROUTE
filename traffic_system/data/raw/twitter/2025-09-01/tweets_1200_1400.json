@@ -5,14 +5,14 @@
     "window_start": "2025-09-01T12:00:00+08:00",
     "window_end": "2025-09-01T14:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 13,
+    "tweet_count": 18,
     "slices": [
       {
         "start": "2025-09-01T12:00:00+08:00",
         "end": "2025-09-01T12:05:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 0,
+        "accepted": 0
       },
       {
         "start": "2025-09-01T12:05:00+08:00",
@@ -60,8 +60,8 @@
         "start": "2025-09-01T12:35:00+08:00",
         "end": "2025-09-01T12:40:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-09-01T12:40:00+08:00",
@@ -81,8 +81,8 @@
         "start": "2025-09-01T12:50:00+08:00",
         "end": "2025-09-01T12:55:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 4,
+        "accepted": 4
       },
       {
         "start": "2025-09-01T12:55:00+08:00",
@@ -109,8 +109,8 @@
         "start": "2025-09-01T13:10:00+08:00",
         "end": "2025-09-01T13:15:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-09-01T13:15:00+08:00",
@@ -172,276 +172,12 @@
         "start": "2025-09-01T13:55:00+08:00",
         "end": "2025-09-01T14:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       }
     ]
   },
   "data": [
-    {
-      "type": "tweet",
-      "id": "1962364916368638374",
-      "url": "https://x.com/dzrhnews/status/1962364916368638374",
-      "twitterUrl": "https://twitter.com/dzrhnews/status/1962364916368638374",
-      "text": "Suspendido ang pagpapatupad ng number coding scheme sa buong Metro Manila ngayong Lunes, Setyembre 21 dahil sa masamang panahon, ayon sa MMDA.\n\nhttps://t.co/Yc3cnPTRsG",
-      "source": "Twitter for iPhone",
-      "retweetCount": 0,
-      "replyCount": 0,
-      "likeCount": 1,
-      "quoteCount": 0,
-      "viewCount": 271,
-      "createdAt": "Mon Sep 01 04:00:29 +0000 2025",
-      "lang": "tl",
-      "bookmarkCount": 0,
-      "isReply": false,
-      "inReplyToId": null,
-      "conversationId": "1962364916368638374",
-      "displayTextRange": [
-        0,
-        167
-      ],
-      "inReplyToUserId": null,
-      "inReplyToUsername": null,
-      "author": {
-        "type": "user",
-        "userName": "dzrhnews",
-        "url": "https://x.com/dzrhnews",
-        "twitterUrl": "https://twitter.com/dzrhnews",
-        "id": "74886399",
-        "name": "DZRH NEWS",
-        "isVerified": false,
-        "isBlueVerified": true,
-        "verifiedType": null,
-        "profilePicture": "https://pbs.twimg.com/profile_images/2077640307458633728/kXNIDvgI_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/74886399/1762132752",
-        "description": "",
-        "location": "Manila, Philippines",
-        "followers": 143639,
-        "following": 1035,
-        "status": "",
-        "canDm": false,
-        "canMediaTag": true,
-        "createdAt": "Thu Sep 17 00:35:08 +0000 2009",
-        "entities": {
-          "description": {
-            "urls": []
-          },
-          "url": {}
-        },
-        "fastFollowersCount": 0,
-        "favouritesCount": 8103,
-        "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 299657,
-        "statusesCount": 861618,
-        "withheldInCountries": [],
-        "affiliatesHighlightedLabel": {},
-        "possiblySensitive": false,
-        "pinnedTweetIds": [],
-        "profile_bio": {
-          "description": "The official X account of MBC Media Group's flagship radio station DZRH 666 kHz: Una sa Pilipinas, Una sa Pilipino",
-          "entities": {
-            "description": {},
-            "url": {
-              "urls": [
-                {
-                  "display_url": "dzrh.com.ph",
-                  "expanded_url": "http://www.dzrh.com.ph",
-                  "indices": [
-                    0,
-                    23
-                  ],
-                  "url": "https://t.co/rKJXaTpAtz"
-                }
-              ]
-            }
-          }
-        },
-        "isAutomated": false,
-        "automatedBy": null
-      },
-      "extendedEntities": {},
-      "card": {
-        "binding_values": [
-          {
-            "key": "description",
-            "value": {
-              "string_value": "The Metropolitan Manila Development Authority (MMDA) announced the suspension of the expanded number coding scheme on Monday, September 1, due to inclement weather. \"Suspendido ang pagpapatupad ng..."
-            }
-          },
-          {
-            "key": "domain",
-            "value": {
-              "string_value": "www.dzrh.com.ph"
-            }
-          },
-          {
-            "key": "creator",
-            "value": {
-              "user_value": {
-                "id_str": "74886399",
-                "path": []
-              }
-            }
-          },
-          {
-            "key": "vanity_url",
-            "value": {
-              "scribe_key": "vanity_url",
-              "string_value": "dzrh.com.ph"
-            }
-          },
-          {
-            "key": "title",
-            "value": {
-              "string_value": "MMDA suspends number coding on Monday, Sept. 1 due to bad weather"
-            }
-          },
-          {
-            "key": "card_url",
-            "value": {
-              "scribe_key": "card_url",
-              "string_value": "https://t.co/Yc3cnPTRsG"
-            }
-          }
-        ],
-        "card_platform": {
-          "platform": {
-            "audience": {
-              "name": "production"
-            },
-            "device": {
-              "name": "iPhone",
-              "version": "13"
-            }
-          }
-        },
-        "name": "summary_large_image",
-        "url": "https://t.co/Yc3cnPTRsG",
-        "user_refs_results": [
-          {
-            "rest_id": "74886399",
-            "result": {
-              "__typename": "User",
-              "action_counts": {
-                "favorites_count": 8103
-              },
-              "avatar": {
-                "image_url": "https://pbs.twimg.com/profile_images/2077640307458633728/kXNIDvgI_normal.jpg"
-              },
-              "banner": {
-                "image_url": "https://pbs.twimg.com/profile_banners/74886399/1762132752"
-              },
-              "core": {
-                "created_at": "Thu Sep 17 00:35:08 +0000 2009",
-                "name": "DZRH NEWS",
-                "screen_name": "dzrhnews"
-              },
-              "dm_permissions": {
-                "can_dm": false
-              },
-              "exclusive_tweet_following": false,
-              "follow_request_sent": false,
-              "identity_profile_labels_highlighted_label": {},
-              "location": {
-                "location": "Manila, Philippines"
-              },
-              "media_permissions": {
-                "can_media_tag": true
-              },
-              "notifications_settings": {
-                "notifications_enabled": false
-              },
-              "pinned_items": {},
-              "privacy": {
-                "protected": false,
-                "suspended": false
-              },
-              "private_super_following": false,
-              "profile_bio": {
-                "description": "The official X account of MBC Media Group's flagship radio station DZRH 666 kHz: Una sa Pilipinas, Una sa Pilipino",
-                "entities": {
-                  "description": {},
-                  "url": {
-                    "urls": [
-                      {
-                        "display_url": "dzrh.com.ph",
-                        "expanded_url": "http://www.dzrh.com.ph",
-                        "indices": [
-                          0,
-                          23
-                        ],
-                        "url": "https://t.co/rKJXaTpAtz"
-                      }
-                    ]
-                  }
-                }
-              },
-              "profile_image_shape": "Circle",
-              "profile_metadata": {
-                "profile_interstitial_type": "",
-                "profile_link_color": "1B95E0"
-              },
-              "profile_translation": {
-                "translator_type_enum": "None"
-              },
-              "properties": {
-                "has_extended_profile": true,
-                "has_no_screen_name": false
-              },
-              "relationship_counts": {
-                "followers": 143639,
-                "following": 1035
-              },
-              "relationship_perspectives": {
-                "blocked_by": false,
-                "blocking": false,
-                "followed_by": false,
-                "following": false,
-                "live_following": false,
-                "muting": false
-              },
-              "rest_id": "74886399",
-              "smart_blocked_by": false,
-              "smart_blocking": false,
-              "super_follow_eligible": false,
-              "super_followed_by": false,
-              "super_following": false,
-              "tweet_counts": {
-                "media_tweets": 299657,
-                "tweets": 861618
-              },
-              "verification": {
-                "is_blue_verified": true,
-                "verified": false
-              },
-              "website": {
-                "url": "https://t.co/rKJXaTpAtz"
-              }
-            }
-          }
-        ]
-      },
-      "place": {},
-      "entities": {
-        "urls": [
-          {
-            "display_url": "dzrh.com.ph/post/mmda-susp…",
-            "expanded_url": "https://dzrh.com.ph/post/mmda-suspends-number-coding-on-monday-sept-1-due-to-bad-weather",
-            "indices": [
-              144,
-              167
-            ],
-            "url": "https://t.co/Yc3cnPTRsG"
-          }
-        ]
-      },
-      "quoted_tweet": null,
-      "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
-      "article": null
-    },
     {
       "type": "tweet",
       "id": "1962367092998672807",
@@ -453,7 +189,7 @@
       "replyCount": 2,
       "likeCount": 17,
       "quoteCount": 0,
-      "viewCount": 751,
+      "viewCount": 752,
       "createdAt": "Mon Sep 01 04:09:08 +0000 2025",
       "lang": "en",
       "bookmarkCount": 0,
@@ -480,8 +216,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1870308978191937536/1756388973",
         "description": "",
         "location": "",
-        "followers": 205,
-        "following": 225,
+        "followers": 204,
+        "following": 224,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -493,11 +229,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 2469,
+        "favouritesCount": 2466,
         "hasCustomTimelines": true,
         "isTranslator": false,
         "mediaCount": 354,
-        "statusesCount": 2762,
+        "statusesCount": 2760,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -526,7 +262,7 @@
         "replyCount": 0,
         "likeCount": 23,
         "quoteCount": 2,
-        "viewCount": 2152,
+        "viewCount": 2153,
         "createdAt": "Thu Aug 21 09:48:30 +0000 2025",
         "lang": "en",
         "bookmarkCount": 0,
@@ -553,8 +289,8 @@
           "coverPicture": "https://pbs.twimg.com/profile_banners/1870308978191937536/1756388973",
           "description": "",
           "location": "",
-          "followers": 205,
-          "following": 225,
+          "followers": 204,
+          "following": 224,
           "status": "",
           "canDm": true,
           "canMediaTag": false,
@@ -566,11 +302,11 @@
             "url": {}
           },
           "fastFollowersCount": 0,
-          "favouritesCount": 2469,
+          "favouritesCount": 2466,
           "hasCustomTimelines": true,
           "isTranslator": false,
           "mediaCount": 354,
-          "statusesCount": 2762,
+          "statusesCount": 2760,
           "withheldInCountries": [],
           "affiliatesHighlightedLabel": {},
           "possiblySensitive": false,
@@ -877,7 +613,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15872418/1747565518",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 9238509,
+        "followers": 9238588,
         "following": 1098,
         "status": "",
         "canDm": false,
@@ -893,8 +629,8 @@
         "favouritesCount": 1186,
         "hasCustomTimelines": true,
         "isTranslator": true,
-        "mediaCount": 349884,
-        "statusesCount": 1344947,
+        "mediaCount": 351323,
+        "statusesCount": 1346919,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1036,7 +772,7 @@
       "replyCount": 3,
       "likeCount": 87,
       "quoteCount": 0,
-      "viewCount": 6712,
+      "viewCount": 6713,
       "createdAt": "Mon Sep 01 04:19:13 +0000 2025",
       "lang": "en",
       "bookmarkCount": 9,
@@ -1063,8 +799,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1242015104226320384/1718944653",
         "description": "",
         "location": "living behind bars",
-        "followers": 14900,
-        "following": 1614,
+        "followers": 14891,
+        "following": 1613,
         "status": "",
         "canDm": false,
         "canMediaTag": false,
@@ -1076,11 +812,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 236548,
+        "favouritesCount": 236863,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 2415,
-        "statusesCount": 83273,
+        "mediaCount": 2416,
+        "statusesCount": 83390,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1128,13 +864,9 @@
         "entities": {},
         "quoted_tweet": null,
         "retweeted_tweet": null,
-        "isLimitedReply": false,
-        "communityInfo": null,
         "article": null
       },
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -1146,7 +878,7 @@
       "source": "Twitter for iPhone",
       "retweetCount": 0,
       "replyCount": 0,
-      "likeCount": 2,
+      "likeCount": 1,
       "quoteCount": 0,
       "viewCount": 1015,
       "createdAt": "Mon Sep 01 04:27:01 +0000 2025",
@@ -1175,7 +907,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/55118669/1774942939",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1136555,
+        "followers": 1137252,
         "following": 158,
         "status": "",
         "canDm": false,
@@ -1191,8 +923,8 @@
         "favouritesCount": 3518,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 78865,
-        "statusesCount": 411835,
+        "mediaCount": 79211,
+        "statusesCount": 412942,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1360,7 +1092,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/14333333/1723052577",
         "description": "",
         "location": "Chandler, Arizona",
-        "followers": 46130,
+        "followers": 46112,
         "following": 297,
         "status": "",
         "canDm": false,
@@ -1456,7 +1188,7 @@
           "coverPicture": "https://pbs.twimg.com/profile_banners/14333333/1723052577",
           "description": "",
           "location": "Chandler, Arizona",
-          "followers": 46130,
+          "followers": 46112,
           "following": 297,
           "status": "",
           "canDm": false,
@@ -1606,6 +1338,412 @@
     },
     {
       "type": "tweet",
+      "id": "1962374390643101856",
+      "url": "https://x.com/coachjarret/status/1962374390643101856",
+      "twitterUrl": "https://twitter.com/coachjarret/status/1962374390643101856",
+      "text": "Davao City this is where your taxes go. Tiis muna kayo sa 140 areas na MALALA ang BAHA sa 1st District, puro Duterte binoboto nyo eh.\n\n#philippines #politics https://t.co/RKtGDkK1K1",
+      "source": "Twitter for iPhone",
+      "retweetCount": 6,
+      "replyCount": 2,
+      "likeCount": 19,
+      "quoteCount": 0,
+      "viewCount": 253,
+      "createdAt": "Mon Sep 01 04:38:08 +0000 2025",
+      "lang": "tl",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1962374390643101856",
+      "displayTextRange": [
+        0,
+        157
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "coachjarret",
+        "url": "https://x.com/coachjarret",
+        "twitterUrl": "https://twitter.com/coachjarret",
+        "id": "145060443",
+        "name": "Coach Jarret",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1614989514086445064/i-YrD3px_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/145060443/1736148923",
+        "description": "",
+        "location": "",
+        "followers": 2191,
+        "following": 127,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue May 18 01:25:11 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 390,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1615,
+        "statusesCount": 2640,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2087444702425694235"
+        ],
+        "profile_bio": {
+          "description": "This is the OFFICIAL COACH JARRET x account.\nAny others are fake.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "youtube.com/@CoachJarret",
+                  "expanded_url": "https://www.youtube.com/@CoachJarret",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/R6TnngrJuL"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/RKtGDkK1K1",
+            "expanded_url": "https://x.com/coachjarret/status/1962374390643101856/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 74,
+                    "w": 74,
+                    "x": 1240,
+                    "y": 1092
+                  },
+                  {
+                    "h": 146,
+                    "w": 146,
+                    "x": 1542,
+                    "y": 868
+                  },
+                  {
+                    "h": 168,
+                    "w": 168,
+                    "x": 1174,
+                    "y": 558
+                  },
+                  {
+                    "h": 196,
+                    "w": 196,
+                    "x": 634,
+                    "y": 854
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 74,
+                    "w": 74,
+                    "x": 1240,
+                    "y": 1092
+                  },
+                  {
+                    "h": 146,
+                    "w": 146,
+                    "x": 1542,
+                    "y": 868
+                  },
+                  {
+                    "h": 168,
+                    "w": 168,
+                    "x": 1174,
+                    "y": 558
+                  },
+                  {
+                    "h": 196,
+                    "w": 196,
+                    "x": 634,
+                    "y": 854
+                  }
+                ]
+              }
+            },
+            "id_str": "1962374386444541952",
+            "indices": [
+              158,
+              181
+            ],
+            "media_key": "3_1962374386444541952",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARs7wRt8WiAACgACGzvBHHabEKAAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGzvBG3xaIAAKAAIbO8EcdpsQoAAA",
+                "media_key": "3_1962374386444541952"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GzvBG3xaIAA9Ilq.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1146,
+                  "w": 2046,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2046,
+                  "w": 2046,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1796,
+                  "x": 176,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1024,
+                  "x": 562,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 2046,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 2046
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2046
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/RKtGDkK1K1"
+          },
+          {
+            "display_url": "pic.x.com/RKtGDkK1K1",
+            "expanded_url": "https://x.com/coachjarret/status/1962374390643101856/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1962374386532728832",
+            "indices": [
+              158,
+              181
+            ],
+            "media_key": "3_1962374386532728832",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARs7wRuBm8AACgACGzvBHHabEKAAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGzvBG4GbwAAKAAIbO8EcdpsQoAAA",
+                "media_key": "3_1962374386532728832"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GzvBG4GbwAALJDj.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 860,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 645
+                },
+                {
+                  "h": 1536,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 307
+                },
+                {
+                  "h": 1751,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 200
+                },
+                {
+                  "h": 2048,
+                  "w": 1024,
+                  "x": 512,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 1536
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 1536
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/RKtGDkK1K1"
+          },
+          {
+            "display_url": "pic.x.com/RKtGDkK1K1",
+            "expanded_url": "https://x.com/coachjarret/status/1962374390643101856/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 302,
+                    "w": 302,
+                    "x": 532,
+                    "y": 462
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 302,
+                    "w": 302,
+                    "x": 532,
+                    "y": 462
+                  }
+                ]
+              }
+            },
+            "id_str": "1962374386197143552",
+            "indices": [
+              158,
+              181
+            ],
+            "media_key": "3_1962374386197143552",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARs7wRttmyAACgACGzvBHHabEKAAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGzvBG22bIAAKAAIbO8EcdpsQoAAA",
+                "media_key": "3_1962374386197143552"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GzvBG22bIAASJpF.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 675,
+                  "w": 1206,
+                  "x": 0,
+                  "y": 52
+                },
+                {
+                  "h": 1206,
+                  "w": 1206,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1375,
+                  "w": 1206,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1730,
+                  "w": 865,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1730,
+                  "w": 1206,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1730,
+              "width": 1206
+            },
+            "sizes": {
+              "large": {
+                "h": 1730,
+                "w": 1206
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/RKtGDkK1K1"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              135,
+              147
+            ],
+            "text": "philippines"
+          },
+          {
+            "indices": [
+              148,
+              157
+            ],
+            "text": "politics"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1962376117651935406",
       "url": "https://x.com/gmanews/status/1962376117651935406",
       "twitterUrl": "https://twitter.com/gmanews/status/1962376117651935406",
@@ -1642,8 +1780,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/39453212/1785235955",
         "description": "",
         "location": "Philippines",
-        "followers": 5717008,
-        "following": 672,
+        "followers": 5718240,
+        "following": 674,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -1655,15 +1793,17 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 14181,
+        "favouritesCount": 14180,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 213164,
-        "statusesCount": 1024975,
+        "mediaCount": 214868,
+        "statusesCount": 1027730,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
-        "pinnedTweetIds": [],
+        "pinnedTweetIds": [
+          "2099687625783136340"
+        ],
         "profile_bio": {
           "description": "Welcome to the official X account of GMA News.",
           "entities": {
@@ -1760,7 +1900,7 @@
             "result": {
               "__typename": "User",
               "action_counts": {
-                "favorites_count": 14181
+                "favorites_count": 14180
               },
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/2038588193520709632/gW-kXR9a_normal.jpg"
@@ -1788,7 +1928,11 @@
               "notifications_settings": {
                 "notifications_enabled": false
               },
-              "pinned_items": {},
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099687625783136340"
+                ]
+              },
               "privacy": {
                 "protected": false,
                 "suspended": false
@@ -1826,8 +1970,8 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 5717008,
-                "following": 672
+                "followers": 5718240,
+                "following": 674
               },
               "relationship_perspectives": {
                 "blocked_by": false,
@@ -1844,8 +1988,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 213164,
-                "tweets": 1024975
+                "media_tweets": 214868,
+                "tweets": 1027730
               },
               "verification": {
                 "is_blue_verified": true,
@@ -1939,7 +2083,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 15813,
+                "followers": 15804,
                 "following": 129
               },
               "relationship_perspectives": {
@@ -1993,6 +2137,385 @@
     },
     {
       "type": "tweet",
+      "id": "1962378377685508245",
+      "url": "https://x.com/splahhp/status/1962378377685508245",
+      "twitterUrl": "https://twitter.com/splahhp/status/1962378377685508245",
+      "text": "📢 Traffic Advisory\n\nThe SKTT road has been blocked near Nili Dhank due to landslide/obstruction. All commuters are advised not to travel on this route until clearance work is completed.\n\n🔹 Please follow traffic updates from Police/Administration. https://t.co/jHFfZWAm4T",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 216,
+      "createdAt": "Mon Sep 01 04:53:59 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1962378377685508245",
+      "displayTextRange": [
+        0,
+        246
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "splahhp",
+        "url": "https://x.com/splahhp",
+        "twitterUrl": "https://twitter.com/splahhp",
+        "id": "1431506872763248646",
+        "name": "Lahaul & Spiti Police",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1431507315362918404/pDj8QTew_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1431506872763248646/1701575845",
+        "description": "",
+        "location": "Keylong, Lahaul & Spiti, HP",
+        "followers": 2555,
+        "following": 73,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sat Aug 28 06:40:48 +0000 2021",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 469,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 944,
+        "statusesCount": 1934,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1755469973848490156"
+        ],
+        "profile_bio": {
+          "description": "Official Handle of District Lahaul Spiti Police, Himachal Pradesh.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "facebook.com/splahhp",
+                  "expanded_url": "http://www.facebook.com/splahhp",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/NcumQBAHlM"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/jHFfZWAm4T",
+            "expanded_url": "https://x.com/splahhp/status/1962378377685508245/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 48,
+                    "w": 48,
+                    "x": 271,
+                    "y": 377
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 48,
+                    "w": 48,
+                    "x": 271,
+                    "y": 377
+                  }
+                ]
+              }
+            },
+            "id_str": "1962378366985945088",
+            "indices": [
+              247,
+              270
+            ],
+            "media_key": "3_1962378366985945088",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARs7xLpHG8AACgACGzvEvMTaIJUAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGzvEukcbwAAKAAIbO8S8xNoglQAA",
+                "media_key": "3_1962378366985945088"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GzvEukcbwAAYioz.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 539,
+                  "w": 963,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 963,
+                  "w": 963,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1098,
+                  "w": 963,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 640,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 963,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1280,
+              "width": 963
+            },
+            "sizes": {
+              "large": {
+                "h": 1280,
+                "w": 963
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/jHFfZWAm4T"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1962378116371972361",
+      "url": "https://x.com/RashtraVaani25/status/1962378116371972361",
+      "twitterUrl": "https://twitter.com/RashtraVaani25/status/1962378116371972361",
+      "text": "🚨 Maratha Reservation Stir Intensifies\nThe Maratha reservation movement has intensified as leader Manoj Jarange has vowed to abstain from water in protest.\nMeanwhile, Mumbai Police issued a traffic advisory to manage movement in the city amid the agitation.\n\n#MarathaReservation #ManojJarange #MumbaiTraffic #RashtraVaani",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 369,
+      "createdAt": "Mon Sep 01 04:52:56 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1962378116371972361",
+      "displayTextRange": [
+        0,
+        278
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "RashtraVaani25",
+        "url": "https://x.com/RashtraVaani25",
+        "twitterUrl": "https://twitter.com/RashtraVaani25",
+        "id": "1935575668622032896",
+        "name": "RashtraVaani",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1935575821718089728/IHmBaF9G_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1935575668622032896/1750312835",
+        "description": "",
+        "location": "Surat , Bharat (India)",
+        "followers": 136,
+        "following": 432,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Thu Jun 19 05:49:44 +0000 2025",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 7714,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 3404,
+        "statusesCount": 3578,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "📰 Your voice. India’s news.\nBreaking news every 5 minutes | Hindi + English | Nation-first journalism",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/KRLEKVAgTq",
+            "expanded_url": "https://x.com/RashtraVaani25/status/1962378116371972361/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1962378107350065152",
+            "indices": [
+              279,
+              302
+            ],
+            "media_key": "3_1962378107350065152",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARs7xH3TmqAACgACGzvEf+1aAQkAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGzvEfdOaoAAKAAIbO8R/7VoBCQAA",
+                "media_key": "3_1962378107350065152"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GzvEfdOaoAAzsxX.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 672,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 675,
+                  "w": 675,
+                  "x": 233,
+                  "y": 0
+                },
+                {
+                  "h": 675,
+                  "w": 592,
+                  "x": 274,
+                  "y": 0
+                },
+                {
+                  "h": 675,
+                  "w": 338,
+                  "x": 401,
+                  "y": 0
+                },
+                {
+                  "h": 675,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 675,
+              "width": 1200
+            },
+            "sizes": {
+              "large": {
+                "h": 675,
+                "w": 1200
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/KRLEKVAgTq"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              259,
+              278
+            ],
+            "text": "MarathaReservation"
+          },
+          {
+            "indices": [
+              279,
+              292
+            ],
+            "text": "ManojJarange"
+          },
+          {
+            "indices": [
+              293,
+              307
+            ],
+            "text": "MumbaiTraffic"
+          },
+          {
+            "indices": [
+              308,
+              321
+            ],
+            "text": "RashtraVaani"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1962377797613306214",
       "url": "https://x.com/PGMNOfficial/status/1962377797613306214",
       "twitterUrl": "https://twitter.com/PGMNOfficial/status/1962377797613306214",
@@ -2029,7 +2552,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1852559795922092032/1744095975",
         "description": "",
         "location": "",
-        "followers": 55307,
+        "followers": 56099,
         "following": 132,
         "status": "",
         "canDm": false,
@@ -2042,15 +2565,17 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 318,
+        "favouritesCount": 321,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 14684,
-        "statusesCount": 17722,
+        "mediaCount": 14904,
+        "statusesCount": 18025,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
-        "pinnedTweetIds": [],
+        "pinnedTweetIds": [
+          "2096914914636185650"
+        ],
         "profile_bio": {
           "description": "The only media channel in the PH in pursuit of free speech absolutism. Conservative, Liberal, DDS, Loyalist or Pink—we welcome all and promise to never censor.",
           "entities": {
@@ -2184,6 +2709,423 @@
     },
     {
       "type": "tweet",
+      "id": "1962377509259162084",
+      "url": "https://x.com/TNNavbharat/status/1962377509259162084",
+      "twitterUrl": "https://twitter.com/TNNavbharat/status/1962377509259162084",
+      "text": "#MarathaQuotaProtests: गर्माया मराठा आरक्षण आंदोलन, जरांगे ने पानी न पीने की कसम खाई, मुंबई पुलिस ने जारी की 'ट्रैफिक एडवाइजरी'\n\n#MarathaReservation #Maharashtra #Mumbai \n\nhttps://t.co/7ULAW2ntZK",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 1,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 331,
+      "createdAt": "Mon Sep 01 04:50:32 +0000 2025",
+      "lang": "hi",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1962377509259162084",
+      "displayTextRange": [
+        0,
+        195
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "TNNavbharat",
+        "url": "https://x.com/TNNavbharat",
+        "twitterUrl": "https://twitter.com/TNNavbharat",
+        "id": "927426236137201664",
+        "name": "Times Now Navbharat",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Business",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1584864119647531008/F4ID0nhQ_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/927426236137201664/1789416100",
+        "description": "",
+        "location": "New Delhi, India",
+        "followers": 185320,
+        "following": 67,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Mon Nov 06 06:43:40 +0000 2017",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 8,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 617974,
+        "statusesCount": 836119,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {
+          "label": {
+            "badge": {
+              "url": "https://pbs.twimg.com/profile_images/1354074536925388802/qkHhpnVw_bigger.jpg"
+            },
+            "description": "TIMES NOW",
+            "url": {
+              "url": "https://twitter.com/TimesNow",
+              "url_type": "DeepLink"
+            },
+            "user_label_display_type": "Badge",
+            "user_label_type": "BusinessLabel"
+          }
+        },
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099820140305285457"
+        ],
+        "profile_bio": {
+          "description": "अब बदलेगा भारत, बनेगा नवभारत - A Times Network Company",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Maratha Quota Protests: मनोज जरांगे और आजाद मैदान तथा आस-पास के इलाकों में डेरा डाले प्रदर्शनकारियों ने कहा है कि जब तक उनकी मांगें पूरी नहीं हो जातीं, वे पीछे नहीं हटेंगे।, मुंबई News, Times Now..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.timesnowhindi.com"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "927426236137201664",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "927426236137201664",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "timesnowhindi.com"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Maratha Quota Protests: और गर्माया मराठा आरक्षण आंदोलन, जरांगे ने पानी न पीने की कसम खाई, मुंबई..."
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/7ULAW2ntZK"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/7ULAW2ntZK",
+        "user_refs_results": [
+          {
+            "rest_id": "927426236137201664",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 8
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1584864119647531008/F4ID0nhQ_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/927426236137201664/1789416100"
+              },
+              "core": {
+                "created_at": "Mon Nov 06 06:43:40 +0000 2017",
+                "name": "Times Now Navbharat",
+                "screen_name": "TNNavbharat"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {
+                "label": {
+                  "badge": {
+                    "url": "https://pbs.twimg.com/profile_images/1354074536925388802/qkHhpnVw_bigger.jpg"
+                  },
+                  "description": "TIMES NOW",
+                  "url": {
+                    "url": "https://twitter.com/TimesNow",
+                    "url_type": "DeepLink"
+                  },
+                  "user_label_display_type": "Badge",
+                  "user_label_type": "BusinessLabel"
+                }
+              },
+              "location": {
+                "location": "New Delhi, India"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099820140305285457"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "अब बदलेगा भारत, बनेगा नवभारत - A Times Network Company",
+                "entities": {
+                  "description": {}
+                }
+              },
+              "profile_image_shape": "Square",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "1B95E0"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 185320,
+                "following": 67
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "927426236137201664",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 617974,
+                "tweets": 836119
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false,
+                "verified_type": "Business"
+              },
+              "website": {
+                "url": ""
+              }
+            }
+          },
+          {
+            "rest_id": "927426236137201664",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 8
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1584864119647531008/F4ID0nhQ_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/927426236137201664/1789416100"
+              },
+              "core": {
+                "created_at": "Mon Nov 06 06:43:40 +0000 2017",
+                "name": "Times Now Navbharat",
+                "screen_name": "TNNavbharat"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {
+                "label": {
+                  "badge": {
+                    "url": "https://pbs.twimg.com/profile_images/1354074536925388802/qkHhpnVw_bigger.jpg"
+                  },
+                  "description": "TIMES NOW",
+                  "url": {
+                    "url": "https://twitter.com/TimesNow",
+                    "url_type": "DeepLink"
+                  },
+                  "user_label_display_type": "Badge",
+                  "user_label_type": "BusinessLabel"
+                }
+              },
+              "location": {
+                "location": "New Delhi, India"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099820140305285457"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "अब बदलेगा भारत, बनेगा नवभारत - A Times Network Company",
+                "entities": {
+                  "description": {}
+                }
+              },
+              "profile_image_shape": "Square",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "1B95E0"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 185320,
+                "following": 67
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "927426236137201664",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 617974,
+                "tweets": 836119
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false,
+                "verified_type": "Business"
+              },
+              "website": {
+                "url": ""
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              0,
+              21
+            ],
+            "text": "MarathaQuotaProtests"
+          },
+          {
+            "indices": [
+              129,
+              148
+            ],
+            "text": "MarathaReservation"
+          },
+          {
+            "indices": [
+              149,
+              161
+            ],
+            "text": "Maharashtra"
+          },
+          {
+            "indices": [
+              162,
+              169
+            ],
+            "text": "Mumbai"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "timesnowhindi.com/cities/mumbai-…",
+            "expanded_url": "https://www.timesnowhindi.com/cities/mumbai-news/maratha-quota-protests-news-jarange-vows-to-shun-water-mumbai-police-issue-traffic-advisory-know-key-highlights-article-152567556",
+            "indices": [
+              172,
+              195
+            ],
+            "url": "https://t.co/7ULAW2ntZK"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1962380420118651158",
       "url": "https://x.com/jaimaharashtran/status/1962380420118651158",
       "twitterUrl": "https://twitter.com/jaimaharashtran/status/1962380420118651158",
@@ -2217,10 +3159,10 @@
         "isBlueVerified": true,
         "verifiedType": null,
         "profilePicture": "https://pbs.twimg.com/profile_images/2080472479819329536/gJQOGiCz_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/598515806/1788575617",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/598515806/1789317511",
         "description": "",
         "location": "",
-        "followers": 187432,
+        "followers": 187433,
         "following": 232,
         "status": "",
         "canDm": false,
@@ -2236,8 +3178,8 @@
         "favouritesCount": 371,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 174699,
-        "statusesCount": 509785,
+        "mediaCount": 176107,
+        "statusesCount": 511287,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2415,7 +3357,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437302,
+        "followers": 1437184,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -2431,8 +3373,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411295,
+        "mediaCount": 17208,
+        "statusesCount": 411956,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2481,6 +3423,112 @@
     },
     {
       "type": "tweet",
+      "id": "1962383199767527747",
+      "url": "https://x.com/Loidaep/status/1962383199767527747",
+      "twitterUrl": "https://twitter.com/Loidaep/status/1962383199767527747",
+      "text": "why is the world turning to shit. Indonesia corruption, Philippines flooding, child slavery in Ghana, Gaza, Sudan, Congo I can name so much more but it’s all on my fyp rn and it makes me realize how lucky I am",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 137,
+      "createdAt": "Mon Sep 01 05:13:08 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1962383199767527747",
+      "displayTextRange": [
+        0,
+        209
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "Loidaep",
+        "url": "https://x.com/Loidaep",
+        "twitterUrl": "https://twitter.com/Loidaep",
+        "id": "1879729741231484928",
+        "name": "loid OLD ACC",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2085806395945783296/oVgXM3tb_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1879729741231484928/1785734194",
+        "description": "",
+        "location": "he/him 20 🏳️‍🌈",
+        "followers": 164,
+        "following": 234,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Thu Jan 16 03:18:05 +0000 2025",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 13772,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1844,
+        "statusesCount": 15814,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2094855449644269796"
+        ],
+        "profile_bio": {
+          "description": "NEW ACC: @loiddaep",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    9,
+                    18
+                  ],
+                  "name": "",
+                  "screen_name": "loiddaep"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "loidaep.straw.page",
+                  "expanded_url": "https://loidaep.straw.page",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/x7o9a9WLnS"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1962383667382170045",
       "url": "https://x.com/MakatiTraffic/status/1962383667382170045",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/1962383667382170045",
@@ -2517,7 +3565,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437302,
+        "followers": 1437184,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -2533,8 +3581,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411295,
+        "mediaCount": 17208,
+        "statusesCount": 411956,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2619,7 +3667,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437302,
+        "followers": 1437184,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -2635,8 +3683,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411295,
+        "mediaCount": 17208,
+        "statusesCount": 411956,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2721,8 +3769,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186994,
-        "following": 87,
+        "followers": 187165,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -2734,16 +3782,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31261,
-        "statusesCount": 146776,
+        "mediaCount": 31376,
+        "statusesCount": 146905,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -2914,6 +3962,181 @@
           }
         ]
       },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1962394681561497929",
+      "url": "https://x.com/DEStatePolice/status/1962394681561497929",
+      "twitterUrl": "https://twitter.com/DEStatePolice/status/1962394681561497929",
+      "text": "⚠️Traffic Advisory - New Castle County⚠️\n\nUS-301 north of Bunker Hill Road overpass is closed due to a serious crash. Please seek alternate routes of travel to avoid delays. https://t.co/RCVpMUXCFb",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 5,
+      "quoteCount": 0,
+      "viewCount": 1585,
+      "createdAt": "Mon Sep 01 05:58:46 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1962394681561497929",
+      "displayTextRange": [
+        0,
+        173
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "DEStatePolice",
+        "url": "https://x.com/DEStatePolice",
+        "twitterUrl": "https://twitter.com/DEStatePolice",
+        "id": "230227730",
+        "name": "Delaware State Police",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2017968746602635264/3kaaiByJ_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/230227730/1782940746",
+        "description": "",
+        "location": "Dover, DE",
+        "followers": 28241,
+        "following": 195,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Fri Dec 24 17:28:35 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 122,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1336,
+        "statusesCount": 17056,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The Official Twitter account for the Delaware State Police. This account is not monitored 24/7. To report a crime dial 9-1-1.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "dsp.delaware.gov",
+                  "expanded_url": "http://dsp.delaware.gov",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/Fp4tcSWo2y"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/RCVpMUXCFb",
+            "expanded_url": "https://x.com/DEStatePolice/status/1962394681561497929/photo/1",
+            "ext_alt_text": "“Traffic Advisory” text with Delaware State Police patrol Tahoe in the background",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1962394674091458560",
+            "indices": [
+              174,
+              197
+            ],
+            "media_key": "3_1962394674091458560",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARs7048SVwAACgACGzvTkM+WwUkAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGzvTjxJXAAAKAAIbO9OQz5bBSQAA",
+                "media_key": "3_1962394674091458560"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GzvTjxJXAAA8KSB.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 527,
+                  "w": 941,
+                  "x": 0,
+                  "y": 183
+                },
+                {
+                  "h": 941,
+                  "w": 941,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 941,
+                  "w": 825,
+                  "x": 116,
+                  "y": 0
+                },
+                {
+                  "h": 941,
+                  "w": 471,
+                  "x": 306,
+                  "y": 0
+                },
+                {
+                  "h": 941,
+                  "w": 941,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 941,
+              "width": 941
+            },
+            "sizes": {
+              "large": {
+                "h": 941,
+                "w": 941
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/RCVpMUXCFb"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
       "quoted_tweet": null,
       "retweeted_tweet": null,
       "isLimitedReply": false,

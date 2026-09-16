@@ -5,7 +5,7 @@
     "window_start": "2026-03-12T16:00:00+08:00",
     "window_end": "2026-03-12T18:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 10,
+    "tweet_count": 14,
     "slices": [
       {
         "start": "2026-03-12T16:00:00+08:00",
@@ -32,8 +32,8 @@
         "start": "2026-03-12T16:15:00+08:00",
         "end": "2026-03-12T16:20:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-12T16:20:00+08:00",
@@ -137,8 +137,8 @@
         "start": "2026-03-12T17:30:00+08:00",
         "end": "2026-03-12T17:35:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-12T17:35:00+08:00",
@@ -172,8 +172,8 @@
         "start": "2026-03-12T17:55:00+08:00",
         "end": "2026-03-12T18:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       }
     ]
   },
@@ -216,8 +216,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/133609984/1616685285",
         "description": "",
         "location": "Philippines",
-        "followers": 26937,
-        "following": 554,
+        "followers": 26940,
+        "following": 555,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -232,8 +232,8 @@
         "favouritesCount": 2999,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 4277,
-        "statusesCount": 13702,
+        "mediaCount": 4280,
+        "statusesCount": 13708,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -268,19 +268,22 @@
           {
             "key": "description",
             "value": {
-              "string_value": "The Quezon City Housing Community Development and Resettlement Department (HCDRD) will build vertical housing buildings at the recently fire-ravaged area along NIA Road in Barangay Pinayahan as..."
+              "string_value": "The Quezon City Housing Community Development and Resettlement Department (HCDRD) will build vertical housing buildings at the recently fire-ravaged area along NIA Road in Barangay Pinayahan as...",
+              "type": "STRING"
             }
           },
           {
             "key": "domain",
             "value": {
-              "string_value": "www.abs-cbn.com"
+              "string_value": "www.abs-cbn.com",
+              "type": "STRING"
             }
           },
           {
             "key": "site",
             "value": {
               "scribe_key": "publisher_id",
+              "type": "USER",
               "user_value": {
                 "id_str": "31313277",
                 "path": []
@@ -290,6 +293,7 @@
           {
             "key": "creator",
             "value": {
+              "type": "USER",
               "user_value": {
                 "id_str": "133609984",
                 "path": []
@@ -300,20 +304,23 @@
             "key": "vanity_url",
             "value": {
               "scribe_key": "vanity_url",
-              "string_value": "abs-cbn.com"
+              "string_value": "abs-cbn.com",
+              "type": "STRING"
             }
           },
           {
             "key": "title",
             "value": {
-              "string_value": "Quezon City to build vertical housing for families displaced by NIA Road fire | ABS-CBN News"
+              "string_value": "Quezon City to build vertical housing for families displaced by NIA Road fire | ABS-CBN News",
+              "type": "STRING"
             }
           },
           {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
-              "string_value": "https://t.co/YnqRPK0AS8"
+              "string_value": "https://t.co/YnqRPK0AS8",
+              "type": "STRING"
             }
           }
         ],
@@ -323,8 +330,8 @@
               "name": "production"
             },
             "device": {
-              "name": "iPhone",
-              "version": "13"
+              "name": "Swift",
+              "version": "12"
             }
           }
         },
@@ -332,12 +339,12 @@
         "url": "https://t.co/YnqRPK0AS8",
         "user_refs_results": [
           {
-            "rest_id": "133609984",
             "result": {
               "__typename": "User",
               "action_counts": {
                 "favorites_count": 2999
               },
+              "affiliates_highlighted_label": {},
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/1712158590067425280/Jb_umN_r_normal.jpg"
               },
@@ -352,9 +359,13 @@
               "dm_permissions": {
                 "can_dm": true
               },
-              "exclusive_tweet_following": false,
               "follow_request_sent": false,
-              "identity_profile_labels_highlighted_label": {},
+              "grok_translated_bio_with_availability": {
+                "is_available": false
+              },
+              "has_graduated_access": true,
+              "id": "VXNlcjoxMzM2MDk5ODQ=",
+              "is_blue_verified": false,
               "location": {
                 "location": "Philippines"
               },
@@ -364,16 +375,27 @@
               "notifications_settings": {
                 "notifications_enabled": false
               },
+              "parody_commentary_fan_label": "None",
               "pinned_items": {
                 "tweet_ids_str": [
                   "1394668485553262593"
                 ]
               },
+              "possibly_sensitive": false,
               "privacy": {
-                "protected": false,
-                "suspended": false
+                "protected": false
               },
-              "private_super_following": false,
+              "professional": {
+                "category": [
+                  {
+                    "icon_name": "IconBriefcaseStroke",
+                    "id": 955,
+                    "name": "Journalist"
+                  }
+                ],
+                "professional_type": "Creator",
+                "rest_id": "1479381763096911872"
+              },
               "profile_bio": {
                 "description": "Reporter, ABS-CBN News",
                 "entities": {
@@ -395,19 +417,14 @@
               },
               "profile_image_shape": "Circle",
               "profile_metadata": {
-                "profile_interstitial_type": "",
-                "profile_link_color": "4A913C"
+                "profile_interstitial_type": ""
               },
               "profile_translation": {
-                "translator_type_enum": "None"
-              },
-              "properties": {
-                "has_extended_profile": true,
-                "has_no_screen_name": false
+                "translator_type": "none"
               },
               "relationship_counts": {
-                "followers": 26937,
-                "following": 554
+                "followers": 26940,
+                "following": 555
               },
               "relationship_perspectives": {
                 "blocked_by": false,
@@ -418,17 +435,14 @@
                 "muting": false
               },
               "rest_id": "133609984",
-              "smart_blocked_by": false,
-              "smart_blocking": false,
               "super_follow_eligible": false,
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 4277,
-                "tweets": 13702
+                "media_tweets": 4280,
+                "tweets": 13708
               },
               "verification": {
-                "is_blue_verified": false,
                 "verified": false
               },
               "website": {
@@ -437,12 +451,12 @@
             }
           },
           {
-            "rest_id": "31313277",
             "result": {
               "__typename": "User",
               "action_counts": {
-                "favorites_count": 11482
+                "favorites_count": 11481
               },
+              "affiliates_highlighted_label": {},
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/2082820005016813568/PhYshX4T_normal.jpg"
               },
@@ -457,9 +471,13 @@
               "dm_permissions": {
                 "can_dm": false
               },
-              "exclusive_tweet_following": false,
               "follow_request_sent": false,
-              "identity_profile_labels_highlighted_label": {},
+              "grok_translated_bio_with_availability": {
+                "is_available": false
+              },
+              "has_graduated_access": true,
+              "id": "VXNlcjozMTMxMzI3Nw==",
+              "is_blue_verified": true,
               "location": {
                 "location": "Manila, Philippines"
               },
@@ -469,12 +487,23 @@
               "notifications_settings": {
                 "notifications_enabled": false
               },
+              "parody_commentary_fan_label": "None",
               "pinned_items": {},
+              "possibly_sensitive": false,
               "privacy": {
-                "protected": false,
-                "suspended": false
+                "protected": false
               },
-              "private_super_following": false,
+              "professional": {
+                "category": [
+                  {
+                    "icon_name": "IconBriefcaseStroke",
+                    "id": 580,
+                    "name": "Media & News Company"
+                  }
+                ],
+                "professional_type": "Business",
+                "rest_id": "1445235035074797570"
+              },
               "profile_bio": {
                 "description": "The official Twitter account of ABS-CBN, the Philippines' largest network. https://t.co/Xkc1xyTDPu https://t.co/yN643GeRGp",
                 "entities": {
@@ -515,20 +544,16 @@
                   }
                 }
               },
+              "profile_description_language": "en",
               "profile_image_shape": "Circle",
               "profile_metadata": {
-                "profile_interstitial_type": "",
-                "profile_link_color": "2FC2EF"
+                "profile_interstitial_type": ""
               },
               "profile_translation": {
-                "translator_type_enum": "None"
-              },
-              "properties": {
-                "has_extended_profile": false,
-                "has_no_screen_name": false
+                "translator_type": "none"
               },
               "relationship_counts": {
-                "followers": 1815735,
+                "followers": 1815784,
                 "following": 802
               },
               "relationship_perspectives": {
@@ -540,17 +565,14 @@
                 "muting": false
               },
               "rest_id": "31313277",
-              "smart_blocked_by": false,
-              "smart_blocking": false,
               "super_follow_eligible": false,
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 70276,
-                "tweets": 218607
+                "media_tweets": 70347,
+                "tweets": 218699
               },
               "verification": {
-                "is_blue_verified": true,
                 "verified": false
               },
               "website": {
@@ -576,8 +598,6 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -618,7 +638,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437170,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -634,8 +654,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412021,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -720,8 +740,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1027757854130757632/1758114614",
         "description": "",
         "location": "",
-        "followers": 1326,
-        "following": 385,
+        "followers": 1333,
+        "following": 386,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -733,11 +753,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 200230,
+        "favouritesCount": 200784,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 2439,
-        "statusesCount": 45704,
+        "mediaCount": 2444,
+        "statusesCount": 45819,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -771,6 +791,301 @@
       "place": {},
       "entities": {},
       "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2032007470869332180",
+      "url": "https://x.com/dzbb/status/2032007470869332180",
+      "twitterUrl": "https://twitter.com/dzbb/status/2032007470869332180",
+      "text": "PANOORIN: Isang senaryo ng sunog ang isinagawa sa earthquake drill sa Manila City Hall ngayong hapon kung saan pinalabas lahat ng mga empleyado | via @luisitosantos03",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 480,
+      "createdAt": "Thu Mar 12 08:15:08 +0000 2026",
+      "lang": "tl",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2032007470869332180",
+      "displayTextRange": [
+        0,
+        166
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "dzbb",
+        "url": "https://x.com/dzbb",
+        "twitterUrl": "https://twitter.com/dzbb",
+        "id": "461853598",
+        "name": "DZBB Super Radyo",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1752867214339014656/Ali0l1kT_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/461853598/1788192343",
+        "description": "",
+        "location": "Republic of the Philippines",
+        "followers": 262175,
+        "following": 1006,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Thu Jan 12 08:18:11 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1966,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 364614,
+        "statusesCount": 1008224,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2097968439566741980"
+        ],
+        "profile_bio": {
+          "description": "The official X account of Super Radyo DZBB 594 kHz, the flagship AM radio station of GMA Network, Inc.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "gmanetwork.com/radio/streaming",
+                  "expanded_url": "http://www.gmanetwork.com/radio/streaming",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/FpRs3hHTdw"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "284355840",
+            "indices": [
+              150,
+              166
+            ],
+            "name": "Luisito Santos",
+            "screen_name": "luisitosantos03"
+          }
+        ]
+      },
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "2032006808882340108",
+        "url": "https://x.com/luisitosantos03/status/2032006808882340108",
+        "twitterUrl": "https://twitter.com/luisitosantos03/status/2032006808882340108",
+        "text": "PANOORIN: Isang senaryo ng sunog ang isinagawa sa earthquake drill sa Manila City Hall ngayong hapon kung saan pinalabas lahat ng mga empleyado @dzbb https://t.co/PgdBEWCq5A",
+        "source": "Twitter for iPhone",
+        "retweetCount": 0,
+        "replyCount": 0,
+        "likeCount": 1,
+        "quoteCount": 1,
+        "viewCount": 602,
+        "createdAt": "Thu Mar 12 08:12:30 +0000 2026",
+        "lang": "tl",
+        "bookmarkCount": 0,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "2032006808882340108",
+        "displayTextRange": [
+          0,
+          149
+        ],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {
+          "type": "user",
+          "userName": "luisitosantos03",
+          "url": "https://x.com/luisitosantos03",
+          "twitterUrl": "https://twitter.com/luisitosantos03",
+          "id": "284355840",
+          "name": "Luisito Santos",
+          "isVerified": false,
+          "isBlueVerified": false,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/1979135248530124800/zAP_VTiZ_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/284355840/1712143051",
+          "description": "",
+          "location": "Manila, Philippines",
+          "followers": 3667,
+          "following": 1426,
+          "status": "",
+          "canDm": true,
+          "canMediaTag": false,
+          "createdAt": "Tue Apr 19 04:05:45 +0000 2011",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 3599,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 13877,
+          "statusesCount": 17899,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [],
+          "profile_bio": {
+            "description": "Radio Correspondent and Anchor of GMA Super Radyo @dzbb of GMA Network Inc.",
+            "entities": {
+              "description": {
+                "user_mentions": [
+                  {
+                    "id_str": "",
+                    "indices": [
+                      50,
+                      55
+                    ],
+                    "name": "",
+                    "screen_name": "dzbb"
+                  }
+                ]
+              },
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "gmanetwork.com/news/",
+                    "expanded_url": "https://www.gmanetwork.com/news/",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/ymr1T5BDqT"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {
+          "media": [
+            {
+              "additional_media_info": {
+                "monetizable": false
+              },
+              "allow_download_status": {
+                "allow_download": true
+              },
+              "display_url": "pic.x.com/PgdBEWCq5A",
+              "expanded_url": "https://x.com/luisitosantos03/status/2032006808882340108/video/1",
+              "ext_master_playlist_only": [],
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "ext_playlists": [],
+              "id_str": "2032006704423227392",
+              "indices": [
+                150,
+                173
+              ],
+              "media_key": "13_2032006704423227392",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARwzI1TmW9AAAAA=",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAAECgABHDMjVOZb0AAAAA==",
+                  "media_key": "13_2032006704423227392"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2032006704423227392/img/GFbRBHRtaltOpJSN.jpg",
+              "original_info": {
+                "focus_rects": [],
+                "height": 720,
+                "width": 1280
+              },
+              "sizes": {
+                "large": {
+                  "h": 720,
+                  "w": 1280
+                }
+              },
+              "type": "video",
+              "url": "https://t.co/PgdBEWCq5A",
+              "video_info": {
+                "aspect_ratio": [
+                  16,
+                  9
+                ],
+                "duration_millis": 15101,
+                "variants": [
+                  {
+                    "content_type": "application/x-mpegURL",
+                    "url": "https://video.twimg.com/amplify_video/2032006704423227392/pl/JVlKMkOU5-U64QAT.m3u8?tag=21"
+                  },
+                  {
+                    "bitrate": 256000,
+                    "content_type": "video/mp4",
+                    "url": "https://video.twimg.com/amplify_video/2032006704423227392/vid/avc1/480x270/ctNYqpI65-W30lGB.mp4?tag=21"
+                  },
+                  {
+                    "bitrate": 832000,
+                    "content_type": "video/mp4",
+                    "url": "https://video.twimg.com/amplify_video/2032006704423227392/vid/avc1/640x360/38OO6du5_gKIFbZb.mp4?tag=21"
+                  },
+                  {
+                    "bitrate": 2176000,
+                    "content_type": "video/mp4",
+                    "url": "https://video.twimg.com/amplify_video/2032006704423227392/vid/avc1/1280x720/ScT-lXFTjAruCdme.mp4?tag=21"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "card": null,
+        "place": {},
+        "entities": {
+          "user_mentions": [
+            {
+              "id_str": "461853598",
+              "indices": [
+                144,
+                149
+              ],
+              "name": "DZBB Super Radyo",
+              "screen_name": "dzbb"
+            }
+          ]
+        },
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
+        "article": null
+      },
       "retweeted_tweet": null,
       "isLimitedReply": false,
       "communityInfo": null,
@@ -814,7 +1129,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437170,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -830,8 +1145,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412021,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -916,7 +1231,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967068,
+        "followers": 3966562,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -932,8 +1247,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888279,
+        "mediaCount": 61737,
+        "statusesCount": 888713,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1018,7 +1333,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437170,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1034,8 +1349,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412021,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1120,7 +1435,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437170,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1136,8 +1451,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412021,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1222,8 +1537,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/42403813/1606282706",
         "description": "",
         "location": "",
-        "followers": 889,
-        "following": 801,
+        "followers": 888,
+        "following": 799,
         "status": "",
         "canDm": false,
         "canMediaTag": false,
@@ -1235,11 +1550,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 4687,
+        "favouritesCount": 4678,
         "hasCustomTimelines": true,
         "isTranslator": false,
         "mediaCount": 1452,
-        "statusesCount": 46912,
+        "statusesCount": 46928,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1311,7 +1626,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967069,
+        "followers": 3966562,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -1327,8 +1642,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888279,
+        "mediaCount": 61737,
+        "statusesCount": 888713,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1460,6 +1775,296 @@
     },
     {
       "type": "tweet",
+      "id": "2032027216960184380",
+      "url": "https://x.com/JoburgMPD/status/2032027216960184380",
+      "twitterUrl": "https://twitter.com/JoburgMPD/status/2032027216960184380",
+      "text": "TRAFFIC ADVISORY\n\n12 March 2026\n\nTRAFFIC DISRUPTIONS EXPECTED FOR THE 5.6 KM JPMORGAN CORPORATE CHALLENGE\n\nThe Johannesburg Metropolitan Police Department (JMPD) wants to inform the community and road users of major traffic disruptions on Thursday, 12 March 2026, due to the 5.6 km JP Morgan Corporate Challenge.\n\nThis popular event will be held in the Rosebank, Illovo, Melrose Birdhaven, and Birnam areas, with around 14,000 athletes expected to participate.\n\nThe race will start at 18:30 at Venus Street and Wingfield Ave and will end at the Wanderers Sports Club.\n\nTo ensure safety during the event, road closures will be in place from 08:00 to 21:00. The affected roads include:\n\n- M1 South and North On and Off Ramps\n- Corlett Drive\n- Athol-Oaklands Road\n- Cross Street\n- Irene Road\n- Jacobs Ave\n- Atherstone Road\n- Melrose Blvd\n- Kerknick Ave\n- Venus Street\n- Greenacres Drive\n- Wingfield Ave\n- St Andrew Road\n- Ravenswood Ave\n- Bute Ave\n- Arran Ave\n- Tyrwhitt Ave\n- Rudd Road\n- Jellicoe Ave\n- Tottenham Ave\n- Edgewood Ave\n- Glenhove Road\n- Cecil Ave\n- Jameson Ave\n- 5th Street\n- Somerville Ave\n- Wrenrose Ave\n- Reform Ave\n- Victoria Ave\n\nJMPD officers will be on-site to help with traffic control and ensure the safety of participants and spectators. We request that all drivers stay patient and plan their routes accordingly.\n\nEnds\n\nIssued by the Johannesburg Metropolitan Police Department Communication Unit ##SaferJoburg #JoburgRoadSafety #JHBTRAFFIC",
+      "source": "Twitter for iPhone",
+      "retweetCount": 4,
+      "replyCount": 1,
+      "likeCount": 8,
+      "quoteCount": 1,
+      "viewCount": 4057,
+      "createdAt": "Thu Mar 12 09:33:36 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2032027216960184380",
+      "displayTextRange": [
+        0,
+        278
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "JoburgMPD",
+        "url": "https://x.com/JoburgMPD",
+        "twitterUrl": "https://twitter.com/JoburgMPD",
+        "id": "1193064241",
+        "name": "Jo'burg Metro Police Department - JMPD",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1927033684369997824/--6EqJsm_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1193064241/1748233932",
+        "description": "",
+        "location": "",
+        "followers": 320757,
+        "following": 925,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Feb 18 12:40:17 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 8335,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 10142,
+        "statusesCount": 14867,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1484510140757946372"
+        ],
+        "profile_bio": {
+          "description": "A Law Enforcement Agency in the City of Jo'burg responsible for Crime Prevention, By-laws & Traffic Management",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "joburg.org.za",
+                  "expanded_url": "http://www.joburg.org.za",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/XMLcE6Bur4"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/p59PGB7U4u",
+            "expanded_url": "https://x.com/JoburgMPD/status/2032027216960184380/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "City of Joburg",
+                    "screen_name": "CityofJoburgZA",
+                    "type": "user",
+                    "user_id": "517306957"
+                  },
+                  {
+                    "name": "Joburg Public Safety",
+                    "screen_name": "CoJPublicSafety",
+                    "type": "user",
+                    "user_id": "874189911670349825"
+                  },
+                  {
+                    "name": "Executive Mayor: @CityofJoburgZA",
+                    "screen_name": "DadaMorero",
+                    "type": "user",
+                    "user_id": "1578650808677289984"
+                  },
+                  {
+                    "name": "Chief Of Police for JMPD : Patrick Jaca",
+                    "screen_name": "Jaca_Patrick",
+                    "type": "user",
+                    "user_id": "1863240572481191936"
+                  },
+                  {
+                    "name": "EFF MPL M Tshwaku, PhD",
+                    "screen_name": "MTshwaku",
+                    "type": "user",
+                    "user_id": "2207504199"
+                  },
+                  {
+                    "name": "COJ People’s MMC Public Safety",
+                    "screen_name": "PublicSafetyMMC",
+                    "type": "user",
+                    "user_id": "1628819950038024193"
+                  },
+                  {
+                    "name": "GP Department of Community Safety",
+                    "screen_name": "GP_CommSafety",
+                    "type": "user",
+                    "user_id": "368225673"
+                  },
+                  {
+                    "name": "SA Police Service 🇿🇦",
+                    "screen_name": "SAPoliceService",
+                    "type": "user",
+                    "user_id": "320644276"
+                  },
+                  {
+                    "name": "GTP Gauteng Traffic Police",
+                    "screen_name": "GTP_Traffstats",
+                    "type": "user",
+                    "user_id": "517308280"
+                  },
+                  {
+                    "name": "Arrive Alive",
+                    "screen_name": "_ArriveAlive",
+                    "type": "user",
+                    "user_id": "154453910"
+                  }
+                ]
+              },
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2032027213743140864",
+            "indices": [
+              279,
+              302
+            ],
+            "media_key": "3_2032027213743140864",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwzNfwZFjAACgACHDM1/NjWYDwAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHDM1/BkWMAAKAAIcMzX82NZgPAAA",
+                "media_key": "3_2032027213743140864"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HDM1_BkWMAAIGlA.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 134,
+                  "w": 240,
+                  "x": 0,
+                  "y": 11
+                },
+                {
+                  "h": 150,
+                  "w": 150,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 150,
+                  "w": 132,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 150,
+                  "w": 75,
+                  "x": 17,
+                  "y": 0
+                },
+                {
+                  "h": 150,
+                  "w": 240,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 150,
+              "width": 240
+            },
+            "sizes": {
+              "large": {
+                "h": 150,
+                "w": 240
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/p59PGB7U4u"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              1420,
+              1432
+            ],
+            "text": "SaferJoburg"
+          },
+          {
+            "indices": [
+              1433,
+              1450
+            ],
+            "text": "JoburgRoadSafety"
+          },
+          {
+            "indices": [
+              1451,
+              1462
+            ],
+            "text": "JHBTRAFFIC"
+          }
+        ],
+        "symbols": [],
+        "timestamps": [
+          {
+            "indices": [
+              485,
+              490
+            ],
+            "seconds": 1110,
+            "text": "18:30"
+          },
+          {
+            "indices": [
+              640,
+              645
+            ],
+            "seconds": 480,
+            "text": "08:00"
+          },
+          {
+            "indices": [
+              649,
+              654
+            ],
+            "seconds": 1260,
+            "text": "21:00"
+          }
+        ],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2032031070758080878",
       "url": "https://x.com/QCGov/status/2032031070758080878",
       "twitterUrl": "https://twitter.com/QCGov/status/2032031070758080878",
@@ -1496,7 +2101,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1224983077937541120/1775013519",
         "description": "",
         "location": "Quezon City, Philippines",
-        "followers": 116296,
+        "followers": 116435,
         "following": 39,
         "status": "",
         "canDm": true,
@@ -1512,8 +2117,8 @@
         "favouritesCount": 910,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 30266,
-        "statusesCount": 42531,
+        "mediaCount": 30353,
+        "statusesCount": 42618,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1676,6 +2281,468 @@
         ],
         "user_mentions": []
       },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2032033639400366237",
+      "url": "https://x.com/wftrps/status/2032033639400366237",
+      "twitterUrl": "https://twitter.com/wftrps/status/2032033639400366237",
+      "text": "Traffic Advisory' Slow moving Traffic with a vehicle breakdown, Varthur ps towards Varthur kodi , it will be moved shortly. https://t.co/1akZbFlYdn",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 0,
+      "likeCount": 4,
+      "quoteCount": 0,
+      "viewCount": 720,
+      "createdAt": "Thu Mar 12 09:59:07 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2032033639400366237",
+      "displayTextRange": [
+        0,
+        123
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "wftrps",
+        "url": "https://x.com/wftrps",
+        "twitterUrl": "https://twitter.com/wftrps",
+        "id": "1427538424513261572",
+        "name": "WHITEFIELD TRAFFIC PS BTP",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1610431515384766464/EKixD336_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1427538424513261572/1698664455",
+        "description": "",
+        "location": "XQV4+PV4, Kadugodi Rd, Kadugod",
+        "followers": 8057,
+        "following": 340,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Aug 17 07:52:18 +0000 2021",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 8049,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 9570,
+        "statusesCount": 23164,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1561965210944290816"
+        ],
+        "profile_bio": {
+          "description": "Whitefield Traffic Police Station  ☎️ 08022943706.\nhttps://t.co/nLW3eXyDqh\nhttps://t.co/ztwpDdQ1kT",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "facebook.com/whitefield",
+                  "expanded_url": "https://www.facebook.com/whitefield",
+                  "indices": [
+                    51,
+                    74
+                  ],
+                  "url": "https://t.co/nLW3eXyDqh"
+                },
+                {
+                  "display_url": "instagram.com/whitefieldtraf…",
+                  "expanded_url": "https://instagram.com/whitefieldtrafficps?utm_source=qr&igshid=ZDc4ODBmNj",
+                  "indices": [
+                    75,
+                    98
+                  ],
+                  "url": "https://t.co/ztwpDdQ1kT"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.gov.in",
+                  "expanded_url": "https://btp.gov.in/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/n23Fyy5nq9"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/1akZbFlYdn",
+            "expanded_url": "https://x.com/wftrps/status/2032033639400366237/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "CP Bengaluru ಪೊಲೀಸ್ ಆಯುಕ್ತ ಬೆಂಗಳೂರು",
+                    "screen_name": "CPBlr",
+                    "type": "user",
+                    "user_id": "2687852605"
+                  },
+                  {
+                    "name": "Joint CP, Traffic, Bengaluru",
+                    "screen_name": "Jointcptraffic",
+                    "type": "user",
+                    "user_id": "2809164276"
+                  },
+                  {
+                    "name": "DCP Traffic East ಉಪ ಪೊಲೀಸ್ ಆಯುಕ್ತರು ಸಂಚಾರ ಪೂರ್ವ",
+                    "screen_name": "DCPTrEastBCP",
+                    "type": "user",
+                    "user_id": "2809049605"
+                  },
+                  {
+                    "name": "ACP Whitefield Traffic ಎಸಿಪಿ ಸಂಚಾರ ವೈಟ್ ಫೀಲ್ಡ್",
+                    "screen_name": "acpwfieldtrf",
+                    "type": "user",
+                    "user_id": "1361589347032600576"
+                  },
+                  {
+                    "name": "ಬೆಂಗಳೂರು ನಗರ ಪೊಲೀಸ್‌ BengaluruCityPolice",
+                    "screen_name": "BlrCityPolice",
+                    "type": "user",
+                    "user_id": "775296019"
+                  },
+                  {
+                    "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+                    "screen_name": "blrcitytraffic",
+                    "type": "user",
+                    "user_id": "1851545900"
+                  }
+                ]
+              },
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2032033629581557762",
+            "indices": [
+              124,
+              147
+            ],
+            "media_key": "3_2032033629581557762",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwzO9Hm20ACCgACHDM71DAaYJ0AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHDM70ebbQAIKAAIcMzvUMBpgnQAA",
+                "media_key": "3_2032033629581557762"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HDM70ebbQAItxHy.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 672,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 424
+                },
+                {
+                  "h": 1200,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 160
+                },
+                {
+                  "h": 1368,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 76
+                },
+                {
+                  "h": 1600,
+                  "w": 800,
+                  "x": 40,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1600,
+              "width": 1200
+            },
+            "sizes": {
+              "large": {
+                "h": 1600,
+                "w": 1200
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/1akZbFlYdn"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2032032638039704036",
+      "url": "https://x.com/wftrps/status/2032032638039704036",
+      "twitterUrl": "https://twitter.com/wftrps/status/2032032638039704036",
+      "text": "Traffic Advisory' Slow moving Traffic with a vehicle breakdown, Royal mart towards Munisingh Junction it will be moved shortly. https://t.co/5v9SI9Ck9m",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 0,
+      "likeCount": 5,
+      "quoteCount": 0,
+      "viewCount": 650,
+      "createdAt": "Thu Mar 12 09:55:08 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2032032638039704036",
+      "displayTextRange": [
+        0,
+        127
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "wftrps",
+        "url": "https://x.com/wftrps",
+        "twitterUrl": "https://twitter.com/wftrps",
+        "id": "1427538424513261572",
+        "name": "WHITEFIELD TRAFFIC PS BTP",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1610431515384766464/EKixD336_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1427538424513261572/1698664455",
+        "description": "",
+        "location": "XQV4+PV4, Kadugodi Rd, Kadugod",
+        "followers": 8057,
+        "following": 340,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Aug 17 07:52:18 +0000 2021",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 8049,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 9570,
+        "statusesCount": 23164,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1561965210944290816"
+        ],
+        "profile_bio": {
+          "description": "Whitefield Traffic Police Station  ☎️ 08022943706.\nhttps://t.co/nLW3eXyDqh\nhttps://t.co/ztwpDdQ1kT",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "facebook.com/whitefield",
+                  "expanded_url": "https://www.facebook.com/whitefield",
+                  "indices": [
+                    51,
+                    74
+                  ],
+                  "url": "https://t.co/nLW3eXyDqh"
+                },
+                {
+                  "display_url": "instagram.com/whitefieldtraf…",
+                  "expanded_url": "https://instagram.com/whitefieldtrafficps?utm_source=qr&igshid=ZDc4ODBmNj",
+                  "indices": [
+                    75,
+                    98
+                  ],
+                  "url": "https://t.co/ztwpDdQ1kT"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.gov.in",
+                  "expanded_url": "https://btp.gov.in/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/n23Fyy5nq9"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/5v9SI9Ck9m",
+            "expanded_url": "https://x.com/wftrps/status/2032032638039704036/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "Joint CP, Traffic, Bengaluru",
+                    "screen_name": "Jointcptraffic",
+                    "type": "user",
+                    "user_id": "2809164276"
+                  },
+                  {
+                    "name": "DCP Traffic East ಉಪ ಪೊಲೀಸ್ ಆಯುಕ್ತರು ಸಂಚಾರ ಪೂರ್ವ",
+                    "screen_name": "DCPTrEastBCP",
+                    "type": "user",
+                    "user_id": "2809049605"
+                  },
+                  {
+                    "name": "ACP Whitefield Traffic ಎಸಿಪಿ ಸಂಚಾರ ವೈಟ್ ಫೀಲ್ಡ್",
+                    "screen_name": "acpwfieldtrf",
+                    "type": "user",
+                    "user_id": "1361589347032600576"
+                  },
+                  {
+                    "name": "ಬೆಂಗಳೂರು ನಗರ ಪೊಲೀಸ್‌ BengaluruCityPolice",
+                    "screen_name": "BlrCityPolice",
+                    "type": "user",
+                    "user_id": "775296019"
+                  },
+                  {
+                    "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+                    "screen_name": "blrcitytraffic",
+                    "type": "user",
+                    "user_id": "1851545900"
+                  }
+                ]
+              },
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2032032627172229120",
+            "indices": [
+              128,
+              151
+            ],
+            "media_key": "3_2032032627172229120",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwzOuiCmsAACgACHDM66wpbQeQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHDM66IKawAAKAAIcMzrrCltB5AAA",
+                "media_key": "3_2032032627172229120"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HDM66IKawAA6vcI.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 895,
+                  "w": 1599,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 899,
+                  "w": 899,
+                  "x": 390,
+                  "y": 0
+                },
+                {
+                  "h": 899,
+                  "w": 789,
+                  "x": 445,
+                  "y": 0
+                },
+                {
+                  "h": 899,
+                  "w": 450,
+                  "x": 614,
+                  "y": 0
+                },
+                {
+                  "h": 899,
+                  "w": 1599,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 899,
+              "width": 1599
+            },
+            "sizes": {
+              "large": {
+                "h": 899,
+                "w": 1599
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/5v9SI9Ck9m"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
       "quoted_tweet": null,
       "retweeted_tweet": null,
       "isLimitedReply": false,

@@ -5,7 +5,7 @@
     "window_start": "2025-11-17T20:00:00+08:00",
     "window_end": "2025-11-17T22:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 23,
+    "tweet_count": 27,
     "slices": [
       {
         "start": "2025-11-17T20:00:00+08:00",
@@ -32,15 +32,15 @@
         "start": "2025-11-17T20:15:00+08:00",
         "end": "2025-11-17T20:20:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 0,
+        "accepted": 0
       },
       {
         "start": "2025-11-17T20:20:00+08:00",
         "end": "2025-11-17T20:25:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-11-17T20:25:00+08:00",
@@ -81,15 +81,15 @@
         "start": "2025-11-17T20:50:00+08:00",
         "end": "2025-11-17T20:55:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-11-17T20:55:00+08:00",
         "end": "2025-11-17T21:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-11-17T21:00:00+08:00",
@@ -123,8 +123,8 @@
         "start": "2025-11-17T21:20:00+08:00",
         "end": "2025-11-17T21:25:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 3,
+        "accepted": 3
       },
       {
         "start": "2025-11-17T21:25:00+08:00",
@@ -211,12 +211,12 @@
         "name": "Official MMDA",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": null,
+        "verifiedType": "Government",
         "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967156,
+        "followers": 3966706,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -232,8 +232,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61677,
-        "statusesCount": 888220,
+        "mediaCount": 61731,
+        "statusesCount": 888690,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -265,9 +265,11 @@
           {
             "display_url": "pic.x.com/uMxSs49CrL",
             "expanded_url": "https://x.com/MMDA/status/1990390294031057295/photo/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": [
@@ -276,16 +278,6 @@
                     "w": 52,
                     "x": 491,
                     "y": 286
-                  }
-                ]
-              },
-              "medium": {
-                "faces": [
-                  {
-                    "h": 46,
-                    "w": 46,
-                    "x": 436,
-                    "y": 254
                   }
                 ]
               },
@@ -298,16 +290,6 @@
                     "y": 286
                   }
                 ]
-              },
-              "small": {
-                "faces": [
-                  {
-                    "h": 26,
-                    "w": 26,
-                    "x": 247,
-                    "y": 144
-                  }
-                ]
               }
             },
             "id_str": "1990390079941128192",
@@ -317,7 +299,10 @@
             ],
             "media_key": "3_1990390079941128192",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARufSTtvWjAACgACG59JbUgbQY8AAA==",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG59JO29aMAAKAAIbn0ltSBtBjwAA",
                 "media_key": "3_1990390079941128192"
               }
             },
@@ -361,23 +346,7 @@
             "sizes": {
               "large": {
                 "h": 1350,
-                "resize": "fit",
                 "w": 1080
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 960
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 544
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "photo",
@@ -418,6 +387,8 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -428,7 +399,7 @@
       "text": "‘NATUTULOG KA LANG SA MALACAÑANG HABANG NALULUNOD SA BAHA AT NAGUGUTOM ANG IYONG NASASAKUPAN’\n\n‘Yan ang mensahe ni Cavite 4th District Rep. Kiko Barzaga sa kanyang talumpati sa ikalawang araw ng isinasagawang kilos-protesta kontra korupsyon sa EDSA People Power Monument sa Quezon City ngayong Lunes, Nov. 17. | via Denisse Valdesancho/One PH",
       "source": "Twitter for iPhone",
       "retweetCount": 35,
-      "replyCount": 129,
+      "replyCount": 128,
       "likeCount": 186,
       "quoteCount": 16,
       "viewCount": 45393,
@@ -458,7 +429,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/133152120/1785766152",
         "description": "",
         "location": "Philippines",
-        "followers": 866008,
+        "followers": 867324,
         "following": 2278,
         "status": "",
         "canDm": false,
@@ -471,11 +442,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 2622,
+        "favouritesCount": 2720,
         "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 293608,
-        "statusesCount": 666920,
+        "isTranslator": true,
+        "mediaCount": 294873,
+        "statusesCount": 668419,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -483,7 +454,19 @@
         "profile_bio": {
           "description": "The Official Twitter account of News5 📲FB/IG/YT/TikTok: @News5Everywhere 📧: News5Aksyon@news5.com.ph",
           "entities": {
-            "description": {},
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    56,
+                    72
+                  ],
+                  "name": "",
+                  "screen_name": "News5Everywhere"
+                }
+              ]
+            },
             "url": {
               "urls": [
                 {
@@ -513,9 +496,11 @@
             },
             "display_url": "pic.x.com/9KXp8PZdHd",
             "expanded_url": "https://x.com/News5PH/status/1990389732824735816/video/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "id_str": "1990389219282620416",
             "indices": [
               281,
@@ -523,7 +508,10 @@
             ],
             "media_key": "13_1990389219282620416",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARufSHMMG5AAAAA=",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG59IcwwbkAAAAA==",
                 "media_key": "13_1990389219282620416"
               }
             },
@@ -536,23 +524,7 @@
             "sizes": {
               "large": {
                 "h": 1080,
-                "resize": "fit",
                 "w": 1920
-              },
-              "medium": {
-                "h": 675,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 383,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "video",
@@ -604,6 +576,8 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -644,7 +618,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437282,
+        "followers": 1437184,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -660,8 +634,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411332,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -704,6 +678,8 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -717,7 +693,7 @@
       "replyCount": 3,
       "likeCount": 9,
       "quoteCount": 0,
-      "viewCount": 260,
+      "viewCount": 264,
       "createdAt": "Mon Nov 17 12:07:57 +0000 2025",
       "lang": "en",
       "bookmarkCount": 1,
@@ -744,8 +720,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1833397023774539776/1780219004",
         "description": "",
         "location": "",
-        "followers": 3487,
-        "following": 767,
+        "followers": 3494,
+        "following": 771,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -757,11 +733,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 62395,
+        "favouritesCount": 62791,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 1432,
-        "statusesCount": 8427,
+        "mediaCount": 1436,
+        "statusesCount": 8454,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -933,7 +909,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/48284511/1684470396",
         "description": "",
         "location": "Cebu City, Central Visayas",
-        "followers": 336233,
+        "followers": 336247,
         "following": 591,
         "status": "",
         "canDm": false,
@@ -949,8 +925,8 @@
         "favouritesCount": 1409,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 92149,
-        "statusesCount": 288259,
+        "mediaCount": 92669,
+        "statusesCount": 289151,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1129,7 +1105,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 336233,
+                "followers": 336247,
                 "following": 591
               },
               "relationship_perspectives": {
@@ -1147,8 +1123,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 92149,
-                "tweets": 288259
+                "media_tweets": 92669,
+                "tweets": 289151
               },
               "verification": {
                 "is_blue_verified": true,
@@ -1230,7 +1206,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 336233,
+                "followers": 336247,
                 "following": 591
               },
               "relationship_perspectives": {
@@ -1248,8 +1224,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 92149,
-                "tweets": 288259
+                "media_tweets": 92669,
+                "tweets": 289151
               },
               "verification": {
                 "is_blue_verified": true,
@@ -1320,7 +1296,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2906159052/1785543331",
         "description": "",
         "location": "Quezon City, Philippines",
-        "followers": 66674,
+        "followers": 67466,
         "following": 151,
         "status": "",
         "canDm": false,
@@ -1336,13 +1312,13 @@
         "favouritesCount": 174,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 152204,
-        "statusesCount": 235904,
+        "mediaCount": 153204,
+        "statusesCount": 237282,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2095681594849931695"
+          "2099690619560194544"
         ],
         "profile_bio": {
           "description": "This is the Official Twitter Account of the Presidential Broadcast Service's Radyo Pilipinas. FB: https://t.co/nvy2Y4sWix",
@@ -1597,7 +1573,7 @@
       "source": "Twitter for iPhone",
       "retweetCount": 167,
       "replyCount": 28,
-      "likeCount": 901,
+      "likeCount": 899,
       "quoteCount": 12,
       "viewCount": 49978,
       "createdAt": "Mon Nov 17 12:12:19 +0000 2025",
@@ -1626,8 +1602,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1222773302441148416/1738927873",
         "description": "",
         "location": "Visegrad",
-        "followers": 2059909,
-        "following": 2617,
+        "followers": 2067471,
+        "following": 2623,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -1639,16 +1615,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 140416,
+        "favouritesCount": 142838,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 66396,
-        "statusesCount": 105549,
+        "mediaCount": 66770,
+        "statusesCount": 106066,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2096048342442643848"
+          "2099887212938903663"
         ],
         "profile_bio": {
           "description": "Curating news, politics and current affairs.",
@@ -1771,195 +1747,6 @@
     },
     {
       "type": "tweet",
-      "id": "1990393520440647886",
-      "url": "https://x.com/WADailyNews/status/1990393520440647886",
-      "twitterUrl": "https://twitter.com/WADailyNews/status/1990393520440647886",
-      "text": "🇵🇭 Over 650,000 protest in Manila against government corruption.\n\nCrowds filled Rizal Park demanding accountability over a flood-control scandal tied to top officials and lawmakers. The three-day “Rally for Transparency and a Better Democracy” has begun.\n\nAn audit shows that of 545 billion pesos ($9.63 billion) spent since 2022, thousands of projects were incomplete, poorly documented, or substandard.\n\nDeadly typhoons Kalmaegi and Fung-wong, which killed hundreds and displaced nearly a million, exposed the cost of mismanaged funds.",
-      "source": "Twitter for iPhone",
-      "retweetCount": 1,
-      "replyCount": 0,
-      "likeCount": 2,
-      "quoteCount": 0,
-      "viewCount": 178,
-      "createdAt": "Mon Nov 17 12:16:09 +0000 2025",
-      "lang": "en",
-      "bookmarkCount": 0,
-      "isReply": false,
-      "inReplyToId": null,
-      "conversationId": "1990393520440647886",
-      "displayTextRange": [
-        0,
-        278
-      ],
-      "inReplyToUserId": null,
-      "inReplyToUsername": null,
-      "author": {
-        "type": "user",
-        "userName": "WADailyNews",
-        "url": "https://x.com/WADailyNews",
-        "twitterUrl": "https://twitter.com/WADailyNews",
-        "id": "1916394211219550208",
-        "name": "WashingtonAmerica.Net",
-        "isVerified": false,
-        "isBlueVerified": false,
-        "verifiedType": null,
-        "profilePicture": "https://pbs.twimg.com/profile_images/1983576772865134592/99MTiU7f_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/1916394211219550208/1745739836",
-        "description": "",
-        "location": "WashingtonAmerica DC",
-        "followers": 896,
-        "following": 42,
-        "status": "",
-        "canDm": true,
-        "canMediaTag": true,
-        "createdAt": "Sun Apr 27 07:29:35 +0000 2025",
-        "entities": {
-          "description": {
-            "urls": []
-          },
-          "url": {}
-        },
-        "fastFollowersCount": 0,
-        "favouritesCount": 515,
-        "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 14115,
-        "statusesCount": 23811,
-        "withheldInCountries": [],
-        "affiliatesHighlightedLabel": {},
-        "possiblySensitive": false,
-        "pinnedTweetIds": [],
-        "profile_bio": {
-          "description": "Unfettered \nfearless\n independent\n & wise\n\n https://t.co/YOkD1GvWMn",
-          "entities": {
-            "description": {
-              "urls": [
-                {
-                  "display_url": "WashingtonAmerica.Net",
-                  "expanded_url": "http://WashingtonAmerica.Net",
-                  "indices": [
-                    44,
-                    67
-                  ],
-                  "url": "https://t.co/YOkD1GvWMn"
-                }
-              ]
-            },
-            "url": {
-              "urls": [
-                {
-                  "display_url": "washingtonamerica.net",
-                  "expanded_url": "http://www.washingtonamerica.net",
-                  "indices": [
-                    0,
-                    23
-                  ],
-                  "url": "https://t.co/1IGUwIhh91"
-                }
-              ]
-            }
-          }
-        },
-        "isAutomated": false,
-        "automatedBy": null
-      },
-      "extendedEntities": {
-        "media": [
-          {
-            "display_url": "pic.x.com/DT7t60S4bi",
-            "expanded_url": "https://x.com/WADailyNews/status/1990393520440647886/photo/1",
-            "ext_master_playlist_only": [],
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "ext_playlists": [],
-            "features": {
-              "large": {
-                "faces": []
-              },
-              "orig": {
-                "faces": []
-              }
-            },
-            "id_str": "1990393517064241152",
-            "indices": [
-              279,
-              302
-            ],
-            "media_key": "3_1990393517064241152",
-            "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARufTFuz2sAACgACG59MXH0aoM4AAA==",
-              "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABG59MW7PawAAKAAIbn0xcfRqgzgAA",
-                "media_key": "3_1990393517064241152"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/media/G59MW7PawAA6fGi.jpg",
-            "original_info": {
-              "focus_rects": [
-                {
-                  "h": 717,
-                  "w": 1280,
-                  "x": 0,
-                  "y": 243
-                },
-                {
-                  "h": 960,
-                  "w": 960,
-                  "x": 320,
-                  "y": 0
-                },
-                {
-                  "h": 960,
-                  "w": 842,
-                  "x": 438,
-                  "y": 0
-                },
-                {
-                  "h": 960,
-                  "w": 480,
-                  "x": 800,
-                  "y": 0
-                },
-                {
-                  "h": 960,
-                  "w": 1280,
-                  "x": 0,
-                  "y": 0
-                }
-              ],
-              "height": 960,
-              "width": 1280
-            },
-            "sizes": {
-              "large": {
-                "h": 960,
-                "w": 1280
-              }
-            },
-            "type": "photo",
-            "url": "https://t.co/DT7t60S4bi"
-          }
-        ]
-      },
-      "card": null,
-      "place": {},
-      "entities": {
-        "hashtags": [],
-        "symbols": [],
-        "timestamps": [],
-        "urls": [],
-        "user_mentions": []
-      },
-      "quoted_tweet": null,
-      "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
-      "article": null
-    },
-    {
-      "type": "tweet",
       "id": "1990395045699088578",
       "url": "https://x.com/PCADG_2/status/1990395045699088578",
       "twitterUrl": "https://twitter.com/PCADG_2/status/1990395045699088578",
@@ -2051,6 +1838,574 @@
     },
     {
       "type": "tweet",
+      "id": "1990394949402058839",
+      "url": "https://x.com/rapplerdotcom/status/1990394949402058839",
+      "twitterUrl": "https://twitter.com/rapplerdotcom/status/1990394949402058839",
+      "text": "Senator Imee Marcos claimed that her brother, President Ferdinand “Bongbong” Marcos Jr., and First Lady Liza Araneta Marcos are using illegal drugs.\n\nhttps://t.co/3Bi1bt3coA",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 9,
+      "likeCount": 11,
+      "quoteCount": 1,
+      "viewCount": 6783,
+      "createdAt": "Mon Nov 17 12:21:50 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1990394949402058839",
+      "displayTextRange": [
+        0,
+        173
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "rapplerdotcom",
+        "url": "https://x.com/rapplerdotcom",
+        "twitterUrl": "https://twitter.com/rapplerdotcom",
+        "id": "330826792",
+        "name": "Rappler",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1583252893368717313/wUCmGve8_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/330826792/1763601261",
+        "description": "",
+        "location": "Philippines",
+        "followers": 3307630,
+        "following": 412,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Jul 07 06:34:10 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 7585,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 281932,
+        "statusesCount": 1138983,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2098366108176625685"
+        ],
+        "profile_bio": {
+          "description": "Rappler is the Philippines' leading digital media company that's driven by uncompromising journalism, enabled by technology, & enriched by communities of action",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "rappler.com",
+                  "expanded_url": "http://www.rappler.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/81BJWWQwVf"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 150,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=280x150",
+                "width": 267
+              }
+            }
+          },
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Here are highlights of the Iglesia ni Cristo's two-day rally for justice and peace from November 16 to 17"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.rappler.com"
+            }
+          },
+          {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 320,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=800x320_1",
+                "width": 569
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 1080,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=orig",
+                "width": 1920
+              }
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "330826792",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 81,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=144x144",
+                "width": 144
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 1080,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=png&name=2048x2048_2_exp",
+                "width": 1920
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "height": 1080,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=orig",
+                "width": 1920
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "rappler.com"
+            }
+          },
+          {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 48.21,
+                    "rgb": {
+                      "blue": 41,
+                      "green": 42,
+                      "red": 40
+                    }
+                  },
+                  {
+                    "percentage": 28.57,
+                    "rgb": {
+                      "blue": 209,
+                      "green": 201,
+                      "red": 195
+                    }
+                  },
+                  {
+                    "percentage": 3.92,
+                    "rgb": {
+                      "blue": 25,
+                      "green": 14,
+                      "red": 141
+                    }
+                  },
+                  {
+                    "percentage": 2.39,
+                    "rgb": {
+                      "blue": 67,
+                      "green": 84,
+                      "red": 30
+                    }
+                  },
+                  {
+                    "percentage": 1.61,
+                    "rgb": {
+                      "blue": 33,
+                      "green": 99,
+                      "red": 255
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "HIGHLIGHTS: Iglesia ni Cristo rally"
+            }
+          },
+          {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 48.21,
+                    "rgb": {
+                      "blue": 41,
+                      "green": 42,
+                      "red": 40
+                    }
+                  },
+                  {
+                    "percentage": 28.57,
+                    "rgb": {
+                      "blue": 209,
+                      "green": 201,
+                      "red": 195
+                    }
+                  },
+                  {
+                    "percentage": 3.92,
+                    "rgb": {
+                      "blue": 25,
+                      "green": 14,
+                      "red": 141
+                    }
+                  },
+                  {
+                    "percentage": 2.39,
+                    "rgb": {
+                      "blue": 67,
+                      "green": 84,
+                      "red": 30
+                    }
+                  },
+                  {
+                    "percentage": 1.61,
+                    "rgb": {
+                      "blue": 33,
+                      "green": 99,
+                      "red": 255
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 1080,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=png&name=2048x2048_2_exp",
+                "width": 1920
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 48.21,
+                    "rgb": {
+                      "blue": 41,
+                      "green": 42,
+                      "red": 40
+                    }
+                  },
+                  {
+                    "percentage": 28.57,
+                    "rgb": {
+                      "blue": 209,
+                      "green": 201,
+                      "red": 195
+                    }
+                  },
+                  {
+                    "percentage": 3.92,
+                    "rgb": {
+                      "blue": 25,
+                      "green": 14,
+                      "red": 141
+                    }
+                  },
+                  {
+                    "percentage": 2.39,
+                    "rgb": {
+                      "blue": 67,
+                      "green": 84,
+                      "red": 30
+                    }
+                  },
+                  {
+                    "percentage": 1.61,
+                    "rgb": {
+                      "blue": 33,
+                      "green": 99,
+                      "red": 255
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "height": 1080,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=png&name=2048x2048_2_exp",
+                "width": 1920
+              }
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/3Bi1bt3coA"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "height": 1080,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=orig",
+                "width": 1920
+              }
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/3Bi1bt3coA",
+        "user_refs_results": [
+          {
+            "rest_id": "330826792",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 7585
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1583252893368717313/wUCmGve8_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/330826792/1763601261"
+              },
+              "core": {
+                "created_at": "Thu Jul 07 06:34:10 +0000 2011",
+                "name": "Rappler",
+                "screen_name": "rapplerdotcom"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Philippines"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2098366108176625685"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Rappler is the Philippines' leading digital media company that's driven by uncompromising journalism, enabled by technology, & enriched by communities of action",
+                "entities": {
+                  "description": {},
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "rappler.com",
+                        "expanded_url": "http://www.rappler.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/81BJWWQwVf"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "E76229"
+              },
+              "profile_translation": {
+                "translator_type_enum": "Regular"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 3307630,
+                "following": 412
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "330826792",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 281932,
+                "tweets": 1138983
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/81BJWWQwVf"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "rappler.com/philippines/up…",
+            "expanded_url": "https://www.rappler.com/philippines/updates-iglesia-ni-cristo-rally-november-2025/#story-3115018",
+            "indices": [
+              150,
+              173
+            ],
+            "url": "https://t.co/3Bi1bt3coA"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1990397005256958036",
       "url": "https://x.com/MakatiTraffic/status/1990397005256958036",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/1990397005256958036",
@@ -2087,7 +2442,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437282,
+        "followers": 1437184,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -2103,8 +2458,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411332,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2189,8 +2544,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/461853598/1788192343",
         "description": "",
         "location": "Republic of the Philippines",
-        "followers": 262175,
-        "following": 1005,
+        "followers": 262165,
+        "following": 1006,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -2205,13 +2560,13 @@
         "favouritesCount": 1966,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 363118,
-        "statusesCount": 1005941,
+        "mediaCount": 364483,
+        "statusesCount": 1008033,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2095427727365231027"
+          "2097968439566741980"
         ],
         "profile_bio": {
           "description": "The official X account of Super Radyo DZBB 594 kHz, the flagship AM radio station of GMA Network, Inc.",
@@ -2630,7 +2985,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197176,
+        "followers": 1197879,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -2646,8 +3001,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219269,
-        "statusesCount": 941858,
+        "mediaCount": 219479,
+        "statusesCount": 942969,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2895,7 +3250,7 @@
         "description": "",
         "location": "Manila City",
         "followers": 297,
-        "following": 520,
+        "following": 521,
         "status": "",
         "canDm": false,
         "canMediaTag": true,
@@ -2907,11 +3262,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 17159,
+        "favouritesCount": 17125,
         "hasCustomTimelines": true,
         "isTranslator": false,
         "mediaCount": 1056,
-        "statusesCount": 6877,
+        "statusesCount": 6872,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -3069,7 +3424,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1776170692465364992/1744083712",
         "description": "",
         "location": "Bacoor",
-        "followers": 373,
+        "followers": 375,
         "following": 110,
         "status": "",
         "canDm": false,
@@ -3082,11 +3437,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3215,
+        "favouritesCount": 3221,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 869,
-        "statusesCount": 1662,
+        "mediaCount": 871,
+        "statusesCount": 1668,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -3258,7 +3613,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1776170692465364992/1744083712",
         "description": "",
         "location": "Bacoor",
-        "followers": 373,
+        "followers": 375,
         "following": 110,
         "status": "",
         "canDm": false,
@@ -3271,11 +3626,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3215,
+        "favouritesCount": 3221,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 869,
-        "statusesCount": 1662,
+        "mediaCount": 871,
+        "statusesCount": 1668,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -3470,7 +3825,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437282,
+        "followers": 1437183,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -3486,8 +3841,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411332,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -3536,6 +3891,843 @@
     },
     {
       "type": "tweet",
+      "id": "1990402040862781829",
+      "url": "https://x.com/gapolicarpio/status/1990402040862781829",
+      "twitterUrl": "https://twitter.com/gapolicarpio/status/1990402040862781829",
+      "text": "My ghad are you that desperate to grab power @SenImeeMarcos ? Matagal na namin alam yan, you just covered it up. Now, because the Zaldy video is not making a dent you say this. Shame on you. Enabler ka na ng EKJ, enabler ka pa ng druggie. Pfft\nhttps://t.co/sXNeRAjf1Z",
+      "source": "Twitter for iPhone",
+      "retweetCount": 5,
+      "replyCount": 1,
+      "likeCount": 23,
+      "quoteCount": 0,
+      "viewCount": 586,
+      "createdAt": "Mon Nov 17 12:50:01 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1990402040862781829",
+      "displayTextRange": [
+        0,
+        267
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "gapolicarpio",
+        "url": "https://x.com/gapolicarpio",
+        "twitterUrl": "https://twitter.com/gapolicarpio",
+        "id": "40832739",
+        "name": "Gina A. Policarpio",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1969625815752327182/P9gA2S6E_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/40832739/1624513346",
+        "description": "",
+        "location": "Philippines",
+        "followers": 3364,
+        "following": 1134,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Mon May 18 07:28:44 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 134507,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1568,
+        "statusesCount": 100618,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "911231548346605569"
+        ],
+        "profile_bio": {
+          "description": "",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 150,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=280x150",
+                "width": 267
+              }
+            }
+          },
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Here are highlights of the Iglesia ni Cristo's two-day rally for justice and peace from November 16 to 17"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.rappler.com"
+            }
+          },
+          {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 320,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=800x320_1",
+                "width": 569
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 1080,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=orig",
+                "width": 1920
+              }
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "330826792",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 81,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=144x144",
+                "width": 144
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 1080,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=png&name=2048x2048_2_exp",
+                "width": 1920
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "height": 1080,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=orig",
+                "width": 1920
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "rappler.com"
+            }
+          },
+          {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 48.21,
+                    "rgb": {
+                      "blue": 41,
+                      "green": 42,
+                      "red": 40
+                    }
+                  },
+                  {
+                    "percentage": 28.57,
+                    "rgb": {
+                      "blue": 209,
+                      "green": 201,
+                      "red": 195
+                    }
+                  },
+                  {
+                    "percentage": 3.92,
+                    "rgb": {
+                      "blue": 25,
+                      "green": 14,
+                      "red": 141
+                    }
+                  },
+                  {
+                    "percentage": 2.39,
+                    "rgb": {
+                      "blue": 67,
+                      "green": 84,
+                      "red": 30
+                    }
+                  },
+                  {
+                    "percentage": 1.61,
+                    "rgb": {
+                      "blue": 33,
+                      "green": 99,
+                      "red": 255
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "HIGHLIGHTS: Iglesia ni Cristo rally"
+            }
+          },
+          {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 48.21,
+                    "rgb": {
+                      "blue": 41,
+                      "green": 42,
+                      "red": 40
+                    }
+                  },
+                  {
+                    "percentage": 28.57,
+                    "rgb": {
+                      "blue": 209,
+                      "green": 201,
+                      "red": 195
+                    }
+                  },
+                  {
+                    "percentage": 3.92,
+                    "rgb": {
+                      "blue": 25,
+                      "green": 14,
+                      "red": 141
+                    }
+                  },
+                  {
+                    "percentage": 2.39,
+                    "rgb": {
+                      "blue": 67,
+                      "green": 84,
+                      "red": 30
+                    }
+                  },
+                  {
+                    "percentage": 1.61,
+                    "rgb": {
+                      "blue": 33,
+                      "green": 99,
+                      "red": 255
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 1080,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=png&name=2048x2048_2_exp",
+                "width": 1920
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 48.21,
+                    "rgb": {
+                      "blue": 41,
+                      "green": 42,
+                      "red": 40
+                    }
+                  },
+                  {
+                    "percentage": 28.57,
+                    "rgb": {
+                      "blue": 209,
+                      "green": 201,
+                      "red": 195
+                    }
+                  },
+                  {
+                    "percentage": 3.92,
+                    "rgb": {
+                      "blue": 25,
+                      "green": 14,
+                      "red": 141
+                    }
+                  },
+                  {
+                    "percentage": 2.39,
+                    "rgb": {
+                      "blue": 67,
+                      "green": 84,
+                      "red": 30
+                    }
+                  },
+                  {
+                    "percentage": 1.61,
+                    "rgb": {
+                      "blue": 33,
+                      "green": 99,
+                      "red": 255
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "height": 1080,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=png&name=2048x2048_2_exp",
+                "width": 1920
+              }
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/sXNeRAjf1Z"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "height": 1080,
+                "url": "https://pbs.twimg.com/card_img/2097892973585293313/ye2KoklJ?format=jpg&name=orig",
+                "width": 1920
+              }
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/sXNeRAjf1Z",
+        "user_refs_results": [
+          {
+            "rest_id": "330826792",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 7585
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1583252893368717313/wUCmGve8_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/330826792/1763601261"
+              },
+              "core": {
+                "created_at": "Thu Jul 07 06:34:10 +0000 2011",
+                "name": "Rappler",
+                "screen_name": "rapplerdotcom"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Philippines"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2098366108176625685"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Rappler is the Philippines' leading digital media company that's driven by uncompromising journalism, enabled by technology, & enriched by communities of action",
+                "entities": {
+                  "description": {},
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "rappler.com",
+                        "expanded_url": "http://www.rappler.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/81BJWWQwVf"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "E76229"
+              },
+              "profile_translation": {
+                "translator_type_enum": "Regular"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 3307630,
+                "following": 412
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "330826792",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 281932,
+                "tweets": 1138983
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/81BJWWQwVf"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "rappler.com/philippines/up…",
+            "expanded_url": "https://www.rappler.com/philippines/updates-iglesia-ni-cristo-rally-november-2025/",
+            "indices": [
+              244,
+              267
+            ],
+            "url": "https://t.co/sXNeRAjf1Z"
+          }
+        ],
+        "user_mentions": [
+          {
+            "id_str": "260606822",
+            "indices": [
+              45,
+              59
+            ],
+            "name": "Imee R. Marcos",
+            "screen_name": "SenImeeMarcos"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1990404031961788703",
+      "url": "https://x.com/rapplerdotcom/status/1990404031961788703",
+      "twitterUrl": "https://twitter.com/rapplerdotcom/status/1990404031961788703",
+      "text": "Citing his previous negative drug tests, Palace press officer Undersecretary Claire Castro refuted allegations by Senator Imee Marcos that her brother, President Ferdinand Marcos Jr., uses illegal drugs.\n\nhttps://t.co/hYyh3wUVKM",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 2823,
+      "createdAt": "Mon Nov 17 12:57:55 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1990404031961788703",
+      "displayTextRange": [
+        0,
+        228
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "rapplerdotcom",
+        "url": "https://x.com/rapplerdotcom",
+        "twitterUrl": "https://twitter.com/rapplerdotcom",
+        "id": "330826792",
+        "name": "Rappler",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1583252893368717313/wUCmGve8_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/330826792/1763601261",
+        "description": "",
+        "location": "Philippines",
+        "followers": 3307630,
+        "following": 412,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Jul 07 06:34:10 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 7585,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 281932,
+        "statusesCount": 1138983,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2098366108176625685"
+        ],
+        "profile_bio": {
+          "description": "Rappler is the Philippines' leading digital media company that's driven by uncompromising journalism, enabled by technology, & enriched by communities of action",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "rappler.com",
+                  "expanded_url": "http://www.rappler.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/81BJWWQwVf"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Here are highlights of the Iglesia ni Cristo's two-day rally for justice and peace from November 16 to 17"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.rappler.com"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "330826792",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "rappler.com"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "HIGHLIGHTS: Iglesia ni Cristo rally"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/hYyh3wUVKM"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/hYyh3wUVKM",
+        "user_refs_results": [
+          {
+            "rest_id": "330826792",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 7585
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1583252893368717313/wUCmGve8_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/330826792/1763601261"
+              },
+              "core": {
+                "created_at": "Thu Jul 07 06:34:10 +0000 2011",
+                "name": "Rappler",
+                "screen_name": "rapplerdotcom"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Philippines"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2098366108176625685"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Rappler is the Philippines' leading digital media company that's driven by uncompromising journalism, enabled by technology, & enriched by communities of action",
+                "entities": {
+                  "description": {},
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "rappler.com",
+                        "expanded_url": "http://www.rappler.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/81BJWWQwVf"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "E76229"
+              },
+              "profile_translation": {
+                "translator_type_enum": "Regular"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 3307630,
+                "following": 412
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "330826792",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 281932,
+                "tweets": 1138983
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/81BJWWQwVf"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "rappler.com/philippines/up…",
+            "expanded_url": "https://www.rappler.com/philippines/updates-iglesia-ni-cristo-rally-november-2025/#story-3115038",
+            "indices": [
+              205,
+              228
+            ],
+            "url": "https://t.co/hYyh3wUVKM"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1990404558388859316",
       "url": "https://x.com/MakatiTraffic/status/1990404558388859316",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/1990404558388859316",
@@ -3572,7 +4764,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437282,
+        "followers": 1437184,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -3588,8 +4780,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411332,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -3674,7 +4866,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1498932128192806914/1682487101",
         "description": "",
         "location": "Makati",
-        "followers": 5678,
+        "followers": 5713,
         "following": 49,
         "status": "",
         "canDm": false,
@@ -3690,8 +4882,8 @@
         "favouritesCount": 196,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 74121,
-        "statusesCount": 75071,
+        "mediaCount": 74692,
+        "statusesCount": 75643,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -3867,7 +5059,7 @@
       "replyCount": 0,
       "likeCount": 0,
       "quoteCount": 0,
-      "viewCount": 467,
+      "viewCount": 468,
       "createdAt": "Mon Nov 17 13:13:33 +0000 2025",
       "lang": "en",
       "bookmarkCount": 0,
@@ -3894,7 +5086,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/474871087/1786481218",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 112097,
+        "followers": 112886,
         "following": 224,
         "status": "",
         "canDm": true,
@@ -3910,8 +5102,8 @@
         "favouritesCount": 530,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 75282,
-        "statusesCount": 137536,
+        "mediaCount": 75645,
+        "statusesCount": 137900,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -4592,7 +5784,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/472122299/1601895131",
         "description": "",
         "location": "Philippines",
-        "followers": 1818756,
+        "followers": 1819707,
         "following": 867,
         "status": "",
         "canDm": false,
@@ -4608,8 +5800,8 @@
         "favouritesCount": 3252,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 257000,
-        "statusesCount": 802730,
+        "mediaCount": 257679,
+        "statusesCount": 803799,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -4753,6 +5945,604 @@
     },
     {
       "type": "tweet",
+      "id": "1990410254044062101",
+      "url": "https://x.com/blrcitytraffic/status/1990410254044062101",
+      "twitterUrl": "https://twitter.com/blrcitytraffic/status/1990410254044062101",
+      "text": "“ಸಂಚಾರಸಲಹೆ/'Traffic Advisory' https://t.co/OKlvZaxi1Q",
+      "source": "Twitter for iPhone",
+      "retweetCount": 9,
+      "replyCount": 5,
+      "likeCount": 31,
+      "quoteCount": 1,
+      "viewCount": 16971,
+      "createdAt": "Mon Nov 17 13:22:39 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1990410254044062101",
+      "displayTextRange": [
+        0,
+        29
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "blrcitytraffic",
+        "url": "https://x.com/blrcitytraffic",
+        "twitterUrl": "https://twitter.com/blrcitytraffic",
+        "id": "1851545900",
+        "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1565259569588490240/HChz-Vdb_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1851545900/1713356586",
+        "description": "",
+        "location": "Bengaluru-560001",
+        "followers": 672636,
+        "following": 100,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Sep 10 13:44:16 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 60499,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 16981,
+        "statusesCount": 241341,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Promoting Traffic Awareness & Road Safety 🚦🛣 | Your Partners in Traffic Management 🚓💼 | #BengaluruTrafficPolice 🌆🚗",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    88,
+                    111
+                  ],
+                  "text": "BengaluruTrafficPolice"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.karnataka.gov.in",
+                  "expanded_url": "https://btp.karnataka.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/6LKf9FpGkG"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/OKlvZaxi1Q",
+            "expanded_url": "https://x.com/blrcitytraffic/status/1990410254044062101/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 101,
+                    "w": 101,
+                    "x": 538,
+                    "y": 328
+                  },
+                  {
+                    "h": 93,
+                    "w": 93,
+                    "x": 391,
+                    "y": 1040
+                  },
+                  {
+                    "h": 159,
+                    "w": 159,
+                    "x": 536,
+                    "y": 728
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 101,
+                    "w": 101,
+                    "x": 538,
+                    "y": 328
+                  },
+                  {
+                    "h": 93,
+                    "w": 93,
+                    "x": 391,
+                    "y": 1040
+                  },
+                  {
+                    "h": 159,
+                    "w": 159,
+                    "x": 536,
+                    "y": 728
+                  }
+                ]
+              }
+            },
+            "id_str": "1990410089619193856",
+            "indices": [
+              30,
+              53
+            ],
+            "media_key": "3_1990410089619193856",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARufW25NGwAACgACG59blJWXYZUAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG59bbk0bAAAKAAIbn1uUlZdhlQAA",
+                "media_key": "3_1990410089619193856"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G59bbk0bAAAHtVj.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 714,
+                  "w": 1275,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1275,
+                  "w": 1275,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1454,
+                  "w": 1275,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1650,
+                  "w": 825,
+                  "x": 225,
+                  "y": 0
+                },
+                {
+                  "h": 1650,
+                  "w": 1275,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1650,
+              "width": 1275
+            },
+            "sizes": {
+              "large": {
+                "h": 1650,
+                "w": 1275
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/OKlvZaxi1Q"
+          },
+          {
+            "display_url": "pic.x.com/OKlvZaxi1Q",
+            "expanded_url": "https://x.com/blrcitytraffic/status/1990410254044062101/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 290,
+                    "w": 290,
+                    "x": 67,
+                    "y": 103
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 290,
+                    "w": 290,
+                    "x": 67,
+                    "y": 103
+                  }
+                ]
+              }
+            },
+            "id_str": "1990410102936150016",
+            "indices": [
+              30,
+              53
+            ],
+            "media_key": "3_1990410102936150016",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARufW3Fm26AACgACG59blJWXYZUAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG59bcWbboAAKAAIbn1uUlZdhlQAA",
+                "media_key": "3_1990410102936150016"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G59bcWbboAAi2Ob.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 714,
+                  "w": 1275,
+                  "x": 0,
+                  "y": 426
+                },
+                {
+                  "h": 1275,
+                  "w": 1275,
+                  "x": 0,
+                  "y": 146
+                },
+                {
+                  "h": 1454,
+                  "w": 1275,
+                  "x": 0,
+                  "y": 56
+                },
+                {
+                  "h": 1650,
+                  "w": 825,
+                  "x": 206,
+                  "y": 0
+                },
+                {
+                  "h": 1650,
+                  "w": 1275,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1650,
+              "width": 1275
+            },
+            "sizes": {
+              "large": {
+                "h": 1650,
+                "w": 1275
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/OKlvZaxi1Q"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1990410169579438452",
+      "url": "https://x.com/TheAgeOfGenZ/status/1990410169579438452",
+      "twitterUrl": "https://twitter.com/TheAgeOfGenZ/status/1990410169579438452",
+      "text": "Gen-Z's fire is spreading like wildfire from One Piece vibes igniting Bangladesh, Indonesia, Nepal, and the Philippines to Mexico's bold stand against cartels and corruption. \n\nIf this is our 1776 moment, count me in for the rebellion era. \n\n@TheAgeOfGenZ nails it with spot-on coverage of these youth-led uprisings!",
+      "source": "Twitter for iPhone",
+      "retweetCount": 4,
+      "replyCount": 0,
+      "likeCount": 5,
+      "quoteCount": 0,
+      "viewCount": 234,
+      "createdAt": "Mon Nov 17 13:22:19 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1990410169579438452",
+      "displayTextRange": [
+        0,
+        277
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "TheAgeOfGenZ",
+        "url": "https://x.com/TheAgeOfGenZ",
+        "twitterUrl": "https://twitter.com/TheAgeOfGenZ",
+        "id": "1693000173415530496",
+        "name": "The Age Of Genz",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2014053933124296704/TtUUVCIZ_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1693000173415530496/1769159154",
+        "description": "",
+        "location": "",
+        "followers": 1105,
+        "following": 704,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Sat Aug 19 20:41:24 +0000 2023",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 10993,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 7645,
+        "statusesCount": 12879,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2013061277053002150"
+        ],
+        "profile_bio": {
+          "description": "Breaking News, politics, Pop culture, AI & sports for tomorrow’s generation.\n\nFollow @TheAgeOfGenZ.",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    85,
+                    98
+                  ],
+                  "name": "",
+                  "screen_name": "TheAgeOfGenZ"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "theageofgenz.com",
+                  "expanded_url": "https://www.theageofgenz.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/Nh19YOGGL7"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "1693000173415530496",
+            "indices": [
+              242,
+              255
+            ],
+            "name": "The Age Of Genz",
+            "screen_name": "TheAgeOfGenZ"
+          }
+        ]
+      },
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "1990141771435634902",
+        "url": "https://x.com/dom_lucre/status/1990141771435634902",
+        "twitterUrl": "https://twitter.com/dom_lucre/status/1990141771435634902",
+        "text": "🔥🚨BREAKING NEWS: The Gen-Z revolution in Mexico is now being compared to to the American Revolution. Many of the revolutionists are furious that a woman who is not catholic is running their country and they are the first Mexican generation to have access to the information they do. \n\nThe citizens of Mexico are demanding by a full  separation from cartel control and are willing to die for it. This is the 4th Gen-Z revolution this year following  One Piece inspired revolutions in Indonesia, Nepal, and Philippines. We are officially in the era of rebellion.",
+        "source": "Twitter for iPhone",
+        "retweetCount": 6388,
+        "replyCount": 1174,
+        "likeCount": 45940,
+        "quoteCount": 375,
+        "viewCount": 4105022,
+        "createdAt": "Sun Nov 16 19:35:48 +0000 2025",
+        "lang": "en",
+        "bookmarkCount": 4536,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "1990141771435634902",
+        "displayTextRange": [
+          0,
+          278
+        ],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {
+          "type": "user",
+          "userName": "dom_lucre",
+          "url": "https://x.com/dom_lucre",
+          "twitterUrl": "https://twitter.com/dom_lucre",
+          "id": "3096147528",
+          "name": "Dom Lucre | Breaker of Narratives",
+          "isVerified": false,
+          "isBlueVerified": true,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/2048641920004771840/PiP1MLSX_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/3096147528/1724367433",
+          "description": "",
+          "location": "Miami, FL",
+          "followers": 1685689,
+          "following": 3235,
+          "status": "",
+          "canDm": true,
+          "canMediaTag": false,
+          "createdAt": "Wed Mar 18 12:17:26 +0000 2015",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 80419,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 18362,
+          "statusesCount": 47411,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [
+            "1649181228866600961"
+          ],
+          "profile_bio": {
+            "description": "The World Stage Is Exposed Here | White House Featured Journalist | 2.1M+ Followers total | DM or Email for Advertising business@domlucre.org",
+            "entities": {
+              "description": {},
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "domlucre.org",
+                    "expanded_url": "https://domlucre.org",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/YGkTK8HBc9"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {
+          "media": [
+            {
+              "additional_media_info": {
+                "monetizable": false
+              },
+              "allow_download_status": {
+                "allow_download": true
+              },
+              "display_url": "pic.x.com/IJp5mwVBF1",
+              "expanded_url": "https://x.com/dom_lucre/status/1990141771435634902/video/1",
+              "ext_master_playlist_only": [],
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "ext_playlists": [],
+              "id_str": "1990141714208555009",
+              "indices": [
+                279,
+                302
+              ],
+              "media_key": "13_1990141714208555009",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARueZ1hIFoABAAA=",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAAECgABG55nWEgWgAEAAA==",
+                  "media_key": "13_1990141714208555009"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1990141714208555009/img/0FeaQ-Ob3pTo_fnx.jpg",
+              "original_info": {
+                "focus_rects": [],
+                "height": 356,
+                "width": 640
+              },
+              "sizes": {
+                "large": {
+                  "h": 356,
+                  "w": 640
+                }
+              },
+              "type": "video",
+              "url": "https://t.co/IJp5mwVBF1",
+              "video_info": {
+                "aspect_ratio": [
+                  160,
+                  89
+                ],
+                "duration_millis": 24568,
+                "variants": [
+                  {
+                    "content_type": "application/x-mpegURL",
+                    "url": "https://video.twimg.com/amplify_video/1990141714208555009/pl/h7HW8rhoGeTIXtt_.m3u8?tag=21&v=cfc"
+                  },
+                  {
+                    "bitrate": 256000,
+                    "content_type": "video/mp4",
+                    "url": "https://video.twimg.com/amplify_video/1990141714208555009/vid/avc1/484x270/y4l9cWqhG6Qibd5W.mp4?tag=21"
+                  },
+                  {
+                    "bitrate": 832000,
+                    "content_type": "video/mp4",
+                    "url": "https://video.twimg.com/amplify_video/1990141714208555009/vid/avc1/640x356/Fb_NREpCqbn4k8Vd.mp4?tag=21"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "card": null,
+        "place": {},
+        "entities": {
+          "hashtags": [],
+          "symbols": [],
+          "timestamps": [],
+          "urls": [],
+          "user_mentions": []
+        },
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
+        "article": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1990412105111986315",
       "url": "https://x.com/MakatiTraffic/status/1990412105111986315",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/1990412105111986315",
@@ -4789,7 +6579,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437282,
+        "followers": 1437183,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -4805,8 +6595,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411332,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -4860,11 +6650,11 @@
       "twitterUrl": "https://twitter.com/WJGBalderama/status/1990417781989527784",
       "text": "What we witnessed last night wasn’t politics—it was the face of evil stepping fully into the light. Imee Marcos stood there, unhinged and brazen, spewing wild accusations against her own brother, President Bongbong Marcos. Anyone gullible enough to believe her needs to pause and think, because everything she said reeked of desperation, not truth.\n\nI’ve never believed she deserved a Senate seat. Like Sara Duterte, she is the family’s bruised and bitter fruit—someone who burns everything around her without a second thought about the wreckage she leaves behind. And last night, she proved it with chilling clarity. Her rant at the INC rally wasn’t a speech; it was a meltdown. A frenzied, spite-filled tirade that left countless Filipinos staring at their screens in disbelief. How someone entrusted with public office could plunge to that level is beyond comprehension.\n\nI wouldn’t trust a single word from Imee—no more than I’d trust the Dutertes’ propaganda machine or the DDS echo chamber that thrives on lies. She has long been the embodiment of malice. And we should never forget the shadow that follows her: the brutal death of Archimedes Trajano, a young student whose life was crushed by her cruelty and privilege. She has never shown remorse. Instead, she returns with new fabrications—this time peddling absurd tales about drug addiction in the Palace, heedless of the chaos and humiliation she brings upon her own family and a nation already tired to its bones.\n\nBut one thing must be said plainly: martial law is not, and never will be, the answer. We have lived through that nightmare. The wounds remain.\n\nWhat we need as a people is far deeper—a national reckoning. A moment of truth-telling and repentance. Repentance not in the churchy sense, but in the soul-deep realization that we allowed power-hungry predators to twist our loyalties, poison our discourse, pamper their cronies, and normalize corruption until it crept into our bones. Our society is rotting from within. Civility has been banished. Lies, greed, and hatred have been allowed to fester unchecked. If we don’t reclaim our moral compass soon, we risk losing not just our democracy but our very identity as a people.\n\nAnd so I say this: the moment demands an exorcism—not of a person, but of the poison now seeping into our national spirit.\n\nI call upon every bishop of the Catholic Church in the Philippines—every shepherd of conscience—to rise in the spirit of Jaime Cardinal Sin. Not to summon the people to EDSA, but to summon them to their knees. Because the enemy we face today is not a force with guns and tanks. It is something more sinister. It is spiritual rot dressed as political theater. It is a malignant force sowing division, weaponizing a cult to tear apart the goodwill we have struggled to rebuild.\n\nWe are under attack—not just politically, but morally. And the response required of us goes far beyond rallies or hashtags. It demands clarity of spirit. It demands courage. It demands prayer powerful enough to cut through the darkness that now hovers over our land.\n\nIf ever there was a time for the Church to speak with thunder, that time is now.\n\nIt’s time to heal. It’s time to awaken. Because if we delay any longer, we may find there is nothing left in this nation worth saving.  @bongbongmarcos @senatePH @HouseofRepsPH",
       "source": "Twitter for iPhone",
-      "retweetCount": 29,
+      "retweetCount": 28,
       "replyCount": 8,
-      "likeCount": 112,
+      "likeCount": 111,
       "quoteCount": 2,
-      "viewCount": 12800,
+      "viewCount": 12806,
       "createdAt": "Mon Nov 17 13:52:34 +0000 2025",
       "lang": "en",
       "bookmarkCount": 8,
@@ -4891,8 +6681,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1543340471023349760/1706437949",
         "description": "",
         "location": "Winchester, CA",
-        "followers": 3129,
-        "following": 2258,
+        "followers": 3125,
+        "following": 2268,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -4904,11 +6694,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 21331,
+        "favouritesCount": 21387,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 1681,
-        "statusesCount": 40066,
+        "mediaCount": 1686,
+        "statusesCount": 40148,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -5005,7 +6795,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/720135190916366336/1752062693",
         "description": "",
         "location": "Thane",
-        "followers": 155640,
+        "followers": 155697,
         "following": 98,
         "status": "",
         "canDm": true,
@@ -5018,16 +6808,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 4482,
+        "favouritesCount": 4489,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 10121,
-        "statusesCount": 129058,
+        "mediaCount": 10151,
+        "statusesCount": 129546,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2096203693427482850"
+          "2099819953298059342"
         ],
         "profile_bio": {
           "description": "ठाणे पोलीसांचे अधिकृत खाते, २४x७ सेवा.\nआपत्कालीन परिस्थितीत संपर्क करा - ११२  \n Official handle of Thane Police. Monitored 24/7, For any Emergency Dial 112.",

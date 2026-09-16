@@ -5,7 +5,7 @@
     "window_start": "2026-03-25T08:00:00+08:00",
     "window_end": "2026-03-25T10:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 9,
+    "tweet_count": 15,
     "slices": [
       {
         "start": "2026-03-25T08:00:00+08:00",
@@ -39,8 +39,8 @@
         "start": "2026-03-25T08:20:00+08:00",
         "end": "2026-03-25T08:25:00+08:00",
         "status_code": 200,
-        "returned": 2,
-        "accepted": 2
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-25T08:25:00+08:00",
@@ -74,8 +74,8 @@
         "start": "2026-03-25T08:45:00+08:00",
         "end": "2026-03-25T08:50:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-25T08:50:00+08:00",
@@ -95,22 +95,22 @@
         "start": "2026-03-25T09:00:00+08:00",
         "end": "2026-03-25T09:05:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-25T09:05:00+08:00",
         "end": "2026-03-25T09:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-25T09:10:00+08:00",
         "end": "2026-03-25T09:15:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-25T09:15:00+08:00",
@@ -144,15 +144,15 @@
         "start": "2026-03-25T09:35:00+08:00",
         "end": "2026-03-25T09:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-03-25T09:40:00+08:00",
         "end": "2026-03-25T09:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-25T09:45:00+08:00",
@@ -216,8 +216,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/126530384/1786353180",
         "description": "",
         "location": "広島県福山市",
-        "followers": 12178,
-        "following": 23,
+        "followers": 12189,
+        "following": 22,
         "status": "",
         "canDm": false,
         "canMediaTag": false,
@@ -232,8 +232,8 @@
         "favouritesCount": 1,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 9395,
-        "statusesCount": 104034,
+        "mediaCount": 9406,
+        "statusesCount": 104278,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -251,6 +251,26 @@
       "card": {
         "binding_values": [
           {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2098132423397511171/UldcFbcL?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 150,
+                "url": "https://pbs.twimg.com/card_img/2098132423397511171/UldcFbcL?format=jpg&name=280x150",
+                "width": 268
+              }
+            }
+          },
+          {
             "key": "description",
             "value": {
               "string_value": "The Metropolitan Manila Development Authority (MMDA) has reported a five to seven percent reduction in the volume of vehicles traveling along the 23.8-kilometer stretch of Epifanio delos Santos..."
@@ -260,6 +280,36 @@
             "key": "domain",
             "value": {
               "string_value": "businessmirror.com.ph"
+            }
+          },
+          {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 320,
+                "url": "https://pbs.twimg.com/card_img/2098132423397511171/UldcFbcL?format=jpg&name=800x320_1",
+                "width": 572
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2098132423397511171/UldcFbcL?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 1433,
+                "url": "https://pbs.twimg.com/card_img/2098132423397511171/UldcFbcL?format=jpg&name=orig",
+                "width": 2560
+              }
             }
           },
           {
@@ -273,11 +323,61 @@
             }
           },
           {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2098132423397511171/UldcFbcL?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2098132423397511171/UldcFbcL?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 81,
+                "url": "https://pbs.twimg.com/card_img/2098132423397511171/UldcFbcL?format=jpg&name=144x144",
+                "width": 144
+              }
+            }
+          },
+          {
             "key": "creator",
             "value": {
               "user_value": {
                 "id_str": "17644834",
                 "path": []
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 1146,
+                "url": "https://pbs.twimg.com/card_img/2098132423397511171/UldcFbcL?format=png&name=2048x2048_2_exp",
+                "width": 2048
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "height": 1433,
+                "url": "https://pbs.twimg.com/card_img/2098132423397511171/UldcFbcL?format=jpg&name=orig",
+                "width": 2560
               }
             }
           },
@@ -295,9 +395,68 @@
             }
           },
           {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2098132423397511171/UldcFbcL?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
             "key": "summary_photo_image_alt_text",
             "value": {
               "string_value": "𝐑𝐄𝐇𝐀𝐁𝐈𝐋𝐈𝐓𝐀𝐓𝐈𝐎𝐍 𝐖𝐎𝐑𝐊 𝐅𝐎𝐑 𝐄𝐃𝐒𝐀 𝐁𝐔𝐒𝐖𝐀𝐘 𝐋𝐀𝐍𝐄 𝐂𝐎𝐌𝐏𝐋𝐄𝐓𝐄𝐃 (dotr photo)"
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 46.98,
+                    "rgb": {
+                      "blue": 62,
+                      "green": 59,
+                      "red": 51
+                    }
+                  },
+                  {
+                    "percentage": 19.06,
+                    "rgb": {
+                      "blue": 193,
+                      "green": 185,
+                      "red": 170
+                    }
+                  },
+                  {
+                    "percentage": 14.82,
+                    "rgb": {
+                      "blue": 96,
+                      "green": 127,
+                      "red": 136
+                    }
+                  },
+                  {
+                    "percentage": 3.6,
+                    "rgb": {
+                      "blue": 46,
+                      "green": 78,
+                      "red": 80
+                    }
+                  },
+                  {
+                    "percentage": 2.51,
+                    "rgb": {
+                      "blue": 159,
+                      "green": 195,
+                      "red": 210
+                    }
+                  }
+                ]
+              }
             }
           },
           {
@@ -307,10 +466,148 @@
             }
           },
           {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 46.98,
+                    "rgb": {
+                      "blue": 62,
+                      "green": 59,
+                      "red": 51
+                    }
+                  },
+                  {
+                    "percentage": 19.06,
+                    "rgb": {
+                      "blue": 193,
+                      "green": 185,
+                      "red": 170
+                    }
+                  },
+                  {
+                    "percentage": 14.82,
+                    "rgb": {
+                      "blue": 96,
+                      "green": 127,
+                      "red": 136
+                    }
+                  },
+                  {
+                    "percentage": 3.6,
+                    "rgb": {
+                      "blue": 46,
+                      "green": 78,
+                      "red": 80
+                    }
+                  },
+                  {
+                    "percentage": 2.51,
+                    "rgb": {
+                      "blue": 159,
+                      "green": 195,
+                      "red": 210
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 1146,
+                "url": "https://pbs.twimg.com/card_img/2098132423397511171/UldcFbcL?format=png&name=2048x2048_2_exp",
+                "width": 2048
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2098132423397511171/UldcFbcL?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 46.98,
+                    "rgb": {
+                      "blue": 62,
+                      "green": 59,
+                      "red": 51
+                    }
+                  },
+                  {
+                    "percentage": 19.06,
+                    "rgb": {
+                      "blue": 193,
+                      "green": 185,
+                      "red": 170
+                    }
+                  },
+                  {
+                    "percentage": 14.82,
+                    "rgb": {
+                      "blue": 96,
+                      "green": 127,
+                      "red": 136
+                    }
+                  },
+                  {
+                    "percentage": 3.6,
+                    "rgb": {
+                      "blue": 46,
+                      "green": 78,
+                      "red": 80
+                    }
+                  },
+                  {
+                    "percentage": 2.51,
+                    "rgb": {
+                      "blue": 159,
+                      "green": 195,
+                      "red": 210
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "height": 1146,
+                "url": "https://pbs.twimg.com/card_img/2098132423397511171/UldcFbcL?format=png&name=2048x2048_2_exp",
+                "width": 2048
+              }
+            }
+          },
+          {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
               "string_value": "https://t.co/SniCF4CPzO"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "height": 1433,
+                "url": "https://pbs.twimg.com/card_img/2098132423397511171/UldcFbcL?format=jpg&name=orig",
+                "width": 2560
+              }
             }
           }
         ],
@@ -399,7 +696,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 46675,
+                "followers": 46702,
                 "following": 444
               },
               "relationship_perspectives": {
@@ -417,8 +714,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 63861,
-                "tweets": 173656
+                "media_tweets": 63966,
+                "tweets": 174101
               },
               "verification": {
                 "is_blue_verified": true,
@@ -500,7 +797,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 46675,
+                "followers": 46702,
                 "following": 444
               },
               "relationship_perspectives": {
@@ -518,8 +815,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 63861,
-                "tweets": 173656
+                "media_tweets": 63966,
+                "tweets": 174101
               },
               "verification": {
                 "is_blue_verified": true,
@@ -590,7 +887,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -606,8 +903,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412026,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -656,258 +953,6 @@
     },
     {
       "type": "tweet",
-      "id": "2036600169324793930",
-      "url": "https://x.com/dzrhnews/status/2036600169324793930",
-      "twitterUrl": "https://twitter.com/dzrhnews/status/2036600169324793930",
-      "text": "PANOORIN: Ang araw-araw na pinapasang ‘kalbaryo’ ng mga commuters na pahirapang sumakay ng PUVs papasok ng trabaho sa kahabaan Commonwealth Avenue kanto ng Litex Road sa Quezon City.\n\nRegular na eksena ito na nararanasan sa lugar araw-araw ng mga pumapasok sa trabaho at eskuwela, may transport strike man o wala. | @dzrh5 Val Gonzales, DZRH News",
-      "source": "Twitter for iPhone",
-      "retweetCount": 0,
-      "replyCount": 1,
-      "likeCount": 1,
-      "quoteCount": 0,
-      "viewCount": 445,
-      "createdAt": "Wed Mar 25 00:24:53 +0000 2026",
-      "lang": "tl",
-      "bookmarkCount": 0,
-      "isReply": false,
-      "inReplyToId": null,
-      "conversationId": "2036600169324793930",
-      "displayTextRange": [
-        0,
-        280
-      ],
-      "inReplyToUserId": null,
-      "inReplyToUsername": null,
-      "author": {
-        "type": "user",
-        "userName": "dzrhnews",
-        "url": "https://x.com/dzrhnews",
-        "twitterUrl": "https://twitter.com/dzrhnews",
-        "id": "74886399",
-        "name": "DZRH NEWS",
-        "isVerified": false,
-        "isBlueVerified": true,
-        "verifiedType": null,
-        "profilePicture": "https://pbs.twimg.com/profile_images/2077640307458633728/kXNIDvgI_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/74886399/1762132752",
-        "description": "",
-        "location": "Manila, Philippines",
-        "followers": 143733,
-        "following": 1036,
-        "status": "",
-        "canDm": false,
-        "canMediaTag": true,
-        "createdAt": "Thu Sep 17 00:35:08 +0000 2009",
-        "entities": {
-          "description": {
-            "urls": []
-          },
-          "url": {}
-        },
-        "fastFollowersCount": 0,
-        "favouritesCount": 8103,
-        "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 299851,
-        "statusesCount": 861913,
-        "withheldInCountries": [],
-        "affiliatesHighlightedLabel": {},
-        "possiblySensitive": false,
-        "pinnedTweetIds": [],
-        "profile_bio": {
-          "description": "The official X account of MBC Media Group's flagship radio station DZRH 666 kHz: Una sa Pilipinas, Una sa Pilipino",
-          "entities": {
-            "description": {},
-            "url": {
-              "urls": [
-                {
-                  "display_url": "dzrh.com.ph",
-                  "expanded_url": "http://www.dzrh.com.ph",
-                  "indices": [
-                    0,
-                    23
-                  ],
-                  "url": "https://t.co/rKJXaTpAtz"
-                }
-              ]
-            }
-          }
-        },
-        "isAutomated": false,
-        "automatedBy": null
-      },
-      "extendedEntities": {
-        "media": [
-          {
-            "additional_media_info": {
-              "monetizable": false
-            },
-            "allow_download_status": {
-              "allow_download": true
-            },
-            "display_url": "pic.x.com/2zfpBG2LdZ",
-            "expanded_url": "https://x.com/dzrhnews/status/2036600169324793930/video/1",
-            "ext_master_playlist_only": [],
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "ext_playlists": [],
-            "id_str": "2036600059098439680",
-            "indices": [
-              281,
-              304
-            ],
-            "media_key": "13_2036600059098439680",
-            "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARxDdPagGiAAAAA=",
-              "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAAECgABHEN09qAaIAAAAA==",
-                "media_key": "13_2036600059098439680"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2036600059098439680/img/LIIoj0yhZuCFtFHd.jpg",
-            "original_info": {
-              "focus_rects": [],
-              "height": 576,
-              "width": 1024
-            },
-            "sizes": {
-              "large": {
-                "h": 576,
-                "w": 1024
-              }
-            },
-            "type": "video",
-            "url": "https://t.co/2zfpBG2LdZ",
-            "video_info": {
-              "aspect_ratio": [
-                16,
-                9
-              ],
-              "duration_millis": 48600,
-              "variants": [
-                {
-                  "content_type": "application/x-mpegURL",
-                  "url": "https://video.twimg.com/amplify_video/2036600059098439680/pl/jLAZVICAfLYxOC9M.m3u8?tag=21"
-                },
-                {
-                  "bitrate": 256000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2036600059098439680/vid/avc1/480x270/L5am0FlMST1dCifD.mp4?tag=21"
-                },
-                {
-                  "bitrate": 832000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2036600059098439680/vid/avc1/640x360/i3tWoaSt0JgDZDcN.mp4?tag=21"
-                },
-                {
-                  "bitrate": 2176000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2036600059098439680/vid/avc1/1024x576/wgEOyS9m_auqQ3gc.mp4?tag=21"
-                }
-              ]
-            }
-          },
-          {
-            "additional_media_info": {
-              "monetizable": false
-            },
-            "allow_download_status": {
-              "allow_download": true
-            },
-            "display_url": "pic.x.com/2zfpBG2LdZ",
-            "expanded_url": "https://x.com/dzrhnews/status/2036600169324793930/video/1",
-            "ext_master_playlist_only": [],
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "ext_playlists": [],
-            "id_str": "2036600063049474050",
-            "indices": [
-              281,
-              304
-            ],
-            "media_key": "13_2036600063049474050",
-            "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARxDdPeLmiACAAA=",
-              "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAAECgABHEN094uaIAIAAA==",
-                "media_key": "13_2036600063049474050"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2036600063049474050/img/ZNbPwsoX14rLd310.jpg",
-            "original_info": {
-              "focus_rects": [],
-              "height": 540,
-              "width": 960
-            },
-            "sizes": {
-              "large": {
-                "h": 540,
-                "w": 960
-              }
-            },
-            "type": "video",
-            "url": "https://t.co/2zfpBG2LdZ",
-            "video_info": {
-              "aspect_ratio": [
-                16,
-                9
-              ],
-              "duration_millis": 71700,
-              "variants": [
-                {
-                  "content_type": "application/x-mpegURL",
-                  "url": "https://video.twimg.com/amplify_video/2036600063049474050/pl/qrXZgxfHBuVqmxgR.m3u8?tag=21"
-                },
-                {
-                  "bitrate": 256000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2036600063049474050/vid/avc1/480x270/1xN03VwQf3Li_OVz.mp4?tag=21"
-                },
-                {
-                  "bitrate": 832000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2036600063049474050/vid/avc1/640x360/rppawDVlj9iYZsUT.mp4?tag=21"
-                },
-                {
-                  "bitrate": 2176000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2036600063049474050/vid/avc1/960x540/QzNzJydOaxeVtmPC.mp4?tag=21"
-                }
-              ]
-            }
-          }
-        ]
-      },
-      "card": null,
-      "place": {},
-      "entities": {
-        "hashtags": [],
-        "symbols": [],
-        "urls": [],
-        "user_mentions": [
-          {
-            "id_str": "537085498",
-            "indices": [
-              316,
-              322
-            ],
-            "name": "Val Gonzales LIVE",
-            "screen_name": "dzrh5"
-          }
-        ]
-      },
-      "quoted_tweet": null,
-      "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
-      "article": null
-    },
-    {
-      "type": "tweet",
       "id": "2036599335857824039",
       "url": "https://x.com/MakatiTraffic/status/2036599335857824039",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2036599335857824039",
@@ -944,7 +989,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -960,8 +1005,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412026,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1046,7 +1091,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1062,8 +1107,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412026,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1112,6 +1157,919 @@
     },
     {
       "type": "tweet",
+      "id": "2036605839251767403",
+      "url": "https://x.com/LouMetroES/status/2036605839251767403",
+      "twitterUrl": "https://twitter.com/LouMetroES/status/2036605839251767403",
+      "text": "LENSAlert Traffic Advisory: I264 East, near Brownsboro Rd is shut down due to a collision.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 462,
+      "createdAt": "Wed Mar 25 00:47:25 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036605839251767403",
+      "displayTextRange": [
+        0,
+        90
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "LouMetroES",
+        "url": "https://x.com/LouMetroES",
+        "twitterUrl": "https://twitter.com/LouMetroES",
+        "id": "487728298",
+        "name": "Louisville Metro Emergency Services",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/667866118241910785/iW68liLn_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/487728298/1742308312",
+        "description": "",
+        "location": "",
+        "followers": 6256,
+        "following": 238,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Thu Feb 09 17:38:29 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 823,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1683,
+        "statusesCount": 6418,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "This is an official site of Louisville Metro Government. Please note this site is not monitored 24 hours a day. If you have an emergency please call 911.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "louisvilleky.gov/government/eme…",
+                  "expanded_url": "https://louisvilleky.gov/government/emergency-services",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/G4ZhN3EhaW"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2036609093818089604",
+      "url": "https://x.com/TheMichaelEvery/status/2036609093818089604",
+      "twitterUrl": "https://twitter.com/TheMichaelEvery/status/2036609093818089604",
+      "text": "2026, day 84\n\nGood morning from Asia.\n\n‘US sent Iran 15-point plan aimed at ending the Middle East war’ (Reuters);\n\n‘Trump says Iran gave the US gift ‘worth a tremendous amount of money’’ (SCMP);\n\n‘Trump declares Iran war ‘won’ as Tehran denies claims of peace talk progress’ (WaPo);\n\n‘Mediators Aim for U.S.-Iran Meeting by Thursday’ (WSJ) - “Officials from Turkey, Egypt and Pakistan are pushing to have talks arranged between U.S. and Iranian officials, but both sides are far apart”;\n\n‘Iran has expressed a preference for negotiating with Vance, sources say’ (CNN);\n\n‘Nuclear-armed Pakistan mediating between Iran, US seen as 'highly problematic': 'Saudis could influence'’ (Ynet);\n\n‘Saudi Leader Is Said to Push Trump to Continue Iran War in Recent Calls’ (NYT) - “Crown Prince Mohammed bin Salman sees a “historic opportunity” to remake the region, according to people briefed by U.S. officials on the conversations”;\n\n‘Saudi official reiterates Kingdom’s rebuttal of claims it favors prolonging Iran conflict’ (Al Arabiya);\n\n‘US to deploy more troops even as Donald Trump praises Iran peace talks’ (FT);\n\n‘Drone attack hits fuel tank at Kuwait International Airport causing fire’ (Reuters);\n\n‘Iran Moves to Assert Control Over Strait of Hormuz’ (WSJ);\n\n‘Iran says ‘non-hostile’ ships can transit Strait of Hormuz’ (FT) - “Tehran tells IMO member nations that vessels must co-ordinate with it to pass through vital waterway”;\n\n‘Trump’s first mistake was starting the war. His next mistake may be to let Iran win’ (Globe and Mail);\n\n‘Israel Hits Russian-Iranian Weapons Smuggling Route in the Caspian Sea’ (WSJ) - “Moscow and Tehran have used the world’s largest inland sea to move everything from drones to oil and wheat”;\n\n‘Smotrich says Litani River should be Israel’s new border with Lebanon’ (ToI);\n\n‘Board of Peace envoy lays out principles of disarmament plan presented to Hamas’ (ToI);\n\n‘European officials investigate possible Hezbollah links to antisemitic attack wave’ (Euractiv);\n\n‘Tangled trail probably leads from Golders Green ambulance attack to Tehran’ (Guardian);\n\n‘EU enlargement chief calls on countries to find a way for new members to join’ (Politico);\n\n‘China is mapping the ocean floor as it prepares for submarine warfare with the U.S.’ (Reuters);\n\n‘US unlikely to convince China to join new nuclear arms control agreement, experts say’ (SCMP);\n\n‘G7 leaders seek summits with Takaichi as they try to balance China, US ties’ (Nikkei Asia) - “Japan seen as leading partner to foster cooperation through common values”;\n\nIn geoeconomics, ‘Donald Trump broke the WTO. Now he’s quietly re-engaging’ (Politico) - “Washington has launched a low-key campaign to tilt the rules of global trade back in its favor”;\n\n‘Europe facing fuel shortage within days, warns Shell boss’ (Telegraph);\n\n‘EU won’t reverse Russian gas ban or slow down green transition, says energy chief’ (Politico);\n\n‘Russian oil import ban dropped from Brussels short-term agenda’ (Euractiv);\n\n‘Philippines declares fuel emergency; South Koreans told to limit driving’ (AFR);\n\n‘Hedge fund Millennium explores shifting Dubai staff to Jersey’ (FT);\n\n‘VW in talks with Israel’s Iron Dome maker to shift from cars to missile defence’ (FT);\n\n‘Anduril, Palantir Are Developing Golden Dome Missile Shield’s Software’ (WSJ;\n\n‘US should give up on trying to change EU tech rules, lawmakers say’ (Politico);\n\n‘Starmer to bring back 76 EU laws’ (Telegraph) - “New legislation will allow Labour to transfer Brussels powers back onto the UK statute book”;\n\nIn politics, ‘Danish election: Mette Frederiksen wins — but tricky coalition talks await’ (Politico);\n\n‘Prosecutor admits government lacks evidence of misconduct by Fed chair’ (WaPo);\n\nIn markets, ‘Oil Drops on Reports of US Diplomatic Push to End War With Iran’ (BBG);\n\n‘Bond Market Nears ‘Inflection Point’ After War-Related Shakeup’ (BBG)",
+      "source": "Twitter for iPhone",
+      "retweetCount": 8,
+      "replyCount": 12,
+      "likeCount": 85,
+      "quoteCount": 1,
+      "viewCount": 8055,
+      "createdAt": "Wed Mar 25 01:00:20 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 8,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036609093818089604",
+      "displayTextRange": [
+        0,
+        275
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "TheMichaelEvery",
+        "url": "https://x.com/TheMichaelEvery",
+        "twitterUrl": "https://twitter.com/TheMichaelEvery",
+        "id": "2512524721",
+        "name": "Michael Every",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1747864429172248576/x-hgq1UR_normal.jpg",
+        "coverPicture": "",
+        "description": "",
+        "location": "Asia",
+        "followers": 33648,
+        "following": 1095,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Wed May 21 12:49:50 +0000 2014",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 8921,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2936,
+        "statusesCount": 7367,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1965969433949778216"
+        ],
+        "profile_bio": {
+          "description": "London, Bratislava, Moscow, Sydney, Bangkok, Hong Kong, Haifa, Singapore,… Luton.\n\n“I wish it need not have happened in my time,” said Frodo.",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/aqr7dvnSN8",
+            "expanded_url": "https://x.com/TheMichaelEvery/status/2036609093818089604/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2036607518651326465",
+            "indices": [
+              276,
+              299
+            ],
+            "media_key": "3_2036607518651326465",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxDe79wGiABCgACHEN9Li9bgIQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHEN7v3AaIAEKAAIcQ30uL1uAhAAA",
+                "media_key": "3_2036607518651326465"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HEN7v3AaIAEw5aI.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 474,
+                  "w": 846,
+                  "x": 17,
+                  "y": 0
+                },
+                {
+                  "h": 474,
+                  "w": 474,
+                  "x": 203,
+                  "y": 0
+                },
+                {
+                  "h": 474,
+                  "w": 416,
+                  "x": 232,
+                  "y": 0
+                },
+                {
+                  "h": 474,
+                  "w": 237,
+                  "x": 322,
+                  "y": 0
+                },
+                {
+                  "h": 474,
+                  "w": 1179,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 474,
+              "width": 1179
+            },
+            "sizes": {
+              "large": {
+                "h": 474,
+                "w": 1179
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/aqr7dvnSN8"
+          },
+          {
+            "display_url": "pic.x.com/aqr7dvnSN8",
+            "expanded_url": "https://x.com/TheMichaelEvery/status/2036609093818089604/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2036607518710046723",
+            "indices": [
+              276,
+              299
+            ],
+            "media_key": "3_2036607518710046723",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxDe79zmiADCgACHEN9Li9bgIQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHEN7v3OaIAMKAAIcQ30uL1uAhAAA",
+                "media_key": "3_2036607518710046723"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HEN7v3OaIAMgY2o.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 538,
+                  "w": 961,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 538,
+                  "w": 538,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 538,
+                  "w": 472,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 538,
+                  "w": 269,
+                  "x": 13,
+                  "y": 0
+                },
+                {
+                  "h": 538,
+                  "w": 1179,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 538,
+              "width": 1179
+            },
+            "sizes": {
+              "large": {
+                "h": 538,
+                "w": 1179
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/aqr7dvnSN8"
+          },
+          {
+            "display_url": "pic.x.com/aqr7dvnSN8",
+            "expanded_url": "https://x.com/TheMichaelEvery/status/2036609093818089604/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2036607518718435328",
+            "indices": [
+              276,
+              299
+            ],
+            "media_key": "3_2036607518718435328",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxDe790GiAACgACHEN9Li9bgIQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHEN7v3QaIAAKAAIcQ30uL1uAhAAA",
+                "media_key": "3_2036607518718435328"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HEN7v3QaIAAOgU3.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 626,
+                  "w": 1118,
+                  "x": 61,
+                  "y": 0
+                },
+                {
+                  "h": 626,
+                  "w": 626,
+                  "x": 541,
+                  "y": 0
+                },
+                {
+                  "h": 626,
+                  "w": 549,
+                  "x": 580,
+                  "y": 0
+                },
+                {
+                  "h": 626,
+                  "w": 313,
+                  "x": 698,
+                  "y": 0
+                },
+                {
+                  "h": 626,
+                  "w": 1179,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 626,
+              "width": 1179
+            },
+            "sizes": {
+              "large": {
+                "h": 626,
+                "w": 1179
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/aqr7dvnSN8"
+          },
+          {
+            "display_url": "pic.x.com/aqr7dvnSN8",
+            "expanded_url": "https://x.com/TheMichaelEvery/status/2036609093818089604/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2036607518718525440",
+            "indices": [
+              276,
+              299
+            ],
+            "media_key": "3_2036607518718525440",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxDe790G4AACgACHEN9Li9bgIQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHEN7v3QbgAAKAAIcQ30uL1uAhAAA",
+                "media_key": "3_2036607518718525440"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HEN7v3QbgAAzhDl.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 538,
+                  "w": 961,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 538,
+                  "w": 538,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 538,
+                  "w": 472,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 538,
+                  "w": 269,
+                  "x": 102,
+                  "y": 0
+                },
+                {
+                  "h": 538,
+                  "w": 1052,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 538,
+              "width": 1052
+            },
+            "sizes": {
+              "large": {
+                "h": 538,
+                "w": 1052
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/aqr7dvnSN8"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2036610785443528920",
+      "url": "https://x.com/inside_IL_intel/status/2036610785443528920",
+      "twitterUrl": "https://twitter.com/inside_IL_intel/status/2036610785443528920",
+      "text": "🚨 MULTI-THEATER OPERATIONS: ISRAEL TARGETS IRAN’S MISSILE NETWORK AS REGIONAL MILITARY AND DIPLOMATIC PRESSURE BUILDS 🕑 March 25, 2026 | 2:00 AM 🎯 Israel Front: Fatalities, Impacts, and Civilian Effects: A woman in her 30s was killed near Mahanayim Junction after a rocket impact caused severe multi-system trauma, according to MDA. In Safed, two individuals were lightly injured by glass shards following a ballistic missile impact and did not require hospitalization. 💥 Central Israel: Cluster Munition Strike and Damage: One Iranian ballistic missile carried a cluster warhead, dispersing multiple bomblets across central Israel. MDA reported nine wounded in Bnei Brak, including one in moderate condition, while additional impacts in Petah Tikva caused damage without injuries. 🏠 Home Front Impact and Emergency Response: Residential buildings were damaged, including a direct strike on a reinforced safe room that absorbed the impact without harming those inside. Search and rescue teams are operating at multiple sites, with the public instructed to avoid gathering and follow Home Front Command guidance. ⚠️ Home Front Command Restrictions: Nationwide directives remain in effect with limits on gatherings, education, and workplaces based on proximity to protected spaces. Stricter measures apply in higher-risk regions, where educational activity is fully suspended. 💥 Iran Theater: Strategic Air Campaign and Infrastructure Targeting: The Israeli Air Force conducted large-scale strikes in Isfahan targeting key explosives production facilities linked to weapons development. Across Iran, dozens of additional targets were struck using over 120 munitions, including missile launch sites, production facilities, and air defense systems. 🚀 Missile Program Degradation and Operational Pressure: More than 600 sorties have been carried out against Iran’s ballistic missile infrastructure since the start of Operation “Roaring Lion.” Real-time targeting has focused on launchers, including those prepared for immediate use. 🎯 Targeted Elimination of Launch Cells: An Iranian missile cell responsible for fire toward Arad was identified and eliminated in an airstrike. The operation reflects a broader effort to systematically target launch crews and command structures. 🛰️ IRGC Internal Strain and Reduced Effectiveness: IDF intelligence indicates weakening missile units, with reports of fatigue, low morale, and absenteeism among personnel. Some members are reportedly refusing deployment to launch sites amid sustained targeting operations. 🌊 Strait of Hormuz: Escalation and Maritime Response: A UK-led coalition is preparing to reopen the Strait of Hormuz with mine-clearing support from the U.S. and France. Bahrain has proposed a UN resolution authorizing force to secure shipping routes, while the Philippines declared an energy emergency. 📡 Iran Messaging on Maritime Passage: Iran signaled that “non-hostile ships” may pass through the strait without clarifying criteria. The message comes amid rising concern over global energy and shipping disruption. 💬 Join the discussion and follow: https://t.co/BQWrl2ekEx ⏱️ If this update was helpful, please forward it to someone who relies on real-time information from Israel. 👉 WhatsApp – Digest Summaries: https://t.co/mFoqAfflbY 👉 Telegram — Digest Summaries: https://t.co/u9LhsUjzTx 🌐 Read on web & subscribe by email: https://t.co/RUPHrfDmSl ☕ Support independent reporting: https://t.co/SdSJ7FFTdV\n\n24 MAR 2026 | 20:08 ET ET\nSOURCE: Israel Realtime Digest (@Israel_Realtime_Digest)",
+      "source": "Twitter for iPhone",
+      "retweetCount": 7,
+      "replyCount": 0,
+      "likeCount": 21,
+      "quoteCount": 1,
+      "viewCount": 3787,
+      "createdAt": "Wed Mar 25 01:07:04 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 2,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036610785443528920",
+      "displayTextRange": [
+        0,
+        272
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "inside_IL_intel",
+        "url": "https://x.com/inside_IL_intel",
+        "twitterUrl": "https://twitter.com/inside_IL_intel",
+        "id": "373848260",
+        "name": "Inside_Israel_Intel",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1840927285932589060/GfpPeSS1_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/373848260/1727746243",
+        "description": "",
+        "location": "USA",
+        "followers": 82926,
+        "following": 2057,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Sep 15 08:39:46 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5512,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 3405,
+        "statusesCount": 15547,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2090058291611132307"
+        ],
+        "profile_bio": {
+          "description": "Ex-IDF. Unfiltered strategic analysis on Israel security, the region & US policy. No spin, real experience. Author of Contested Land, Uncontested Truth.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "buymeacoffee.com/inside_il_intel",
+                  "expanded_url": "http://buymeacoffee.com/inside_il_intel",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/jfzQT00z8E"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "display_url": "pic.x.com/ZJC6dv85KV",
+            "expanded_url": "https://x.com/inside_IL_intel/status/2036610785443528920/video/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "id_str": "2036610751704510464",
+            "indices": [
+              273,
+              296
+            ],
+            "media_key": "7_2036610751704510464",
+            "media_results": {
+              "result": {
+                "media_key": "7_2036610751704510464"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/2036610751704510464/pu/img/NkEc7CeJwZq6FKM8.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1280,
+              "width": 718
+            },
+            "sizes": {
+              "large": {
+                "h": 1280,
+                "resize": "fit",
+                "w": 718
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 673
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 381
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/ZJC6dv85KV",
+            "video_info": {
+              "aspect_ratio": [
+                359,
+                640
+              ],
+              "duration_millis": 65266,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/ext_tw_video/2036610751704510464/pu/pl/UH_0OCRvOGoeOKIq.m3u8?tag=12&v=917"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/2036610751704510464/pu/vid/avc1/320x570/SZCKUHjhkU3Sjzvx.mp4?tag=12"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/2036610751704510464/pu/vid/avc1/480x854/awR_5af38omrTn2t.mp4?tag=12"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/2036610751704510464/pu/vid/avc1/718x1280/rtmwCDU5kSu0pGMt.mp4?tag=12"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [
+          {
+            "indices": [
+              137,
+              141
+            ],
+            "seconds": 120,
+            "text": "2:00"
+          },
+          {
+            "indices": [
+              3477,
+              3482
+            ],
+            "seconds": 1208,
+            "text": "20:08"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "israelrealtime.com/p/multi-theate…",
+            "expanded_url": "https://www.israelrealtime.com/p/multi-theater-operations-israel-targets?r=7h70m8&utm_campaign=post&utm_medium=web",
+            "indices": [
+              3102,
+              3125
+            ],
+            "url": "https://t.co/BQWrl2ekEx"
+          },
+          {
+            "display_url": "tinyurl.com/IRTDWA",
+            "expanded_url": "http://tinyurl.com/IRTDWA",
+            "indices": [
+              3266,
+              3289
+            ],
+            "url": "https://t.co/mFoqAfflbY"
+          },
+          {
+            "display_url": "t.me/Israel_Realtim…",
+            "expanded_url": "https://t.me/Israel_Realtime_Digest",
+            "indices": [
+              3321,
+              3344
+            ],
+            "url": "https://t.co/u9LhsUjzTx"
+          },
+          {
+            "display_url": "israelrealtime.com/s/digest",
+            "expanded_url": "https://www.israelrealtime.com/s/digest",
+            "indices": [
+              3381,
+              3404
+            ],
+            "url": "https://t.co/RUPHrfDmSl"
+          },
+          {
+            "display_url": "israelrealtime.com/p/donate",
+            "expanded_url": "https://www.israelrealtime.com/p/donate",
+            "indices": [
+              3438,
+              3461
+            ],
+            "url": "https://t.co/SdSJ7FFTdV"
+          }
+        ],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2036611961727938749",
+      "url": "https://x.com/News5PH/status/2036611961727938749",
+      "twitterUrl": "https://twitter.com/News5PH/status/2036611961727938749",
+      "text": "FREE RIDES\n\nPara maibsan ang epekto ng malakihang taas-presyo sa petrolyo, naglunsad ng programang libreng sakay ang Pasig City. Para alamin ang estado ng kanilang programa, nasa Caruncho Avenue si Traffic Tito Mondi Lopez https://t.co/LAPFlAU9AJ",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 475,
+      "createdAt": "Wed Mar 25 01:11:44 +0000 2026",
+      "lang": "tl",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036611961727938749",
+      "displayTextRange": [
+        0,
+        222
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "News5PH",
+        "url": "https://x.com/News5PH",
+        "twitterUrl": "https://twitter.com/News5PH",
+        "id": "133152120",
+        "name": "News5",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1395577754511237121/LMCpXJaq_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/133152120/1785766152",
+        "description": "",
+        "location": "Philippines",
+        "followers": 867279,
+        "following": 2278,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Thu Apr 15 04:08:32 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2720,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 295005,
+        "statusesCount": 668575,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The Official Twitter account of News5 📲FB/IG/YT/TikTok: @News5Everywhere 📧: News5Aksyon@news5.com.ph",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    56,
+                    72
+                  ],
+                  "name": "",
+                  "screen_name": "News5Everywhere"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "news5.com.ph",
+                  "expanded_url": "http://www.news5.com.ph",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/skLJlFc2uO"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "description": "",
+              "monetizable": false,
+              "title": ""
+            },
+            "display_url": "pic.x.com/LAPFlAU9AJ",
+            "expanded_url": "https://x.com/News5PH/status/2036611961727938749/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_media_restrictions": {
+              "is_dmca": false
+            },
+            "ext_playlists": [],
+            "id_str": "2036593210622091266",
+            "indices": [
+              223,
+              246
+            ],
+            "media_key": "13_2036593210622091266",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARxDbrwXGiACAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABHENuvBcaIAIAAA==",
+                "media_key": "13_2036593210622091266"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2036593210622091266/img/g-bG-UZxcTSd_2po.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1080,
+              "width": 1920
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "w": 1920
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/LAPFlAU9AJ",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 599333,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/2036593210622091266/pl/2LZOayzFsjRuqnYR.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2036593210622091266/vid/avc1/480x270/2Ezoo_olx5iqAief.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2036593210622091266/vid/avc1/640x360/HPp9JUh5bfPXTmKS.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2036593210622091266/vid/avc1/1280x720/B0IaQ9YzLhFPZIWa.mp4?tag=21"
+                },
+                {
+                  "bitrate": 10368000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2036593210622091266/vid/avc1/1920x1080/UZpitxZ1s1ga1z0j.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2036613285081182360",
       "url": "https://x.com/MakatiTraffic/status/2036613285081182360",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2036613285081182360",
@@ -1148,7 +2106,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1164,8 +2122,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412026,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1250,7 +2208,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967070,
+        "followers": 3966553,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -1263,11 +2221,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 5284,
+        "favouritesCount": 5283,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888279,
+        "mediaCount": 61737,
+        "statusesCount": 888712,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1352,7 +2310,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/474871087/1786481218",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 112247,
+        "followers": 112833,
         "following": 224,
         "status": "",
         "canDm": true,
@@ -1368,8 +2326,8 @@
         "favouritesCount": 530,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 75328,
-        "statusesCount": 137582,
+        "mediaCount": 75691,
+        "statusesCount": 137946,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1776,6 +2734,1399 @@
     },
     {
       "type": "tweet",
+      "id": "2036618941028794740",
+      "url": "https://x.com/tv9kannada/status/2036618941028794740",
+      "twitterUrl": "https://twitter.com/tv9kannada/status/2036618941028794740",
+      "text": "ಪಂದ್ಯಕ್ಕೆ ಹೋಗುವ ಮುನ್ನ ರೂಟ್ ಮ್ಯಾಪ್ ಗಮನಿಸಿ\n\n#RCBvsSRH #IPL2026 #ChinnaswamyStadium #TrafficAdvisory #BengaluruTraffic #NammaBengaluru #RCB #CricketFans #BangaloreNews\nhttps://t.co/Afs6V47gO5",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 293,
+      "createdAt": "Wed Mar 25 01:39:28 +0000 2026",
+      "lang": "kn",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036618941028794740",
+      "displayTextRange": [
+        0,
+        188
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "tv9kannada",
+        "url": "https://x.com/tv9kannada",
+        "twitterUrl": "https://twitter.com/tv9kannada",
+        "id": "145540592",
+        "name": "TV9 Kannada",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1239814594224197633/ORTB9Zt7_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/145540592/1789432576",
+        "description": "",
+        "location": "Bengaluru, INDIA",
+        "followers": 671085,
+        "following": 40,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed May 19 06:36:37 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 615,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 333573,
+        "statusesCount": 592747,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2098576292711170375"
+        ],
+        "profile_bio": {
+          "description": "News & Infotainment\nhttps://t.co/0XTzDqcTMg\nhttps://t.co/TNqdClCt5r…",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "facebook.com/Tv9Kannada",
+                  "expanded_url": "http://facebook.com/Tv9Kannada",
+                  "indices": [
+                    20,
+                    43
+                  ],
+                  "url": "https://t.co/0XTzDqcTMg"
+                },
+                {
+                  "display_url": "instagram.com/tv9_kannada_of",
+                  "expanded_url": "http://instagram.com/tv9_kannada_of",
+                  "indices": [
+                    44,
+                    67
+                  ],
+                  "url": "https://t.co/TNqdClCt5r"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "tv9kannada.com",
+                  "expanded_url": "http://www.tv9kannada.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/MMP5YHUliQ"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Bangalore Traffic Advisory: ಬೆಂಗಳೂರಿನ ಚಿನ್ನಸ್ವಾಮಿ ಕ್ರೀಡಾಂಗಣದಲ್ಲಿ ಮಾರ್ಚ್ 28ರಂದು ನಡೆಯಲಿರುವ ಆರ್‌ಸಿಬಿ ಪಂದ್ಯಕ್ಕೆ ಸಂಚಾರಿ ಪೊಲೀಸರು ಸಾಕಷ್ಟು ಮುನ್ನೆಚ್ಚರಿಕೆ ವಹಿಸಿದ್ದಾರೆ. ಎಂಜಿ ರಸ್ತೆ, ಕ್ವೀನ್ಸ್ ರಸ್ತೆ ಸೇರಿದಂತೆ..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "tv9kannada.com"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "145540592",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "145540592",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "tv9kannada.com"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "IPL 2026: ಚಿನ್ನಸ್ವಾಮಿಯಲ್ಲಿ ಆರ್​ಸಿಬಿ ಮ್ಯಾಚ್, ಮಾರ್ಚ್ 28ಕ್ಕೆ ಬೆಂಗಳೂರಿನ ಈ ರಸ್ತೆಗಳಲ್ಲಿ ಸಂಚಾರ ಬಂದ್"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/Afs6V47gO5"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/Afs6V47gO5",
+        "user_refs_results": [
+          {
+            "rest_id": "145540592",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 615
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1239814594224197633/ORTB9Zt7_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/145540592/1789432576"
+              },
+              "core": {
+                "created_at": "Wed May 19 06:36:37 +0000 2010",
+                "name": "TV9 Kannada",
+                "screen_name": "tv9kannada"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Bengaluru, INDIA"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2098576292711170375"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "News & Infotainment\nhttps://t.co/0XTzDqcTMg\nhttps://t.co/TNqdClCt5r…",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "facebook.com/Tv9Kannada",
+                        "expanded_url": "http://facebook.com/Tv9Kannada",
+                        "indices": [
+                          20,
+                          43
+                        ],
+                        "url": "https://t.co/0XTzDqcTMg"
+                      },
+                      {
+                        "display_url": "instagram.com/tv9_kannada_of",
+                        "expanded_url": "http://instagram.com/tv9_kannada_of",
+                        "indices": [
+                          44,
+                          67
+                        ],
+                        "url": "https://t.co/TNqdClCt5r"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "tv9kannada.com",
+                        "expanded_url": "http://www.tv9kannada.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/MMP5YHUliQ"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "0084B4"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 671085,
+                "following": 40
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "145540592",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 333573,
+                "tweets": 592747
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/MMP5YHUliQ"
+              }
+            }
+          },
+          {
+            "rest_id": "145540592",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 615
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1239814594224197633/ORTB9Zt7_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/145540592/1789432576"
+              },
+              "core": {
+                "created_at": "Wed May 19 06:36:37 +0000 2010",
+                "name": "TV9 Kannada",
+                "screen_name": "tv9kannada"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Bengaluru, INDIA"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2098576292711170375"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "News & Infotainment\nhttps://t.co/0XTzDqcTMg\nhttps://t.co/TNqdClCt5r…",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "facebook.com/Tv9Kannada",
+                        "expanded_url": "http://facebook.com/Tv9Kannada",
+                        "indices": [
+                          20,
+                          43
+                        ],
+                        "url": "https://t.co/0XTzDqcTMg"
+                      },
+                      {
+                        "display_url": "instagram.com/tv9_kannada_of",
+                        "expanded_url": "http://instagram.com/tv9_kannada_of",
+                        "indices": [
+                          44,
+                          67
+                        ],
+                        "url": "https://t.co/TNqdClCt5r"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "tv9kannada.com",
+                        "expanded_url": "http://www.tv9kannada.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/MMP5YHUliQ"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "0084B4"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 671085,
+                "following": 40
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "145540592",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 333573,
+                "tweets": 592747
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/MMP5YHUliQ"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              42,
+              51
+            ],
+            "text": "RCBvsSRH"
+          },
+          {
+            "indices": [
+              52,
+              60
+            ],
+            "text": "IPL2026"
+          },
+          {
+            "indices": [
+              61,
+              80
+            ],
+            "text": "ChinnaswamyStadium"
+          },
+          {
+            "indices": [
+              81,
+              97
+            ],
+            "text": "TrafficAdvisory"
+          },
+          {
+            "indices": [
+              98,
+              115
+            ],
+            "text": "BengaluruTraffic"
+          },
+          {
+            "indices": [
+              116,
+              131
+            ],
+            "text": "NammaBengaluru"
+          },
+          {
+            "indices": [
+              132,
+              136
+            ],
+            "text": "RCB"
+          },
+          {
+            "indices": [
+              137,
+              149
+            ],
+            "text": "CricketFans"
+          },
+          {
+            "indices": [
+              150,
+              164
+            ],
+            "text": "BangaloreNews"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "tv9kannada.com/karnataka/beng…",
+            "expanded_url": "https://tv9kannada.com/karnataka/bengaluru/ipl-2026-rcb-vs-srh-match-traffic-advisory-bengaluru-roads-closed-on-march-28-parking-and-entry-details-1164099.html",
+            "indices": [
+              165,
+              188
+            ],
+            "url": "https://t.co/Afs6V47gO5"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2036618318992314482",
+      "url": "https://x.com/rapplerdotcom/status/2036618318992314482",
+      "twitterUrl": "https://twitter.com/rapplerdotcom/status/2036618318992314482",
+      "text": "Some TNVS providers will join the protest on March 26 and 27 to air their frustration on how the government has been dealing with the oil price hikes\n\nhttps://t.co/dCzxcTBU9d",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 723,
+      "createdAt": "Wed Mar 25 01:37:00 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036618318992314482",
+      "displayTextRange": [
+        0,
+        174
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "rapplerdotcom",
+        "url": "https://x.com/rapplerdotcom",
+        "twitterUrl": "https://twitter.com/rapplerdotcom",
+        "id": "330826792",
+        "name": "Rappler",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1583252893368717313/wUCmGve8_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/330826792/1763601261",
+        "description": "",
+        "location": "Philippines",
+        "followers": 3307546,
+        "following": 412,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Jul 07 06:34:10 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 7585,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 281963,
+        "statusesCount": 1139077,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2098366108176625685"
+        ],
+        "profile_bio": {
+          "description": "Rappler is the Philippines' leading digital media company that's driven by uncompromising journalism, enabled by technology, & enriched by communities of action",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "rappler.com",
+                  "expanded_url": "http://www.rappler.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/81BJWWQwVf"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2100084398326726656/YQtzfjwD?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 150,
+                "url": "https://pbs.twimg.com/card_img/2100084398326726656/YQtzfjwD?format=jpg&name=280x150",
+                "width": 225
+              }
+            }
+          },
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Some TNVS providers will join the protest on March 26 and 27 to air their frustration on how the government has been dealing with oil price hikes"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.rappler.com"
+            }
+          },
+          {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 320,
+                "url": "https://pbs.twimg.com/card_img/2100084398326726656/YQtzfjwD?format=jpg&name=800x320_1",
+                "width": 480
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2100084398326726656/YQtzfjwD?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 1333,
+                "url": "https://pbs.twimg.com/card_img/2100084398326726656/YQtzfjwD?format=jpg&name=orig",
+                "width": 1999
+              }
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "330826792",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2100084398326726656/YQtzfjwD?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2100084398326726656/YQtzfjwD?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 67,
+                "url": "https://pbs.twimg.com/card_img/2100084398326726656/YQtzfjwD?format=jpg&name=100x100",
+                "width": 100
+              }
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "330826792",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 1333,
+                "url": "https://pbs.twimg.com/card_img/2100084398326726656/YQtzfjwD?format=png&name=2048x2048_2_exp",
+                "width": 1999
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "height": 1333,
+                "url": "https://pbs.twimg.com/card_img/2100084398326726656/YQtzfjwD?format=jpg&name=orig",
+                "width": 1999
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "rappler.com"
+            }
+          },
+          {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2100084398326726656/YQtzfjwD?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 40.54,
+                    "rgb": {
+                      "blue": 25,
+                      "green": 28,
+                      "red": 28
+                    }
+                  },
+                  {
+                    "percentage": 25.45,
+                    "rgb": {
+                      "blue": 182,
+                      "green": 178,
+                      "red": 175
+                    }
+                  },
+                  {
+                    "percentage": 4.98,
+                    "rgb": {
+                      "blue": 75,
+                      "green": 48,
+                      "red": 25
+                    }
+                  },
+                  {
+                    "percentage": 3.74,
+                    "rgb": {
+                      "blue": 6,
+                      "green": 63,
+                      "red": 81
+                    }
+                  },
+                  {
+                    "percentage": 2.67,
+                    "rgb": {
+                      "blue": 5,
+                      "green": 115,
+                      "red": 147
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Thousands of ride-hailing drivers vow to stop receiving bookings for 2-day strike"
+            }
+          },
+          {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 40.54,
+                    "rgb": {
+                      "blue": 25,
+                      "green": 28,
+                      "red": 28
+                    }
+                  },
+                  {
+                    "percentage": 25.45,
+                    "rgb": {
+                      "blue": 182,
+                      "green": 178,
+                      "red": 175
+                    }
+                  },
+                  {
+                    "percentage": 4.98,
+                    "rgb": {
+                      "blue": 75,
+                      "green": 48,
+                      "red": 25
+                    }
+                  },
+                  {
+                    "percentage": 3.74,
+                    "rgb": {
+                      "blue": 6,
+                      "green": 63,
+                      "red": 81
+                    }
+                  },
+                  {
+                    "percentage": 2.67,
+                    "rgb": {
+                      "blue": 5,
+                      "green": 115,
+                      "red": 147
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 1333,
+                "url": "https://pbs.twimg.com/card_img/2100084398326726656/YQtzfjwD?format=png&name=2048x2048_2_exp",
+                "width": 1999
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2100084398326726656/YQtzfjwD?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 40.54,
+                    "rgb": {
+                      "blue": 25,
+                      "green": 28,
+                      "red": 28
+                    }
+                  },
+                  {
+                    "percentage": 25.45,
+                    "rgb": {
+                      "blue": 182,
+                      "green": 178,
+                      "red": 175
+                    }
+                  },
+                  {
+                    "percentage": 4.98,
+                    "rgb": {
+                      "blue": 75,
+                      "green": 48,
+                      "red": 25
+                    }
+                  },
+                  {
+                    "percentage": 3.74,
+                    "rgb": {
+                      "blue": 6,
+                      "green": 63,
+                      "red": 81
+                    }
+                  },
+                  {
+                    "percentage": 2.67,
+                    "rgb": {
+                      "blue": 5,
+                      "green": 115,
+                      "red": 147
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "height": 1333,
+                "url": "https://pbs.twimg.com/card_img/2100084398326726656/YQtzfjwD?format=png&name=2048x2048_2_exp",
+                "width": 1999
+              }
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/dCzxcTBU9d"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "height": 1333,
+                "url": "https://pbs.twimg.com/card_img/2100084398326726656/YQtzfjwD?format=jpg&name=orig",
+                "width": 1999
+              }
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/dCzxcTBU9d",
+        "user_refs_results": [
+          {
+            "rest_id": "330826792",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 7585
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1583252893368717313/wUCmGve8_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/330826792/1763601261"
+              },
+              "core": {
+                "created_at": "Thu Jul 07 06:34:10 +0000 2011",
+                "name": "Rappler",
+                "screen_name": "rapplerdotcom"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Philippines"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2098366108176625685"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Rappler is the Philippines' leading digital media company that's driven by uncompromising journalism, enabled by technology, & enriched by communities of action",
+                "entities": {
+                  "description": {},
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "rappler.com",
+                        "expanded_url": "http://www.rappler.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/81BJWWQwVf"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "E76229"
+              },
+              "profile_translation": {
+                "translator_type_enum": "Regular"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 3307546,
+                "following": 412
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "330826792",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 281963,
+                "tweets": 1139077
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/81BJWWQwVf"
+              }
+            }
+          },
+          {
+            "rest_id": "330826792",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 7585
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1583252893368717313/wUCmGve8_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/330826792/1763601261"
+              },
+              "core": {
+                "created_at": "Thu Jul 07 06:34:10 +0000 2011",
+                "name": "Rappler",
+                "screen_name": "rapplerdotcom"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Philippines"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2098366108176625685"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Rappler is the Philippines' leading digital media company that's driven by uncompromising journalism, enabled by technology, & enriched by communities of action",
+                "entities": {
+                  "description": {},
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "rappler.com",
+                        "expanded_url": "http://www.rappler.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/81BJWWQwVf"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "E76229"
+              },
+              "profile_translation": {
+                "translator_type_enum": "Regular"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 3307546,
+                "following": 412
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "330826792",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 281963,
+                "tweets": 1139077
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/81BJWWQwVf"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "rappler.com/philippines/pu…",
+            "expanded_url": "https://www.rappler.com/philippines/puv-ride-hailing-drivers-transport-strike-march-26-27-2026/",
+            "indices": [
+              151,
+              174
+            ],
+            "url": "https://t.co/dCzxcTBU9d"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2036619500938772979",
+      "url": "https://x.com/YourMapleRidge/status/2036619500938772979",
+      "twitterUrl": "https://twitter.com/YourMapleRidge/status/2036619500938772979",
+      "text": "⚠️ Traffic Advisory – Power Outages & Road Closures ⚠️\n\nDue to downed power lines and strong winds, multiple power outages have been reported across the city. These hazards are impacting traffic and have resulted in several road closures.\n\n🚧 Current Locations & Traffic Impacts:\n• DTR / 240 St — Partial closure  \n• Fern Crescent @ 236 St — Full closure  (BC Hydro on scene)\n• Lougheed Highway / 240 St — Partial closure  \n• 248 St / 128 Ave — Full closure  \n\nPlease use alternate routes and avoid affected areas where possible.\n\nCrews are actively responding and working to resolve the situation. Thank you for your patience and cooperation. Stay safe.\n \n⚡If you see a downed power line, stay at least 10 m away and report it to BC Hydro at 1-888-769-3766\n\n🌲Report downed trees, debris, or other concerns to the City at https://t.co/ilm7Dfmzu3",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 1,
+      "likeCount": 4,
+      "quoteCount": 1,
+      "viewCount": 2137,
+      "createdAt": "Wed Mar 25 01:41:42 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036619500938772979",
+      "displayTextRange": [
+        0,
+        286
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "YourMapleRidge",
+        "url": "https://x.com/YourMapleRidge",
+        "twitterUrl": "https://twitter.com/YourMapleRidge",
+        "id": "318839597",
+        "name": "City of Maple Ridge",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1841165224067338244/07UAVdzx_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/318839597/1784934335",
+        "description": "",
+        "location": "Maple Ridge, BC, Canada",
+        "followers": 5584,
+        "following": 180,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Fri Jun 17 04:01:33 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2428,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2911,
+        "statusesCount": 16937,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official account for the City of Maple Ridge, BC, Canada https://t.co/4UFMN6Qm4S",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "mapleridge.ca",
+                  "expanded_url": "http://mapleridge.ca",
+                  "indices": [
+                    57,
+                    80
+                  ],
+                  "url": "https://t.co/4UFMN6Qm4S"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "mapleridge.ca",
+                  "expanded_url": "http://www.mapleridge.ca/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/MmYhonRDxJ"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/nc4vDXtVLe",
+            "expanded_url": "https://x.com/YourMapleRidge/status/2036619500938772979/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2036619496912302080",
+            "indices": [
+              287,
+              310
+            ],
+            "media_key": "3_2036619496912302080",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxDhqRYF7AACgACHEOGpUgWwfMAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHEOGpFgXsAAKAAIcQ4alSBbB8wAA",
+                "media_key": "3_2036619496912302080"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HEOGpFgXsAAVZbI.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 406
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 168
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 93
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 203,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/nc4vDXtVLe"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [
+          {
+            "display_url": "MapleRidge.ca/Report",
+            "expanded_url": "http://MapleRidge.ca/Report",
+            "indices": [
+              821,
+              844
+            ],
+            "url": "https://t.co/ilm7Dfmzu3"
+          }
+        ],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2036620471098368333",
       "url": "https://x.com/MakatiTraffic/status/2036620471098368333",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2036620471098368333",
@@ -1812,7 +4163,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1828,8 +4179,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412026,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,

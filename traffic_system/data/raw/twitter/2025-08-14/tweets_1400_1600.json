@@ -5,7 +5,7 @@
     "window_start": "2025-08-14T14:00:00+08:00",
     "window_end": "2025-08-14T16:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 12,
+    "tweet_count": 18,
     "slices": [
       {
         "start": "2025-08-14T14:00:00+08:00",
@@ -32,8 +32,8 @@
         "start": "2025-08-14T14:15:00+08:00",
         "end": "2025-08-14T14:20:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-08-14T14:20:00+08:00",
@@ -60,8 +60,8 @@
         "start": "2025-08-14T14:35:00+08:00",
         "end": "2025-08-14T14:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-08-14T14:40:00+08:00",
@@ -74,8 +74,8 @@
         "start": "2025-08-14T14:45:00+08:00",
         "end": "2025-08-14T14:50:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 3,
+        "accepted": 3
       },
       {
         "start": "2025-08-14T14:50:00+08:00",
@@ -102,8 +102,8 @@
         "start": "2025-08-14T15:05:00+08:00",
         "end": "2025-08-14T15:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-08-14T15:10:00+08:00",
@@ -123,8 +123,8 @@
         "start": "2025-08-14T15:20:00+08:00",
         "end": "2025-08-14T15:25:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-08-14T15:25:00+08:00",
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/154426751/1732790884",
         "description": "",
         "location": "Philippines",
-        "followers": 2272495,
+        "followers": 2273488,
         "following": 267,
         "status": "",
         "canDm": false,
@@ -232,8 +232,8 @@
         "favouritesCount": 158,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 99945,
-        "statusesCount": 158560,
+        "mediaCount": 100273,
+        "statusesCount": 158939,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -384,12 +384,12 @@
         "name": "Hyderabad Traffic Police",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": "Government",
+        "verifiedType": null,
         "profilePicture": "https://pbs.twimg.com/profile_images/1830558048902901761/fpFeVotL_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/399923595/1753094677",
         "description": "",
         "location": "Hyderabad",
-        "followers": 293230,
+        "followers": 293319,
         "following": 57,
         "status": "",
         "canDm": true,
@@ -402,11 +402,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 15230,
+        "favouritesCount": 15245,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 14486,
-        "statusesCount": 87985,
+        "mediaCount": 14549,
+        "statusesCount": 88119,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -440,16 +440,20 @@
           {
             "display_url": "pic.x.com/VUQb7xoYFC",
             "expanded_url": "https://x.com/HYDTP/status/1955875641141944401/photo/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": []
               },
+              "medium": {
+                "faces": []
+              },
               "orig": {
+                "faces": []
+              },
+              "small": {
                 "faces": []
               }
             },
@@ -460,10 +464,7 @@
             ],
             "media_key": "3_1955875626432200704",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARskqoUCVgAACgACGySqiG8a4FEAAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABGySqhQJWAAAKAAIbJKqIbxrgUQAA",
                 "media_key": "3_1955875626432200704"
               }
             },
@@ -507,7 +508,23 @@
             "sizes": {
               "large": {
                 "h": 900,
+                "resize": "fit",
                 "w": 1600
+              },
+              "medium": {
+                "h": 675,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 383,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "photo",
@@ -540,12 +557,105 @@
             ],
             "text": "TrafficUpdate"
           }
+        ],
+        "media": [
+          {
+            "display_url": "pic.x.com/VUQb7xoYFC",
+            "expanded_url": "https://x.com/HYDTP/status/1955875641141944401/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              }
+            },
+            "id_str": "1955875626432200704",
+            "indices": [
+              134,
+              157
+            ],
+            "media_key": "3_1955875626432200704",
+            "media_results": {
+              "result": {
+                "media_key": "3_1955875626432200704"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GySqhQJWAAAuIiW.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 896,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 4
+                },
+                {
+                  "h": 900,
+                  "w": 900,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 900,
+                  "w": 789,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 900,
+                  "w": 450,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 900,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 900,
+              "width": 1600
+            },
+            "sizes": {
+              "large": {
+                "h": 900,
+                "resize": "fit",
+                "w": 1600
+              },
+              "medium": {
+                "h": 675,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 383,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/VUQb7xoYFC"
+          }
         ]
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -586,7 +696,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1535159483756052480/1753771633",
         "description": "",
         "location": "",
-        "followers": 989,
+        "followers": 988,
         "following": 825,
         "status": "",
         "canDm": false,
@@ -599,7 +709,7 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 73701,
+        "favouritesCount": 73696,
         "hasCustomTimelines": true,
         "isTranslator": false,
         "mediaCount": 979,
@@ -632,7 +742,7 @@
         "source": "Twitter for iPhone",
         "retweetCount": 398,
         "replyCount": 21,
-        "likeCount": 1189,
+        "likeCount": 1187,
         "quoteCount": 25,
         "viewCount": 19418,
         "createdAt": "Thu Aug 14 05:29:41 +0000 2025",
@@ -661,7 +771,7 @@
           "coverPicture": "https://pbs.twimg.com/profile_banners/1930866742139768832/1767769097",
           "description": "",
           "location": "Est. 2025",
-          "followers": 6373,
+          "followers": 6363,
           "following": 48,
           "status": "",
           "canDm": true,
@@ -688,28 +798,7 @@
           "profile_bio": {
             "description": "The Official Fanbase of AZ Martinez and River Joseph—also known as #AZVER | Recognized by AZ, River, & their families. || @azver_trendsttr",
             "entities": {
-              "description": {
-                "hashtags": [
-                  {
-                    "indices": [
-                      67,
-                      73
-                    ],
-                    "text": "AZVER"
-                  }
-                ],
-                "user_mentions": [
-                  {
-                    "id_str": "",
-                    "indices": [
-                      122,
-                      138
-                    ],
-                    "name": "",
-                    "screen_name": "azver_trendsttr"
-                  }
-                ]
-              }
+              "description": {}
             }
           },
           "isAutomated": false,
@@ -723,11 +812,9 @@
               },
               "display_url": "pic.x.com/KGviffOdNf",
               "expanded_url": "https://x.com/TeamAzVerOFC/status/1955864383902638446/video/1",
-              "ext_master_playlist_only": [],
               "ext_media_availability": {
                 "status": "Available"
               },
-              "ext_playlists": [],
               "id_str": "1955863668601839619",
               "indices": [
                 274,
@@ -735,10 +822,7 @@
               ],
               "media_key": "7_1955863668601839619",
               "media_results": {
-                "id": "QXBpTWVkaWFSZXN1bHRzOgwAAwoAARskn6TcGuADCgACGySgS2da4W4AAA==",
                 "result": {
-                  "__typename": "ApiMedia",
-                  "id": "QXBpTWVkaWE6DAADCgABGySfpNwa4AMKAAIbJKBLZ1rhbgAA",
                   "media_key": "7_1955863668601839619"
                 }
               },
@@ -751,7 +835,23 @@
               "sizes": {
                 "large": {
                   "h": 720,
+                  "resize": "fit",
                   "w": 960
+                },
+                "medium": {
+                  "h": 720,
+                  "resize": "fit",
+                  "w": 960
+                },
+                "small": {
+                  "h": 510,
+                  "resize": "fit",
+                  "w": 680
+                },
+                "thumb": {
+                  "h": 150,
+                  "resize": "crop",
+                  "w": 150
                 }
               },
               "type": "video",
@@ -820,13 +920,9 @@
         },
         "quoted_tweet": null,
         "retweeted_tweet": null,
-        "isLimitedReply": false,
-        "communityInfo": null,
         "article": null
       },
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -862,12 +958,12 @@
         "name": "Official MMDA",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": "Government",
+        "verifiedType": null,
         "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967205,
+        "followers": 3966761,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -883,8 +979,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61677,
-        "statusesCount": 888211,
+        "mediaCount": 61726,
+        "statusesCount": 888650,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -927,8 +1023,6 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -969,7 +1063,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437302,
+        "followers": 1437185,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -985,8 +1079,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411294,
+        "mediaCount": 17208,
+        "statusesCount": 411925,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1035,6 +1129,241 @@
     },
     {
       "type": "tweet",
+      "id": "1955875836050960765",
+      "url": "https://x.com/eAsiaMediaHub/status/1955875836050960765",
+      "twitterUrl": "https://twitter.com/eAsiaMediaHub/status/1955875836050960765",
+      "text": "Update on U.S. Foreign Assistance to the Philippines in Response to Recent Flooding: \n\nhttps://t.co/fiebmk5fsj https://t.co/tIYSt5a2yN",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 0,
+      "likeCount": 5,
+      "quoteCount": 0,
+      "viewCount": 647,
+      "createdAt": "Thu Aug 14 06:15:12 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1955875836050960765",
+      "displayTextRange": [
+        0,
+        110
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "eAsiaMediaHub",
+        "url": "https://x.com/eAsiaMediaHub",
+        "twitterUrl": "https://twitter.com/eAsiaMediaHub",
+        "id": "178978113",
+        "name": "U.S. Asia Pacific Media Hub",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/2003473829948194824/K4ujOy6o_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/178978113/1758630911",
+        "description": "",
+        "location": "Asia Pacific",
+        "followers": 141502,
+        "following": 203,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Mon Aug 16 05:11:15 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 6427,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 912,
+        "statusesCount": 5565,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {
+          "label": {
+            "badge": {
+              "url": "https://pbs.twimg.com/profile_images/2065445010053431296/I2jXbYJL_bigger.jpg"
+            },
+            "description": "Department of State",
+            "url": {
+              "url": "https://twitter.com/StateDept",
+              "url_type": "DeepLink"
+            },
+            "user_label_display_type": "Badge",
+            "user_label_type": "BusinessLabel"
+          }
+        },
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The U.S. Department of State's Asia Pacific Media Hub promotes official U.S. engagement with media throughout the region. Terms of Use: https://t.co/SUdA8c4v8b",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "state.gov/tou",
+                  "expanded_url": "http://www.state.gov/tou",
+                  "indices": [
+                    136,
+                    159
+                  ],
+                  "url": "https://t.co/SUdA8c4v8b"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "shorturl.at/9dRNI",
+                  "expanded_url": "https://shorturl.at/9dRNI",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/BUyWifMWqX"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/tIYSt5a2yN",
+            "expanded_url": "https://x.com/eAsiaMediaHub/status/1955875836050960765/photo/1",
+            "ext_alt_text": "U.S. Foreign Assistance to the Philippines. \n\nSupport for more than 3,000 families in evacuation centers. \n\nDelivery of 47,700 family food packs\n\nSource: Update on U.S. Foreign Assistance to the Philippines in Response to Recent Flooding August 12, 2025",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 52,
+                    "w": 52,
+                    "x": 999,
+                    "y": 413
+                  },
+                  {
+                    "h": 261,
+                    "w": 261,
+                    "x": 606,
+                    "y": 823
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 52,
+                    "w": 52,
+                    "x": 999,
+                    "y": 413
+                  },
+                  {
+                    "h": 261,
+                    "w": 261,
+                    "x": 606,
+                    "y": 823
+                  }
+                ]
+              }
+            },
+            "id_str": "1955875831491751941",
+            "indices": [
+              111,
+              134
+            ],
+            "media_key": "3_1955875831491751941",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARskqrTA1nAFCgACGySqtdCWcX0AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGySqtMDWcAUKAAIbJKq10JZxfQAA",
+                "media_key": "3_1955875831491751941"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GySqtMDWcAU04fA.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 406
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 168
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 93
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 371,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/tIYSt5a2yN"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "state.gov/releases/offic…",
+            "expanded_url": "https://www.state.gov/releases/office-of-the-spokesperson/2025/08/update-on-u-s-foreign-assistance-to-the-philippines-in-response-to-recent-flooding/",
+            "indices": [
+              87,
+              110
+            ],
+            "url": "https://t.co/fiebmk5fsj"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1955877224038719840",
       "url": "https://x.com/HYDTP/status/1955877224038719840",
       "twitterUrl": "https://twitter.com/HYDTP/status/1955877224038719840",
@@ -1071,7 +1400,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/399923595/1753094677",
         "description": "",
         "location": "Hyderabad",
-        "followers": 293230,
+        "followers": 293319,
         "following": 57,
         "status": "",
         "canDm": true,
@@ -1084,11 +1413,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 15230,
+        "favouritesCount": 15245,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 14486,
-        "statusesCount": 87985,
+        "mediaCount": 14549,
+        "statusesCount": 88119,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1306,7 +1635,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/242696106/1759206391",
         "description": "",
         "location": "Philippines",
-        "followers": 247326,
+        "followers": 248076,
         "following": 112,
         "status": "",
         "canDm": false,
@@ -1322,8 +1651,8 @@
         "favouritesCount": 1521,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 52710,
-        "statusesCount": 239298,
+        "mediaCount": 52745,
+        "statusesCount": 239553,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1435,6 +1764,462 @@
     },
     {
       "type": "tweet",
+      "id": "1955881657568821459",
+      "url": "https://x.com/FinancialXpress/status/1955881657568821459",
+      "twitterUrl": "https://twitter.com/FinancialXpress/status/1955881657568821459",
+      "text": "Independence Day 2025 Traffic Advisory: Delhi-NCR full list of closed roads, diversion, routes https://t.co/rPtiYacCir",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 457,
+      "createdAt": "Thu Aug 14 06:38:20 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1955881657568821459",
+      "displayTextRange": [
+        0,
+        118
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "FinancialXpress",
+        "url": "https://x.com/FinancialXpress",
+        "twitterUrl": "https://twitter.com/FinancialXpress",
+        "id": "50279781",
+        "name": "Financial Express",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1997954014156386304/u-Z2pxA9_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/50279781/1781496270",
+        "description": "",
+        "location": "India",
+        "followers": 806823,
+        "following": 36,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Wed Jun 24 11:29:19 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2846,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 185629,
+        "statusesCount": 629767,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099460245827584336"
+        ],
+        "profile_bio": {
+          "description": "Your daily fix of financial news & more | The Indian Express Group",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "financialexpress.com",
+                  "expanded_url": "http://www.financialexpress.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/ZdL9Ep0STb"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Delhi Police Traffic Advisory: Check routes you can take during the Independence Day 2025 celebrations tomorrow."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.financialexpress.com"
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "50279781",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "financialexpress.com"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Independence Day 2025 Traffic Advisory: Delhi-NCR full list of closed roads, diversion, routes"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/rPtiYacCir"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/rPtiYacCir",
+        "user_refs_results": [
+          {
+            "rest_id": "50279781",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 2846
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1997954014156386304/u-Z2pxA9_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/50279781/1781496270"
+              },
+              "core": {
+                "created_at": "Wed Jun 24 11:29:19 +0000 2009",
+                "name": "Financial Express",
+                "screen_name": "FinancialXpress"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "India"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099460245827584336"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Your daily fix of financial news & more | The Indian Express Group",
+                "entities": {
+                  "description": {},
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "financialexpress.com",
+                        "expanded_url": "http://www.financialexpress.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/ZdL9Ep0STb"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "0084B4"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 806823,
+                "following": 36
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "50279781",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 185629,
+                "tweets": 629767
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/ZdL9Ep0STb"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "financialexpress.com/india-news/ind…",
+            "expanded_url": "https://www.financialexpress.com/india-news/independence-day-2025-traffic-advisory-delhi-ncr-full-list-of-closed-roads-diversion-routes/3946221/?utm_term=Autofeed&utm_medium=Social&utm_source=Twitter#Echobox=1755152181",
+            "indices": [
+              95,
+              118
+            ],
+            "url": "https://t.co/rPtiYacCir"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1955883916390269407",
+      "url": "https://x.com/ndtv/status/1955883916390269407",
+      "twitterUrl": "https://twitter.com/ndtv/status/1955883916390269407",
+      "text": "Delhi Traffic Advisory For Independence Day 2025: Roads To Avoid, Diversions\nhttps://t.co/YoB1v387TH https://t.co/cGhxxSplQR",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 1,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 3828,
+      "createdAt": "Thu Aug 14 06:47:18 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1955883916390269407",
+      "displayTextRange": [
+        0,
+        100
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ndtv",
+        "url": "https://x.com/ndtv",
+        "twitterUrl": "https://twitter.com/ndtv",
+        "id": "37034483",
+        "name": "NDTV",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Business",
+        "profilePicture": "https://pbs.twimg.com/profile_images/2088619391072313344/klvKZ14z_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/37034483/1789368178",
+        "description": "",
+        "location": "India",
+        "followers": 17341372,
+        "following": 20,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri May 01 20:34:48 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 62,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 781872,
+        "statusesCount": 1575473,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "India and the world, through the stories shaping our times. Across television, digital and social. NDTV. When It Really Matters.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "ndtv.com",
+                  "expanded_url": "http://www.ndtv.com/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/KFTuQYHgSv"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/cGhxxSplQR",
+            "expanded_url": "https://x.com/ndtv/status/1955883916390269407/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1955883883838234627",
+            "indices": [
+              101,
+              124
+            ],
+            "media_key": "3_1955883883838234627",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARsksgeWFuADCgACGySyDypXgd8AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGySyB5YW4AMKAAIbJLIPKleB3wAA",
+                "media_key": "3_1955883883838234627"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GySyB5YW4AMjOOV.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 433,
+                  "w": 773,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 435,
+                  "w": 435,
+                  "x": 150,
+                  "y": 0
+                },
+                {
+                  "h": 435,
+                  "w": 382,
+                  "x": 176,
+                  "y": 0
+                },
+                {
+                  "h": 435,
+                  "w": 218,
+                  "x": 258,
+                  "y": 0
+                },
+                {
+                  "h": 435,
+                  "w": 773,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 435,
+              "width": 773
+            },
+            "sizes": {
+              "large": {
+                "h": 435,
+                "w": 773
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/cGhxxSplQR"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "ndtv.com/india-news/ind…",
+            "expanded_url": "https://www.ndtv.com/india-news/independence-day-2025-traffic-advisory-delhi-traffic-advisory-for-independence-day-2025-roads-to-avoid-diversions-9082074",
+            "indices": [
+              77,
+              100
+            ],
+            "url": "https://t.co/YoB1v387TH"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1955883864100065662",
       "url": "https://x.com/MMDA/status/1955883864100065662",
       "twitterUrl": "https://twitter.com/MMDA/status/1955883864100065662",
@@ -1471,7 +2256,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967205,
+        "followers": 3966761,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -1487,8 +2272,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61677,
-        "statusesCount": 888211,
+        "mediaCount": 61726,
+        "statusesCount": 888650,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1537,6 +2322,416 @@
     },
     {
       "type": "tweet",
+      "id": "1955883812874780766",
+      "url": "https://x.com/TNNavbharat/status/1955883812874780766",
+      "twitterUrl": "https://twitter.com/TNNavbharat/status/1955883812874780766",
+      "text": "#DelhiWaterlogging: दिल्ली में भारी बारिश से इन सड़कों पर जमा हुआ पानी, ट्रैफिक पुलिस ने जारी की एडवाइजरी\n\n#Delhi #Rains \nhttps://t.co/PCL2iIvYbb",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 292,
+      "createdAt": "Thu Aug 14 06:46:54 +0000 2025",
+      "lang": "hi",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1955883812874780766",
+      "displayTextRange": [
+        0,
+        145
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "TNNavbharat",
+        "url": "https://x.com/TNNavbharat",
+        "twitterUrl": "https://twitter.com/TNNavbharat",
+        "id": "927426236137201664",
+        "name": "Times Now Navbharat",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Business",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1584864119647531008/F4ID0nhQ_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/927426236137201664/1789416100",
+        "description": "",
+        "location": "New Delhi, India",
+        "followers": 185312,
+        "following": 67,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Mon Nov 06 06:43:40 +0000 2017",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 8,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 617821,
+        "statusesCount": 835926,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {
+          "label": {
+            "badge": {
+              "url": "https://pbs.twimg.com/profile_images/1354074536925388802/qkHhpnVw_bigger.jpg"
+            },
+            "description": "TIMES NOW",
+            "url": {
+              "url": "https://twitter.com/TimesNow",
+              "url_type": "DeepLink"
+            },
+            "user_label_display_type": "Badge",
+            "user_label_type": "BusinessLabel"
+          }
+        },
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099702217284763713"
+        ],
+        "profile_bio": {
+          "description": "अब बदलेगा भारत, बनेगा नवभारत - A Times Network Company",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "दिल्ली में गुरुवार सुबह से हो रही बारिश से कई इलाकों में जलभराव और ट्रैफिक बाधित हुआ है। IMD ने ऑरेंज अलर्ट जारी किया है। प्रमुख सड़कों पर यातायात प्रभावित है। प्रशासन ने सतर्कता बरतने की अपील की..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.timesnowhindi.com"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "927426236137201664",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "927426236137201664",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "timesnowhindi.com"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Delhi Waterlogging: दिल्ली में भारी बारिश से इन सड़कों पर जमा हुआ पानी, ट्रैफिक पुलिस ने जारी की..."
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/PCL2iIvYbb"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/PCL2iIvYbb",
+        "user_refs_results": [
+          {
+            "rest_id": "927426236137201664",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 8
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1584864119647531008/F4ID0nhQ_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/927426236137201664/1789416100"
+              },
+              "core": {
+                "created_at": "Mon Nov 06 06:43:40 +0000 2017",
+                "name": "Times Now Navbharat",
+                "screen_name": "TNNavbharat"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {
+                "label": {
+                  "badge": {
+                    "url": "https://pbs.twimg.com/profile_images/1354074536925388802/qkHhpnVw_bigger.jpg"
+                  },
+                  "description": "TIMES NOW",
+                  "url": {
+                    "url": "https://twitter.com/TimesNow",
+                    "url_type": "DeepLink"
+                  },
+                  "user_label_display_type": "Badge",
+                  "user_label_type": "BusinessLabel"
+                }
+              },
+              "location": {
+                "location": "New Delhi, India"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099702217284763713"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "अब बदलेगा भारत, बनेगा नवभारत - A Times Network Company",
+                "entities": {
+                  "description": {}
+                }
+              },
+              "profile_image_shape": "Square",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "1B95E0"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 185312,
+                "following": 67
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "927426236137201664",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 617821,
+                "tweets": 835926
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false,
+                "verified_type": "Business"
+              },
+              "website": {
+                "url": ""
+              }
+            }
+          },
+          {
+            "rest_id": "927426236137201664",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 8
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1584864119647531008/F4ID0nhQ_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/927426236137201664/1789416100"
+              },
+              "core": {
+                "created_at": "Mon Nov 06 06:43:40 +0000 2017",
+                "name": "Times Now Navbharat",
+                "screen_name": "TNNavbharat"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {
+                "label": {
+                  "badge": {
+                    "url": "https://pbs.twimg.com/profile_images/1354074536925388802/qkHhpnVw_bigger.jpg"
+                  },
+                  "description": "TIMES NOW",
+                  "url": {
+                    "url": "https://twitter.com/TimesNow",
+                    "url_type": "DeepLink"
+                  },
+                  "user_label_display_type": "Badge",
+                  "user_label_type": "BusinessLabel"
+                }
+              },
+              "location": {
+                "location": "New Delhi, India"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099702217284763713"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "अब बदलेगा भारत, बनेगा नवभारत - A Times Network Company",
+                "entities": {
+                  "description": {}
+                }
+              },
+              "profile_image_shape": "Square",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "1B95E0"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 185312,
+                "following": 67
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "927426236137201664",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 617821,
+                "tweets": 835926
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false,
+                "verified_type": "Business"
+              },
+              "website": {
+                "url": ""
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              0,
+              18
+            ],
+            "text": "DelhiWaterlogging"
+          },
+          {
+            "indices": [
+              107,
+              113
+            ],
+            "text": "Delhi"
+          },
+          {
+            "indices": [
+              114,
+              120
+            ],
+            "text": "Rains"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "timesnowhindi.com/cities/delhi-n…",
+            "expanded_url": "https://www.timesnowhindi.com/cities/delhi-news/waterlogging-on-different-roads-in-delhi-due-to-heavy-rain-traffic-advisory-article-152462914",
+            "indices": [
+              122,
+              145
+            ],
+            "url": "https://t.co/PCL2iIvYbb"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1955887363294433546",
       "url": "https://x.com/MakatiTraffic/status/1955887363294433546",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/1955887363294433546",
@@ -1573,7 +2768,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437302,
+        "followers": 1437185,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1589,8 +2784,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411294,
+        "mediaCount": 17208,
+        "statusesCount": 411925,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1639,6 +2834,719 @@
     },
     {
       "type": "tweet",
+      "id": "1955888753387438122",
+      "url": "https://x.com/USA_China_Talk/status/1955888753387438122",
+      "twitterUrl": "https://twitter.com/USA_China_Talk/status/1955888753387438122",
+      "text": "美国向接连遭受风暴和季风降雨影响的菲律宾灾民表示诚挚的慰唁。自7月以来，美国政府已捐助50万美元，为在7月的严重洪灾后滞留在疏散中心的3000多个家庭——约15800人——提供紧急住所援助、家庭救济物资和卫生用品包。https://t.co/0b4R8fFaC1",
+      "source": "Twitter for iPhone",
+      "retweetCount": 9,
+      "replyCount": 7,
+      "likeCount": 45,
+      "quoteCount": 0,
+      "viewCount": 27326,
+      "createdAt": "Thu Aug 14 07:06:32 +0000 2025",
+      "lang": "zh",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1955888753387438122",
+      "displayTextRange": [
+        0,
+        131
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "USA_China_Talk",
+        "url": "https://x.com/USA_China_Talk",
+        "twitterUrl": "https://twitter.com/USA_China_Talk",
+        "id": "89421672",
+        "name": "美国驻华使领馆 U.S. Mission to China",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1713839270769618944/eLoK1MFM_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/89421672/1772527120",
+        "description": "",
+        "location": "China",
+        "followers": 1650519,
+        "following": 174,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Thu Nov 12 10:55:22 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 11,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 625,
+        "statusesCount": 3295,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {
+          "label": {
+            "badge": {
+              "url": "https://pbs.twimg.com/profile_images/2065445010053431296/I2jXbYJL_bigger.jpg"
+            },
+            "description": "Department of State",
+            "url": {
+              "url": "https://twitter.com/StateDept",
+              "urlType": "DeepLink"
+            },
+            "userLabelDisplayType": "Badge",
+            "userLabelType": "BusinessLabel"
+          }
+        },
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "欢迎来到美国驻华使领馆的“推特”平台！本帐号使用条款可在以下链接找到：https://t.co/7fIbxneOkc 有时候，我们的内容会将关注者定向到非美国政府网站，此处包含的链接仅供参考，不一定代表美国政府或美国国务院观点或背书。关注庞德伟(David Perdue)大使： @USAmbChina",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "ow.ly/T3EO50OxjR8",
+                  "expanded_url": "http://ow.ly/T3EO50OxjR8",
+                  "indices": [
+                    35,
+                    58
+                  ],
+                  "url": "https://t.co/7fIbxneOkc"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "china.usembassy-china.org.cn",
+                  "expanded_url": "https://china.usembassy-china.org.cn/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/EJ5I77rnR8"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 144,
+                "url": "https://pbs.twimg.com/card_img/2096593758704082944/mpjHAhse?format=png&name=144x144_2",
+                "width": 144
+              },
+              "type": "IMAGE"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "china.usembassy-china.org.cn",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 420,
+                "url": "https://pbs.twimg.com/card_img/2096593758704082944/mpjHAhse?format=png&name=420x420_2",
+                "width": 420
+              },
+              "type": "IMAGE"
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 1260,
+                "url": "https://pbs.twimg.com/card_img/2096593758704082944/mpjHAhse?format=png&name=orig",
+                "width": 2400
+              },
+              "type": "IMAGE"
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 100,
+                "url": "https://pbs.twimg.com/card_img/2096593758704082944/mpjHAhse?format=png&name=100x100_2",
+                "width": 100
+              },
+              "type": "IMAGE"
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 1075,
+                "url": "https://pbs.twimg.com/card_img/2096593758704082944/mpjHAhse?format=png&name=2048x2048_2_exp",
+                "width": 2048
+              },
+              "type": "IMAGE"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "china.usembassy-china.org.cn",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 97.96,
+                    "rgb": {
+                      "blue": 79,
+                      "green": 50,
+                      "red": 0
+                    }
+                  },
+                  {
+                    "percentage": 1.89,
+                    "rgb": {
+                      "blue": 170,
+                      "green": 156,
+                      "red": 132
+                    }
+                  },
+                  {
+                    "percentage": 0.21,
+                    "rgb": {
+                      "blue": 240,
+                      "green": 238,
+                      "red": 234
+                    }
+                  }
+                ]
+              },
+              "type": "IMAGE_COLOR"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "关于美国就近期菲律宾洪灾提供对外援助的最新情况",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/0b4R8fFaC1",
+              "type": "STRING"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "Swift",
+              "version": "12"
+            }
+          }
+        },
+        "name": "summary",
+        "url": "https://t.co/0b4R8fFaC1",
+        "user_refs_results": []
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "china.usembassy-china.org.cn/zh/update-on-u…",
+            "expanded_url": "https://china.usembassy-china.org.cn/zh/update-on-u-s-foreign-assistance-to-the-philippines-in-response-to-recent-flooding/",
+            "indices": [
+              108,
+              131
+            ],
+            "url": "https://t.co/0b4R8fFaC1"
+          }
+        ]
+      },
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "1955523505614626970",
+        "url": "https://x.com/eAsiaMediaHub/status/1955523505614626970",
+        "twitterUrl": "https://twitter.com/eAsiaMediaHub/status/1955523505614626970",
+        "text": "The United States extends its heartfelt condolences to those in the Philippines affected by consecutive storms and monsoon rains. Since July, the U.S. government has contributed $500,000 to provide emergency shelter assistance, household relief items, and hygiene kits to more than 3,000 families—approximately 15,800 people—remaining in evacuation centers after the severe flooding in July.\n\nRead more: https://t.co/HeNaQokHxj",
+        "source": "Twitter for iPhone",
+        "retweetCount": 2,
+        "replyCount": 0,
+        "likeCount": 4,
+        "quoteCount": 2,
+        "viewCount": 28851,
+        "createdAt": "Wed Aug 13 06:55:10 +0000 2025",
+        "lang": "en",
+        "bookmarkCount": 0,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "1955523505614626970",
+        "displayTextRange": [
+          0,
+          276
+        ],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {
+          "type": "user",
+          "userName": "eAsiaMediaHub",
+          "url": "https://x.com/eAsiaMediaHub",
+          "twitterUrl": "https://twitter.com/eAsiaMediaHub",
+          "id": "178978113",
+          "name": "U.S. Asia Pacific Media Hub",
+          "isVerified": false,
+          "isBlueVerified": true,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/2003473829948194824/K4ujOy6o_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/178978113/1758630911",
+          "description": "",
+          "location": "Asia Pacific",
+          "followers": 141502,
+          "following": 203,
+          "status": "",
+          "canDm": false,
+          "canMediaTag": true,
+          "createdAt": "Mon Aug 16 05:11:15 +0000 2010",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 6427,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 912,
+          "statusesCount": 5565,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {
+            "label": {
+              "badge": {
+                "url": "https://pbs.twimg.com/profile_images/2065445010053431296/I2jXbYJL_bigger.jpg"
+              },
+              "description": "Department of State",
+              "url": {
+                "url": "https://twitter.com/StateDept",
+                "urlType": "DeepLink"
+              },
+              "userLabelDisplayType": "Badge",
+              "userLabelType": "BusinessLabel"
+            }
+          },
+          "possiblySensitive": false,
+          "pinnedTweetIds": [],
+          "profile_bio": {
+            "description": "The U.S. Department of State's Asia Pacific Media Hub promotes official U.S. engagement with media throughout the region. Terms of Use: https://t.co/SUdA8c4v8b",
+            "entities": {
+              "description": {
+                "urls": [
+                  {
+                    "display_url": "state.gov/tou",
+                    "expanded_url": "http://www.state.gov/tou",
+                    "indices": [
+                      136,
+                      159
+                    ],
+                    "url": "https://t.co/SUdA8c4v8b"
+                  }
+                ]
+              },
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "shorturl.at/9dRNI",
+                    "expanded_url": "https://shorturl.at/9dRNI",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/BUyWifMWqX"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {},
+        "card": {
+          "binding_values": [
+            {
+              "key": "photo_image_full_size_large",
+              "value": {
+                "image_value": {
+                  "height": 419,
+                  "url": "https://pbs.twimg.com/card_img/2095278961182031872/14SgZ9im?format=png&name=800x419",
+                  "width": 800
+                },
+                "type": "IMAGE"
+              }
+            },
+            {
+              "key": "thumbnail_image",
+              "value": {
+                "image_value": {
+                  "height": 147,
+                  "url": "https://pbs.twimg.com/card_img/2095278961182031872/14SgZ9im?format=png&name=280x150",
+                  "width": 280
+                },
+                "type": "IMAGE"
+              }
+            },
+            {
+              "key": "description",
+              "value": {
+                "string_value": "The United States extends its heartfelt condolences to those in the Philippines affected by consecutive storms and monsoon rains. Since July, the U.S. government has contributed $500,000 to provide...",
+                "type": "STRING"
+              }
+            },
+            {
+              "key": "domain",
+              "value": {
+                "string_value": "www.state.gov",
+                "type": "STRING"
+              }
+            },
+            {
+              "key": "thumbnail_image_large",
+              "value": {
+                "image_value": {
+                  "height": 315,
+                  "url": "https://pbs.twimg.com/card_img/2095278961182031872/14SgZ9im?format=png&name=600x600",
+                  "width": 600
+                },
+                "type": "IMAGE"
+              }
+            },
+            {
+              "key": "summary_photo_image_small",
+              "value": {
+                "image_value": {
+                  "height": 202,
+                  "url": "https://pbs.twimg.com/card_img/2095278961182031872/14SgZ9im?format=png&name=386x202",
+                  "width": 386
+                },
+                "type": "IMAGE"
+              }
+            },
+            {
+              "key": "thumbnail_image_original",
+              "value": {
+                "image_value": {
+                  "height": 1260,
+                  "url": "https://pbs.twimg.com/card_img/2095278961182031872/14SgZ9im?format=png&name=orig",
+                  "width": 2400
+                },
+                "type": "IMAGE"
+              }
+            },
+            {
+              "key": "photo_image_full_size_small",
+              "value": {
+                "image_value": {
+                  "height": 202,
+                  "url": "https://pbs.twimg.com/card_img/2095278961182031872/14SgZ9im?format=png&name=386x202",
+                  "width": 386
+                },
+                "type": "IMAGE"
+              }
+            },
+            {
+              "key": "summary_photo_image_large",
+              "value": {
+                "image_value": {
+                  "height": 419,
+                  "url": "https://pbs.twimg.com/card_img/2095278961182031872/14SgZ9im?format=png&name=800x419",
+                  "width": 800
+                },
+                "type": "IMAGE"
+              }
+            },
+            {
+              "key": "thumbnail_image_small",
+              "value": {
+                "image_value": {
+                  "height": 76,
+                  "url": "https://pbs.twimg.com/card_img/2095278961182031872/14SgZ9im?format=png&name=144x144",
+                  "width": 144
+                },
+                "type": "IMAGE"
+              }
+            },
+            {
+              "key": "thumbnail_image_x_large",
+              "value": {
+                "image_value": {
+                  "height": 1075,
+                  "url": "https://pbs.twimg.com/card_img/2095278961182031872/14SgZ9im?format=png&name=2048x2048_2_exp",
+                  "width": 2048
+                },
+                "type": "IMAGE"
+              }
+            },
+            {
+              "key": "photo_image_full_size_original",
+              "value": {
+                "image_value": {
+                  "height": 1260,
+                  "url": "https://pbs.twimg.com/card_img/2095278961182031872/14SgZ9im?format=png&name=orig",
+                  "width": 2400
+                },
+                "type": "IMAGE"
+              }
+            },
+            {
+              "key": "vanity_url",
+              "value": {
+                "scribe_key": "vanity_url",
+                "string_value": "state.gov",
+                "type": "STRING"
+              }
+            },
+            {
+              "key": "photo_image_full_size",
+              "value": {
+                "image_value": {
+                  "height": 314,
+                  "url": "https://pbs.twimg.com/card_img/2095278961182031872/14SgZ9im?format=png&name=600x314",
+                  "width": 600
+                },
+                "type": "IMAGE"
+              }
+            },
+            {
+              "key": "thumbnail_image_color",
+              "value": {
+                "image_color_value": {
+                  "palette": [
+                    {
+                      "percentage": 97.96,
+                      "rgb": {
+                        "blue": 79,
+                        "green": 50,
+                        "red": 0
+                      }
+                    },
+                    {
+                      "percentage": 1.89,
+                      "rgb": {
+                        "blue": 170,
+                        "green": 156,
+                        "red": 132
+                      }
+                    },
+                    {
+                      "percentage": 0.21,
+                      "rgb": {
+                        "blue": 240,
+                        "green": 238,
+                        "red": 234
+                      }
+                    }
+                  ]
+                },
+                "type": "IMAGE_COLOR"
+              }
+            },
+            {
+              "key": "title",
+              "value": {
+                "string_value": "Update on U.S. Foreign Assistance to the Philippines in Response to Recent Flooding - United States...",
+                "type": "STRING"
+              }
+            },
+            {
+              "key": "summary_photo_image_color",
+              "value": {
+                "image_color_value": {
+                  "palette": [
+                    {
+                      "percentage": 97.96,
+                      "rgb": {
+                        "blue": 79,
+                        "green": 50,
+                        "red": 0
+                      }
+                    },
+                    {
+                      "percentage": 1.89,
+                      "rgb": {
+                        "blue": 170,
+                        "green": 156,
+                        "red": 132
+                      }
+                    },
+                    {
+                      "percentage": 0.21,
+                      "rgb": {
+                        "blue": 240,
+                        "green": 238,
+                        "red": 234
+                      }
+                    }
+                  ]
+                },
+                "type": "IMAGE_COLOR"
+              }
+            },
+            {
+              "key": "summary_photo_image_x_large",
+              "value": {
+                "image_value": {
+                  "height": 1075,
+                  "url": "https://pbs.twimg.com/card_img/2095278961182031872/14SgZ9im?format=png&name=2048x2048_2_exp",
+                  "width": 2048
+                },
+                "type": "IMAGE"
+              }
+            },
+            {
+              "key": "summary_photo_image",
+              "value": {
+                "image_value": {
+                  "height": 314,
+                  "url": "https://pbs.twimg.com/card_img/2095278961182031872/14SgZ9im?format=png&name=600x314",
+                  "width": 600
+                },
+                "type": "IMAGE"
+              }
+            },
+            {
+              "key": "photo_image_full_size_color",
+              "value": {
+                "image_color_value": {
+                  "palette": [
+                    {
+                      "percentage": 97.96,
+                      "rgb": {
+                        "blue": 79,
+                        "green": 50,
+                        "red": 0
+                      }
+                    },
+                    {
+                      "percentage": 1.89,
+                      "rgb": {
+                        "blue": 170,
+                        "green": 156,
+                        "red": 132
+                      }
+                    },
+                    {
+                      "percentage": 0.21,
+                      "rgb": {
+                        "blue": 240,
+                        "green": 238,
+                        "red": 234
+                      }
+                    }
+                  ]
+                },
+                "type": "IMAGE_COLOR"
+              }
+            },
+            {
+              "key": "photo_image_full_size_x_large",
+              "value": {
+                "image_value": {
+                  "height": 1075,
+                  "url": "https://pbs.twimg.com/card_img/2095278961182031872/14SgZ9im?format=png&name=2048x2048_2_exp",
+                  "width": 2048
+                },
+                "type": "IMAGE"
+              }
+            },
+            {
+              "key": "card_url",
+              "value": {
+                "scribe_key": "card_url",
+                "string_value": "https://t.co/HeNaQokHxj",
+                "type": "STRING"
+              }
+            },
+            {
+              "key": "summary_photo_image_original",
+              "value": {
+                "image_value": {
+                  "height": 1260,
+                  "url": "https://pbs.twimg.com/card_img/2095278961182031872/14SgZ9im?format=png&name=orig",
+                  "width": 2400
+                },
+                "type": "IMAGE"
+              }
+            }
+          ],
+          "card_platform": {
+            "platform": {
+              "audience": {
+                "name": "production"
+              },
+              "device": {
+                "name": "Swift",
+                "version": "12"
+              }
+            }
+          },
+          "name": "summary_large_image",
+          "url": "https://t.co/HeNaQokHxj",
+          "user_refs_results": []
+        },
+        "place": {},
+        "entities": {
+          "hashtags": [],
+          "symbols": [],
+          "urls": [
+            {
+              "display_url": "state.gov/releases/offic…",
+              "expanded_url": "https://www.state.gov/releases/office-of-the-spokesperson/2025/08/update-on-u-s-foreign-assistance-to-the-philippines-in-response-to-recent-flooding/",
+              "indices": [
+                404,
+                427
+              ],
+              "url": "https://t.co/HeNaQokHxj"
+            }
+          ],
+          "user_mentions": []
+        },
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "article": null
+      },
+      "retweeted_tweet": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1955890505272975744",
       "url": "https://x.com/MMDA/status/1955890505272975744",
       "twitterUrl": "https://twitter.com/MMDA/status/1955890505272975744",
@@ -1675,7 +3583,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967205,
+        "followers": 3966761,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -1691,8 +3599,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61677,
-        "statusesCount": 888211,
+        "mediaCount": 61726,
+        "statusesCount": 888650,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1866,8 +3774,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186995,
-        "following": 87,
+        "followers": 187154,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -1879,16 +3787,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31261,
-        "statusesCount": 146776,
+        "mediaCount": 31371,
+        "statusesCount": 146899,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -2066,6 +3974,199 @@
     },
     {
       "type": "tweet",
+      "id": "1955892381238112348",
+      "url": "https://x.com/CYBTRAFFIC/status/1955892381238112348",
+      "twitterUrl": "https://twitter.com/CYBTRAFFIC/status/1955892381238112348",
+      "text": "🚨 Traffic Advisory – Kothur Y-Junction Underpass 🚨\nDue to heavy rainfall yesterday, the Kothur Y-Junction underpass is waterlogged. Dewatering operations are in progress with motors, and two additional motors are being arranged with the support of NH-44 authorities.\n\nTraffic Diversion: Vehicles are being diverted via Penjarla X-road. Motorists are advised to plan their routes accordingly and drive with caution in the area.\n\nCYBERABAD TRAFFIC POLICE.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 1199,
+      "createdAt": "Thu Aug 14 07:20:57 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1955892381238112348",
+      "displayTextRange": [
+        0,
+        275
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "CYBTRAFFIC",
+        "url": "https://x.com/CYBTRAFFIC",
+        "twitterUrl": "https://twitter.com/CYBTRAFFIC",
+        "id": "876684632325988352",
+        "name": "Cyberabad Traffic Police",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1870140635849625605/sgwl7xbm_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/876684632325988352/1788351953",
+        "description": "",
+        "location": "Cyberabad",
+        "followers": 226835,
+        "following": 131,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Jun 19 06:14:39 +0000 2017",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3864,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 11490,
+        "statusesCount": 42420,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Post your Grievances, Suggestions, Feedback and Participation interest in various initiatives of Cyberabad Traffic Police.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "cyberabadpolice.gov.in",
+                  "expanded_url": "https://www.cyberabadpolice.gov.in/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/36EbK6joqP"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/YOK73FQpBl",
+            "expanded_url": "https://x.com/CYBTRAFFIC/status/1955892381238112348/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 42,
+                    "w": 42,
+                    "x": 515,
+                    "y": 535
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 42,
+                    "w": 42,
+                    "x": 515,
+                    "y": 535
+                  }
+                ]
+              }
+            },
+            "id_str": "1955892172256858113",
+            "indices": [
+              276,
+              299
+            ],
+            "media_key": "3_1955892172256858113",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARskuZFiVlABCgACGyS5wgqXMFwAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGyS5kWJWUAEKAAIbJLnCCpcwXAAA",
+                "media_key": "3_1955892172256858113"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GyS5kWJWUAEgDqj.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 591,
+                  "w": 1055,
+                  "x": 0,
+                  "y": 167
+                },
+                {
+                  "h": 758,
+                  "w": 758,
+                  "x": 297,
+                  "y": 0
+                },
+                {
+                  "h": 758,
+                  "w": 665,
+                  "x": 390,
+                  "y": 0
+                },
+                {
+                  "h": 758,
+                  "w": 379,
+                  "x": 676,
+                  "y": 0
+                },
+                {
+                  "h": 758,
+                  "w": 1055,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 758,
+              "width": 1055
+            },
+            "sizes": {
+              "large": {
+                "h": 758,
+                "w": 1055
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/YOK73FQpBl"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1955894216011472965",
       "url": "https://x.com/MMDA/status/1955894216011472965",
       "twitterUrl": "https://twitter.com/MMDA/status/1955894216011472965",
@@ -2102,7 +4203,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967212,
+        "followers": 3966761,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -2118,8 +4219,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61677,
-        "statusesCount": 888211,
+        "mediaCount": 61726,
+        "statusesCount": 888650,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,

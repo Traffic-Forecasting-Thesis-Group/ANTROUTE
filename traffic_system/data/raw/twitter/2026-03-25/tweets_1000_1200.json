@@ -5,7 +5,7 @@
     "window_start": "2026-03-25T10:00:00+08:00",
     "window_end": "2026-03-25T12:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 9,
+    "tweet_count": 17,
     "slices": [
       {
         "start": "2026-03-25T10:00:00+08:00",
@@ -25,22 +25,22 @@
         "start": "2026-03-25T10:10:00+08:00",
         "end": "2026-03-25T10:15:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-25T10:15:00+08:00",
         "end": "2026-03-25T10:20:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-03-25T10:20:00+08:00",
         "end": "2026-03-25T10:25:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-25T10:25:00+08:00",
@@ -53,15 +53,15 @@
         "start": "2026-03-25T10:30:00+08:00",
         "end": "2026-03-25T10:35:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-03-25T10:35:00+08:00",
         "end": "2026-03-25T10:40:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-03-25T10:40:00+08:00",
@@ -137,8 +137,8 @@
         "start": "2026-03-25T11:30:00+08:00",
         "end": "2026-03-25T11:35:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-25T11:35:00+08:00",
@@ -172,8 +172,8 @@
         "start": "2026-03-25T11:55:00+08:00",
         "end": "2026-03-25T12:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       }
     ]
   },
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/330826792/1763601261",
         "description": "",
         "location": "Philippines",
-        "followers": 3307290,
+        "followers": 3307546,
         "following": 412,
         "status": "",
         "canDm": true,
@@ -229,15 +229,17 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 7586,
+        "favouritesCount": 7585,
         "hasCustomTimelines": true,
         "isTranslator": true,
-        "mediaCount": 281636,
-        "statusesCount": 1138261,
+        "mediaCount": 281963,
+        "statusesCount": 1139077,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
-        "pinnedTweetIds": [],
+        "pinnedTweetIds": [
+          "2098366108176625685"
+        ],
         "profile_bio": {
           "description": "Rappler is the Philippines' leading digital media company that's driven by uncompromising journalism, enabled by technology, & enriched by communities of action",
           "entities": {
@@ -334,7 +336,7 @@
             "result": {
               "__typename": "User",
               "action_counts": {
-                "favorites_count": 7586
+                "favorites_count": 7585
               },
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/1583252893368717313/wUCmGve8_normal.jpg"
@@ -362,7 +364,11 @@
               "notifications_settings": {
                 "notifications_enabled": false
               },
-              "pinned_items": {},
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2098366108176625685"
+                ]
+              },
               "privacy": {
                 "protected": false,
                 "suspended": false
@@ -400,7 +406,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 3307290,
+                "followers": 3307546,
                 "following": 412
               },
               "relationship_perspectives": {
@@ -418,8 +424,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 281636,
-                "tweets": 1138261
+                "media_tweets": 281963,
+                "tweets": 1139077
               },
               "verification": {
                 "is_blue_verified": true,
@@ -435,7 +441,7 @@
             "result": {
               "__typename": "User",
               "action_counts": {
-                "favorites_count": 7586
+                "favorites_count": 7585
               },
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/1583252893368717313/wUCmGve8_normal.jpg"
@@ -463,7 +469,11 @@
               "notifications_settings": {
                 "notifications_enabled": false
               },
-              "pinned_items": {},
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2098366108176625685"
+                ]
+              },
               "privacy": {
                 "protected": false,
                 "suspended": false
@@ -501,7 +511,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 3307290,
+                "followers": 3307546,
                 "following": 412
               },
               "relationship_perspectives": {
@@ -519,8 +529,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 281636,
-                "tweets": 1138261
+                "media_tweets": 281963,
+                "tweets": 1139077
               },
               "verification": {
                 "is_blue_verified": true,
@@ -546,6 +556,671 @@
             "url": "https://t.co/uDwGh3tmSL"
           }
         ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2036626777775509977",
+      "url": "https://x.com/shanaka86/status/2036626777775509977",
+      "twitterUrl": "https://twitter.com/shanaka86/status/2036626777775509977",
+      "text": "BREAKING: Iranian drones struck a fuel storage tank at Kuwait International Airport shortly after 2am local time this morning. Fire broke out. Firefighting teams contained it. No casualties. Kuwait Civil Aviation Authority confirmed the strike and activated emergency measures.\n\nThis is not the first time. The same fuel tanks were hit on March 8. The same airport. The same time of night. The same outcome: fire, containment, no deaths. The repetition is not failure. It is calibration. The IRGC is not trying to destroy Kuwait International Airport. It is demonstrating that it can reach the fuel supply of every aircraft that operates from it, whenever it chooses, as many times as it chooses, and nobody can stop the drone from arriving.\n\nKuwait hosts Ali Al Salem Air Base, Camp Arifjan, Camp Buehring, and the Shuaiba port logistics hub. These are not Kuwaiti facilities with American visitors. They are the forward operating infrastructure of the United States military in the Persian Gulf. Ali Al Salem launches the sorties. Camp Arifjan coordinates the logistics. Shuaiba receives the supplies. And Kuwait International Airport’s fuel tanks, operated by Kafco and fed by pipelines from Mina al-Ahmadi and Mina Abdullah refineries, supply the jet fuel that keeps everything in the air.\n\nWhen you hit the fuel tank at 2am, you are not hitting the airport. You are hitting the supply chain that connects refineries to runways to combat aircraft to Iranian airspace. The IRGC does not need to destroy the runway. It needs to demonstrate that the fuel sitting on the runway can burn at any time. The demonstration is the weapon. The repetition is the proof that air defences cannot guarantee the fuel supply. And every Patriot interceptor fired at a $20,000 Shahed drone costs $3 million. The arithmetic of attrition favours the drone.\n\nKuwait’s Emir called the strikes “unprovoked.” Kuwait has publicly denied allowing US offensive operations from its soil. But IRGC targeting calculus does not distinguish between active participation and passive hosting. If American aircraft launch from your territory, your fuel tanks are part of the supply chain. If American logistics flow through your ports, your ports are targets. Iran’s position, stated explicitly by Araghchi, is that countries “that have given their soil to American forces to attack us” are legitimate targets regardless of their stated neutrality. The neutrality is diplomatic. The geography is military. And the drones read geography.\n\nThe pattern since February 28 tells the story. Airport fuel tanks, refinery approaches, power lines, base perimeters. Seven overhead power lines taken offline in a single night. Radar installations. Terminal buildings. Each strike is low-casualty, contained, repairable. Each strike is also unrepeatable proof that the IRGC can reach the target again. The message to Kuwait is not “we will destroy you.” The message is “we can touch you, and the Americans cannot prevent it, and you should ask them to stop the war before we touch something that does not contain.”\n\nThe message to Washington is different but related. Every drone that reaches a fuel tank in Kuwait is a drone that air defences did not intercept. Every unintercepted drone is evidence that the defensive umbrella has gaps. Every gap is a planning variable for the next wave. And the waves come at 2am, when the message arrives before the morning briefing.\n\nSo many countries now absorbing the consequences of a 21-mile strait: Sri Lanka, Bangladesh, Pakistan, India, Slovenia, South Korea, Philippines, United Kingdom, Kuwait and many others globally. The list grows. The fuel burns. The drones arrive. The molecules remain trapped.\n\nhttps://t.co/iFmUcarGdV",
+      "source": "Twitter for iPhone",
+      "retweetCount": 52,
+      "replyCount": 12,
+      "likeCount": 134,
+      "quoteCount": 5,
+      "viewCount": 24400,
+      "createdAt": "Wed Mar 25 02:10:37 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 23,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036626777775509977",
+      "displayTextRange": [
+        0,
+        277
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "shanaka86",
+        "url": "https://x.com/shanaka86",
+        "twitterUrl": "https://twitter.com/shanaka86",
+        "id": "56302171",
+        "name": "Shanaka Anslem Perera ⚡",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1891509660630269952/kR7B-kAC_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/56302171/1621338166",
+        "description": "",
+        "location": "Australia",
+        "followers": 308338,
+        "following": 3626,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Jul 13 05:58:12 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 9847,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 5376,
+        "statusesCount": 35280,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2000174714233167982"
+        ],
+        "profile_bio": {
+          "description": "Author of The Ascent Begins. Independent Analyst. Money, geopolitics, AI, science, and sovereignty. Trying to understand the reality a bit better.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "substack.com/@shanakaanslem…",
+                  "expanded_url": "https://substack.com/@shanakaanslemperera",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/iU9F1grDfo"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/BHE0yrYxTe",
+            "expanded_url": "https://x.com/shanaka86/status/2036626777775509977/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "2036626767776284672",
+            "indices": [
+              278,
+              301
+            ],
+            "media_key": "13_2036626767776284672",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARxDjUE5W4AAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABHEONQTlbgAAAAA==",
+                "media_key": "13_2036626767776284672"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2036626767776284672/img/-1J_6QbWufhP7C2x.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 448,
+              "width": 640
+            },
+            "sizes": {
+              "large": {
+                "h": 448,
+                "w": 640
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/BHE0yrYxTe",
+            "video_info": {
+              "aspect_ratio": [
+                10,
+                7
+              ],
+              "duration_millis": 4076,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/2036626767776284672/pl/fgrXOqTudq-QqkmV.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2036626767776284672/vid/avc1/384x270/-PAt9GboRGeQHgLd.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2036626767776284672/vid/avc1/640x448/hvFilQ3MT9w4406a.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [
+          {
+            "display_url": "open.substack.com/pub/shanakaans…",
+            "expanded_url": "https://open.substack.com/pub/shanakaanslemperera/p/the-nitrogen-trap?r=6p7b5o&utm_medium=ios",
+            "indices": [
+              3706,
+              3729
+            ],
+            "url": "https://t.co/iFmUcarGdV"
+          }
+        ],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2036628035131097174",
+      "url": "https://x.com/The_SignalBrief/status/2036628035131097174",
+      "twitterUrl": "https://twitter.com/The_SignalBrief/status/2036628035131097174",
+      "text": "Global Update: HORMUZ CLOSED, TEL AVIV HIT\nIran's missile campaign hit central Tel Aviv on March 24 while Trump postponed strikes on Iranian power plants for 5 days — signaling the war is shifting from pure escalation to bargaining under fire. Philippines just declared the first national energy emergency from Hormuz closure. Full 10-region brief below.\n\nIran's appointment of IRGC-linked Zolghadr as SNSC Secretary is the underreported signal — Tehran is consolidating wartime decision-making into a permanent military-strategic architecture that will outlast any ceasefire.\n#IranWar #StraitOfHormuz #OSINT #Geopolitics #MiddleEast #OilCrisis #Defence #HormuzCrisis",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 1,
+      "likeCount": 4,
+      "quoteCount": 0,
+      "viewCount": 217,
+      "createdAt": "Wed Mar 25 02:15:36 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036628035131097174",
+      "displayTextRange": [
+        0,
+        279
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "The_SignalBrief",
+        "url": "https://x.com/The_SignalBrief",
+        "twitterUrl": "https://twitter.com/The_SignalBrief",
+        "id": "2025491085704003584",
+        "name": "TheSignalBrief \"Cut the Noise Read the Signal\"",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2028892747130912769/mUuEZkrP_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2025491085704003584/1772563174",
+        "description": "",
+        "location": "London, UK",
+        "followers": 33,
+        "following": 104,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sun Feb 22 08:41:34 +0000 2026",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 165,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 103,
+        "statusesCount": 160,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The Signal Brief | Covering wars, diplomacy, energy, trade routes & power shifts.\n📊 Data-driven insights\n🗺 Visual briefs & infographics\n🧵 Strategic threads",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/K9nU7tfyxp",
+            "expanded_url": "https://x.com/The_SignalBrief/status/2036628035131097174/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 49,
+                    "w": 49,
+                    "x": 35,
+                    "y": 416
+                  },
+                  {
+                    "h": 70,
+                    "w": 70,
+                    "x": 663,
+                    "y": 262
+                  },
+                  {
+                    "h": 178,
+                    "w": 178,
+                    "x": 618,
+                    "y": 186
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 49,
+                    "w": 49,
+                    "x": 35,
+                    "y": 416
+                  },
+                  {
+                    "h": 70,
+                    "w": 70,
+                    "x": 663,
+                    "y": 262
+                  },
+                  {
+                    "h": 178,
+                    "w": 178,
+                    "x": 618,
+                    "y": 186
+                  }
+                ]
+              }
+            },
+            "id_str": "2036625954039336960",
+            "indices": [
+              280,
+              303
+            ],
+            "media_key": "3_2036625954039336960",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxDjIPC2xAACgACHEOOaE2XQFYAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHEOMg8LbEAAKAAIcQ45oTZdAVgAA",
+                "media_key": "3_2036625954039336960"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HEOMg8LbEAAktpL.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 672,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 675,
+                  "w": 675,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 675,
+                  "w": 592,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 675,
+                  "w": 338,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 675,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 675,
+              "width": 1200
+            },
+            "sizes": {
+              "large": {
+                "h": 675,
+                "w": 1200
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/K9nU7tfyxp"
+          },
+          {
+            "display_url": "pic.x.com/K9nU7tfyxp",
+            "expanded_url": "https://x.com/The_SignalBrief/status/2036628035131097174/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2036625953879728128",
+            "indices": [
+              280,
+              303
+            ],
+            "media_key": "3_2036625953879728128",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxDjIO5V6AACgACHEOOaE2XQFYAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHEOMg7lXoAAKAAIcQ45oTZdAVgAA",
+                "media_key": "3_2036625953879728128"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HEOMg7lXoAAhwrz.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 717,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 720,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 632,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 360,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 720,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1280
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/K9nU7tfyxp"
+          },
+          {
+            "display_url": "pic.x.com/K9nU7tfyxp",
+            "expanded_url": "https://x.com/The_SignalBrief/status/2036628035131097174/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2036625953875521537",
+            "indices": [
+              280,
+              303
+            ],
+            "media_key": "3_2036625953875521537",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxDjIO5F3ABCgACHEOOaE2XQFYAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHEOMg7kXcAEKAAIcQ45oTZdAVgAA",
+                "media_key": "3_2036625953875521537"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HEOMg7kXcAEHTXd.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 717,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 720,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 632,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 360,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 720,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1280
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/K9nU7tfyxp"
+          },
+          {
+            "display_url": "pic.x.com/K9nU7tfyxp",
+            "expanded_url": "https://x.com/The_SignalBrief/status/2036628035131097174/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2036625954056134656",
+            "indices": [
+              280,
+              303
+            ],
+            "media_key": "3_2036625954056134656",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxDjIPD22AACgACHEOOaE2XQFYAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHEOMg8PbYAAKAAIcQ45oTZdAVgAA",
+                "media_key": "3_2036625954056134656"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HEOMg8PbYAAs_xD.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 203,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/K9nU7tfyxp"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              577,
+              585
+            ],
+            "text": "IranWar"
+          },
+          {
+            "indices": [
+              586,
+              601
+            ],
+            "text": "StraitOfHormuz"
+          },
+          {
+            "indices": [
+              602,
+              608
+            ],
+            "text": "OSINT"
+          },
+          {
+            "indices": [
+              609,
+              621
+            ],
+            "text": "Geopolitics"
+          },
+          {
+            "indices": [
+              622,
+              633
+            ],
+            "text": "MiddleEast"
+          },
+          {
+            "indices": [
+              634,
+              644
+            ],
+            "text": "OilCrisis"
+          },
+          {
+            "indices": [
+              645,
+              653
+            ],
+            "text": "Defence"
+          },
+          {
+            "indices": [
+              654,
+              667
+            ],
+            "text": "HormuzCrisis"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
@@ -591,7 +1266,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -607,8 +1282,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412026,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -657,6 +1332,98 @@
     },
     {
       "type": "tweet",
+      "id": "2036629552622109002",
+      "url": "https://x.com/BreaPD/status/2036629552622109002",
+      "twitterUrl": "https://twitter.com/BreaPD/status/2036629552622109002",
+      "text": "TRAFFIC ADVISORY 🚨 \n\nAll of Westbound and Eastbound lanes of Imperial Hwy at the 57 overpass are closed due to a collision. Please use alternate routes.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 2,
+      "quoteCount": 2,
+      "viewCount": 13189,
+      "createdAt": "Wed Mar 25 02:21:38 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036629552622109002",
+      "displayTextRange": [
+        0,
+        152
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "BreaPD",
+        "url": "https://x.com/BreaPD",
+        "twitterUrl": "https://twitter.com/BreaPD",
+        "id": "66720775",
+        "name": "Brea Police Dept",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/2019209067353501697/rg32IMbH_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/66720775/1611162821",
+        "description": "",
+        "location": "Brea, CA",
+        "followers": 15201,
+        "following": 230,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Aug 18 16:15:28 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 631,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1723,
+        "statusesCount": 3982,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Brea Police Dept Public Information Office | Not Monitored 24/7 | Call 911 for an emergency",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "breapolice.net",
+                  "expanded_url": "http://www.breapolice.net",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/NRsUpoZwX3"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2036632333764501570",
       "url": "https://x.com/MakatiTraffic/status/2036632333764501570",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2036632333764501570",
@@ -693,7 +1460,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -709,8 +1476,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412026,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -759,6 +1526,543 @@
     },
     {
       "type": "tweet",
+      "id": "2036631895736459387",
+      "url": "https://x.com/BreaPD/status/2036631895736459387",
+      "twitterUrl": "https://twitter.com/BreaPD/status/2036631895736459387",
+      "text": "March 24, 2016 | 7:25 pm\n\nTRAFFIC ADVISORY 🚨:\n\nLanes will be closed for approximately 5-6 hours. Please use alternate routes.\n\n#trafficadvisory #breapd https://t.co/Ouxqcr9wue",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 2869,
+      "createdAt": "Wed Mar 25 02:30:57 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036631895736459387",
+      "displayTextRange": [
+        0,
+        151
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "BreaPD",
+        "url": "https://x.com/BreaPD",
+        "twitterUrl": "https://twitter.com/BreaPD",
+        "id": "66720775",
+        "name": "Brea Police Dept",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/2019209067353501697/rg32IMbH_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/66720775/1611162821",
+        "description": "",
+        "location": "Brea, CA",
+        "followers": 15201,
+        "following": 230,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Aug 18 16:15:28 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 631,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1723,
+        "statusesCount": 3982,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Brea Police Dept Public Information Office | Not Monitored 24/7 | Call 911 for an emergency",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "breapolice.net",
+                  "expanded_url": "http://www.breapolice.net",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/NRsUpoZwX3"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/Ouxqcr9wue",
+            "expanded_url": "https://x.com/BreaPD/status/2036631895736459387/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 871,
+                    "w": 871,
+                    "x": 116,
+                    "y": 35
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 871,
+                    "w": 871,
+                    "x": 116,
+                    "y": 35
+                  }
+                ]
+              }
+            },
+            "id_str": "2036631893060546560",
+            "indices": [
+              152,
+              175
+            ],
+            "media_key": "3_2036631893060546560",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxDkeqMGvAACgACHEOR6yuaIHsAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHEOR6owa8AAKAAIcQ5HrK5ogewAA",
+                "media_key": "3_2036631893060546560"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HEOR6owa8AAUVwQ.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 211
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 947,
+                  "x": 133,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 540,
+                  "x": 513,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1080,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/Ouxqcr9wue"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              127,
+              143
+            ],
+            "text": "trafficadvisory"
+          },
+          {
+            "indices": [
+              144,
+              151
+            ],
+            "text": "breapd"
+          }
+        ]
+      },
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "2036629552622109002",
+        "url": "https://x.com/BreaPD/status/2036629552622109002",
+        "twitterUrl": "https://twitter.com/BreaPD/status/2036629552622109002",
+        "text": "TRAFFIC ADVISORY 🚨 \n\nAll of Westbound and Eastbound lanes of Imperial Hwy at the 57 overpass are closed due to a collision. Please use alternate routes.",
+        "source": "Twitter for iPhone",
+        "retweetCount": 1,
+        "replyCount": 1,
+        "likeCount": 2,
+        "quoteCount": 2,
+        "viewCount": 13189,
+        "createdAt": "Wed Mar 25 02:21:38 +0000 2026",
+        "lang": "en",
+        "bookmarkCount": 0,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "2036629552622109002",
+        "displayTextRange": [
+          0,
+          152
+        ],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {
+          "type": "user",
+          "userName": "BreaPD",
+          "url": "https://x.com/BreaPD",
+          "twitterUrl": "https://twitter.com/BreaPD",
+          "id": "66720775",
+          "name": "Brea Police Dept",
+          "isVerified": false,
+          "isBlueVerified": false,
+          "verifiedType": "Government",
+          "profilePicture": "https://pbs.twimg.com/profile_images/2019209067353501697/rg32IMbH_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/66720775/1611162821",
+          "description": "",
+          "location": "Brea, CA",
+          "followers": 15201,
+          "following": 230,
+          "status": "",
+          "canDm": true,
+          "canMediaTag": true,
+          "createdAt": "Tue Aug 18 16:15:28 +0000 2009",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 631,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 1723,
+          "statusesCount": 3982,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [],
+          "profile_bio": {
+            "description": "Brea Police Dept Public Information Office | Not Monitored 24/7 | Call 911 for an emergency",
+            "entities": {
+              "description": {},
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "breapolice.net",
+                    "expanded_url": "http://www.breapolice.net",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/NRsUpoZwX3"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {},
+        "card": null,
+        "place": {},
+        "entities": {},
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
+        "article": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2036633224257143074",
+      "url": "https://x.com/officialrnintel/status/2036633224257143074",
+      "twitterUrl": "https://twitter.com/officialrnintel/status/2036633224257143074",
+      "text": "🇺🇸🇮🇷🇮🇱 - WAR IN IRAN | MARCH 24th, DAY 25 RECAP:\n\n🇮🇷🇮🇱 - Multiple Iranian missile attacks on Israel throughout the day caused dozens of injuries and damage to buildings. “The home of Knesset member Meirav Ben-Ari was destroyed by an Iranian missile this morning,” according to Israeli media.\n\n🇸🇦🇦🇪🇮🇷 - \"Riyadh seeks to re-establish deterrence and is nearing a decision to join the war on Iran. The UAE and Saudi Arabia are considering joining the fight after recent Iranian attacks on their energy infrastructure,\" The Wall Street Journal reports. Saudi Arabia denied this report and said it seeks an end to the war.\n\n🇮🇷🇮🇱 - Iran has used a new type of missile or warhead in its attack on Tel Aviv. It reportedly launched a single missile carrying 3–4 bombs, each weighing around 100 kg, causing significant damage to at least three buildings, according to Israeli officials.\n\n🇰🇷🇴🇲 - South Korea’s Foreign Minister Cho asked his Omani counterpart for support with crude oil and LNG supplies during a phone call due to the effects of the Iran war.\n\n🇺🇸🇵🇭🛢 - The Philippines is working with Washington to secure waivers and exemptions so it can buy oil from U.S.-sanctioned countries, Philippines Ambassador to the United States Jose Manuel Romualdez told Reuters.\n\n🇮🇱 - An IDF reserve soldier was found dead after shooting himself in the head inside a shelter in Bat Yam, Israel.\n\n🇮🇷🇮🇱 - Iran launched seven waves of missile attacks at Israel over a span of ten hours last night, according to CNN.\n\n🇮🇷 - Iran has appointed former IRGC commander Mohammad Bagher Zolghadr as secretary of Iran’s National Security Council, replacing Ali Larijani. Zolghadr is a known IRGC hardliner; he was said to be so hardline that Qassem Soleimani briefly left the IRGC due to repression he witnessed from figures like Zolghadr.\n\n🇺🇸🇮🇷 - Marco Rubio will attend a G7 meeting on the topic of Iran this Friday.\n\n🇶🇦🇮🇷 - QatarEnergy has declared force majeure on certain affected long-term LNG supply contracts, impacting customers in Italy, Belgium, South Korea, and China, Reuters reports.\n\n🇺🇸🇮🇷 - Ali Akbar Ahmadian, a former IRGC commander best known as an architect of Iran’s asymmetric warfare strategy, said they have been waiting for years for an American ground invasion and urged them to “come closer.”\n\n🇺🇸🇮🇱🇮🇶 - The Iraqi Armed Forces and the Iraqi Council of National Security have given the Popular Mobilization Forces full authority to respond to and retaliate against any U.S. and Israeli attacks, effectively giving them the green light to formally enter the war—a stunning declaration.\n\n🇺🇸🇮🇷 - An American 15-point ceasefire plan, first reported by Israeli Channel 12, was presented to Iran via Pakistani Field Marshal Asim Munir, who has a close relationship with both the Iranian IRGC and President Trump. Officials say it is unlikely Iran will respond soon, according to The New York Times.\n\n🇺🇸🇮🇷 - Saeed Jalili, a member of Iran’s Expediency Discernment Council and a known hardliner, said the United States has gone from openly discussing regime change to now hoping Iran will engage in dialogue, adding that this is merely deception.\n\n🇻🇦 - Pope Leo XIV has called for a ceasefire and urged all parties engaged in the Iran war to seek peace through talks.\n\n🇺🇸🇮🇷 - Iran refuses to negotiate with Steve Witkoff and Jared Kushner and prefers JD Vance, according to CNN.\n\n🇮🇷🇰🇼 - Drones struck fuel tanks at Kuwait International Airport, causing a large fire, according to Kuwait’s General Civil Aviation Authority.\n\n🇺🇸🇮🇷🇮🇱 - Iranian demands to end the war, according to The Wall Street Journal: Closure of all American bases in the Gulf. A new order for the Strait of Hormuz allowing Iran to collect fees from ships transiting the waterway, similar to the Suez Canal. Guarantees that the war would not restart and an end to Israel’s strikes on the Iran-aligned Lebanese militia Hezbollah. Lifting all sanctions on Iran. Permitting Iran to keep its missile program with no negotiations to limit it.\n\nHere's our recap from yesterday: https://t.co/bgtCFFCVDe",
+      "source": "Twitter for iPhone",
+      "retweetCount": 14,
+      "replyCount": 0,
+      "likeCount": 96,
+      "quoteCount": 0,
+      "viewCount": 23111,
+      "createdAt": "Wed Mar 25 02:36:14 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 9,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036633224257143074",
+      "displayTextRange": [
+        0,
+        276
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "officialrnintel",
+        "url": "https://x.com/officialrnintel",
+        "twitterUrl": "https://twitter.com/officialrnintel",
+        "id": "1767260808961036288",
+        "name": "Rerum Novarum // Intel, Breaking News, and Alerts",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2064889874675589120/bEEWNT2U_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1767260808961036288/1714878075",
+        "description": "",
+        "location": "",
+        "followers": 58503,
+        "following": 7,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Mon Mar 11 18:46:40 +0000 2024",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 20163,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 11880,
+        "statusesCount": 49515,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Rerum Novarum is an intelligence aggregator from a nationalist perspective. We provide our readers with a mixture of breaking news and geopolitical commentary.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "t.me/rnintel",
+                  "expanded_url": "https://t.me/rnintel",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/yDSVGSNNOY"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [
+          {
+            "display_url": "x.com/officialrninte…",
+            "expanded_url": "https://x.com/officialrnintel/status/2036269549071323247?s=20",
+            "indices": [
+              4027,
+              4050
+            ],
+            "url": "https://t.co/bgtCFFCVDe"
+          }
+        ],
+        "user_mentions": []
+      },
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "2036269549071323247",
+        "url": "https://x.com/officialrnintel/status/2036269549071323247",
+        "twitterUrl": "https://twitter.com/officialrnintel/status/2036269549071323247",
+        "text": "🇺🇸🇮🇷🇮🇱 - WAR IN IRAN | MARCH 23rd, DAY 24 RECAP:\n\n🇺🇸🇪🇺🇮🇶 - Iraqi militant groups agreed to a 24-hour ceasefire to allow the full withdrawal of U.S. and NATO troops from Victoria Base in Baghdad. U.S. and NATO forces have fully withdrawn from all areas of Iraq except northern regions, where some troops remain in Kurdish areas, marking a major development. U.S. and NATO troops have now fully withdrawn.\n\n🇮🇷🇵🇭🇻🇳 - Due to the war in Iran, Vietnam, the Philippines, and Bangladesh are expected to run out of oil within three weeks, a U.S. diplomat tells POLITICO.\n\n🇺🇸🇮🇷🇮🇱 - US/Israel continue attacks on Tehran and western Iran.\n\n🇮🇷🇸🇦🇮🇱 - Iran continues attacks on Gulf countries and Israel.\n\n🇺🇸🇮🇷 - President Trump has halted the planned attack on Iran’s power plants. He says that, after two days of productive conversations aimed at ending hostilities in the Middle East, he will postpone the strikes on power plants for five days. Iranian officials completely deny this; they say there have been no talks, direct or indirect, with the United States.\n\n🇺🇸🇮🇷🇮🇱 - The U.S. wants to end the war with Iran by April 9th, Yediot Ahronoth reports.\n\n🇺🇸🇮🇶🇸🇾 - Rockets launched from Mosul, Iraq, targeted the U.S. military base in northeastern Syria, according to Reuters.\n\n🇺🇸🇮🇷 - The Trump administration is quietly weighing Iran's parliament speaker, Mohammad Bagher Ghalibaf, as a potential partner and future leader in Iran, according to Politico. Ghalibaf denied that any negotiations or talks were taking place with Washington. It should be noted that Ghalibaf has always had very close ties to IRGC hardliners and is seen as a hardliner himself regarding relations with the U.S. and Israel. He was vocal about the need for direct confrontation with the United States after the 12-day war.\n\n🇺🇸🇮🇱🇮🇷 - Two energy infrastructure sites in Isfahan and Khorramshahr, Iran, have been attacked, according to the Fars News Agency.\n\n🇱🇧🇮🇱 - \"Hezbollah succeeds today in restricting a large ground force of the Israeli army and continues to challenge the security of the residents of the north and the home front of Israel,\" Yedioth Ahronoth reports.\n\n🛢- Brent and WTI crude oil futures begin to rise again after briefly dropping. \n\nHere's our recap from yesterday: https://t.co/htPFBaFvWU",
+        "source": "Twitter for iPhone",
+        "retweetCount": 15,
+        "replyCount": 1,
+        "likeCount": 111,
+        "quoteCount": 0,
+        "viewCount": 24970,
+        "createdAt": "Tue Mar 24 02:31:07 +0000 2026",
+        "lang": "en",
+        "bookmarkCount": 15,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "2036269549071323247",
+        "displayTextRange": [
+          0,
+          275
+        ],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {
+          "type": "user",
+          "userName": "officialrnintel",
+          "url": "https://x.com/officialrnintel",
+          "twitterUrl": "https://twitter.com/officialrnintel",
+          "id": "1767260808961036288",
+          "name": "Rerum Novarum // Intel, Breaking News, and Alerts",
+          "isVerified": false,
+          "isBlueVerified": true,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/2064889874675589120/bEEWNT2U_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/1767260808961036288/1714878075",
+          "description": "",
+          "location": "",
+          "followers": 58503,
+          "following": 7,
+          "status": "",
+          "canDm": false,
+          "canMediaTag": true,
+          "createdAt": "Mon Mar 11 18:46:40 +0000 2024",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 20163,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 11880,
+          "statusesCount": 49515,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [],
+          "profile_bio": {
+            "description": "Rerum Novarum is an intelligence aggregator from a nationalist perspective. We provide our readers with a mixture of breaking news and geopolitical commentary.",
+            "entities": {
+              "description": {},
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "t.me/rnintel",
+                    "expanded_url": "https://t.me/rnintel",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/yDSVGSNNOY"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {},
+        "card": null,
+        "place": {},
+        "entities": {
+          "hashtags": [],
+          "symbols": [],
+          "urls": [
+            {
+              "display_url": "x.com/officialrninte…",
+              "expanded_url": "https://x.com/officialrnintel/status/2035897294218793110?s=20",
+              "indices": [
+                2250,
+                2273
+              ],
+              "url": "https://t.co/htPFBaFvWU"
+            }
+          ],
+          "user_mentions": []
+        },
+        "quoted_tweet": {
+          "type": "tweet",
+          "id": "2035897294218793110",
+          "url": "",
+          "twitterUrl": "",
+          "text": "",
+          "source": "Twitter for iPhone",
+          "retweetCount": 0,
+          "replyCount": 0,
+          "likeCount": 0,
+          "quoteCount": 0,
+          "viewCount": 0,
+          "createdAt": "",
+          "lang": "",
+          "bookmarkCount": 0,
+          "isReply": false,
+          "inReplyToId": null,
+          "conversationId": "",
+          "displayTextRange": [],
+          "inReplyToUserId": null,
+          "inReplyToUsername": null,
+          "author": {},
+          "extendedEntities": {},
+          "card": null,
+          "place": {},
+          "entities": {},
+          "quoted_tweet": null,
+          "retweeted_tweet": null,
+          "isLimitedReply": false,
+          "communityInfo": null,
+          "article": null
+        },
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
+        "article": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2036633037837062380",
       "url": "https://x.com/bilyonaryo_ph/status/2036633037837062380",
       "twitterUrl": "https://twitter.com/bilyonaryo_ph/status/2036633037837062380",
@@ -768,7 +2072,7 @@
       "replyCount": 0,
       "likeCount": 4,
       "quoteCount": 0,
-      "viewCount": 528,
+      "viewCount": 529,
       "createdAt": "Wed Mar 25 02:35:29 +0000 2026",
       "lang": "en",
       "bookmarkCount": 0,
@@ -795,7 +2099,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/4340349613/1681444406",
         "description": "",
         "location": "Philippines",
-        "followers": 97773,
+        "followers": 98477,
         "following": 187,
         "status": "",
         "canDm": true,
@@ -811,8 +2115,8 @@
         "favouritesCount": 552,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 48951,
-        "statusesCount": 157097,
+        "mediaCount": 49263,
+        "statusesCount": 157409,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1004,7 +2308,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967070,
+        "followers": 3966553,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -1017,11 +2321,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 5284,
+        "favouritesCount": 5283,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888279,
+        "mediaCount": 61737,
+        "statusesCount": 888712,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1106,7 +2410,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1122,8 +2426,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412026,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1181,7 +2485,7 @@
       "replyCount": 0,
       "likeCount": 1,
       "quoteCount": 0,
-      "viewCount": 541,
+      "viewCount": 543,
       "createdAt": "Wed Mar 25 02:51:59 +0000 2026",
       "lang": "en",
       "bookmarkCount": 0,
@@ -1208,7 +2512,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/876684632325988352/1788351953",
         "description": "",
         "location": "Cyberabad",
-        "followers": 226787,
+        "followers": 226847,
         "following": 131,
         "status": "",
         "canDm": true,
@@ -1221,11 +2525,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3846,
+        "favouritesCount": 3870,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 11467,
-        "statusesCount": 42224,
+        "mediaCount": 11495,
+        "statusesCount": 42450,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1424,7 +2728,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/876684632325988352/1788351953",
         "description": "",
         "location": "Cyberabad",
-        "followers": 226787,
+        "followers": 226847,
         "following": 131,
         "status": "",
         "canDm": true,
@@ -1437,11 +2741,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3846,
+        "favouritesCount": 3870,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 11467,
-        "statusesCount": 42224,
+        "mediaCount": 11495,
+        "statusesCount": 42450,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1687,7 +2991,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/876684632325988352/1788351953",
         "description": "",
         "location": "Cyberabad",
-        "followers": 226787,
+        "followers": 226847,
         "following": 131,
         "status": "",
         "canDm": true,
@@ -1700,11 +3004,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3846,
+        "favouritesCount": 3870,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 11467,
-        "statusesCount": 42224,
+        "mediaCount": 11495,
+        "statusesCount": 42450,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1844,6 +3148,645 @@
             "text": "PublicSafety"
           }
         ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2036647386790207641",
+      "url": "https://x.com/halairporttrfps/status/2036647386790207641",
+      "twitterUrl": "https://twitter.com/halairporttrfps/status/2036647386790207641",
+      "text": "\"Traffic Advisory\"\n Slow movement from Mahadevapura towards Marathahalli due to ongoing Metro station work at Kartik Nagar. Commuters, we request your patience &amp; cooperation. Thank you! \n@blrcitytraffic @DCPTrEastBCP @CPBlr @Jointcptraffic @acpwfieldtrf https://t.co/Nzt4ZEfcxS",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 5,
+      "quoteCount": 0,
+      "viewCount": 997,
+      "createdAt": "Wed Mar 25 03:32:30 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036647386790207641",
+      "displayTextRange": [
+        0,
+        257
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "halairporttrfps",
+        "url": "https://x.com/halairporttrfps",
+        "twitterUrl": "https://twitter.com/halairporttrfps",
+        "id": "3014057594",
+        "name": "HAL AIRPORT TRAFFIC BTP",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1431940538807111685/NlzIwwo7_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/3014057594/1698666640",
+        "description": "",
+        "location": "Bengaluru, India",
+        "followers": 12343,
+        "following": 64,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Feb 09 06:37:58 +0000 2015",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5828,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 7764,
+        "statusesCount": 20145,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2100145281115492778"
+        ],
+        "profile_bio": {
+          "description": "Official twitter account of HAL Airport Traffic Police Station (080-22943115). Dial Namma-112 in case of emergency. @blrcitytraffic",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    116,
+                    131
+                  ],
+                  "name": "",
+                  "screen_name": "blrcitytraffic"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.gov.in",
+                  "expanded_url": "https://btp.gov.in/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/aoci2eeC5I"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/Nzt4ZEfcxS",
+            "expanded_url": "https://x.com/halairporttrfps/status/2036647386790207641/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 110,
+                    "w": 110,
+                    "x": 451,
+                    "y": 290
+                  },
+                  {
+                    "h": 150,
+                    "w": 150,
+                    "x": 45,
+                    "y": 3
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 110,
+                    "w": 110,
+                    "x": 451,
+                    "y": 290
+                  },
+                  {
+                    "h": 150,
+                    "w": 150,
+                    "x": 45,
+                    "y": 3
+                  }
+                ]
+              }
+            },
+            "id_str": "2036647373469052928",
+            "indices": [
+              258,
+              281
+            ],
+            "media_key": "3_2036647373469052928",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxDn/7cWvAACgACHEOgAfZboJkAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHEOf/txa8AAKAAIcQ6AB9lugmQAA",
+                "media_key": "3_2036647373469052928"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HEOf_txa8AA45dQ.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 720,
+                  "w": 1286,
+                  "x": 314,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 720,
+                  "x": 880,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 632,
+                  "x": 924,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 360,
+                  "x": 1060,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 720,
+              "width": 1600
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1600
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/Nzt4ZEfcxS"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "1851545900",
+            "indices": [
+              191,
+              206
+            ],
+            "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+            "screen_name": "blrcitytraffic"
+          },
+          {
+            "id_str": "2809049605",
+            "indices": [
+              207,
+              220
+            ],
+            "name": "DCP Traffic East ಉಪ ಪೊಲೀಸ್ ಆಯುಕ್ತರು ಸಂಚಾರ ಪೂರ್ವ",
+            "screen_name": "DCPTrEastBCP"
+          },
+          {
+            "id_str": "2687852605",
+            "indices": [
+              221,
+              227
+            ],
+            "name": "CP Bengaluru ಪೊಲೀಸ್ ಆಯುಕ್ತ ಬೆಂಗಳೂರು",
+            "screen_name": "CPBlr"
+          },
+          {
+            "id_str": "2809164276",
+            "indices": [
+              228,
+              243
+            ],
+            "name": "Joint CP, Traffic, Bengaluru",
+            "screen_name": "Jointcptraffic"
+          },
+          {
+            "id_str": "1361589347032600576",
+            "indices": [
+              244,
+              257
+            ],
+            "name": "ACP Whitefield Traffic ಎಸಿಪಿ ಸಂಚಾರ ವೈಟ್ ಫೀಲ್ಡ್",
+            "screen_name": "acpwfieldtrf"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2036653509924233414",
+      "url": "https://x.com/jonJ_ilobela/status/2036653509924233414",
+      "twitterUrl": "https://twitter.com/jonJ_ilobela/status/2036653509924233414",
+      "text": "My objective take on the question: Is the country currently in a CRISIS or rather under PRESSURE? (to date)\n\nGlobal standards are clear. \nThe International Monetary Fund defines a crisis as severe economic disruption , marked by contraction, high inflation, or external imbalance. \nThe World Bank adds that crisis occurs when economic stress, institutional strain, and threats to basic needs happen at the same time. \nThe Organisation for Economic Co-operation and Development frames it as systemic failure across economic, political, and social dimensions.\n\nApplied to the Philippines today, those thresholds are not met.\nYes, the Middle East conflict is pushing oil prices higher. Inflation risks are rising, and transport sectors feel the strain. But fuel remains available, the economy continues to grow, and government responses are active.\n\nBy global standards, a crisis is not rising pressure, it is system breakdown.\n\nThe Philippines today is strained, but still functioning, not technically in crisis.\n\n#PhilippinesEnergy #FuelPricePressure\n#NotPaidToPost",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 2,
+      "likeCount": 14,
+      "quoteCount": 0,
+      "viewCount": 194,
+      "createdAt": "Wed Mar 25 03:56:50 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036653509924233414",
+      "displayTextRange": [
+        0,
+        280
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "jonJ_ilobela",
+        "url": "https://x.com/jonJ_ilobela",
+        "twitterUrl": "https://twitter.com/jonJ_ilobela",
+        "id": "1445372726957338630",
+        "name": "J. 🇵🇭",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2064570350567112704/ubOFXCdz_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1445372726957338630/1653187574",
+        "description": "",
+        "location": "Ilocos Norte ",
+        "followers": 1435,
+        "following": 411,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Tue Oct 05 12:58:25 +0000 2021",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 16624,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2183,
+        "statusesCount": 16544,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Ilokano | Proud Filipino 🇵🇭 | Agri • Economics • Health • Business • Jurisprudence | Development Advocate \n🥋 🎾 🎶🍷🌁🍽️✈️",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              1012,
+              1030
+            ],
+            "text": "PhilippinesEnergy"
+          },
+          {
+            "indices": [
+              1031,
+              1049
+            ],
+            "text": "FuelPricePressure"
+          },
+          {
+            "indices": [
+              1050,
+              1064
+            ],
+            "text": "NotPaidToPost"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": true,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2036653252570390948",
+      "url": "https://x.com/dtptraffic/status/2036653252570390948",
+      "twitterUrl": "https://twitter.com/dtptraffic/status/2036653252570390948",
+      "text": "Traffic Advisory\n\nTraffic movement will be affected in Sangam Vihar due to ongoing construction work. Karni Singh Shooting Range Road will remain closed from 25 Mar to 03 Apr 2026.\n\nCommuters are advised to plan ahead, avoid affected routes, and use alternate roads. Please follow directions of traffic personnel. \n\n#DPTrafficAdvisory",
+      "source": "Twitter for iPhone",
+      "retweetCount": 6,
+      "replyCount": 3,
+      "likeCount": 39,
+      "quoteCount": 0,
+      "viewCount": 4131,
+      "createdAt": "Wed Mar 25 03:55:49 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 4,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036653252570390948",
+      "displayTextRange": [
+        0,
+        280
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "dtptraffic",
+        "url": "https://x.com/dtptraffic",
+        "twitterUrl": "https://twitter.com/dtptraffic",
+        "id": "143766231",
+        "name": "Delhi Traffic Police",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1747140324324225024/rLI5Hyjo_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/143766231/1651490407",
+        "description": "",
+        "location": "India, Delhi",
+        "followers": 1598638,
+        "following": 49,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri May 14 10:06:44 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 6976,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 15209,
+        "statusesCount": 417913,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "24x7 Control Room : +91-11-25844444,1095",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "traffic.delhipolice.gov.in",
+                  "expanded_url": "https://traffic.delhipolice.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/U0jWSsRSeL"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/YMX84Ck7qD",
+            "expanded_url": "https://x.com/dtptraffic/status/2036653252570390948/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 221,
+                    "w": 221,
+                    "x": 28,
+                    "y": 633
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 277,
+                    "w": 277,
+                    "x": 35,
+                    "y": 792
+                  }
+                ]
+              }
+            },
+            "id_str": "2036653220513341440",
+            "indices": [
+              281,
+              304
+            ],
+            "media_key": "3_2036653220513341440",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxDpVA7WmAACgACHEOlV7IaIaQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHEOlUDtaYAAKAAIcQ6VXshohpAAA",
+                "media_key": "3_2036653220513341440"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HEOlUDtaYAA_60X.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1434,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 627
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2246,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2560,
+              "width": 2560
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/YMX84Ck7qD"
+          },
+          {
+            "display_url": "pic.x.com/YMX84Ck7qD",
+            "expanded_url": "https://x.com/dtptraffic/status/2036653252570390948/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2036653242025914368",
+            "indices": [
+              281,
+              304
+            ],
+            "media_key": "3_2036653242025914368",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxDpVU9mjAACgACHEOlV7IaIaQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHEOlVT2aMAAKAAIcQ6VXshohpAAA",
+                "media_key": "3_2036653242025914368"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HEOlVT2aMAAuqop.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1434,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2246,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 1280,
+                  "x": 320,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2560,
+              "width": 2560
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/YMX84Ck7qD"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              316,
+              334
+            ],
+            "text": "DPTrafficAdvisory"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,

@@ -5,7 +5,7 @@
     "window_start": "2026-04-28T12:00:00+08:00",
     "window_end": "2026-04-28T14:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 11,
+    "tweet_count": 13,
     "slices": [
       {
         "start": "2026-04-28T12:00:00+08:00",
@@ -18,8 +18,8 @@
         "start": "2026-04-28T12:05:00+08:00",
         "end": "2026-04-28T12:10:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 0,
+        "accepted": 0
       },
       {
         "start": "2026-04-28T12:10:00+08:00",
@@ -95,8 +95,8 @@
         "start": "2026-04-28T13:00:00+08:00",
         "end": "2026-04-28T13:05:00+08:00",
         "status_code": 200,
-        "returned": 2,
-        "accepted": 2
+        "returned": 3,
+        "accepted": 3
       },
       {
         "start": "2026-04-28T13:05:00+08:00",
@@ -116,8 +116,8 @@
         "start": "2026-04-28T13:15:00+08:00",
         "end": "2026-04-28T13:20:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-04-28T13:20:00+08:00",
@@ -158,8 +158,8 @@
         "start": "2026-04-28T13:45:00+08:00",
         "end": "2026-04-28T13:50:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-04-28T13:50:00+08:00",
@@ -178,108 +178,6 @@
     ]
   },
   "data": [
-    {
-      "type": "tweet",
-      "id": "2048976908222959677",
-      "url": "https://x.com/MMDA/status/2048976908222959677",
-      "twitterUrl": "https://twitter.com/MMDA/status/2048976908222959677",
-      "text": "MMDA ADVISORY: Rallyists are sighted at Roxas Blvd Kalaw WB, more or less 60 pax, as of 11:46 AM. Personnel of PNP and MMDA are on site managing traffic. #mmda",
-      "source": "Twitter for iPhone",
-      "retweetCount": 0,
-      "replyCount": 0,
-      "likeCount": 1,
-      "quoteCount": 0,
-      "viewCount": 766,
-      "createdAt": "Tue Apr 28 04:05:37 +0000 2026",
-      "lang": "en",
-      "bookmarkCount": 0,
-      "isReply": false,
-      "inReplyToId": null,
-      "conversationId": "2048976908222959677",
-      "displayTextRange": [
-        0,
-        159
-      ],
-      "inReplyToUserId": null,
-      "inReplyToUsername": null,
-      "author": {
-        "type": "user",
-        "userName": "MMDA",
-        "url": "https://x.com/MMDA",
-        "twitterUrl": "https://twitter.com/MMDA",
-        "id": "171574926",
-        "name": "Official MMDA",
-        "isVerified": false,
-        "isBlueVerified": true,
-        "verifiedType": "Government",
-        "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
-        "description": "",
-        "location": "Metro Manila",
-        "followers": 3967065,
-        "following": 125,
-        "status": "",
-        "canDm": true,
-        "canMediaTag": true,
-        "createdAt": "Tue Jul 27 17:31:12 +0000 2010",
-        "entities": {
-          "description": {
-            "urls": []
-          },
-          "url": {}
-        },
-        "fastFollowersCount": 0,
-        "favouritesCount": 5284,
-        "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 61685,
-        "statusesCount": 888285,
-        "withheldInCountries": [],
-        "affiliatesHighlightedLabel": {},
-        "possiblySensitive": false,
-        "pinnedTweetIds": [],
-        "profile_bio": {
-          "description": "Official X Account of the Metropolitan Manila Development Authority | Hotline 136 | digitalmedia@mmda.gov.ph | VIBER 0956-6632-221",
-          "entities": {
-            "description": {},
-            "url": {
-              "urls": [
-                {
-                  "display_url": "mmda.gov.ph",
-                  "expanded_url": "http://mmda.gov.ph",
-                  "indices": [
-                    0,
-                    23
-                  ],
-                  "url": "https://t.co/BHm5ofschj"
-                }
-              ]
-            }
-          }
-        },
-        "isAutomated": false,
-        "automatedBy": null
-      },
-      "extendedEntities": {},
-      "card": null,
-      "place": {},
-      "entities": {
-        "hashtags": [
-          {
-            "indices": [
-              154,
-              159
-            ],
-            "text": "mmda"
-          }
-        ]
-      },
-      "quoted_tweet": null,
-      "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
-      "article": null
-    },
     {
       "type": "tweet",
       "id": "2048980810557239463",
@@ -318,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1010049076434358273/1654398680",
         "description": "",
         "location": " 📌All over Mumbai🇮🇳",
-        "followers": 230986,
+        "followers": 231117,
         "following": 15,
         "status": "",
         "canDm": false,
@@ -331,11 +229,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 54662,
+        "favouritesCount": 54781,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 19182,
-        "statusesCount": 45606,
+        "mediaCount": 19226,
+        "statusesCount": 45688,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -414,14 +312,14 @@
       "twitterUrl": "https://twitter.com/ailoveLSF/status/2048982589546099148",
       "text": "Guys!! don’t pick Manila as your option for the tour. The weather is scorching hot, the air pollution is worst (it’s even in the news), the traffic is always heavy and terrible, and the government sucks. There are better stops that is worth your money! ebegey nyu n s@men 2 flz",
       "source": "Twitter for iPhone",
-      "retweetCount": 710,
+      "retweetCount": 709,
       "replyCount": 30,
-      "likeCount": 2986,
+      "likeCount": 2982,
       "quoteCount": 64,
-      "viewCount": 73050,
+      "viewCount": 73051,
       "createdAt": "Tue Apr 28 04:28:12 +0000 2026",
       "lang": "en",
-      "bookmarkCount": 64,
+      "bookmarkCount": 63,
       "isReply": false,
       "inReplyToId": null,
       "conversationId": "2048982589546099148",
@@ -445,7 +343,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1779455402478051328/1754406697",
         "description": "",
         "location": "my fimily",
-        "followers": 103,
+        "followers": 102,
         "following": 98,
         "status": "",
         "canDm": true,
@@ -458,11 +356,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 12852,
+        "favouritesCount": 13092,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 620,
-        "statusesCount": 5152,
+        "mediaCount": 622,
+        "statusesCount": 5177,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -526,7 +424,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15448383/1785196160",
         "description": "",
         "location": "Makati City",
-        "followers": 3563331,
+        "followers": 3563709,
         "following": 1759,
         "status": "",
         "canDm": true,
@@ -539,16 +437,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 32469,
+        "favouritesCount": 32467,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 206187,
-        "statusesCount": 1481636,
+        "mediaCount": 206993,
+        "statusesCount": 1484423,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2096772617701359926"
+          "2100132590577684690"
         ],
         "profile_bio": {
           "description": "Balanced News, Fearless Views. https://t.co/AuYsgsogFf",
@@ -621,7 +519,7 @@
           {
             "key": "photo_image_full_size_alt_text",
             "value": {
-              "string_value": "Some Manila roads to be closed ahead of Labor Day protests — police"
+              "string_value": "More than 850 residents from 243 families have sought shelter in evacuation centers in Manila as persistent rains from the enhanced southwest monsoon, or habagat, continued to affect the city on Monday."
             }
           },
           {
@@ -634,7 +532,7 @@
           {
             "key": "summary_photo_image_alt_text",
             "value": {
-              "string_value": "Some Manila roads to be closed ahead of Labor Day protests — police"
+              "string_value": "More than 850 residents from 243 families have sought shelter in evacuation centers in Manila as persistent rains from the enhanced southwest monsoon, or habagat, continued to affect the city on Monday."
             }
           },
           {
@@ -670,7 +568,7 @@
             "result": {
               "__typename": "User",
               "action_counts": {
-                "favorites_count": 32469
+                "favorites_count": 32467
               },
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/1427192891126915082/NNybyA9y_normal.jpg"
@@ -700,7 +598,7 @@
               },
               "pinned_items": {
                 "tweet_ids_str": [
-                  "2096772617701359926"
+                  "2100132590577684690"
                 ]
               },
               "privacy": {
@@ -752,7 +650,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 3563331,
+                "followers": 3563709,
                 "following": 1759
               },
               "relationship_perspectives": {
@@ -770,8 +668,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 206187,
-                "tweets": 1481636
+                "media_tweets": 206993,
+                "tweets": 1484423
               },
               "verification": {
                 "is_blue_verified": true,
@@ -787,7 +685,7 @@
             "result": {
               "__typename": "User",
               "action_counts": {
-                "favorites_count": 32469
+                "favorites_count": 32467
               },
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/1427192891126915082/NNybyA9y_normal.jpg"
@@ -817,7 +715,7 @@
               },
               "pinned_items": {
                 "tweet_ids_str": [
-                  "2096772617701359926"
+                  "2100132590577684690"
                 ]
               },
               "privacy": {
@@ -869,7 +767,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 3563331,
+                "followers": 3563709,
                 "following": 1759
               },
               "relationship_perspectives": {
@@ -887,8 +785,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 206187,
-                "tweets": 1481636
+                "media_tweets": 206993,
+                "tweets": 1484423
               },
               "verification": {
                 "is_blue_verified": true,
@@ -959,7 +857,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197308,
+        "followers": 1197841,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -975,8 +873,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219322,
-        "statusesCount": 942051,
+        "mediaCount": 219515,
+        "statusesCount": 943081,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1160,7 +1058,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1197308,
+                "followers": 1197841,
                 "following": 141
               },
               "relationship_perspectives": {
@@ -1178,8 +1076,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 219322,
-                "tweets": 942051
+                "media_tweets": 219515,
+                "tweets": 943081
               },
               "verification": {
                 "is_blue_verified": true,
@@ -1223,7 +1121,7 @@
       "replyCount": 0,
       "likeCount": 0,
       "quoteCount": 0,
-      "viewCount": 690,
+      "viewCount": 691,
       "createdAt": "Tue Apr 28 05:04:02 +0000 2026",
       "lang": "en",
       "bookmarkCount": 0,
@@ -1250,7 +1148,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967065,
+        "followers": 3966538,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -1263,11 +1161,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 5284,
+        "favouritesCount": 5282,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61685,
-        "statusesCount": 888285,
+        "mediaCount": 61737,
+        "statusesCount": 888716,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1316,6 +1214,170 @@
     },
     {
       "type": "tweet",
+      "id": "2048990914387857521",
+      "url": "https://x.com/pnagovph/status/2048990914387857521",
+      "twitterUrl": "https://twitter.com/pnagovph/status/2048990914387857521",
+      "text": "WATCH: A US \"High Mobility Artillery Rocket Systems\" (HIMARS) launched rockets during the counter-landing live fire exercise at Aporawan Beach, Palawan on Monday (April 27, 2026). The Armed Forces of the Philippines on Tuesday (April 28) said this exercise demonstrates the participants capability to defend through coordinated, combined arms operations in a littoral environment. | Priam Nepomuceno (Video courtesy of Marine Battalion Landing Team 11)",
+      "source": "Twitter for iPhone",
+      "retweetCount": 10,
+      "replyCount": 0,
+      "likeCount": 27,
+      "quoteCount": 0,
+      "viewCount": 880,
+      "createdAt": "Tue Apr 28 05:01:17 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 4,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2048990914387857521",
+      "displayTextRange": [
+        0,
+        273
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "pnagovph",
+        "url": "https://x.com/pnagovph",
+        "twitterUrl": "https://twitter.com/pnagovph",
+        "id": "823349574739734528",
+        "name": "Philippine News Agency",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1552135381520642048/KArgLvmc_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/823349574739734528/1785802706",
+        "description": "",
+        "location": "Quezon City",
+        "followers": 88352,
+        "following": 266,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Mon Jan 23 02:00:10 +0000 2017",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 19869,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 60729,
+        "statusesCount": 200167,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The official Twitter account of Philippine News Agency, the newswire service of the Philippine government.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "pna.gov.ph",
+                  "expanded_url": "http://www.pna.gov.ph",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/DVu2qujrpP"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "display_url": "pic.x.com/MO4LHXMZl0",
+            "expanded_url": "https://x.com/pnagovph/status/2048990914387857521/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "2048990892715868160",
+            "indices": [
+              274,
+              297
+            ],
+            "media_key": "7_2048990892715868160",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAwoAARxvelxkVwAACgACHG96YXAXUHEAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAADCgABHG96XGRXAAAKAAIcb3phcBdQcQAA",
+                "media_key": "7_2048990892715868160"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/2048990892715868160/pu/img/p_nmFAqJzMf5Gfox.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 368,
+              "width": 640
+            },
+            "sizes": {
+              "large": {
+                "h": 368,
+                "w": 640
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/MO4LHXMZl0",
+            "video_info": {
+              "aspect_ratio": [
+                40,
+                23
+              ],
+              "duration_millis": 15700,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/ext_tw_video/2048990892715868160/pu/pl/6s_Ca9lWC0Nspon_.m3u8?tag=12"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/2048990892715868160/pu/vid/avc1/468x270/vqMlu2EqP2PIXiIc.mp4?tag=12"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/2048990892715868160/pu/vid/avc1/640x368/OT8eNI8JEBZsS5Bt.mp4?tag=12"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2048990591988781388",
       "url": "https://x.com/MakatiTraffic/status/2048990591988781388",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2048990591988781388",
@@ -1352,7 +1414,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437246,
+        "followers": 1437170,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1368,8 +1430,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411429,
+        "mediaCount": 17208,
+        "statusesCount": 412031,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1418,6 +1480,254 @@
     },
     {
       "type": "tweet",
+      "id": "2048994745415057460",
+      "url": "https://x.com/wftrps/status/2048994745415057460",
+      "twitterUrl": "https://twitter.com/wftrps/status/2048994745415057460",
+      "text": "Traffic Advisory' Slow moving Traffic with a vehicle breakdown, Panthur railway Rub towards panthur , it will be moved shortly. https://t.co/ue3LiFUGyQ",
+      "source": "Twitter for iPhone",
+      "retweetCount": 6,
+      "replyCount": 1,
+      "likeCount": 7,
+      "quoteCount": 0,
+      "viewCount": 710,
+      "createdAt": "Tue Apr 28 05:16:30 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2048994745415057460",
+      "displayTextRange": [
+        0,
+        127
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "wftrps",
+        "url": "https://x.com/wftrps",
+        "twitterUrl": "https://twitter.com/wftrps",
+        "id": "1427538424513261572",
+        "name": "WHITEFIELD TRAFFIC PS BTP",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1610431515384766464/EKixD336_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1427538424513261572/1698664455",
+        "description": "",
+        "location": "XQV4+PV4, Kadugodi Rd, Kadugod",
+        "followers": 8062,
+        "following": 340,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Aug 17 07:52:18 +0000 2021",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 8052,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 9572,
+        "statusesCount": 23170,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1561965210944290816"
+        ],
+        "profile_bio": {
+          "description": "Whitefield Traffic Police Station  ☎️ 08022943706.\nhttps://t.co/nLW3eXyDqh\nhttps://t.co/ztwpDdQ1kT",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "facebook.com/whitefield",
+                  "expanded_url": "https://www.facebook.com/whitefield",
+                  "indices": [
+                    51,
+                    74
+                  ],
+                  "url": "https://t.co/nLW3eXyDqh"
+                },
+                {
+                  "display_url": "instagram.com/whitefieldtraf…",
+                  "expanded_url": "https://instagram.com/whitefieldtrafficps?utm_source=qr&igshid=ZDc4ODBmNj",
+                  "indices": [
+                    75,
+                    98
+                  ],
+                  "url": "https://t.co/ztwpDdQ1kT"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.gov.in",
+                  "expanded_url": "https://btp.gov.in/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/n23Fyy5nq9"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/ue3LiFUGyQ",
+            "expanded_url": "https://x.com/wftrps/status/2048994745415057460/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "CP Bengaluru ಪೊಲೀಸ್ ಆಯುಕ್ತ ಬೆಂಗಳೂರು",
+                    "screen_name": "CPBlr",
+                    "type": "user",
+                    "user_id": "2687852605"
+                  },
+                  {
+                    "name": "Joint CP, Traffic, Bengaluru",
+                    "screen_name": "Jointcptraffic",
+                    "type": "user",
+                    "user_id": "2809164276"
+                  },
+                  {
+                    "name": "DCP Traffic East ಉಪ ಪೊಲೀಸ್ ಆಯುಕ್ತರು ಸಂಚಾರ ಪೂರ್ವ",
+                    "screen_name": "DCPTrEastBCP",
+                    "type": "user",
+                    "user_id": "2809049605"
+                  },
+                  {
+                    "name": "ACP Whitefield Traffic ಎಸಿಪಿ ಸಂಚಾರ ವೈಟ್ ಫೀಲ್ಡ್",
+                    "screen_name": "acpwfieldtrf",
+                    "type": "user",
+                    "user_id": "1361589347032600576"
+                  },
+                  {
+                    "name": "ಬೆಂಗಳೂರು ನಗರ ಪೊಲೀಸ್‌ BengaluruCityPolice",
+                    "screen_name": "BlrCityPolice",
+                    "type": "user",
+                    "user_id": "775296019"
+                  },
+                  {
+                    "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+                    "screen_name": "blrcitytraffic",
+                    "type": "user",
+                    "user_id": "1851545900"
+                  }
+                ]
+              },
+              "large": {
+                "faces": [
+                  {
+                    "h": 45,
+                    "w": 45,
+                    "x": 300,
+                    "y": 317
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 45,
+                    "w": 45,
+                    "x": 300,
+                    "y": 317
+                  }
+                ]
+              }
+            },
+            "id_str": "2048994743057821696",
+            "indices": [
+              128,
+              151
+            ],
+            "media_key": "3_2048994743057821696",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxvfdzemrAACgACHG993WsbQDQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHG993N6asAAKAAIcb33daxtANAAA",
+                "media_key": "3_2048994743057821696"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HG993N6asAA4bKc.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 291,
+                  "w": 519,
+                  "x": 0,
+                  "y": 287
+                },
+                {
+                  "h": 519,
+                  "w": 519,
+                  "x": 0,
+                  "y": 173
+                },
+                {
+                  "h": 592,
+                  "w": 519,
+                  "x": 0,
+                  "y": 136
+                },
+                {
+                  "h": 1038,
+                  "w": 519,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1152,
+                  "w": 519,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1152,
+              "width": 519
+            },
+            "sizes": {
+              "large": {
+                "h": 1152,
+                "w": 519
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/ue3LiFUGyQ"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2048994366979703072",
       "url": "https://x.com/MakatiTraffic/status/2048994366979703072",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2048994366979703072",
@@ -1454,7 +1764,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437246,
+        "followers": 1437168,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1470,8 +1780,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411429,
+        "mediaCount": 17208,
+        "statusesCount": 412031,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1556,8 +1866,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/36316250/1748014353",
         "description": "",
         "location": "Ngong rd, Nairobi, Kenya",
-        "followers": 272456,
-        "following": 2342,
+        "followers": 272476,
+        "following": 2343,
         "status": "",
         "canDm": false,
         "canMediaTag": true,
@@ -1569,17 +1879,15 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 334214,
+        "favouritesCount": 334218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 127715,
-        "statusesCount": 759756,
+        "mediaCount": 127839,
+        "statusesCount": 759910,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
-        "pinnedTweetIds": [
-          "2094297787915542914"
-        ],
+        "pinnedTweetIds": [],
         "profile_bio": {
           "description": "Ghetto Radio's official twitter page. Ghetto Radio 89.5 is the Voice of the Youth & #KenyasNumber1GhettoRadio Listen live https://t.co/bBAI55xzD8",
           "entities": {
@@ -1727,7 +2035,7 @@
       "replyCount": 1,
       "likeCount": 4,
       "quoteCount": 1,
-      "viewCount": 284,
+      "viewCount": 293,
       "createdAt": "Tue Apr 28 05:36:17 +0000 2026",
       "lang": "en",
       "bookmarkCount": 0,
@@ -1754,8 +2062,8 @@
         "coverPicture": "",
         "description": "",
         "location": "Earth",
-        "followers": 894,
-        "following": 650,
+        "followers": 893,
+        "following": 658,
         "status": "",
         "canDm": false,
         "canMediaTag": false,
@@ -1767,11 +2075,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 14998,
+        "favouritesCount": 15052,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 2857,
-        "statusesCount": 13473,
+        "mediaCount": 2867,
+        "statusesCount": 13580,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1957,6 +2265,493 @@
     },
     {
       "type": "tweet",
+      "id": "2049002004719309207",
+      "url": "https://x.com/TeamAFP/status/2049002004719309207",
+      "twitterUrl": "https://twitter.com/TeamAFP/status/2049002004719309207",
+      "text": "AFP, U.S., Partner Nations Conduct Counter-Landing Live Fire Exercise in Palawan\n\nThe Armed Forces of the Philippines (AFP), together with the United States Armed Forces, Australian Defence Force, and New Zealand Defence Force, conducted a Counter-Landing Live Fire Exercise (CLLFX-West) on April 27, 2026 at the Apurawan Beach Landing Site in Aborlan, Palawan, as part of Exercise Balikatan 41–2026.\n\nLed by the Philippine Marine Corps’ 3rd Marine Brigade, the exercise simulated a maritime threat involving an enemy amphibious landing along the coastline, showcasing combined forces’ capability to detect, disrupt, and deny hostile elements from establishing a beachhead. The activity demonstrated strong coordination and interoperability among participating forces in a complex littoral environment.\n\nThe exercise highlighted a layered, multi-domain defense employing synchronized air, land, and indirect fire assets. The Philippine Air Force deployed FA-50 fighter jets for air interdiction, while U.S. forces provided High Mobility Artillery Rocket System (HIMARS) capabilities. Ground forces executed mid- to close-range engagements using artillery, mortars, light armored vehicles, anti-armor systems, heavy machine guns, and infantry weapons, supported by precision strikes and reconnaissance.\n\nIn addition, a simulated Non-Combatant Evacuation Operation (NEO) was conducted in Sitio Bubusawin and Sitio Long Point, alongside a community outreach activity in coordination with the local government of Aborlan and Barangay Apurawan, underscoring the AFP’s role in both defense and humanitarian operations.\n\nGeneral Romeo S. Brawner Jr, AFP Chief of Staff witnessed the live fire exercise as one of the distinguished visitors together with Vice Admiral Alan M Javier, Commander of Western Command. Also present were Major General James Bartholomees, Commander of the 25th Infantry Division, US Army;  Major General Thomas Savage, Commander of the U.S. JTF for Exercise Balikatan 2026; and Rear Admiral Brent DeVore, Commander of the Expeditionary Strike Group THREE, U.S. Navy. \n\n“The Counter-Landing Live Fire Exercise demonstrates our capability to defend our shores through coordinated, combined arms operations in a littoral environment. By integrating fires from land, air, and maritime forces, we are able to detect, engage, and neutralize potential threats approaching from the sea, ensuring that any attempt to breach our coastline is met with a swift and unified response,” said Marine Colonel Dennis Hernandez, PH Balikatan 41-2026 Spokesperson. \n\n“More importantly, this activity strengthens joint fire support coordination and interoperability among participating forces. Beach defense is not the responsibility of a single unit or domain, it requires seamless integration across services and with our allies. Exercises like this ensure that we are prepared to protect our coastal communities and territorial integrity with precision, speed, and overwhelming coordination,” Col Hernandez added.///\n\nPhotos and Videos by: SSG Ambay PA/PAOAFP; 3rd Marine Brigade, Philippine Marine Corps; and Staff Sgt. Brandon Rickert, 7th Infantry Division, US Army\n\n#AFPyoucanTRUST\n#OneAFPOnePhilippines\n#StrongAFPStrongPhilippines\n#OurSeasOurRightsOurFuture\n#MatatagNaSandigan 🫡🇵🇭\n#Balikatan\n#ShoulderToShoulder\n#Philippines\n#FreeAndOpenIndoPacific\n#FriendsPartnersAllies\n#SaferTogetherUSPH\n#StrongerTogether",
+      "source": "Twitter for iPhone",
+      "retweetCount": 27,
+      "replyCount": 2,
+      "likeCount": 102,
+      "quoteCount": 1,
+      "viewCount": 13414,
+      "createdAt": "Tue Apr 28 05:45:21 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 11,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2049002004719309207",
+      "displayTextRange": [
+        0,
+        274
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "TeamAFP",
+        "url": "https://x.com/TeamAFP",
+        "twitterUrl": "https://twitter.com/TeamAFP",
+        "id": "201601822",
+        "name": "Armed Forces of the Philippines",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2064566766756659200/lZ0EvB8a_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/201601822/1719561333",
+        "description": "",
+        "location": "Quezon City",
+        "followers": 119914,
+        "following": 78,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Oct 12 06:10:52 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1554,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 4363,
+        "statusesCount": 9401,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2013435612645511451"
+        ],
+        "profile_bio": {
+          "description": "The official Twitter account of the Armed Forces of the Philippines.\n\nProtecting the People, Securing the State\n\n#AFPyoucanTRUST",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    113,
+                    128
+                  ],
+                  "text": "AFPyoucanTRUST"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "afp.mil.ph",
+                  "expanded_url": "http://www.afp.mil.ph",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/e5glHqK4yz"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/nHsbXJA4y4",
+            "expanded_url": "https://x.com/TeamAFP/status/2049002004719309207/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "2049001848422719488",
+            "indices": [
+              275,
+              298
+            ],
+            "media_key": "13_2049001848422719488",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARxvhFM3WuAAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABHG+EUzda4AAAAA==",
+                "media_key": "13_2049001848422719488"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2049001848422719488/img/s4KEclqyCAXoeIvx.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 368,
+              "width": 640
+            },
+            "sizes": {
+              "large": {
+                "h": 368,
+                "w": 640
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/nHsbXJA4y4",
+            "video_info": {
+              "aspect_ratio": [
+                40,
+                23
+              ],
+              "duration_millis": 17300,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/2049001848422719488/pl/7C0NPcx0iPfCVo4l.m3u8?tag=21&v=cfc"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2049001848422719488/vid/avc1/468x270/ZHvnkigR2w8LO-gF.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2049001848422719488/vid/avc1/640x368/Zg_IqoDCZvAPQrb9.mp4?tag=21"
+                }
+              ]
+            }
+          },
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/nHsbXJA4y4",
+            "expanded_url": "https://x.com/TeamAFP/status/2049002004719309207/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "2049001848540143617",
+            "indices": [
+              275,
+              298
+            ],
+            "media_key": "13_2049001848540143617",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARxvhFM+WqABAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABHG+EUz5aoAEAAA==",
+                "media_key": "13_2049001848540143617"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2049001848540143617/img/ZAswRSnhPmOp3X5d.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 368,
+              "width": 640
+            },
+            "sizes": {
+              "large": {
+                "h": 368,
+                "w": 640
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/nHsbXJA4y4",
+            "video_info": {
+              "aspect_ratio": [
+                40,
+                23
+              ],
+              "duration_millis": 15700,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/2049001848540143617/pl/oFOy3RYRbIUlgaL_.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2049001848540143617/vid/avc1/468x270/DfBt4KKkCoWs2etP.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2049001848540143617/vid/avc1/640x368/ZZdqk8lZyxpzh8G3.mp4?tag=21"
+                }
+              ]
+            }
+          },
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/nHsbXJA4y4",
+            "expanded_url": "https://x.com/TeamAFP/status/2049002004719309207/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2049001848363958272",
+            "indices": [
+              275,
+              298
+            ],
+            "media_key": "3_2049001848363958272",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxvhFMz2kAACgACHG+Ed5tbkZcAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHG+EUzPaQAAKAAIcb4R3m1uRlwAA",
+                "media_key": "3_2049001848363958272"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HG-EUzPaQAAOS3g.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1008,
+                  "w": 1800,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1010,
+                  "w": 1010,
+                  "x": 437,
+                  "y": 0
+                },
+                {
+                  "h": 1010,
+                  "w": 886,
+                  "x": 499,
+                  "y": 0
+                },
+                {
+                  "h": 1010,
+                  "w": 505,
+                  "x": 690,
+                  "y": 0
+                },
+                {
+                  "h": 1010,
+                  "w": 1800,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1010,
+              "width": 1800
+            },
+            "sizes": {
+              "large": {
+                "h": 1010,
+                "w": 1800
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/nHsbXJA4y4"
+          },
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/nHsbXJA4y4",
+            "expanded_url": "https://x.com/TeamAFP/status/2049002004719309207/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2049001848380755968",
+            "indices": [
+              275,
+              298
+            ],
+            "media_key": "3_2049001848380755968",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxvhFM02pAACgACHG+Ed5tbkZcAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHG+EUzTakAAKAAIcb4R3m1uRlwAA",
+                "media_key": "3_2049001848380755968"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HG-EUzTakAAg9pD.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 474,
+                  "w": 846,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 477,
+                  "w": 477,
+                  "x": 333,
+                  "y": 0
+                },
+                {
+                  "h": 477,
+                  "w": 418,
+                  "x": 362,
+                  "y": 0
+                },
+                {
+                  "h": 477,
+                  "w": 239,
+                  "x": 452,
+                  "y": 0
+                },
+                {
+                  "h": 477,
+                  "w": 846,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 477,
+              "width": 846
+            },
+            "sizes": {
+              "large": {
+                "h": 477,
+                "w": 846
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/nHsbXJA4y4"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              3169,
+              3184
+            ],
+            "text": "AFPyoucanTRUST"
+          },
+          {
+            "indices": [
+              3185,
+              3206
+            ],
+            "text": "OneAFPOnePhilippines"
+          },
+          {
+            "indices": [
+              3207,
+              3234
+            ],
+            "text": "StrongAFPStrongPhilippines"
+          },
+          {
+            "indices": [
+              3235,
+              3261
+            ],
+            "text": "OurSeasOurRightsOurFuture"
+          },
+          {
+            "indices": [
+              3262,
+              3280
+            ],
+            "text": "MatatagNaSandigan"
+          },
+          {
+            "indices": [
+              3285,
+              3295
+            ],
+            "text": "Balikatan"
+          },
+          {
+            "indices": [
+              3296,
+              3315
+            ],
+            "text": "ShoulderToShoulder"
+          },
+          {
+            "indices": [
+              3316,
+              3328
+            ],
+            "text": "Philippines"
+          },
+          {
+            "indices": [
+              3329,
+              3352
+            ],
+            "text": "FreeAndOpenIndoPacific"
+          },
+          {
+            "indices": [
+              3353,
+              3375
+            ],
+            "text": "FriendsPartnersAllies"
+          },
+          {
+            "indices": [
+              3376,
+              3394
+            ],
+            "text": "SaferTogetherUSPH"
+          },
+          {
+            "indices": [
+              3395,
+              3412
+            ],
+            "text": "StrongerTogether"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2049001916705976626",
       "url": "https://x.com/MakatiTraffic/status/2049001916705976626",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2049001916705976626",
@@ -1993,7 +2788,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437246,
+        "followers": 1437168,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -2009,8 +2804,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411429,
+        "mediaCount": 17208,
+        "statusesCount": 412031,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,

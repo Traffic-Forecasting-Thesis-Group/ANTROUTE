@@ -5,14 +5,14 @@
     "window_start": "2025-09-27T04:00:00+08:00",
     "window_end": "2025-09-27T06:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 3,
+    "tweet_count": 5,
     "slices": [
       {
         "start": "2025-09-27T04:00:00+08:00",
         "end": "2025-09-27T04:05:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-09-27T04:05:00+08:00",
@@ -137,8 +137,8 @@
         "start": "2025-09-27T05:30:00+08:00",
         "end": "2025-09-27T05:35:00+08:00",
         "status_code": 200,
-        "returned": 2,
-        "accepted": 2
+        "returned": 3,
+        "accepted": 3
       },
       {
         "start": "2025-09-27T05:35:00+08:00",
@@ -180,6 +180,180 @@
   "data": [
     {
       "type": "tweet",
+      "id": "1971666316689060016",
+      "url": "https://x.com/DEStatePolice/status/1971666316689060016",
+      "twitterUrl": "https://twitter.com/DEStatePolice/status/1971666316689060016",
+      "text": "⚠️Traffic Advisory - Kent County⚠️\n\nBarratt's Chapel Road at Canterbury Road is closed due to a crash. Please seek alternate routes of travel to avoid delays. https://t.co/bsYwCf52IM",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 760,
+      "createdAt": "Fri Sep 26 20:00:56 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1971666316689060016",
+      "displayTextRange": [
+        0,
+        158
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "DEStatePolice",
+        "url": "https://x.com/DEStatePolice",
+        "twitterUrl": "https://twitter.com/DEStatePolice",
+        "id": "230227730",
+        "name": "Delaware State Police",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2017968746602635264/3kaaiByJ_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/230227730/1782940746",
+        "description": "",
+        "location": "Dover, DE",
+        "followers": 28241,
+        "following": 195,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Fri Dec 24 17:28:35 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 122,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1336,
+        "statusesCount": 17056,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The Official Twitter account for the Delaware State Police. This account is not monitored 24/7. To report a crime dial 9-1-1.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "dsp.delaware.gov",
+                  "expanded_url": "http://dsp.delaware.gov",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/Fp4tcSWo2y"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/bsYwCf52IM",
+            "expanded_url": "https://x.com/DEStatePolice/status/1971666316689060016/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1971665940627472384",
+            "indices": [
+              159,
+              182
+            ],
+            "media_key": "3_1971665940627472384",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtcw7oG1kAACgACG1zEEZXasLAAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG1zDugbWQAAKAAIbXMQRldqwsAAA",
+                "media_key": "3_1971665940627472384"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G1zDugbWQAAJmd9.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 381,
+                  "w": 680,
+                  "x": 0,
+                  "y": 133
+                },
+                {
+                  "h": 680,
+                  "w": 680,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 680,
+                  "w": 596,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 680,
+                  "w": 340,
+                  "x": 51,
+                  "y": 0
+                },
+                {
+                  "h": 680,
+                  "w": 680,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 680,
+              "width": 680
+            },
+            "sizes": {
+              "large": {
+                "h": 680,
+                "w": 680
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/bsYwCf52IM"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1971672164827865367",
       "url": "https://x.com/TheManilaTimes/status/1971672164827865367",
       "twitterUrl": "https://twitter.com/TheManilaTimes/status/1971672164827865367",
@@ -216,7 +390,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
         "description": "",
         "location": "Philippines",
-        "followers": 189304,
+        "followers": 190132,
         "following": 481,
         "status": "",
         "canDm": false,
@@ -229,16 +403,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 20344,
+        "favouritesCount": 20357,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 44221,
-        "statusesCount": 196917,
+        "mediaCount": 45142,
+        "statusesCount": 198602,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2093633872936456280"
+          "2099480545550090734"
         ],
         "profile_bio": {
           "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",
@@ -335,6 +509,306 @@
     },
     {
       "type": "tweet",
+      "id": "1971689443154415695",
+      "url": "https://x.com/VortixWx/status/1971689443154415695",
+      "twitterUrl": "https://twitter.com/VortixWx/status/1971689443154415695",
+      "text": "#Bualoi (#OpongPH) is finally a typhoon after hammering the #Philippines. Now it aims for #Vietnam where it could hit C2 status before shear weakens it a bit before landfall. Damaging winds, storm surge &amp; inland flooding will be a threat from Bualoi.\n#VNMwx #tropicswx https://t.co/CthPDjzsFs",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 8,
+      "quoteCount": 0,
+      "viewCount": 1548,
+      "createdAt": "Fri Sep 26 21:32:50 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1971689443154415695",
+      "displayTextRange": [
+        0,
+        272
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "VortixWx",
+        "url": "https://x.com/VortixWx",
+        "twitterUrl": "https://twitter.com/VortixWx",
+        "id": "1287896660090159104",
+        "name": "Vortix",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2072175241866960896/Gv9UFIfk_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1287896660090159104/1788272236",
+        "description": "",
+        "location": "Southeast United States",
+        "followers": 8530,
+        "following": 1554,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Mon Jul 27 23:44:40 +0000 2020",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 13891,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 15840,
+        "statusesCount": 35844,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2094927353482793365"
+        ],
+        "profile_bio": {
+          "description": "Your place for discussing, informing, memes, & educating on worldwide weather from tropical cyclones, severe wx, winter wx, fire wx & more. Our links below 👇",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/vortixwx",
+                  "expanded_url": "https://linktr.ee/vortixwx",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/xLfEliafeb"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/CthPDjzsFs",
+            "expanded_url": "https://x.com/VortixWx/status/1971689443154415695/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1971688538493083648",
+            "indices": [
+              273,
+              296
+            ],
+            "media_key": "3_1971688538493083648",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtc2EeAluAACgACG1zZGiKbUE8AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG1zYR4CW4AAKAAIbXNkaIptQTwAA",
+                "media_key": "3_1971688538493083648"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G1zYR4CW4AACNsy.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 672,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 845,
+                  "w": 845,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 845,
+                  "w": 741,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 845,
+                  "w": 423,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 845,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 845,
+              "width": 1200
+            },
+            "sizes": {
+              "large": {
+                "h": 845,
+                "w": 1200
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/CthPDjzsFs"
+          },
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/CthPDjzsFs",
+            "expanded_url": "https://x.com/VortixWx/status/1971689443154415695/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1971689271003115520",
+            "indices": [
+              273,
+              296
+            ],
+            "media_key": "3_1971689271003115520",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtc2PINlvAACgACG1zZGiKbUE8AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG1zY8g2W8AAKAAIbXNkaIptQTwAA",
+                "media_key": "3_1971689271003115520"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G1zY8g2W8AAohGs.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 898,
+                  "w": 1604,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1084,
+                  "w": 1084,
+                  "x": 520,
+                  "y": 0
+                },
+                {
+                  "h": 1084,
+                  "w": 951,
+                  "x": 653,
+                  "y": 0
+                },
+                {
+                  "h": 1084,
+                  "w": 542,
+                  "x": 1062,
+                  "y": 0
+                },
+                {
+                  "h": 1084,
+                  "w": 1604,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1084,
+              "width": 1604
+            },
+            "sizes": {
+              "large": {
+                "h": 1084,
+                "w": 1604
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/CthPDjzsFs"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              0,
+              7
+            ],
+            "text": "Bualoi"
+          },
+          {
+            "indices": [
+              9,
+              17
+            ],
+            "text": "OpongPH"
+          },
+          {
+            "indices": [
+              60,
+              72
+            ],
+            "text": "Philippines"
+          },
+          {
+            "indices": [
+              90,
+              98
+            ],
+            "text": "Vietnam"
+          },
+          {
+            "indices": [
+              255,
+              261
+            ],
+            "text": "VNMwx"
+          },
+          {
+            "indices": [
+              262,
+              272
+            ],
+            "text": "tropicswx"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1971689308387209252",
       "url": "https://x.com/MMDA/status/1971689308387209252",
       "twitterUrl": "https://twitter.com/MMDA/status/1971689308387209252",
@@ -371,7 +845,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967172,
+        "followers": 3966716,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -387,8 +861,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61677,
-        "statusesCount": 888214,
+        "mediaCount": 61731,
+        "statusesCount": 888686,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -473,7 +947,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197154,
+        "followers": 1197867,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -489,8 +963,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219265,
-        "statusesCount": 941835,
+        "mediaCount": 219475,
+        "statusesCount": 942950,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,

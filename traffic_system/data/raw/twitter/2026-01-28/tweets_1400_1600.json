@@ -5,7 +5,7 @@
     "window_start": "2026-01-28T14:00:00+08:00",
     "window_end": "2026-01-28T16:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 7,
+    "tweet_count": 8,
     "slices": [
       {
         "start": "2026-01-28T14:00:00+08:00",
@@ -67,8 +67,8 @@
         "start": "2026-01-28T14:40:00+08:00",
         "end": "2026-01-28T14:45:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-01-28T14:45:00+08:00",
@@ -216,8 +216,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/133152120/1785766152",
         "description": "",
         "location": "Philippines",
-        "followers": 866164,
-        "following": 2279,
+        "followers": 867287,
+        "following": 2278,
         "status": "",
         "canDm": false,
         "canMediaTag": true,
@@ -229,11 +229,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 2649,
+        "favouritesCount": 2720,
         "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 293797,
-        "statusesCount": 667152,
+        "isTranslator": true,
+        "mediaCount": 294930,
+        "statusesCount": 668491,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -241,7 +241,19 @@
         "profile_bio": {
           "description": "The Official Twitter account of News5 📲FB/IG/YT/TikTok: @News5Everywhere 📧: News5Aksyon@news5.com.ph",
           "entities": {
-            "description": {},
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    56,
+                    72
+                  ],
+                  "name": "",
+                  "screen_name": "News5Everywhere"
+                }
+              ]
+            },
             "url": {
               "urls": [
                 {
@@ -265,15 +277,16 @@
           {
             "additional_media_info": {
               "description": "",
-              "embeddable": true,
               "monetizable": false,
               "title": ""
             },
             "display_url": "pic.x.com/gLmEm2k1av",
             "expanded_url": "https://x.com/News5PH/status/2016391673211978006/video/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "id_str": "2016389789453582340",
             "indices": [
               206,
@@ -281,7 +294,10 @@
             ],
             "media_key": "13_2016389789453582340",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARv7p9SJGwAEAAA=",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG/un1IkbAAQAAA==",
                 "media_key": "13_2016389789453582340"
               }
             },
@@ -294,23 +310,7 @@
             "sizes": {
               "large": {
                 "h": 1080,
-                "resize": "fit",
                 "w": 1920
-              },
-              "medium": {
-                "h": 675,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 383,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "video",
@@ -353,99 +353,11 @@
       },
       "card": null,
       "place": {},
-      "entities": {
-        "media": [
-          {
-            "additional_media_info": {
-              "description": "",
-              "embeddable": true,
-              "monetizable": false,
-              "title": ""
-            },
-            "display_url": "pic.x.com/gLmEm2k1av",
-            "expanded_url": "https://x.com/News5PH/status/2016391673211978006/video/1",
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "id_str": "2016389789453582340",
-            "indices": [
-              206,
-              229
-            ],
-            "media_key": "13_2016389789453582340",
-            "media_results": {
-              "result": {
-                "media_key": "13_2016389789453582340"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2016389789453582340/img/95Oem1hJsTvH_gPP.jpg",
-            "original_info": {
-              "focus_rects": [],
-              "height": 1080,
-              "width": 1920
-            },
-            "sizes": {
-              "large": {
-                "h": 1080,
-                "resize": "fit",
-                "w": 1920
-              },
-              "medium": {
-                "h": 675,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 383,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
-              }
-            },
-            "type": "video",
-            "url": "https://t.co/gLmEm2k1av",
-            "video_info": {
-              "aspect_ratio": [
-                16,
-                9
-              ],
-              "duration_millis": 325066,
-              "variants": [
-                {
-                  "content_type": "application/x-mpegURL",
-                  "url": "https://video.twimg.com/amplify_video/2016389789453582340/pl/VC2ANTQ8so-vVoHJ.m3u8?tag=21"
-                },
-                {
-                  "bitrate": 256000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2016389789453582340/vid/avc1/480x270/AZhcLrtYcoxWlqES.mp4?tag=21"
-                },
-                {
-                  "bitrate": 832000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2016389789453582340/vid/avc1/640x360/qEGZnrTekkmMQyPb.mp4?tag=21"
-                },
-                {
-                  "bitrate": 2176000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2016389789453582340/vid/avc1/1280x720/L5oBIJQHUKE00EBA.mp4?tag=21"
-                },
-                {
-                  "bitrate": 10368000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2016389789453582340/vid/avc1/1920x1080/yHfXsCoUimB_xnwf.mp4?tag=21"
-                }
-              ]
-            }
-          }
-        ]
-      },
+      "entities": {},
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -486,8 +398,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/39453212/1785235955",
         "description": "",
         "location": "Philippines",
-        "followers": 5717105,
-        "following": 672,
+        "followers": 5718240,
+        "following": 674,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -499,16 +411,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 14181,
+        "favouritesCount": 14180,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 213433,
-        "statusesCount": 1025409,
+        "mediaCount": 215033,
+        "statusesCount": 1027974,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2096631393191067840"
+          "2100074862379229250"
         ],
         "profile_bio": {
           "description": "Welcome to the official X account of GMA News.",
@@ -543,9 +455,11 @@
             },
             "display_url": "pic.x.com/tSTFxeRPi9",
             "expanded_url": "https://x.com/gmanews/status/2016396512222445694/video/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "id_str": "2016395541538803712",
             "indices": [
               278,
@@ -553,7 +467,10 @@
             ],
             "media_key": "13_2016395541538803712",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARv7rQ/MGhAAAAA=",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG/utD8waEAAAAA==",
                 "media_key": "13_2016395541538803712"
               }
             },
@@ -566,23 +483,7 @@
             "sizes": {
               "large": {
                 "h": 1080,
-                "resize": "fit",
                 "w": 1920
-              },
-              "medium": {
-                "h": 675,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 383,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "video",
@@ -625,99 +526,11 @@
       },
       "card": null,
       "place": {},
-      "entities": {
-        "media": [
-          {
-            "additional_media_info": {
-              "monetizable": false
-            },
-            "allow_download_status": {
-              "allow_download": true
-            },
-            "display_url": "pic.x.com/tSTFxeRPi9",
-            "expanded_url": "https://x.com/gmanews/status/2016396512222445694/video/1",
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "id_str": "2016395541538803712",
-            "indices": [
-              278,
-              301
-            ],
-            "media_key": "13_2016395541538803712",
-            "media_results": {
-              "result": {
-                "media_key": "13_2016395541538803712"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2016395541538803712/img/3eFCbDlmMZWorBM7.jpg",
-            "original_info": {
-              "focus_rects": [],
-              "height": 1080,
-              "width": 1920
-            },
-            "sizes": {
-              "large": {
-                "h": 1080,
-                "resize": "fit",
-                "w": 1920
-              },
-              "medium": {
-                "h": 675,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 383,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
-              }
-            },
-            "type": "video",
-            "url": "https://t.co/tSTFxeRPi9",
-            "video_info": {
-              "aspect_ratio": [
-                16,
-                9
-              ],
-              "duration_millis": 74000,
-              "variants": [
-                {
-                  "content_type": "application/x-mpegURL",
-                  "url": "https://video.twimg.com/amplify_video/2016395541538803712/pl/bW0XGHmWqMKzsseQ.m3u8?tag=16"
-                },
-                {
-                  "bitrate": 288000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2016395541538803712/vid/avc1/480x270/YtrRBgZby6ANdo-e.mp4?tag=16"
-                },
-                {
-                  "bitrate": 832000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2016395541538803712/vid/avc1/640x360/CWzrrlAtNNkiRFrZ.mp4?tag=16"
-                },
-                {
-                  "bitrate": 2176000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2016395541538803712/vid/avc1/1280x720/CXszDihOiWaJZ9ws.mp4?tag=16"
-                },
-                {
-                  "bitrate": 10368000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2016395541538803712/vid/avc1/1920x1080/pSD-3bIwxT9R5TPs.mp4?tag=16"
-                }
-              ]
-            }
-          }
-        ]
-      },
+      "entities": {},
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -758,7 +571,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437258,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -774,8 +587,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 411999,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -818,6 +631,8 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -858,8 +673,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1015106434701250562/1731649422",
         "description": "",
         "location": "Jammu And Kashmir",
-        "followers": 93093,
-        "following": 6,
+        "followers": 93131,
+        "following": 5,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -874,8 +689,8 @@
         "favouritesCount": 1125,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 93207,
-        "statusesCount": 129464,
+        "mediaCount": 93612,
+        "statusesCount": 129897,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -913,9 +728,11 @@
             },
             "display_url": "pic.x.com/R7ed9woENG",
             "expanded_url": "https://x.com/GulistanNewsTV/status/2016400790450274509/video/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "id_str": "2016400416704233473",
             "indices": [
               182,
@@ -923,7 +740,10 @@
             ],
             "media_key": "13_2016400416704233473",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARv7sX7imwABAAA=",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG/uxfuKbAAEAAA==",
                 "media_key": "13_2016400416704233473"
               }
             },
@@ -936,23 +756,7 @@
             "sizes": {
               "large": {
                 "h": 720,
-                "resize": "fit",
                 "w": 1280
-              },
-              "medium": {
-                "h": 675,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 383,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "video",
@@ -1034,94 +838,12 @@
             ],
             "text": "JammuKashmir"
           }
-        ],
-        "media": [
-          {
-            "additional_media_info": {
-              "monetizable": false
-            },
-            "allow_download_status": {
-              "allow_download": true
-            },
-            "display_url": "pic.x.com/R7ed9woENG",
-            "expanded_url": "https://x.com/GulistanNewsTV/status/2016400790450274509/video/1",
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "id_str": "2016400416704233473",
-            "indices": [
-              182,
-              205
-            ],
-            "media_key": "13_2016400416704233473",
-            "media_results": {
-              "result": {
-                "media_key": "13_2016400416704233473"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2016400416704233473/img/fk_js2qFZVcB46Nf.jpg",
-            "original_info": {
-              "focus_rects": [],
-              "height": 720,
-              "width": 1280
-            },
-            "sizes": {
-              "large": {
-                "h": 720,
-                "resize": "fit",
-                "w": 1280
-              },
-              "medium": {
-                "h": 675,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 383,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
-              }
-            },
-            "type": "video",
-            "url": "https://t.co/R7ed9woENG",
-            "video_info": {
-              "aspect_ratio": [
-                16,
-                9
-              ],
-              "duration_millis": 32733,
-              "variants": [
-                {
-                  "content_type": "application/x-mpegURL",
-                  "url": "https://video.twimg.com/amplify_video/2016400416704233473/pl/sPvKfCHtVTQJtENB.m3u8?tag=21&v=cfc"
-                },
-                {
-                  "bitrate": 256000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2016400416704233473/vid/avc1/480x270/DnfAWA8fYOH2k4B8.mp4?tag=21"
-                },
-                {
-                  "bitrate": 832000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2016400416704233473/vid/avc1/640x360/5CR2UwDP06wIUtaw.mp4?tag=21"
-                },
-                {
-                  "bitrate": 2176000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2016400416704233473/vid/avc1/1280x720/d4VIqeqoF6LcGmRb.mp4?tag=21"
-                }
-              ]
-            }
-          }
         ]
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -1157,12 +879,12 @@
         "name": "Official MMDA",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": null,
+        "verifiedType": "Government",
         "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967084,
+        "followers": 3966602,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -1178,8 +900,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888278,
+        "mediaCount": 61732,
+        "statusesCount": 888706,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1222,6 +944,189 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2016400856435064981",
+      "url": "https://x.com/blrcitytraffic/status/2016400856435064981",
+      "twitterUrl": "https://twitter.com/blrcitytraffic/status/2016400856435064981",
+      "text": "\"ಸಂಚಾರ ಸಲಹೆ\"\nಡೈಕಾನ್  ಆಸ್ಪತ್ರೆ ರಾಜಾಜಿನಗರ ಬಳಿ  ವಾಹನ ಕೆಟ್ಟು ನಿಂತಿರುವುದರಿಂದ ರಾಜಾಜಿನಗರ 1ನೇ ಬ್ಲಾಕ್ ಕಡೆಗೆ ನಿಧಾನಗತಿಯ ಸಂಚಾರವಿರುತ್ತದೆ.\n\n“Traffic advisory”\nDue to a vehicle breakdown at Dicon Hospital  Rajajinagara towards Rajajinagara 1st Block is having slow-moving traffic. https://t.co/oPNECXPH2R",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 679,
+      "createdAt": "Wed Jan 28 06:40:01 +0000 2026",
+      "lang": "und",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2016400856435064981",
+      "displayTextRange": [
+        0,
+        265
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "blrcitytraffic",
+        "url": "https://x.com/blrcitytraffic",
+        "twitterUrl": "https://twitter.com/blrcitytraffic",
+        "id": "1851545900",
+        "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1565259569588490240/HChz-Vdb_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1851545900/1713356586",
+        "description": "",
+        "location": "Bengaluru-560001",
+        "followers": 672648,
+        "following": 100,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Sep 10 13:44:16 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 60500,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 16991,
+        "statusesCount": 241371,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Promoting Traffic Awareness & Road Safety 🚦🛣 | Your Partners in Traffic Management 🚓💼 | #BengaluruTrafficPolice 🌆🚗",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    88,
+                    111
+                  ],
+                  "text": "BengaluruTrafficPolice"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.karnataka.gov.in",
+                  "expanded_url": "https://btp.karnataka.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/6LKf9FpGkG"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/oPNECXPH2R",
+            "expanded_url": "https://x.com/blrcitytraffic/status/2016400856435064981/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2016400847261810688",
+            "indices": [
+              266,
+              289
+            ],
+            "media_key": "3_2016400847261810688",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARv7seMh1kAACgACG/ux5USbAJUAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG/ux4yHWQAAKAAIb+7HlRJsAlQAA",
+                "media_key": "3_2016400847261810688"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G_ux4yHWQAAaK2-.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 672,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 504
+                },
+                {
+                  "h": 1200,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 240
+                },
+                {
+                  "h": 1368,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 156
+                },
+                {
+                  "h": 1600,
+                  "w": 800,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1600,
+              "width": 1200
+            },
+            "sizes": {
+              "large": {
+                "h": 1600,
+                "w": 1200
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/oPNECXPH2R"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -1262,7 +1167,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197278,
+        "followers": 1197832,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -1278,8 +1183,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219315,
-        "statusesCount": 942023,
+        "mediaCount": 219495,
+        "statusesCount": 943012,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1289,7 +1194,17 @@
         "profile_bio": {
           "description": "Breaking news and stories from different sides. RTs from our journalists. Unparalleled journalism in the Philippines since 1900. #BeFullyInformed",
           "entities": {
-            "description": {},
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    129,
+                    145
+                  ],
+                  "text": "BeFullyInformed"
+                }
+              ]
+            },
             "url": {
               "urls": [
                 {
@@ -1313,9 +1228,11 @@
           {
             "display_url": "pic.x.com/ZARC05Qc4S",
             "expanded_url": "https://x.com/manilabulletin/status/2016404292199120991/photo/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": [
@@ -1324,16 +1241,6 @@
                     "w": 136,
                     "x": 1492,
                     "y": 1128
-                  }
-                ]
-              },
-              "medium": {
-                "faces": [
-                  {
-                    "h": 79,
-                    "w": 79,
-                    "x": 874,
-                    "y": 660
                   }
                 ]
               },
@@ -1346,16 +1253,6 @@
                     "y": 2256
                   }
                 ]
-              },
-              "small": {
-                "faces": [
-                  {
-                    "h": 45,
-                    "w": 45,
-                    "x": 495,
-                    "y": 374
-                  }
-                ]
               }
             },
             "id_str": "2016404225698496512",
@@ -1365,7 +1262,10 @@
             ],
             "media_key": "3_2016404225698496512",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARv7tPW8WwAACgACG/u1BTgaAF8AAA==",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG/u09bxbAAAKAAIb+7UFOBoAXwAA",
                 "media_key": "3_2016404225698496512"
               }
             },
@@ -1409,23 +1309,7 @@
             "sizes": {
               "large": {
                 "h": 2048,
-                "resize": "fit",
                 "w": 2048
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "photo",
@@ -1435,133 +1319,11 @@
       },
       "card": null,
       "place": {},
-      "entities": {
-        "media": [
-          {
-            "display_url": "pic.x.com/ZARC05Qc4S",
-            "expanded_url": "https://x.com/manilabulletin/status/2016404292199120991/photo/1",
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "features": {
-              "large": {
-                "faces": [
-                  {
-                    "h": 136,
-                    "w": 136,
-                    "x": 1492,
-                    "y": 1128
-                  }
-                ]
-              },
-              "medium": {
-                "faces": [
-                  {
-                    "h": 79,
-                    "w": 79,
-                    "x": 874,
-                    "y": 660
-                  }
-                ]
-              },
-              "orig": {
-                "faces": [
-                  {
-                    "h": 272,
-                    "w": 272,
-                    "x": 2984,
-                    "y": 2256
-                  }
-                ]
-              },
-              "small": {
-                "faces": [
-                  {
-                    "h": 45,
-                    "w": 45,
-                    "x": 495,
-                    "y": 374
-                  }
-                ]
-              }
-            },
-            "id_str": "2016404225698496512",
-            "indices": [
-              213,
-              236
-            ],
-            "media_key": "3_2016404225698496512",
-            "media_results": {
-              "result": {
-                "media_key": "3_2016404225698496512"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/media/G_u09bxbAAAtHdt.jpg",
-            "original_info": {
-              "focus_rects": [
-                {
-                  "h": 2294,
-                  "w": 4096,
-                  "x": 0,
-                  "y": 1802
-                },
-                {
-                  "h": 4096,
-                  "w": 4096,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 4096,
-                  "w": 3593,
-                  "x": 503,
-                  "y": 0
-                },
-                {
-                  "h": 4096,
-                  "w": 2048,
-                  "x": 2048,
-                  "y": 0
-                },
-                {
-                  "h": 4096,
-                  "w": 4096,
-                  "x": 0,
-                  "y": 0
-                }
-              ],
-              "height": 4096,
-              "width": 4096
-            },
-            "sizes": {
-              "large": {
-                "h": 2048,
-                "resize": "fit",
-                "w": 2048
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
-              }
-            },
-            "type": "photo",
-            "url": "https://t.co/ZARC05Qc4S"
-          }
-        ]
-      },
+      "entities": {},
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -1597,12 +1359,12 @@
         "name": "Official MMDA",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": null,
+        "verifiedType": "Government",
         "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967084,
+        "followers": 3966602,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -1618,8 +1380,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888278,
+        "mediaCount": 61732,
+        "statusesCount": 888706,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1662,6 +1424,8 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     }
   ]

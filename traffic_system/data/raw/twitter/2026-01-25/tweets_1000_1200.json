@@ -5,14 +5,14 @@
     "window_start": "2026-01-25T10:00:00+08:00",
     "window_end": "2026-01-25T12:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 5,
+    "tweet_count": 11,
     "slices": [
       {
         "start": "2026-01-25T10:00:00+08:00",
         "end": "2026-01-25T10:05:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-25T10:05:00+08:00",
@@ -39,8 +39,8 @@
         "start": "2026-01-25T10:20:00+08:00",
         "end": "2026-01-25T10:25:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-01-25T10:25:00+08:00",
@@ -53,15 +53,15 @@
         "start": "2026-01-25T10:30:00+08:00",
         "end": "2026-01-25T10:35:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-01-25T10:35:00+08:00",
         "end": "2026-01-25T10:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-25T10:40:00+08:00",
@@ -116,8 +116,8 @@
         "start": "2026-01-25T11:15:00+08:00",
         "end": "2026-01-25T11:20:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-01-25T11:20:00+08:00",
@@ -180,6 +180,98 @@
   "data": [
     {
       "type": "tweet",
+      "id": "2015244337270112272",
+      "url": "https://x.com/LAPDCentral/status/2015244337270112272",
+      "twitterUrl": "https://twitter.com/LAPDCentral/status/2015244337270112272",
+      "text": "⚠️Traffic Advisory⚠️ \n\nThere is no stopping or parking allowed on Alameda between Commercial/Aliso and Temple.  \n\nYou may be cited and your vehicle may be towed at your own expense.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 7,
+      "quoteCount": 0,
+      "viewCount": 1130,
+      "createdAt": "Sun Jan 25 02:04:26 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2015244337270112272",
+      "displayTextRange": [
+        0,
+        181
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "LAPDCentral",
+        "url": "https://x.com/LAPDCentral",
+        "twitterUrl": "https://twitter.com/LAPDCentral",
+        "id": "1608131025774993408",
+        "name": "LAPD Central Division",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1810395052855926784/R0pSVKzE_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1608131025774993408/1705187163",
+        "description": "",
+        "location": "251 E 6th Street Los Angeles",
+        "followers": 10786,
+        "following": 128,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Dec 28 16:02:18 +0000 2022",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 746,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 486,
+        "statusesCount": 3132,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Offical Account of LAPD Central Division. Serving Downtown Los Angeles. *This account is not monitored 24/7*",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "lapdonline.org",
+                  "expanded_url": "http://lapdonline.org",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/W4L7E504v2"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2015246996949586398",
       "url": "https://x.com/MakatiTraffic/status/2015246996949586398",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2015246996949586398",
@@ -216,7 +308,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437257,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +324,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411426,
+        "mediaCount": 17208,
+        "statusesCount": 411995,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -282,6 +374,356 @@
     },
     {
       "type": "tweet",
+      "id": "2015249364214800802",
+      "url": "https://x.com/LAPDCentral/status/2015249364214800802",
+      "twitterUrl": "https://twitter.com/LAPDCentral/status/2015249364214800802",
+      "text": "⚠️Traffic Advisory⚠️ \n\nDemonstrators have marched back over to Los Angeles St between Aliso and Temple. \n\nAll lanes of Alameda should be open soon. \n\nExpect delays now on Los Angeles St.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 797,
+      "createdAt": "Sun Jan 25 02:24:24 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2015249364214800802",
+      "displayTextRange": [
+        0,
+        186
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "LAPDCentral",
+        "url": "https://x.com/LAPDCentral",
+        "twitterUrl": "https://twitter.com/LAPDCentral",
+        "id": "1608131025774993408",
+        "name": "LAPD Central Division",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1810395052855926784/R0pSVKzE_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1608131025774993408/1705187163",
+        "description": "",
+        "location": "251 E 6th Street Los Angeles",
+        "followers": 10786,
+        "following": 128,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Dec 28 16:02:18 +0000 2022",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 746,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 486,
+        "statusesCount": 3132,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Offical Account of LAPD Central Division. Serving Downtown Los Angeles. *This account is not monitored 24/7*",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "lapdonline.org",
+                  "expanded_url": "http://lapdonline.org",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/W4L7E504v2"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2015248568597282902",
+      "url": "https://x.com/LAPDCentral/status/2015248568597282902",
+      "twitterUrl": "https://twitter.com/LAPDCentral/status/2015248568597282902",
+      "text": "⚠️Traffic Advisory⚠️ \n\nDemonstration is marching Northbound on Alameda towards Aliso St. \n\nAll lanes of traffic on Alameda have been blocked between Temple and Aliso.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 0,
+      "likeCount": 6,
+      "quoteCount": 0,
+      "viewCount": 956,
+      "createdAt": "Sun Jan 25 02:21:14 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2015248568597282902",
+      "displayTextRange": [
+        0,
+        166
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "LAPDCentral",
+        "url": "https://x.com/LAPDCentral",
+        "twitterUrl": "https://twitter.com/LAPDCentral",
+        "id": "1608131025774993408",
+        "name": "LAPD Central Division",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1810395052855926784/R0pSVKzE_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1608131025774993408/1705187163",
+        "description": "",
+        "location": "251 E 6th Street Los Angeles",
+        "followers": 10786,
+        "following": 128,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Dec 28 16:02:18 +0000 2022",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 746,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 486,
+        "statusesCount": 3132,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Offical Account of LAPD Central Division. Serving Downtown Los Angeles. *This account is not monitored 24/7*",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "lapdonline.org",
+                  "expanded_url": "http://lapdonline.org",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/W4L7E504v2"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2015251440021938674",
+      "url": "https://x.com/Globalstats11/status/2015251440021938674",
+      "twitterUrl": "https://twitter.com/Globalstats11/status/2015251440021938674",
+      "text": "Nicknames of Countries Around the World:\n\n🇮🇳 India – Land of Diversity\n🇯🇵 Japan – Land of the Rising Sun\n🇺🇸 USA – Land of Liberty\n🇨🇳 China – The Red Dragon\n🇳🇬 Nigeria – Giant of Africa\n🇪🇬 Egypt – Gift of the Nile\n🇵🇰 Pakistan – Land of the Pure\n🇫🇷 France – Land of Love\n🇹🇭 Thailand – Land of Smiles\n🇹🇷 Turkey – Gateway Between East and West\n🇧🇷 Brazil – Land of the Holy Cross\n🇳🇵 Nepal – Roof of the World\n🇿🇦 South Africa – Rainbow Nation\n🇨🇦 Canada – The Great White North\n🇦🇷 Argentina – Land of Silver\n🇮🇹 Italy – Bel Paese (Beautiful Country)\n🇷🇺 Russia – Land of the Tsars\n🇬🇧 United Kingdom – Land of Hope and Glory\n🇵🇭 Philippines – The Pearl of the Orient Seas\n🇳🇿 New Zealand – Land of the Long White Cloud\n🇦🇺 Australia – Land Down Under\n🇸🇦 Saudi Arabia – Land of the Two Holy Mosques\n🇲🇽 Mexico – Land of the Aztecs\n🇮🇸 Iceland – Land of Fire and Ice\n🇸🇬 Singapore – Lion City\n🇰🇪 Kenya – Safari Capital of the World\n🇬🇷 Greece – Cradle of Western Civilization\n🇰🇷 South Korea – Land of the Morning Calm\n🇻🇳 Vietnam – Land of the Blue Dragon\n🇸🇪 Sweden – Land of the Midnight Sun\n🇳🇴 Norway – Land of Fjords\n🇨🇱 Chile – Land of Poets\n🇵🇪 Peru – Land of the Incas\n🇮🇷 Iran – Land of Aryans\n🇮🇶 Iraq – Cradle of Civilization\n🇮🇩 Indonesia – Emerald of the Equator\n🇪🇹 Ethiopia – Land of Origins\n🇲🇦 Morocco – Gateway to Africa\n🇪🇸 Spain – Land of Passion\n🇵🇹 Portugal – Land of Explorers\n🇨🇭 Switzerland – Land of Alps\n🇩🇪 Germany – Land of Poets and Thinkers\n🇳🇱 Netherlands – Land of Windmills and Tulips\n🇩🇰 Denmark – Land of the Vikings\n🇫🇮 Finland – Land of a Thousand Lakes\n🇧🇪 Belgium – Land of Waffles and Chocolate\n🇮🇪 Ireland – Emerald Isle\n🇨🇿 Czechia – Heart of Europe\n🇵🇱 Poland – Land of Fields\n🇭🇺 Hungary – Land of Thermal Baths\n🇦🇹 Austria – Land of Music\n🇷🇴 Romania – Land of Dracula\n🇷🇸 Serbia – Land of Heroes\n🇧🇬 Bulgaria – Land of Roses\n🇺🇦 Ukraine – Breadbasket of Europe\n🇭🇷 Croatia – Land of a Thousand Islands\n🇸🇮 Slovenia – Green Heart of Europe\n🇱🇺 Luxembourg – Green Heart of Europe\n🇮🇱 Israel – Holy Land\n🇯🇴 Jordan – Hashemite Kingdom\n🇶🇦 Qatar – Land of Wealth\n🇦🇪 UAE – Land of Innovation\n🇴🇲 Oman – Jewel of Arabia\n🇧🇭 Bahrain – Island of Pearls\n🇱🇧 Lebanon – Land of the Cedars\n🇰🇼 Kuwait – Land of Black Gold\n🇲🇾 Malaysia – Truly Asia\n🇸🇨 Seychelles – Paradise Islands\n🇲🇻 Maldives – Tropical Paradise\n🇱🇰 Sri Lanka – Pearl of the Indian Ocean\n🇧🇩 Bangladesh – Land of Rivers\n🇲🇲 Myanmar – Land of Golden Pagodas\n🇰🇭 Cambodia – Land of Angkor\n🇱🇦 Laos – Land of a Million Elephants\n🇹🇼 Taiwan – Heart of Asia\n🇭🇰 Hong Kong – Pearl of the Orient\n🇲🇳 Mongolia – Land of the Eternal Blue Sky\n🇰🇿 Kazakhstan – Land of the Great Steppe\n🇺🇿 Uzbekistan – Crossroads of the Silk Road\n🇬🇪 Georgia – Land of the Golden Fleece\n🇦🇲 Armenia – Land of Stones\n🇨🇷 Costa Rica – Land of Pura Vida\n🇨🇨 Cuba – Pearl of the Antilles\n🇨🇴 Colombia – Land of Coffee\n🇻🇪 Venezuela – Land of Grace\n🇪🇨 Ecuador – Land of the Equator\n🇧🇴 Bolivia – Land of the Andes\n🇺🇾 Uruguay – Land of the Silver River\n🇵🇾 Paraguay – Heart of South America\n🇨🇩 DR Congo – Heart of Africa\n🇬🇭 Ghana – Land of Gold\n🇨🇮 Ivory Coast – Land of Cocoa\n🇸🇳 Senegal – Land of Teranga\n🇹🇿 Tanzania – Land of Kilimanjaro\n🇺🇬 Uganda – Pearl of Africa\n🇲🇬 Madagascar – Red Island\n🇲🇦 Tunisia – Land of Jasmine\n🇩🇿 Algeria – Land of the Sahara\n🇱🇻 Latvia – Land That Sings\n🇪🇪 Estonia – Land of the Midnight Sun\n🇧🇾 Belarus – Land of Marshes\n🇸🇰 Slovakia – Little Big Country\n🇧🇦 Bosnia and Herzegovina – Heart Shaped Land\n🇲🇰 North Macedonia – Land of the Sun\n🇦🇱 Albania – Land of Eagles\n🇲🇩 Moldova – Land of Vineyards\n🇲🇪 Montenegro – Black Mountain\n🇨🇾 Cyprus – Island of Aphrodite\n🇳🇦 Namibia – Land of the Brave\n🇿🇲 Zambia – Land of the Victoria Falls\n🇿🇼 Zimbabwe – Land of the Great Zimbabwe\n🇲🇿 Mozambique – Land of Good People\n🇧🇼 Botswana – Land of Diamonds\n🇨🇲 Cameroon – Africa in Miniature\n🇪🇷 Eritrea – Land of the Red Sea\n🇸🇩 Sudan – Land of the Blacks\n🇿🇲 Malawi – The Warm Heart of Africa\n\nNote:  All nicknames are based on historical, cultural, poetic, or globally accepted references.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 185,
+      "replyCount": 57,
+      "likeCount": 821,
+      "quoteCount": 20,
+      "viewCount": 158398,
+      "createdAt": "Sun Jan 25 02:32:39 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 329,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2015251440021938674",
+      "displayTextRange": [
+        0,
+        280
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "Globalstats11",
+        "url": "https://x.com/Globalstats11",
+        "twitterUrl": "https://twitter.com/Globalstats11",
+        "id": "881556571083255808",
+        "name": "Global Statistics",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1795871781536047104/RL55N1ZE_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/881556571083255808/1719494765",
+        "description": "",
+        "location": "Global ",
+        "followers": 332464,
+        "following": 34,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Sun Jul 02 16:53:59 +0000 2017",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 289424,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 12084,
+        "statusesCount": 35225,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2100072608402440340"
+        ],
+        "profile_bio": {
+          "description": "Numbers || News || Facts || Wealth || Maps.\n\n|| DMs Open for Business Enquiries ||",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/CIwysq7y0m",
+            "expanded_url": "https://x.com/Globalstats11/status/2015251440021938674/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2015251328067670016",
+            "indices": [
+              281,
+              304
+            ],
+            "media_key": "3_2015251328067670016",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARv3nGfWm5AACgACG/ecgeeaIfIAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG/ecZ9abkAAKAAIb95yB55oh8gAA",
+                "media_key": "3_2015251328067670016"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G_ecZ9abkAAM-jX.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1147,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 297
+                },
+                {
+                  "h": 2048,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1796,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1024,
+                  "x": 153,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/CIwysq7y0m"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2015250772154568905",
       "url": "https://x.com/MakatiTraffic/status/2015250772154568905",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2015250772154568905",
@@ -318,7 +760,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437257,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -334,8 +776,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411426,
+        "mediaCount": 17208,
+        "statusesCount": 411995,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -384,6 +826,98 @@
     },
     {
       "type": "tweet",
+      "id": "2015253069903298843",
+      "url": "https://x.com/LAPDCentral/status/2015253069903298843",
+      "twitterUrl": "https://twitter.com/LAPDCentral/status/2015253069903298843",
+      "text": "⚠️Traffic Advisory⚠️ \n\nNorthbound lanes of Los Angeles St are closed better Temple and Aliso due to a demonstration.  \n\nPlease use alternate route.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 0,
+      "likeCount": 5,
+      "quoteCount": 0,
+      "viewCount": 744,
+      "createdAt": "Sun Jan 25 02:39:08 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2015253069903298843",
+      "displayTextRange": [
+        0,
+        147
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "LAPDCentral",
+        "url": "https://x.com/LAPDCentral",
+        "twitterUrl": "https://twitter.com/LAPDCentral",
+        "id": "1608131025774993408",
+        "name": "LAPD Central Division",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1810395052855926784/R0pSVKzE_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1608131025774993408/1705187163",
+        "description": "",
+        "location": "251 E 6th Street Los Angeles",
+        "followers": 10786,
+        "following": 128,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Dec 28 16:02:18 +0000 2022",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 746,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 486,
+        "statusesCount": 3132,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Offical Account of LAPD Central Division. Serving Downtown Los Angeles. *This account is not monitored 24/7*",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "lapdonline.org",
+                  "expanded_url": "http://lapdonline.org",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/W4L7E504v2"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2015254546659115398",
       "url": "https://x.com/MakatiTraffic/status/2015254546659115398",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2015254546659115398",
@@ -420,7 +954,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437257,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -436,8 +970,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411426,
+        "mediaCount": 17208,
+        "statusesCount": 411995,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -486,6 +1020,465 @@
     },
     {
       "type": "tweet",
+      "id": "2015263277539025198",
+      "url": "https://x.com/tv9kannada/status/2015263277539025198",
+      "twitterUrl": "https://twitter.com/tv9kannada/status/2015263277539025198",
+      "text": "Bengaluru Traffic Advisory: ವರ್ತೂರು ಜಾತ್ರೆ ಹಿನ್ನೆಲೆ 3 ದಿನ ಸಂಚಾರ ಬದಲಾವಣೆ; ಪರ್ಯಾಯ ಮಾರ್ಗಗಳ ಕುರಿತ ಮಾಹಿತಿ ಇಲ್ಲಿದೆ\nhttps://t.co/OHvbbN08bh\n@DCPTrEastBCP",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 258,
+      "createdAt": "Sun Jan 25 03:19:41 +0000 2026",
+      "lang": "kn",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2015263277539025198",
+      "displayTextRange": [
+        0,
+        146
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "tv9kannada",
+        "url": "https://x.com/tv9kannada",
+        "twitterUrl": "https://twitter.com/tv9kannada",
+        "id": "145540592",
+        "name": "TV9 Kannada",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1239814594224197633/ORTB9Zt7_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/145540592/1789432576",
+        "description": "",
+        "location": "Bengaluru, INDIA",
+        "followers": 671075,
+        "following": 40,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed May 19 06:36:37 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 615,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 333470,
+        "statusesCount": 592611,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2098576292711170375"
+        ],
+        "profile_bio": {
+          "description": "News & Infotainment\nhttps://t.co/0XTzDqcTMg\nhttps://t.co/TNqdClCt5r…",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "facebook.com/Tv9Kannada",
+                  "expanded_url": "http://facebook.com/Tv9Kannada",
+                  "indices": [
+                    20,
+                    43
+                  ],
+                  "url": "https://t.co/0XTzDqcTMg"
+                },
+                {
+                  "display_url": "instagram.com/tv9_kannada_of",
+                  "expanded_url": "http://instagram.com/tv9_kannada_of",
+                  "indices": [
+                    44,
+                    67
+                  ],
+                  "url": "https://t.co/TNqdClCt5r"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "tv9kannada.com",
+                  "expanded_url": "http://www.tv9kannada.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/MMP5YHUliQ"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "ವರ್ತೂರಿನಲ್ಲಿ ಮೂರು ದಿನ ಶ್ರೀ ಚನ್ನರಾಯಸ್ವಾಮಿ ಜಾತ್ರಾ ರಥೋತ್ಸವ ದೀಪೋತ್ಸವ ಮತ್ತು ಪಲ್ಲಕ್ಕಿ ಕರಗ ಮಹೋತ್ಸವ ನಡೆಯುತ್ತಿರುವ ಹಿನ್ನೆಲೆ ಜನವರಿ 25ರಿಂದ 27ರ ವರೆಗೆ ಸಂಚಾರ ನಿರ್ಬಂಧ ಹೇರಲಾಗಿದೆ. ವಾಹನ ಸವಾರರು ಸಹಕರಿಸುವಂತೆ ಟ್ರಾಫಿಕ್..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "tv9kannada.com"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "145540592",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "145540592",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "tv9kannada.com"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Bengaluru Traffic Advisory: ವರ್ತೂರು ಜಾತ್ರೆ ಹಿನ್ನೆಲೆ 3 ದಿನ ಸಂಚಾರ ಬದಲಾವಣೆ; ಪರ್ಯಾಯ ಮಾರ್ಗಗಳ ಕುರಿತ..."
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/OHvbbN08bh"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/OHvbbN08bh",
+        "user_refs_results": [
+          {
+            "rest_id": "145540592",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 615
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1239814594224197633/ORTB9Zt7_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/145540592/1789432576"
+              },
+              "core": {
+                "created_at": "Wed May 19 06:36:37 +0000 2010",
+                "name": "TV9 Kannada",
+                "screen_name": "tv9kannada"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Bengaluru, INDIA"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2098576292711170375"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "News & Infotainment\nhttps://t.co/0XTzDqcTMg\nhttps://t.co/TNqdClCt5r…",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "facebook.com/Tv9Kannada",
+                        "expanded_url": "http://facebook.com/Tv9Kannada",
+                        "indices": [
+                          20,
+                          43
+                        ],
+                        "url": "https://t.co/0XTzDqcTMg"
+                      },
+                      {
+                        "display_url": "instagram.com/tv9_kannada_of",
+                        "expanded_url": "http://instagram.com/tv9_kannada_of",
+                        "indices": [
+                          44,
+                          67
+                        ],
+                        "url": "https://t.co/TNqdClCt5r"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "tv9kannada.com",
+                        "expanded_url": "http://www.tv9kannada.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/MMP5YHUliQ"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "0084B4"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 671075,
+                "following": 40
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "145540592",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 333470,
+                "tweets": 592611
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/MMP5YHUliQ"
+              }
+            }
+          },
+          {
+            "rest_id": "145540592",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 615
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1239814594224197633/ORTB9Zt7_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/145540592/1789432576"
+              },
+              "core": {
+                "created_at": "Wed May 19 06:36:37 +0000 2010",
+                "name": "TV9 Kannada",
+                "screen_name": "tv9kannada"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Bengaluru, INDIA"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2098576292711170375"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "News & Infotainment\nhttps://t.co/0XTzDqcTMg\nhttps://t.co/TNqdClCt5r…",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "facebook.com/Tv9Kannada",
+                        "expanded_url": "http://facebook.com/Tv9Kannada",
+                        "indices": [
+                          20,
+                          43
+                        ],
+                        "url": "https://t.co/0XTzDqcTMg"
+                      },
+                      {
+                        "display_url": "instagram.com/tv9_kannada_of",
+                        "expanded_url": "http://instagram.com/tv9_kannada_of",
+                        "indices": [
+                          44,
+                          67
+                        ],
+                        "url": "https://t.co/TNqdClCt5r"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "tv9kannada.com",
+                        "expanded_url": "http://www.tv9kannada.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/MMP5YHUliQ"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "0084B4"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 671075,
+                "following": 40
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "145540592",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 333470,
+                "tweets": 592611
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/MMP5YHUliQ"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "tv9kannada.com/karnataka/beng…",
+            "expanded_url": "https://tv9kannada.com/karnataka/bengaluru/whitefield-traffic-alert-varthur-road-closures-for-channarayaswamy-festival-january-25th-to-january-27th-1140164.html",
+            "indices": [
+              109,
+              132
+            ],
+            "url": "https://t.co/OHvbbN08bh"
+          }
+        ],
+        "user_mentions": [
+          {
+            "id_str": "2809049605",
+            "indices": [
+              133,
+              146
+            ],
+            "name": "DCP Traffic East ಉಪ ಪೊಲೀಸ್ ಆಯುಕ್ತರು ಸಂಚಾರ ಪೂರ್ವ",
+            "screen_name": "DCPTrEastBCP"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2015262547939824033",
       "url": "https://x.com/mnlstandardph/status/2015262547939824033",
       "twitterUrl": "https://twitter.com/mnlstandardph/status/2015262547939824033",
@@ -522,7 +1515,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/474871087/1786481218",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 112220,
+        "followers": 112854,
         "following": 224,
         "status": "",
         "canDm": true,
@@ -538,8 +1531,8 @@
         "favouritesCount": 530,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 75327,
-        "statusesCount": 137581,
+        "mediaCount": 75668,
+        "statusesCount": 137923,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -693,10 +1686,10 @@
       "replyCount": 32,
       "likeCount": 189,
       "quoteCount": 4,
-      "viewCount": 4224,
+      "viewCount": 4225,
       "createdAt": "Sun Jan 25 03:56:04 +0000 2026",
       "lang": "en",
-      "bookmarkCount": 1,
+      "bookmarkCount": 2,
       "isReply": false,
       "inReplyToId": null,
       "conversationId": "2015272431422955934",
@@ -720,7 +1713,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2808997472/1693288036",
         "description": "",
         "location": "Bengaluru, Karnataka",
-        "followers": 80534,
+        "followers": 80553,
         "following": 217,
         "status": "",
         "canDm": false,
@@ -733,11 +1726,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 24438,
+        "favouritesCount": 24439,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 3785,
-        "statusesCount": 35322,
+        "mediaCount": 3786,
+        "statusesCount": 35332,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
