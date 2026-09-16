@@ -5,7 +5,7 @@
     "window_start": "2025-08-22T00:00:00+08:00",
     "window_end": "2025-08-22T02:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 5,
+    "tweet_count": 9,
     "slices": [
       {
         "start": "2025-08-22T00:00:00+08:00",
@@ -18,8 +18,8 @@
         "start": "2025-08-22T00:05:00+08:00",
         "end": "2025-08-22T00:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-08-22T00:10:00+08:00",
@@ -39,22 +39,22 @@
         "start": "2025-08-22T00:20:00+08:00",
         "end": "2025-08-22T00:25:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-08-22T00:25:00+08:00",
         "end": "2025-08-22T00:30:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-08-22T00:30:00+08:00",
         "end": "2025-08-22T00:35:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-08-22T00:35:00+08:00",
@@ -180,6 +180,661 @@
   "data": [
     {
       "type": "tweet",
+      "id": "1958561048908181924",
+      "url": "https://x.com/DanteReminick/status/1958561048908181924",
+      "twitterUrl": "https://twitter.com/DanteReminick/status/1958561048908181924",
+      "text": "After dozens of conversations with stablecoin builders and operators, I’ve reached a conclusion: standard liquidity pools are not built for payments at scale.\n\nAs the quantity of stablecoins continues to grow in parallel with stablecoin payment usage, moving between stablecoins becomes critical. Here are a few use cases in which moving between stablecoins is critical to stablecoin payments at large: \n \n 1. Mid-Payment Optimizations: People want to use stablecoins based on their regulatory requirements, local currency liquidity or just personal preference. Imagine you are moving between the E.U. and the Philippines. In the E.U, businesses want to maintain compliance and therefore USDC is frequently used. However, in the Philippines, nobody uses USDC. USDT is the runaway winner in this region. This means that ramping rates are often higher for USDC than for USDT. So it might be beneficial to move between stablecoins to get better rates on local currency liquidity while maintaining regulatory compliance. \n \n2. Spending vs. Savings: I’ve always loved the heuristic of yield-bearing stablecoins being akin to a savings account and your standard stablecoin being akin to your spending account. Just as most people don’t want to spend their Bitcoin, most people also do not want to spend their yield-bearing stablecoins. In today’s consumer banking system, it is common to see consumers moving money from their savings to checking - the same thing will need to happen in the world of onchain banking. Users will need to move between their “savings” stablecoins and their “spending” stablecoins to facilitate the necessary consumer banking behaviors. \n \n3. Treasury Rebalancing: Any company moving stablecoins has to constantly rebalance their books at the end of the day to reflect their desired levels of specific stablecoins. This often involves moving between stablecoins to ensure daily treasury stability. \n \nOne of the most common ways to move between stablecoins in the DeFi world is to use liquidity pools such as Curve or Uniswap.\n\nBoth Curve and Uniswap have DEEP liquidity in their USDT ↔ USDC pools on ETH Mainnet. This liquidity is driven primarily by DeFi - most payment activity happens on Alt L1s or L2s. \n \nOn those Alt L1s or L2s - USDT ↔ USDC pools remain incredibly shallow. Moving large amounts of money through these pools results in massive slippage. For example, trying to move $1,000,000 between USDC and USDT on base via Uniswap results in 82% slippage! Keep in mind that $1,000,000 is a very small amount for most of b2b payment companies. \n \n While this is an extreme example, it highlights one of the major flaws with liquidity pools in general - they are fundamentally designed for volatile assets and are incredibly limiting for stable assets. \n \nHave you ever noticed that USDT and USDC are not exactly $1 each? Blame liquidity pools. These pools take 2 assets that are backed by the same fiat currency and places them into a financial mechanism that attempts to price-in liquidity balancing - constantly forcing these two assets to be unequal. In order for two assets, with equal backing, to be equal price within liquidity pools (AKA: zero slippage), their liquidity and demand would need to be EXACTLY the same - which is, of course, unattainable.\n\nSo far, we have just discussed the problems with liquidity pools when moving between USDC and USDT - the two most liquid stablecoins on the planet. However, this problem exponentially increases as the amount of stablecoins increase as well. Let’s do some math.\n\nImagine that there are ten stablecoins. How many pools would you need to maintain interoperability between these tokens? \n \nWell, you would need a pair for each combination, and you can’t list a combination twice. If my middle school stats teacher was right, this should be equal to 10 (total stablecoins) X 9 (other possible pairs) / 2 (as to not repeat pairs). (10*9)/2  = 45\n\nThat is 45 different pools for just 10 stablecoins. As we grow into a world with tens of thousands of stablecoins, one can quickly see the massive amounts of stablecoin pools that would need to exist. Keep in mind that we have already established that in order for these pools to be moderately effective in moving between stablecoins, they need to have incredible liquidity. Which is again impossible. As we have reached the full capabilities of my math skills, we will not be diving into the sheer statistical madness that is considering what this scenario looks like with many different tokens on the multitudes of chains that exist.\n\nLet’s review some of the major ideas thus far: \n \n1. Moving between stablecoins is necessary for a world of onchain payments\n\n2. Stablecoin liquidity pools are an utterly ineffective way to move between stablecoins \n \nSo, where do we go from here? What’s the answer for supreme stablecoin interoperability?\n\nUnfortunately, I do not have that answer yet. And neither does anyone else. \n \nMy best guess is that the solution lies somewhere within the cross section of an Intent-based protocol and a stablecoin optimized central limit order book.\nBut that is a breakdown for another article. \n \nIn the meantime, I will continue to rage against liquidity pools with fervor and speak with those that are solving this issue. There is often a lot of discussion around “The singleness of money” which is code for supreme interoperability among stablecoins. Migrating away from the entrenched norm of liquidity pools is the first step in achieving this monumentally critical goal.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 4,
+      "likeCount": 17,
+      "quoteCount": 0,
+      "viewCount": 716,
+      "createdAt": "Thu Aug 21 16:05:17 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 2,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1958561048908181924",
+      "displayTextRange": [
+        0,
+        278
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "DanteReminick",
+        "url": "https://x.com/DanteReminick",
+        "twitterUrl": "https://twitter.com/DanteReminick",
+        "id": "1210346934495522816",
+        "name": "Dante Reminick",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1542510331905204230/tJ8Z2Vga_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1210346934495522816/1627242744",
+        "description": "",
+        "location": "New York, USA",
+        "followers": 2796,
+        "following": 774,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Dec 26 23:49:37 +0000 2019",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 14491,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 315,
+        "statusesCount": 4163,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Missionary of better money. Radically obsessed with stablecoins, payments & commerce.",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1958565710520819782",
+      "url": "https://x.com/DCTrafficBDN/status/1958565710520819782",
+      "twitterUrl": "https://twitter.com/DCTrafficBDN/status/1958565710520819782",
+      "text": "🚦 Traffic Advisory 🚦 https://t.co/dLfuBAGVxZ",
+      "source": "Twitter for iPhone",
+      "retweetCount": 7,
+      "replyCount": 3,
+      "likeCount": 25,
+      "quoteCount": 0,
+      "viewCount": 307,
+      "createdAt": "Thu Aug 21 16:23:48 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1958565710520819782",
+      "displayTextRange": [
+        0,
+        20
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "DCTrafficBDN",
+        "url": "https://x.com/DCTrafficBDN",
+        "twitterUrl": "https://twitter.com/DCTrafficBDN",
+        "id": "1283069170691661824",
+        "name": "DCP Traffic, Bidhannagar",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2009661366936952832/svq3ZxFH_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1283069170691661824/1596211514",
+        "description": "",
+        "location": "",
+        "followers": 566,
+        "following": 7,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Jul 14 16:03:05 +0000 2020",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1068,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 774,
+        "statusesCount": 2141,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "DCP Traffic, Bidhannagar Police Commissionerate  For any grievance, email dctrafficbdn@gmail.com, or call 9051213100/ 6291606161",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "bidhannagarcitypolice.gov.in",
+                  "expanded_url": "http://bidhannagarcitypolice.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/02eDrDwuMg"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/dLfuBAGVxZ",
+            "expanded_url": "https://x.com/DCTrafficBDN/status/1958565710520819782/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "Bidhannagar Police",
+                    "screen_name": "bidhannagarpc",
+                    "type": "user",
+                    "user_id": "788295291266969600"
+                  }
+                ]
+              },
+              "large": {
+                "faces": [
+                  {
+                    "h": 39,
+                    "w": 39,
+                    "x": 462,
+                    "y": 380
+                  },
+                  {
+                    "h": 156,
+                    "w": 156,
+                    "x": 275,
+                    "y": 841
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 39,
+                    "w": 39,
+                    "x": 462,
+                    "y": 380
+                  },
+                  {
+                    "h": 156,
+                    "w": 156,
+                    "x": 275,
+                    "y": 841
+                  }
+                ]
+              }
+            },
+            "id_str": "1958565700512972800",
+            "indices": [
+              21,
+              44
+            ],
+            "media_key": "3_1958565700512972800",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARsuOSCwVwAACgACGy45IwTaoEYAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGy45ILBXAAAKAAIbLjkjBNqgRgAA",
+                "media_key": "3_1958565700512972800"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/Gy45ILBXAAAkk8m.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 573,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 898,
+                  "x": 126,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 512,
+                  "x": 332,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1024,
+              "width": 1024
+            },
+            "sizes": {
+              "large": {
+                "h": 1024,
+                "w": 1024
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/dLfuBAGVxZ"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1958566543388025165",
+      "url": "https://x.com/newstart_2024/status/1958566543388025165",
+      "twitterUrl": "https://twitter.com/newstart_2024/status/1958566543388025165",
+      "text": "Jimmy Dore exposes the stunning climate hypocrisy of the elite.\n\nThe single biggest polluter on Earth is the US military. It operates 900 bases across the globe.\n\nBut you'll never hear that from the corporate climate crowd.\n\nObama, Gore, and Kerry are silent. Gates is silent. They never say to shut down a single base.\n\nThey never condemn blowing up the Nord Stream pipeline. They never demand an end to the war in Ukraine.\n\nTheir silence tells you everything. They are full of it.\n\nThis extends to Greta Thunberg. She gets a red-carpet welcome at Davos with the oligarchs.\n\nIf she were real, she'd protest the new US bases in the Philippines. But she doesn't.\n\nTheir doomsday predictions always fail. The Arctic still has ice. The coral reefs are still there.\n\nThe planet is actually greening.\n\nIt's all a scam. They want to control you, not save the planet.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 120,
+      "replyCount": 9,
+      "likeCount": 276,
+      "quoteCount": 7,
+      "viewCount": 15446,
+      "createdAt": "Thu Aug 21 16:27:07 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 25,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1958566543388025165",
+      "displayTextRange": [
+        0,
+        276
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "newstart_2024",
+        "url": "https://x.com/newstart_2024",
+        "twitterUrl": "https://twitter.com/newstart_2024",
+        "id": "1109532876310302721",
+        "name": "Camus",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1917152153237327872/f-qClfGh_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1109532876310302721/1758462835",
+        "description": "",
+        "location": "",
+        "followers": 462879,
+        "following": 655,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Sat Mar 23 19:10:26 +0000 2019",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 233049,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 11665,
+        "statusesCount": 51788,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "We do not defend ourselves from other evils, with the evil within us.",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/FpneeEanNo",
+            "expanded_url": "https://x.com/newstart_2024/status/1958566543388025165/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "1958564031700115457",
+            "indices": [
+              277,
+              300
+            ],
+            "media_key": "13_1958564031700115457",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARsuN5wjV6ABAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABGy43nCNXoAEAAA==",
+                "media_key": "13_1958564031700115457"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1958564031700115457/img/A_CCHnaml_BaCgY4.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 720,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1280
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/FpneeEanNo",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 108700,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1958564031700115457/pl/7ZbzwCKMnY73cvOm.m3u8?tag=21&v=917"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1958564031700115457/vid/avc1/480x270/3iEXreltIGppzVWv.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1958564031700115457/vid/avc1/640x360/bcqy1JgLbOb1uHS7.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1958564031700115457/vid/avc1/1280x720/aB32Aa6mBPFPeFvh.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1958568158387634511",
+      "url": "https://x.com/BroomfieldPD/status/1958568158387634511",
+      "twitterUrl": "https://twitter.com/BroomfieldPD/status/1958568158387634511",
+      "text": "TRAFFIC ADVISORY 🚨 All WB lanes of the Northwest Parkway are closed at 96th Street for a crash involving two vehicles. Two EB lanes are closed as well. Traffic is being diverted onto 96th. Delays imminent. Please avoid the area and use Dillion Road to get around the crash. One person was taken to a local hospital with serious injuries. Cause under investigation. No estimate on when road will reopen.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 3,
+      "likeCount": 9,
+      "quoteCount": 2,
+      "viewCount": 3162,
+      "createdAt": "Thu Aug 21 16:33:32 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1958568158387634511",
+      "displayTextRange": [
+        0,
+        277
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "BroomfieldPD",
+        "url": "https://x.com/BroomfieldPD",
+        "twitterUrl": "https://twitter.com/BroomfieldPD",
+        "id": "2202228572",
+        "name": "Broomfield Police",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2005677355147337728/IpYecEsr_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2202228572/1735672985",
+        "description": "",
+        "location": "Broomfield, CO",
+        "followers": 18230,
+        "following": 220,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Nov 19 00:44:30 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2054,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 3565,
+        "statusesCount": 8249,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1772742677487902900"
+        ],
+        "profile_bio": {
+          "description": "Official Broomfield Police Department News, Features, and Events. Social Media Commenting Policy: https://t.co/feK5pSoQ6i",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "shorturl.at/cAJSD",
+                  "expanded_url": "https://shorturl.at/cAJSD",
+                  "indices": [
+                    98,
+                    121
+                  ],
+                  "url": "https://t.co/feK5pSoQ6i"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "broomfield.org/police",
+                  "expanded_url": "http://broomfield.org/police",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/fFQXWCa9QH"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/W6t9EdwDMO",
+            "expanded_url": "https://x.com/BroomfieldPD/status/1958568158387634511/photo/1",
+            "ext_alt_text": "Graphic with the words \"Happening Now\" and a photo of the Broomfield police badge. ",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 298,
+                    "w": 298,
+                    "x": 12,
+                    "y": 93
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 298,
+                    "w": 298,
+                    "x": 12,
+                    "y": 93
+                  }
+                ]
+              }
+            },
+            "id_str": "1958568063604793344",
+            "indices": [
+              278,
+              301
+            ],
+            "media_key": "3_1958568063604793344",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARsuO0bjlqAACgACGy47XPUWAU8AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGy47RuOWoAAKAAIbLjtc9RYBTwAA",
+                "media_key": "3_1958568063604793344"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/Gy47RuOWoAAh1do.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 504,
+                  "w": 900,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 504,
+                  "w": 504,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 504,
+                  "w": 442,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 504,
+                  "w": 252,
+                  "x": 42,
+                  "y": 0
+                },
+                {
+                  "h": 504,
+                  "w": 960,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 504,
+              "width": 960
+            },
+            "sizes": {
+              "large": {
+                "h": 504,
+                "w": 960
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/W6t9EdwDMO"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1958572908105842763",
       "url": "https://x.com/blrcitytraffic/status/1958572908105842763",
       "twitterUrl": "https://twitter.com/blrcitytraffic/status/1958572908105842763",
@@ -189,7 +844,7 @@
       "replyCount": 36,
       "likeCount": 364,
       "quoteCount": 9,
-      "viewCount": 29910,
+      "viewCount": 29912,
       "createdAt": "Thu Aug 21 16:52:24 +0000 2025",
       "lang": "en",
       "bookmarkCount": 68,
@@ -216,7 +871,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1851545900/1713356586",
         "description": "",
         "location": "Bengaluru-560001",
-        "followers": 672694,
+        "followers": 672637,
         "following": 100,
         "status": "",
         "canDm": true,
@@ -229,11 +884,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 60455,
+        "favouritesCount": 60487,
         "hasCustomTimelines": true,
         "isTranslator": true,
-        "mediaCount": 16936,
-        "statusesCount": 240776,
+        "mediaCount": 16955,
+        "statusesCount": 241278,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -608,7 +1263,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967206,
+        "followers": 3966762,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -624,8 +1279,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61677,
-        "statusesCount": 888211,
+        "mediaCount": 61726,
+        "statusesCount": 888650,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -683,7 +1338,7 @@
       "replyCount": 6,
       "likeCount": 89,
       "quoteCount": 2,
-      "viewCount": 7975,
+      "viewCount": 7977,
       "createdAt": "Thu Aug 21 16:57:32 +0000 2025",
       "lang": "kn",
       "bookmarkCount": 8,
@@ -710,7 +1365,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1851545900/1713356586",
         "description": "",
         "location": "Bengaluru-560001",
-        "followers": 672694,
+        "followers": 672637,
         "following": 100,
         "status": "",
         "canDm": true,
@@ -723,11 +1378,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 60455,
+        "favouritesCount": 60487,
         "hasCustomTimelines": true,
         "isTranslator": true,
-        "mediaCount": 16936,
-        "statusesCount": 240776,
+        "mediaCount": 16955,
+        "statusesCount": 241278,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1066,7 +1721,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1640954480869998592/1738052112",
         "description": "",
         "location": "Bengaluru",
-        "followers": 5580,
+        "followers": 5583,
         "following": 79,
         "status": "",
         "canDm": false,
@@ -1082,8 +1737,8 @@
         "favouritesCount": 159,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 883,
-        "statusesCount": 5520,
+        "mediaCount": 886,
+        "statusesCount": 5551,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1465,7 +2120,7 @@
       "replyCount": 43,
       "likeCount": 530,
       "quoteCount": 13,
-      "viewCount": 54707,
+      "viewCount": 54711,
       "createdAt": "Thu Aug 21 17:20:12 +0000 2025",
       "lang": "en",
       "bookmarkCount": 72,
@@ -1492,8 +2147,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/775296019/1696846406",
         "description": "",
         "location": "Bengaluru, India",
-        "followers": 1407459,
-        "following": 293,
+        "followers": 1407329,
+        "following": 294,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -1508,8 +2163,8 @@
         "favouritesCount": 12973,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 9818,
-        "statusesCount": 119874,
+        "mediaCount": 9833,
+        "statusesCount": 120011,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,

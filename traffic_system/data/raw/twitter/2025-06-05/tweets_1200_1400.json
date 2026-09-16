@@ -5,7 +5,7 @@
     "window_start": "2025-06-05T12:00:00+08:00",
     "window_end": "2025-06-05T14:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 7,
+    "tweet_count": 13,
     "slices": [
       {
         "start": "2025-06-05T12:00:00+08:00",
@@ -18,8 +18,8 @@
         "start": "2025-06-05T12:05:00+08:00",
         "end": "2025-06-05T12:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-06-05T12:10:00+08:00",
@@ -60,15 +60,15 @@
         "start": "2025-06-05T12:35:00+08:00",
         "end": "2025-06-05T12:40:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-06-05T12:40:00+08:00",
         "end": "2025-06-05T12:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 3,
+        "accepted": 3
       },
       {
         "start": "2025-06-05T12:45:00+08:00",
@@ -172,12 +172,413 @@
         "start": "2025-06-05T13:55:00+08:00",
         "end": "2025-06-05T14:00:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       }
     ]
   },
   "data": [
+    {
+      "type": "tweet",
+      "id": "1930477113922204001",
+      "url": "https://x.com/dzrhnews/status/1930477113922204001",
+      "twitterUrl": "https://twitter.com/dzrhnews/status/1930477113922204001",
+      "text": "Sanggol, apat pang katao patay sa sunog sa Pasig City | RH 23 @edwindu36836256, DZRH News\n\n#MBCTVNetworkNews\n\nLIVE: https://t.co/MsqPrr2B8h https://t.co/u8H5JZ8TsP",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 165,
+      "createdAt": "Thu Jun 05 04:09:45 +0000 2025",
+      "lang": "tl",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1930477113922204001",
+      "displayTextRange": [
+        0,
+        139
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "dzrhnews",
+        "url": "https://x.com/dzrhnews",
+        "twitterUrl": "https://twitter.com/dzrhnews",
+        "id": "74886399",
+        "name": "DZRH NEWS",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2077640307458633728/kXNIDvgI_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/74886399/1762132752",
+        "description": "",
+        "location": "Manila, Philippines",
+        "followers": 143752,
+        "following": 1036,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Thu Sep 17 00:35:08 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 8103,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 300593,
+        "statusesCount": 863010,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The official X account of MBC Media Group's flagship radio station DZRH 666 kHz: Una sa Pilipinas, Una sa Pilipino",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "dzrh.com.ph",
+                  "expanded_url": "http://www.dzrh.com.ph",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/rKJXaTpAtz"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/u8H5JZ8TsP",
+            "expanded_url": "https://x.com/dzrhnews/status/1930477113922204001/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1930476913677742083",
+            "indices": [
+              140,
+              163
+            ],
+            "media_key": "3_1930476913677742083",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARrKboZe2rADCgACGsputP5asWEAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGspuhl7asAMKAAIaym60/lqxYQAA",
+                "media_key": "3_1930476913677742083"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/Gspuhl7asAMA4Ap.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 351,
+                  "w": 627,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 351,
+                  "w": 351,
+                  "x": 31,
+                  "y": 0
+                },
+                {
+                  "h": 351,
+                  "w": 308,
+                  "x": 52,
+                  "y": 0
+                },
+                {
+                  "h": 351,
+                  "w": 176,
+                  "x": 118,
+                  "y": 0
+                },
+                {
+                  "h": 351,
+                  "w": 634,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 351,
+              "width": 634
+            },
+            "sizes": {
+              "large": {
+                "h": 351,
+                "w": 634
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/u8H5JZ8TsP"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              91,
+              108
+            ],
+            "text": "MBCTVNetworkNews"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "facebook.com/share/v/1FnJAD…",
+            "expanded_url": "https://www.facebook.com/share/v/1FnJADWyF7/",
+            "indices": [
+              116,
+              139
+            ],
+            "url": "https://t.co/MsqPrr2B8h"
+          }
+        ],
+        "user_mentions": [
+          {
+            "id_str": "1209064001444777984",
+            "indices": [
+              62,
+              78
+            ],
+            "name": "@edwin duqueDZRH",
+            "screen_name": "edwindu36836256"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1930484069630202021",
+      "url": "https://x.com/blrcitytraffic/status/1930484069630202021",
+      "twitterUrl": "https://twitter.com/blrcitytraffic/status/1930484069630202021",
+      "text": "“ಸಂಚಾರಸಲಹೆ / Traffic advisory” ಮಾರತ್ತಹಳ್ಳಿ ಪೊಲೀಸ್ ಠಾಣೆ ಬಳಿ ಬಿಎಂಆರ್‌ಸಿಎಲ್‌ ಕಾಮಗಾರಿ ನಡೆಯುತ್ತಿರುವುದರಿಂದ ಕಲಾಮಂದಿರ ಕಡೆಗೆ ನಿಧಾನಗತಿಯ ಸಂಚಾರವಿರುತ್ತದೆ, Due to a BMRCL Work near Marathahalli Police station towards Kalamandira is having slow-moving traffic. https://t.co/VNaGCX7YNC",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 1809,
+      "createdAt": "Thu Jun 05 04:37:23 +0000 2025",
+      "lang": "und",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1930484069630202021",
+      "displayTextRange": [
+        0,
+        245
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "blrcitytraffic",
+        "url": "https://x.com/blrcitytraffic",
+        "twitterUrl": "https://twitter.com/blrcitytraffic",
+        "id": "1851545900",
+        "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1565259569588490240/HChz-Vdb_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1851545900/1713356586",
+        "description": "",
+        "location": "Bengaluru-560001",
+        "followers": 672636,
+        "following": 100,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Sep 10 13:44:16 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 60487,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 16948,
+        "statusesCount": 241261,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Promoting Traffic Awareness & Road Safety 🚦🛣 | Your Partners in Traffic Management 🚓💼 | #BengaluruTrafficPolice 🌆🚗",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    88,
+                    111
+                  ],
+                  "text": "BengaluruTrafficPolice"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.karnataka.gov.in",
+                  "expanded_url": "https://btp.karnataka.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/6LKf9FpGkG"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/VNaGCX7YNC",
+            "expanded_url": "https://x.com/blrcitytraffic/status/1930484069630202021/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 89,
+                    "w": 89,
+                    "x": 190,
+                    "y": 556
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 89,
+                    "w": 89,
+                    "x": 190,
+                    "y": 556
+                  }
+                ]
+              }
+            },
+            "id_str": "1930484059232448518",
+            "indices": [
+              246,
+              269
+            ],
+            "media_key": "3_1930484059232448518",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARrKdQYTGrAGCgACGsp1CH7b0KUAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGsp1BhMasAYKAAIaynUIftvQpQAA",
+                "media_key": "3_1930484059232448518"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/Gsp1BhMasAY2uSF.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 286,
+                  "w": 510,
+                  "x": 0,
+                  "y": 394
+                },
+                {
+                  "h": 510,
+                  "w": 510,
+                  "x": 0,
+                  "y": 170
+                },
+                {
+                  "h": 581,
+                  "w": 510,
+                  "x": 0,
+                  "y": 99
+                },
+                {
+                  "h": 680,
+                  "w": 340,
+                  "x": 170,
+                  "y": 0
+                },
+                {
+                  "h": 680,
+                  "w": 510,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 680,
+              "width": 510
+            },
+            "sizes": {
+              "large": {
+                "h": 680,
+                "w": 510
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/VNaGCX7YNC"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
     {
       "type": "tweet",
       "id": "1930484041360290164",
@@ -216,7 +617,7 @@
         "coverPicture": "",
         "description": "",
         "location": "Pasig City",
-        "followers": 5813,
+        "followers": 5811,
         "following": 339,
         "status": "",
         "canDm": true,
@@ -261,6 +662,486 @@
     },
     {
       "type": "tweet",
+      "id": "1930485800397091060",
+      "url": "https://x.com/blrcitytraffic/status/1930485800397091060",
+      "twitterUrl": "https://twitter.com/blrcitytraffic/status/1930485800397091060",
+      "text": "“ಸಂಚಾರಸಲಹೆ / Traffic advisory”\nಬಿಎಂಆರ್‌ಸಿಎಲ್‌ ಕಾಮಗಾರಿ ನಡೆಯುತ್ತಿರುವುದರಿಂದ ಮಾಡ್ರನ್ ಬ್ರೆಡ್ ಫ್ಯಾಕ್ಟರಿ ಕಡೆಯಿಂದ CMTI ಜಂಕ್ಷನ್ ಕಡೆಗೆ ನಿಧಾನಗತಿಯ ಸಂಚಾರವಿರುತ್ತದೆ,\nDue to a BMRCL Work near Modern bread factory towards  CMTI junction is having slow-moving traffic.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 2072,
+      "createdAt": "Thu Jun 05 04:44:16 +0000 2025",
+      "lang": "und",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1930485800397091060",
+      "displayTextRange": [
+        0,
+        250
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "blrcitytraffic",
+        "url": "https://x.com/blrcitytraffic",
+        "twitterUrl": "https://twitter.com/blrcitytraffic",
+        "id": "1851545900",
+        "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1565259569588490240/HChz-Vdb_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1851545900/1713356586",
+        "description": "",
+        "location": "Bengaluru-560001",
+        "followers": 672636,
+        "following": 100,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Sep 10 13:44:16 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 60487,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 16948,
+        "statusesCount": 241261,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Promoting Traffic Awareness & Road Safety 🚦🛣 | Your Partners in Traffic Management 🚓💼 | #BengaluruTrafficPolice 🌆🚗",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    88,
+                    111
+                  ],
+                  "text": "BengaluruTrafficPolice"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.karnataka.gov.in",
+                  "expanded_url": "https://btp.karnataka.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/6LKf9FpGkG"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1930485625003671904",
+      "url": "https://x.com/blrcitytraffic/status/1930485625003671904",
+      "twitterUrl": "https://twitter.com/blrcitytraffic/status/1930485625003671904",
+      "text": "“ಸಂಚಾರಸಲಹೆ / Traffic advisory”\nಕಾರ್ತಿಕ್ ನಗರದ ಬಳಿ ಬಿಎಂಆರ್‌ಸಿಎಲ್‌ ಕಾಮಗಾರಿ ನಡೆಯುತ್ತಿರುವುದರಿಂದ  ಮಾರತ್ತಹಳ್ಳಿ ಬ್ರಿಡ್ಜ್ ಕಡೆಗೆ ನಿಧಾನಗತಿಯ ಸಂಚಾರವಿರುತ್ತದೆ,\nDue to a BMRCL Work near Karthik nagar towards Marathahalli bridge is having slow-moving traffic. https://t.co/nOg1dlY3Ar",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 0,
+      "likeCount": 4,
+      "quoteCount": 0,
+      "viewCount": 2039,
+      "createdAt": "Thu Jun 05 04:43:34 +0000 2025",
+      "lang": "und",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1930485625003671904",
+      "displayTextRange": [
+        0,
+        242
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "blrcitytraffic",
+        "url": "https://x.com/blrcitytraffic",
+        "twitterUrl": "https://twitter.com/blrcitytraffic",
+        "id": "1851545900",
+        "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1565259569588490240/HChz-Vdb_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1851545900/1713356586",
+        "description": "",
+        "location": "Bengaluru-560001",
+        "followers": 672636,
+        "following": 100,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Sep 10 13:44:16 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 60487,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 16948,
+        "statusesCount": 241261,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Promoting Traffic Awareness & Road Safety 🚦🛣 | Your Partners in Traffic Management 🚓💼 | #BengaluruTrafficPolice 🌆🚗",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    88,
+                    111
+                  ],
+                  "text": "BengaluruTrafficPolice"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.karnataka.gov.in",
+                  "expanded_url": "https://btp.karnataka.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/6LKf9FpGkG"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/nOg1dlY3Ar",
+            "expanded_url": "https://x.com/blrcitytraffic/status/1930485625003671904/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1930485597476663303",
+            "indices": [
+              243,
+              266
+            ],
+            "media_key": "3_1930485597476663303",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARrKdmw5mrAHCgACGsp2cqJXgWAAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGsp2bDmasAcKAAIaynZyoleBYAAA",
+                "media_key": "3_1930485597476663303"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/Gsp2bDmasAcwjMp.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 223,
+                  "w": 398,
+                  "x": 0,
+                  "y": 196
+                },
+                {
+                  "h": 398,
+                  "w": 398,
+                  "x": 0,
+                  "y": 108
+                },
+                {
+                  "h": 454,
+                  "w": 398,
+                  "x": 0,
+                  "y": 80
+                },
+                {
+                  "h": 535,
+                  "w": 268,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 535,
+                  "w": 398,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 535,
+              "width": 398
+            },
+            "sizes": {
+              "large": {
+                "h": 535,
+                "w": 398
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/nOg1dlY3Ar"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1930485618833826224",
+      "url": "https://x.com/TVPatrol/status/1930485618833826224",
+      "twitterUrl": "https://twitter.com/TVPatrol/status/1930485618833826224",
+      "text": "Umabot sa unang alarma ang sunog na ikinasawi ng magkapitbahay na mag-iina at mag-ama sa Barangay Buting sa Pasig City.\n\nPatuloy na iniimbestigahan ng mga awtoridad ang sanhi ng apoy at pagtukoy sa halaga ng pinsala. \n\nBasahin: https://t.co/KNZkygQ3Pa https://t.co/BCAtENcOJb",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 4300,
+      "createdAt": "Thu Jun 05 04:43:32 +0000 2025",
+      "lang": "tl",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1930485618833826224",
+      "displayTextRange": [
+        0,
+        251
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "TVPatrol",
+        "url": "https://x.com/TVPatrol",
+        "twitterUrl": "https://twitter.com/TVPatrol",
+        "id": "154426751",
+        "name": "TV Patrol",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1478215206480220160/FLAdE0bS_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/154426751/1732790884",
+        "description": "",
+        "location": "Philippines",
+        "followers": 2273450,
+        "following": 267,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Fri Jun 11 05:56:03 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 158,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 100268,
+        "statusesCount": 158933,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Patrol ng Pilipino, naglilingkod saan man sa mundo.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "abs-cbn.com",
+                  "expanded_url": "https://www.abs-cbn.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/NxxKBsBH8e"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/BCAtENcOJb",
+            "expanded_url": "https://x.com/TVPatrol/status/1930485618833826224/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 237,
+                    "w": 237,
+                    "x": 508,
+                    "y": 957
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 237,
+                    "w": 237,
+                    "x": 508,
+                    "y": 957
+                  }
+                ]
+              }
+            },
+            "id_str": "1930485604912971776",
+            "indices": [
+              252,
+              275
+            ],
+            "media_key": "3_1930485604912971776",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARrKdm3018AACgACGsp2cTKXIbAAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGsp2bfTXwAAKAAIaynZxMpchsAAA",
+                "media_key": "3_1930485604912971776"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/Gsp2bfTXwAA7o7O.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 745
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 270
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 119
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 101,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/BCAtENcOJb"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "abs-cbn.com/news/nation/20…",
+            "expanded_url": "https://www.abs-cbn.com/news/nation/2025/6/5/lima-patay-sa-sunog-sa-pasig-city-1040",
+            "indices": [
+              228,
+              251
+            ],
+            "url": "https://t.co/KNZkygQ3Pa"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1930485985760161911",
       "url": "https://x.com/manilabulletin/status/1930485985760161911",
       "twitterUrl": "https://twitter.com/manilabulletin/status/1930485985760161911",
@@ -297,7 +1178,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197070,
+        "followers": 1197846,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -313,8 +1194,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219263,
-        "statusesCount": 941808,
+        "mediaCount": 219464,
+        "statusesCount": 942842,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -498,7 +1379,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1197070,
+                "followers": 1197846,
                 "following": 141
               },
               "relationship_perspectives": {
@@ -516,8 +1397,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 219263,
-                "tweets": 941808
+                "media_tweets": 219464,
+                "tweets": 942842
               },
               "verification": {
                 "is_blue_verified": true,
@@ -588,7 +1469,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437308,
+        "followers": 1437197,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -604,8 +1485,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411292,
+        "mediaCount": 17208,
+        "statusesCount": 411900,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -690,7 +1571,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/474871087/1786481218",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 111980,
+        "followers": 112828,
         "following": 224,
         "status": "",
         "canDm": true,
@@ -706,8 +1587,8 @@
         "favouritesCount": 530,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 75254,
-        "statusesCount": 137508,
+        "mediaCount": 75606,
+        "statusesCount": 137861,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -806,7 +1687,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437308,
+        "followers": 1437197,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -822,8 +1703,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411292,
+        "mediaCount": 17208,
+        "statusesCount": 411900,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -908,8 +1789,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186993,
-        "following": 87,
+        "followers": 187130,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -921,16 +1802,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31256,
-        "statusesCount": 146771,
+        "mediaCount": 31368,
+        "statusesCount": 146896,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -1135,7 +2016,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197070,
+        "followers": 1197846,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -1151,8 +2032,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219263,
-        "statusesCount": 941808,
+        "mediaCount": 219464,
+        "statusesCount": 942842,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1585,6 +2466,201 @@
         "urls": [],
         "user_mentions": []
       },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1930503856666116390",
+      "url": "https://x.com/blrcitytraffic/status/1930503856666116390",
+      "twitterUrl": "https://twitter.com/blrcitytraffic/status/1930503856666116390",
+      "text": "'ಸಂಚಾರಸಲಹೆ/Traffic advisory' \nವಾಹನ ಕೆಟ್ಟು  ನಿಂತಿರುವುದರಿಂದ ಮಾರಪ್ಪನಪಾಳ್ಯ ಜಂಕ್ಷನ್‌ ಕಡೆಯಿಂದ ಯಶವಂತಪುರದ ಕಡೆಗೆ ನಿಧಾನಗತಿಯ ಸಂಚಾರವಿರುತ್ತದೆ,\nDue to a vehicle breakdown,The road from Marappanapalya junction  towards Yeshwanthpura, is having slow-moving traffic. https://t.co/VkOXgxgLzl",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 1587,
+      "createdAt": "Thu Jun 05 05:56:01 +0000 2025",
+      "lang": "und",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1930503856666116390",
+      "displayTextRange": [
+        0,
+        249
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "blrcitytraffic",
+        "url": "https://x.com/blrcitytraffic",
+        "twitterUrl": "https://twitter.com/blrcitytraffic",
+        "id": "1851545900",
+        "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1565259569588490240/HChz-Vdb_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1851545900/1713356586",
+        "description": "",
+        "location": "Bengaluru-560001",
+        "followers": 672636,
+        "following": 100,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Sep 10 13:44:16 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 60487,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 16948,
+        "statusesCount": 241261,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Promoting Traffic Awareness & Road Safety 🚦🛣 | Your Partners in Traffic Management 🚓💼 | #BengaluruTrafficPolice 🌆🚗",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    88,
+                    111
+                  ],
+                  "text": "BengaluruTrafficPolice"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.karnataka.gov.in",
+                  "expanded_url": "https://btp.karnataka.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/6LKf9FpGkG"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/VkOXgxgLzl",
+            "expanded_url": "https://x.com/blrcitytraffic/status/1930503856666116390/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 92,
+                    "w": 92,
+                    "x": 1021,
+                    "y": 995
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 92,
+                    "w": 92,
+                    "x": 1021,
+                    "y": 995
+                  }
+                ]
+              }
+            },
+            "id_str": "1930503839104507904",
+            "indices": [
+              250,
+              273
+            ],
+            "media_key": "3_1930503839104507904",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARrKhwNvWiAACgACGsqHB4YbASYAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGsqHA29aIAAKAAIayocHhhsBJgAA",
+                "media_key": "3_1930503839104507904"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GsqHA29aIAAIcOz.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 896,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 232
+                },
+                {
+                  "h": 1200,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1200,
+                  "w": 1053,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1200,
+                  "w": 600,
+                  "x": 140,
+                  "y": 0
+                },
+                {
+                  "h": 1200,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1200,
+              "width": 1600
+            },
+            "sizes": {
+              "large": {
+                "h": 1200,
+                "w": 1600
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/VkOXgxgLzl"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
       "quoted_tweet": null,
       "retweeted_tweet": null,
       "isLimitedReply": false,

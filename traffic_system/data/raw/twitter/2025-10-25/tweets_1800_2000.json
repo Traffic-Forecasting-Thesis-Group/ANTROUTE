@@ -5,7 +5,7 @@
     "window_start": "2025-10-25T18:00:00+08:00",
     "window_end": "2025-10-25T20:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 10,
+    "tweet_count": 14,
     "slices": [
       {
         "start": "2025-10-25T18:00:00+08:00",
@@ -95,8 +95,8 @@
         "start": "2025-10-25T19:00:00+08:00",
         "end": "2025-10-25T19:05:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-25T19:05:00+08:00",
@@ -109,8 +109,8 @@
         "start": "2025-10-25T19:10:00+08:00",
         "end": "2025-10-25T19:15:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-25T19:15:00+08:00",
@@ -144,15 +144,15 @@
         "start": "2025-10-25T19:35:00+08:00",
         "end": "2025-10-25T19:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-25T19:40:00+08:00",
         "end": "2025-10-25T19:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-25T19:45:00+08:00",
@@ -189,7 +189,7 @@
       "replyCount": 0,
       "likeCount": 5,
       "quoteCount": 0,
-      "viewCount": 997,
+      "viewCount": 998,
       "createdAt": "Sat Oct 25 10:03:05 +0000 2025",
       "lang": "en",
       "bookmarkCount": 0,
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/876684632325988352/1788351953",
         "description": "",
         "location": "Cyberabad",
-        "followers": 226779,
+        "followers": 226835,
         "following": 131,
         "status": "",
         "canDm": true,
@@ -229,11 +229,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3844,
+        "favouritesCount": 3866,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 11461,
-        "statusesCount": 42181,
+        "mediaCount": 11491,
+        "statusesCount": 42434,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -443,7 +443,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/399923595/1753094677",
         "description": "",
         "location": "Hyderabad",
-        "followers": 293233,
+        "followers": 293327,
         "following": 57,
         "status": "",
         "canDm": true,
@@ -456,11 +456,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 15228,
+        "favouritesCount": 15248,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 14486,
-        "statusesCount": 87985,
+        "mediaCount": 14558,
+        "statusesCount": 88138,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -646,8 +646,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/39453212/1785235955",
         "description": "",
         "location": "Philippines",
-        "followers": 5717030,
-        "following": 672,
+        "followers": 5718293,
+        "following": 674,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -659,15 +659,17 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 14181,
+        "favouritesCount": 14180,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 213197,
-        "statusesCount": 1025031,
+        "mediaCount": 214908,
+        "statusesCount": 1027797,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
-        "pinnedTweetIds": [],
+        "pinnedTweetIds": [
+          "2099687625783136340"
+        ],
         "profile_bio": {
           "description": "Welcome to the official X account of GMA News.",
           "entities": {
@@ -764,7 +766,7 @@
             "result": {
               "__typename": "User",
               "action_counts": {
-                "favorites_count": 14181
+                "favorites_count": 14180
               },
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/2038588193520709632/gW-kXR9a_normal.jpg"
@@ -792,7 +794,11 @@
               "notifications_settings": {
                 "notifications_enabled": false
               },
-              "pinned_items": {},
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099687625783136340"
+                ]
+              },
               "privacy": {
                 "protected": false,
                 "suspended": false
@@ -830,8 +836,8 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 5717030,
-                "following": 672
+                "followers": 5718293,
+                "following": 674
               },
               "relationship_perspectives": {
                 "blocked_by": false,
@@ -848,8 +854,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 213197,
-                "tweets": 1025031
+                "media_tweets": 214908,
+                "tweets": 1027797
               },
               "verification": {
                 "is_blue_verified": true,
@@ -943,7 +949,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 15813,
+                "followers": 15805,
                 "following": 129
               },
               "relationship_perspectives": {
@@ -1033,7 +1039,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437285,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1049,8 +1055,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411324,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1135,7 +1141,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437285,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1151,8 +1157,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411324,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1210,7 +1216,7 @@
       "replyCount": 0,
       "likeCount": 7,
       "quoteCount": 0,
-      "viewCount": 1238,
+      "viewCount": 1239,
       "createdAt": "Sat Oct 25 10:28:32 +0000 2025",
       "lang": "en",
       "bookmarkCount": 0,
@@ -1237,7 +1243,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/876684632325988352/1788351953",
         "description": "",
         "location": "Cyberabad",
-        "followers": 226779,
+        "followers": 226836,
         "following": 131,
         "status": "",
         "canDm": true,
@@ -1250,11 +1256,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3844,
+        "favouritesCount": 3866,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 11461,
-        "statusesCount": 42181,
+        "mediaCount": 11491,
+        "statusesCount": 42434,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1464,7 +1470,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437285,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1480,8 +1486,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411324,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1566,7 +1572,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437285,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1582,8 +1588,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411324,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1632,6 +1638,846 @@
     },
     {
       "type": "tweet",
+      "id": "1982040071273685263",
+      "url": "https://x.com/DCTrafficBDN/status/1982040071273685263",
+      "twitterUrl": "https://twitter.com/DCTrafficBDN/status/1982040071273685263",
+      "text": "🚨 Traffic Advisory for Chhat Puja 🚨 https://t.co/8ruPxRDzR5",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 4,
+      "quoteCount": 0,
+      "viewCount": 230,
+      "createdAt": "Sat Oct 25 11:02:32 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1982040071273685263",
+      "displayTextRange": [
+        0,
+        35
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "DCTrafficBDN",
+        "url": "https://x.com/DCTrafficBDN",
+        "twitterUrl": "https://twitter.com/DCTrafficBDN",
+        "id": "1283069170691661824",
+        "name": "DCP Traffic, Bidhannagar",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2009661366936952832/svq3ZxFH_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1283069170691661824/1596211514",
+        "description": "",
+        "location": "",
+        "followers": 566,
+        "following": 7,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Jul 14 16:03:05 +0000 2020",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1068,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 774,
+        "statusesCount": 2141,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "DCP Traffic, Bidhannagar Police Commissionerate  For any grievance, email dctrafficbdn@gmail.com, or call 9051213100/ 6291606161",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "bidhannagarcitypolice.gov.in",
+                  "expanded_url": "http://bidhannagarcitypolice.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/02eDrDwuMg"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/8ruPxRDzR5",
+            "expanded_url": "https://x.com/DCTrafficBDN/status/1982040071273685263/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "Bidhannagar Police",
+                    "screen_name": "bidhannagarpc",
+                    "type": "user",
+                    "user_id": "788295291266969600"
+                  }
+                ]
+              },
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1982040052260552704",
+            "indices": [
+              36,
+              59
+            ],
+            "media_key": "3_1982040052260552704",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARuBnu0dlkAACgACG4Ge8YrboQ8AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG4Ge7R2WQAAKAAIbgZ7xituhDwAA",
+                "media_key": "3_1982040052260552704"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G4Ge7R2WQAA27DL.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 825,
+                  "w": 1474,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1474,
+                  "w": 1474,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 1404,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 800,
+                  "x": 119,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 1474,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1600,
+              "width": 1474
+            },
+            "sizes": {
+              "large": {
+                "h": 1600,
+                "w": 1474
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/8ruPxRDzR5"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1982043098210500807",
+      "url": "https://x.com/AkbayanParty/status/1982043098210500807",
+      "twitterUrl": "https://twitter.com/AkbayanParty/status/1982043098210500807",
+      "text": "𝗧𝗔𝗞𝗨𝗧𝗜𝗡 𝗔𝗡𝗚 𝗠𝗚𝗔 𝗞𝗨𝗥𝗔𝗞𝗢𝗧’—𝗬𝗼𝘂𝘁𝗵 𝗔𝗴𝗮𝗶𝗻𝘀𝘁 𝗞𝘂𝗿𝗮𝗸𝗼𝘁 𝗹𝗲𝗮𝗱𝘀  𝗛𝗮𝗹𝗹𝗼𝘄𝗲𝗲𝗻 𝗣𝗿𝗼𝘁𝗲𝘀𝘁 𝗮𝘁 𝗣𝗲𝗼𝗽𝗹𝗲 𝗣𝗼𝘄𝗲𝗿 𝗠𝗼𝗻𝘂𝗺𝗲𝗻𝘁\n\nYouth Against Kurakot led the Halloween protest today at the People Power Monument, joined by hundreds of young Filipinos dressed in Halloween costumes to condemn the rampant corruption in the Philippines and to call upon the government to “exorcise” the monsters of corruption within it. Akbayan Rep. Chel Diokno and Rep. Perci Cendaña also joined the Halloween protest.\n\nYouth Against Kurakot Lead Convenor and Akbayan Youth Secretary General Khylla Meneses emphasized that this Halloween creative action is intended to expose the horrors of corruption: “Walang pinagkaiba ang mga kurap sa mga aswang sa kwentong bayan. Pareho silang nagtatago sa kadiliman, at naghihintay ng pagkakataon na mapagsamantalahan ang taumbayan.” \n\nMeneses, however, reminded that the Filipino people should be angry and not scared of the horrors of corruption: \n\n“The horrors of corruption should not scare us. Lalakas ang pwersa ng kadiliman kung maniniwala tayong wala tayong laban. Ipakita natin sa kanila na tayo ang may kapangyarihan at di tayo titigil hanggat hindi naipapakulong ang lahat ng mga halimaw sa pamahalaan.” \n\n#AkbayanPartylist\n\nRead more: https://t.co/J8siR1LUMj",
+      "source": "Twitter for iPhone",
+      "retweetCount": 25,
+      "replyCount": 4,
+      "likeCount": 105,
+      "quoteCount": 1,
+      "viewCount": 2550,
+      "createdAt": "Sat Oct 25 11:14:33 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 4,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1982043098210500807",
+      "displayTextRange": [
+        0,
+        191
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "AkbayanParty",
+        "url": "https://x.com/AkbayanParty",
+        "twitterUrl": "https://twitter.com/AkbayanParty",
+        "id": "91538591",
+        "name": "Akbayan Partylist",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2073706135346085888/1D1ei4rp_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/91538591/1768701331",
+        "description": "",
+        "location": "",
+        "followers": 12895,
+        "following": 374,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sat Nov 21 09:22:01 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3005,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2763,
+        "statusesCount": 9647,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2058759840474808587"
+        ],
+        "profile_bio": {
+          "description": "'Pag mahal mo, Akbayan mo!",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/Yxtzw4ixrs",
+            "expanded_url": "https://x.com/AkbayanParty/status/1982043098210500807/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 74,
+                    "w": 74,
+                    "x": 436,
+                    "y": 964
+                  },
+                  {
+                    "h": 94,
+                    "w": 94,
+                    "x": 836,
+                    "y": 764
+                  },
+                  {
+                    "h": 74,
+                    "w": 74,
+                    "x": 630,
+                    "y": 782
+                  },
+                  {
+                    "h": 80,
+                    "w": 80,
+                    "x": 1534,
+                    "y": 878
+                  },
+                  {
+                    "h": 110,
+                    "w": 110,
+                    "x": 310,
+                    "y": 864
+                  },
+                  {
+                    "h": 116,
+                    "w": 116,
+                    "x": 994,
+                    "y": 788
+                  },
+                  {
+                    "h": 118,
+                    "w": 118,
+                    "x": 456,
+                    "y": 830
+                  },
+                  {
+                    "h": 104,
+                    "w": 104,
+                    "x": 1088,
+                    "y": 810
+                  },
+                  {
+                    "h": 114,
+                    "w": 114,
+                    "x": 1716,
+                    "y": 816
+                  },
+                  {
+                    "h": 108,
+                    "w": 108,
+                    "x": 1256,
+                    "y": 784
+                  },
+                  {
+                    "h": 130,
+                    "w": 130,
+                    "x": 654,
+                    "y": 828
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 74,
+                    "w": 74,
+                    "x": 436,
+                    "y": 964
+                  },
+                  {
+                    "h": 94,
+                    "w": 94,
+                    "x": 836,
+                    "y": 764
+                  },
+                  {
+                    "h": 74,
+                    "w": 74,
+                    "x": 630,
+                    "y": 782
+                  },
+                  {
+                    "h": 80,
+                    "w": 80,
+                    "x": 1534,
+                    "y": 878
+                  },
+                  {
+                    "h": 110,
+                    "w": 110,
+                    "x": 310,
+                    "y": 864
+                  },
+                  {
+                    "h": 116,
+                    "w": 116,
+                    "x": 994,
+                    "y": 788
+                  },
+                  {
+                    "h": 118,
+                    "w": 118,
+                    "x": 456,
+                    "y": 830
+                  },
+                  {
+                    "h": 104,
+                    "w": 104,
+                    "x": 1088,
+                    "y": 810
+                  },
+                  {
+                    "h": 114,
+                    "w": 114,
+                    "x": 1716,
+                    "y": 816
+                  },
+                  {
+                    "h": 108,
+                    "w": 108,
+                    "x": 1256,
+                    "y": 784
+                  },
+                  {
+                    "h": 130,
+                    "w": 130,
+                    "x": 654,
+                    "y": 828
+                  }
+                ]
+              }
+            },
+            "id_str": "1982043090606059520",
+            "indices": [
+              192,
+              215
+            ],
+            "media_key": "3_1982043090606059520",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARuBobCJF3AACgACG4Ghsk5aAMcAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG4GhsIkXcAAKAAIbgaGyTloAxwAA",
+                "media_key": "3_1982043090606059520"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G4GhsIkXcAA-yne.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1147,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 1536,
+                  "x": 409,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 1347,
+                  "x": 504,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 768,
+                  "x": 793,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1536,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 1536,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/Yxtzw4ixrs"
+          },
+          {
+            "display_url": "pic.x.com/Yxtzw4ixrs",
+            "expanded_url": "https://x.com/AkbayanParty/status/1982043098210500807/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 92,
+                    "w": 92,
+                    "x": 760,
+                    "y": 204
+                  },
+                  {
+                    "h": 108,
+                    "w": 108,
+                    "x": 890,
+                    "y": 1036
+                  },
+                  {
+                    "h": 280,
+                    "w": 280,
+                    "x": 312,
+                    "y": 178
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 92,
+                    "w": 92,
+                    "x": 760,
+                    "y": 204
+                  },
+                  {
+                    "h": 108,
+                    "w": 108,
+                    "x": 890,
+                    "y": 1036
+                  },
+                  {
+                    "h": 280,
+                    "w": 280,
+                    "x": 312,
+                    "y": 178
+                  }
+                ]
+              }
+            },
+            "id_str": "1982043090866077696",
+            "indices": [
+              192,
+              215
+            ],
+            "media_key": "3_1982043090866077696",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARuBobCYlwAACgACG4Ghsk5aAMcAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG4GhsJiXAAAKAAIbgaGyTloAxwAA",
+                "media_key": "3_1982043090866077696"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G4GhsJiXAAAkhxn.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1147,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 92
+                },
+                {
+                  "h": 1365,
+                  "w": 1365,
+                  "x": 683,
+                  "y": 0
+                },
+                {
+                  "h": 1365,
+                  "w": 1197,
+                  "x": 851,
+                  "y": 0
+                },
+                {
+                  "h": 1365,
+                  "w": 683,
+                  "x": 1143,
+                  "y": 0
+                },
+                {
+                  "h": 1365,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1365,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 1365,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/Yxtzw4ixrs"
+          },
+          {
+            "display_url": "pic.x.com/Yxtzw4ixrs",
+            "expanded_url": "https://x.com/AkbayanParty/status/1982043098210500807/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 184,
+                    "w": 184,
+                    "x": 794,
+                    "y": 616
+                  },
+                  {
+                    "h": 182,
+                    "w": 182,
+                    "x": 340,
+                    "y": 760
+                  },
+                  {
+                    "h": 190,
+                    "w": 190,
+                    "x": 1634,
+                    "y": 796
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 184,
+                    "w": 184,
+                    "x": 794,
+                    "y": 616
+                  },
+                  {
+                    "h": 182,
+                    "w": 182,
+                    "x": 340,
+                    "y": 760
+                  },
+                  {
+                    "h": 190,
+                    "w": 190,
+                    "x": 1634,
+                    "y": 796
+                  }
+                ]
+              }
+            },
+            "id_str": "1982043091474227200",
+            "indices": [
+              192,
+              215
+            ],
+            "media_key": "3_1982043091474227200",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARuBobC81qAACgACG4Ghsk5aAMcAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG4GhsLzWoAAKAAIbgaGyTloAxwAA",
+                "media_key": "3_1982043091474227200"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G4GhsLzWoAA0kj4.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1147,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 1536,
+                  "x": 409,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 1347,
+                  "x": 504,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 768,
+                  "x": 793,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1536,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 1536,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/Yxtzw4ixrs"
+          },
+          {
+            "display_url": "pic.x.com/Yxtzw4ixrs",
+            "expanded_url": "https://x.com/AkbayanParty/status/1982043098210500807/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 92,
+                    "w": 92,
+                    "x": 786,
+                    "y": 692
+                  },
+                  {
+                    "h": 100,
+                    "w": 100,
+                    "x": 696,
+                    "y": 1428
+                  },
+                  {
+                    "h": 160,
+                    "w": 160,
+                    "x": 774,
+                    "y": 1090
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 92,
+                    "w": 92,
+                    "x": 786,
+                    "y": 692
+                  },
+                  {
+                    "h": 100,
+                    "w": 100,
+                    "x": 696,
+                    "y": 1428
+                  },
+                  {
+                    "h": 160,
+                    "w": 160,
+                    "x": 774,
+                    "y": 1090
+                  }
+                ]
+              }
+            },
+            "id_str": "1982043093256851456",
+            "indices": [
+              192,
+              215
+            ],
+            "media_key": "3_1982043093256851456",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARuBobEnF1AACgACG4Ghsk5aAMcAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG4GhsScXUAAKAAIbgaGyTloAxwAA",
+                "media_key": "3_1982043093256851456"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G4GhsScXUAAScGx.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1147,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 195
+                },
+                {
+                  "h": 1536,
+                  "w": 1536,
+                  "x": 512,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 1347,
+                  "x": 607,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 768,
+                  "x": 896,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1536,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 1536,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/Yxtzw4ixrs"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              1208,
+              1225
+            ],
+            "text": "AkbayanPartylist"
+          }
+        ],
+        "symbols": [],
+        "urls": [
+          {
+            "display_url": "akbayan.org.ph/news/973-takut…",
+            "expanded_url": "https://www.akbayan.org.ph/news/973-takutin-ang-mga-kurakot-youth-against-kurakot-leads-halloween-protest-at-people-power-monument",
+            "indices": [
+              1238,
+              1261
+            ],
+            "url": "https://t.co/J8siR1LUMj"
+          }
+        ],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1982043712206385633",
       "url": "https://x.com/MakatiTraffic/status/1982043712206385633",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/1982043712206385633",
@@ -1668,7 +2514,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437285,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1684,8 +2530,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411324,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1734,6 +2580,577 @@
     },
     {
       "type": "tweet",
+      "id": "1982048875276910985",
+      "url": "https://x.com/dtptraffic/status/1982048875276910985",
+      "twitterUrl": "https://twitter.com/dtptraffic/status/1982048875276910985",
+      "text": "TRAFFIC ADVISORY\n\nIn connection with the installation of a Foot Over Bridge in front of Siraspur Gurudwara, NH-44\n\n📍 Affected Roads/Diversions: Both carriageways(NH-44 from T-Point Sanjay Gandhi Transport Nagar to Khatu Shyam Mandir near Alipur Village and vice versa). \n📍 Timing: 11:00 PM – 04:00 AM on 25/26 & 26/27.10.2025\n📍 Alternate Routes: Use NH-44 service roads from Sanjay Gandhi Transport Nagar towards Alipur and Khatu Shyam Mandir towards Mukarba Chowk.\n📍 Advisory: Plan your journey, avoid affected stretch, prefer public transport and follow traffic personnel instructions.\n\n#DPTrafficAdvisory",
+      "source": "Twitter for iPhone",
+      "retweetCount": 5,
+      "replyCount": 1,
+      "likeCount": 29,
+      "quoteCount": 0,
+      "viewCount": 9042,
+      "createdAt": "Sat Oct 25 11:37:31 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 4,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1982048875276910985",
+      "displayTextRange": [
+        0,
+        272
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "dtptraffic",
+        "url": "https://x.com/dtptraffic",
+        "twitterUrl": "https://twitter.com/dtptraffic",
+        "id": "143766231",
+        "name": "Delhi Traffic Police",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1747140324324225024/rLI5Hyjo_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/143766231/1651490407",
+        "description": "",
+        "location": "India, Delhi",
+        "followers": 1598598,
+        "following": 49,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri May 14 10:06:44 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 6970,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 15206,
+        "statusesCount": 417811,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099728178118041645"
+        ],
+        "profile_bio": {
+          "description": "24x7 Control Room : +91-11-25844444,1095",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "traffic.delhipolice.gov.in",
+                  "expanded_url": "https://traffic.delhipolice.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/U0jWSsRSeL"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/F7OpnvuEu9",
+            "expanded_url": "https://x.com/dtptraffic/status/1982048875276910985/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1982048841445539840",
+            "indices": [
+              273,
+              296
+            ],
+            "media_key": "3_1982048841445539840",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARuBpuuB1gAACgACG4Gm82JXwYkAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG4Gm64HWAAAKAAIbgabzYlfBiQAA",
+                "media_key": "3_1982048841445539840"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G4Gm64HWAAADmHR.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1434,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2246,
+                  "x": 314,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 1280,
+                  "x": 960,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2560,
+              "width": 2560
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/F7OpnvuEu9"
+          },
+          {
+            "display_url": "pic.x.com/F7OpnvuEu9",
+            "expanded_url": "https://x.com/dtptraffic/status/1982048875276910985/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 160,
+                    "w": 160,
+                    "x": 1352,
+                    "y": 1104
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 200,
+                    "w": 200,
+                    "x": 1690,
+                    "y": 1380
+                  }
+                ]
+              }
+            },
+            "id_str": "1982048863872503808",
+            "indices": [
+              273,
+              296
+            ],
+            "media_key": "3_1982048863872503808",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARuBpvC6llAACgACG4Gm82JXwYkAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG4Gm8LqWUAAKAAIbgabzYlfBiQAA",
+                "media_key": "3_1982048863872503808"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G4Gm8LqWUAAVb3q.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1434,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2246,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 1280,
+                  "x": 320,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2560,
+              "width": 2560
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/F7OpnvuEu9"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              589,
+              607
+            ],
+            "text": "DPTrafficAdvisory"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1982049971911463266",
+      "url": "https://x.com/IndianExpress/status/1982049971911463266",
+      "twitterUrl": "https://twitter.com/IndianExpress/status/1982049971911463266",
+      "text": "Chhath Puja 2025: Patna district administration issues advisory, releases list of dangerous and unsuitable ghats\n\nhttps://t.co/hqsoeYM4V8",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 5,
+      "quoteCount": 0,
+      "viewCount": 2485,
+      "createdAt": "Sat Oct 25 11:41:52 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1982049971911463266",
+      "displayTextRange": [
+        0,
+        137
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "IndianExpress",
+        "url": "https://x.com/IndianExpress",
+        "twitterUrl": "https://twitter.com/IndianExpress",
+        "id": "38647512",
+        "name": "The Indian Express",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Business",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1064599601553047558/s09zzXz4_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/38647512/1782978718",
+        "description": "",
+        "location": "India",
+        "followers": 4400300,
+        "following": 279,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Fri May 08 11:29:15 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 168,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 149739,
+        "statusesCount": 1160523,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099714842265637361"
+        ],
+        "profile_bio": {
+          "description": "The Indian Express brings to you latest news from India and the world, breaking round the clock. Get the App: https://t.co/IPRNSSmzII",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "indianexpress.com/apps/",
+                  "expanded_url": "http://indianexpress.com/apps/",
+                  "indices": [
+                    110,
+                    133
+                  ],
+                  "url": "https://t.co/IPRNSSmzII"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "indianexpress.com",
+                  "expanded_url": "https://indianexpress.com/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/WKCL0nqq8u"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "The district administration has declared six ghats dangerous for Chhath Puja: Kantahi Ghat, Rajapur Pul Ghat, Pehalwan Ghat, Bans Ghat, Buddha Ghat and Naya Panchmukhi Chowraha Ghat."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "indianexpress.com"
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "38647512",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "indianexpress.com"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Chhath Puja 2025: Patna district administration issues advisory, releases list of dangerous and..."
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/hqsoeYM4V8"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/hqsoeYM4V8",
+        "user_refs_results": [
+          {
+            "rest_id": "38647512",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 168
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1064599601553047558/s09zzXz4_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/38647512/1782978718"
+              },
+              "core": {
+                "created_at": "Fri May 08 11:29:15 +0000 2009",
+                "name": "The Indian Express",
+                "screen_name": "IndianExpress"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "India"
+              },
+              "media_permissions": {
+                "can_media_tag": false
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099714842265637361"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "The Indian Express brings to you latest news from India and the world, breaking round the clock. Get the App: https://t.co/IPRNSSmzII",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "indianexpress.com/apps/",
+                        "expanded_url": "http://indianexpress.com/apps/",
+                        "indices": [
+                          110,
+                          133
+                        ],
+                        "url": "https://t.co/IPRNSSmzII"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "indianexpress.com",
+                        "expanded_url": "https://indianexpress.com/",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/WKCL0nqq8u"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Square",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "010B0F"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 4400300,
+                "following": 279
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "38647512",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 149739,
+                "tweets": 1160523
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false,
+                "verified_type": "Business"
+              },
+              "website": {
+                "url": "https://t.co/WKCL0nqq8u"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "indianexpress.com/article/india/…",
+            "expanded_url": "https://indianexpress.com/article/india/chhath-puja-2025-patna-district-administration-traffic-advisory-ghats-list-10326441/",
+            "indices": [
+              114,
+              137
+            ],
+            "url": "https://t.co/hqsoeYM4V8"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1982051513959600534",
       "url": "https://x.com/MakatiTraffic/status/1982051513959600534",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/1982051513959600534",
@@ -1770,7 +3187,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437285,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1786,8 +3203,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411324,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,

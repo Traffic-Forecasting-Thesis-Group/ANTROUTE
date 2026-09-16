@@ -5,14 +5,14 @@
     "window_start": "2026-01-11T20:00:00+08:00",
     "window_end": "2026-01-11T22:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 8,
+    "tweet_count": 10,
     "slices": [
       {
         "start": "2026-01-11T20:00:00+08:00",
         "end": "2026-01-11T20:05:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-01-11T20:05:00+08:00",
@@ -130,8 +130,8 @@
         "start": "2026-01-11T21:25:00+08:00",
         "end": "2026-01-11T21:30:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-11T21:30:00+08:00",
@@ -180,6 +180,164 @@
   "data": [
     {
       "type": "tweet",
+      "id": "2010321387551170688",
+      "url": "https://x.com/WeatherMonitors/status/2010321387551170688",
+      "twitterUrl": "https://twitter.com/WeatherMonitors/status/2010321387551170688",
+      "text": "A major fire broke out at a gas station in Barangay Manay, Panabo City, Davao del Norte, Philippines. https://t.co/Uj8NLSFpSj",
+      "source": "Twitter for iPhone",
+      "retweetCount": 65,
+      "replyCount": 8,
+      "likeCount": 171,
+      "quoteCount": 5,
+      "viewCount": 8510,
+      "createdAt": "Sun Jan 11 12:02:23 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 19,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2010321387551170688",
+      "displayTextRange": [
+        0,
+        101
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "WeatherMonitors",
+        "url": "https://x.com/WeatherMonitors",
+        "twitterUrl": "https://twitter.com/WeatherMonitors",
+        "id": "1786841191159681024",
+        "name": "Weather Monitor",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1971807005892661249/k6qWwg3x_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1786841191159681024/1764653222",
+        "description": "",
+        "location": "Earth",
+        "followers": 91230,
+        "following": 576,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Sat May 04 19:32:13 +0000 2024",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 10554,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 11533,
+        "statusesCount": 15314,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Stay informed with accurate updates on extreme weather, wildfires, volcanic eruptions, and breaking news worldwide. Selective sharing. DM for credit or removal.",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/Uj8NLSFpSj",
+            "expanded_url": "https://x.com/WeatherMonitors/status/2010321387551170688/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "2010321135603429376",
+            "indices": [
+              102,
+              125
+            ],
+            "media_key": "13_2010321135603429376",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARvmGGv0GjAAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG+YYa/QaMAAAAA==",
+                "media_key": "13_2010321135603429376"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2010321135603429376/img/yPsJvPHs_UwhNPhm.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1920,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1920,
+                "w": 1080
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/Uj8NLSFpSj",
+            "video_info": {
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration_millis": 19366,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/2010321135603429376/pl/498x5iP03XFCYqrQ.m3u8?tag=21&v=cfc"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2010321135603429376/vid/avc1/320x568/QVlOJvizbY3jS2_0.mp4?tag=21"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2010321135603429376/vid/avc1/480x852/cE7-FFQfCyumEchI.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2010321135603429376/vid/avc1/720x1280/WsZKZucNASqnTkzK.mp4?tag=21"
+                },
+                {
+                  "bitrate": 10368000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2010321135603429376/vid/avc1/1080x1920/U5rfk5xuSej4GrZE.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2010320790819148166",
       "url": "https://x.com/MakatiTraffic/status/2010320790819148166",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2010320790819148166",
@@ -216,7 +374,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437254,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +390,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411420,
+        "mediaCount": 17208,
+        "statusesCount": 411989,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -318,7 +476,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437254,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -334,8 +492,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411420,
+        "mediaCount": 17208,
+        "statusesCount": 411989,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -393,7 +551,7 @@
       "replyCount": 1,
       "likeCount": 6,
       "quoteCount": 0,
-      "viewCount": 1014,
+      "viewCount": 1015,
       "createdAt": "Sun Jan 11 12:35:29 +0000 2026",
       "lang": "en",
       "bookmarkCount": 0,
@@ -420,7 +578,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/399923595/1753094677",
         "description": "",
         "location": "Hyderabad",
-        "followers": 293255,
+        "followers": 293332,
         "following": 57,
         "status": "",
         "canDm": true,
@@ -433,11 +591,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 15229,
+        "favouritesCount": 15246,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 14493,
-        "statusesCount": 88009,
+        "mediaCount": 14558,
+        "statusesCount": 88139,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -765,7 +923,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2978598960/1755572867",
         "description": "",
         "location": "India",
-        "followers": 402092,
+        "followers": 402427,
         "following": 100,
         "status": "",
         "canDm": true,
@@ -781,8 +939,8 @@
         "favouritesCount": 643,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 120876,
-        "statusesCount": 226741,
+        "mediaCount": 121750,
+        "statusesCount": 227766,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -963,7 +1121,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437254,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -979,8 +1137,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411420,
+        "mediaCount": 17208,
+        "statusesCount": 411989,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1065,7 +1223,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197275,
+        "followers": 1197849,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -1081,8 +1239,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219315,
-        "statusesCount": 942017,
+        "mediaCount": 219486,
+        "statusesCount": 942995,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1351,7 +1509,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437254,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1367,8 +1525,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411420,
+        "mediaCount": 17208,
+        "statusesCount": 411989,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1417,6 +1575,518 @@
     },
     {
       "type": "tweet",
+      "id": "2010342635429671307",
+      "url": "https://x.com/Ladakhism/status/2010342635429671307",
+      "twitterUrl": "https://twitter.com/Ladakhism/status/2010342635429671307",
+      "text": "Traffic Advisory for 12-01-2026\n\n Srinagar ➡️ Kargil \n\n🕰️ 11 AM to 03 PM sharp.\n\n🚨Traffic movement is subject to fair weather conditions along the ZojiLa axis. https://t.co/qokwnYvAFl",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 1,
+      "viewCount": 245,
+      "createdAt": "Sun Jan 11 13:26:49 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2010342635429671307",
+      "displayTextRange": [
+        0,
+        159
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "Ladakhism",
+        "url": "https://x.com/Ladakhism",
+        "twitterUrl": "https://twitter.com/Ladakhism",
+        "id": "1354501062",
+        "name": "Ladakh",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1720087519893819393/kQPuV_DF_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1354501062/1751085147",
+        "description": "",
+        "location": "Ladakh, India",
+        "followers": 1818,
+        "following": 1056,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Apr 15 14:38:37 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 23743,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 476,
+        "statusesCount": 5063,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1980294484044001473"
+        ],
+        "profile_bio": {
+          "description": "Julley 🇮🇳 Follow for Updates on Ladakh || Tweets mostly on News, Ecology, Culture, Education, Tourism || Let’s Pledge to #SaveLadakh 🏔️",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    121,
+                    132
+                  ],
+                  "text": "SaveLadakh"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "en.m.wikipedia.org/wiki/Ladakh",
+                  "expanded_url": "https://en.m.wikipedia.org/wiki/Ladakh",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/oNat5ukm3f"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/qokwnYvAFl",
+            "expanded_url": "https://x.com/Ladakhism/status/2010342635429671307/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "Ladakh Traffic Police",
+                    "screen_name": "trafficpoliceLA",
+                    "type": "user",
+                    "user_id": "1738803919533256704"
+                  },
+                  {
+                    "name": "DIPR Ladakh",
+                    "screen_name": "DIPR_Ladakh",
+                    "type": "user",
+                    "user_id": "1865219760062894080"
+                  },
+                  {
+                    "name": "DIO Kargil",
+                    "screen_name": "DIPR_Kargil",
+                    "type": "user",
+                    "user_id": "1197127660385603585"
+                  },
+                  {
+                    "name": "DGP Ladakh",
+                    "screen_name": "DGP_Ladakh",
+                    "type": "user",
+                    "user_id": "1199279497893142528"
+                  },
+                  {
+                    "name": "Ladakh Tourism",
+                    "screen_name": "utladakhtourism",
+                    "type": "user",
+                    "user_id": "1218846719946809344"
+                  },
+                  {
+                    "name": "Ladakh News Portal 🇮🇳",
+                    "screen_name": "NorthIndiaTimes",
+                    "type": "user",
+                    "user_id": "1465165992955318272"
+                  },
+                  {
+                    "name": "Gulistan News Ladakh",
+                    "screen_name": "GulistanLadakh_",
+                    "type": "user",
+                    "user_id": "1237717853098242048"
+                  },
+                  {
+                    "name": "Reach Ladakh",
+                    "screen_name": "ReachLadakhNews",
+                    "type": "user",
+                    "user_id": "4653070876"
+                  },
+                  {
+                    "name": "LADAKH 🌎TIMES ",
+                    "screen_name": "LadakhTimes",
+                    "type": "user",
+                    "user_id": "944123512272306176"
+                  },
+                  {
+                    "name": "Ladakh People's Voice",
+                    "screen_name": "LPVNews",
+                    "type": "user",
+                    "user_id": "1376490664368558085"
+                  }
+                ]
+              },
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2010342626361511936",
+            "indices": [
+              160,
+              183
+            ],
+            "media_key": "3_2010342626361511936",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARvmK/epGpAACgACG+Yr+cWbsYsAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG+Yr96kakAAKAAIb5iv5xZuxiwAA",
+                "media_key": "3_2010342626361511936"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G-Yr96kakAATPaC.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 393,
+                  "w": 702,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 393,
+                  "w": 393,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 393,
+                  "w": 345,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 393,
+                  "w": 197,
+                  "x": 48,
+                  "y": 0
+                },
+                {
+                  "h": 393,
+                  "w": 1170,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 393,
+              "width": 1170
+            },
+            "sizes": {
+              "large": {
+                "h": 393,
+                "w": 1170
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/qokwnYvAFl"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "2009973539617812919",
+        "url": "https://x.com/Ladakhism/status/2009973539617812919",
+        "twitterUrl": "https://twitter.com/Ladakhism/status/2009973539617812919",
+        "text": "Traffic Advisory for 11-01-2026\n\nKargil ➡️ Srinagar\n\n🕰️ 11 AM to 03 PM sharp.\n\n🚨Traffic movement is subject to fair weather conditions along the ZojiLa axis. https://t.co/X0TmANlRM0",
+        "source": "Twitter for iPhone",
+        "retweetCount": 0,
+        "replyCount": 0,
+        "likeCount": 0,
+        "quoteCount": 1,
+        "viewCount": 207,
+        "createdAt": "Sat Jan 10 13:00:10 +0000 2026",
+        "lang": "en",
+        "bookmarkCount": 0,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "2009973539617812919",
+        "displayTextRange": [
+          0,
+          157
+        ],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {
+          "type": "user",
+          "userName": "Ladakhism",
+          "url": "https://x.com/Ladakhism",
+          "twitterUrl": "https://twitter.com/Ladakhism",
+          "id": "1354501062",
+          "name": "Ladakh",
+          "isVerified": false,
+          "isBlueVerified": false,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/1720087519893819393/kQPuV_DF_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/1354501062/1751085147",
+          "description": "",
+          "location": "Ladakh, India",
+          "followers": 1818,
+          "following": 1056,
+          "status": "",
+          "canDm": true,
+          "canMediaTag": true,
+          "createdAt": "Mon Apr 15 14:38:37 +0000 2013",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 23743,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 476,
+          "statusesCount": 5063,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [
+            "1980294484044001473"
+          ],
+          "profile_bio": {
+            "description": "Julley 🇮🇳 Follow for Updates on Ladakh || Tweets mostly on News, Ecology, Culture, Education, Tourism || Let’s Pledge to #SaveLadakh 🏔️",
+            "entities": {
+              "description": {
+                "hashtags": [
+                  {
+                    "indices": [
+                      121,
+                      132
+                    ],
+                    "text": "SaveLadakh"
+                  }
+                ]
+              },
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "en.m.wikipedia.org/wiki/Ladakh",
+                    "expanded_url": "https://en.m.wikipedia.org/wiki/Ladakh",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/oNat5ukm3f"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {
+          "media": [
+            {
+              "allow_download_status": {
+                "allow_download": true
+              },
+              "display_url": "pic.x.com/X0TmANlRM0",
+              "expanded_url": "https://x.com/Ladakhism/status/2009973539617812919/photo/1",
+              "ext_master_playlist_only": [],
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "ext_playlists": [],
+              "features": {
+                "all": {
+                  "tags": [
+                    {
+                      "name": "Ladakh Traffic Police",
+                      "screen_name": "trafficpoliceLA",
+                      "type": "user",
+                      "user_id": "1738803919533256704"
+                    },
+                    {
+                      "name": "DIPR Ladakh",
+                      "screen_name": "DIPR_Ladakh",
+                      "type": "user",
+                      "user_id": "1865219760062894080"
+                    },
+                    {
+                      "name": "DGP Ladakh",
+                      "screen_name": "DGP_Ladakh",
+                      "type": "user",
+                      "user_id": "1199279497893142528"
+                    },
+                    {
+                      "name": "DIO Kargil",
+                      "screen_name": "DIPR_Kargil",
+                      "type": "user",
+                      "user_id": "1197127660385603585"
+                    },
+                    {
+                      "name": "Reach Ladakh",
+                      "screen_name": "ReachLadakhNews",
+                      "type": "user",
+                      "user_id": "4653070876"
+                    },
+                    {
+                      "name": "Ladakh News Portal 🇮🇳",
+                      "screen_name": "NorthIndiaTimes",
+                      "type": "user",
+                      "user_id": "1465165992955318272"
+                    },
+                    {
+                      "name": "Gulistan News Ladakh",
+                      "screen_name": "GulistanLadakh_",
+                      "type": "user",
+                      "user_id": "1237717853098242048"
+                    }
+                  ]
+                },
+                "large": {
+                  "faces": []
+                },
+                "orig": {
+                  "faces": []
+                }
+              },
+              "id_str": "2009973524455403523",
+              "indices": [
+                158,
+                181
+              ],
+              "media_key": "3_2009973524455403523",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARvk3EVtGrADCgACG+TcSPTasbcAAA==",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAABCgABG+TcRW0asAMKAAIb5NxI9NqxtwAA",
+                  "media_key": "3_2009973524455403523"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/media/G-TcRW0asAMXkQu.jpg",
+              "original_info": {
+                "focus_rects": [
+                  {
+                    "h": 455,
+                    "w": 813,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 455,
+                    "w": 455,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 455,
+                    "w": 399,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 455,
+                    "w": 228,
+                    "x": 32,
+                    "y": 0
+                  },
+                  {
+                    "h": 455,
+                    "w": 1170,
+                    "x": 0,
+                    "y": 0
+                  }
+                ],
+                "height": 455,
+                "width": 1170
+              },
+              "sizes": {
+                "large": {
+                  "h": 455,
+                  "w": 1170
+                }
+              },
+              "type": "photo",
+              "url": "https://t.co/X0TmANlRM0"
+            }
+          ]
+        },
+        "card": null,
+        "place": {},
+        "entities": {},
+        "quoted_tweet": {
+          "type": "tweet",
+          "id": "2009641204527616012",
+          "url": "",
+          "twitterUrl": "",
+          "text": "",
+          "source": "Twitter for iPhone",
+          "retweetCount": 0,
+          "replyCount": 0,
+          "likeCount": 0,
+          "quoteCount": 0,
+          "viewCount": 0,
+          "createdAt": "",
+          "lang": "",
+          "bookmarkCount": 0,
+          "isReply": false,
+          "inReplyToId": null,
+          "conversationId": "",
+          "displayTextRange": [],
+          "inReplyToUserId": null,
+          "inReplyToUsername": null,
+          "author": {},
+          "extendedEntities": {},
+          "card": null,
+          "place": {},
+          "entities": {},
+          "quoted_tweet": null,
+          "retweeted_tweet": null,
+          "isLimitedReply": false,
+          "communityInfo": null,
+          "article": null
+        },
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
+        "article": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2010343438374576164",
       "url": "https://x.com/MakatiTraffic/status/2010343438374576164",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2010343438374576164",
@@ -1453,7 +2123,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437254,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1469,8 +2139,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411420,
+        "mediaCount": 17208,
+        "statusesCount": 411989,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,

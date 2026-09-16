@@ -5,7 +5,7 @@
     "window_start": "2026-02-24T22:00:00+08:00",
     "window_end": "2026-02-25T00:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 2,
+    "tweet_count": 5,
     "slices": [
       {
         "start": "2026-02-24T22:00:00+08:00",
@@ -46,8 +46,8 @@
         "start": "2026-02-24T22:25:00+08:00",
         "end": "2026-02-24T22:30:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-24T22:30:00+08:00",
@@ -74,8 +74,8 @@
         "start": "2026-02-24T22:45:00+08:00",
         "end": "2026-02-24T22:50:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-24T22:50:00+08:00",
@@ -144,8 +144,8 @@
         "start": "2026-02-24T23:35:00+08:00",
         "end": "2026-02-24T23:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-24T23:40:00+08:00",
@@ -189,7 +189,7 @@
       "replyCount": 1,
       "likeCount": 9,
       "quoteCount": 0,
-      "viewCount": 841,
+      "viewCount": 842,
       "createdAt": "Tue Feb 24 14:02:10 +0000 2026",
       "lang": "en",
       "bookmarkCount": 0,
@@ -211,12 +211,12 @@
         "name": "Hyderabad Traffic Police",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": null,
+        "verifiedType": "Government",
         "profilePicture": "https://pbs.twimg.com/profile_images/1830558048902901761/fpFeVotL_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/399923595/1753094677",
         "description": "",
         "location": "Hyderabad",
-        "followers": 293258,
+        "followers": 293335,
         "following": 57,
         "status": "",
         "canDm": true,
@@ -229,11 +229,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 15230,
+        "favouritesCount": 15246,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 14500,
-        "statusesCount": 88018,
+        "mediaCount": 14562,
+        "statusesCount": 88143,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -267,9 +267,11 @@
           {
             "display_url": "pic.x.com/W7Tu55M01Z",
             "expanded_url": "https://x.com/HYDTP/status/2026296599853613464/photo/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": [
@@ -278,16 +280,6 @@
                     "w": 84,
                     "x": 1372,
                     "y": 32
-                  }
-                ]
-              },
-              "medium": {
-                "faces": [
-                  {
-                    "h": 66,
-                    "w": 66,
-                    "x": 1083,
-                    "y": 25
                   }
                 ]
               },
@@ -300,16 +292,6 @@
                     "y": 32
                   }
                 ]
-              },
-              "small": {
-                "faces": [
-                  {
-                    "h": 37,
-                    "w": 37,
-                    "x": 614,
-                    "y": 14
-                  }
-                ]
               }
             },
             "id_str": "2026296591444041728",
@@ -319,7 +301,10 @@
             ],
             "media_key": "3_2026296591444041728",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwe2gOem2AACgACHB7aBZPbQZgAAA==",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHB7aA56bYAAKAAIcHtoFk9tBmAAA",
                 "media_key": "3_2026296591444041728"
               }
             },
@@ -363,23 +348,7 @@
             "sizes": {
               "large": {
                 "h": 945,
-                "resize": "fit",
                 "w": 1519
-              },
-              "medium": {
-                "h": 747,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 423,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "photo",
@@ -412,119 +381,142 @@
             ],
             "text": "TrafficUpdate"
           }
-        ],
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2026302938763993273",
+      "url": "https://x.com/ABSCBNNews/status/2026302938763993273",
+      "twitterUrl": "https://twitter.com/ABSCBNNews/status/2026302938763993273",
+      "text": "Sumiklab ang sunog sa isang residential area sa bahagi ng Block 12-13 Kenneth Road na boundary ng Pasig City at Taytay, Rizal, Martes ng gabi, February 24. Itinaas na ito sa unang alarma as of 9:26pm ayon sa BFP kung saan ay nasa apat na trak ng bumbero ang kailangang rumesponde. (🎥: Shirley Dalagan Arcangel) | via @ChrisSitson",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 1,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 3369,
+      "createdAt": "Tue Feb 24 14:27:22 +0000 2026",
+      "lang": "tl",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2026302938763993273",
+      "displayTextRange": [
+        0,
+        280
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ABSCBNNews",
+        "url": "https://x.com/ABSCBNNews",
+        "twitterUrl": "https://twitter.com/ABSCBNNews",
+        "id": "15872418",
+        "name": "ABS-CBN News",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1414904727674920961/aRgHKXj5_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/15872418/1747565518",
+        "description": "",
+        "location": "Manila, Philippines",
+        "followers": 9238565,
+        "following": 1098,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sat Aug 16 10:09:33 +0000 2008",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1186,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 351498,
+        "statusesCount": 1347187,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Stories, video, and multimedia for Filipinos worldwide, from ABS-CBN News and Current Affairs",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "abs-cbn.com",
+                  "expanded_url": "https://www.abs-cbn.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/GX0c1lEzlO"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
         "media": [
           {
-            "display_url": "pic.x.com/W7Tu55M01Z",
-            "expanded_url": "https://x.com/HYDTP/status/2026296599853613464/photo/1",
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/2CHF1RnUsG",
+            "expanded_url": "https://x.com/ABSCBNNews/status/2026302938763993273/video/1",
             "ext_media_availability": {
               "status": "Available"
             },
-            "features": {
-              "large": {
-                "faces": [
-                  {
-                    "h": 84,
-                    "w": 84,
-                    "x": 1372,
-                    "y": 32
-                  }
-                ]
-              },
-              "medium": {
-                "faces": [
-                  {
-                    "h": 66,
-                    "w": 66,
-                    "x": 1083,
-                    "y": 25
-                  }
-                ]
-              },
-              "orig": {
-                "faces": [
-                  {
-                    "h": 84,
-                    "w": 84,
-                    "x": 1372,
-                    "y": 32
-                  }
-                ]
-              },
-              "small": {
-                "faces": [
-                  {
-                    "h": 37,
-                    "w": 37,
-                    "x": 614,
-                    "y": 14
-                  }
-                ]
-              }
-            },
-            "id_str": "2026296591444041728",
+            "id_str": "2026302773378322432",
             "indices": [
-              260,
-              283
+              281,
+              304
             ],
-            "media_key": "3_2026296591444041728",
+            "media_key": "13_2026302773378322432",
             "media_results": {
               "result": {
-                "media_key": "3_2026296591444041728"
+                "media_key": "13_2026302773378322432"
               }
             },
-            "media_url_https": "https://pbs.twimg.com/media/HB7aA56bYAAO3mS.jpg",
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2026302773378322432/img/blmdJr7yY_4mwUhN.jpg",
             "original_info": {
-              "focus_rects": [
-                {
-                  "h": 851,
-                  "w": 1519,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 945,
-                  "w": 945,
-                  "x": 97,
-                  "y": 0
-                },
-                {
-                  "h": 945,
-                  "w": 829,
-                  "x": 155,
-                  "y": 0
-                },
-                {
-                  "h": 945,
-                  "w": 473,
-                  "x": 333,
-                  "y": 0
-                },
-                {
-                  "h": 945,
-                  "w": 1519,
-                  "x": 0,
-                  "y": 0
-                }
-              ],
-              "height": 945,
-              "width": 1519
+              "focus_rects": [],
+              "height": 1280,
+              "width": 720
             },
             "sizes": {
               "large": {
-                "h": 945,
+                "h": 1280,
                 "resize": "fit",
-                "w": 1519
+                "w": 720
               },
               "medium": {
-                "h": 747,
+                "h": 1200,
                 "resize": "fit",
-                "w": 1200
+                "w": 675
               },
               "small": {
-                "h": 423,
+                "h": 680,
                 "resize": "fit",
-                "w": 680
+                "w": 383
               },
               "thumb": {
                 "h": 150,
@@ -532,11 +524,148 @@
                 "w": 150
               }
             },
-            "type": "photo",
-            "url": "https://t.co/W7Tu55M01Z"
+            "type": "video",
+            "url": "https://t.co/2CHF1RnUsG",
+            "video_info": {
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration_millis": 9300,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/2026302773378322432/pl/Lr2bCe2odWCxCB91.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2026302773378322432/vid/avc1/320x568/futjDNt2nHAVaWrC.mp4?tag=21"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2026302773378322432/vid/avc1/480x852/xxK3ahF5LqL6kuwv.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2026302773378322432/vid/avc1/720x1280/RNYujx3vCK5V0Vh4.mp4?tag=21"
+                }
+              ]
+            }
           }
         ]
       },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "1859181579312242689",
+            "indices": [
+              317,
+              329
+            ],
+            "name": "Christopher Sitson ABS-CBN News",
+            "screen_name": "ChrisSitson"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2026307809734766877",
+      "url": "https://x.com/wpgpolice/status/2026307809734766877",
+      "twitterUrl": "https://twitter.com/wpgpolice/status/2026307809734766877",
+      "text": "TRAFFIC ADVISORY: Perimeter Highway closed both directions at the Fermor overpass.\n\nAll emergency response teams are on scene, and no injuries are reported. To avoid delays, choose an alternative route.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 13,
+      "quoteCount": 1,
+      "viewCount": 12844,
+      "createdAt": "Tue Feb 24 14:46:43 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2026307809734766877",
+      "displayTextRange": [
+        0,
+        202
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "wpgpolice",
+        "url": "https://x.com/wpgpolice",
+        "twitterUrl": "https://twitter.com/wpgpolice",
+        "id": "770066750",
+        "name": "Winnipeg Police",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1973406072082735104/hZnCIq48_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/770066750/1751894599",
+        "description": "",
+        "location": "Winnipeg, Manitoba Canada",
+        "followers": 161194,
+        "following": 350,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Mon Aug 20 19:16:56 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 7549,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 4953,
+        "statusesCount": 21479,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The official Winnipeg Police Service Twitter feed. Not monitored 24/7. *EMERGENCY CALL 911* Non-Emergency 204-986-6222. Do not submit reports via Twitter.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "winnipeg.ca/police",
+                  "expanded_url": "http://winnipeg.ca/police",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/lLrHAXWpGY"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
       "quoted_tweet": null,
       "retweeted_tweet": null,
       "article": null
@@ -579,7 +708,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/208469550/1771946506",
         "description": "",
         "location": "Quezon City",
-        "followers": 3044,
+        "followers": 3042,
         "following": 1203,
         "status": "",
         "canDm": false,
@@ -717,6 +846,271 @@
               259
             ],
             "text": "TuloyAngLaban"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2026320887650074833",
+      "url": "https://x.com/PoPville/status/2026320887650074833",
+      "twitterUrl": "https://twitter.com/PoPville/status/2026320887650074833",
+      "text": "Tonight – “TRAFFIC ADVISORY: 2026 State of the Union Address” - Details: https://t.co/LvZoVt3aDV",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 2,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 2263,
+      "createdAt": "Tue Feb 24 15:38:41 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2026320887650074833",
+      "displayTextRange": [
+        0,
+        96
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "PoPville",
+        "url": "https://x.com/PoPville",
+        "twitterUrl": "https://twitter.com/PoPville",
+        "id": "34996738",
+        "name": "PoPville",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2021675044490162179/g357Lwt4_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/34996738/1475515828",
+        "description": "",
+        "location": "District of Columbia",
+        "followers": 200682,
+        "following": 48,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri Apr 24 18:22:17 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 25845,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 29823,
+        "statusesCount": 112007,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Chronicling the happenings in Washington D.C.’s neighborhoods since 2006. Founder: Dan Silverman princeofpetworth@gmail.com",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "popville.com",
+                  "expanded_url": "http://www.popville.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/jXF1tZ5iGH"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "From a press release: \"On Tuesday, February 24, at 9:00 p.m., the President of the United States will deliver the State of the Union Address before a Joint Session of Congress. The State of the Union..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.popville.com"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "34996738",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "popville.com"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Tonight – “TRAFFIC ADVISORY: 2026 State of the Union Address” - PoPville"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/LvZoVt3aDV"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/LvZoVt3aDV",
+        "user_refs_results": [
+          {
+            "rest_id": "34996738",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 25845
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/2021675044490162179/g357Lwt4_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/34996738/1475515828"
+              },
+              "core": {
+                "created_at": "Fri Apr 24 18:22:17 +0000 2009",
+                "name": "PoPville",
+                "screen_name": "PoPville"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "District of Columbia"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {},
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Chronicling the happenings in Washington D.C.’s neighborhoods since 2006. Founder: Dan Silverman princeofpetworth@gmail.com",
+                "entities": {
+                  "description": {},
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "popville.com",
+                        "expanded_url": "http://www.popville.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/jXF1tZ5iGH"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "1DA1F2"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 200682,
+                "following": 48
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "34996738",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 29823,
+                "tweets": 112007
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/jXF1tZ5iGH"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "popville.com/2026/02/traffi…",
+            "expanded_url": "https://www.popville.com/2026/02/traffic-advisory-2026-state-of-the-union-address/",
+            "indices": [
+              73,
+              96
+            ],
+            "url": "https://t.co/LvZoVt3aDV"
           }
         ]
       },

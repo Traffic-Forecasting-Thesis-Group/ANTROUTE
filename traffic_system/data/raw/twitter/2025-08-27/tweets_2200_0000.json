@@ -5,7 +5,7 @@
     "window_start": "2025-08-27T22:00:00+08:00",
     "window_end": "2025-08-28T00:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 2,
+    "tweet_count": 5,
     "slices": [
       {
         "start": "2025-08-27T22:00:00+08:00",
@@ -32,8 +32,8 @@
         "start": "2025-08-27T22:15:00+08:00",
         "end": "2025-08-27T22:20:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-08-27T22:20:00+08:00",
@@ -137,8 +137,8 @@
         "start": "2025-08-27T23:30:00+08:00",
         "end": "2025-08-27T23:35:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-08-27T23:35:00+08:00",
@@ -151,8 +151,8 @@
         "start": "2025-08-27T23:40:00+08:00",
         "end": "2025-08-27T23:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-08-27T23:45:00+08:00",
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/4340349613/1681444406",
         "description": "",
         "location": "Philippines",
-        "followers": 97557,
+        "followers": 98477,
         "following": 187,
         "status": "",
         "canDm": true,
@@ -232,8 +232,8 @@
         "favouritesCount": 552,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 48908,
-        "statusesCount": 157032,
+        "mediaCount": 49201,
+        "statusesCount": 157347,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -276,6 +276,26 @@
       "card": {
         "binding_values": [
           {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "height": 382,
+                "url": "https://pbs.twimg.com/card_img/2095734658184970240/iVnpAMS5?format=jpg&name=800x419",
+                "width": 730
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 150,
+                "url": "https://pbs.twimg.com/card_img/2095734658184970240/iVnpAMS5?format=jpg&name=280x150",
+                "width": 258
+              }
+            }
+          },
+          {
             "key": "description",
             "value": {
               "string_value": "Reddit users are calling out motorists in Metro Manila who are abusing wang-wangs (sirens) to cut ahead in traffic."
@@ -288,10 +308,149 @@
             }
           },
           {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 320,
+                "url": "https://pbs.twimg.com/card_img/2095734658184970240/iVnpAMS5?format=jpg&name=800x320_1",
+                "width": 551
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2095734658184970240/iVnpAMS5?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 424,
+                "url": "https://pbs.twimg.com/card_img/2095734658184970240/iVnpAMS5?format=jpg&name=orig",
+                "width": 730
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2095734658184970240/iVnpAMS5?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "height": 382,
+                "url": "https://pbs.twimg.com/card_img/2095734658184970240/iVnpAMS5?format=jpg&name=800x419",
+                "width": 730
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 58,
+                "url": "https://pbs.twimg.com/card_img/2095734658184970240/iVnpAMS5?format=jpg&name=100x100",
+                "width": 100
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 424,
+                "url": "https://pbs.twimg.com/card_img/2095734658184970240/iVnpAMS5?format=png&name=2048x2048_2_exp",
+                "width": 730
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "height": 424,
+                "url": "https://pbs.twimg.com/card_img/2095734658184970240/iVnpAMS5?format=jpg&name=orig",
+                "width": 730
+              }
+            }
+          },
+          {
             "key": "vanity_url",
             "value": {
               "scribe_key": "vanity_url",
               "string_value": "bilyonaryo.com"
+            }
+          },
+          {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2095734658184970240/iVnpAMS5?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 87.85,
+                    "rgb": {
+                      "blue": 38,
+                      "green": 44,
+                      "red": 57
+                    }
+                  },
+                  {
+                    "percentage": 6.59,
+                    "rgb": {
+                      "blue": 99,
+                      "green": 110,
+                      "red": 114
+                    }
+                  },
+                  {
+                    "percentage": 2.38,
+                    "rgb": {
+                      "blue": 63,
+                      "green": 95,
+                      "red": 135
+                    }
+                  },
+                  {
+                    "percentage": 1.14,
+                    "rgb": {
+                      "blue": 73,
+                      "green": 83,
+                      "red": 83
+                    }
+                  },
+                  {
+                    "percentage": 1.01,
+                    "rgb": {
+                      "blue": 50,
+                      "green": 50,
+                      "red": 120
+                    }
+                  }
+                ]
+              }
             }
           },
           {
@@ -301,10 +460,148 @@
             }
           },
           {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 87.85,
+                    "rgb": {
+                      "blue": 38,
+                      "green": 44,
+                      "red": 57
+                    }
+                  },
+                  {
+                    "percentage": 6.59,
+                    "rgb": {
+                      "blue": 99,
+                      "green": 110,
+                      "red": 114
+                    }
+                  },
+                  {
+                    "percentage": 2.38,
+                    "rgb": {
+                      "blue": 63,
+                      "green": 95,
+                      "red": 135
+                    }
+                  },
+                  {
+                    "percentage": 1.14,
+                    "rgb": {
+                      "blue": 73,
+                      "green": 83,
+                      "red": 83
+                    }
+                  },
+                  {
+                    "percentage": 1.01,
+                    "rgb": {
+                      "blue": 50,
+                      "green": 50,
+                      "red": 120
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 424,
+                "url": "https://pbs.twimg.com/card_img/2095734658184970240/iVnpAMS5?format=png&name=2048x2048_2_exp",
+                "width": 730
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2095734658184970240/iVnpAMS5?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 87.85,
+                    "rgb": {
+                      "blue": 38,
+                      "green": 44,
+                      "red": 57
+                    }
+                  },
+                  {
+                    "percentage": 6.59,
+                    "rgb": {
+                      "blue": 99,
+                      "green": 110,
+                      "red": 114
+                    }
+                  },
+                  {
+                    "percentage": 2.38,
+                    "rgb": {
+                      "blue": 63,
+                      "green": 95,
+                      "red": 135
+                    }
+                  },
+                  {
+                    "percentage": 1.14,
+                    "rgb": {
+                      "blue": 73,
+                      "green": 83,
+                      "red": 83
+                    }
+                  },
+                  {
+                    "percentage": 1.01,
+                    "rgb": {
+                      "blue": 50,
+                      "green": 50,
+                      "red": 120
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "height": 424,
+                "url": "https://pbs.twimg.com/card_img/2095734658184970240/iVnpAMS5?format=png&name=2048x2048_2_exp",
+                "width": 730
+              }
+            }
+          },
+          {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
               "string_value": "https://t.co/rXDkVsqxZy"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "height": 424,
+                "url": "https://pbs.twimg.com/card_img/2095734658184970240/iVnpAMS5?format=jpg&name=orig",
+                "width": 730
+              }
             }
           }
         ],
@@ -345,6 +642,87 @@
     },
     {
       "type": "tweet",
+      "id": "1960708355875344576",
+      "url": "https://x.com/_gelphies/status/1960708355875344576",
+      "twitterUrl": "https://twitter.com/_gelphies/status/1960708355875344576",
+      "text": "i know the odds of her coming to the philippines are small but i might actually have a mental breakdown if she doesn’t",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 4,
+      "likeCount": 11,
+      "quoteCount": 0,
+      "viewCount": 432,
+      "createdAt": "Wed Aug 27 14:17:54 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1960708355875344576",
+      "displayTextRange": [
+        0,
+        118
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "_gelphies",
+        "url": "https://x.com/_gelphies",
+        "twitterUrl": "https://twitter.com/_gelphies",
+        "id": "1874807487100297216",
+        "name": "ann",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2003750810874966016/OGhgPJgr_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1874807487100297216/1736468663",
+        "description": "",
+        "location": "22, she/her",
+        "followers": 2228,
+        "following": 1823,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Jan 02 13:18:39 +0000 2025",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 15537,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2056,
+        "statusesCount": 10400,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1964886796665516197"
+        ],
+        "profile_bio": {
+          "description": "gelphie & franchaela pilled ꕤ",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1960712839431381305",
       "url": "https://x.com/varsitarianust/status/1960712839431381305",
       "twitterUrl": "https://twitter.com/varsitarianust/status/1960712839431381305",
@@ -352,9 +730,9 @@
       "source": "Twitter for iPhone",
       "retweetCount": 17,
       "replyCount": 8,
-      "likeCount": 182,
+      "likeCount": 181,
       "quoteCount": 124,
-      "viewCount": 534589,
+      "viewCount": 534593,
       "createdAt": "Wed Aug 27 14:35:43 +0000 2025",
       "lang": "en",
       "bookmarkCount": 22,
@@ -381,7 +759,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/167435064/1776333293",
         "description": "",
         "location": "",
-        "followers": 94356,
+        "followers": 94335,
         "following": 68,
         "status": "",
         "canDm": false,
@@ -397,8 +775,8 @@
         "favouritesCount": 36,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17256,
-        "statusesCount": 45140,
+        "mediaCount": 17282,
+        "statusesCount": 45166,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -525,6 +903,711 @@
           }
         ],
         "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1960727492387385500",
+      "url": "https://x.com/WORLDMUSICAWARD/status/1960727492387385500",
+      "twitterUrl": "https://twitter.com/WORLDMUSICAWARD/status/1960727492387385500",
+      "text": "#CHANYEOL's amazing new 2nd Solo Album 'UPSIDE DOWN' lifts to a new peak at No. 4 (+1) on the Worldwide iTunes Album chart and rockets to a new peak at No. 5 (+12) on European iTunes after reaching #1 in 24+ countries and #26 on US iTunes, now #69, and has sold over 232,026 units on Hanteo so far, including 197,647 on its 1st day, surpassing his own 'Black Out'!💪🍒🥈💿🙃📈4⃣🌎🎵➕🚀 5⃣🌍🎵➕1⃣✖️2⃣4⃣🌎& 2⃣6⃣🇺🇸🎵➕🔝💿💰💥2⃣3⃣2⃣🇰🇰🇷👑❤️‍🔥\nChanyeol's lit EDM rock bop \"Upside Down\" in which he excels in vocals is #20 on the Worldwide iTunes Song charts, after landing at 19 and is #140 on European iTunes after debuting at #40 and reaching No. 1 on iTunes in 14 countries and trending in the Top 10 of YouTube Worldwide! \n\nCHANYEOL still has 2 Songs from 'UPSIDE DOWN' charting in the Worldwide iTunes Song Chart:\n#20. Upside Down \n#91. Happy Accident (#69 debut)\n\nWATCH 📽️:https://t.co/wBW5zB6HDT…\nSTREAM💿: https://t.co/oSqeJdWejo\n\n'UPSIDE DOWN' has reached No. 2 on QQ Music China’s Digital Album Sales chart, and has already been certified Gold! It has reached No. 3 on KuGou Music’s Digital Album Sales chart in China, and No. 3 on Japan’s AWA Real-Time Rising chart!  \n\nCHANYEOL has reached #6 on the MelOn Solo Artist Chart! \n\n\"Upside Down\" debuted at #19 on the MelOn Hot100 30-Day Chart, surpassing 2,000 likes!\n\n\"Upside Down\" debuted at #62 on Bugs!            \n\n\"Upside Down\" Single on iTunes: (14x #1):\n#1. Armenia 🇦🇲\n#1. Argentina 🇦🇷 \n#1. Chile 🇨🇱\n#1. Colombia 🇨🇴\n#1. Finland 🇫🇮 \n#1. Kazakhstan 🇰🇿 \n#1. Laos 🇱🇦 \n#1. Oman 🇴🇲 \n#1. Paraguay 🇵🇾 \n#1. Peru 🇵🇪\n#1. Philippines 🇵🇭 \n#1 Sri Lanka 🇱🇰\n#1. Thailand 🇹🇭 \n#1. UAE 🇦🇪\n#1. Uzbekistan 🇺🇿\n #1. Vietnam 🇻🇳\n\n'UPSIDE DOWN' Album on Tunes: (24x #1):\n#1 Armenia 🇦🇲\n#1 Bahrain 🇧🇭\n#1 Brazil🇧🇷\n#1 Chile 🇨🇱\n#1 Estonia 🇪🇪\n#1 Fiji 🇫🇯\n#1 Finland 🇫🇮\n#1 India 🇮🇳\n#1 Indonesia 🇮🇩\n#1 Kazakhstan 🇰🇿\n#1 Laos 🇱🇦\n#1 Malaysia 🇲🇾\n#1 Mexico 🇲🇽\n#1 Oman 🇴🇲\n#1 Paraguay 🇵🇾\n#1 Peru 🇵🇪\n#1 Philippines 🇵🇭\n#1 Spain 🇪🇸\n#1 South Africa 🇿🇦\n#1 Sri Lanka 🇱🇰\n#1 Thailand 🇹🇭\n#1 Turkey 🇹🇷\n#1 United Arab Emirates 🇦🇪\n#1 Vietnam 🇻🇳\n\n#CHANYEOL_UpsideDown \n@weareoneEXO",
+      "source": "Twitter for iPhone",
+      "retweetCount": 561,
+      "replyCount": 1,
+      "likeCount": 1320,
+      "quoteCount": 6,
+      "viewCount": 15646,
+      "createdAt": "Wed Aug 27 15:33:57 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 18,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1960727492387385500",
+      "displayTextRange": [
+        0,
+        280
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "WORLDMUSICAWARD",
+        "url": "https://x.com/WORLDMUSICAWARD",
+        "twitterUrl": "https://twitter.com/WORLDMUSICAWARD",
+        "id": "461688027",
+        "name": "World Music Awards",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1067055979022422017/DhH2yiFc_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/461688027/1789388028",
+        "description": "",
+        "location": "",
+        "followers": 671198,
+        "following": 69974,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Jan 12 02:32:50 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 85142,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 78522,
+        "statusesCount": 87448,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2024237648642977804"
+        ],
+        "profile_bio": {
+          "description": "The World Music Awards is an international awards ceremony honoring the best-selling most popular recording artists from around the world.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "instagram.com/worldmusicawar…",
+                  "expanded_url": "https://www.instagram.com/worldmusicawards/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/K7RFrKDUIV"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/RrjNPJCVvX",
+            "expanded_url": "https://x.com/WORLDMUSICAWARD/status/1960727492387385500/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 389,
+                    "w": 389,
+                    "x": 655,
+                    "y": 241
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 389,
+                    "w": 389,
+                    "x": 655,
+                    "y": 241
+                  }
+                ]
+              }
+            },
+            "id_str": "1960725441011941376",
+            "indices": [
+              281,
+              304
+            ],
+            "media_key": "3_1960725441011941376",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARs15WZ1loAACgACGzXnRBUXsJwAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGzXlZnWWgAAKAAIbNedEFRewnAAA",
+                "media_key": "3_1960725441011941376"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GzXlZnWWgAAU6zd.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 678,
+                  "w": 1211,
+                  "x": 0,
+                  "y": 635
+                },
+                {
+                  "h": 1211,
+                  "w": 1211,
+                  "x": 0,
+                  "y": 102
+                },
+                {
+                  "h": 1313,
+                  "w": 1152,
+                  "x": 59,
+                  "y": 0
+                },
+                {
+                  "h": 1313,
+                  "w": 657,
+                  "x": 361,
+                  "y": 0
+                },
+                {
+                  "h": 1313,
+                  "w": 1211,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1313,
+              "width": 1211
+            },
+            "sizes": {
+              "large": {
+                "h": 1313,
+                "w": 1211
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/RrjNPJCVvX"
+          },
+          {
+            "display_url": "pic.x.com/RrjNPJCVvX",
+            "expanded_url": "https://x.com/WORLDMUSICAWARD/status/1960727492387385500/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1960725463363407872",
+            "indices": [
+              281,
+              304
+            ],
+            "media_key": "3_1960725463363407872",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARs15Wup1tAACgACGzXnRBUXsJwAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGzXla6nW0AAKAAIbNedEFRewnAAA",
+                "media_key": "3_1960725463363407872"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GzXla6nW0AAcwK5.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 381,
+                  "w": 680,
+                  "x": 0,
+                  "y": 201
+                },
+                {
+                  "h": 680,
+                  "w": 680,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 680,
+                  "w": 596,
+                  "x": 84,
+                  "y": 0
+                },
+                {
+                  "h": 680,
+                  "w": 340,
+                  "x": 340,
+                  "y": 0
+                },
+                {
+                  "h": 680,
+                  "w": 680,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 680,
+              "width": 680
+            },
+            "sizes": {
+              "large": {
+                "h": 680,
+                "w": 680
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/RrjNPJCVvX"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              0,
+              9
+            ],
+            "text": "CHANYEOL"
+          },
+          {
+            "indices": [
+              2033,
+              2053
+            ],
+            "text": "CHANYEOL_UpsideDown"
+          }
+        ],
+        "symbols": [],
+        "urls": [
+          {
+            "display_url": "youtube.com/watch?v=E_iAqD…",
+            "expanded_url": "https://youtube.com/watch?v=E_iAqDmSiRA",
+            "indices": [
+              855,
+              878
+            ],
+            "url": "https://t.co/wBW5zB6HDT"
+          },
+          {
+            "display_url": "CHANYEOL.lnk.to/UpsideDown",
+            "expanded_url": "http://CHANYEOL.lnk.to/UpsideDown",
+            "indices": [
+              889,
+              912
+            ],
+            "url": "https://t.co/oSqeJdWejo"
+          }
+        ],
+        "user_mentions": [
+          {
+            "id_str": "873115441303924736",
+            "indices": [
+              2055,
+              2067
+            ],
+            "name": "EXO",
+            "screen_name": "weareoneEXO"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1960729017948234157",
+      "url": "https://x.com/gmanews/status/1960729017948234157",
+      "twitterUrl": "https://twitter.com/gmanews/status/1960729017948234157",
+      "text": "The Armed Forces of the Philippines (AFP) and Australian Defence Force (ADC) on Thursday conducted live fire drills on Thursday at Fort Magsaysay, Nueva Ecija as part of the ongoing Exercise Amphibious Land Operation (ALON) 2025. \n\nRead more:\nhttps://t.co/VORHWUQc2p",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 1,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 1847,
+      "createdAt": "Wed Aug 27 15:40:01 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1960729017948234157",
+      "displayTextRange": [
+        0,
+        266
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "gmanews",
+        "url": "https://x.com/gmanews",
+        "twitterUrl": "https://twitter.com/gmanews",
+        "id": "39453212",
+        "name": "GMA News",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2038588193520709632/gW-kXR9a_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/39453212/1785235955",
+        "description": "",
+        "location": "Philippines",
+        "followers": 5718274,
+        "following": 674,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue May 12 07:14:09 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 14180,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 214807,
+        "statusesCount": 1027638,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099687625783136340"
+        ],
+        "profile_bio": {
+          "description": "Welcome to the official X account of GMA News.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "gmanews.tv",
+                  "expanded_url": "http://www.gmanews.tv",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/pdXg7H0qNa"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "The Armed Forces of the Philippines (AFP) and Australian Defence Force (ADC) on Thursday conducted live fire drills on Thursday at Fort Magsaysay, Nueva Ecija as part of the ongoing Exercise Amphib..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.gmanetwork.com"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "15363099",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "39453212",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "gmanetwork.com"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "PH, Australian troops conduct live fire drills in ALON 2025"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/VORHWUQc2p"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/VORHWUQc2p",
+        "user_refs_results": [
+          {
+            "rest_id": "39453212",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 14180
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/2038588193520709632/gW-kXR9a_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/39453212/1785235955"
+              },
+              "core": {
+                "created_at": "Tue May 12 07:14:09 +0000 2009",
+                "name": "GMA News",
+                "screen_name": "gmanews"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Philippines"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099687625783136340"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Welcome to the official X account of GMA News.",
+                "entities": {
+                  "description": {},
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "gmanews.tv",
+                        "expanded_url": "http://www.gmanews.tv",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/pdXg7H0qNa"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "0084B4"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 5718274,
+                "following": 674
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "39453212",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 214807,
+                "tweets": 1027638
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/pdXg7H0qNa"
+              }
+            }
+          },
+          {
+            "rest_id": "15363099",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 0
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/671334762103988224/S9oSJBG__normal.jpg"
+              },
+              "banner": {
+                "image_url": ""
+              },
+              "core": {
+                "created_at": "Wed Jul 09 06:53:58 +0000 2008",
+                "name": "GMA News Online",
+                "screen_name": "gmanewsonline"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Philippines"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {},
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Twitter feed of GMA News Online, the website of GMA News and Public Affairs in the Philippines. Follow @gmanews for more updates.",
+                "entities": {
+                  "description": {
+                    "user_mentions": [
+                      {
+                        "id_str": "",
+                        "indices": [
+                          103,
+                          111
+                        ],
+                        "name": "",
+                        "screen_name": "gmanews"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "gmanews.tv",
+                        "expanded_url": "http://www.gmanews.tv",
+                        "indices": [
+                          0,
+                          22
+                        ],
+                        "url": "http://t.co/6oQnIyzMW0"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "1DA1F2"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 15805,
+                "following": 129
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "15363099",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 24964,
+                "tweets": 93227
+              },
+              "verification": {
+                "is_blue_verified": false,
+                "verified": false
+              },
+              "website": {
+                "url": "http://t.co/6oQnIyzMW0"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "gmanetwork.com/news/topstorie…",
+            "expanded_url": "https://www.gmanetwork.com/news/topstories/nation/957180/ph-australian-troops-conduct-live-fire-drills-in-alon-2025/story/",
+            "indices": [
+              243,
+              266
+            ],
+            "url": "https://t.co/VORHWUQc2p"
+          }
+        ]
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,

@@ -5,14 +5,14 @@
     "window_start": "2025-09-29T06:00:00+08:00",
     "window_end": "2025-09-29T08:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 5,
+    "tweet_count": 9,
     "slices": [
       {
         "start": "2025-09-29T06:00:00+08:00",
         "end": "2025-09-29T06:05:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-09-29T06:05:00+08:00",
@@ -95,8 +95,8 @@
         "start": "2025-09-29T07:00:00+08:00",
         "end": "2025-09-29T07:05:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-09-29T07:05:00+08:00",
@@ -172,12 +172,116 @@
         "start": "2025-09-29T07:55:00+08:00",
         "end": "2025-09-29T08:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       }
     ]
   },
   "data": [
+    {
+      "type": "tweet",
+      "id": "1972421608594682168",
+      "url": "https://x.com/NINAlerts/status/1972421608594682168",
+      "twitterUrl": "https://twitter.com/NINAlerts/status/1972421608594682168",
+      "text": "VA | NEWPORT NEWS |**TRAFFIC ADVISORY**| S/B I-664 I-664 TUNNEL-MMMBT  | USE CAUTION. 1 S/B LN CLOSED DUE TO DISABLED VEH. EXPECT DELAYS IN AREA. @511STATEWIDEVA | UEA04",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 4,
+      "quoteCount": 0,
+      "viewCount": 240,
+      "createdAt": "Sun Sep 28 22:02:11 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1972421608594682168",
+      "displayTextRange": [
+        0,
+        169
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "NINAlerts",
+        "url": "https://x.com/NINAlerts",
+        "twitterUrl": "https://twitter.com/NINAlerts",
+        "id": "1257065658447257600",
+        "name": "National Incident Networks",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2059740574064799755/xZhCP68b_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1257065658447257600/1779915407",
+        "description": "",
+        "location": "Pittsburgh, PA",
+        "followers": 3493,
+        "following": 1305,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Sun May 03 21:53:10 +0000 2020",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 18086,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 221,
+        "statusesCount": 53728,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "NINAlerts is a rapid-fire incident notification service delivering real-time breaking news on fires, shootings, and emergencies to the palm of your hand!",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "ninalerts.com",
+                  "expanded_url": "https://www.ninalerts.com/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/OFpJV1eyrT"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "495190039",
+            "indices": [
+              146,
+              161
+            ],
+            "name": "511 Virginia",
+            "screen_name": "511STATEWIDEVA"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
     {
       "type": "tweet",
       "id": "1972421087788257723",
@@ -216,7 +320,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437301,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +336,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411304,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -318,7 +422,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437301,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -334,8 +438,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411304,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -376,6 +480,523 @@
           }
         ]
       },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1972437109916020958",
+      "url": "https://x.com/NINAlerts/status/1972437109916020958",
+      "twitterUrl": "https://twitter.com/NINAlerts/status/1972437109916020958",
+      "text": "VA | WYTHEVILLE |**TRAFFIC ADVISORY**| N/B I-77 @ MM20.1 | USE CAUTION. 1 N/B TRAVEL LN CLOSED DUE TO MVA. EXPECT DELAYS IN AREA. @511STATEWIDEVA | UEA04",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 224,
+      "createdAt": "Sun Sep 28 23:03:47 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1972437109916020958",
+      "displayTextRange": [
+        0,
+        153
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "NINAlerts",
+        "url": "https://x.com/NINAlerts",
+        "twitterUrl": "https://twitter.com/NINAlerts",
+        "id": "1257065658447257600",
+        "name": "National Incident Networks",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2059740574064799755/xZhCP68b_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1257065658447257600/1779915407",
+        "description": "",
+        "location": "Pittsburgh, PA",
+        "followers": 3493,
+        "following": 1305,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Sun May 03 21:53:10 +0000 2020",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 18086,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 221,
+        "statusesCount": 53728,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "NINAlerts is a rapid-fire incident notification service delivering real-time breaking news on fires, shootings, and emergencies to the palm of your hand!",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "ninalerts.com",
+                  "expanded_url": "https://www.ninalerts.com/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/OFpJV1eyrT"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "495190039",
+            "indices": [
+              130,
+              145
+            ],
+            "name": "511 Virginia",
+            "screen_name": "511STATEWIDEVA"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1972436160829178362",
+      "url": "https://x.com/SuiCommunity_PH/status/1972436160829178362",
+      "twitterUrl": "https://twitter.com/SuiCommunity_PH/status/1972436160829178362",
+      "text": "YOOO! Sui Fest is STRAIGHT FIRE! \nSui Fam, let’s BLOW THIS UP! https://t.co/H9UJgqWxkt",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 136,
+      "createdAt": "Sun Sep 28 23:00:01 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1972436160829178362",
+      "displayTextRange": [
+        0,
+        62
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "SuiCommunity_PH",
+        "url": "https://x.com/SuiCommunity_PH",
+        "twitterUrl": "https://twitter.com/SuiCommunity_PH",
+        "id": "1887333204803395584",
+        "name": "Sui Philippines 🇵🇭",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1976138726100303873/GN5DxDaO_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1887333204803395584/1760186843",
+        "description": "",
+        "location": "Republic of the Philippines",
+        "followers": 1241,
+        "following": 159,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Feb 06 02:52:43 +0000 2025",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1095,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 541,
+        "statusesCount": 1111,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1961444351797842365"
+        ],
+        "profile_bio": {
+          "description": "Growing the Sui community in the Philippines | Onboarding new users & sharing the latest on Sui 🌊",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "suiphilippines.com",
+                  "expanded_url": "https://www.suiphilippines.com/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/S9yeF2vKfG"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/H9UJgqWxkt",
+            "expanded_url": "https://x.com/SuiPhilippines/status/1972436160829178362/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1972383371700699138",
+            "indices": [
+              63,
+              86
+            ],
+            "media_key": "3_1972383371700699138",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtfUDn3G4ACCgACG1+APORbwfoAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG19QOfcbgAIKAAIbX4A85FvB+gAA",
+                "media_key": "3_1972383371700699138"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G19QOfcbgAIhW7c.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 722,
+                  "w": 1290,
+                  "x": 0,
+                  "y": 57
+                },
+                {
+                  "h": 1216,
+                  "w": 1216,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1216,
+                  "w": 1067,
+                  "x": 14,
+                  "y": 0
+                },
+                {
+                  "h": 1216,
+                  "w": 608,
+                  "x": 243,
+                  "y": 0
+                },
+                {
+                  "h": 1216,
+                  "w": 1290,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1216,
+              "width": 1290
+            },
+            "sizes": {
+              "large": {
+                "h": 1216,
+                "w": 1290
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/H9UJgqWxkt"
+          },
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/H9UJgqWxkt",
+            "expanded_url": "https://x.com/SuiPhilippines/status/1972436160829178362/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1972383403208306688",
+            "indices": [
+              63,
+              86
+            ],
+            "media_key": "3_1972383403208306688",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtfUEFNG3AACgACG1+APORbwfoAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG19QQU0bcAAKAAIbX4A85FvB+gAA",
+                "media_key": "3_1972383403208306688"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G19QQU0bcAAeBtD.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 719,
+                  "w": 1284,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1268,
+                  "w": 1268,
+                  "x": 8,
+                  "y": 0
+                },
+                {
+                  "h": 1268,
+                  "w": 1112,
+                  "x": 86,
+                  "y": 0
+                },
+                {
+                  "h": 1268,
+                  "w": 634,
+                  "x": 325,
+                  "y": 0
+                },
+                {
+                  "h": 1268,
+                  "w": 1284,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1268,
+              "width": 1284
+            },
+            "sizes": {
+              "large": {
+                "h": 1268,
+                "w": 1284
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/H9UJgqWxkt"
+          },
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/H9UJgqWxkt",
+            "expanded_url": "https://x.com/SuiPhilippines/status/1972436160829178362/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1972383429313630208",
+            "indices": [
+              63,
+              86
+            ],
+            "media_key": "3_1972383429313630208",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtfUEdhGxAACgACG1+APORbwfoAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG19QR2EbEAAKAAIbX4A85FvB+gAA",
+                "media_key": "3_1972383429313630208"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G19QR2EbEAA0RUo.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 719,
+                  "w": 1284,
+                  "x": 0,
+                  "y": 186
+                },
+                {
+                  "h": 1273,
+                  "w": 1273,
+                  "x": 11,
+                  "y": 0
+                },
+                {
+                  "h": 1273,
+                  "w": 1117,
+                  "x": 167,
+                  "y": 0
+                },
+                {
+                  "h": 1273,
+                  "w": 637,
+                  "x": 420,
+                  "y": 0
+                },
+                {
+                  "h": 1273,
+                  "w": 1284,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1273,
+              "width": 1284
+            },
+            "sizes": {
+              "large": {
+                "h": 1273,
+                "w": 1284
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/H9UJgqWxkt"
+          },
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/H9UJgqWxkt",
+            "expanded_url": "https://x.com/SuiPhilippines/status/1972436160829178362/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1972383486343630848",
+            "indices": [
+              63,
+              86
+            ],
+            "media_key": "3_1972383486343630848",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtfUFSoW9AACgACG1+APORbwfoAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG19QVKhb0AAKAAIbX4A85FvB+gAA",
+                "media_key": "3_1972383486343630848"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G19QVKhb0AAL-wa.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 722,
+                  "w": 1290,
+                  "x": 0,
+                  "y": 574
+                },
+                {
+                  "h": 1290,
+                  "w": 1290,
+                  "x": 0,
+                  "y": 6
+                },
+                {
+                  "h": 1296,
+                  "w": 1137,
+                  "x": 153,
+                  "y": 0
+                },
+                {
+                  "h": 1296,
+                  "w": 648,
+                  "x": 642,
+                  "y": 0
+                },
+                {
+                  "h": 1296,
+                  "w": 1290,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1296,
+              "width": 1290
+            },
+            "sizes": {
+              "large": {
+                "h": 1296,
+                "w": 1290
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/H9UJgqWxkt"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
       "quoted_tweet": null,
       "retweeted_tweet": null,
       "isLimitedReply": false,
@@ -628,7 +1249,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967172,
+        "followers": 3966712,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -644,8 +1265,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61677,
-        "statusesCount": 888214,
+        "mediaCount": 61731,
+        "statusesCount": 888686,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -730,7 +1351,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437301,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -746,8 +1367,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411304,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -785,6 +1406,360 @@
               124
             ],
             "text": "MakatiTraffic"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1972450212640850080",
+      "url": "https://x.com/DYUniverseOFC/status/1972450212640850080",
+      "twitterUrl": "https://twitter.com/DYUniverseOFC/status/1972450212640850080",
+      "text": "𝐓𝐮𝐥𝐨𝐧𝐠 𝐩𝐚𝐫𝐚 𝐬𝐚 𝐇𝐚𝐩𝐩𝐲𝐥𝐚𝐧𝐝, 𝐓𝐨𝐧𝐝𝐨\n\nNoong September 13, 2025, mahigit 900 na pamilya ang naapektuhan ng isang malaking sunog sa Tondo, Manila — sa lugar na tinatawag na Happyland.\n\nSa pamumuno ng ilang mabubuting tao at ni @AkiEsquivel, nakiisa ang DYUniverse sa pamimigay ng mga pangunahing pangangailangan. Isa sa aming naipamahagi ay ang Randy’s Donuts para sa mga residente bilang pagsuporta kay Dustin Yu. 🍩💙\n\nBilang isang fanmily at komunidad, maaari tayong gumamit ng platform para sa kahit na maliit na paraan ay makakatulong tayo.  \n\nMarami pa ring nangangailangan ng damit, pagkain, gamot, at iba pang esensyal upang muli silang makabangon.\n\nPatuloy tayong magtulungan, Stardusts. Dahil ang bawat maliit na tulong, malaki ang epekto.\n\n#DustinYu",
+      "source": "Twitter for iPhone",
+      "retweetCount": 242,
+      "replyCount": 7,
+      "likeCount": 732,
+      "quoteCount": 8,
+      "viewCount": 17093,
+      "createdAt": "Sun Sep 28 23:55:51 +0000 2025",
+      "lang": "tl",
+      "bookmarkCount": 3,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1972450212640850080",
+      "displayTextRange": [
+        0,
+        245
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "DYUniverseOFC",
+        "url": "https://x.com/DYUniverseOFC",
+        "twitterUrl": "https://twitter.com/DYUniverseOFC",
+        "id": "1939680175723274240",
+        "name": "DYUniverse OFC",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2099421232571797504/3ybzREfX_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1939680175723274240/1789346825",
+        "description": "",
+        "location": "",
+        "followers": 6540,
+        "following": 81,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Mon Jun 30 13:39:42 +0000 2025",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2458,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 612,
+        "statusesCount": 1411,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1943688282392658089"
+        ],
+        "profile_bio": {
+          "description": "A fandom built with purpose. Recognized by Dustin & management. Est. 2025\n\nAll for Dustin Yu. 💙\n\nAffiliations\nTrendsetter➡️ @dustrends\nVoting Team➡️  @dyu_vt",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    124,
+                    134
+                  ],
+                  "name": "",
+                  "screen_name": "dustrends"
+                },
+                {
+                  "id_str": "",
+                  "indices": [
+                    150,
+                    157
+                  ],
+                  "name": "",
+                  "screen_name": "dyu_vt"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/Ri3rEtfGm5",
+            "expanded_url": "https://x.com/DYUniverseOFC/status/1972450212640850080/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 41,
+                    "w": 41,
+                    "x": 697,
+                    "y": 211
+                  },
+                  {
+                    "h": 45,
+                    "w": 45,
+                    "x": 946,
+                    "y": 221
+                  },
+                  {
+                    "h": 41,
+                    "w": 41,
+                    "x": 615,
+                    "y": 224
+                  },
+                  {
+                    "h": 36,
+                    "w": 36,
+                    "x": 855,
+                    "y": 442
+                  },
+                  {
+                    "h": 37,
+                    "w": 37,
+                    "x": 745,
+                    "y": 671
+                  },
+                  {
+                    "h": 37,
+                    "w": 37,
+                    "x": 455,
+                    "y": 680
+                  },
+                  {
+                    "h": 36,
+                    "w": 36,
+                    "x": 219,
+                    "y": 698
+                  },
+                  {
+                    "h": 44,
+                    "w": 44,
+                    "x": 400,
+                    "y": 716
+                  },
+                  {
+                    "h": 39,
+                    "w": 39,
+                    "x": 890,
+                    "y": 852
+                  },
+                  {
+                    "h": 45,
+                    "w": 45,
+                    "x": 885,
+                    "y": 187
+                  },
+                  {
+                    "h": 45,
+                    "w": 45,
+                    "x": 850,
+                    "y": 611
+                  },
+                  {
+                    "h": 82,
+                    "w": 82,
+                    "x": 705,
+                    "y": 730
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 41,
+                    "w": 41,
+                    "x": 697,
+                    "y": 211
+                  },
+                  {
+                    "h": 45,
+                    "w": 45,
+                    "x": 946,
+                    "y": 221
+                  },
+                  {
+                    "h": 41,
+                    "w": 41,
+                    "x": 615,
+                    "y": 224
+                  },
+                  {
+                    "h": 36,
+                    "w": 36,
+                    "x": 855,
+                    "y": 442
+                  },
+                  {
+                    "h": 37,
+                    "w": 37,
+                    "x": 745,
+                    "y": 671
+                  },
+                  {
+                    "h": 37,
+                    "w": 37,
+                    "x": 455,
+                    "y": 680
+                  },
+                  {
+                    "h": 36,
+                    "w": 36,
+                    "x": 219,
+                    "y": 698
+                  },
+                  {
+                    "h": 44,
+                    "w": 44,
+                    "x": 400,
+                    "y": 716
+                  },
+                  {
+                    "h": 39,
+                    "w": 39,
+                    "x": 890,
+                    "y": 852
+                  },
+                  {
+                    "h": 45,
+                    "w": 45,
+                    "x": 885,
+                    "y": 187
+                  },
+                  {
+                    "h": 45,
+                    "w": 45,
+                    "x": 850,
+                    "y": 611
+                  },
+                  {
+                    "h": 82,
+                    "w": 82,
+                    "x": 705,
+                    "y": 730
+                  }
+                ]
+              }
+            },
+            "id_str": "1972450203237281793",
+            "indices": [
+              246,
+              269
+            ],
+            "media_key": "3_1972450203237281793",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtfjQJlGvABCgACG1+NBJWaAKAAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG1+NAmUa8AEKAAIbX40ElZoAoAAA",
+                "media_key": "3_1972450203237281793"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G1-NAmUa8AEk8HI.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 619,
+                  "w": 1105,
+                  "x": 0,
+                  "y": 215
+                },
+                {
+                  "h": 1097,
+                  "w": 1097,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1097,
+                  "w": 962,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1097,
+                  "w": 549,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1097,
+                  "w": 1105,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1097,
+              "width": 1105
+            },
+            "sizes": {
+              "large": {
+                "h": 1097,
+                "w": 1105
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/Ri3rEtfGm5"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              742,
+              751
+            ],
+            "text": "DustinYu"
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "1454375269985239042",
+            "indices": [
+              220,
+              232
+            ],
+            "name": "KnightsOfEraya",
+            "screen_name": "AkiEsquivel"
           }
         ]
       },

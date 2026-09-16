@@ -5,21 +5,21 @@
     "window_start": "2025-08-25T22:00:00+08:00",
     "window_end": "2025-08-26T00:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 2,
+    "tweet_count": 5,
     "slices": [
       {
         "start": "2025-08-25T22:00:00+08:00",
         "end": "2025-08-25T22:05:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-08-25T22:05:00+08:00",
         "end": "2025-08-25T22:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-08-25T22:10:00+08:00",
@@ -137,8 +137,8 @@
         "start": "2025-08-25T23:30:00+08:00",
         "end": "2025-08-25T23:35:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-08-25T23:35:00+08:00",
@@ -180,6 +180,545 @@
   "data": [
     {
       "type": "tweet",
+      "id": "1959979596440613083",
+      "url": "https://x.com/PBOTinfo/status/1959979596440613083",
+      "twitterUrl": "https://twitter.com/PBOTinfo/status/1959979596440613083",
+      "text": "Reminder, paving on NE Martin Luther King Jr. Boulevard begins today. Details: https://t.co/BI7oYpCN50",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 810,
+      "createdAt": "Mon Aug 25 14:02:05 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1959979596440613083",
+      "displayTextRange": [
+        0,
+        102
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "PBOTinfo",
+        "url": "https://x.com/PBOTinfo",
+        "twitterUrl": "https://twitter.com/PBOTinfo",
+        "id": "218571357",
+        "name": "Portland Bureau of Transportation",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1545075040504274944/ipgFp1RU_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/218571357/1788305422",
+        "description": "",
+        "location": "Portland, Oregon",
+        "followers": 33522,
+        "following": 1848,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Nov 22 18:04:19 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 10354,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 6268,
+        "statusesCount": 32168,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The City of Portland Bureau of Transportation (PBOT). We keep Portland moving. Report road hazards 24/7 to 503-823-1700.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "portland.gov/transportation",
+                  "expanded_url": "https://www.portland.gov/transportation",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/pvkpeJ84aS"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "The work is expected to last approximately seven business days and is funded by Fixing Our Streets, Portland's voter-approved 10-cent gas tax and heavy vehicle use tax for fixing our streets and..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.portland.gov"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "portland.gov"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Traffic Advisory: A smoother street is coming to NE Martin Luther King, Jr. Boulevard from NE..."
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/BI7oYpCN50"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/BI7oYpCN50",
+        "user_refs_results": []
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "portland.gov/transportation…",
+            "expanded_url": "https://www.portland.gov/transportation/news/2025/8/22/traffic-advisory-smoother-street-coming-ne-martin-luther-king-jr",
+            "indices": [
+              79,
+              102
+            ],
+            "url": "https://t.co/BI7oYpCN50"
+          }
+        ]
+      },
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "1958997962119684103",
+        "url": "https://x.com/PBOTinfo/status/1958997962119684103",
+        "twitterUrl": "https://twitter.com/PBOTinfo/status/1958997962119684103",
+        "text": "Traffic Advisory: A smoother street is coming to NE Martin Luther King, Jr. Boulevard from NE Weidler to Holladay Street starting Monday, Aug. 25\n\nhttps://t.co/DisrDGGyuY",
+        "source": "Twitter for iPhone",
+        "retweetCount": 0,
+        "replyCount": 1,
+        "likeCount": 1,
+        "quoteCount": 1,
+        "viewCount": 1314,
+        "createdAt": "Fri Aug 22 21:01:25 +0000 2025",
+        "lang": "en",
+        "bookmarkCount": 1,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "1958997962119684103",
+        "displayTextRange": [
+          0,
+          170
+        ],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {
+          "type": "user",
+          "userName": "PBOTinfo",
+          "url": "https://x.com/PBOTinfo",
+          "twitterUrl": "https://twitter.com/PBOTinfo",
+          "id": "218571357",
+          "name": "Portland Bureau of Transportation",
+          "isVerified": false,
+          "isBlueVerified": false,
+          "verifiedType": "Government",
+          "profilePicture": "https://pbs.twimg.com/profile_images/1545075040504274944/ipgFp1RU_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/218571357/1788305422",
+          "description": "",
+          "location": "Portland, Oregon",
+          "followers": 33522,
+          "following": 1848,
+          "status": "",
+          "canDm": true,
+          "canMediaTag": true,
+          "createdAt": "Mon Nov 22 18:04:19 +0000 2010",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 10354,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 6268,
+          "statusesCount": 32168,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [],
+          "profile_bio": {
+            "description": "The City of Portland Bureau of Transportation (PBOT). We keep Portland moving. Report road hazards 24/7 to 503-823-1700.",
+            "entities": {
+              "description": {},
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "portland.gov/transportation",
+                    "expanded_url": "https://www.portland.gov/transportation",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/pvkpeJ84aS"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {},
+        "card": {
+          "binding_values": [
+            {
+              "key": "description",
+              "value": {
+                "string_value": "The work is expected to last approximately seven business days and is funded by Fixing Our Streets, Portland's voter-approved 10-cent gas tax and heavy vehicle use tax for fixing our streets and..."
+              }
+            },
+            {
+              "key": "domain",
+              "value": {
+                "string_value": "www.portland.gov"
+              }
+            },
+            {
+              "key": "vanity_url",
+              "value": {
+                "scribe_key": "vanity_url",
+                "string_value": "portland.gov"
+              }
+            },
+            {
+              "key": "title",
+              "value": {
+                "string_value": "Traffic Advisory: A smoother street is coming to NE Martin Luther King, Jr. Boulevard from NE..."
+              }
+            },
+            {
+              "key": "card_url",
+              "value": {
+                "scribe_key": "card_url",
+                "string_value": "https://t.co/DisrDGGyuY"
+              }
+            }
+          ],
+          "card_platform": {
+            "platform": {
+              "audience": {
+                "name": "production"
+              },
+              "device": {
+                "name": "iPhone",
+                "version": "13"
+              }
+            }
+          },
+          "name": "summary_large_image",
+          "url": "https://t.co/DisrDGGyuY",
+          "user_refs_results": []
+        },
+        "place": {},
+        "entities": {
+          "urls": [
+            {
+              "display_url": "portland.gov/transportation…",
+              "expanded_url": "http://portland.gov/transportation/news/2025/8/22/traffic-advisory-smoother-street-coming-ne-martin-luther-king-jr",
+              "indices": [
+                147,
+                170
+              ],
+              "url": "https://t.co/DisrDGGyuY"
+            }
+          ]
+        },
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
+        "article": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1959980989935186290",
+      "url": "https://x.com/wftrps/status/1959980989935186290",
+      "twitterUrl": "https://twitter.com/wftrps/status/1959980989935186290",
+      "text": "Traffic Advisory' Slow moving Traffic with a vehicle breakdown, vibgyor cross  towards Thubarahalli it will be moved shortly. Kindly co-operate.\n25.08.2025 Monday https://t.co/C9sUhdABTg",
+      "source": "Twitter for iPhone",
+      "retweetCount": 4,
+      "replyCount": 2,
+      "likeCount": 6,
+      "quoteCount": 0,
+      "viewCount": 1038,
+      "createdAt": "Mon Aug 25 14:07:37 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1959980989935186290",
+      "displayTextRange": [
+        0,
+        162
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "wftrps",
+        "url": "https://x.com/wftrps",
+        "twitterUrl": "https://twitter.com/wftrps",
+        "id": "1427538424513261572",
+        "name": "WHITEFIELD TRAFFIC PS BTP",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1610431515384766464/EKixD336_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1427538424513261572/1698664455",
+        "description": "",
+        "location": "XQV4+PV4, Kadugodi Rd, Kadugod",
+        "followers": 8051,
+        "following": 340,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Aug 17 07:52:18 +0000 2021",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 8048,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 9548,
+        "statusesCount": 23136,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1561965210944290816"
+        ],
+        "profile_bio": {
+          "description": "Whitefield Traffic Police Station  ☎️ 08022943706.\nhttps://t.co/nLW3eXyDqh\nhttps://t.co/ztwpDdQ1kT",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "facebook.com/whitefield",
+                  "expanded_url": "https://www.facebook.com/whitefield",
+                  "indices": [
+                    51,
+                    74
+                  ],
+                  "url": "https://t.co/nLW3eXyDqh"
+                },
+                {
+                  "display_url": "instagram.com/whitefieldtraf…",
+                  "expanded_url": "https://instagram.com/whitefieldtrafficps?utm_source=qr&igshid=ZDc4ODBmNj",
+                  "indices": [
+                    75,
+                    98
+                  ],
+                  "url": "https://t.co/ztwpDdQ1kT"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.gov.in",
+                  "expanded_url": "https://btp.gov.in/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/n23Fyy5nq9"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/C9sUhdABTg",
+            "expanded_url": "https://x.com/wftrps/status/1959980989935186290/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "CP Bengaluru ಪೊಲೀಸ್ ಆಯುಕ್ತ ಬೆಂಗಳೂರು",
+                    "screen_name": "CPBlr",
+                    "type": "user",
+                    "user_id": "2687852605"
+                  },
+                  {
+                    "name": "Joint CP, Traffic, Bengaluru",
+                    "screen_name": "Jointcptraffic",
+                    "type": "user",
+                    "user_id": "2809164276"
+                  },
+                  {
+                    "name": "DCP Traffic East ಉಪ ಪೊಲೀಸ್ ಆಯುಕ್ತರು ಸಂಚಾರ ಪೂರ್ವ",
+                    "screen_name": "DCPTrEastBCP",
+                    "type": "user",
+                    "user_id": "2809049605"
+                  },
+                  {
+                    "name": "ACP Whitefield Traffic ಎಸಿಪಿ ಸಂಚಾರ ವೈಟ್ ಫೀಲ್ಡ್",
+                    "screen_name": "acpwfieldtrf",
+                    "type": "user",
+                    "user_id": "1361589347032600576"
+                  },
+                  {
+                    "name": "ಬೆಂಗಳೂರು ನಗರ ಪೊಲೀಸ್‌ BengaluruCityPolice",
+                    "screen_name": "BlrCityPolice",
+                    "type": "user",
+                    "user_id": "775296019"
+                  },
+                  {
+                    "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+                    "screen_name": "blrcitytraffic",
+                    "type": "user",
+                    "user_id": "1851545900"
+                  }
+                ]
+              },
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1959980986478829568",
+            "indices": [
+              163,
+              186
+            ],
+            "media_key": "3_1959980986478829568",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARszQFKhlyAACgACGzNAU2+a8XIAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGzNAUqGXIAAKAAIbM0BTb5rxcgAA",
+                "media_key": "3_1959980986478829568"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GzNAUqGXIAAutGW.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 437,
+                  "w": 780,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 780,
+                  "w": 780,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 889,
+                  "w": 780,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1040,
+                  "w": 520,
+                  "x": 260,
+                  "y": 0
+                },
+                {
+                  "h": 1040,
+                  "w": 780,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1040,
+              "width": 780
+            },
+            "sizes": {
+              "large": {
+                "h": 1040,
+                "w": 780
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/C9sUhdABTg"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1959987484378681597",
       "url": "https://x.com/UdayChatterje/status/1959987484378681597",
       "twitterUrl": "https://twitter.com/UdayChatterje/status/1959987484378681597",
@@ -210,14 +749,14 @@
         "id": "889817426078171137",
         "name": "Uday Chatterjee",
         "isVerified": false,
-        "isBlueVerified": true,
+        "isBlueVerified": false,
         "verifiedType": null,
         "profilePicture": "https://pbs.twimg.com/profile_images/1584989459141230592/AuWjSWvl_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/889817426078171137/1756648465",
         "description": "",
         "location": "",
-        "followers": 1904,
-        "following": 648,
+        "followers": 1905,
+        "following": 650,
         "status": "",
         "canDm": false,
         "canMediaTag": false,
@@ -229,11 +768,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 73389,
+        "favouritesCount": 73731,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 2882,
-        "statusesCount": 14143,
+        "mediaCount": 2887,
+        "statusesCount": 14245,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -400,10 +939,10 @@
         "isBlueVerified": true,
         "verifiedType": null,
         "profilePicture": "https://pbs.twimg.com/profile_images/2080472479819329536/gJQOGiCz_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/598515806/1788575617",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/598515806/1789317511",
         "description": "",
         "location": "",
-        "followers": 187432,
+        "followers": 187433,
         "following": 232,
         "status": "",
         "canDm": false,
@@ -419,8 +958,8 @@
         "favouritesCount": 371,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 174699,
-        "statusesCount": 509785,
+        "mediaCount": 176048,
+        "statusesCount": 511220,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -544,6 +1083,189 @@
               275
             ],
             "text": "Jaimaharashtranews"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1960001981277503771",
+      "url": "https://x.com/EastMojo/status/1960001981277503771",
+      "twitterUrl": "https://twitter.com/EastMojo/status/1960001981277503771",
+      "text": "Nagaland: Landslide blocks NH-2 near Tsiesema Basa, traffic advisory issued https://t.co/pi8xD2IhqD https://t.co/tBcexvlyg1",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 135,
+      "createdAt": "Mon Aug 25 15:31:02 +0000 2025",
+      "lang": "tl",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1960001981277503771",
+      "displayTextRange": [
+        0,
+        99
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "EastMojo",
+        "url": "https://x.com/EastMojo",
+        "twitterUrl": "https://twitter.com/EastMojo",
+        "id": "895966977407074304",
+        "name": "EastMojo",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1656272938692395008/m6tsDVAo_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/895966977407074304/1773316696",
+        "description": "",
+        "location": "Guwahati, India",
+        "followers": 28017,
+        "following": 516,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri Aug 11 11:15:48 +0000 2017",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 776,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 22694,
+        "statusesCount": 76380,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Mobile-first digital news platform | New media storyteller from Northeast India",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "eastmojo.com/eastmojo-membe…",
+                  "expanded_url": "https://eastmojo.com/eastmojo-membership",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/KE0el0ZnIW"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/tBcexvlyg1",
+            "expanded_url": "https://x.com/EastMojo/status/1960001981277503771/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1960001979251654656",
+            "indices": [
+              100,
+              123
+            ],
+            "media_key": "3_1960001979251654656",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARszU2pkW4AACgACGzNTat0bgRsAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGzNTamRbgAAKAAIbM1Nq3RuBGwAA",
+                "media_key": "3_1960001979251654656"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GzNTamRbgAAb_FH.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1075,
+                  "w": 1920,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 180,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 947,
+                  "x": 247,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 540,
+                  "x": 450,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1920,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1080,
+              "width": 1920
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "w": 1920
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/tBcexvlyg1"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "eastmojo.com/nagaland/2025/…",
+            "expanded_url": "https://eastmojo.com/nagaland/2025/08/25/nagaland-landslide-blocks-nh-2-near-tsiesema-basa-traffic-advisory-issued/",
+            "indices": [
+              76,
+              99
+            ],
+            "url": "https://t.co/pi8xD2IhqD"
           }
         ]
       },

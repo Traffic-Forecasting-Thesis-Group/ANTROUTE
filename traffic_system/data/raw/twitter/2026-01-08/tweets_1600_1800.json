@@ -5,7 +5,7 @@
     "window_start": "2026-01-08T16:00:00+08:00",
     "window_end": "2026-01-08T18:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 6,
+    "tweet_count": 8,
     "slices": [
       {
         "start": "2026-01-08T16:00:00+08:00",
@@ -32,8 +32,8 @@
         "start": "2026-01-08T16:15:00+08:00",
         "end": "2026-01-08T16:20:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-08T16:20:00+08:00",
@@ -102,8 +102,8 @@
         "start": "2026-01-08T17:05:00+08:00",
         "end": "2026-01-08T17:10:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-01-08T17:10:00+08:00",
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437254,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +232,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411419,
+        "mediaCount": 17208,
+        "statusesCount": 411988,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -318,8 +318,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/874112786002886656/1603532065",
         "description": "",
         "location": "Chennai, India",
-        "followers": 122914,
-        "following": 198,
+        "followers": 123050,
+        "following": 197,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -331,11 +331,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3104,
+        "favouritesCount": 3105,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 20200,
-        "statusesCount": 57143,
+        "mediaCount": 20353,
+        "statusesCount": 57593,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -367,16 +367,20 @@
           {
             "display_url": "pic.x.com/9icIUvZWgM",
             "expanded_url": "https://x.com/ChennaiTraffic/status/2009176754934714401/photo/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": []
               },
+              "medium": {
+                "faces": []
+              },
               "orig": {
+                "faces": []
+              },
+              "small": {
                 "faces": []
               }
             },
@@ -387,10 +391,7 @@
             ],
             "media_key": "3_2009176697447567360",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARviB4+uWtAACgACG+IHnRDbECEAAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABG+IHj65a0AAKAAIb4gedENsQIQAA",
                 "media_key": "3_2009176697447567360"
               }
             },
@@ -434,7 +435,23 @@
             "sizes": {
               "large": {
                 "h": 1600,
+                "resize": "fit",
                 "w": 1236
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 927
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 525
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "photo",
@@ -443,16 +460,20 @@
           {
             "display_url": "pic.x.com/9icIUvZWgM",
             "expanded_url": "https://x.com/ChennaiTraffic/status/2009176754934714401/photo/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": []
               },
+              "medium": {
+                "faces": []
+              },
               "orig": {
+                "faces": []
+              },
+              "small": {
                 "faces": []
               }
             },
@@ -463,10 +484,7 @@
             ],
             "media_key": "3_2009176713826324481",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARviB5N+mtABCgACG+IHnRDbECEAAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABG+IHk36a0AEKAAIb4gedENsQIQAA",
                 "media_key": "3_2009176713826324481"
               }
             },
@@ -510,7 +528,23 @@
             "sizes": {
               "large": {
                 "h": 1600,
+                "resize": "fit",
                 "w": 1236
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 927
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 525
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "photo",
@@ -519,16 +553,20 @@
           {
             "display_url": "pic.x.com/9icIUvZWgM",
             "expanded_url": "https://x.com/ChennaiTraffic/status/2009176754934714401/photo/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": []
               },
+              "medium": {
+                "faces": []
+              },
               "orig": {
+                "faces": []
+              },
+              "small": {
                 "faces": []
               }
             },
@@ -539,10 +577,7 @@
             ],
             "media_key": "3_2009176741961715716",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARviB5oLmtAECgACG+IHnRDbECEAAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABG+IHmgua0AQKAAIb4gedENsQIQAA",
                 "media_key": "3_2009176741961715716"
               }
             },
@@ -586,7 +621,23 @@
             "sizes": {
               "large": {
                 "h": 1236,
+                "resize": "fit",
                 "w": 1600
+              },
+              "medium": {
+                "h": 927,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 525,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "photo",
@@ -626,7 +677,548 @@
             ],
             "text": "GCTP"
           }
+        ],
+        "media": [
+          {
+            "display_url": "pic.x.com/9icIUvZWgM",
+            "expanded_url": "https://x.com/ChennaiTraffic/status/2009176754934714401/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              }
+            },
+            "id_str": "2009176697447567360",
+            "indices": [
+              264,
+              287
+            ],
+            "media_key": "3_2009176697447567360",
+            "media_results": {
+              "result": {
+                "media_key": "3_2009176697447567360"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G-IHj65a0AA8agS.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 692,
+                  "w": 1236,
+                  "x": 0,
+                  "y": 894
+                },
+                {
+                  "h": 1236,
+                  "w": 1236,
+                  "x": 0,
+                  "y": 364
+                },
+                {
+                  "h": 1409,
+                  "w": 1236,
+                  "x": 0,
+                  "y": 191
+                },
+                {
+                  "h": 1600,
+                  "w": 800,
+                  "x": 436,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 1236,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1600,
+              "width": 1236
+            },
+            "sizes": {
+              "large": {
+                "h": 1600,
+                "resize": "fit",
+                "w": 1236
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 927
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 525
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/9icIUvZWgM"
+          },
+          {
+            "display_url": "pic.x.com/9icIUvZWgM",
+            "expanded_url": "https://x.com/ChennaiTraffic/status/2009176754934714401/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              }
+            },
+            "id_str": "2009176713826324481",
+            "indices": [
+              264,
+              287
+            ],
+            "media_key": "3_2009176713826324481",
+            "media_results": {
+              "result": {
+                "media_key": "3_2009176713826324481"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G-IHk36a0AEMcLl.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 692,
+                  "w": 1236,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1236,
+                  "w": 1236,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1409,
+                  "w": 1236,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 800,
+                  "x": 120,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 1236,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1600,
+              "width": 1236
+            },
+            "sizes": {
+              "large": {
+                "h": 1600,
+                "resize": "fit",
+                "w": 1236
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 927
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 525
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/9icIUvZWgM"
+          },
+          {
+            "display_url": "pic.x.com/9icIUvZWgM",
+            "expanded_url": "https://x.com/ChennaiTraffic/status/2009176754934714401/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              }
+            },
+            "id_str": "2009176741961715716",
+            "indices": [
+              264,
+              287
+            ],
+            "media_key": "3_2009176741961715716",
+            "media_results": {
+              "result": {
+                "media_key": "3_2009176741961715716"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G-IHmgua0AQ-LeC.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 896,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1236,
+                  "w": 1236,
+                  "x": 364,
+                  "y": 0
+                },
+                {
+                  "h": 1236,
+                  "w": 1084,
+                  "x": 458,
+                  "y": 0
+                },
+                {
+                  "h": 1236,
+                  "w": 618,
+                  "x": 691,
+                  "y": 0
+                },
+                {
+                  "h": 1236,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1236,
+              "width": 1600
+            },
+            "sizes": {
+              "large": {
+                "h": 1236,
+                "resize": "fit",
+                "w": 1600
+              },
+              "medium": {
+                "h": 927,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 525,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/9icIUvZWgM"
+          }
         ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2009178101243335022",
+      "url": "https://x.com/dtptraffic/status/2009178101243335022",
+      "twitterUrl": "https://twitter.com/dtptraffic/status/2009178101243335022",
+      "text": "TRAFFIC ADVISORY\n\nIn connection with the ongoing underground cabling maintenance and upgradation work by Tata Power – Delhi Distribution Limited (TPDDL), traffic movement on New Rohtak Road from Kamal T-Point to Liberty Cinema towards Paharganj will remain affected till 31.01.2026.\n\n📍 STRETCH AFFECTED:\nNew Rohtak Road – From Kamal T-Point to Liberty Cinema towards Paharganj\n\n📍 SUGGESTED ALTERNATIVE ROUTES:\n* Commuters going towards Paharganj / New Delhi may take left from Kamal T-Point towards Sarai Rohilla, then right on Veer Banda Bairagi Marg via Rani Jhansi Road\n* Commuters from Shastri Nagar Chowk towards Liberty Cinema may avoid Swami Narayan Marg and take Rani Jhansi Road\n📍Stay updated through Delhi Traffic Police channels\n\n#DPTrafficAdvisory",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 14,
+      "quoteCount": 0,
+      "viewCount": 3595,
+      "createdAt": "Thu Jan 08 08:19:22 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 2,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2009178101243335022",
+      "displayTextRange": [
+        0,
+        270
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "dtptraffic",
+        "url": "https://x.com/dtptraffic",
+        "twitterUrl": "https://twitter.com/dtptraffic",
+        "id": "143766231",
+        "name": "Delhi Traffic Police",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1747140324324225024/rLI5Hyjo_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/143766231/1651490407",
+        "description": "",
+        "location": "India, Delhi",
+        "followers": 1598591,
+        "following": 49,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri May 14 10:06:44 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 6970,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 15206,
+        "statusesCount": 417824,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099728178118041645"
+        ],
+        "profile_bio": {
+          "description": "24x7 Control Room : +91-11-25844444,1095",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "traffic.delhipolice.gov.in",
+                  "expanded_url": "https://traffic.delhipolice.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/U0jWSsRSeL"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/8pGr52Vo4a",
+            "expanded_url": "https://x.com/dtptraffic/status/2009178101243335022/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2009178018057740288",
+            "indices": [
+              271,
+              294
+            ],
+            "media_key": "3_2009178018057740288",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARviCMMo2uAACgACG+II1ocaUW4AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG+IIwyja4AAKAAIb4gjWhxpRbgAA",
+                "media_key": "3_2009178018057740288"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G-IIwyja4AACA4Q.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1434,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 883
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2246,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2560,
+              "width": 2560
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/8pGr52Vo4a"
+          },
+          {
+            "display_url": "pic.x.com/8pGr52Vo4a",
+            "expanded_url": "https://x.com/dtptraffic/status/2009178101243335022/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2009178090124226560",
+            "indices": [
+              271,
+              294
+            ],
+            "media_key": "3_2009178090124226560",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARviCNPwWjAACgACG+II1ocaUW4AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG+II0/BaMAAKAAIb4gjWhxpRbgAA",
+                "media_key": "3_2009178090124226560"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G-II0_BaMAAI5n2.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1434,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2246,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 1280,
+                  "x": 192,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2560,
+              "width": 2560
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/8pGr52Vo4a"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              741,
+              759
+            ],
+            "text": "DPTrafficAdvisory"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
@@ -672,7 +1264,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437254,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -688,8 +1280,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411419,
+        "mediaCount": 17208,
+        "statusesCount": 411988,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -774,7 +1366,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437254,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -790,8 +1382,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411419,
+        "mediaCount": 17208,
+        "statusesCount": 411988,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -840,6 +1432,420 @@
     },
     {
       "type": "tweet",
+      "id": "2009190745283162339",
+      "url": "https://x.com/IndiaTodayFLASH/status/2009190745283162339",
+      "twitterUrl": "https://twitter.com/IndiaTodayFLASH/status/2009190745283162339",
+      "text": "Traffic advisory: Avoid new Rohtak road till Jan 31. Check alternate routes https://t.co/z6d98tE7t6",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 160,
+      "createdAt": "Thu Jan 08 09:09:37 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2009190745283162339",
+      "displayTextRange": [
+        0,
+        99
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "IndiaTodayFLASH",
+        "url": "https://x.com/IndiaTodayFLASH",
+        "twitterUrl": "https://twitter.com/IndiaTodayFLASH",
+        "id": "1073676020",
+        "name": "IndiaTodayFLASH",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/787569612745428992/4QK6rGHI_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1073676020/1687867665",
+        "description": "",
+        "location": "",
+        "followers": 1043651,
+        "following": 117,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Jan 09 12:46:38 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 137,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 6577,
+        "statusesCount": 768157,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "No dragging feet on news. Crisp & short news shots served here",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Delhi Traffic Police requests the public to steer clear of major segments along New Rohtak Road until January 31, 2026. Underground cable installation by Tata Power–Delhi Distribution Limited is in..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.indiatoday.in"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "19897138",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "19897138",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "indiatoday.in"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Traffic advisory: Avoid new Rohtak road till Jan 31. Check alternate routes"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/z6d98tE7t6"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/z6d98tE7t6",
+        "user_refs_results": [
+          {
+            "rest_id": "19897138",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 4432
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/2018221822471495680/N4dSGrXM_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/19897138/1789479162"
+              },
+              "core": {
+                "created_at": "Mon Feb 02 07:21:54 +0000 2009",
+                "name": "IndiaToday",
+                "screen_name": "IndiaToday"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "India"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2100049247869755439"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Brings you news breaks: Exclusive political, entertainment, sports insight, unbiased-nonaligned. https://t.co/4QkZBcgPH5| https://t.co/pmDGIBbj9z",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "instagram.com/indiatoday",
+                        "expanded_url": "http://instagram.com/indiatoday",
+                        "indices": [
+                          97,
+                          120
+                        ],
+                        "url": "https://t.co/4QkZBcgPH5"
+                      },
+                      {
+                        "display_url": "facebook.com/IndiaToday",
+                        "expanded_url": "http://facebook.com/IndiaToday",
+                        "indices": [
+                          122,
+                          145
+                        ],
+                        "url": "https://t.co/pmDGIBbj9z"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "indiatoday.in",
+                        "expanded_url": "http://www.indiatoday.in/",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/saDvonqrdB"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Square",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "1DA1F2"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 6251424,
+                "following": 84
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "19897138",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 569085,
+                "tweets": 1527146
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false,
+                "verified_type": "Business"
+              },
+              "website": {
+                "url": "https://t.co/saDvonqrdB"
+              }
+            }
+          },
+          {
+            "rest_id": "19897138",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 4432
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/2018221822471495680/N4dSGrXM_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/19897138/1789479162"
+              },
+              "core": {
+                "created_at": "Mon Feb 02 07:21:54 +0000 2009",
+                "name": "IndiaToday",
+                "screen_name": "IndiaToday"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "India"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2100049247869755439"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Brings you news breaks: Exclusive political, entertainment, sports insight, unbiased-nonaligned. https://t.co/4QkZBcgPH5| https://t.co/pmDGIBbj9z",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "instagram.com/indiatoday",
+                        "expanded_url": "http://instagram.com/indiatoday",
+                        "indices": [
+                          97,
+                          120
+                        ],
+                        "url": "https://t.co/4QkZBcgPH5"
+                      },
+                      {
+                        "display_url": "facebook.com/IndiaToday",
+                        "expanded_url": "http://facebook.com/IndiaToday",
+                        "indices": [
+                          122,
+                          145
+                        ],
+                        "url": "https://t.co/pmDGIBbj9z"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "indiatoday.in",
+                        "expanded_url": "http://www.indiatoday.in/",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/saDvonqrdB"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Square",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "1DA1F2"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 6251424,
+                "following": 84
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "19897138",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 569085,
+                "tweets": 1527146
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false,
+                "verified_type": "Business"
+              },
+              "website": {
+                "url": "https://t.co/saDvonqrdB"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "indiatoday.in/information/st…",
+            "expanded_url": "https://www.indiatoday.in/information/story/delhi-traffic-update-underground-cable-works-new-rohtak-road-lane-closures-delays-2848641-2026-01-08",
+            "indices": [
+              76,
+              99
+            ],
+            "url": "https://t.co/z6d98tE7t6"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2009190589993291909",
       "url": "https://x.com/MakatiTraffic/status/2009190589993291909",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2009190589993291909",
@@ -876,7 +1882,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437254,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -892,8 +1898,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411419,
+        "mediaCount": 17208,
+        "statusesCount": 411988,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -978,7 +1984,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197283,
+        "followers": 1197875,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -994,8 +2000,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219315,
-        "statusesCount": 942017,
+        "mediaCount": 219482,
+        "statusesCount": 942990,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,

@@ -5,7 +5,7 @@
     "window_start": "2026-02-20T22:00:00+08:00",
     "window_end": "2026-02-21T00:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 4,
+    "tweet_count": 10,
     "slices": [
       {
         "start": "2026-02-20T22:00:00+08:00",
@@ -18,15 +18,15 @@
         "start": "2026-02-20T22:05:00+08:00",
         "end": "2026-02-20T22:10:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-02-20T22:10:00+08:00",
         "end": "2026-02-20T22:15:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-20T22:15:00+08:00",
@@ -46,8 +46,8 @@
         "start": "2026-02-20T22:25:00+08:00",
         "end": "2026-02-20T22:30:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-20T22:30:00+08:00",
@@ -67,8 +67,8 @@
         "start": "2026-02-20T22:40:00+08:00",
         "end": "2026-02-20T22:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-02-20T22:45:00+08:00",
@@ -165,8 +165,8 @@
         "start": "2026-02-20T23:50:00+08:00",
         "end": "2026-02-20T23:55:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-20T23:55:00+08:00",
@@ -180,6 +180,295 @@
   "data": [
     {
       "type": "tweet",
+      "id": "2024848922867572757",
+      "url": "https://x.com/DerryNow/status/2024848922867572757",
+      "twitterUrl": "https://twitter.com/DerryNow/status/2024848922867572757",
+      "text": "Police issue traffic advisory ahead of Derry City's game against Bohemians https://t.co/41BtYnJ6c7",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 716,
+      "createdAt": "Fri Feb 20 14:09:37 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2024848922867572757",
+      "displayTextRange": [
+        0,
+        98
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "DerryNow",
+        "url": "https://x.com/DerryNow",
+        "twitterUrl": "https://twitter.com/DerryNow",
+        "id": "2294679319",
+        "name": "Derry Now",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1876309861304082432/DsAUeFuL_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2294679319/1736182106",
+        "description": "",
+        "location": "19 Carlisle Road, Derry",
+        "followers": 11859,
+        "following": 2678,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Thu Jan 16 16:14:41 +0000 2014",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3403,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1089,
+        "statusesCount": 77388,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "💻 Derry Now is the website of the Derry News and @derrypost newspapers.\n⚡️ Powered by Iconic Media Group",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    49,
+                    59
+                  ],
+                  "name": "",
+                  "screen_name": "derrypost"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "derrynow.com",
+                  "expanded_url": "http://www.derrynow.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/HEDpiIdUyD"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "The game kicks off at 7.45pm"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.derrynow.com"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "2294679319",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "derrynow.com"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Police issue traffic advisory ahead of Derry City's game against Bohemians"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/41BtYnJ6c7"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/41BtYnJ6c7",
+        "user_refs_results": [
+          {
+            "rest_id": "2294679319",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 3403
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1876309861304082432/DsAUeFuL_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/2294679319/1736182106"
+              },
+              "core": {
+                "created_at": "Thu Jan 16 16:14:41 +0000 2014",
+                "name": "Derry Now",
+                "screen_name": "DerryNow"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "19 Carlisle Road, Derry"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {},
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "💻 Derry Now is the website of the Derry News and @derrypost newspapers.\n⚡️ Powered by Iconic Media Group",
+                "entities": {
+                  "description": {
+                    "user_mentions": [
+                      {
+                        "id_str": "",
+                        "indices": [
+                          49,
+                          59
+                        ],
+                        "name": "",
+                        "screen_name": "derrypost"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "derrynow.com",
+                        "expanded_url": "http://www.derrynow.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/HEDpiIdUyD"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "1B95E0"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 11859,
+                "following": 2678
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "2294679319",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 1089,
+                "tweets": 77388
+              },
+              "verification": {
+                "is_blue_verified": false,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/HEDpiIdUyD"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "derrynow.com/news/local-new…",
+            "expanded_url": "https://www.derrynow.com/news/local-news/2020628/police-issue-traffic-advisory-ahead-of-derry-city-s-game-against-bohemians.html?utm_source=dlvr.it&utm_medium=twitter",
+            "indices": [
+              75,
+              98
+            ],
+            "url": "https://t.co/41BtYnJ6c7"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2024848279222268069",
       "url": "https://x.com/ThaneCityPolice/status/2024848279222268069",
       "twitterUrl": "https://twitter.com/ThaneCityPolice/status/2024848279222268069",
@@ -189,7 +478,7 @@
       "replyCount": 2,
       "likeCount": 11,
       "quoteCount": 0,
-      "viewCount": 1269,
+      "viewCount": 1271,
       "createdAt": "Fri Feb 20 14:07:04 +0000 2026",
       "lang": "mr",
       "bookmarkCount": 0,
@@ -216,7 +505,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/720135190916366336/1752062693",
         "description": "",
         "location": "Thane",
-        "followers": 155654,
+        "followers": 155697,
         "following": 98,
         "status": "",
         "canDm": true,
@@ -229,16 +518,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 4482,
+        "favouritesCount": 4489,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 10124,
-        "statusesCount": 129137,
+        "mediaCount": 10152,
+        "statusesCount": 129557,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2096541467343049187"
+          "2099819953298059342"
         ],
         "profile_bio": {
           "description": "ठाणे पोलीसांचे अधिकृत खाते, २४x७ सेवा.\nआपत्कालीन परिस्थितीत संपर्क करा - ११२  \n Official handle of Thane Police. Monitored 24/7, For any Emergency Dial 112.",
@@ -425,6 +714,470 @@
     },
     {
       "type": "tweet",
+      "id": "2024849293136568624",
+      "url": "https://x.com/Ladakhism/status/2024849293136568624",
+      "twitterUrl": "https://twitter.com/Ladakhism/status/2024849293136568624",
+      "text": "📢Traffic Advisory for 21st February 2026 via SSG-NH1:\n\nRoad Status: Open 🟢 \n\nKargil ➡️ Srinagar\n\n⏰ Cutoff time: 3:00 PM Sharp\n  \n⚠️ Vehicular traffic movement is subject to fair weather conditions along the ZojiLa axis.\n\n‼️ Stay tuned to @metsrinagar @metcentreleh for updates. https://t.co/3xSDAKv9zT",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 1,
+      "viewCount": 204,
+      "createdAt": "Fri Feb 20 14:11:06 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2024849293136568624",
+      "displayTextRange": [
+        0,
+        277
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "Ladakhism",
+        "url": "https://x.com/Ladakhism",
+        "twitterUrl": "https://twitter.com/Ladakhism",
+        "id": "1354501062",
+        "name": "Ladakh",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1720087519893819393/kQPuV_DF_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1354501062/1751085147",
+        "description": "",
+        "location": "Ladakh, India",
+        "followers": 1817,
+        "following": 1056,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Apr 15 14:38:37 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 23743,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 476,
+        "statusesCount": 5063,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1980294484044001473"
+        ],
+        "profile_bio": {
+          "description": "Julley 🇮🇳 Follow for Updates on Ladakh || Tweets mostly on News, Ecology, Culture, Education, Tourism || Let’s Pledge to #SaveLadakh 🏔️",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    121,
+                    132
+                  ],
+                  "text": "SaveLadakh"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "en.m.wikipedia.org/wiki/Ladakh",
+                  "expanded_url": "https://en.m.wikipedia.org/wiki/Ladakh",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/oNat5ukm3f"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/3xSDAKv9zT",
+            "expanded_url": "https://x.com/Ladakhism/status/2024849293136568624/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "Ladakh Traffic Police",
+                    "screen_name": "trafficpoliceLA",
+                    "type": "user",
+                    "user_id": "1738803919533256704"
+                  }
+                ]
+              },
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2024849282881503232",
+            "indices": [
+              278,
+              301
+            ],
+            "media_key": "3_2024849282881503232",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwZtbHV20AACgACHBm1tDkbITAAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHBm1sdXbQAAKAAIcGbW0ORshMAAA",
+                "media_key": "3_2024849282881503232"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HBm1sdXbQAATimR.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 432,
+                  "w": 771,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 432,
+                  "w": 432,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 432,
+                  "w": 379,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 432,
+                  "w": 216,
+                  "x": 38,
+                  "y": 0
+                },
+                {
+                  "h": 432,
+                  "w": 1170,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 432,
+              "width": 1170
+            },
+            "sizes": {
+              "large": {
+                "h": 432,
+                "w": 1170
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/3xSDAKv9zT"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "1288407043267653633",
+            "indices": [
+              238,
+              250
+            ],
+            "name": "Meteorological Centre Srinagar",
+            "screen_name": "metsrinagar"
+          },
+          {
+            "id_str": "1342475569670209542",
+            "indices": [
+              251,
+              264
+            ],
+            "name": "METEOROLOGICAL CENTRE LEH-LADAKH",
+            "screen_name": "metcentreleh"
+          }
+        ]
+      },
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "2024547605620142322",
+        "url": "https://x.com/Ladakhism/status/2024547605620142322",
+        "twitterUrl": "https://twitter.com/Ladakhism/status/2024547605620142322",
+        "text": "📢Traffic Advisory for 20th February 2026 via SSG-NH1:\n\nRoad Status: Open 🟢 \n\nSrinagar ➡️ Kargil\n\n⏰ Cutoff time: 3:00 PM Sharp\n  \n⚠️ Vehicular traffic movement is subject to fair weather conditions along the ZojiLa axis.\n\n‼️ Stay tuned to @metsrinagar @metcentreleh for updates. https://t.co/BNRIjrnv8h",
+        "source": "Twitter for iPhone",
+        "retweetCount": 0,
+        "replyCount": 0,
+        "likeCount": 2,
+        "quoteCount": 1,
+        "viewCount": 211,
+        "createdAt": "Thu Feb 19 18:12:18 +0000 2026",
+        "lang": "en",
+        "bookmarkCount": 0,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "2024547605620142322",
+        "displayTextRange": [
+          0,
+          277
+        ],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {
+          "type": "user",
+          "userName": "Ladakhism",
+          "url": "https://x.com/Ladakhism",
+          "twitterUrl": "https://twitter.com/Ladakhism",
+          "id": "1354501062",
+          "name": "Ladakh",
+          "isVerified": false,
+          "isBlueVerified": false,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/1720087519893819393/kQPuV_DF_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/1354501062/1751085147",
+          "description": "",
+          "location": "Ladakh, India",
+          "followers": 1817,
+          "following": 1056,
+          "status": "",
+          "canDm": true,
+          "canMediaTag": true,
+          "createdAt": "Mon Apr 15 14:38:37 +0000 2013",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 23743,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 476,
+          "statusesCount": 5063,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [
+            "1980294484044001473"
+          ],
+          "profile_bio": {
+            "description": "Julley 🇮🇳 Follow for Updates on Ladakh || Tweets mostly on News, Ecology, Culture, Education, Tourism || Let’s Pledge to #SaveLadakh 🏔️",
+            "entities": {
+              "description": {
+                "hashtags": [
+                  {
+                    "indices": [
+                      121,
+                      132
+                    ],
+                    "text": "SaveLadakh"
+                  }
+                ]
+              },
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "en.m.wikipedia.org/wiki/Ladakh",
+                    "expanded_url": "https://en.m.wikipedia.org/wiki/Ladakh",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/oNat5ukm3f"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {
+          "media": [
+            {
+              "allow_download_status": {
+                "allow_download": true
+              },
+              "display_url": "pic.x.com/BNRIjrnv8h",
+              "expanded_url": "https://x.com/Ladakhism/status/2024547605620142322/photo/1",
+              "ext_master_playlist_only": [],
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "ext_playlists": [],
+              "features": {
+                "all": {
+                  "tags": [
+                    {
+                      "name": "Ladakh Traffic Police",
+                      "screen_name": "trafficpoliceLA",
+                      "type": "user",
+                      "user_id": "1738803919533256704"
+                    }
+                  ]
+                },
+                "large": {
+                  "faces": []
+                },
+                "orig": {
+                  "faces": []
+                }
+              },
+              "id_str": "2024547596786946052",
+              "indices": [
+                278,
+                301
+              ],
+              "media_key": "3_2024547596786946052",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwYo1ARW1AECgACHBijUh/bMPIAAA==",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAABCgABHBijUBFbUAQKAAIcGKNSH9sw8gAA",
+                  "media_key": "3_2024547596786946052"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/media/HBijUBFbUAQyRR7.jpg",
+              "original_info": {
+                "focus_rects": [
+                  {
+                    "h": 422,
+                    "w": 754,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 422,
+                    "w": 422,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 422,
+                    "w": 370,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 422,
+                    "w": 211,
+                    "x": 41,
+                    "y": 0
+                  },
+                  {
+                    "h": 422,
+                    "w": 1170,
+                    "x": 0,
+                    "y": 0
+                  }
+                ],
+                "height": 422,
+                "width": 1170
+              },
+              "sizes": {
+                "large": {
+                  "h": 422,
+                  "w": 1170
+                }
+              },
+              "type": "photo",
+              "url": "https://t.co/BNRIjrnv8h"
+            }
+          ]
+        },
+        "card": null,
+        "place": {},
+        "entities": {
+          "user_mentions": [
+            {
+              "id_str": "1288407043267653633",
+              "indices": [
+                238,
+                250
+              ],
+              "name": "Meteorological Centre Srinagar",
+              "screen_name": "metsrinagar"
+            },
+            {
+              "id_str": "1342475569670209542",
+              "indices": [
+                251,
+                264
+              ],
+              "name": "METEOROLOGICAL CENTRE LEH-LADAKH",
+              "screen_name": "metcentreleh"
+            }
+          ]
+        },
+        "quoted_tweet": {
+          "type": "tweet",
+          "id": "2024150228568273255",
+          "url": "",
+          "twitterUrl": "",
+          "text": "",
+          "source": "Twitter for iPhone",
+          "retweetCount": 0,
+          "replyCount": 0,
+          "likeCount": 0,
+          "quoteCount": 0,
+          "viewCount": 0,
+          "createdAt": "",
+          "lang": "",
+          "bookmarkCount": 0,
+          "isReply": false,
+          "inReplyToId": null,
+          "conversationId": "",
+          "displayTextRange": [],
+          "inReplyToUserId": null,
+          "inReplyToUsername": null,
+          "author": {},
+          "extendedEntities": {},
+          "card": null,
+          "place": {},
+          "entities": {},
+          "quoted_tweet": null,
+          "retweeted_tweet": null,
+          "isLimitedReply": false,
+          "communityInfo": null,
+          "article": null
+        },
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
+        "article": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2024851733654958209",
       "url": "https://x.com/Gerbi_23/status/2024851733654958209",
       "twitterUrl": "https://twitter.com/Gerbi_23/status/2024851733654958209",
@@ -461,8 +1214,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1693005203690131457/1772383048",
         "description": "",
         "location": "THE HAGUE, TAY DIGONG DUTERTE ",
-        "followers": 3021,
-        "following": 458,
+        "followers": 3047,
+        "following": 461,
         "status": "",
         "canDm": false,
         "canMediaTag": false,
@@ -474,11 +1227,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 14468,
+        "favouritesCount": 14473,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 5938,
-        "statusesCount": 12933,
+        "mediaCount": 5948,
+        "statusesCount": 12944,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -611,6 +1364,756 @@
     },
     {
       "type": "tweet",
+      "id": "2024852792188207276",
+      "url": "https://x.com/JagranNews/status/2024852792188207276",
+      "twitterUrl": "https://twitter.com/JagranNews/status/2024852792188207276",
+      "text": "दिल्ली में मैराथन के कारण ट्रैफिक में बड़ा बदलाव, कई रूट डायवर्ट; इन रास्तों पर जाने से बचें \n\n#DelhiNCR \n\nhttps://t.co/2pXEtttWgR",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 326,
+      "createdAt": "Fri Feb 20 14:25:00 +0000 2026",
+      "lang": "hi",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2024852792188207276",
+      "displayTextRange": [
+        0,
+        130
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "JagranNews",
+        "url": "https://x.com/JagranNews",
+        "twitterUrl": "https://twitter.com/JagranNews",
+        "id": "64639742",
+        "name": "Dainik Jagran",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1521018433487654913/P8acm3Mz_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/64639742/1753334746",
+        "description": "",
+        "location": "India",
+        "followers": 2315985,
+        "following": 82,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Aug 11 05:51:40 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2288,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 80147,
+        "statusesCount": 479580,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099858523270336554"
+        ],
+        "profile_bio": {
+          "description": "Dainik Jagran's Official Account. The World's Largest Read Newspaper\n\nइंस्टाग्राम पर फॉलो करेंः https://t.co/ISHkUhIW4W\nDainik Jagran App: https://t.co/Zty4xB91Kh",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "rb.gy/phzht9",
+                  "expanded_url": "https://rb.gy/phzht9",
+                  "indices": [
+                    96,
+                    119
+                  ],
+                  "url": "https://t.co/ISHkUhIW4W"
+                },
+                {
+                  "display_url": "surl.li/gzveek",
+                  "expanded_url": "https://surl.li/gzveek",
+                  "indices": [
+                    139,
+                    162
+                  ],
+                  "url": "https://t.co/Zty4xB91Kh"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "jagran.com",
+                  "expanded_url": "http://www.jagran.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/v4dvVLeGIK"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "एथलेटिक्स फेडरेशन ऑफ इंडिया 22 फरवरी को नई दिल्ली मैराथन का 10वां संस्करण आयोजित करेगा, जिसमें लगभग 13,000 प्रतिभागी शामिल होंगे। जवाहरलाल नेहरू स्टेडियम से शुरू होने वाली इस दौड़ के कारण सुबह 3:45..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.jagran.com"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "64639742",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "64639742",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "jagran.com"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "दिल्ली में मैराथन के कारण ट्रैफिक में बड़ा बदलाव, कई रूट डायवर्ट; इन रास्तों पर जाने से बचें - new..."
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/2pXEtttWgR"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/2pXEtttWgR",
+        "user_refs_results": [
+          {
+            "rest_id": "64639742",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 2288
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1521018433487654913/P8acm3Mz_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/64639742/1753334746"
+              },
+              "core": {
+                "created_at": "Tue Aug 11 05:51:40 +0000 2009",
+                "name": "Dainik Jagran",
+                "screen_name": "JagranNews"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "India"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099858523270336554"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Dainik Jagran's Official Account. The World's Largest Read Newspaper\n\nइंस्टाग्राम पर फॉलो करेंः https://t.co/ISHkUhIW4W\nDainik Jagran App: https://t.co/Zty4xB91Kh",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "rb.gy/phzht9",
+                        "expanded_url": "https://rb.gy/phzht9",
+                        "indices": [
+                          96,
+                          119
+                        ],
+                        "url": "https://t.co/ISHkUhIW4W"
+                      },
+                      {
+                        "display_url": "surl.li/gzveek",
+                        "expanded_url": "https://surl.li/gzveek",
+                        "indices": [
+                          139,
+                          162
+                        ],
+                        "url": "https://t.co/Zty4xB91Kh"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "jagran.com",
+                        "expanded_url": "http://www.jagran.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/v4dvVLeGIK"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "0084B4"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 2315985,
+                "following": 82
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "64639742",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": true,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 80147,
+                "tweets": 479580
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/v4dvVLeGIK"
+              }
+            }
+          },
+          {
+            "rest_id": "64639742",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 2288
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1521018433487654913/P8acm3Mz_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/64639742/1753334746"
+              },
+              "core": {
+                "created_at": "Tue Aug 11 05:51:40 +0000 2009",
+                "name": "Dainik Jagran",
+                "screen_name": "JagranNews"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "India"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099858523270336554"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Dainik Jagran's Official Account. The World's Largest Read Newspaper\n\nइंस्टाग्राम पर फॉलो करेंः https://t.co/ISHkUhIW4W\nDainik Jagran App: https://t.co/Zty4xB91Kh",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "rb.gy/phzht9",
+                        "expanded_url": "https://rb.gy/phzht9",
+                        "indices": [
+                          96,
+                          119
+                        ],
+                        "url": "https://t.co/ISHkUhIW4W"
+                      },
+                      {
+                        "display_url": "surl.li/gzveek",
+                        "expanded_url": "https://surl.li/gzveek",
+                        "indices": [
+                          139,
+                          162
+                        ],
+                        "url": "https://t.co/Zty4xB91Kh"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "jagran.com",
+                        "expanded_url": "http://www.jagran.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/v4dvVLeGIK"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "0084B4"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 2315985,
+                "following": 82
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "64639742",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": true,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 80147,
+                "tweets": 479580
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/v4dvVLeGIK"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              95,
+              104
+            ],
+            "text": "DelhiNCR"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "jagran.com/delhi/new-delh…",
+            "expanded_url": "https://www.jagran.com/delhi/new-delhi-city-new-delhi-marathon-traffic-advisory-route-diversions-40148788.html",
+            "indices": [
+              107,
+              130
+            ],
+            "url": "https://t.co/2pXEtttWgR"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2024857355570258077",
+      "url": "https://x.com/OHYULPH/status/2024857355570258077",
+      "twitterUrl": "https://twitter.com/OHYULPH/status/2024857355570258077",
+      "text": "https://t.co/qhQFL5KYFH",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 28,
+      "quoteCount": 1,
+      "viewCount": 4064,
+      "createdAt": "Fri Feb 20 14:43:08 +0000 2026",
+      "lang": "zxx",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2024857355570258077",
+      "displayTextRange": [
+        0,
+        23
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "OHYULPH",
+        "url": "https://x.com/OHYULPH",
+        "twitterUrl": "https://twitter.com/OHYULPH",
+        "id": "2016090846811328512",
+        "name": "OHYUL PHILIPPINES",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2052813750886191104/pYqYCgD4_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2016090846811328512/1784185147",
+        "description": "",
+        "location": "",
+        "followers": 925,
+        "following": 49,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Jan 27 10:08:52 +0000 2026",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3690,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1434,
+        "statusesCount": 4179,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2075958295521612018"
+        ],
+        "profile_bio": {
+          "description": "OHYUL • LNGSHOT 🇵🇭 PH fanbase | ohyulph@gmail.com",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "facebook.com/ohyulph/",
+                  "expanded_url": "http://facebook.com/ohyulph/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/n4ZGKYeSld"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/i/article/2024…",
+            "expanded_url": "http://x.com/i/article/2024855199115018240",
+            "indices": [
+              0,
+              23
+            ],
+            "url": "https://t.co/qhQFL5KYFH"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": {
+        "title": "[NOTICE] LNGSHOT Fan Etiquette Guidelines",
+        "preview_text": "Hello, this is MORE VISION.\nWe sincerely thank all the fans who continue to send LNGSHOT so much love and support.\nIn order to build a healthy fan culture together and to protect the safety and rights",
+        "cover_media_img_url": "https://pbs.twimg.com/media/HBm8VKkbYAAXc72.jpg"
+      }
+    },
+    {
+      "type": "tweet",
+      "id": "2024857266768195899",
+      "url": "https://x.com/NewJerseyDOT/status/2024857266768195899",
+      "twitterUrl": "https://twitter.com/NewJerseyDOT/status/2024857266768195899",
+      "text": "NJDOT Traffic Advisory -- Route 17 southbound ramp to Route 3 eastbound overnight closures beginning Monday in Rutherford, Bergen County. Read more: https://t.co/TfDCQxfTfN https://t.co/1ItkDiLoas",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 564,
+      "createdAt": "Fri Feb 20 14:42:47 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2024857266768195899",
+      "displayTextRange": [
+        0,
+        172
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "NewJerseyDOT",
+        "url": "https://x.com/NewJerseyDOT",
+        "twitterUrl": "https://twitter.com/NewJerseyDOT",
+        "id": "2891202783",
+        "name": "NJDOT",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1888397067787128833/FD48RYTU_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2891202783/1732311489",
+        "description": "",
+        "location": "",
+        "followers": 33219,
+        "following": 318,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Mon Nov 24 19:50:16 +0000 2014",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2483,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 5770,
+        "statusesCount": 21738,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Updates from NJ's Department of Transportation on projects and driving conditions throughout the state.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "state.nj.us/transportation/",
+                  "expanded_url": "http://www.state.nj.us/transportation/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/nZuh4skGvI"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/1ItkDiLoas",
+            "expanded_url": "https://x.com/NewJerseyDOT/status/2024857266768195899/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2024857191656620032",
+            "indices": [
+              173,
+              196
+            ],
+            "media_key": "3_2024857191656620032",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwZvOM9loAACgACHBm89LqWMTsAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHBm84z2WgAAKAAIcGbz0upYxOwAA",
+                "media_key": "3_2024857191656620032"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HBm84z2WgAAiFaP.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1024,
+                  "w": 1829,
+                  "x": 219,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 1024,
+                  "x": 1024,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 898,
+                  "x": 1138,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 512,
+                  "x": 1331,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1024,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 1024,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/1ItkDiLoas"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "bit.ly/4cFt63z",
+            "expanded_url": "https://bit.ly/4cFt63z",
+            "indices": [
+              149,
+              172
+            ],
+            "url": "https://t.co/TfDCQxfTfN"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2024857946241618265",
       "url": "https://x.com/Ecoflowing/status/2024857946241618265",
       "twitterUrl": "https://twitter.com/Ecoflowing/status/2024857946241618265",
@@ -647,8 +2150,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1628438380831772672/1771301143",
         "description": "",
         "location": "Lagos, Nigeria",
-        "followers": 817,
-        "following": 2165,
+        "followers": 814,
+        "following": 2162,
         "status": "",
         "canDm": false,
         "canMediaTag": true,
@@ -664,7 +2167,7 @@
         "hasCustomTimelines": true,
         "isTranslator": false,
         "mediaCount": 110,
-        "statusesCount": 5041,
+        "statusesCount": 5065,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -718,7 +2221,7 @@
       "replyCount": 1,
       "likeCount": 5,
       "quoteCount": 1,
-      "viewCount": 539,
+      "viewCount": 543,
       "createdAt": "Fri Feb 20 15:19:57 +0000 2026",
       "lang": "zxx",
       "bookmarkCount": 0,
@@ -746,7 +2249,7 @@
         "description": "",
         "location": "Kuala Lumpur Federal Territory",
         "followers": 1292,
-        "following": 1321,
+        "following": 1322,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -758,11 +2261,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 8190,
+        "favouritesCount": 8191,
         "hasCustomTimelines": true,
         "isTranslator": false,
         "mediaCount": 1195,
-        "statusesCount": 9132,
+        "statusesCount": 9133,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -824,6 +2327,429 @@
         "preview_text": "Here's a thing that happens constantly in crypto that would be considered fraud in any other industry:\nA team builds a product that doesn't exist yet. They attach a token to it. They set no cap on how",
         "cover_media_img_url": "https://pbs.twimg.com/media/HBnDpjfagAA4TcO.jpg"
       }
+    },
+    {
+      "type": "tweet",
+      "id": "2024874531882401887",
+      "url": "https://x.com/CHP_Oroville/status/2024874531882401887",
+      "twitterUrl": "https://twitter.com/CHP_Oroville/status/2024874531882401887",
+      "text": "Traffic Advisory – Oroville Area 2/20/26 5:06 AM: CHP responded to head-on crash on SR70 at West Branch Bridge involving a Ford Maverick and Ford box truck. 1 driver in each vehicle. Both in critical condition. 1 way traffic control in place. Info: 530-332-1200 ref #260220CH0013. https://t.co/DeXhkZGZM6",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 1,
+      "likeCount": 4,
+      "quoteCount": 0,
+      "viewCount": 556,
+      "createdAt": "Fri Feb 20 15:51:23 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2024874531882401887",
+      "displayTextRange": [
+        0,
+        280
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "CHP_Oroville",
+        "url": "https://x.com/CHP_Oroville",
+        "twitterUrl": "https://twitter.com/CHP_Oroville",
+        "id": "1035296345081360385",
+        "name": "CHP Oroville👮‍♂️👮‍♀️🚔",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1955721311256502274/2ZG3kM2A_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1035296345081360385/1543696782",
+        "description": "",
+        "location": "Oroville, CA",
+        "followers": 2814,
+        "following": 108,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Aug 30 22:40:58 +0000 2018",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 415,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 450,
+        "statusesCount": 1223,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official Twitter feed for the Oroville CHP office. Proudly serving the southern portion of Butte County. For emergencies, dial 911",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "facebook.com/chp-oroville",
+                  "expanded_url": "http://facebook.com/chp-oroville",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/SRwmcf8Fi7"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/DeXhkZGZM6",
+            "expanded_url": "https://x.com/CHP_Oroville/status/2024874531882401887/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2024874447983788032",
+            "indices": [
+              281,
+              304
+            ],
+            "media_key": "3_2024874447983788032",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwZzJUK1sAACgACHBnMqJOWAF8AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHBnMlQrWwAAKAAIcGcyok5YAXwAA",
+                "media_key": "3_2024874447983788032"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HBnMlQrWwAAjsh7.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1147,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 901
+                },
+                {
+                  "h": 2048,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1796,
+                  "x": 252,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1024,
+                  "x": 1024,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/DeXhkZGZM6"
+          },
+          {
+            "display_url": "pic.x.com/DeXhkZGZM6",
+            "expanded_url": "https://x.com/CHP_Oroville/status/2024874531882401887/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2024874468921761792",
+            "indices": [
+              281,
+              304
+            ],
+            "media_key": "3_2024874468921761792",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwZzJnq1uAACgACHBnMqJOWAF8AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHBnMmerW4AAKAAIcGcyok5YAXwAA",
+                "media_key": "3_2024874468921761792"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HBnMmerW4AA1uHd.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1147,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 901
+                },
+                {
+                  "h": 2048,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1796,
+                  "x": 252,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1024,
+                  "x": 1024,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/DeXhkZGZM6"
+          },
+          {
+            "display_url": "pic.x.com/DeXhkZGZM6",
+            "expanded_url": "https://x.com/CHP_Oroville/status/2024874531882401887/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2024874490174341120",
+            "indices": [
+              281,
+              304
+            ],
+            "media_key": "3_2024874490174341120",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwZzJ7dl4AACgACHBnMqJOWAF8AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHBnMnt2XgAAKAAIcGcyok5YAXwAA",
+                "media_key": "3_2024874490174341120"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HBnMnt2XgAAx0uK.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1147,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 195
+                },
+                {
+                  "h": 2048,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1796,
+                  "x": 74,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1024,
+                  "x": 460,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/DeXhkZGZM6"
+          },
+          {
+            "display_url": "pic.x.com/DeXhkZGZM6",
+            "expanded_url": "https://x.com/CHP_Oroville/status/2024874531882401887/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 100,
+                    "w": 100,
+                    "x": 1476,
+                    "y": 1456
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 100,
+                    "w": 100,
+                    "x": 1476,
+                    "y": 1456
+                  }
+                ]
+              }
+            },
+            "id_str": "2024874511099650048",
+            "indices": [
+              281,
+              304
+            ],
+            "media_key": "3_2024874511099650048",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwZzKO81mAACgACHBnMqJOWAF8AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHBnMo7zWYAAKAAIcGcyok5YAXwAA",
+                "media_key": "3_2024874511099650048"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HBnMo7zWYAAoX3t.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1147,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 901
+                },
+                {
+                  "h": 2048,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1796,
+                  "x": 252,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1024,
+                  "x": 1024,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/DeXhkZGZM6"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              266,
+              279
+            ],
+            "text": "260220CH0013"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
     }
   ]
 }

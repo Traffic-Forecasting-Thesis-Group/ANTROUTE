@@ -5,7 +5,7 @@
     "window_start": "2025-10-15T12:00:00+08:00",
     "window_end": "2025-10-15T14:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 5,
+    "tweet_count": 11,
     "slices": [
       {
         "start": "2025-10-15T12:00:00+08:00",
@@ -18,8 +18,8 @@
         "start": "2025-10-15T12:05:00+08:00",
         "end": "2025-10-15T12:10:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-10-15T12:10:00+08:00",
@@ -46,8 +46,8 @@
         "start": "2025-10-15T12:25:00+08:00",
         "end": "2025-10-15T12:30:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-15T12:30:00+08:00",
@@ -88,8 +88,8 @@
         "start": "2025-10-15T12:55:00+08:00",
         "end": "2025-10-15T13:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-15T13:00:00+08:00",
@@ -109,8 +109,8 @@
         "start": "2025-10-15T13:10:00+08:00",
         "end": "2025-10-15T13:15:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-10-15T13:15:00+08:00",
@@ -137,8 +137,8 @@
         "start": "2025-10-15T13:30:00+08:00",
         "end": "2025-10-15T13:35:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-15T13:35:00+08:00",
@@ -212,12 +212,12 @@
         "isVerified": false,
         "isBlueVerified": false,
         "verifiedType": null,
-        "profilePicture": "https://pbs.twimg.com/profile_images/2089758086034862080/lTA6VsqM_normal.jpg",
+        "profilePicture": "https://pbs.twimg.com/profile_images/2097706477544943616/eMIjJTY__normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/1240911200952545280/1762783979",
         "description": "",
         "location": "Ooha Prapancham",
-        "followers": 152,
-        "following": 228,
+        "followers": 151,
+        "following": 227,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -229,11 +229,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 70136,
+        "favouritesCount": 70386,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 1736,
-        "statusesCount": 39823,
+        "mediaCount": 1741,
+        "statusesCount": 39975,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -254,20 +254,16 @@
           {
             "display_url": "pic.x.com/Zncxr0pGl0",
             "expanded_url": "https://x.com/MickeyNion/status/1978311966381789667/photo/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": []
               },
-              "medium": {
-                "faces": []
-              },
               "orig": {
-                "faces": []
-              },
-              "small": {
                 "faces": []
               }
             },
@@ -278,7 +274,10 @@
             ],
             "media_key": "3_1978311959129808896",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARt0YD7K1uAACgACG3RgQHsXUeMAAA==",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG3RgPsrW4AAKAAIbdGBAexdR4wAA",
                 "media_key": "3_1978311959129808896"
               }
             },
@@ -322,23 +321,7 @@
             "sizes": {
               "large": {
                 "h": 2048,
-                "resize": "fit",
                 "w": 1152
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 675
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 383
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "photo",
@@ -364,105 +347,971 @@
             ],
             "text": "TrafficUpdate"
           }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1978311610193109187",
+      "url": "https://x.com/halairporttrfps/status/1978311610193109187",
+      "twitterUrl": "https://twitter.com/halairporttrfps/status/1978311610193109187",
+      "text": "\"Traffic Advisory\"\n Due to ongoing Metro  station work at karthik nagar,traffic movement is very slow from mahadevapura towards marathahalli ,we request all commuters please co-operate with us, Tq @blrcitytraffic @DCPTrEastBCP @CPBlr @Jointcptraffic @acpwfieldtrf https://t.co/ko16ZrnqM7",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 1,
+      "likeCount": 4,
+      "quoteCount": 0,
+      "viewCount": 1608,
+      "createdAt": "Wed Oct 15 04:06:57 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1978311610193109187",
+      "displayTextRange": [
+        0,
+        263
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "halairporttrfps",
+        "url": "https://x.com/halairporttrfps",
+        "twitterUrl": "https://twitter.com/halairporttrfps",
+        "id": "3014057594",
+        "name": "HAL AIRPORT TRAFFIC BTP",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1431940538807111685/NlzIwwo7_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/3014057594/1698666640",
+        "description": "",
+        "location": "Bengaluru, India",
+        "followers": 12341,
+        "following": 64,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Feb 09 06:37:58 +0000 2015",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5826,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 7761,
+        "statusesCount": 20136,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2098702782719197542"
         ],
+        "profile_bio": {
+          "description": "Official twitter account of HAL Airport Traffic Police Station (080-22943115). Dial Namma-112 in case of emergency. @blrcitytraffic",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    116,
+                    131
+                  ],
+                  "name": "",
+                  "screen_name": "blrcitytraffic"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.gov.in",
+                  "expanded_url": "https://btp.gov.in/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/aoci2eeC5I"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
         "media": [
           {
-            "display_url": "pic.x.com/Zncxr0pGl0",
-            "expanded_url": "https://x.com/MickeyNion/status/1978311966381789667/photo/1",
+            "display_url": "pic.x.com/ko16ZrnqM7",
+            "expanded_url": "https://x.com/halairporttrfps/status/1978311610193109187/photo/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "features": {
               "large": {
-                "faces": []
-              },
-              "medium": {
-                "faces": []
+                "faces": [
+                  {
+                    "h": 43,
+                    "w": 43,
+                    "x": 859,
+                    "y": 422
+                  }
+                ]
               },
               "orig": {
-                "faces": []
-              },
-              "small": {
-                "faces": []
+                "faces": [
+                  {
+                    "h": 43,
+                    "w": 43,
+                    "x": 859,
+                    "y": 422
+                  }
+                ]
               }
             },
-            "id_str": "1978311959129808896",
+            "id_str": "1978311601750237184",
             "indices": [
-              29,
-              52
+              264,
+              287
             ],
-            "media_key": "3_1978311959129808896",
+            "media_key": "3_1978311601750237184",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARt0X+uVW2AACgACG3Rf7YyXYMMAAA==",
               "result": {
-                "media_key": "3_1978311959129808896"
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG3Rf65VbYAAKAAIbdF/tjJdgwwAA",
+                "media_key": "3_1978311601750237184"
               }
             },
-            "media_url_https": "https://pbs.twimg.com/media/G3RgPsrW4AAB7hr.jpg",
+            "media_url_https": "https://pbs.twimg.com/media/G3Rf65VbYAAJLnw.jpg",
             "original_info": {
               "focus_rects": [
                 {
-                  "h": 645,
-                  "w": 1152,
+                  "h": 698,
+                  "w": 1247,
                   "x": 0,
-                  "y": 343
+                  "y": 188
                 },
                 {
-                  "h": 1152,
-                  "w": 1152,
-                  "x": 0,
-                  "y": 89
-                },
-                {
-                  "h": 1313,
-                  "w": 1152,
-                  "x": 0,
-                  "y": 9
-                },
-                {
-                  "h": 2048,
-                  "w": 1024,
-                  "x": 128,
+                  "h": 886,
+                  "w": 886,
+                  "x": 336,
                   "y": 0
                 },
                 {
-                  "h": 2048,
-                  "w": 1152,
+                  "h": 886,
+                  "w": 777,
+                  "x": 391,
+                  "y": 0
+                },
+                {
+                  "h": 886,
+                  "w": 443,
+                  "x": 558,
+                  "y": 0
+                },
+                {
+                  "h": 886,
+                  "w": 1247,
                   "x": 0,
                   "y": 0
                 }
               ],
-              "height": 2048,
-              "width": 1152
+              "height": 886,
+              "width": 1247
             },
             "sizes": {
               "large": {
-                "h": 2048,
-                "resize": "fit",
-                "w": 1152
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 675
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 383
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
+                "h": 886,
+                "w": 1247
               }
             },
             "type": "photo",
-            "url": "https://t.co/Zncxr0pGl0"
+            "url": "https://t.co/ko16ZrnqM7"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "1851545900",
+            "indices": [
+              197,
+              212
+            ],
+            "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+            "screen_name": "blrcitytraffic"
+          },
+          {
+            "id_str": "2809049605",
+            "indices": [
+              213,
+              226
+            ],
+            "name": "DCP Traffic East ಉಪ ಪೊಲೀಸ್ ಆಯುಕ್ತರು ಸಂಚಾರ ಪೂರ್ವ",
+            "screen_name": "DCPTrEastBCP"
+          },
+          {
+            "id_str": "2687852605",
+            "indices": [
+              227,
+              233
+            ],
+            "name": "CP Bengaluru ಪೊಲೀಸ್ ಆಯುಕ್ತ ಬೆಂಗಳೂರು",
+            "screen_name": "CPBlr"
+          },
+          {
+            "id_str": "2809164276",
+            "indices": [
+              234,
+              249
+            ],
+            "name": "Joint CP, Traffic, Bengaluru",
+            "screen_name": "Jointcptraffic"
+          },
+          {
+            "id_str": "1361589347032600576",
+            "indices": [
+              250,
+              263
+            ],
+            "name": "ACP Whitefield Traffic ಎಸಿಪಿ ಸಂಚಾರ ವೈಟ್ ಫೀಲ್ಡ್",
+            "screen_name": "acpwfieldtrf"
           }
         ]
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1978316798203429255",
+      "url": "https://x.com/PlushiesForHope/status/1978316798203429255",
+      "twitterUrl": "https://twitter.com/PlushiesForHope/status/1978316798203429255",
+      "text": "Update for Alliyah, Nanay Imelda, Iyah and Dylan\n\nWe’re happy to share another heartwarming update from our recent fundraising efforts.\n\nThrough your generosity and kindness, we have successfully turned over ₱40,000 in cash to support Alliyah’s much-needed FISH (B-ALL Philadelphia) test.\n\n1. If the result is positive, Alliyah will need to undergo a Bone Marrow Transplant, which is estimated to cost around ₱2 million pesos.\n\n2. If the result is negative, another advanced genetic test will be required one that unfortunately needs to be done outside the Philippines, which also comes with significant expenses.\n\nWe also turned over ₱7,000 worth of medicines to Nanay Imelda, covering two months of her maintenance medications from @willcaofc @eightgumamela\n\nAside from that, we were also able to extend help to two other warriors who were in urgent need ₱2,500 for Warrior Iyah and ₱1,000 for Dylan.\n\nA heartfelt thank you to all our sponsors, donors, and silent supporters who continue to stand with us. Your trust and compassion make it possible for us to reach more families in need. We truly appreciate every share, every message, and every donation sent our way. 💖\n\nAlliyah is now scheduled to undergo her procedure this coming Friday, and we will be posting a separate update with receipts and photos after the procedure. Please continue to include her and all our warriors in your prayers.\n\nBreakdown of Donations:\n₱40,000 – For Alliyah’s FISH test\n₱7,000 – For Nanay Imelda’s maintenance medicines\n₱2,500 – For Warrior Iyah\n₱1,000 – For Dylan\n₱72 – Withdrawal fee\n₱132.50 – Transfer fees\n\n✅ Total: ₱50,704.50\n\nOnce again, thank you for being a part of this mission of hope. Together, we continue to prove that kindness truly saves lives. Maraming maraming salamat po.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 27,
+      "replyCount": 1,
+      "likeCount": 71,
+      "quoteCount": 0,
+      "viewCount": 2454,
+      "createdAt": "Wed Oct 15 04:27:34 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1978316798203429255",
+      "displayTextRange": [
+        0,
+        268
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "PlushiesForHope",
+        "url": "https://x.com/PlushiesForHope",
+        "twitterUrl": "https://twitter.com/PlushiesForHope",
+        "id": "1319237935095410688",
+        "name": "Plushies For Hope | Volunteer Group",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1472795393872515072/KuypTqfA_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1319237935095410688/1701831367",
+        "description": "",
+        "location": "",
+        "followers": 12137,
+        "following": 3582,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Thu Oct 22 11:23:41 +0000 2020",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 23178,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 8002,
+        "statusesCount": 19480,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099039917737144488"
+        ],
+        "profile_bio": {
+          "description": "Volunteer Group | Join our Monthly sponsorship program https://t.co/FIdqN0Zb34 | Facebook/IG: Plushies For Hope",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "forms.gle/ApLpRPKbckkaqi…",
+                  "expanded_url": "https://forms.gle/ApLpRPKbckkaqiP37",
+                  "indices": [
+                    55,
+                    78
+                  ],
+                  "url": "https://t.co/FIdqN0Zb34"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "tinyurl.com/plushies4hope",
+                  "expanded_url": "https://tinyurl.com/plushies4hope",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/iwKXvH1oYq"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/d0gJfmR922",
+            "expanded_url": "https://x.com/PlushiesForHope/status/1978316798203429255/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 118,
+                    "w": 118,
+                    "x": 94,
+                    "y": 57
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 118,
+                    "w": 118,
+                    "x": 94,
+                    "y": 57
+                  }
+                ]
+              }
+            },
+            "id_str": "1978316563611869184",
+            "indices": [
+              269,
+              292
+            ],
+            "media_key": "3_1978316563611869184",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARt0ZG7bW2AACgACG3RkpXoagYcAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG3RkbttbYAAKAAIbdGSlehqBhwAA",
+                "media_key": "3_1978316563611869184"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G3RkbttbYAAZ4Vg.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 253,
+                  "w": 452,
+                  "x": 0,
+                  "y": 9
+                },
+                {
+                  "h": 452,
+                  "w": 452,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 515,
+                  "w": 452,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 600,
+                  "w": 300,
+                  "x": 152,
+                  "y": 0
+                },
+                {
+                  "h": 600,
+                  "w": 452,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 600,
+              "width": 452
+            },
+            "sizes": {
+              "large": {
+                "h": 600,
+                "w": 452
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/d0gJfmR922"
+          },
+          {
+            "display_url": "pic.x.com/d0gJfmR922",
+            "expanded_url": "https://x.com/PlushiesForHope/status/1978316798203429255/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 96,
+                    "w": 96,
+                    "x": 538,
+                    "y": 766
+                  },
+                  {
+                    "h": 286,
+                    "w": 286,
+                    "x": 424,
+                    "y": 36
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 96,
+                    "w": 96,
+                    "x": 538,
+                    "y": 766
+                  },
+                  {
+                    "h": 286,
+                    "w": 286,
+                    "x": 424,
+                    "y": 36
+                  }
+                ]
+              }
+            },
+            "id_str": "1978316610789380096",
+            "indices": [
+              269,
+              292
+            ],
+            "media_key": "3_1978316610789380096",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARt0ZHnXWxAACgACG3RkpXoagYcAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG3RkeddbEAAKAAIbdGSlehqBhwAA",
+                "media_key": "3_1978316610789380096"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G3RkeddbEAAh4F6.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 864,
+                  "w": 1542,
+                  "x": 0,
+                  "y": 1184
+                },
+                {
+                  "h": 1542,
+                  "w": 1542,
+                  "x": 0,
+                  "y": 506
+                },
+                {
+                  "h": 1758,
+                  "w": 1542,
+                  "x": 0,
+                  "y": 290
+                },
+                {
+                  "h": 2048,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1542,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 1542
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 1542
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/d0gJfmR922"
+          },
+          {
+            "display_url": "pic.x.com/d0gJfmR922",
+            "expanded_url": "https://x.com/PlushiesForHope/status/1978316798203429255/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 61,
+                    "w": 61,
+                    "x": 233,
+                    "y": 324
+                  },
+                  {
+                    "h": 84,
+                    "w": 84,
+                    "x": 102,
+                    "y": 185
+                  },
+                  {
+                    "h": 153,
+                    "w": 153,
+                    "x": 411,
+                    "y": 445
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 61,
+                    "w": 61,
+                    "x": 233,
+                    "y": 324
+                  },
+                  {
+                    "h": 84,
+                    "w": 84,
+                    "x": 102,
+                    "y": 185
+                  },
+                  {
+                    "h": 153,
+                    "w": 153,
+                    "x": 411,
+                    "y": 445
+                  }
+                ]
+              }
+            },
+            "id_str": "1978316635326001152",
+            "indices": [
+              269,
+              292
+            ],
+            "media_key": "3_1978316635326001152",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARt0ZH+N2jAACgACG3RkpXoagYcAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG3Rkf43aMAAKAAIbdGSlehqBhwAA",
+                "media_key": "3_1978316635326001152"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G3Rkf43aMAArD-f.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 324,
+                  "w": 578,
+                  "x": 0,
+                  "y": 485
+                },
+                {
+                  "h": 578,
+                  "w": 578,
+                  "x": 0,
+                  "y": 231
+                },
+                {
+                  "h": 659,
+                  "w": 578,
+                  "x": 0,
+                  "y": 150
+                },
+                {
+                  "h": 809,
+                  "w": 405,
+                  "x": 60,
+                  "y": 0
+                },
+                {
+                  "h": 809,
+                  "w": 578,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 809,
+              "width": 578
+            },
+            "sizes": {
+              "large": {
+                "h": 809,
+                "w": 578
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/d0gJfmR922"
+          },
+          {
+            "display_url": "pic.x.com/d0gJfmR922",
+            "expanded_url": "https://x.com/PlushiesForHope/status/1978316798203429255/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 168,
+                    "w": 168,
+                    "x": 1068,
+                    "y": 1104
+                  },
+                  {
+                    "h": 192,
+                    "w": 192,
+                    "x": 728,
+                    "y": 888
+                  },
+                  {
+                    "h": 396,
+                    "w": 396,
+                    "x": 292,
+                    "y": 686
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 168,
+                    "w": 168,
+                    "x": 1068,
+                    "y": 1104
+                  },
+                  {
+                    "h": 192,
+                    "w": 192,
+                    "x": 728,
+                    "y": 888
+                  },
+                  {
+                    "h": 396,
+                    "w": 396,
+                    "x": 292,
+                    "y": 686
+                  }
+                ]
+              }
+            },
+            "id_str": "1978316649171492864",
+            "indices": [
+              269,
+              292
+            ],
+            "media_key": "3_1978316649171492864",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARt0ZILHG6AACgACG3RkpXoagYcAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG3RkgscboAAKAAIbdGSlehqBhwAA",
+                "media_key": "3_1978316649171492864"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G3RkgscboAAgVlK.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 860,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 440
+                },
+                {
+                  "h": 1536,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 102
+                },
+                {
+                  "h": 1751,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 1536
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 1536
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/d0gJfmR922"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "1910280710948298752",
+            "indices": [
+              734,
+              744
+            ],
+            "name": "WILLCA OFFICIAL",
+            "screen_name": "willcaofc"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1978324880987971796",
+      "url": "https://x.com/DaveLPhillips11/status/1978324880987971796",
+      "twitterUrl": "https://twitter.com/DaveLPhillips11/status/1978324880987971796",
+      "text": "Damn, I really miss Thomas Kemper, they made the world's best Root Beer.  Susie and & discovered them by accident while attempting to troll microbreweries in the Seattle area.  But that came to an end when they were acquired by Big Red, a candy pop company from Texas, which totally eliminated the brand in 2004    I just discovered a wholesaler that has a warehouse full of Thomas Kemper Root Beer, fairly priced at $$1.34 per bottle, but their minimal order value is $250, and I just don't have room or time for that many bottles of root beer.    Alas, I had an epiphany that maybe I could gather all my friends, to imbibe Great Root Beer, that way we could split a wholesale lot of a couple hundred six-packs.  Well, that would be an endearing idea to satisfy my craving, but they don’t specify the vintage, so there is no way to know for sure how long that root beer has been sitting in the warehouse. What if that luscious, sweet Root Beer had fermented in the bottle?  I could end up with all of my friends getting snockered or poisoned.    It reminds me of another experience from my youthful days as a soldier of no fortune.  In the 1960s, the entire economy of South Vietnam was based on fish, rubber trees, pigs, and illicit marijuana.  The U.S. Government did not procure anything from the local economy.  Instead, billions of dollars were expended to ship everything from bombs to laundry detergent, lunch meat, onions, peanut butter, even toilet paper, from the U.S.  At the end of the supply chain were all of the troops, who relied on the Base Exchange for necessary staples, razor blades, cologne, candy, cigarettes, beer, wine, even Jack Daniels.    But there was not a wide selection of popular brands, just what was in stock, and that was whatever came off the last boat from San Francisco.      Since everything arrived in bulk, for weeks at a time,  the BX would have shelves full of Lucky Strikes,  Falstaff, Brut, and Nehi Orange Soda, and SPAM.  Then, a few weeks later, the stock would shift to Virginia Slims, Colt 45, Old Spice, Dr. Pepper, and cans of Vienna Sausages  During the long, nasty weeks of the Tet Offensive of 1968, the stock dwindled to almost nothing, and we were forced to rely on boxed C Rations for a few weeks, after which we were desperate and would have consumed anything.  Well, anything but Tab Soda.   A boatload of pallets containing six-packs of Tab arrived, filled the shelves, and after a few six-packs were sold, it languished on the shelves.  Damn stuff was awful, especially since ice was a rarity.  Nobody would drink it, hell nobody would open a can, it stank with a smell that would haunt you for days.    After a few weeks, the BX offered it for $1 a six-pack, but still, no one would touch it, and besides, the incident had spawned the fighter squadrons to start an underground black market to bribe transport crews to fly in loads of Soda from Japan or the Philippines.  So, the BX finally declared all of the Tab as surplus, the pallets were moved outside the gate, and literally given to the Vietnamese.    A few cans were taken, but as soon as word got out how terrible it was, that stopped, and even the VC wouldn’t steal it.  These are the people who consumed gallons of the local beer, “Ba Moui Ba” – Biere “33”, which had quickly become known amongst U.S. personnel as “Bomb Me Stupid”.   When I returned to the U.S. late in 1968, those pallets of Tab were still sitting unmolested outside the gate.   A few years later, I met another former USAF member who had been stationed at Da Nang in 1972, just before the USAF pulled out and moved the entire operation to Thailand.  He told me the pallets of Tab had been there for most of his tour, covered in dirt and vines, but suddenly, one night, it all disappeared.  Rumor was it had sat in the sun for so long it had fermented into an ugly brown alcoholic fluid that was poisonous and quite volatile.    We decided the VC had discovered they could use it to fuel their Mopeds for quick trips up and down the Ho Chi Minh Highway.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 12,
+      "quoteCount": 0,
+      "viewCount": 307,
+      "createdAt": "Wed Oct 15 04:59:41 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1978324880987971796",
+      "displayTextRange": [
+        0,
+        278
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "DaveLPhillips11",
+        "url": "https://x.com/DaveLPhillips11",
+        "twitterUrl": "https://twitter.com/DaveLPhillips11",
+        "id": "1733592083078995968",
+        "name": "Dave Phillips",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1733592188079194112/rXu2wqJS_normal.png",
+        "coverPicture": "",
+        "description": "",
+        "location": "Arizona",
+        "followers": 2732,
+        "following": 117,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sat Dec 09 20:59:20 +0000 2023",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 6279,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 41,
+        "statusesCount": 15994,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1947462091444785617"
+        ],
+        "profile_bio": {
+          "description": "Retired Engineer",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/mDqzuKcKoZ",
+            "expanded_url": "https://x.com/DaveLPhillips11/status/1978324880987971796/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1978324367185690624",
+            "indices": [
+              279,
+              302
+            ],
+            "media_key": "3_1978324367185690624",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARt0a4fEmkAACgACG3Rr/2Wa4NQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG3Rrh8SaQAAKAAIbdGv/ZZrg1AAA",
+                "media_key": "3_1978324367185690624"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G3Rrh8SaQAAysrk.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 280,
+                  "w": 500,
+                  "x": 0,
+                  "y": 197
+                },
+                {
+                  "h": 500,
+                  "w": 500,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 500,
+                  "w": 439,
+                  "x": 61,
+                  "y": 0
+                },
+                {
+                  "h": 500,
+                  "w": 250,
+                  "x": 212,
+                  "y": 0
+                },
+                {
+                  "h": 500,
+                  "w": 500,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 500,
+              "width": 500
+            },
+            "sizes": {
+              "large": {
+                "h": 500,
+                "w": 500
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/mDqzuKcKoZ"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -503,7 +1352,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437285,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -519,8 +1368,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411320,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -605,7 +1454,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967166,
+        "followers": 3966712,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -621,8 +1470,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61677,
-        "statusesCount": 888217,
+        "mediaCount": 61731,
+        "statusesCount": 888688,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -671,6 +1520,362 @@
     },
     {
       "type": "tweet",
+      "id": "1978328583572467949",
+      "url": "https://x.com/ABSCBNNews/status/1978328583572467949",
+      "twitterUrl": "https://twitter.com/ABSCBNNews/status/1978328583572467949",
+      "text": "“MARUNONG SILANG MAGPASALAMAT. KILALA NILA ANG PANGINOON.”  \n\nInalala ni Jeanine Pauline Miñoza at kinakasamang si Alfredo Albino Jr. kung gaano kabait at kalambing ang kanilang tatlong anak na nasawi sa sunog na sumiklab sa Bgy. Sto. Domingo, Quezon City. | via @jessiecruzat https://t.co/i2asQkUqRP",
+      "source": "Twitter for iPhone",
+      "retweetCount": 21,
+      "replyCount": 15,
+      "likeCount": 305,
+      "quoteCount": 15,
+      "viewCount": 81256,
+      "createdAt": "Wed Oct 15 05:14:24 +0000 2025",
+      "lang": "tl",
+      "bookmarkCount": 39,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1978328583572467949",
+      "displayTextRange": [
+        0,
+        276
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ABSCBNNews",
+        "url": "https://x.com/ABSCBNNews",
+        "twitterUrl": "https://twitter.com/ABSCBNNews",
+        "id": "15872418",
+        "name": "ABS-CBN News",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1414904727674920961/aRgHKXj5_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/15872418/1747565518",
+        "description": "",
+        "location": "Manila, Philippines",
+        "followers": 9238633,
+        "following": 1098,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sat Aug 16 10:09:33 +0000 2008",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1186,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 351356,
+        "statusesCount": 1346980,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Stories, video, and multimedia for Filipinos worldwide, from ABS-CBN News and Current Affairs",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "abs-cbn.com",
+                  "expanded_url": "https://www.abs-cbn.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/GX0c1lEzlO"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/i2asQkUqRP",
+            "expanded_url": "https://x.com/ABSCBNNews/status/1978328583572467949/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "1978328529910878208",
+            "indices": [
+              277,
+              300
+            ],
+            "media_key": "13_1978328529910878208",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARt0b1D6W9AAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG3RvUPpb0AAAAA==",
+                "media_key": "13_1978328529910878208"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1978328529910878208/img/9pjFcCbfj9lNyxPD.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 720,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1280
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/i2asQkUqRP",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 317231,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1978328529910878208/pl/be3BPM0igqijc3AE.m3u8?tag=16"
+                },
+                {
+                  "bitrate": 288000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1978328529910878208/vid/avc1/480x270/AWsiZSaasTDyf_tE.mp4?tag=16"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1978328529910878208/vid/avc1/640x360/KAPUi3wxj-ujBsAx.mp4?tag=16"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1978328529910878208/vid/avc1/1280x720/nKQTZ4obcNoQ6vH3.mp4?tag=16"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "4677660205",
+            "indices": [
+              263,
+              276
+            ],
+            "name": "Jessie Cruzat",
+            "screen_name": "jessiecruzat"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1978327783748055172",
+      "url": "https://x.com/jessiecruzat/status/1978327783748055172",
+      "twitterUrl": "https://twitter.com/jessiecruzat/status/1978327783748055172",
+      "text": "“MARUNONG SILANG MAGPASALAMAT. KILALA NILA ANG PANGINOON.”\n\nInalala ni Jeanine Pauline Miñoza at kinakasamang si Alfredo Albino Jr. kung gaano kabait at kalambing ang kanilang tatlong anak na nasawi sa sunog na sumiklab sa Bgy. Sto. Domingo, Quezon City. @ABSCBNNews https://t.co/4Uau738PPr",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 434,
+      "createdAt": "Wed Oct 15 05:11:13 +0000 2025",
+      "lang": "tl",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1978327783748055172",
+      "displayTextRange": [
+        0,
+        266
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "jessiecruzat",
+        "url": "https://x.com/jessiecruzat",
+        "twitterUrl": "https://twitter.com/jessiecruzat",
+        "id": "4677660205",
+        "name": "Jessie Cruzat",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1484929181243023361/jwAmSfpk_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/4677660205/1721146363",
+        "description": "",
+        "location": "Naga City, Bicol Region",
+        "followers": 605,
+        "following": 66,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Wed Dec 30 10:44:13 +0000 2015",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 181,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1277,
+        "statusesCount": 3079,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Journalist, ABS-CBN News",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "news.abs-cbn.com",
+                  "expanded_url": "http://news.abs-cbn.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/kpl8uskRlP"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/4Uau738PPr",
+            "expanded_url": "https://x.com/jessiecruzat/status/1978327783748055172/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "1978327436048912384",
+            "indices": [
+              267,
+              290
+            ],
+            "media_key": "13_1978327436048912384",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARt0blJLGtAAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG3RuUksa0AAAAA==",
+                "media_key": "13_1978327436048912384"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1978327436048912384/img/6hjLPAdLsZmUrQXp.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 720,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1280
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/4Uau738PPr",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 317166,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1978327436048912384/pl/a2TWa8O2K43692BP.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1978327436048912384/vid/avc1/480x270/9_YfztesoeQHT8SU.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1978327436048912384/vid/avc1/640x360/-vGSs19DZOG3EJys.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1978327436048912384/vid/avc1/1280x720/_7la8C1XODBKP2Q7.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "15872418",
+            "indices": [
+              255,
+              266
+            ],
+            "name": "ABS-CBN News",
+            "screen_name": "ABSCBNNews"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1978328733321965945",
       "url": "https://x.com/MakatiTraffic/status/1978328733321965945",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/1978328733321965945",
@@ -707,7 +1912,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437285,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -723,8 +1928,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411320,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -773,6 +1978,222 @@
     },
     {
       "type": "tweet",
+      "id": "1978333538064764948",
+      "url": "https://x.com/MissGrandPhil/status/1978333538064764948",
+      "twitterUrl": "https://twitter.com/MissGrandPhil/status/1978333538064764948",
+      "text": "The MGI 2025 Preliminary Competition is happening TONIGHT at 8PM PHT — live on GrandTV YouTube! \n\nAll eyes on our queen, Miss Grand Philippines 2025 Emma Mary Tiglao, as she graces the stage with confidence, beauty, and that undeniable Filipina fire! 🔥\n\n#MGI #MGI2025 https://t.co/A0TPHGQSPu",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 9,
+      "quoteCount": 1,
+      "viewCount": 1956,
+      "createdAt": "Wed Oct 15 05:34:05 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1978333538064764948",
+      "displayTextRange": [
+        0,
+        267
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "MissGrandPhil",
+        "url": "https://x.com/MissGrandPhil",
+        "twitterUrl": "https://twitter.com/MissGrandPhil",
+        "id": "1320330180510953473",
+        "name": "Miss Grand Philippines (Official)",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1980113529135910912/TER7bkYv_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1320330180510953473/1765715233",
+        "description": "",
+        "location": "Republic of the Philippines",
+        "followers": 771,
+        "following": 21,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sun Oct 25 11:43:55 +0000 2020",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 183,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 536,
+        "statusesCount": 764,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1979576219856515564"
+        ],
+        "profile_bio": {
+          "description": "Miss Grand International 2025 is Emma Mary Tiglao 🇵🇭👑 @tiglaoEMMA",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    54,
+                    65
+                  ],
+                  "name": "",
+                  "screen_name": "tiglaoEMMA"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "instagram.com/msgrandphilipp…",
+                  "expanded_url": "https://instagram.com/msgrandphilippines",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/geIbthO5Fe"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/A0TPHGQSPu",
+            "expanded_url": "https://x.com/MissGrandPhil/status/1978333538064764948/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 226,
+                    "w": 226,
+                    "x": 596,
+                    "y": 226
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 226,
+                    "w": 226,
+                    "x": 596,
+                    "y": 226
+                  }
+                ]
+              }
+            },
+            "id_str": "1978333527709282304",
+            "indices": [
+              268,
+              291
+            ],
+            "media_key": "3_1978333527709282304",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARt0c9yeW3AACgACG3Rz3weXkBQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG3Rz3J5bcAAKAAIbdHPfB5eQFAAA",
+                "media_key": "3_1978333527709282304"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G3Rz3J5bcAAB8uV.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 806,
+                  "w": 1440,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1440,
+                  "w": 1440,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1642,
+                  "w": 1440,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1920,
+                  "w": 960,
+                  "x": 240,
+                  "y": 0
+                },
+                {
+                  "h": 1920,
+                  "w": 1440,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1920,
+              "width": 1440
+            },
+            "sizes": {
+              "large": {
+                "h": 1920,
+                "w": 1440
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/A0TPHGQSPu"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              254,
+              258
+            ],
+            "text": "MGI"
+          },
+          {
+            "indices": [
+              259,
+              267
+            ],
+            "text": "MGI2025"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1978336282930540901",
       "url": "https://x.com/MakatiTraffic/status/1978336282930540901",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/1978336282930540901",
@@ -809,7 +2230,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437285,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -825,8 +2246,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411320,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,

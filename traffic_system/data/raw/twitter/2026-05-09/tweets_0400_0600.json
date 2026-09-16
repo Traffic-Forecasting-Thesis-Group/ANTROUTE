@@ -5,7 +5,7 @@
     "window_start": "2026-05-09T04:00:00+08:00",
     "window_end": "2026-05-09T06:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 1,
+    "tweet_count": 4,
     "slices": [
       {
         "start": "2026-05-09T04:00:00+08:00",
@@ -95,8 +95,8 @@
         "start": "2026-05-09T05:00:00+08:00",
         "end": "2026-05-09T05:05:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-05-09T05:05:00+08:00",
@@ -137,8 +137,8 @@
         "start": "2026-05-09T05:30:00+08:00",
         "end": "2026-05-09T05:35:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-05-09T05:35:00+08:00",
@@ -151,8 +151,8 @@
         "start": "2026-05-09T05:40:00+08:00",
         "end": "2026-05-09T05:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-05-09T05:45:00+08:00",
@@ -187,12 +187,12 @@
       "source": "Twitter for iPhone",
       "retweetCount": 27,
       "replyCount": 4,
-      "likeCount": 106,
+      "likeCount": 105,
       "quoteCount": 1,
       "viewCount": 894,
       "createdAt": "Fri May 08 21:00:17 +0000 2026",
       "lang": "en",
-      "bookmarkCount": 2,
+      "bookmarkCount": 1,
       "isReply": false,
       "inReplyToId": null,
       "conversationId": "2052856136471097348",
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1534147452/1786737365",
         "description": "",
         "location": "Washington, D.C.",
-        "followers": 11137,
+        "followers": 11156,
         "following": 518,
         "status": "",
         "canDm": true,
@@ -232,8 +232,8 @@
         "favouritesCount": 5789,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 8741,
-        "statusesCount": 17612,
+        "mediaCount": 8765,
+        "statusesCount": 17635,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -267,13 +267,21 @@
           {
             "display_url": "pic.x.com/Zec6OsR3YB",
             "expanded_url": "https://x.com/WWIIMemorial/status/2052856136471097348/photo/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "features": {
               "large": {
+                "faces": [
+                  {
+                    "h": 91,
+                    "w": 91,
+                    "x": 14,
+                    "y": 39
+                  }
+                ]
+              },
+              "medium": {
                 "faces": [
                   {
                     "h": 91,
@@ -292,6 +300,16 @@
                     "y": 39
                   }
                 ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 91,
+                    "w": 91,
+                    "x": 14,
+                    "y": 39
+                  }
+                ]
               }
             },
             "id_str": "2052856133975412738",
@@ -301,10 +319,7 @@
             ],
             "media_key": "3_2052856133975412738",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARx9NccAlhACCgACHH01x5VXMAQAAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABHH01xwCWEAIKAAIcfTXHlVcwBAAA",
                 "media_key": "3_2052856133975412738"
               }
             },
@@ -348,7 +363,23 @@
             "sizes": {
               "large": {
                 "h": 200,
+                "resize": "fit",
                 "w": 160
+              },
+              "medium": {
+                "h": 200,
+                "resize": "fit",
+                "w": 160
+              },
+              "small": {
+                "h": 200,
+                "resize": "fit",
+                "w": 160
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "photo",
@@ -357,13 +388,21 @@
           {
             "display_url": "pic.x.com/Zec6OsR3YB",
             "expanded_url": "https://x.com/WWIIMemorial/status/2052856136471097348/photo/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "features": {
               "large": {
+                "faces": [
+                  {
+                    "h": 168,
+                    "w": 168,
+                    "x": 107,
+                    "y": 127
+                  }
+                ]
+              },
+              "medium": {
                 "faces": [
                   {
                     "h": 168,
@@ -382,6 +421,16 @@
                     "y": 127
                   }
                 ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 168,
+                    "w": 168,
+                    "x": 107,
+                    "y": 127
+                  }
+                ]
               }
             },
             "id_str": "2052856134361346051",
@@ -391,10 +440,7 @@
             ],
             "media_key": "3_2052856134361346051",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARx9NccXlvADCgACHH01x5VXMAQAAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABHH01xxeW8AMKAAIcfTXHlVcwBAAA",
                 "media_key": "3_2052856134361346051"
               }
             },
@@ -438,7 +484,23 @@
             "sizes": {
               "large": {
                 "h": 400,
+                "resize": "fit",
                 "w": 300
+              },
+              "medium": {
+                "h": 400,
+                "resize": "fit",
+                "w": 300
+              },
+              "small": {
+                "h": 400,
+                "resize": "fit",
+                "w": 300
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "photo",
@@ -458,14 +520,980 @@
             "text": "WeRememberThem"
           }
         ],
+        "smarttags": [],
         "symbols": [],
         "urls": [],
         "user_mentions": []
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2052856063146209601",
+      "url": "https://x.com/DefenceAust/status/2052856063146209601",
+      "twitterUrl": "https://twitter.com/DefenceAust/status/2052856063146209601",
+      "text": "The @AustralianArmy Combat Training Centre Jungle Training Wing conducted jungle survival training in 📍 Oyster Bay, Philippines, as part of Exercise Balikatan.\n\nPersonnel from Australia, New Zealand, the Philippines and the United States rotated through the training, developing essential jungle survival skills such as sourcing potable water and conducting live-fire serials.\n\nThe training was led by the Jungle Training Wing, with Filipino soldiers contributing vital local expertise during instructional periods.\n\n#YourADF #AusArmy #StrongerTogether @TeamAFP",
+      "source": "Twitter for iPhone",
+      "retweetCount": 24,
+      "replyCount": 0,
+      "likeCount": 190,
+      "quoteCount": 0,
+      "viewCount": 6550,
+      "createdAt": "Fri May 08 21:00:00 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 16,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2052856063146209601",
+      "displayTextRange": [
+        0,
+        278
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "DefenceAust",
+        "url": "https://x.com/DefenceAust",
+        "twitterUrl": "https://twitter.com/DefenceAust",
+        "id": "168891447",
+        "name": "Defence Australia",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1526049427831820288/G5r76Nyq_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/168891447/1785971952",
+        "description": "",
+        "location": "Australia",
+        "followers": 78044,
+        "following": 487,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Jul 21 01:27:40 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 13111,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 10665,
+        "statusesCount": 18158,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official account of Defence Australia. #YourADF Home of #AusNavy, #AusArmy, #AusAirForce and #OurAPS. Terms of use https://t.co/jW1F78RXxk",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "defence.gov.au/social-media",
+                  "expanded_url": "http://defence.gov.au/social-media",
+                  "indices": [
+                    115,
+                    138
+                  ],
+                  "url": "https://t.co/jW1F78RXxk"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/defenceaustral…",
+                  "expanded_url": "http://linktr.ee/defenceaustralia",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/URk2UDSRgi"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/h2BySUEfOu",
+            "expanded_url": "https://x.com/DefenceAust/status/2052856063146209601/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 82,
+                    "w": 82,
+                    "x": 564,
+                    "y": 606
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 48,
+                    "w": 48,
+                    "x": 330,
+                    "y": 355
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 328,
+                    "w": 328,
+                    "x": 2256,
+                    "y": 2424
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 27,
+                    "w": 27,
+                    "x": 187,
+                    "y": 201
+                  }
+                ]
+              }
+            },
+            "id_str": "2052590329006563335",
+            "indices": [
+              279,
+              302
+            ],
+            "media_key": "3_2052590329006563335",
+            "media_results": {
+              "result": {
+                "media_key": "3_2052590329006563335"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HHxEB3XWoAcG0I_.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 4588,
+                  "w": 8192,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 4608,
+                  "w": 4608,
+                  "x": 768,
+                  "y": 0
+                },
+                {
+                  "h": 4608,
+                  "w": 4042,
+                  "x": 1051,
+                  "y": 0
+                },
+                {
+                  "h": 4608,
+                  "w": 2304,
+                  "x": 1920,
+                  "y": 0
+                },
+                {
+                  "h": 4608,
+                  "w": 8192,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 4608,
+              "width": 8192
+            },
+            "sizes": {
+              "large": {
+                "h": 1152,
+                "resize": "fit",
+                "w": 2048
+              },
+              "medium": {
+                "h": 675,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 383,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/h2BySUEfOu"
+          },
+          {
+            "display_url": "pic.x.com/h2BySUEfOu",
+            "expanded_url": "https://x.com/DefenceAust/status/2052856063146209601/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              }
+            },
+            "id_str": "2052590351307669512",
+            "indices": [
+              279,
+              302
+            ],
+            "media_key": "3_2052590351307669512",
+            "media_results": {
+              "result": {
+                "media_key": "3_2052590351307669512"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HHxEDKcWgAgejeG.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 4388,
+                  "w": 7836,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 4408,
+                  "w": 4408,
+                  "x": 1518,
+                  "y": 0
+                },
+                {
+                  "h": 4408,
+                  "w": 3867,
+                  "x": 1789,
+                  "y": 0
+                },
+                {
+                  "h": 4408,
+                  "w": 2204,
+                  "x": 2620,
+                  "y": 0
+                },
+                {
+                  "h": 4408,
+                  "w": 7836,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 4408,
+              "width": 7836
+            },
+            "sizes": {
+              "large": {
+                "h": 1152,
+                "resize": "fit",
+                "w": 2048
+              },
+              "medium": {
+                "h": 675,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 383,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/h2BySUEfOu"
+          },
+          {
+            "display_url": "pic.x.com/h2BySUEfOu",
+            "expanded_url": "https://x.com/DefenceAust/status/2052856063146209601/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              }
+            },
+            "id_str": "2052590368298790922",
+            "indices": [
+              279,
+              302
+            ],
+            "media_key": "3_2052590368298790922",
+            "media_results": {
+              "result": {
+                "media_key": "3_2052590368298790922"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HHxEEJvWcAowjYl.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 3173,
+                  "w": 5666,
+                  "x": 0,
+                  "y": 14
+                },
+                {
+                  "h": 3187,
+                  "w": 3187,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 3187,
+                  "w": 2796,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 3187,
+                  "w": 1594,
+                  "x": 477,
+                  "y": 0
+                },
+                {
+                  "h": 3187,
+                  "w": 5666,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 3187,
+              "width": 5666
+            },
+            "sizes": {
+              "large": {
+                "h": 1152,
+                "resize": "fit",
+                "w": 2048
+              },
+              "medium": {
+                "h": 675,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 382,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/h2BySUEfOu"
+          },
+          {
+            "display_url": "pic.x.com/h2BySUEfOu",
+            "expanded_url": "https://x.com/DefenceAust/status/2052856063146209601/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 99,
+                    "w": 99,
+                    "x": 867,
+                    "y": 847
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 58,
+                    "w": 58,
+                    "x": 508,
+                    "y": 496
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 283,
+                    "w": 283,
+                    "x": 2461,
+                    "y": 2404
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 33,
+                    "w": 33,
+                    "x": 288,
+                    "y": 281
+                  }
+                ]
+              }
+            },
+            "id_str": "2052590379585658882",
+            "indices": [
+              279,
+              302
+            ],
+            "media_key": "3_2052590379585658882",
+            "media_results": {
+              "result": {
+                "media_key": "3_2052590379585658882"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HHxEEzyWYAIEc_h.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 3252,
+                  "w": 5807,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 3267,
+                  "w": 3267,
+                  "x": 544,
+                  "y": 0
+                },
+                {
+                  "h": 3267,
+                  "w": 2866,
+                  "x": 744,
+                  "y": 0
+                },
+                {
+                  "h": 3267,
+                  "w": 1634,
+                  "x": 1360,
+                  "y": 0
+                },
+                {
+                  "h": 3267,
+                  "w": 5807,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 3267,
+              "width": 5807
+            },
+            "sizes": {
+              "large": {
+                "h": 1152,
+                "resize": "fit",
+                "w": 2048
+              },
+              "medium": {
+                "h": 675,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 383,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/h2BySUEfOu"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              517,
+              525
+            ],
+            "text": "YourADF"
+          },
+          {
+            "indices": [
+              526,
+              534
+            ],
+            "text": "AusArmy"
+          },
+          {
+            "indices": [
+              535,
+              552
+            ],
+            "text": "StrongerTogether"
+          }
+        ],
+        "smarttags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "53297400",
+            "indices": [
+              4,
+              19
+            ],
+            "name": "Australian Army",
+            "screen_name": "AustralianArmy"
+          },
+          {
+            "id_str": "201601822",
+            "indices": [
+              553,
+              561
+            ],
+            "name": "Armed Forces of the Philippines",
+            "screen_name": "TeamAFP"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2052864700418027760",
+      "url": "https://x.com/akaihachi/status/2052864700418027760",
+      "twitterUrl": "https://twitter.com/akaihachi/status/2052864700418027760",
+      "text": "豪雨による度重なる浸水を受け、ミンダナオ島南コタバト州ジェネラル・サントス市の地下道建設計画が再び批判を浴びる・・・\n\nhttps://t.co/54C3NYmYCO",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 1,
+      "viewCount": 337,
+      "createdAt": "Fri May 08 21:34:19 +0000 2026",
+      "lang": "ja",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2052864700418027760",
+      "displayTextRange": [
+        0,
+        83
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "akaihachi",
+        "url": "https://x.com/akaihachi",
+        "twitterUrl": "https://twitter.com/akaihachi",
+        "id": "126530384",
+        "name": "フィリピン情報/Philippines",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1533686424/9ed8b39a-830e-492b-8d30-4d731ba97d76_normal.png",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/126530384/1786353180",
+        "description": "",
+        "location": "広島県福山市",
+        "followers": 12189,
+        "following": 22,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Fri Mar 26 04:43:14 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 9406,
+        "statusesCount": 104279,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Pilipinas Manila Cebu Davao 東南アジア 多くの検索時間と確認の手間をかけて、いろんな話題のフィリピン情報を集めています。いわゆる「なんでもフィリピン情報局」です。",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Residents criticized the GenSan underpass project after it was again flooded due to heavy rainfall experienced early morning today conditions.",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.brigadanews.ph",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "brigadanews.ph",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "GenSan underpass project criticized anew after repeated flooding due to heavy rain - Brigada News",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/54C3NYmYCO",
+              "type": "STRING"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "Swift",
+              "version": "12"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/54C3NYmYCO",
+        "user_refs_results": []
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "brigadanews.ph/gensan-underpa…",
+            "expanded_url": "https://www.brigadanews.ph/gensan-underpass-project-criticized-anew-after-repeated-flooding-due-to-heavy-rain/",
+            "indices": [
+              60,
+              83
+            ],
+            "url": "https://t.co/54C3NYmYCO"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2052867133609304273",
+      "url": "https://x.com/BrookfieldILPS/status/2052867133609304273",
+      "twitterUrl": "https://twitter.com/BrookfieldILPS/status/2052867133609304273",
+      "text": "🚗 Traffic Advisory for Brookfield Zoo Chicago This Weekend 🦁\n\nBrookfield Zoo Chicago has informed the Village that it is anticipating higher attendance and longer entrance queues this weekend due to recent attendance trends, favorable weather, and Mother’s Day.\n\nVisitors and residents should plan for heavier traffic and possible delays near Zoo entrances and surrounding roadways.\n\nIf you’ll be traveling in the area, please allow extra time and use caution.\n\nThank you for your patience, and enjoy the weekend!",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 174,
+      "createdAt": "Fri May 08 21:43:59 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2052867133609304273",
+      "displayTextRange": [
+        0,
+        275
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "BrookfieldILPS",
+        "url": "https://x.com/BrookfieldILPS",
+        "twitterUrl": "https://twitter.com/BrookfieldILPS",
+        "id": "1236038415180795904",
+        "name": "Village of Brookfield, Illinois",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1815482214395604992/zprZ-hjc_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1236038415180795904/1585583603",
+        "description": "",
+        "location": "Brookfield, IL ",
+        "followers": 1007,
+        "following": 41,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Fri Mar 06 21:19:41 +0000 2020",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 734,
+        "statusesCount": 1089,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official Village of Brookfield, Illinois, Information Page. Page not monitored 24/7. Emergencies, dial 911.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "brookfieldil.gov",
+                  "expanded_url": "https://brookfieldil.gov/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/GK5m5lfjid"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/18Xw33R73h",
+            "expanded_url": "https://x.com/BrookfieldILPS/status/2052867133609304273/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 148,
+                    "w": 148,
+                    "x": 446,
+                    "y": 167
+                  },
+                  {
+                    "h": 190,
+                    "w": 190,
+                    "x": 22,
+                    "y": 187
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 148,
+                    "w": 148,
+                    "x": 446,
+                    "y": 167
+                  },
+                  {
+                    "h": 190,
+                    "w": 190,
+                    "x": 22,
+                    "y": 187
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 148,
+                    "w": 148,
+                    "x": 446,
+                    "y": 167
+                  },
+                  {
+                    "h": 190,
+                    "w": 190,
+                    "x": 22,
+                    "y": 187
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 107,
+                    "w": 107,
+                    "x": 322,
+                    "y": 120
+                  },
+                  {
+                    "h": 137,
+                    "w": 137,
+                    "x": 15,
+                    "y": 135
+                  }
+                ]
+              }
+            },
+            "id_str": "2052867099677044738",
+            "indices": [
+              276,
+              299
+            ],
+            "media_key": "3_2052867099677044738",
+            "media_results": {
+              "result": {
+                "media_key": "3_2052867099677044738"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HH0_wCdWMAIbTn6.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 526,
+                  "w": 940,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 610,
+                  "w": 610,
+                  "x": 328,
+                  "y": 0
+                },
+                {
+                  "h": 610,
+                  "w": 535,
+                  "x": 366,
+                  "y": 0
+                },
+                {
+                  "h": 610,
+                  "w": 305,
+                  "x": 481,
+                  "y": 0
+                },
+                {
+                  "h": 610,
+                  "w": 940,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 610,
+              "width": 940
+            },
+            "sizes": {
+              "large": {
+                "h": 610,
+                "resize": "fit",
+                "w": 940
+              },
+              "medium": {
+                "h": 610,
+                "resize": "fit",
+                "w": 940
+              },
+              "small": {
+                "h": 441,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/18Xw33R73h"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "smarttags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
       "article": null
     }
   ]

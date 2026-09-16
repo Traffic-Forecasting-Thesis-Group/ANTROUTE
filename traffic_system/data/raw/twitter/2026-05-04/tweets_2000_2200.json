@@ -5,21 +5,21 @@
     "window_start": "2026-05-04T20:00:00+08:00",
     "window_end": "2026-05-04T22:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 7,
+    "tweet_count": 14,
     "slices": [
       {
         "start": "2026-05-04T20:00:00+08:00",
         "end": "2026-05-04T20:05:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-05-04T20:05:00+08:00",
         "end": "2026-05-04T20:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-05-04T20:10:00+08:00",
@@ -60,8 +60,8 @@
         "start": "2026-05-04T20:35:00+08:00",
         "end": "2026-05-04T20:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-05-04T20:40:00+08:00",
@@ -81,8 +81,8 @@
         "start": "2026-05-04T20:50:00+08:00",
         "end": "2026-05-04T20:55:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-05-04T20:55:00+08:00",
@@ -116,8 +116,8 @@
         "start": "2026-05-04T21:15:00+08:00",
         "end": "2026-05-04T21:20:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-05-04T21:20:00+08:00",
@@ -165,8 +165,8 @@
         "start": "2026-05-04T21:50:00+08:00",
         "end": "2026-05-04T21:55:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-05-04T21:55:00+08:00",
@@ -178,6 +178,98 @@
     ]
   },
   "data": [
+    {
+      "type": "tweet",
+      "id": "2051271807534264583",
+      "url": "https://x.com/LouMetroES/status/2051271807534264583",
+      "twitterUrl": "https://twitter.com/LouMetroES/status/2051271807534264583",
+      "text": "LENSAlert Traffic Advisory: The ramp from I-264 East to I-71 North has reopened. There is still heavy traffic in the area.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 585,
+      "createdAt": "Mon May 04 12:04:44 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2051271807534264583",
+      "displayTextRange": [
+        0,
+        122
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "LouMetroES",
+        "url": "https://x.com/LouMetroES",
+        "twitterUrl": "https://twitter.com/LouMetroES",
+        "id": "487728298",
+        "name": "Louisville Metro Emergency Services",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/667866118241910785/iW68liLn_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/487728298/1742308312",
+        "description": "",
+        "location": "",
+        "followers": 6256,
+        "following": 238,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Thu Feb 09 17:38:29 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 823,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1683,
+        "statusesCount": 6418,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "This is an official site of Louisville Metro Government. Please note this site is not monitored 24 hours a day. If you have an emergency please call 911.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "louisvilleky.gov/government/eme…",
+                  "expanded_url": "https://louisvilleky.gov/government/emergency-services",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/G4ZhN3EhaW"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
     {
       "type": "tweet",
       "id": "2051270629169738191",
@@ -216,7 +308,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437246,
+        "followers": 1437171,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +324,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411431,
+        "mediaCount": 17208,
+        "statusesCount": 412031,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -282,6 +374,211 @@
     },
     {
       "type": "tweet",
+      "id": "2051273097232494715",
+      "url": "https://x.com/aquende71174/status/2051273097232494715",
+      "twitterUrl": "https://twitter.com/aquende71174/status/2051273097232494715",
+      "text": "We are #7 with 55,487 Votes and only 63,796 55,487 Votes behind #next_7 next_7_name. Rally the fandom now! https://t.co/rWfFwg74lZ https://t.co/3kPmj1zJHP",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 123,
+      "createdAt": "Mon May 04 12:09:51 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2051273097232494715",
+      "displayTextRange": [
+        0,
+        130
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "aquende71174",
+        "url": "https://x.com/aquende71174",
+        "twitterUrl": "https://twitter.com/aquende71174",
+        "id": "4872270859",
+        "name": "✳️Hilary🎶",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1877321882145533952/ioP9c82V_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/4872270859/1732467041",
+        "description": "",
+        "location": "Batangas City, Calabarzon",
+        "followers": 577,
+        "following": 555,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Sun Feb 07 06:04:57 +0000 2016",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 37097,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2413,
+        "statusesCount": 129719,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2077941512885997889"
+        ],
+        "profile_bio": {
+          "description": "KATHRYN BERNARDO MY BABY LOVE 👑 #TeamBahay :-)",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    32,
+                    42
+                  ],
+                  "text": "TeamBahay"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/3kPmj1zJHP",
+            "expanded_url": "https://x.com/aquende71174/status/2051273097232494715/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 253,
+                    "w": 253,
+                    "x": 335,
+                    "y": 652
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 253,
+                    "w": 253,
+                    "x": 335,
+                    "y": 652
+                  }
+                ]
+              }
+            },
+            "id_str": "2051273092216020992",
+            "indices": [
+              131,
+              154
+            ],
+            "media_key": "3_2051273092216020992",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARx3lgJe2mAACgACHHeWA4nbsHsAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHHeWAl7aYAAKAAIcd5YDiduwewAA",
+                "media_key": "3_2051273092216020992"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HHeWAl7aYAAqenE.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 494,
+                  "w": 883,
+                  "x": 0,
+                  "y": 130
+                },
+                {
+                  "h": 883,
+                  "w": 883,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1007,
+                  "w": 883,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1678,
+                  "w": 839,
+                  "x": 42,
+                  "y": 0
+                },
+                {
+                  "h": 1678,
+                  "w": 883,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1678,
+              "width": 883
+            },
+            "sizes": {
+              "large": {
+                "h": 1678,
+                "w": 883
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/3kPmj1zJHP"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              64,
+              71
+            ],
+            "text": "next_7"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "shiningawards.com/most-beautiful…",
+            "expanded_url": "https://shiningawards.com/most-beautiful-woman-in-the-world-2026/kathryn-bernardo-philippines-%25f0%259f%2587%25b5%25f0%259f%2587%25ad/?tp_share=56a72630-ec4a-43ac-ba94-79f1be4028c2&tp_platform=twitter",
+            "indices": [
+              107,
+              130
+            ],
+            "url": "https://t.co/rWfFwg74lZ"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2051278417480630595",
       "url": "https://x.com/MakatiTraffic/status/2051278417480630595",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2051278417480630595",
@@ -318,7 +615,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437246,
+        "followers": 1437170,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -334,8 +631,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411431,
+        "mediaCount": 17208,
+        "statusesCount": 412031,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -384,6 +681,182 @@
     },
     {
       "type": "tweet",
+      "id": "2051280095114084385",
+      "url": "https://x.com/KoriaSato/status/2051280095114084385",
+      "twitterUrl": "https://twitter.com/KoriaSato/status/2051280095114084385",
+      "text": "Balikatan 2026 highlights cooperation b/w Japan, Philippines &amp;US amid China’s assertive posture in Indo-Pacific\n\n800+ troops conducted counter-landing live-fire drills using drones &amp;coastal defenses to strengthen deterrence in a Free&amp;Open Indo-Pacific @rs015dbph @prolifemother https://t.co/50MRQd0zzA",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 1,
+      "likeCount": 27,
+      "quoteCount": 0,
+      "viewCount": 1277,
+      "createdAt": "Mon May 04 12:37:40 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 3,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2051280095114084385",
+      "displayTextRange": [
+        0,
+        289
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "KoriaSato",
+        "url": "https://x.com/KoriaSato",
+        "twitterUrl": "https://twitter.com/KoriaSato",
+        "id": "1689214180040359936",
+        "name": "Sato koria",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1689530974152077312/DKLzvsy0_normal.jpg",
+        "coverPicture": "",
+        "description": "",
+        "location": "",
+        "followers": 1981,
+        "following": 4030,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Aug 09 09:57:10 +0000 2023",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2022,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1044,
+        "statusesCount": 3790,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2096542602019602902"
+        ],
+        "profile_bio": {
+          "description": "Historian, Into the pages of contemporary history/ admires Ikebana | cat lover",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/50MRQd0zzA",
+            "expanded_url": "https://x.com/KoriaSato/status/2051280095114084385/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "2051279827412664320",
+            "indices": [
+              290,
+              313
+            ],
+            "media_key": "13_2051279827412664320",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARx3nCKH20AAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABHHecIofbQAAAAA==",
+                "media_key": "13_2051279827412664320"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2051279827412664320/img/Pl9y2zOlGYXg-WEA.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 720,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1280
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/50MRQd0zzA",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 31600,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/2051279827412664320/pl/xZLZcyrItYZLsSf2.m3u8?tag=14&v=cfc"
+                },
+                {
+                  "bitrate": 288000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2051279827412664320/vid/avc1/480x270/PTWafa3a1ybOSFdk.mp4?tag=14"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2051279827412664320/vid/avc1/640x360/ZF5nYBuMNEIxk4wq.mp4?tag=14"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2051279827412664320/vid/avc1/1280x720/GcOdPidCkuv8XAiz.mp4?tag=14"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "1494980211728781316",
+            "indices": [
+              264,
+              274
+            ],
+            "name": "Renato Ragus, Jr.",
+            "screen_name": "rs015dbph"
+          },
+          {
+            "id_str": "35652648",
+            "indices": [
+              275,
+              289
+            ],
+            "name": "JT",
+            "screen_name": "prolifemother"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2051281941047939350",
       "url": "https://x.com/MakatiTraffic/status/2051281941047939350",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2051281941047939350",
@@ -420,7 +893,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437246,
+        "followers": 1437170,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -436,8 +909,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411431,
+        "mediaCount": 17208,
+        "statusesCount": 412031,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -486,6 +959,105 @@
     },
     {
       "type": "tweet",
+      "id": "2051283958755729739",
+      "url": "https://x.com/AXactual2/status/2051283958755729739",
+      "twitterUrl": "https://twitter.com/AXactual2/status/2051283958755729739",
+      "text": "🌍 Global Security Outlook – 04 May 2026\n\n⸻\n\nEUROPE\n\n🇩🇪 Germany – U.S. begins withdrawal of ~5,000 troops, signaling widening NATO friction over Iran war posture.\n🇷🇺 Russia – Ukrainian strikes hit Baltic oil-loading port and shadow fleet tankers, escalating energy infrastructure targeting.\n🇺🇦 Ukraine – Expanded long-range strike campaign against Russian oil logistics increases economic warfare pressure.\n\n⸻\n\nMIDDLE EAST\n\n🇵🇸 West Bank – Israeli raid in Nablus leaves 1 dead, 4 wounded amid ongoing counterterror operations.\n🇱🇧 Lebanon – Israeli military issues evacuation warnings in southern مناطق during operations against Hizbollah positions.\n🇬🇿 Gaza Strip – U.S. preparing to shut down military-run Gaza mission following stalled ceasefire and aid efforts.\n🇮🇷 Iran – Strait of Hormuz tensions rising as U.S. prepares operation to assist stranded vessels amid conflict spillover.\n\n⸻\n\nAFRICA\n\n🇲🇦 Morocco – Two U.S. service members reported missing during African Lion exercise near Tan-Tan.\n\n⸻\n\nINDO-PACIFIC\n\n🇵🇭 Philippines – U.S. and Philippine forces conduct live-fire and drone-integrated operations during Balikatan exercise.\n🇨🇳 China – Advanced stealth UAVs observed at secretive test base, indicating continued expansion of high-end ISR capabilities.\n\n⸻\n\nMARITIME / TRANSNATIONAL\n\n🌊 Caribbean / Eastern Pacific – Ongoing U.S. military strikes against suspected narcotics trafficking vessels continue under counternarcotics mission.\n\n⸻\n\nUNITED STATES (FORCES & GLOBAL POSTURE)\n\n🇺🇸 United States – Pentagon accelerates AI integration across classified networks via multiple commercial partnerships.\n🇺🇸 United States – USS Higgins suffers propulsion and power loss due to engineering casualty while deployed Indo-Pacific.\n\n⸻\n\nGLOBAL DEFENSE & TECHNOLOGY\n\n🌐 Defense Industry – U.S. Navy expands AI-enabled mine countermeasure capabilities targeting Iranian maritime threats.\n🇮🇱 Israel – Procurement of additional F-15IA and F-35I squadrons signals sustained high-tempo operational planning.\n\n⸻",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 0,
+      "likeCount": 6,
+      "quoteCount": 0,
+      "viewCount": 317,
+      "createdAt": "Mon May 04 12:53:01 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2051283958755729739",
+      "displayTextRange": [
+        0,
+        278
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "AXactual2",
+        "url": "https://x.com/AXactual2",
+        "twitterUrl": "https://twitter.com/AXactual2",
+        "id": "1935300621495943168",
+        "name": "AMERICAN | kinetix (AX)",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1935300825405935616/Bd70zRUN_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1935300621495943168/1750424363",
+        "description": "",
+        "location": "",
+        "followers": 5483,
+        "following": 53,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Jun 18 11:36:50 +0000 2025",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1812,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 395,
+        "statusesCount": 1448,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2028457376433455607"
+        ],
+        "profile_bio": {
+          "description": "- JSOC / CIA vets - Christian company -",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "americankx.com",
+                  "expanded_url": "http://americankx.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/xW1TwjmaSl"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2051286318919917584",
       "url": "https://x.com/BrianTycangco/status/2051286318919917584",
       "twitterUrl": "https://twitter.com/BrianTycangco/status/2051286318919917584",
@@ -495,7 +1067,7 @@
       "replyCount": 8,
       "likeCount": 99,
       "quoteCount": 2,
-      "viewCount": 8612,
+      "viewCount": 8615,
       "createdAt": "Mon May 04 13:02:24 +0000 2026",
       "lang": "en",
       "bookmarkCount": 9,
@@ -522,8 +1094,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/25839119/1596710901",
         "description": "",
         "location": "United States",
-        "followers": 30110,
-        "following": 639,
+        "followers": 30124,
+        "following": 640,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -535,11 +1107,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 62925,
+        "favouritesCount": 63137,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 4895,
-        "statusesCount": 30269,
+        "mediaCount": 4916,
+        "statusesCount": 30347,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -661,7 +1233,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437246,
+        "followers": 1437170,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -677,8 +1249,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411431,
+        "mediaCount": 17208,
+        "statusesCount": 412031,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -763,7 +1335,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967065,
+        "followers": 3966535,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -776,11 +1348,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 5284,
+        "favouritesCount": 5282,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61685,
-        "statusesCount": 888285,
+        "mediaCount": 61737,
+        "statusesCount": 888716,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -829,6 +1401,200 @@
     },
     {
       "type": "tweet",
+      "id": "2051289916571898236",
+      "url": "https://x.com/SuperdooperMD21/status/2051289916571898236",
+      "twitterUrl": "https://twitter.com/SuperdooperMD21/status/2051289916571898236",
+      "text": "Sunog lahat ng kinain sa Lobo 💪💪💪\n\n📍Fitness Center at Makati Diamond Hotel https://t.co/EW25eEeGue",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 6,
+      "quoteCount": 0,
+      "viewCount": 554,
+      "createdAt": "Mon May 04 13:16:41 +0000 2026",
+      "lang": "tl",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2051289916571898236",
+      "displayTextRange": [
+        0,
+        74
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "SuperdooperMD21",
+        "url": "https://x.com/SuperdooperMD21",
+        "twitterUrl": "https://twitter.com/SuperdooperMD21",
+        "id": "4882983338",
+        "name": "✨🥃 MD ✨Coach MD",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2085908498542743552/8vncWKaM_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/4882983338/1771390838",
+        "description": "",
+        "location": "Pasig City",
+        "followers": 15292,
+        "following": 15023,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Tue Feb 09 12:47:53 +0000 2016",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 33007,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 6294,
+        "statusesCount": 16297,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2076908778184925236"
+        ],
+        "profile_bio": {
+          "description": "👬 ❤️ Traveler ✈️ Fun loving 🕺 Dog dad 🐶 Inspirational 💡 Living life to the fullest 🥰 Naughty at times 🤣 #DaServeFam #Emeritus🅰️nderson",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    104,
+                    115
+                  ],
+                  "text": "DaServeFam"
+                },
+                {
+                  "indices": [
+                    116,
+                    125
+                  ],
+                  "text": "Emeritus"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/EW25eEeGue",
+            "expanded_url": "https://x.com/SuperdooperMD21/status/2051289916571898236/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 279,
+                    "w": 279,
+                    "x": 323,
+                    "y": 133
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 279,
+                    "w": 279,
+                    "x": 323,
+                    "y": 133
+                  }
+                ]
+              }
+            },
+            "id_str": "2051289909819047936",
+            "indices": [
+              75,
+              98
+            ],
+            "media_key": "3_2051289909819047936",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARx3pU4GG4AACgACHHelT5ib0XwAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHHelTgYbgAAKAAIcd6VPmJvRfAAA",
+                "media_key": "3_2051289909819047936"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HHelTgYbgAAWTda.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 660,
+                  "w": 1178,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1178,
+                  "w": 1178,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1250,
+                  "w": 1096,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1250,
+                  "w": 625,
+                  "x": 156,
+                  "y": 0
+                },
+                {
+                  "h": 1250,
+                  "w": 1178,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1250,
+              "width": 1178
+            },
+            "sizes": {
+              "large": {
+                "h": 1250,
+                "w": 1178
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/EW25eEeGue"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2051293265933332675",
       "url": "https://x.com/MakatiTraffic/status/2051293265933332675",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2051293265933332675",
@@ -865,7 +1631,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437246,
+        "followers": 1437171,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -881,8 +1647,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411431,
+        "mediaCount": 17208,
+        "statusesCount": 412031,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -923,6 +1689,698 @@
           }
         ]
       },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2051299045482590539",
+      "url": "https://x.com/MyJRA/status/2051299045482590539",
+      "twitterUrl": "https://twitter.com/MyJRA/status/2051299045482590539",
+      "text": "🚨 TRAFFIC ADVISORY: The Johannesburg Roads Agency (JRA) hereby advises the public of a planned full road closure on Tuesday 5 May 2026 on Spencer Road, Mariasberg in Randburg to facilitate essential road maintenance activities. @CityofJoburgZA @CrumRegionB https://t.co/Bz9gje5ajN",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 2,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 801,
+      "createdAt": "Mon May 04 13:52:58 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2051299045482590539",
+      "displayTextRange": [
+        0,
+        256
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "MyJRA",
+        "url": "https://x.com/MyJRA",
+        "twitterUrl": "https://twitter.com/MyJRA",
+        "id": "558576288",
+        "name": "Joburg Roads Agency",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/950312753729650690/WNQAXYAr_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/558576288/1633034714",
+        "description": "",
+        "location": "hotline@jra.org.za",
+        "followers": 219185,
+        "following": 9056,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri Apr 20 09:59:24 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 8112,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 9897,
+        "statusesCount": 82130,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2100131286098620826"
+        ],
+        "profile_bio": {
+          "description": "An official City of Johannesburg entity that constructs, maintains, and manages road infrastructure. Log pothole, traffic light faults & more. #JoburgRoads",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    143,
+                    155
+                  ],
+                  "text": "JoburgRoads"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "jra.org.za",
+                  "expanded_url": "http://www.jra.org.za",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/CDV0VVCCTx"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/Bz9gje5ajN",
+            "expanded_url": "https://x.com/MyJRA/status/2051299045482590539/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "GP Roads and Transport",
+                    "screen_name": "GPDRT_",
+                    "type": "user",
+                    "user_id": "1067306430456311808"
+                  },
+                  {
+                    "name": "Arrive Alive",
+                    "screen_name": "_ArriveAlive",
+                    "type": "user",
+                    "user_id": "154453910"
+                  },
+                  {
+                    "name": "Jo'burg Metro Police Department - JMPD",
+                    "screen_name": "JoburgMPD",
+                    "type": "user",
+                    "user_id": "1193064241"
+                  },
+                  {
+                    "name": "City of Joburg Transport",
+                    "screen_name": "CoJTransport",
+                    "type": "user",
+                    "user_id": "998815914131972096"
+                  },
+                  {
+                    "name": "Bertha Peters-Scheepers JRA",
+                    "screen_name": "Bertha23206554",
+                    "type": "user",
+                    "user_id": "1415231512983789572"
+                  }
+                ]
+              },
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2051299041007329280",
+            "indices": [
+              257,
+              280
+            ],
+            "media_key": "3_2051299041007329280",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARx3rZwLV2AACgACHHetnRYWcUsAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHHetnAtXYAAKAAIcd62dFhZxSwAA",
+                "media_key": "3_2051299041007329280"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HHetnAtXYAAEk2J.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 559,
+                  "w": 999,
+                  "x": 0,
+                  "y": 176
+                },
+                {
+                  "h": 999,
+                  "w": 999,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1139,
+                  "w": 999,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1404,
+                  "w": 702,
+                  "x": 174,
+                  "y": 0
+                },
+                {
+                  "h": 1404,
+                  "w": 999,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1404,
+              "width": 999
+            },
+            "sizes": {
+              "large": {
+                "h": 1404,
+                "w": 999
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/Bz9gje5ajN"
+          },
+          {
+            "display_url": "pic.x.com/Bz9gje5ajN",
+            "expanded_url": "https://x.com/MyJRA/status/2051299045482590539/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "GP Roads and Transport",
+                    "screen_name": "GPDRT_",
+                    "type": "user",
+                    "user_id": "1067306430456311808"
+                  },
+                  {
+                    "name": "Arrive Alive",
+                    "screen_name": "_ArriveAlive",
+                    "type": "user",
+                    "user_id": "154453910"
+                  },
+                  {
+                    "name": "Jo'burg Metro Police Department - JMPD",
+                    "screen_name": "JoburgMPD",
+                    "type": "user",
+                    "user_id": "1193064241"
+                  },
+                  {
+                    "name": "City of Joburg Transport",
+                    "screen_name": "CoJTransport",
+                    "type": "user",
+                    "user_id": "998815914131972096"
+                  },
+                  {
+                    "name": "Bertha Peters-Scheepers JRA",
+                    "screen_name": "Bertha23206554",
+                    "type": "user",
+                    "user_id": "1415231512983789572"
+                  }
+                ]
+              },
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2051299042311680000",
+            "indices": [
+              257,
+              280
+            ],
+            "media_key": "3_2051299042311680000",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARx3rZxZFjAACgACHHetnRYWcUsAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHHetnFkWMAAKAAIcd62dFhZxSwAA",
+                "media_key": "3_2051299042311680000"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HHetnFkWMAAjew6.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 560,
+                  "w": 1000,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1000,
+                  "w": 1000,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1140,
+                  "w": 1000,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1399,
+                  "w": 700,
+                  "x": 150,
+                  "y": 0
+                },
+                {
+                  "h": 1399,
+                  "w": 1000,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1399,
+              "width": 1000
+            },
+            "sizes": {
+              "large": {
+                "h": 1399,
+                "w": 1000
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/Bz9gje5ajN"
+          },
+          {
+            "display_url": "pic.x.com/Bz9gje5ajN",
+            "expanded_url": "https://x.com/MyJRA/status/2051299045482590539/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "GP Roads and Transport",
+                    "screen_name": "GPDRT_",
+                    "type": "user",
+                    "user_id": "1067306430456311808"
+                  },
+                  {
+                    "name": "Arrive Alive",
+                    "screen_name": "_ArriveAlive",
+                    "type": "user",
+                    "user_id": "154453910"
+                  },
+                  {
+                    "name": "Jo'burg Metro Police Department - JMPD",
+                    "screen_name": "JoburgMPD",
+                    "type": "user",
+                    "user_id": "1193064241"
+                  },
+                  {
+                    "name": "City of Joburg Transport",
+                    "screen_name": "CoJTransport",
+                    "type": "user",
+                    "user_id": "998815914131972096"
+                  },
+                  {
+                    "name": "Bertha Peters-Scheepers JRA",
+                    "screen_name": "Bertha23206554",
+                    "type": "user",
+                    "user_id": "1415231512983789572"
+                  }
+                ]
+              },
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2051299042596966400",
+            "indices": [
+              257,
+              280
+            ],
+            "media_key": "3_2051299042596966400",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARx3rZxqF1AACgACHHetnRYWcUsAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHHetnGoXUAAKAAIcd62dFhZxSwAA",
+                "media_key": "3_2051299042596966400"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HHetnGoXUAAH5jB.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 550,
+                  "w": 983,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 983,
+                  "w": 983,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1121,
+                  "w": 983,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1140,
+                  "w": 570,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1140,
+                  "w": 983,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1140,
+              "width": 983
+            },
+            "sizes": {
+              "large": {
+                "h": 1140,
+                "w": 983
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/Bz9gje5ajN"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "517306957",
+            "indices": [
+              228,
+              243
+            ],
+            "name": "City of Joburg",
+            "screen_name": "CityofJoburgZA"
+          },
+          {
+            "id_str": "1369192175901302791",
+            "indices": [
+              244,
+              256
+            ],
+            "name": "Region B CRUM",
+            "screen_name": "CrumRegionB"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2051298344606249299",
+      "url": "https://x.com/wftrps/status/2051298344606249299",
+      "twitterUrl": "https://twitter.com/wftrps/status/2051298344606249299",
+      "text": "Traffic Advisory' Slow moving Traffic with a vehicle breakdown, Muthanalur cross  towards Kodathi, it will be moved shortly. https://t.co/5lGRe2ra0E",
+      "source": "Twitter for iPhone",
+      "retweetCount": 4,
+      "replyCount": 0,
+      "likeCount": 5,
+      "quoteCount": 0,
+      "viewCount": 752,
+      "createdAt": "Mon May 04 13:50:11 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2051298344606249299",
+      "displayTextRange": [
+        0,
+        124
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "wftrps",
+        "url": "https://x.com/wftrps",
+        "twitterUrl": "https://twitter.com/wftrps",
+        "id": "1427538424513261572",
+        "name": "WHITEFIELD TRAFFIC PS BTP",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1610431515384766464/EKixD336_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1427538424513261572/1698664455",
+        "description": "",
+        "location": "XQV4+PV4, Kadugodi Rd, Kadugod",
+        "followers": 8062,
+        "following": 340,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Aug 17 07:52:18 +0000 2021",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 8052,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 9572,
+        "statusesCount": 23170,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1561965210944290816"
+        ],
+        "profile_bio": {
+          "description": "Whitefield Traffic Police Station  ☎️ 08022943706.\nhttps://t.co/nLW3eXyDqh\nhttps://t.co/ztwpDdQ1kT",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "facebook.com/whitefield",
+                  "expanded_url": "https://www.facebook.com/whitefield",
+                  "indices": [
+                    51,
+                    74
+                  ],
+                  "url": "https://t.co/nLW3eXyDqh"
+                },
+                {
+                  "display_url": "instagram.com/whitefieldtraf…",
+                  "expanded_url": "https://instagram.com/whitefieldtrafficps?utm_source=qr&igshid=ZDc4ODBmNj",
+                  "indices": [
+                    75,
+                    98
+                  ],
+                  "url": "https://t.co/ztwpDdQ1kT"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.gov.in",
+                  "expanded_url": "https://btp.gov.in/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/n23Fyy5nq9"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/5lGRe2ra0E",
+            "expanded_url": "https://x.com/wftrps/status/2051298344606249299/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "CP Bengaluru ಪೊಲೀಸ್ ಆಯುಕ್ತ ಬೆಂಗಳೂರು",
+                    "screen_name": "CPBlr",
+                    "type": "user",
+                    "user_id": "2687852605"
+                  },
+                  {
+                    "name": "Joint CP, Traffic, Bengaluru",
+                    "screen_name": "Jointcptraffic",
+                    "type": "user",
+                    "user_id": "2809164276"
+                  },
+                  {
+                    "name": "DCP Traffic East ಉಪ ಪೊಲೀಸ್ ಆಯುಕ್ತರು ಸಂಚಾರ ಪೂರ್ವ",
+                    "screen_name": "DCPTrEastBCP",
+                    "type": "user",
+                    "user_id": "2809049605"
+                  },
+                  {
+                    "name": "ACP Whitefield Traffic ಎಸಿಪಿ ಸಂಚಾರ ವೈಟ್ ಫೀಲ್ಡ್",
+                    "screen_name": "acpwfieldtrf",
+                    "type": "user",
+                    "user_id": "1361589347032600576"
+                  },
+                  {
+                    "name": "ಬೆಂಗಳೂರು ನಗರ ಪೊಲೀಸ್‌ BengaluruCityPolice",
+                    "screen_name": "BlrCityPolice",
+                    "type": "user",
+                    "user_id": "775296019"
+                  },
+                  {
+                    "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+                    "screen_name": "blrcitytraffic",
+                    "type": "user",
+                    "user_id": "1851545900"
+                  }
+                ]
+              },
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2051298335039033344",
+            "indices": [
+              125,
+              148
+            ],
+            "media_key": "3_2051298335039033344",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARx3rPesWhAACgACHHes+eaaMVMAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHHes96xaEAAKAAIcd6z55poxUwAA",
+                "media_key": "3_2051298335039033344"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HHes96xaEAAjK_l.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 672,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 928
+                },
+                {
+                  "h": 1200,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 400
+                },
+                {
+                  "h": 1368,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 232
+                },
+                {
+                  "h": 1600,
+                  "w": 800,
+                  "x": 400,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1600,
+              "width": 1200
+            },
+            "sizes": {
+              "large": {
+                "h": 1600,
+                "w": 1200
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/5lGRe2ra0E"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
       "quoted_tweet": null,
       "retweeted_tweet": null,
       "isLimitedReply": false,

@@ -5,7 +5,7 @@
     "window_start": "2025-10-17T00:00:00+08:00",
     "window_end": "2025-10-17T02:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 0,
+    "tweet_count": 2,
     "slices": [
       {
         "start": "2025-10-17T00:00:00+08:00",
@@ -88,15 +88,15 @@
         "start": "2025-10-17T00:55:00+08:00",
         "end": "2025-10-17T01:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-17T01:00:00+08:00",
         "end": "2025-10-17T01:05:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-17T01:05:00+08:00",
@@ -177,5 +177,586 @@
       }
     ]
   },
-  "data": []
+  "data": [
+    {
+      "type": "tweet",
+      "id": "1978867479146332377",
+      "url": "https://x.com/thecryptoBike/status/1978867479146332377",
+      "twitterUrl": "https://twitter.com/thecryptoBike/status/1978867479146332377",
+      "text": "Privacy Rabbit Hole Recap\n\nZcash on Aztec & The Future of Programmable Privacy\n\nHosts & Guests\n@realRoberto38, @clairekart , @0xdavid \n\nSpeakers:\n@bajpaiharsh244 \n@zmanian \n@Zac_Aztec \n@clairekart \n\nLets Get started:\n1⃣ Harsh’s Presentation “ZEC on Aztec”\n\n• Context: Why Zcash\n\n• Launched 2016, PoW chain, 21M cap like BTC.\n\n• Privacy at the base layer, shielded transactions.\n\n• Endorsed by Edward Snowden, Naval: “If Bitcoin is insurance against fiat, Zcash is insurance against Bitcoin’s publicity.”\n\n• Zashi wallet: easy private payments; “encrypted burritos” joke during demo.\n\n• Aztec Overview\n\n• Aztec = Private World Computer, just like Ethereum was the “world computer” for Bitcoin’s base layer.\n\n• Combines Zcash-style privacy + Ethereum programmability.\n\n• Supports private smart contracts, partial privacy, public–private composability.\n“You choose what parts of your program you want to keep private or public.”\n\n2⃣ Zcash → Aztec Bridge Concept\n\n• Problem: current Zashi + Near intents swaps leak metadata (sender/receiver visible).\n\n• Aztec solution: “Partial Notes”, lets users receive funds without revealing their address.\n\n- Alice → sends ZEC privately to a solver.\n- Solver → sends USDC to Alice’s partial note on Aztec.\n- Solver never learns Alice’s Zcash or Aztec address.\n- No link between chains, full unlinkability.\n\n• Future: Wrapped ZEC on Aztec\n\n- Trustless bridge → mint wZEC on Aztec.\n\n- Allows private DeFi for ZEC: lending, liquidity, yield.\n\n- Can be secured via EigenLayer AVS or fully-ZK light clients.\n“ZEC holders could earn yield privately while maintaining full censorship resistance.”\n\n• Demo Summary\n\n• Live Zcash testnet swap → Aztec local node.\n\n• Initial solver lacked balance → fixed mid-demo.\n\n• Successful private swap confirmed (“Congratulations, your private swap is successful”).\n\n• Applause from chat: “3,600 people watching privacy in action!”\n\n3⃣ Fireside Chat — Zaki Manian × Zach × Claire\n\nOrigins of Privacy\n\n• Zaki:\n\n- Privacy = essential to censorship resistance.\n\n- Bitcoin lacks privacy → risk of “good vs. bad BTC.”\n\n- Early 2010s talk with Aaron (ZeroCash) → “This is magic.”\n\n- Zashi wallet = 2% → 20–30% shielded usage.\n\n- Near intents + cross-chain swaps = “finally real privacy for real users.”\n\n• Zach:\n\n- Started in 2017 building DeFi (CreditsMint) → realized no privacy = no real finance.\n\n- Bitcoin’s “pseudonymity” was illusion.\n\n- Studied Zcash papers, became a self-taught cryptographer.\n“Back then, understanding ZK was hell — now you can learn in a weekend.”\n\n• why Optional Privacy\n\n• Zaki:\n\n- Practical + compliance reasons: exchanges need transparent TX support.\n\n- Gemini = only exchange supporting shielded deposits.\n\n- Binance required a unique “transparent-only” address type to stay listed.\n\n• Zach:\n\n• For Aztec, optional privacy is programmability & trust trade-off:\n- Private users shouldn’t inadvertently help bad actors hide.\n\n- Hybrid models allow transparent protocols + private users.\n\n- Fully private DEXes need advanced MPC/FHE tech — not production-ready yet.\n\n• Cross-Chain & Future of Privacy\n\n• Zaki:\n\n- “2025–2026 is the first time the rubber meets the road for private systems.”\n\n- Two privacy paths:\na) Encrypted balances (limited, enterprise use).\n\nb) Full private layers (like Aztec & Zcash).\n\n- Zcash aims to remain a private store-of-value, Aztec provides programmable privacy.\n\n• Claire: Why is privacy booming now?\n\n• Zach:\n\n- “Blockchain’s protest phase is over. Now it’s institutional, and institutions need privacy.”\n\n- “Either they fork chains privately or they adopt privacy-preserving layers like Aztec.”\n\n• Zaki:\n\n- “Privacy matters most to whales & institutions — those with real capital to protect.”\n\n- “If you’re running a DeFi protocol, you can’t reveal every trade on-chain. Privacy becomes business-critical.”\n\n4⃣ Community Activation\n\n• Zaki announced a Zashi onboarding event:\n\n- Roles eligible: Illuminated and Paragon.\n- Participants install Zashi → receive small ZEC drop directly from him.\n“A surprise mini-airdrop, real ZEC for real privacy users.”\n\n• Rebranding: Town Hall → Privacy Rabbit Hole\n\n• Claire:\n\n“Aztec believes Privacy must win. Not just Aztec, the entire movement.”\n\n- Town Hall renamed to “Privacy Rabbit Hole” → open forum for all privacy builders (ECC, EF, Monero, etc.).\n\n- Future guests will include Ethereum Foundation privacy leads and other ecosystems.\n\n5⃣ Community Awards (Discord Names)\n• Meme Lord\n\n- HellforNDR → recurring meme favorite (“No airdrop, still love you”).\n\n• Maestros\n\n- Web3 Genio → IRL Aztec flyers, stickers, meetups — “Privacy is the future.”\n\n- Caperson (Sui Swap) → short-form news-style Aztec explainer videos.\n\n- Ayana (Philippines) → Honk Skater Boy art.\n\n- Yelena → surreal Honk x tentacle digital art timelapse.\n\n• Content Chronicler\n\n- NotBored (Opay Me DeFi) → regular video explainers tagged.\n\n• Operator Roles\n\n- Proposer Commander: Boss7140\n\n- High Attester: AgeSaints\n\n- Homestaker Sentinel: Pavel M0542\n\n6⃣ Final Stats & Announcements\n\n• Snapshot recorded: 4,662 attendees.\n\n• IRL Meetups: Continuing in Philippines, Thailand, Indonesia, Vietnam, Nigeria, Argentina.\n\n• Zashi onboarding: live in Paragon & Illuminated channels.\n\nNext Privacy Rabbit Hole: Ethereum Foundation guest + Aztec ecosystem collabs.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 5,
+      "quoteCount": 0,
+      "viewCount": 869,
+      "createdAt": "Thu Oct 16 16:55:47 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1978867479146332377",
+      "displayTextRange": [
+        0,
+        279
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "thecryptoBike",
+        "url": "https://x.com/thecryptoBike",
+        "twitterUrl": "https://twitter.com/thecryptoBike",
+        "id": "1900884974011662339",
+        "name": "The Crypto Bike",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1965075697719705600/8kDI_V9-_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1900884974011662339/1757799372",
+        "description": "",
+        "location": "",
+        "followers": 948,
+        "following": 863,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Sat Mar 15 12:22:45 +0000 2025",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 24140,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2572,
+        "statusesCount": 18241,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2023643430149124395"
+        ],
+        "profile_bio": {
+          "description": "Animation |  Node Runner |  Web3\nI love privacy 😤",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "behance.net/elobikekenechu",
+                  "expanded_url": "https://www.behance.net/elobikekenechu",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/EDlGc7H4O4"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/3BGocy1Hkr",
+            "expanded_url": "https://x.com/thecryptoBike/status/1978867479146332377/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "1978857203713904640",
+            "indices": [
+              280,
+              303
+            ],
+            "media_key": "13_1978857203713904640",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARt2UCRwlxAAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG3ZQJHCXEAAAAA==",
+                "media_key": "13_1978857203713904640"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1978857203713904640/img/Eqoc9Ko3P4HXmXhO.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1440,
+              "width": 2560
+            },
+            "sizes": {
+              "large": {
+                "h": 1152,
+                "w": 2048
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/3BGocy1Hkr",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 5571837,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1978857203713904640/pl/6NBoXvZSjxsWs-cV.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1978857203713904640/vid/avc1/480x270/Sm3uRVgfBMML0ssE.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1978857203713904640/vid/avc1/640x360/uRl6UGTlWpgCET-c.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1978857203713904640/vid/avc1/1280x720/BIuvF1VBoTL1dZOn.mp4?tag=21"
+                },
+                {
+                  "bitrate": 10368000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1978857203713904640/vid/avc1/2560x1440/XDrAvKEoT7R_0nqk.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "1829065212097609728",
+            "indices": [
+              95,
+              109
+            ],
+            "name": "Roberto (privacy szn)",
+            "screen_name": "realRoberto38"
+          },
+          {
+            "id_str": "21838196",
+            "indices": [
+              111,
+              122
+            ],
+            "name": "Claire Kart",
+            "screen_name": "clairekart"
+          },
+          {
+            "id_str": "458829731",
+            "indices": [
+              125,
+              133
+            ],
+            "name": "",
+            "screen_name": "0xdavid"
+          },
+          {
+            "id_str": "2365174836",
+            "indices": [
+              146,
+              161
+            ],
+            "name": "harshbajpai",
+            "screen_name": "bajpaiharsh244"
+          },
+          {
+            "id_str": "7910872",
+            "indices": [
+              163,
+              171
+            ],
+            "name": "zmanian",
+            "screen_name": "zmanian"
+          },
+          {
+            "id_str": "1013834266906714112",
+            "indices": [
+              173,
+              183
+            ],
+            "name": "Zac",
+            "screen_name": "Zac_Aztec"
+          },
+          {
+            "id_str": "21838196",
+            "indices": [
+              185,
+              196
+            ],
+            "name": "Claire Kart",
+            "screen_name": "clairekart"
+          }
+        ]
+      },
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "1978394742590189890",
+        "url": "https://x.com/thecryptoBike/status/1978394742590189890",
+        "twitterUrl": "https://twitter.com/thecryptoBike/status/1978394742590189890",
+        "text": "Another @aztecnetwork Town Hall is here\n\nVenue: Aztec discord \nDate: 16th, October 2025\nTime: 2pm UTC\n\nwould be covering it, stay tuned\n\ngAztec",
+        "source": "Twitter for iPhone",
+        "retweetCount": 0,
+        "replyCount": 1,
+        "likeCount": 2,
+        "quoteCount": 1,
+        "viewCount": 1008,
+        "createdAt": "Wed Oct 15 09:37:18 +0000 2025",
+        "lang": "en",
+        "bookmarkCount": 0,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "1978394742590189890",
+        "displayTextRange": [
+          0,
+          143
+        ],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {
+          "type": "user",
+          "userName": "thecryptoBike",
+          "url": "https://x.com/thecryptoBike",
+          "twitterUrl": "https://twitter.com/thecryptoBike",
+          "id": "1900884974011662339",
+          "name": "The Crypto Bike",
+          "isVerified": false,
+          "isBlueVerified": false,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/1965075697719705600/8kDI_V9-_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/1900884974011662339/1757799372",
+          "description": "",
+          "location": "",
+          "followers": 948,
+          "following": 863,
+          "status": "",
+          "canDm": true,
+          "canMediaTag": true,
+          "createdAt": "Sat Mar 15 12:22:45 +0000 2025",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 24140,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 2572,
+          "statusesCount": 18241,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [
+            "2023643430149124395"
+          ],
+          "profile_bio": {
+            "description": "Animation |  Node Runner |  Web3\nI love privacy 😤",
+            "entities": {
+              "description": {},
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "behance.net/elobikekenechu",
+                    "expanded_url": "https://www.behance.net/elobikekenechu",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/EDlGc7H4O4"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {},
+        "card": null,
+        "place": {},
+        "entities": {
+          "user_mentions": [
+            {
+              "id_str": "1062395740373295105",
+              "indices": [
+                8,
+                21
+              ],
+              "name": "Aztec",
+              "screen_name": "aztecnetwork"
+            }
+          ]
+        },
+        "quoted_tweet": {
+          "type": "tweet",
+          "id": "1978200629722898745",
+          "url": "",
+          "twitterUrl": "",
+          "text": "",
+          "source": "Twitter for iPhone",
+          "retweetCount": 0,
+          "replyCount": 0,
+          "likeCount": 0,
+          "quoteCount": 0,
+          "viewCount": 0,
+          "createdAt": "",
+          "lang": "",
+          "bookmarkCount": 0,
+          "isReply": false,
+          "inReplyToId": null,
+          "conversationId": "",
+          "displayTextRange": [],
+          "inReplyToUserId": null,
+          "inReplyToUsername": null,
+          "author": {},
+          "extendedEntities": {},
+          "card": null,
+          "place": {},
+          "entities": {},
+          "quoted_tweet": null,
+          "retweeted_tweet": null,
+          "isLimitedReply": false,
+          "communityInfo": null,
+          "article": null
+        },
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
+        "article": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": {
+        "id": "1920364230756479110",
+        "name": "Aztec Community",
+        "custom_banner_media_url": "https://pbs.twimg.com/community_banner_img/1963598302118907908/Vb0ZPmy5?format=jpg&name=orig"
+      },
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1978868673772200433",
+      "url": "https://x.com/CityofTampa/status/1978868673772200433",
+      "twitterUrl": "https://twitter.com/CityofTampa/status/1978868673772200433",
+      "text": "⚠️TRAFFIC ADVISORY⚠️ \nExpect additional traffic in @Tampasdowntown and near Julian B. Lane Riverfront Park this Saturday due to several special events, including @TampaPigJig.\n\nConsider alternate transportation methods like rideshare, scooters, bikes, @TampaStreetcar, etc. https://t.co/vRMzGc4Gy4",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 1032,
+      "createdAt": "Thu Oct 16 17:00:32 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1978868673772200433",
+      "displayTextRange": [
+        0,
+        273
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "CityofTampa",
+        "url": "https://x.com/CityofTampa",
+        "twitterUrl": "https://twitter.com/CityofTampa",
+        "id": "16102081",
+        "name": "City of Tampa",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1498765697169735681/PO0keLyT_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/16102081/1667311631",
+        "description": "",
+        "location": "Tampa, FL",
+        "followers": 239830,
+        "following": 532,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Sep 02 20:02:00 +0000 2008",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 39176,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 23518,
+        "statusesCount": 55984,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official account for the City of Tampa. ☀️",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "tampa.gov",
+                  "expanded_url": "http://tampa.gov",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/anwmLEHrwL"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/vRMzGc4Gy4",
+            "expanded_url": "https://x.com/CityofTampa/status/1978868673772200433/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1978868652746141696",
+            "indices": [
+              274,
+              297
+            ],
+            "media_key": "3_1978868652746141696",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARt2Wo4gFvAACgACG3ZakwVXIfEAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG3ZajiAW8AAKAAIbdlqTBVch8QAA",
+                "media_key": "3_1978868652746141696"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G3ZajiAW8AAgZNo.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 600,
+                  "w": 1071,
+                  "x": 79,
+                  "y": 0
+                },
+                {
+                  "h": 600,
+                  "w": 600,
+                  "x": 418,
+                  "y": 0
+                },
+                {
+                  "h": 600,
+                  "w": 526,
+                  "x": 455,
+                  "y": 0
+                },
+                {
+                  "h": 600,
+                  "w": 300,
+                  "x": 568,
+                  "y": 0
+                },
+                {
+                  "h": 600,
+                  "w": 1150,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 600,
+              "width": 1150
+            },
+            "sizes": {
+              "large": {
+                "h": 600,
+                "w": 1150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/vRMzGc4Gy4"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "55253922",
+            "indices": [
+              51,
+              66
+            ],
+            "name": "Tampa’s Downtown",
+            "screen_name": "Tampasdowntown"
+          },
+          {
+            "id_str": "1134577842",
+            "indices": [
+              162,
+              174
+            ],
+            "name": "TampaPigJig",
+            "screen_name": "TampaPigJig"
+          },
+          {
+            "id_str": "563900647",
+            "indices": [
+              252,
+              267
+            ],
+            "name": "TECO Line Streetcar",
+            "screen_name": "TampaStreetcar"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    }
+  ]
 }

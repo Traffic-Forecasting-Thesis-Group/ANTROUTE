@@ -5,7 +5,7 @@
     "window_start": "2026-02-15T06:00:00+08:00",
     "window_end": "2026-02-15T08:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 2,
+    "tweet_count": 4,
     "slices": [
       {
         "start": "2026-02-15T06:00:00+08:00",
@@ -81,8 +81,8 @@
         "start": "2026-02-15T06:50:00+08:00",
         "end": "2026-02-15T06:55:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-15T06:55:00+08:00",
@@ -144,8 +144,8 @@
         "start": "2026-02-15T07:35:00+08:00",
         "end": "2026-02-15T07:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-15T07:40:00+08:00",
@@ -216,8 +216,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/461853598/1788192343",
         "description": "",
         "location": "Republic of the Philippines",
-        "followers": 262177,
-        "following": 1005,
+        "followers": 262170,
+        "following": 1006,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -232,13 +232,13 @@
         "favouritesCount": 1966,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 363323,
-        "statusesCount": 1006287,
+        "mediaCount": 364580,
+        "statusesCount": 1008186,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2095427727365231027"
+          "2097968439566741980"
         ],
         "profile_bio": {
           "description": "The official X account of Super Radyo DZBB 594 kHz, the flagship AM radio station of GMA Network, Inc.",
@@ -384,7 +384,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
         "description": "",
         "location": "Philippines",
-        "followers": 189481,
+        "followers": 190082,
         "following": 481,
         "status": "",
         "canDm": false,
@@ -397,16 +397,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 20345,
+        "favouritesCount": 20357,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 44342,
-        "statusesCount": 197162,
+        "mediaCount": 45217,
+        "statusesCount": 198747,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2093633872936456280"
+          "2099480545550090734"
         ],
         "profile_bio": {
           "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",
@@ -434,35 +434,355 @@
       "card": {
         "binding_values": [
           {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2099073437486514176/OJlKd0P6?format=jpg&name=800x419",
+                "width": 800
+              },
+              "type": "IMAGE"
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 150,
+                "url": "https://pbs.twimg.com/card_img/2099073437486514176/OJlKd0P6?format=jpg&name=280x150",
+                "width": 217
+              },
+              "type": "IMAGE"
+            }
+          },
+          {
             "key": "description",
             "value": {
-              "string_value": "THE Manila Police District (MPD) issued a traffic advisory and road closures for the Chinese New Year celebration on Feb. 17."
+              "string_value": "THE Manila Police District (MPD) issued a traffic advisory and road closures for the Chinese New Year celebration on Feb. 17.",
+              "type": "STRING"
             }
           },
           {
             "key": "domain",
             "value": {
-              "string_value": "www.manilatimes.net"
+              "string_value": "www.manilatimes.net",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 291,
+                "url": "https://pbs.twimg.com/card_img/2099073437486514176/OJlKd0P6?format=jpg&name=420x420_1",
+                "width": 420
+              },
+              "type": "IMAGE"
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2099073437486514176/OJlKd0P6?format=jpg&name=386x202",
+                "width": 386
+              },
+              "type": "IMAGE"
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 830,
+                "url": "https://pbs.twimg.com/card_img/2099073437486514176/OJlKd0P6?format=jpg&name=orig",
+                "width": 1200
+              },
+              "type": "IMAGE"
+            }
+          },
+          {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2099073437486514176/OJlKd0P6?format=jpg&name=386x202",
+                "width": 386
+              },
+              "type": "IMAGE"
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2099073437486514176/OJlKd0P6?format=jpg&name=800x419",
+                "width": 800
+              },
+              "type": "IMAGE"
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 69,
+                "url": "https://pbs.twimg.com/card_img/2099073437486514176/OJlKd0P6?format=jpg&name=100x100",
+                "width": 100
+              },
+              "type": "IMAGE"
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 830,
+                "url": "https://pbs.twimg.com/card_img/2099073437486514176/OJlKd0P6?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              },
+              "type": "IMAGE"
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "height": 830,
+                "url": "https://pbs.twimg.com/card_img/2099073437486514176/OJlKd0P6?format=jpg&name=orig",
+                "width": 1200
+              },
+              "type": "IMAGE"
             }
           },
           {
             "key": "vanity_url",
             "value": {
               "scribe_key": "vanity_url",
-              "string_value": "manilatimes.net"
+              "string_value": "manilatimes.net",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2099073437486514176/OJlKd0P6?format=jpg&name=600x314",
+                "width": 600
+              },
+              "type": "IMAGE"
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 27.51,
+                    "rgb": {
+                      "blue": 34,
+                      "green": 35,
+                      "red": 37
+                    }
+                  },
+                  {
+                    "percentage": 26.06,
+                    "rgb": {
+                      "blue": 112,
+                      "green": 73,
+                      "red": 44
+                    }
+                  },
+                  {
+                    "percentage": 14.24,
+                    "rgb": {
+                      "blue": 38,
+                      "green": 66,
+                      "red": 106
+                    }
+                  },
+                  {
+                    "percentage": 8.23,
+                    "rgb": {
+                      "blue": 209,
+                      "green": 212,
+                      "red": 227
+                    }
+                  },
+                  {
+                    "percentage": 7.55,
+                    "rgb": {
+                      "blue": 203,
+                      "green": 151,
+                      "red": 109
+                    }
+                  }
+                ]
+              },
+              "type": "IMAGE_COLOR"
             }
           },
           {
             "key": "title",
             "value": {
-              "string_value": "​MPD issues road closure notice for Chinese New Year"
+              "string_value": "​MPD issues road closure notice for Chinese New Year",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 27.51,
+                    "rgb": {
+                      "blue": 34,
+                      "green": 35,
+                      "red": 37
+                    }
+                  },
+                  {
+                    "percentage": 26.06,
+                    "rgb": {
+                      "blue": 112,
+                      "green": 73,
+                      "red": 44
+                    }
+                  },
+                  {
+                    "percentage": 14.24,
+                    "rgb": {
+                      "blue": 38,
+                      "green": 66,
+                      "red": 106
+                    }
+                  },
+                  {
+                    "percentage": 8.23,
+                    "rgb": {
+                      "blue": 209,
+                      "green": 212,
+                      "red": 227
+                    }
+                  },
+                  {
+                    "percentage": 7.55,
+                    "rgb": {
+                      "blue": 203,
+                      "green": 151,
+                      "red": 109
+                    }
+                  }
+                ]
+              },
+              "type": "IMAGE_COLOR"
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 830,
+                "url": "https://pbs.twimg.com/card_img/2099073437486514176/OJlKd0P6?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              },
+              "type": "IMAGE"
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2099073437486514176/OJlKd0P6?format=jpg&name=600x314",
+                "width": 600
+              },
+              "type": "IMAGE"
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 27.51,
+                    "rgb": {
+                      "blue": 34,
+                      "green": 35,
+                      "red": 37
+                    }
+                  },
+                  {
+                    "percentage": 26.06,
+                    "rgb": {
+                      "blue": 112,
+                      "green": 73,
+                      "red": 44
+                    }
+                  },
+                  {
+                    "percentage": 14.24,
+                    "rgb": {
+                      "blue": 38,
+                      "green": 66,
+                      "red": 106
+                    }
+                  },
+                  {
+                    "percentage": 8.23,
+                    "rgb": {
+                      "blue": 209,
+                      "green": 212,
+                      "red": 227
+                    }
+                  },
+                  {
+                    "percentage": 7.55,
+                    "rgb": {
+                      "blue": 203,
+                      "green": 151,
+                      "red": 109
+                    }
+                  }
+                ]
+              },
+              "type": "IMAGE_COLOR"
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "height": 830,
+                "url": "https://pbs.twimg.com/card_img/2099073437486514176/OJlKd0P6?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              },
+              "type": "IMAGE"
             }
           },
           {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
-              "string_value": "https://t.co/Nf95INM0sn"
+              "string_value": "https://t.co/Nf95INM0sn",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "height": 830,
+                "url": "https://pbs.twimg.com/card_img/2099073437486514176/OJlKd0P6?format=jpg&name=orig",
+                "width": 1200
+              },
+              "type": "IMAGE"
             }
           }
         ],
@@ -472,8 +792,8 @@
               "name": "production"
             },
             "device": {
-              "name": "iPhone",
-              "version": "13"
+              "name": "Swift",
+              "version": "12"
             }
           }
         },
@@ -494,6 +814,196 @@
             "url": "https://t.co/Nf95INM0sn"
           }
         ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2022805630134948206",
+      "url": "https://x.com/HirooOnoda_/status/2022805630134948206",
+      "twitterUrl": "https://twitter.com/HirooOnoda_/status/2022805630134948206",
+      "text": "https://t.co/Up7FTXLIbQ",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 12,
+      "likeCount": 31,
+      "quoteCount": 1,
+      "viewCount": 7359,
+      "createdAt": "Sat Feb 14 22:50:18 +0000 2026",
+      "lang": "zxx",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2022805630134948206",
+      "displayTextRange": [
+        0,
+        23
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "HirooOnoda_",
+        "url": "https://x.com/HirooOnoda_",
+        "twitterUrl": "https://twitter.com/HirooOnoda_",
+        "id": "2022799222374813696",
+        "name": "小野田 寛郎",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2022799355489439745/LztqEM_o_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2022799222374813696/1771108234",
+        "description": "",
+        "location": "",
+        "followers": 23,
+        "following": 0,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sat Feb 14 22:24:59 +0000 2026",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 0,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 0,
+        "statusesCount": 3,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2022805630134948206"
+        ],
+        "profile_bio": {
+          "description": "The Japanese Soldier Who Kept Fighting 29 Years After the War.",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/i/article/2022…",
+            "expanded_url": "http://x.com/i/article/2022802067757371394",
+            "indices": [
+              0,
+              23
+            ],
+            "url": "https://t.co/Up7FTXLIbQ"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "article": {
+        "title": "The Soldier Who Wouldn't Quit: What Hiroo Onoda Can Teach Us About Crypto",
+        "preview_text": "A Story of Unbelievable Dedication\nThink about hiding in a jungle for almost 30 years while a war that ended decades ago went on. That sounds insane, doesn't it? But Hiroo Onoda, a Japanese soldier,",
+        "cover_media_img_url": "https://pbs.twimg.com/media/HBJxwYvXgAAsTVZ.jpg"
+      }
+    },
+    {
+      "type": "tweet",
+      "id": "2022816918638596316",
+      "url": "https://x.com/LAPDCentral/status/2022816918638596316",
+      "twitterUrl": "https://twitter.com/LAPDCentral/status/2022816918638596316",
+      "text": "⚠️Traffic Advisory⚠️ \n\nMultiple streets are impacted in the Civic Center part of DTLA due to a permitted demonstration and march.  \n\nExpect major delays in the area of the following streets: \n\nMain St between 2nd and Aliso \nSpring St between. 2nd and Cesar Chavez \nBroadway between 2nd and Cesar Chavez \nGrand between 2nd and Cesar Chavez \nOlive between 2nd and Cesar Chavez \nFlower between 2nd and Cesar Chavez \nFigueroa between 2nd and Cesar Chavez",
+      "source": "Twitter for iPhone",
+      "retweetCount": 4,
+      "replyCount": 8,
+      "likeCount": 21,
+      "quoteCount": 2,
+      "viewCount": 2947,
+      "createdAt": "Sat Feb 14 23:35:10 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 3,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2022816918638596316",
+      "displayTextRange": [
+        0,
+        273
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "LAPDCentral",
+        "url": "https://x.com/LAPDCentral",
+        "twitterUrl": "https://twitter.com/LAPDCentral",
+        "id": "1608131025774993408",
+        "name": "LAPD Central Division",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1810395052855926784/R0pSVKzE_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1608131025774993408/1705187163",
+        "description": "",
+        "location": "251 E 6th Street Los Angeles",
+        "followers": 10793,
+        "following": 128,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Dec 28 16:02:18 +0000 2022",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 746,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 486,
+        "statusesCount": 3132,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Offical Account of LAPD Central Division. Serving Downtown Los Angeles. *This account is not monitored 24/7*",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "lapdonline.org",
+                  "expanded_url": "http://lapdonline.org",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/W4L7E504v2"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,

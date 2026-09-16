@@ -5,7 +5,7 @@
     "window_start": "2026-03-20T16:00:00+08:00",
     "window_end": "2026-03-20T18:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 7,
+    "tweet_count": 9,
     "slices": [
       {
         "start": "2026-03-20T16:00:00+08:00",
@@ -60,8 +60,8 @@
         "start": "2026-03-20T16:35:00+08:00",
         "end": "2026-03-20T16:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-20T16:40:00+08:00",
@@ -95,8 +95,8 @@
         "start": "2026-03-20T17:00:00+08:00",
         "end": "2026-03-20T17:05:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-03-20T17:05:00+08:00",
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +232,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412024,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -318,7 +318,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967068,
+        "followers": 3966562,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -334,8 +334,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888279,
+        "mediaCount": 61737,
+        "statusesCount": 888713,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -420,7 +420,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197306,
+        "followers": 1197829,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -436,8 +436,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219320,
-        "statusesCount": 942044,
+        "mediaCount": 219510,
+        "statusesCount": 943052,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -480,6 +480,26 @@
       "card": {
         "binding_values": [
           {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2099258209517346817/I5jJiypg?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 150,
+                "url": "https://pbs.twimg.com/card_img/2099258209517346817/I5jJiypg?format=jpg&name=280x150",
+                "width": 225
+              }
+            }
+          },
+          {
             "key": "description",
             "value": {
               "string_value": "A Chinese naval vessel pointed its fire control radar at a Philippine Navy (PN) frigate during a patrol near Sabina Shoal in what the Armed Forces of the..."
@@ -489,6 +509,36 @@
             "key": "domain",
             "value": {
               "string_value": "mb.com.ph"
+            }
+          },
+          {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 320,
+                "url": "https://pbs.twimg.com/card_img/2099258209517346817/I5jJiypg?format=jpg&name=800x320_1",
+                "width": 481
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2099258209517346817/I5jJiypg?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 799,
+                "url": "https://pbs.twimg.com/card_img/2099258209517346817/I5jJiypg?format=jpg&name=orig",
+                "width": 1200
+              }
             }
           },
           {
@@ -502,10 +552,119 @@
             }
           },
           {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2099258209517346817/I5jJiypg?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2099258209517346817/I5jJiypg?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 67,
+                "url": "https://pbs.twimg.com/card_img/2099258209517346817/I5jJiypg?format=jpg&name=100x100",
+                "width": 100
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 799,
+                "url": "https://pbs.twimg.com/card_img/2099258209517346817/I5jJiypg?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "height": 799,
+                "url": "https://pbs.twimg.com/card_img/2099258209517346817/I5jJiypg?format=jpg&name=orig",
+                "width": 1200
+              }
+            }
+          },
+          {
             "key": "vanity_url",
             "value": {
               "scribe_key": "vanity_url",
               "string_value": "mb.com.ph"
+            }
+          },
+          {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2099258209517346817/I5jJiypg?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 40.81,
+                    "rgb": {
+                      "blue": 204,
+                      "green": 203,
+                      "red": 177
+                    }
+                  },
+                  {
+                    "percentage": 25.23,
+                    "rgb": {
+                      "blue": 48,
+                      "green": 54,
+                      "red": 42
+                    }
+                  },
+                  {
+                    "percentage": 18.44,
+                    "rgb": {
+                      "blue": 175,
+                      "green": 147,
+                      "red": 83
+                    }
+                  },
+                  {
+                    "percentage": 14.57,
+                    "rgb": {
+                      "blue": 115,
+                      "green": 133,
+                      "red": 120
+                    }
+                  },
+                  {
+                    "percentage": 4.53,
+                    "rgb": {
+                      "blue": 128,
+                      "green": 132,
+                      "red": 101
+                    }
+                  }
+                ]
+              }
             }
           },
           {
@@ -515,10 +674,148 @@
             }
           },
           {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 40.81,
+                    "rgb": {
+                      "blue": 204,
+                      "green": 203,
+                      "red": 177
+                    }
+                  },
+                  {
+                    "percentage": 25.23,
+                    "rgb": {
+                      "blue": 48,
+                      "green": 54,
+                      "red": 42
+                    }
+                  },
+                  {
+                    "percentage": 18.44,
+                    "rgb": {
+                      "blue": 175,
+                      "green": 147,
+                      "red": 83
+                    }
+                  },
+                  {
+                    "percentage": 14.57,
+                    "rgb": {
+                      "blue": 115,
+                      "green": 133,
+                      "red": 120
+                    }
+                  },
+                  {
+                    "percentage": 4.53,
+                    "rgb": {
+                      "blue": 128,
+                      "green": 132,
+                      "red": 101
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 799,
+                "url": "https://pbs.twimg.com/card_img/2099258209517346817/I5jJiypg?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2099258209517346817/I5jJiypg?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 40.81,
+                    "rgb": {
+                      "blue": 204,
+                      "green": 203,
+                      "red": 177
+                    }
+                  },
+                  {
+                    "percentage": 25.23,
+                    "rgb": {
+                      "blue": 48,
+                      "green": 54,
+                      "red": 42
+                    }
+                  },
+                  {
+                    "percentage": 18.44,
+                    "rgb": {
+                      "blue": 175,
+                      "green": 147,
+                      "red": 83
+                    }
+                  },
+                  {
+                    "percentage": 14.57,
+                    "rgb": {
+                      "blue": 115,
+                      "green": 133,
+                      "red": 120
+                    }
+                  },
+                  {
+                    "percentage": 4.53,
+                    "rgb": {
+                      "blue": 128,
+                      "green": 132,
+                      "red": 101
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "height": 799,
+                "url": "https://pbs.twimg.com/card_img/2099258209517346817/I5jJiypg?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
               "string_value": "https://t.co/TMsjkl4JBK"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "height": 799,
+                "url": "https://pbs.twimg.com/card_img/2099258209517346817/I5jJiypg?format=jpg&name=orig",
+                "width": 1200
+              }
             }
           }
         ],
@@ -621,7 +918,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1197306,
+                "followers": 1197829,
                 "following": 141
               },
               "relationship_perspectives": {
@@ -639,8 +936,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 219320,
-                "tweets": 942044
+                "media_tweets": 219510,
+                "tweets": 943052
               },
               "verification": {
                 "is_blue_verified": true,
@@ -711,7 +1008,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -727,8 +1024,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412024,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -777,6 +1074,295 @@
     },
     {
       "type": "tweet",
+      "id": "2034911794628575676",
+      "url": "https://x.com/TTheBattlefield/status/2034911794628575676",
+      "twitterUrl": "https://twitter.com/TTheBattlefield/status/2034911794628575676",
+      "text": "🇺🇸 What could be America's strategic goal in the ongoing war with Iran?!—-👇 \n\n❗️❗️ ❗️ The US, in the context of the war with Iran, will most likely establish control over the islands marked in red on this map in the near future, against the backdrop of a ground-landing operation —- 👇 \n\n🔹 The reason - to protect the security of ship transit in Hormuz. If individual European states protest against this American move, they will respond in this way - you offered to provide security and you showed no desire, so be grateful that Washington took the initiative against the backdrop of your inaction… .\n\n🎯 The real goal is a strategic victory over China —- placing permanent military bases on these islands means having the leverage to influence oil supplies and its price.  The oil era is gradually coming to an end, but for another 20-30 years it will be a very important factor in military-strategic terms, including in the context of the global confrontation with China. \n\n▪️ The seizure of these islands means complete control over the Strait of Hormuz, which for China is second only to the Strait of Malacca in importance, although in some respects it is even more important than it…\n\n🔹 In short, no matter how many analytical articles are published and loudly declared by pro-Russians, pro-Chinese, leftists, pacifists, Trump’s personal enemies, or other authoritative publications that he supposedly does not have a plan for the current war, did not expect Iran to resist, bomb the energy infrastructure of the Persian Gulf countries, this assessment is erroneous and devoid of logic….  They had thought and worked on everything, because this war is being waged according to a scenario planned directly by military-intelligence agencies, within the framework of which the American armed forces, together with Israel, have been systematically bombing and destroying Iranian priority targets for 20 days without loss - during this time, only 1 American combat aircraft has been lightly damaged by the Iranians, while thousands of targets of the Mullahs' regime have been destroyed.... It is likely that it is very convenient for Trump to adjust the function of the so-called source of terror from Iran - under the pretext and under the cover of the threat coming from it, he will carry out a \"justifiable\" occupation of one of the most strategically important places in the world.\n\n ▪️ From a military point of view, these islands are relatively easy to capture, but relatively difficult to maintain, and may involve great sacrifices by American (not Russian) standards, but their strategic importance is so great that the losses will be compensated by great benefits… \n\n🔹 The alternative of not capturing these islands and not taking control of Hormuz is a much more risky and dangerous precondition for a potential war with a strengthened China - around Taiwan and the Philippines, which, to put it mildly, will end with much greater casualties and material losses for Washington in any scenario. \n\n🔹 By taking control of Hormuz, the US will practically “go to the throat” of its main rival, China, with the entire composition of the BRICS member states…\n\nSee the latest updates with  us:@TTheBattlefield",
+      "source": "Twitter for iPhone",
+      "retweetCount": 7,
+      "replyCount": 6,
+      "likeCount": 25,
+      "quoteCount": 2,
+      "viewCount": 3074,
+      "createdAt": "Fri Mar 20 08:35:53 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 4,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2034911794628575676",
+      "displayTextRange": [
+        0,
+        279
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "TTheBattlefield",
+        "url": "https://x.com/TTheBattlefield",
+        "twitterUrl": "https://twitter.com/TTheBattlefield",
+        "id": "1984987862903992320",
+        "name": "The Battlefield",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2008512710003081216/f4T7nFgR_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1984987862903992320/1767704274",
+        "description": "",
+        "location": "Global Frontline",
+        "followers": 21347,
+        "following": 970,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sun Nov 02 14:16:24 +0000 2025",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 40,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 5065,
+        "statusesCount": 5240,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Bridging Kinetic War & Cyber Threats. 🌐\n\nDaily Intel on: 🔻 War & Geopolitics 🔻 InfoSec / Cybersecurity 🔻 Global Cyber News",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/fhZ8N9WB9G",
+            "expanded_url": "https://x.com/TTheBattlefield/status/2034911794628575676/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 65,
+                    "w": 65,
+                    "x": 67,
+                    "y": 562
+                  },
+                  {
+                    "h": 114,
+                    "w": 114,
+                    "x": 231,
+                    "y": 269
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 65,
+                    "w": 65,
+                    "x": 67,
+                    "y": 562
+                  },
+                  {
+                    "h": 114,
+                    "w": 114,
+                    "x": 231,
+                    "y": 269
+                  }
+                ]
+              }
+            },
+            "id_str": "2034911790203617280",
+            "indices": [
+              280,
+              303
+            ],
+            "media_key": "3_2034911790203617280",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARw9dX3kV0AACgACHD11fuwWwbwAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHD11feRXQAAKAAIcPXV+7BbBvAAA",
+                "media_key": "3_2034911790203617280"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HD11feRXQAAYvuK.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 358,
+                  "w": 640,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 640,
+                  "w": 640,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 730,
+                  "w": 640,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 800,
+                  "w": 400,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 800,
+                  "w": 640,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 800,
+              "width": 640
+            },
+            "sizes": {
+              "large": {
+                "h": 800,
+                "w": 640
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/fhZ8N9WB9G"
+          },
+          {
+            "display_url": "pic.x.com/fhZ8N9WB9G",
+            "expanded_url": "https://x.com/TTheBattlefield/status/2034911794628575676/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 65,
+                    "w": 65,
+                    "x": 908,
+                    "y": 342
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 65,
+                    "w": 65,
+                    "x": 908,
+                    "y": 342
+                  }
+                ]
+              }
+            },
+            "id_str": "2034911791596113920",
+            "indices": [
+              280,
+              303
+            ],
+            "media_key": "3_2034911791596113920",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARw9dX43VxAACgACHD11fuwWwbwAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHD11fjdXEAAKAAIcPXV+7BbBvAAA",
+                "media_key": "3_2034911791596113920"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HD11fjdXEAAPu2D.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 649,
+                  "w": 1159,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 649,
+                  "w": 649,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 649,
+                  "w": 569,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 649,
+                  "w": 325,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 649,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 649,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 649,
+                "w": 1280
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/fhZ8N9WB9G"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "1984987862903992320",
+            "indices": [
+              3195,
+              3211
+            ],
+            "name": "The Battlefield",
+            "screen_name": "TTheBattlefield"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2034914591927656902",
       "url": "https://x.com/MakatiTraffic/status/2034914591927656902",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2034914591927656902",
@@ -813,7 +1399,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -829,8 +1415,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412024,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -915,7 +1501,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -931,8 +1517,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412024,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -981,6 +1567,193 @@
     },
     {
       "type": "tweet",
+      "id": "2034917989288390995",
+      "url": "https://x.com/PWCPolice/status/2034917989288390995",
+      "twitterUrl": "https://twitter.com/PWCPolice/status/2034917989288390995",
+      "text": "*TRAFFIC ADVISORY: Event | Woodbridge; motorists can expect delays today, March 20, along Smoketown Rd in the area of Gar-Field HS from 7:00am until approx. noon due to an event. Officers will be on site. Alternate routes encouraged. Use caution and follow police direction. https://t.co/TWoVhLJNUK",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 1,
+      "likeCount": 7,
+      "quoteCount": 0,
+      "viewCount": 1733,
+      "createdAt": "Fri Mar 20 09:00:30 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2034917989288390995",
+      "displayTextRange": [
+        0,
+        274
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "PWCPolice",
+        "url": "https://x.com/PWCPolice",
+        "twitterUrl": "https://twitter.com/PWCPolice",
+        "id": "38184967",
+        "name": "Prince William County Police Department",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/2059636697554472961/5I2HHDIW_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/38184967/1789392482",
+        "description": "",
+        "location": "Prince William County, VA",
+        "followers": 75749,
+        "following": 754,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Wed May 06 14:11:54 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5263,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 18207,
+        "statusesCount": 29389,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2097040321628541112"
+        ],
+        "profile_bio": {
+          "description": "Official X of the Prince William County Police Department, feed is not monitored for immediate assistance.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/pwcpolice",
+                  "expanded_url": "https://linktr.ee/pwcpolice",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/DLEvFtlApc"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/TWoVhLJNUK",
+            "expanded_url": "https://x.com/PWCPolice/status/2034917989288390995/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 152,
+                    "w": 152,
+                    "x": 12,
+                    "y": 44
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 152,
+                    "w": 152,
+                    "x": 12,
+                    "y": 44
+                  }
+                ]
+              }
+            },
+            "id_str": "2031723263857217536",
+            "indices": [
+              275,
+              298
+            ],
+            "media_key": "3_2031723263857217536",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwyIYtAG1AACgACHD17ITqWMVMAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHDIhi0AbUAAKAAIcPXshOpYxUwAA",
+                "media_key": "3_2031723263857217536"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HDIhi0AbUAAz37b.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 288,
+                  "w": 514,
+                  "x": 65,
+                  "y": 0
+                },
+                {
+                  "h": 288,
+                  "w": 288,
+                  "x": 178,
+                  "y": 0
+                },
+                {
+                  "h": 288,
+                  "w": 253,
+                  "x": 196,
+                  "y": 0
+                },
+                {
+                  "h": 288,
+                  "w": 144,
+                  "x": 250,
+                  "y": 0
+                },
+                {
+                  "h": 288,
+                  "w": 864,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 288,
+              "width": 864
+            },
+            "sizes": {
+              "large": {
+                "h": 288,
+                "w": 864
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/TWoVhLJNUK"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2034921844864950716",
       "url": "https://x.com/QCGov/status/2034921844864950716",
       "twitterUrl": "https://twitter.com/QCGov/status/2034921844864950716",
@@ -1017,7 +1790,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1224983077937541120/1775013519",
         "description": "",
         "location": "Quezon City, Philippines",
-        "followers": 116296,
+        "followers": 116435,
         "following": 39,
         "status": "",
         "canDm": true,
@@ -1033,8 +1806,8 @@
         "favouritesCount": 910,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 30266,
-        "statusesCount": 42531,
+        "mediaCount": 30354,
+        "statusesCount": 42619,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,

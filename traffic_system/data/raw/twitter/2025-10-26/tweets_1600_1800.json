@@ -5,7 +5,7 @@
     "window_start": "2025-10-26T16:00:00+08:00",
     "window_end": "2025-10-26T18:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 7,
+    "tweet_count": 10,
     "slices": [
       {
         "start": "2025-10-26T16:00:00+08:00",
@@ -81,8 +81,8 @@
         "start": "2025-10-26T16:50:00+08:00",
         "end": "2025-10-26T16:55:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-26T16:55:00+08:00",
@@ -144,15 +144,15 @@
         "start": "2025-10-26T17:35:00+08:00",
         "end": "2025-10-26T17:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-26T17:40:00+08:00",
         "end": "2025-10-26T17:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-26T17:45:00+08:00",
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437285,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +232,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411324,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -291,7 +291,7 @@
       "replyCount": 0,
       "likeCount": 2,
       "quoteCount": 0,
-      "viewCount": 1212,
+      "viewCount": 1214,
       "createdAt": "Sun Oct 26 08:33:19 +0000 2025",
       "lang": "en",
       "bookmarkCount": 0,
@@ -318,7 +318,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2992779308/1780367323",
         "description": "",
         "location": "",
-        "followers": 98352,
+        "followers": 98330,
         "following": 150,
         "status": "",
         "canDm": true,
@@ -334,8 +334,8 @@
         "favouritesCount": 84,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 11027,
-        "statusesCount": 95333,
+        "mediaCount": 11037,
+        "statusesCount": 95356,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -369,11 +369,9 @@
           {
             "display_url": "pic.x.com/VhtGOpH0bx",
             "expanded_url": "https://x.com/maynilad/status/1982364909368385717/photo/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": [
@@ -394,6 +392,28 @@
                     "w": 222,
                     "x": 221,
                     "y": 789
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 153,
+                    "w": 153,
+                    "x": 617,
+                    "y": 617
+                  },
+                  {
+                    "h": 232,
+                    "w": 232,
+                    "x": 120,
+                    "y": 754
+                  },
+                  {
+                    "h": 213,
+                    "w": 213,
+                    "x": 212,
+                    "y": 759
                   }
                 ]
               },
@@ -418,6 +438,28 @@
                     "y": 789
                   }
                 ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 86,
+                    "w": 86,
+                    "x": 350,
+                    "y": 350
+                  },
+                  {
+                    "h": 131,
+                    "w": 131,
+                    "x": 68,
+                    "y": 427
+                  },
+                  {
+                    "h": 121,
+                    "w": 121,
+                    "x": 120,
+                    "y": 430
+                  }
+                ]
               }
             },
             "id_str": "1982364859158134784",
@@ -427,10 +469,7 @@
             ],
             "media_key": "3_1982364859158134784",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARuCxlYdVoAACgACG4LGYc4aILUAAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABG4LGVh1WgAAKAAIbgsZhzhogtQAA",
                 "media_key": "3_1982364859158134784"
               }
             },
@@ -474,7 +513,23 @@
             "sizes": {
               "large": {
                 "h": 1247,
+                "resize": "fit",
                 "w": 1247
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "photo",
@@ -492,8 +547,6 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -534,7 +587,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437285,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -550,8 +603,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411324,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -594,8 +647,6 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -636,7 +687,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437285,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -652,8 +703,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411324,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -702,6 +753,243 @@
     },
     {
       "type": "tweet",
+      "id": "1982369706381328485",
+      "url": "https://x.com/17thloveletter/status/1982369706381328485",
+      "twitterUrl": "https://twitter.com/17thloveletter/status/1982369706381328485",
+      "text": "🎱🛹 SK8ER CLUB PHILIPPINES STAMP RALLY PRIZES\n\nTake a look at our exciting stamp rally prizes, complete your tasks, collect all the stamps, and win exclusive goodies! \n\nOnly a few slots remaining! \n🚦 Register Here: https://t.co/7CZF6pkgBR\n\n#MeluncurSK8ER #SK8ERCLUBPH\n#디에잇 #THE8 #徐明浩",
+      "source": "Twitter for iPhone",
+      "retweetCount": 11,
+      "replyCount": 0,
+      "likeCount": 49,
+      "quoteCount": 3,
+      "viewCount": 2850,
+      "createdAt": "Sun Oct 26 08:52:23 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 7,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1982369706381328485",
+      "displayTextRange": [
+        0,
+        271
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "17thloveletter",
+        "url": "https://x.com/17thloveletter",
+        "twitterUrl": "https://twitter.com/17thloveletter",
+        "id": "1831708208660144128",
+        "name": "M9MENTUM: MINGYU BIRTHDAY EVENT",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2029186112271663104/nacLGl-S_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1831708208660144128/1772630809",
+        "description": "",
+        "location": "",
+        "followers": 1544,
+        "following": 23,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Sep 05 14:57:37 +0000 2024",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 939,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 286,
+        "statusesCount": 1286,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "instagram.com/17thloveletter…",
+                  "expanded_url": "https://www.instagram.com/17thloveletter.svt?igsh=a2I1ZDZtZnNnODB4&utm_source=qr",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/BHMePwQPGG"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/7h1RWQCWtF",
+            "expanded_url": "https://x.com/17thloveletter/status/1982369706381328485/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 160,
+                    "w": 160,
+                    "x": 96,
+                    "y": 1136
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 160,
+                    "w": 160,
+                    "x": 96,
+                    "y": 1136
+                  }
+                ]
+              }
+            },
+            "id_str": "1982369696969089024",
+            "indices": [
+              272,
+              295
+            ],
+            "media_key": "3_1982369696969089024",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARuCyryBV2AACgACG4LKvrJawGUAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG4LKvIFXYAAKAAIbgsq+slrAZQAA",
+                "media_key": "3_1982369696969089024"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G4LKvIFXYAAJhfH.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 811,
+                  "w": 1448,
+                  "x": 0,
+                  "y": 363
+                },
+                {
+                  "h": 1448,
+                  "w": 1448,
+                  "x": 0,
+                  "y": 44
+                },
+                {
+                  "h": 1651,
+                  "w": 1448,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1024,
+                  "x": 424,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1448,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 1448
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 1448
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/7h1RWQCWtF"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              239,
+              253
+            ],
+            "text": "MeluncurSK8ER"
+          },
+          {
+            "indices": [
+              254,
+              266
+            ],
+            "text": "SK8ERCLUBPH"
+          },
+          {
+            "indices": [
+              267,
+              271
+            ],
+            "text": "디에잇"
+          },
+          {
+            "indices": [
+              272,
+              277
+            ],
+            "text": "THE8"
+          },
+          {
+            "indices": [
+              278,
+              282
+            ],
+            "text": "徐明浩"
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [
+          {
+            "display_url": "forms.gle/ddKda6ustD9Tji…",
+            "expanded_url": "https://forms.gle/ddKda6ustD9TjiLv9",
+            "indices": [
+              214,
+              237
+            ],
+            "url": "https://t.co/7CZF6pkgBR"
+          }
+        ],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1982371629960433776",
       "url": "https://x.com/MakatiTraffic/status/1982371629960433776",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/1982371629960433776",
@@ -738,7 +1026,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437285,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -754,8 +1042,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411324,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -840,7 +1128,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/399923595/1753094677",
         "description": "",
         "location": "Hyderabad",
-        "followers": 293233,
+        "followers": 293326,
         "following": 57,
         "status": "",
         "canDm": true,
@@ -853,11 +1141,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 15228,
+        "favouritesCount": 15248,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 14486,
-        "statusesCount": 87985,
+        "mediaCount": 14558,
+        "statusesCount": 88138,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1008,6 +1296,573 @@
     },
     {
       "type": "tweet",
+      "id": "1982380711920185433",
+      "url": "https://x.com/MagnifyClub/status/1982380711920185433",
+      "twitterUrl": "https://twitter.com/MagnifyClub/status/1982380711920185433",
+      "text": "One of our WhatsApp community members just saved 26,500 KrisFlyer miles by booking Philippines business class for his April travel BEFORE the November 1st devaluation.\n\nSmart move. 4 days left to do the same.\n\nSoon, we're breaking down exactly which routes you should book now vs wait for Singapore Airlines KrisFlyer devaluation.\n\nSingapore, Bali, Manila - we'll tell you what to do with each.\n\nNot in our WhatsApp community yet? Join here: https://t.co/uUPFBsKKep\n\nThis is where members share wins like this, get early alerts, and help each other maximize points.\n\nStay tuned for the full breakdown 👀",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 1,
+      "likeCount": 9,
+      "quoteCount": 0,
+      "viewCount": 3076,
+      "createdAt": "Sun Oct 26 09:36:07 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 7,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1982380711920185433",
+      "displayTextRange": [
+        0,
+        279
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "MagnifyClub",
+        "url": "https://x.com/MagnifyClub",
+        "twitterUrl": "https://twitter.com/MagnifyClub",
+        "id": "1712117159537917952",
+        "name": "Magnify | Travel with Mag Miles",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2011124536193011712/1WiUTxZE_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1712117159537917952/1719324487",
+        "description": "",
+        "location": "",
+        "followers": 7958,
+        "following": 78,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Wed Oct 11 14:45:30 +0000 2023",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1672,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1152,
+        "statusesCount": 4670,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2077733438325465542"
+        ],
+        "profile_bio": {
+          "description": "Helping you fly business class without the business class price. Points, miles & travel rewards for India 🇮🇳✈️",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/magnifyclub",
+                  "expanded_url": "https://linktr.ee/magnifyclub",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/yRQEAJ6SHN"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/DC8bNVxqoR",
+            "expanded_url": "https://x.com/MagnifyClub/status/1982380711920185433/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 184,
+                    "w": 184,
+                    "x": 50,
+                    "y": 1496
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 184,
+                    "w": 184,
+                    "x": 50,
+                    "y": 1496
+                  }
+                ]
+              }
+            },
+            "id_str": "1982380703737098240",
+            "indices": [
+              280,
+              303
+            ],
+            "media_key": "3_1982380703737098240",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARuC1L831rAACgACG4LUwR+WsFkAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG4LUvzfWsAAKAAIbgtTBH5awWQAA",
+                "media_key": "3_1982380703737098240"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G4LUvzfWsAAzrkX.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 614,
+                  "w": 1097,
+                  "x": 0,
+                  "y": 870
+                },
+                {
+                  "h": 1097,
+                  "w": 1097,
+                  "x": 0,
+                  "y": 629
+                },
+                {
+                  "h": 1251,
+                  "w": 1097,
+                  "x": 0,
+                  "y": 552
+                },
+                {
+                  "h": 2048,
+                  "w": 1024,
+                  "x": 51,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1097,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 1097
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 1097
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/DC8bNVxqoR"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [
+          {
+            "display_url": "blog.magnify.club/join/wa-commun…",
+            "expanded_url": "http://blog.magnify.club/join/wa-community",
+            "indices": [
+              442,
+              465
+            ],
+            "url": "https://t.co/uUPFBsKKep"
+          }
+        ],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1982382038683615550",
+      "url": "https://x.com/KothadiyaSpeaks/status/1982382038683615550",
+      "twitterUrl": "https://twitter.com/KothadiyaSpeaks/status/1982382038683615550",
+      "text": ". @dmgbnagar Delhi Govt has announced the school holiday tomorrow. There is a traffic advisory and warning of massive jam due to Chatth Puja rush. Will you wake up and declare tomorrow a holiday for schools to spare the kids from massive inconvenience ?",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 220,
+      "createdAt": "Sun Oct 26 09:41:23 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1982382038683615550",
+      "displayTextRange": [
+        0,
+        253
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "KothadiyaSpeaks",
+        "url": "https://x.com/KothadiyaSpeaks",
+        "twitterUrl": "https://twitter.com/KothadiyaSpeaks",
+        "id": "1199790578394787840",
+        "name": "Prittam Kothadiya 🇮🇳",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1848029184016191488/xOdAL1IY_normal.jpg",
+        "coverPicture": "",
+        "description": "",
+        "location": "New Delhi, India & Ghaziabad",
+        "followers": 15076,
+        "following": 12152,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Wed Nov 27 20:42:29 +0000 2019",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 182093,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 9420,
+        "statusesCount": 194820,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099107040865972232"
+        ],
+        "profile_bio": {
+          "description": "Partner, SSK Advocates & Solicitors, New Delhi.\n\n#INDIAFIRST.....!!!  Not a blind follower of any leader. Believe in facts and logic. RTs not endorsement.",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    49,
+                    60
+                  ],
+                  "text": "INDIAFIRST"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "ssklaw.in",
+                  "expanded_url": "https://ssklaw.in/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/MDz79br8P0"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "874516907256197120",
+            "indices": [
+              2,
+              12
+            ],
+            "name": "DM NOIDA Gautam Buddha Nagar",
+            "screen_name": "dmgbnagar"
+          }
+        ]
+      },
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "1981968751676567890",
+        "url": "https://x.com/infokhabrimedia/status/1981968751676567890",
+        "twitterUrl": "https://twitter.com/infokhabrimedia/status/1981968751676567890",
+        "text": "Traffic Alert: छठ पूजा वाले दिन नोएडा-ग्रेटर नोएडा में लगेगा जबरदस्त जाम, ऑफिस जाने वाले 27-28 अक्टूबर की एडवाइजरी पढ़िए\nछठ पर्व के मद्देनजर नोएडा-ग्रेटर नोएडा (Noida-Greater Noida) में भारी भीड़ और संभावित जाम की स्थिति से निपटने के लिए गौतमबुद्ध नगर पुलिस कमिश्नरेट ने दो दिनों की विशेष ट्रैफिक एडवाइजरी (Traffic Advisory) जारी की है। 27 और 28 अक्टूबर को सूर्य उपासना के इस महापर्व के दौरान शहर के प्रमुख घाटों पर लाखों श्रद्धालु पहुंचेंगे। ऐसे में आमजन की सुविधा और सुरक्षा सुनिश्चित करने के लिए ट्रैफिक डायवर्जन (Traffic Diversion) लागू किया गया है। पढ़िए पूरी खबर…\n\n#Khabrimedia\n#GreaterNoida #DelhiNCR\n#ChhathPuja #chhathPujautsav\n#trafficadvisory\n#TrafficDiversion\n@infokhabrimedia\n\n https://t.co/pbcuvXReQR",
+        "source": "Twitter for iPhone",
+        "retweetCount": 3,
+        "replyCount": 0,
+        "likeCount": 3,
+        "quoteCount": 1,
+        "viewCount": 497,
+        "createdAt": "Sat Oct 25 06:19:08 +0000 2025",
+        "lang": "hi",
+        "bookmarkCount": 0,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "1981968751676567890",
+        "displayTextRange": [
+          0,
+          279
+        ],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {
+          "type": "user",
+          "userName": "infokhabrimedia",
+          "url": "https://x.com/infokhabrimedia",
+          "twitterUrl": "https://twitter.com/infokhabrimedia",
+          "id": "1487337020632428545",
+          "name": "Khabri Media",
+          "isVerified": false,
+          "isBlueVerified": true,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/1487775607098281986/FS9NW82a_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/1487337020632428545/1643552282",
+          "description": "",
+          "location": "",
+          "followers": 694,
+          "following": 744,
+          "status": "",
+          "canDm": true,
+          "canMediaTag": true,
+          "createdAt": "Sat Jan 29 08:09:45 +0000 2022",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 18191,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 4250,
+          "statusesCount": 34838,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [
+            "1965316375951671668"
+          ],
+          "profile_bio": {
+            "description": "तेज़ खबरें, सटीक रिपोर्ट, आपकी आवाज़! 🗣️💯 \nIndia’s Fastest-Growing Digital News Platform✨️\nAds/Collab: 8447209216📞📩",
+            "entities": {
+              "description": {},
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "khabrimedia.com",
+                    "expanded_url": "http://www.khabrimedia.com",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/Mr7uO28Jtb"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {
+          "media": [
+            {
+              "display_url": "pic.x.com/g0Ftoxr95n",
+              "expanded_url": "https://x.com/infokhabrimedia/status/1981968751676567890/photo/1",
+              "ext_master_playlist_only": [],
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "ext_playlists": [],
+              "features": {
+                "large": {
+                  "faces": []
+                },
+                "orig": {
+                  "faces": []
+                }
+              },
+              "id_str": "1981967297355911168",
+              "indices": [
+                280,
+                303
+              ],
+              "media_key": "3_1981967297355911168",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARuBXMGLVxAACgACG4FeFCebMVIAAA==",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAABCgABG4FcwYtXEAAKAAIbgV4UJ5sxUgAA",
+                  "media_key": "3_1981967297355911168"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/media/G4FcwYtXEAA_F5z.jpg",
+              "original_info": {
+                "focus_rects": [
+                  {
+                    "h": 510,
+                    "w": 910,
+                    "x": 0,
+                    "y": 2
+                  },
+                  {
+                    "h": 512,
+                    "w": 512,
+                    "x": 85,
+                    "y": 0
+                  },
+                  {
+                    "h": 512,
+                    "w": 449,
+                    "x": 117,
+                    "y": 0
+                  },
+                  {
+                    "h": 512,
+                    "w": 256,
+                    "x": 213,
+                    "y": 0
+                  },
+                  {
+                    "h": 512,
+                    "w": 910,
+                    "x": 0,
+                    "y": 0
+                  }
+                ],
+                "height": 512,
+                "width": 910
+              },
+              "sizes": {
+                "large": {
+                  "h": 512,
+                  "w": 910
+                }
+              },
+              "type": "photo",
+              "url": "https://t.co/g0Ftoxr95n"
+            }
+          ]
+        },
+        "card": null,
+        "place": {},
+        "entities": {
+          "hashtags": [
+            {
+              "indices": [
+                571,
+                583
+              ],
+              "text": "Khabrimedia"
+            },
+            {
+              "indices": [
+                584,
+                597
+              ],
+              "text": "GreaterNoida"
+            },
+            {
+              "indices": [
+                598,
+                607
+              ],
+              "text": "DelhiNCR"
+            },
+            {
+              "indices": [
+                608,
+                619
+              ],
+              "text": "ChhathPuja"
+            },
+            {
+              "indices": [
+                620,
+                636
+              ],
+              "text": "chhathPujautsav"
+            },
+            {
+              "indices": [
+                637,
+                653
+              ],
+              "text": "trafficadvisory"
+            },
+            {
+              "indices": [
+                654,
+                671
+              ],
+              "text": "TrafficDiversion"
+            }
+          ],
+          "symbols": [],
+          "timestamps": [],
+          "urls": [
+            {
+              "display_url": "khabrimedia.com/traffic-alert-…",
+              "expanded_url": "https://khabrimedia.com/traffic-alert-heavy-traffic-jams-are-expected-in-noida-and-greater-noida-on-chhath-puja-office-goers-should-read-the-advisory-for-october-27-28/",
+              "indices": [
+                691,
+                714
+              ],
+              "url": "https://t.co/pbcuvXReQR"
+            }
+          ],
+          "user_mentions": [
+            {
+              "id_str": "1487337020632428545",
+              "indices": [
+                672,
+                688
+              ],
+              "name": "Khabri Media",
+              "screen_name": "infokhabrimedia"
+            }
+          ]
+        },
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
+        "article": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1982383559110439247",
       "url": "https://x.com/MMDA/status/1982383559110439247",
       "twitterUrl": "https://twitter.com/MMDA/status/1982383559110439247",
@@ -1044,7 +1899,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967158,
+        "followers": 3966708,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -1060,8 +1915,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61677,
-        "statusesCount": 888217,
+        "mediaCount": 61731,
+        "statusesCount": 888688,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,

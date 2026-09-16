@@ -5,7 +5,7 @@
     "window_start": "2026-02-21T12:00:00+08:00",
     "window_end": "2026-02-21T14:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 10,
+    "tweet_count": 12,
     "slices": [
       {
         "start": "2026-02-21T12:00:00+08:00",
@@ -39,8 +39,8 @@
         "start": "2026-02-21T12:20:00+08:00",
         "end": "2026-02-21T12:25:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-21T12:25:00+08:00",
@@ -95,8 +95,8 @@
         "start": "2026-02-21T13:00:00+08:00",
         "end": "2026-02-21T13:05:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-02-21T13:05:00+08:00",
@@ -180,6 +180,116 @@
   "data": [
     {
       "type": "tweet",
+      "id": "2025063874853314984",
+      "url": "https://x.com/TransportGuy/status/2025063874853314984",
+      "twitterUrl": "https://twitter.com/TransportGuy/status/2025063874853314984",
+      "text": "https://t.co/vsSHayRSD5",
+      "source": "Twitter for iPhone",
+      "retweetCount": 10,
+      "replyCount": 22,
+      "likeCount": 71,
+      "quoteCount": 0,
+      "viewCount": 1487,
+      "createdAt": "Sat Feb 21 04:23:46 +0000 2026",
+      "lang": "zxx",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2025063874853314984",
+      "displayTextRange": [
+        0,
+        23
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "TransportGuy",
+        "url": "https://x.com/TransportGuy",
+        "twitterUrl": "https://twitter.com/TransportGuy",
+        "id": "2024854333805010944",
+        "name": "James Deakin",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2026657449453965312/j_4iodtF_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2024854333805010944/1771722791",
+        "description": "",
+        "location": "Philippines ",
+        "followers": 1159,
+        "following": 78,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri Feb 20 14:31:28 +0000 2026",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 417,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 67,
+        "statusesCount": 244,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2033078635792576640"
+        ],
+        "profile_bio": {
+          "description": "Dad of 3. Transport journalist. Road safety & policy advocate. Miss Earth Host. Podcaster. Working toward a better transport experience for all",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "jamesdeakin.ph",
+                  "expanded_url": "https://jamesdeakin.ph",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/BdVDh67sVn"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/i/article/2025…",
+            "expanded_url": "http://x.com/i/article/2025062246792265729",
+            "indices": [
+              0,
+              23
+            ],
+            "url": "https://t.co/vsSHayRSD5"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": {
+        "title": "The Math Isn’t Mathing ",
+        "preview_text": "Why the best people you know want nothing to do with public service — and why we should be terrified by that.\nWe say we want better leaders. So why do we keep making it impossible for them to exist?\n ",
+        "cover_media_img_url": null
+      }
+    },
+    {
+      "type": "tweet",
       "id": "2025074159764865329",
       "url": "https://x.com/CHPscrz/status/2025074159764865329",
       "twitterUrl": "https://twitter.com/CHPscrz/status/2025074159764865329",
@@ -232,8 +342,8 @@
         "favouritesCount": 616,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 1298,
-        "statusesCount": 2580,
+        "mediaCount": 1300,
+        "statusesCount": 2583,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -267,11 +377,9 @@
           {
             "display_url": "pic.x.com/KmbT3mxEAA",
             "expanded_url": "https://x.com/CHPscrz/status/2025074159764865329/photo/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": [
@@ -280,6 +388,16 @@
                     "w": 90,
                     "x": 806,
                     "y": 880
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 52,
+                    "w": 52,
+                    "x": 472,
+                    "y": 515
                   }
                 ]
               },
@@ -292,6 +410,16 @@
                     "y": 880
                   }
                 ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 29,
+                    "w": 29,
+                    "x": 267,
+                    "y": 292
+                  }
+                ]
               }
             },
             "id_str": "2025074126642446339",
@@ -301,10 +429,7 @@
             ],
             "media_key": "3_2025074126642446339",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwagjBaW4ADCgACHBqCOBCbgTEAAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABHBqCMFpbgAMKAAIcGoI4EJuBMQAA",
                 "media_key": "3_2025074126642446339"
               }
             },
@@ -348,7 +473,23 @@
             "sizes": {
               "large": {
                 "h": 1536,
+                "resize": "fit",
                 "w": 2048
+              },
+              "medium": {
+                "h": 900,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 510,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "photo",
@@ -357,11 +498,9 @@
           {
             "display_url": "pic.x.com/KmbT3mxEAA",
             "expanded_url": "https://x.com/CHPscrz/status/2025074159764865329/photo/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": [
@@ -370,6 +509,16 @@
                     "w": 128,
                     "x": 802,
                     "y": 974
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 75,
+                    "w": 75,
+                    "x": 469,
+                    "y": 570
                   }
                 ]
               },
@@ -382,6 +531,16 @@
                     "y": 974
                   }
                 ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 42,
+                    "w": 42,
+                    "x": 266,
+                    "y": 323
+                  }
+                ]
               }
             },
             "id_str": "2025074126642446338",
@@ -391,10 +550,7 @@
             ],
             "media_key": "3_2025074126642446338",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwagjBaW4ACCgACHBqCOBCbgTEAAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABHBqCMFpbgAIKAAIcGoI4EJuBMQAA",
                 "media_key": "3_2025074126642446338"
               }
             },
@@ -438,7 +594,23 @@
             "sizes": {
               "large": {
                 "h": 2048,
+                "resize": "fit",
                 "w": 1536
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 900
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 510
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "photo",
@@ -447,16 +619,20 @@
           {
             "display_url": "pic.x.com/KmbT3mxEAA",
             "expanded_url": "https://x.com/CHPscrz/status/2025074159764865329/photo/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": []
               },
+              "medium": {
+                "faces": []
+              },
               "orig": {
+                "faces": []
+              },
+              "small": {
                 "faces": []
               }
             },
@@ -467,10 +643,7 @@
             ],
             "media_key": "3_2025074126646640642",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwagjBam4ACCgACHBqCOBCbgTEAAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABHBqCMFqbgAIKAAIcGoI4EJuBMQAA",
                 "media_key": "3_2025074126646640642"
               }
             },
@@ -514,7 +687,23 @@
             "sizes": {
               "large": {
                 "h": 1536,
+                "resize": "fit",
                 "w": 2048
+              },
+              "medium": {
+                "h": 900,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 510,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "photo",
@@ -547,12 +736,512 @@
             ],
             "text": "santacruz"
           }
+        ],
+        "media": [
+          {
+            "display_url": "pic.x.com/KmbT3mxEAA",
+            "expanded_url": "https://x.com/CHPscrz/status/2025074159764865329/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 90,
+                    "w": 90,
+                    "x": 806,
+                    "y": 880
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 52,
+                    "w": 52,
+                    "x": 472,
+                    "y": 515
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 90,
+                    "w": 90,
+                    "x": 806,
+                    "y": 880
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 29,
+                    "w": 29,
+                    "x": 267,
+                    "y": 292
+                  }
+                ]
+              }
+            },
+            "id_str": "2025074126642446339",
+            "indices": [
+              216,
+              239
+            ],
+            "media_key": "3_2025074126642446339",
+            "media_results": {
+              "result": {
+                "media_key": "3_2025074126642446339"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HBqCMFpbgAMDoSv.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1147,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 1347,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 768,
+                  "x": 281,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1536,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 1536,
+                "resize": "fit",
+                "w": 2048
+              },
+              "medium": {
+                "h": 900,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 510,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/KmbT3mxEAA"
+          },
+          {
+            "display_url": "pic.x.com/KmbT3mxEAA",
+            "expanded_url": "https://x.com/CHPscrz/status/2025074159764865329/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 128,
+                    "w": 128,
+                    "x": 802,
+                    "y": 974
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 75,
+                    "w": 75,
+                    "x": 469,
+                    "y": 570
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 128,
+                    "w": 128,
+                    "x": 802,
+                    "y": 974
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 42,
+                    "w": 42,
+                    "x": 266,
+                    "y": 323
+                  }
+                ]
+              }
+            },
+            "id_str": "2025074126642446338",
+            "indices": [
+              216,
+              239
+            ],
+            "media_key": "3_2025074126642446338",
+            "media_results": {
+              "result": {
+                "media_key": "3_2025074126642446338"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HBqCMFpbgAI8B63.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 860,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 850
+                },
+                {
+                  "h": 1536,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 512
+                },
+                {
+                  "h": 1751,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 297
+                },
+                {
+                  "h": 2048,
+                  "w": 1024,
+                  "x": 51,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 1536
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "resize": "fit",
+                "w": 1536
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 900
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 510
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/KmbT3mxEAA"
+          },
+          {
+            "display_url": "pic.x.com/KmbT3mxEAA",
+            "expanded_url": "https://x.com/CHPscrz/status/2025074159764865329/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              }
+            },
+            "id_str": "2025074126646640642",
+            "indices": [
+              216,
+              239
+            ],
+            "media_key": "3_2025074126646640642",
+            "media_results": {
+              "result": {
+                "media_key": "3_2025074126646640642"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HBqCMFqbgAIhMhb.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1147,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 389
+                },
+                {
+                  "h": 1536,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 1347,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 768,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1536,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 1536,
+                "resize": "fit",
+                "w": 2048
+              },
+              "medium": {
+                "h": 900,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 510,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/KmbT3mxEAA"
+          }
         ]
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2025073112115806233",
+      "url": "https://x.com/thetribunechd/status/2025073112115806233",
+      "twitterUrl": "https://twitter.com/thetribunechd/status/2025073112115806233",
+      "text": "#AIImpactSummit: Traffic diversions in Delhi amid heavy visitor influx today  https://t.co/LN9p9eBQrG",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 142,
+      "createdAt": "Sat Feb 21 05:00:28 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2025073112115806233",
+      "displayTextRange": [
+        0,
+        101
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "thetribunechd",
+        "url": "https://x.com/thetribunechd",
+        "twitterUrl": "https://twitter.com/thetribunechd",
+        "id": "3046490198",
+        "name": "The Tribune",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/571293278281007104/a9uLp3Ae_normal.jpeg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/3046490198/1774113348",
+        "description": "",
+        "location": "India",
+        "followers": 200907,
+        "following": 465,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Fri Feb 27 12:48:01 +0000 2015",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 382,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 35867,
+        "statusesCount": 469580,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official X handle of The Tribune, North India’s oldest and most trusted newspaper, published from Chandigarh, India",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "tribuneindia.com",
+                  "expanded_url": "http://www.tribuneindia.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/wutcie4xNI"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "In view of the anticipated heavy footfall and increased vehicular movement, traffic regulations will be enforced from 9 am to 8 pm to ensure smooth flow and public safety.",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.tribuneindia.com",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "tribuneindia.com",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "AI Impact Summit: Traffic diversions in Delhi amid heavy visitor influx today - The Tribune",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/LN9p9eBQrG",
+              "type": "STRING"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "Swift",
+              "version": "12"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/LN9p9eBQrG",
+        "user_refs_results": []
+      },
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              0,
+              15
+            ],
+            "text": "AIImpactSummit"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "tribuneindia.com/news/delhi/tra…",
+            "expanded_url": "https://www.tribuneindia.com/news/delhi/traffic-advisory-issued-in-delhi-amid-ai-impact-summit-2026-at-bharat-mandapam/",
+            "indices": [
+              78,
+              101
+            ],
+            "url": "https://t.co/LN9p9eBQrG"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
       "article": null
     },
     {
@@ -593,7 +1282,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437251,
+        "followers": 1437176,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -609,8 +1298,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412011,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -695,7 +1384,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2820540152/1779931283",
         "description": "",
         "location": "Makati, PH ",
-        "followers": 2003,
+        "followers": 2012,
         "following": 294,
         "status": "",
         "canDm": false,
@@ -711,8 +1400,8 @@
         "favouritesCount": 20,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 83828,
-        "statusesCount": 152488,
+        "mediaCount": 84770,
+        "statusesCount": 153460,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -930,7 +1619,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437252,
+        "followers": 1437176,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -946,8 +1635,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412011,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1032,8 +1721,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/182753528/1771407791",
         "description": "",
         "location": "MS, BLF, Oxytoxin",
-        "followers": 1909,
-        "following": 388,
+        "followers": 1923,
+        "following": 393,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -1045,11 +1734,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 41516,
+        "favouritesCount": 42327,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 7062,
-        "statusesCount": 46451,
+        "mediaCount": 7139,
+        "statusesCount": 46998,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1300,7 +1989,7 @@
       "replyCount": 0,
       "likeCount": 6,
       "quoteCount": 0,
-      "viewCount": 296,
+      "viewCount": 301,
       "createdAt": "Sat Feb 21 05:39:52 +0000 2026",
       "lang": "en",
       "bookmarkCount": 0,
@@ -1327,8 +2016,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1400213602183696386/1780074159",
         "description": "",
         "location": "Los Angeles, CA",
-        "followers": 4973,
-        "following": 5422,
+        "followers": 4981,
+        "following": 5423,
         "status": "",
         "canDm": false,
         "canMediaTag": false,
@@ -1340,11 +2029,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 168052,
+        "favouritesCount": 168869,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 16069,
-        "statusesCount": 39154,
+        "mediaCount": 16279,
+        "statusesCount": 39576,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1533,7 +2222,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437251,
+        "followers": 1437176,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1549,8 +2238,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412011,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1635,8 +2324,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1927732616259837952/1785598526",
         "description": "",
         "location": "Philippines",
-        "followers": 1012,
-        "following": 297,
+        "followers": 1053,
+        "following": 300,
         "status": "",
         "canDm": false,
         "canMediaTag": true,
@@ -1648,11 +2337,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 97968,
+        "favouritesCount": 99831,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 1260,
-        "statusesCount": 20195,
+        "mediaCount": 1322,
+        "statusesCount": 20919,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1818,7 +2507,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/399923595/1753094677",
         "description": "",
         "location": "Hyderabad",
-        "followers": 293258,
+        "followers": 293336,
         "following": 57,
         "status": "",
         "canDm": true,
@@ -1831,11 +2520,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 15230,
+        "favouritesCount": 15246,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 14500,
-        "statusesCount": 88018,
+        "mediaCount": 14562,
+        "statusesCount": 88143,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2029,8 +2718,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/74886399/1762132752",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 143735,
-        "following": 1036,
+        "followers": 143756,
+        "following": 1034,
         "status": "",
         "canDm": false,
         "canMediaTag": true,
@@ -2045,8 +2734,8 @@
         "favouritesCount": 8103,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 299851,
-        "statusesCount": 861912,
+        "mediaCount": 300791,
+        "statusesCount": 863318,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,

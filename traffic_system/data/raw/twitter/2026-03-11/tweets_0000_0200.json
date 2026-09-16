@@ -5,7 +5,7 @@
     "window_start": "2026-03-11T00:00:00+08:00",
     "window_end": "2026-03-11T02:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 2,
+    "tweet_count": 5,
     "slices": [
       {
         "start": "2026-03-11T00:00:00+08:00",
@@ -88,8 +88,8 @@
         "start": "2026-03-11T00:55:00+08:00",
         "end": "2026-03-11T01:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-11T01:00:00+08:00",
@@ -102,8 +102,8 @@
         "start": "2026-03-11T01:05:00+08:00",
         "end": "2026-03-11T01:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-11T01:10:00+08:00",
@@ -172,8 +172,8 @@
         "start": "2026-03-11T01:55:00+08:00",
         "end": "2026-03-11T02:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       }
     ]
   },
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/39455426/1788749130",
         "description": "",
         "location": "",
-        "followers": 1700177,
+        "followers": 1700501,
         "following": 633,
         "status": "",
         "canDm": false,
@@ -229,11 +229,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 10192,
+        "favouritesCount": 10195,
         "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 198855,
-        "statusesCount": 500426,
+        "isTranslator": true,
+        "mediaCount": 199997,
+        "statusesCount": 502113,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -253,22 +253,19 @@
           {
             "key": "description",
             "value": {
-              "string_value": "The track reflects James Reid's goal of creating a classic upbeat OPM song with a modern twist.",
-              "type": "STRING"
+              "string_value": "The track reflects James Reid's goal of creating a classic upbeat OPM song with a modern twist."
             }
           },
           {
             "key": "domain",
             "value": {
-              "string_value": "www.gmanetwork.com",
-              "type": "STRING"
+              "string_value": "www.gmanetwork.com"
             }
           },
           {
             "key": "site",
             "value": {
               "scribe_key": "publisher_id",
-              "type": "USER",
               "user_value": {
                 "id_str": "39455426",
                 "path": []
@@ -279,23 +276,20 @@
             "key": "vanity_url",
             "value": {
               "scribe_key": "vanity_url",
-              "string_value": "gmanetwork.com",
-              "type": "STRING"
+              "string_value": "gmanetwork.com"
             }
           },
           {
             "key": "title",
             "value": {
-              "string_value": "James Reid takes on Metro Manila traffic in breezy new track 'Traffic'",
-              "type": "STRING"
+              "string_value": "James Reid takes on Metro Manila traffic in breezy new track 'Traffic'"
             }
           },
           {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
-              "string_value": "https://t.co/HZe5dz6YBB",
-              "type": "STRING"
+              "string_value": "https://t.co/HZe5dz6YBB"
             }
           }
         ],
@@ -305,8 +299,8 @@
               "name": "production"
             },
             "device": {
-              "name": "Swift",
-              "version": "12"
+              "name": "iPhone",
+              "version": "13"
             }
           }
         },
@@ -314,12 +308,12 @@
         "url": "https://t.co/HZe5dz6YBB",
         "user_refs_results": [
           {
+            "rest_id": "39455426",
             "result": {
               "__typename": "User",
               "action_counts": {
-                "favorites_count": 10192
+                "favorites_count": 10195
               },
-              "affiliates_highlighted_label": {},
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/2008477302825631745/vWIXAoJX_normal.jpg"
               },
@@ -334,13 +328,9 @@
               "dm_permissions": {
                 "can_dm": false
               },
+              "exclusive_tweet_following": false,
               "follow_request_sent": false,
-              "grok_translated_bio_with_availability": {
-                "is_available": false
-              },
-              "has_graduated_access": true,
-              "id": "VXNlcjozOTQ1NTQyNg==",
-              "is_blue_verified": true,
+              "identity_profile_labels_highlighted_label": {},
               "location": {
                 "location": ""
               },
@@ -350,28 +340,32 @@
               "notifications_settings": {
                 "notifications_enabled": false
               },
-              "parody_commentary_fan_label": "None",
               "pinned_items": {},
-              "possibly_sensitive": false,
               "privacy": {
-                "protected": false
+                "protected": false,
+                "suspended": false
               },
+              "private_super_following": false,
               "profile_bio": {
                 "description": "This is the official Twitter account of GMA Network.",
                 "entities": {
                   "description": {}
                 }
               },
-              "profile_description_language": "en",
               "profile_image_shape": "Circle",
               "profile_metadata": {
-                "profile_interstitial_type": ""
+                "profile_interstitial_type": "",
+                "profile_link_color": "0084B4"
               },
               "profile_translation": {
-                "translator_type": "regular"
+                "translator_type_enum": "Regular"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1700177,
+                "followers": 1700501,
                 "following": 633
               },
               "relationship_perspectives": {
@@ -383,14 +377,17 @@
                 "muting": false
               },
               "rest_id": "39455426",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
               "super_follow_eligible": false,
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 198855,
-                "tweets": 500426
+                "media_tweets": 199997,
+                "tweets": 502113
               },
               "verification": {
+                "is_blue_verified": true,
                 "verified": false
               },
               "website": {
@@ -416,6 +413,201 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2031414417850560972",
+      "url": "https://x.com/Gianl1974/status/2031414417850560972",
+      "twitterUrl": "https://twitter.com/Gianl1974/status/2031414417850560972",
+      "text": "Five members of the Iranian women’s national football team have sought asylum in Australia after refusing to sing the Islamic Republic’s national anthem\n\nThe team was competing on the Gold Coast but lost their group matches: 3-0 to South Korea, 4-0 to hosts Australia, and 2-0 to the Philippines on March 8, ending their tournament run early. Amid the ongoing US-Israel war against Iran (which escalated with strikes starting late February 2026), the players' actions during matches sparked major controversy.\n\nIn their opener against South Korea (March 2 or 3), the entire team stood in silence and did not sing or salute during the Iranian national anthem—a move widely interpreted as a silent protest or show of mourning/defiance against the regime. Iranian state TV and commentators branded them \"wartime traitors\" in the \"pinnacle of dishonor,\" with calls for severe punishment (potentially including detention, execution, or worse, as treason is a capital offense in Iran). \n\nReports indicate players were pressured (via threats to families back home) to sing and salute in later games against Australia and the Philippines.\n\nThis has triggered widespread international alarm for their safety if forced to return home. \n\nEarlier, U.S. President Donald Trump wrote:\nAustralia is making a terrible humanitarian mistake by allowing the Iran National Woman’s Soccer team to be forced back to Iran, where they will most likely be killed. Don’t do it, Mr. Prime Minister, give ASYLUM. The U.S. will take them if you won’t.\n\nAustralian Prime Minister Anthony Albanese now granted the asylum for the women's soccer team.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 86,
+      "createdAt": "Tue Mar 10 16:58:33 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2031414417850560972",
+      "displayTextRange": [
+        0,
+        279
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "Gianl1974",
+        "url": "https://x.com/Gianl1974",
+        "twitterUrl": "https://twitter.com/Gianl1974",
+        "id": "1836813746850672641",
+        "name": "Gianl1974",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1836813947749470208/asiIxL-T_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1836813746850672641/1730901507",
+        "description": "",
+        "location": "L'Aquila, Abruzzo",
+        "followers": 22936,
+        "following": 4920,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Sep 19 17:05:17 +0000 2024",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 19026,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 64900,
+        "statusesCount": 74174,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2096904715548209230"
+        ],
+        "profile_bio": {
+          "description": "🇺🇦🇹🇼🇮🇪\n#NoPeaceWithoutJustice\nNo MAGA hate Trump and Putin always on Zelensky's side and Ukraine Taiwan is not China",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    7,
+                    29
+                  ],
+                  "text": "NoPeaceWithoutJustice"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/Y2Wx6rJ3da",
+            "expanded_url": "https://x.com/Gianl1974/status/2031414417850560972/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 276,
+                    "w": 276,
+                    "x": 380,
+                    "y": 603
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 276,
+                    "w": 276,
+                    "x": 380,
+                    "y": 603
+                  }
+                ]
+              }
+            },
+            "id_str": "2031414410288222209",
+            "indices": [
+              280,
+              303
+            ],
+            "media_key": "3_2031414410288222209",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwxCKSs1tABCgACHDEIpm+W8cwAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHDEIpKzW0AEKAAIcMQimb5bxzAAA",
+                "media_key": "3_2031414410288222209"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HDEIpKzW0AE117k.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 573,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 66
+                },
+                {
+                  "h": 1024,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1167,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 640,
+                  "x": 160,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1280,
+              "width": 1024
+            },
+            "sizes": {
+              "large": {
+                "h": 1280,
+                "w": 1024
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/Y2Wx6rJ3da"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -456,7 +648,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
         "description": "",
         "location": "Philippines",
-        "followers": 189491,
+        "followers": 190074,
         "following": 481,
         "status": "",
         "canDm": false,
@@ -469,16 +661,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 20345,
+        "favouritesCount": 20359,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 44356,
-        "statusesCount": 197183,
+        "mediaCount": 45232,
+        "statusesCount": 198769,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2093633872936456280"
+          "2099480545550090734"
         ],
         "profile_bio": {
           "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",
@@ -510,10 +702,9 @@
             "value": {
               "image_value": {
                 "height": 419,
-                "url": "https://pbs.twimg.com/card_img/2089841002961932288/VlWDTNIQ?format=jpg&name=800x419",
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=800x419",
                 "width": 800
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -521,24 +712,21 @@
             "value": {
               "image_value": {
                 "height": 147,
-                "url": "https://pbs.twimg.com/card_img/2089841002961932288/VlWDTNIQ?format=jpg&name=280x150",
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=280x150",
                 "width": 280
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
             "key": "description",
             "value": {
-              "string_value": "NEW YORK — World sugar prices surged on Monday as the United States-Israel war with Iran disrupted oil supplies, pushing crude oil prices to $119 a barrel and sparking fears that Brazilian cane mills...",
-              "type": "STRING"
+              "string_value": "NEW YORK — World sugar prices surged on Monday as the United States-Israel war with Iran disrupted oil supplies, pushing crude oil prices to $119 a barrel and sparking fears that Brazilian cane mills..."
             }
           },
           {
             "key": "domain",
             "value": {
-              "string_value": "www.manilatimes.net",
-              "type": "STRING"
+              "string_value": "www.manilatimes.net"
             }
           },
           {
@@ -546,10 +734,9 @@
             "value": {
               "image_value": {
                 "height": 315,
-                "url": "https://pbs.twimg.com/card_img/2089841002961932288/VlWDTNIQ?format=jpg&name=600x600",
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=600x600",
                 "width": 600
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -557,10 +744,9 @@
             "value": {
               "image_value": {
                 "height": 202,
-                "url": "https://pbs.twimg.com/card_img/2089841002961932288/VlWDTNIQ?format=jpg&name=386x202",
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=386x202",
                 "width": 386
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -568,10 +754,9 @@
             "value": {
               "image_value": {
                 "height": 630,
-                "url": "https://pbs.twimg.com/card_img/2089841002961932288/VlWDTNIQ?format=jpg&name=orig",
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=orig",
                 "width": 1200
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -579,10 +764,9 @@
             "value": {
               "image_value": {
                 "height": 202,
-                "url": "https://pbs.twimg.com/card_img/2089841002961932288/VlWDTNIQ?format=jpg&name=386x202",
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=386x202",
                 "width": 386
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -590,10 +774,9 @@
             "value": {
               "image_value": {
                 "height": 419,
-                "url": "https://pbs.twimg.com/card_img/2089841002961932288/VlWDTNIQ?format=jpg&name=800x419",
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=800x419",
                 "width": 800
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -601,10 +784,9 @@
             "value": {
               "image_value": {
                 "height": 76,
-                "url": "https://pbs.twimg.com/card_img/2089841002961932288/VlWDTNIQ?format=jpg&name=144x144",
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=144x144",
                 "width": 144
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -612,10 +794,9 @@
             "value": {
               "image_value": {
                 "height": 630,
-                "url": "https://pbs.twimg.com/card_img/2089841002961932288/VlWDTNIQ?format=png&name=2048x2048_2_exp",
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=png&name=2048x2048_2_exp",
                 "width": 1200
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -623,18 +804,16 @@
             "value": {
               "image_value": {
                 "height": 630,
-                "url": "https://pbs.twimg.com/card_img/2089841002961932288/VlWDTNIQ?format=jpg&name=orig",
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=orig",
                 "width": 1200
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
             "key": "vanity_url",
             "value": {
               "scribe_key": "vanity_url",
-              "string_value": "manilatimes.net",
-              "type": "STRING"
+              "string_value": "manilatimes.net"
             }
           },
           {
@@ -642,10 +821,9 @@
             "value": {
               "image_value": {
                 "height": 314,
-                "url": "https://pbs.twimg.com/card_img/2089841002961932288/VlWDTNIQ?format=jpg&name=600x314",
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=600x314",
                 "width": 600
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -694,15 +872,13 @@
                     }
                   }
                 ]
-              },
-              "type": "IMAGE_COLOR"
+              }
             }
           },
           {
             "key": "title",
             "value": {
-              "string_value": "Global sugar prices rally as oil surges, driven by Middle East war",
-              "type": "STRING"
+              "string_value": "Global sugar prices rally as oil surges, driven by Middle East war"
             }
           },
           {
@@ -751,8 +927,7 @@
                     }
                   }
                 ]
-              },
-              "type": "IMAGE_COLOR"
+              }
             }
           },
           {
@@ -760,10 +935,9 @@
             "value": {
               "image_value": {
                 "height": 630,
-                "url": "https://pbs.twimg.com/card_img/2089841002961932288/VlWDTNIQ?format=png&name=2048x2048_2_exp",
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=png&name=2048x2048_2_exp",
                 "width": 1200
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -771,10 +945,9 @@
             "value": {
               "image_value": {
                 "height": 314,
-                "url": "https://pbs.twimg.com/card_img/2089841002961932288/VlWDTNIQ?format=jpg&name=600x314",
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=600x314",
                 "width": 600
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -823,8 +996,7 @@
                     }
                   }
                 ]
-              },
-              "type": "IMAGE_COLOR"
+              }
             }
           },
           {
@@ -832,18 +1004,16 @@
             "value": {
               "image_value": {
                 "height": 630,
-                "url": "https://pbs.twimg.com/card_img/2089841002961932288/VlWDTNIQ?format=png&name=2048x2048_2_exp",
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=png&name=2048x2048_2_exp",
                 "width": 1200
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
-              "string_value": "https://t.co/2SGAy3Wz2x",
-              "type": "STRING"
+              "string_value": "https://t.co/2SGAy3Wz2x"
             }
           },
           {
@@ -851,10 +1021,9 @@
             "value": {
               "image_value": {
                 "height": 630,
-                "url": "https://pbs.twimg.com/card_img/2089841002961932288/VlWDTNIQ?format=jpg&name=orig",
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=orig",
                 "width": 1200
-              },
-              "type": "IMAGE"
+              }
             }
           }
         ],
@@ -864,8 +1033,8 @@
               "name": "production"
             },
             "device": {
-              "name": "Swift",
-              "version": "12"
+              "name": "iPhone",
+              "version": "13"
             }
           }
         },
@@ -889,6 +1058,422 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2031416119408603426",
+      "url": "https://x.com/dtptraffic/status/2031416119408603426",
+      "twitterUrl": "https://twitter.com/dtptraffic/status/2031416119408603426",
+      "text": "Traffic Advisory\n\nIn view of an official function at Lok Niwas on 11.03.2026 (11:00 AM – 04:00 PM), special traffic arrangements will be in place.\n\n📍Traffic movement may remain affected on ITO Chowk, Ring Road, Mall Road, Rajpur Road, Mahatma Gandhi Marg, Shamnath Marg, Boulevard Road and adjoining roads due to movement of dignitaries.\n\n📍Commuters are advised to plan their travel in advance, use alternate routes and avoid roadside parking to ensure smooth traffic flow.\n\n#DPTrafficAdvisory",
+      "source": "Twitter for iPhone",
+      "retweetCount": 4,
+      "replyCount": 4,
+      "likeCount": 35,
+      "quoteCount": 0,
+      "viewCount": 7628,
+      "createdAt": "Tue Mar 10 17:05:19 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2031416119408603426",
+      "displayTextRange": [
+        0,
+        270
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "dtptraffic",
+        "url": "https://x.com/dtptraffic",
+        "twitterUrl": "https://twitter.com/dtptraffic",
+        "id": "143766231",
+        "name": "Delhi Traffic Police",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1747140324324225024/rLI5Hyjo_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/143766231/1651490407",
+        "description": "",
+        "location": "India, Delhi",
+        "followers": 1598632,
+        "following": 49,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri May 14 10:06:44 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 6974,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 15209,
+        "statusesCount": 417899,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "24x7 Control Room : +91-11-25844444,1095",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "traffic.delhipolice.gov.in",
+                  "expanded_url": "https://traffic.delhipolice.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/U0jWSsRSeL"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/ryyNRyh7r9",
+            "expanded_url": "https://x.com/dtptraffic/status/2031416119408603426/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2031416060747067393",
+            "indices": [
+              271,
+              294
+            ],
+            "media_key": "3_2031416060747067393",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwxCiTz2jABCgACHDEKMpxaMSIAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHDEKJPPaMAEKAAIcMQoynFoxIgAA",
+                "media_key": "3_2031416060747067393"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HDEKJPPaMAEeuir.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1434,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2246,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 1280,
+                  "x": 320,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2560,
+              "width": 2560
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/ryyNRyh7r9"
+          },
+          {
+            "display_url": "pic.x.com/ryyNRyh7r9",
+            "expanded_url": "https://x.com/dtptraffic/status/2031416119408603426/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2031416105793978368",
+            "indices": [
+              271,
+              294
+            ],
+            "media_key": "3_2031416105793978368",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwxCi9w24AACgACHDEKMpxaMSIAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHDEKL3DbgAAKAAIcMQoynFoxIgAA",
+                "media_key": "3_2031416105793978368"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HDEKL3DbgAAxKoj.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1434,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2246,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 1280,
+                  "x": 320,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2560,
+              "width": 2560
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/ryyNRyh7r9"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              475,
+              493
+            ],
+            "text": "DPTrafficAdvisory"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2031429644520665327",
+      "url": "https://x.com/rocketresearchx/status/2031429644520665327",
+      "twitterUrl": "https://twitter.com/rocketresearchx/status/2031429644520665327",
+      "text": "Seeing on CT that people are betting that the markets are severely underestimating the first and second order effects of the Iran conflict.\n\nSome seasoned traders are comparing it to when Covid started to hit the shores. Stock prices for airlines and travel companies (and overall stock market) were still relatively unscathed in the first month. Until it started to tank massively.\n\nIn any case, we must agree that economically , most countries are going through a silent depression. This energy price shock is likely just seeing the first inning. \n\nPeople have been finding new avenues to supplement their income . During Covid, Southeast Asia turned to axie infinity and $axs hit $40 Billion and its reward coin $slp also surged sky high.\n\nThis time around though, with AI putting people out of jobs but still creating an entirely gig-based economy , could we see $Kled actually taking the limelight ? \n\nKled is like $axs but instead pays out real cash ( instead of what axie did by paying out $slp ). Some rumors have been floated around that increased payouts for tasks or special preferences will be given to holders of $kled \n\nWon’t be surprised Kled pulls an axie-like move. If you actually check the traffic and app download stats you already see the early innings - Philippines and Malaysia-based users are leading the charts. \n\nKled founder already verified that top data contributors already earn around $7.000+ per month. Playing around with some guesstimate figures - just assume that serious, full time contributors can make $300-$400 per month, wouldn’t be surprised they will at least hold $1.000 -$2.000 in $kled if it means their income will get boosted.\n\nAt 200.000 users and growing globally, let’s assume 30% are active contributors . 60.000 users each holding $2.000 worth of $kled would mean $120.000.000 in buying pressure and it grows each day. \n\nWill leave the rest for your interpretation. It’s after all a penny stock. But they just raised another $5.500.000 \n\nEven if you don’t trust the current state of the markets, just check out the investor list and perhaps allocate some dust.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 6,
+      "quoteCount": 0,
+      "viewCount": 310,
+      "createdAt": "Tue Mar 10 17:59:04 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2031429644520665327",
+      "displayTextRange": [
+        0,
+        280
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "rocketresearchx",
+        "url": "https://x.com/rocketresearchx",
+        "twitterUrl": "https://twitter.com/rocketresearchx",
+        "id": "1362254450958630918",
+        "name": "Team Rocket Research (TRR)",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1552114151648284672/nHS-wglw_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1362254450958630918/1680666276",
+        "description": "",
+        "location": "",
+        "followers": 6407,
+        "following": 275,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Feb 18 04:15:57 +0000 2021",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 4041,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 705,
+        "statusesCount": 4100,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Our views are NOT investment advice. Hailing from OG startups in SEA since 2013. Bitcoin since 2011.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "teamrocket.substack.com",
+                  "expanded_url": "https://teamrocket.substack.com/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/OgS0JCLr2G"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [
+          {
+            "indices": [
+              674,
+              678
+            ],
+            "text": "axs"
+          },
+          {
+            "indices": [
+              715,
+              719
+            ],
+            "text": "slp"
+          },
+          {
+            "indices": [
+              867,
+              872
+            ],
+            "text": "Kled"
+          },
+          {
+            "indices": [
+              920,
+              924
+            ],
+            "text": "axs"
+          },
+          {
+            "indices": [
+              997,
+              1001
+            ],
+            "text": "slp"
+          },
+          {
+            "indices": [
+              1126,
+              1131
+            ],
+            "text": "kled"
+          },
+          {
+            "indices": [
+              1625,
+              1630
+            ],
+            "text": "kled"
+          },
+          {
+            "indices": [
+              1799,
+              1804
+            ],
+            "text": "kled"
+          }
+        ],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     }
   ]

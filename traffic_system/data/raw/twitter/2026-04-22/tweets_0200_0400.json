@@ -5,14 +5,14 @@
     "window_start": "2026-04-22T02:00:00+08:00",
     "window_end": "2026-04-22T04:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 3,
+    "tweet_count": 6,
     "slices": [
       {
         "start": "2026-04-22T02:00:00+08:00",
         "end": "2026-04-22T02:05:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-04-22T02:05:00+08:00",
@@ -165,19 +165,702 @@
         "start": "2026-04-22T03:50:00+08:00",
         "end": "2026-04-22T03:55:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-04-22T03:55:00+08:00",
         "end": "2026-04-22T04:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       }
     ]
   },
   "data": [
+    {
+      "type": "tweet",
+      "id": "2046650171786703074",
+      "url": "https://x.com/PhilippineStar/status/2046650171786703074",
+      "twitterUrl": "https://twitter.com/PhilippineStar/status/2046650171786703074",
+      "text": "China warned the Philippines and its allies they were \"playing with fire\" on the opening of the largest Balikatan exercises in history on Monday, April 20, 2026 — drills that for the first time brought Japanese combat forces on Philippine soil since World War II.\n\nhttps://t.co/onQIIpxQNC",
+      "source": "Twitter for iPhone",
+      "retweetCount": 8,
+      "replyCount": 6,
+      "likeCount": 36,
+      "quoteCount": 3,
+      "viewCount": 4366,
+      "createdAt": "Tue Apr 21 18:00:00 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 5,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2046650171786703074",
+      "displayTextRange": [
+        0,
+        263
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "PhilippineStar",
+        "url": "https://x.com/PhilippineStar",
+        "twitterUrl": "https://twitter.com/PhilippineStar",
+        "id": "472122299",
+        "name": "The Philippine Star",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1610869121268469761/0JG_WM7k_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/472122299/1601895131",
+        "description": "",
+        "location": "Philippines",
+        "followers": 1819673,
+        "following": 867,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Mon Jan 23 16:37:30 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3252,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 257767,
+        "statusesCount": 803933,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The official Twitter account of The Philippine STAR, flagship title of the country's most successful print media enterprise.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "philstarlife.com/star38",
+                  "expanded_url": "https://philstarlife.com/star38",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/RYSoAbUwG6"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2098073060880297986/7B5K7B2L?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 150,
+                "url": "https://pbs.twimg.com/card_img/2098073060880297986/7B5K7B2L?format=jpg&name=280x150",
+                "width": 225
+              }
+            }
+          },
+          {
+            "key": "description",
+            "value": {
+              "string_value": "China warned the Philippines and its allies they were \"playing with fire\" on the opening of the largest Balikatan exercises in history on Monday, April 20 — drills that for the first time brought..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.philstar.com"
+            }
+          },
+          {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 320,
+                "url": "https://pbs.twimg.com/card_img/2098073060880297986/7B5K7B2L?format=jpg&name=800x320_1",
+                "width": 480
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2098073060880297986/7B5K7B2L?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2098073060880297986/7B5K7B2L?format=jpg&name=orig",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "55118669",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2098073060880297986/7B5K7B2L?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2098073060880297986/7B5K7B2L?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 67,
+                "url": "https://pbs.twimg.com/card_img/2098073060880297986/7B5K7B2L?format=jpg&name=100x100",
+                "width": 100
+              }
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "55118669",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2098073060880297986/7B5K7B2L?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2098073060880297986/7B5K7B2L?format=jpg&name=orig",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "philstar.com"
+            }
+          },
+          {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2098073060880297986/7B5K7B2L?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 35.16,
+                    "rgb": {
+                      "blue": 57,
+                      "green": 70,
+                      "red": 69
+                    }
+                  },
+                  {
+                    "percentage": 25.06,
+                    "rgb": {
+                      "blue": 123,
+                      "green": 140,
+                      "red": 167
+                    }
+                  },
+                  {
+                    "percentage": 10.28,
+                    "rgb": {
+                      "blue": 102,
+                      "green": 122,
+                      "red": 113
+                    }
+                  },
+                  {
+                    "percentage": 6.77,
+                    "rgb": {
+                      "blue": 246,
+                      "green": 234,
+                      "red": 230
+                    }
+                  },
+                  {
+                    "percentage": 5.5,
+                    "rgb": {
+                      "blue": 166,
+                      "green": 218,
+                      "red": 249
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Balikatan 2026: Japan's first PH combat role since WWII draws China's 'playing with fire' warning"
+            }
+          },
+          {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 35.16,
+                    "rgb": {
+                      "blue": 57,
+                      "green": 70,
+                      "red": 69
+                    }
+                  },
+                  {
+                    "percentage": 25.06,
+                    "rgb": {
+                      "blue": 123,
+                      "green": 140,
+                      "red": 167
+                    }
+                  },
+                  {
+                    "percentage": 10.28,
+                    "rgb": {
+                      "blue": 102,
+                      "green": 122,
+                      "red": 113
+                    }
+                  },
+                  {
+                    "percentage": 6.77,
+                    "rgb": {
+                      "blue": 246,
+                      "green": 234,
+                      "red": 230
+                    }
+                  },
+                  {
+                    "percentage": 5.5,
+                    "rgb": {
+                      "blue": 166,
+                      "green": 218,
+                      "red": 249
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2098073060880297986/7B5K7B2L?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2098073060880297986/7B5K7B2L?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 35.16,
+                    "rgb": {
+                      "blue": 57,
+                      "green": 70,
+                      "red": 69
+                    }
+                  },
+                  {
+                    "percentage": 25.06,
+                    "rgb": {
+                      "blue": 123,
+                      "green": 140,
+                      "red": 167
+                    }
+                  },
+                  {
+                    "percentage": 10.28,
+                    "rgb": {
+                      "blue": 102,
+                      "green": 122,
+                      "red": 113
+                    }
+                  },
+                  {
+                    "percentage": 6.77,
+                    "rgb": {
+                      "blue": 246,
+                      "green": 234,
+                      "red": 230
+                    }
+                  },
+                  {
+                    "percentage": 5.5,
+                    "rgb": {
+                      "blue": 166,
+                      "green": 218,
+                      "red": 249
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2098073060880297986/7B5K7B2L?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/onQIIpxQNC"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2098073060880297986/7B5K7B2L?format=jpg&name=orig",
+                "width": 1200
+              }
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/onQIIpxQNC",
+        "user_refs_results": [
+          {
+            "rest_id": "55118669",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 3519
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/2029769610594295808/NbrsBCdS_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/55118669/1774942939"
+              },
+              "core": {
+                "created_at": "Thu Jul 09 02:48:17 +0000 2009",
+                "name": "Philstar.com",
+                "screen_name": "PhilstarNews"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Manila, Philippines"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2081969847467221494"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "The official digital arm of the STAR Group of Publications. We provide credible breaking news, in-depth reports, fact-checks, and contextual real-time coverage.",
+                "entities": {
+                  "description": {},
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "philstar.com",
+                        "expanded_url": "https://www.philstar.com/",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/F0D9PGrv7A"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "009999"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 1137233,
+                "following": 158
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "55118669",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 79264,
+                "tweets": 413154
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/F0D9PGrv7A"
+              }
+            }
+          },
+          {
+            "rest_id": "55118669",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 3519
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/2029769610594295808/NbrsBCdS_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/55118669/1774942939"
+              },
+              "core": {
+                "created_at": "Thu Jul 09 02:48:17 +0000 2009",
+                "name": "Philstar.com",
+                "screen_name": "PhilstarNews"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Manila, Philippines"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2081969847467221494"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "The official digital arm of the STAR Group of Publications. We provide credible breaking news, in-depth reports, fact-checks, and contextual real-time coverage.",
+                "entities": {
+                  "description": {},
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "philstar.com",
+                        "expanded_url": "https://www.philstar.com/",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/F0D9PGrv7A"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "009999"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 1137233,
+                "following": 158
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "55118669",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 79264,
+                "tweets": 413154
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/F0D9PGrv7A"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [
+          {
+            "display_url": "philstar.com/headlines/2026…",
+            "expanded_url": "https://www.philstar.com/headlines/2026/04/21/2522556/japans-historic-balikatan-participation-year-has-placed-china-edge",
+            "indices": [
+              265,
+              288
+            ],
+            "url": "https://t.co/onQIIpxQNC"
+          }
+        ],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
     {
       "type": "tweet",
       "id": "2046662188551577933",
@@ -216,8 +899,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1280587925336530948/1694632431",
         "description": "",
         "location": "Tweets AREN'T Financial Advice",
-        "followers": 26940,
-        "following": 404,
+        "followers": 27238,
+        "following": 405,
         "status": "",
         "canDm": false,
         "canMediaTag": true,
@@ -229,16 +912,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 10258,
+        "favouritesCount": 10374,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 11003,
-        "statusesCount": 32805,
+        "mediaCount": 11080,
+        "statusesCount": 32863,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "1968693172508233889"
+          "2052474147620491615"
         ],
         "profile_bio": {
           "description": "Long Term Investor\nLargest Holding $AMD $PLTR $TSLA\nOthers $XYZ $HIMS $GRAB $TSM $AMZN $NVDA $LMT $ETH $BTC $META $GOOGL $WING $ADBE $BROS\nNot Financial Advice",
@@ -495,7 +1178,7 @@
         "replyCount": 4,
         "likeCount": 62,
         "quoteCount": 1,
-        "viewCount": 17256,
+        "viewCount": 17260,
         "createdAt": "Mon Apr 20 15:48:56 +0000 2026",
         "lang": "en",
         "bookmarkCount": 13,
@@ -522,8 +1205,8 @@
           "coverPicture": "https://pbs.twimg.com/profile_banners/1280587925336530948/1694632431",
           "description": "",
           "location": "Tweets AREN'T Financial Advice",
-          "followers": 26940,
-          "following": 404,
+          "followers": 27238,
+          "following": 405,
           "status": "",
           "canDm": false,
           "canMediaTag": true,
@@ -535,16 +1218,16 @@
             "url": {}
           },
           "fastFollowersCount": 0,
-          "favouritesCount": 10258,
+          "favouritesCount": 10374,
           "hasCustomTimelines": true,
           "isTranslator": false,
-          "mediaCount": 11003,
-          "statusesCount": 32805,
+          "mediaCount": 11080,
+          "statusesCount": 32863,
           "withheldInCountries": [],
           "affiliatesHighlightedLabel": {},
           "possiblySensitive": false,
           "pinnedTweetIds": [
-            "1968693172508233889"
+            "2052474147620491615"
           ],
           "profile_bio": {
             "description": "Long Term Investor\nLargest Holding $AMD $PLTR $TSLA\nOthers $XYZ $HIMS $GRAB $TSM $AMZN $NVDA $LMT $ETH $BTC $META $GOOGL $WING $ADBE $BROS\nNot Financial Advice",
@@ -967,7 +1650,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967065,
+        "followers": 3966545,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -980,11 +1663,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 5284,
+        "favouritesCount": 5282,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61685,
-        "statusesCount": 888285,
+        "mediaCount": 61737,
+        "statusesCount": 888714,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1069,7 +1752,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967065,
+        "followers": 3966545,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -1082,11 +1765,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 5284,
+        "favouritesCount": 5282,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61685,
-        "statusesCount": 888285,
+        "mediaCount": 61737,
+        "statusesCount": 888714,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1131,6 +1814,287 @@
       "retweeted_tweet": null,
       "isLimitedReply": false,
       "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2046678714533229030",
+      "url": "https://x.com/209TimesCA/status/2046678714533229030",
+      "twitterUrl": "https://twitter.com/209TimesCA/status/2046678714533229030",
+      "text": "Traffic Advisory: Big rig spin out on interstate five southbound at Hammer Lane. #stockton https://t.co/hL09o4O3FJ",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 13,
+      "quoteCount": 0,
+      "viewCount": 921,
+      "createdAt": "Tue Apr 21 19:53:25 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2046678714533229030",
+      "displayTextRange": [
+        0,
+        90
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "209TimesCA",
+        "url": "https://x.com/209TimesCA",
+        "twitterUrl": "https://twitter.com/209TimesCA",
+        "id": "828800194355437573",
+        "name": "209 Times",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1099378975778889729/VUyUpAl0_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/828800194355437573/1486492341",
+        "description": "",
+        "location": "Stockton, CA",
+        "followers": 12482,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Feb 07 02:58:59 +0000 2017",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2762,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2651,
+        "statusesCount": 3946,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "News Government & Politics Politics General News Business & Finance",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "209times.com",
+                  "expanded_url": "http://209times.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/asnVQ0CfIn"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/hL09o4O3FJ",
+            "expanded_url": "https://x.com/209TimesCA/status/2046678714533229030/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2046678710032687104",
+            "indices": [
+              91,
+              114
+            ],
+            "media_key": "3_2046678710032687104",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxnQ3Fo2mAACgACHGdDcnUbMeYAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHGdDcWjaYAAKAAIcZ0NydRsx5gAA",
+                "media_key": "3_2046678710032687104"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HGdDcWjaYAAYQqW.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 860,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 338
+                },
+                {
+                  "h": 1536,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1751,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1024,
+                  "x": 512,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 1536
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 1536
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/hL09o4O3FJ"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              81,
+              90
+            ],
+            "text": "stockton"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2046679956173037762",
+      "url": "https://x.com/MMDA/status/2046679956173037762",
+      "twitterUrl": "https://twitter.com/MMDA/status/2046679956173037762",
+      "text": "FIRE ALERT: As of 3:48 AM. Ongoing fire incident at Sta. Cruz, Pasig City involving a residential area. Now on its first alarm. Firefighters on site. #mmda",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 750,
+      "createdAt": "Tue Apr 21 19:58:21 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2046679956173037762",
+      "displayTextRange": [
+        0,
+        155
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "MMDA",
+        "url": "https://x.com/MMDA",
+        "twitterUrl": "https://twitter.com/MMDA",
+        "id": "171574926",
+        "name": "Official MMDA",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
+        "description": "",
+        "location": "Metro Manila",
+        "followers": 3966545,
+        "following": 125,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Jul 27 17:31:12 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5282,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 61737,
+        "statusesCount": 888714,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official X Account of the Metropolitan Manila Development Authority | Hotline 136 | digitalmedia@mmda.gov.ph | VIBER 0956-6632-221",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "mmda.gov.ph",
+                  "expanded_url": "http://mmda.gov.ph",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/BHm5ofschj"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              150,
+              155
+            ],
+            "text": "mmda"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
       "article": null
     }
   ]

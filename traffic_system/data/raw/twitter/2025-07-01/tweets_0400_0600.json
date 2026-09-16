@@ -5,7 +5,7 @@
     "window_start": "2025-07-01T04:00:00+08:00",
     "window_end": "2025-07-01T06:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 1,
+    "tweet_count": 5,
     "slices": [
       {
         "start": "2025-07-01T04:00:00+08:00",
@@ -39,8 +39,8 @@
         "start": "2025-07-01T04:20:00+08:00",
         "end": "2025-07-01T04:25:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-07-01T04:25:00+08:00",
@@ -74,8 +74,8 @@
         "start": "2025-07-01T04:45:00+08:00",
         "end": "2025-07-01T04:50:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-07-01T04:50:00+08:00",
@@ -172,12 +172,785 @@
         "start": "2025-07-01T05:55:00+08:00",
         "end": "2025-07-01T06:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       }
     ]
   },
   "data": [
+    {
+      "type": "tweet",
+      "id": "1939782207263871122",
+      "url": "https://x.com/NewJerseyDOT/status/1939782207263871122",
+      "twitterUrl": "https://twitter.com/NewJerseyDOT/status/1939782207263871122",
+      "text": "NJDOT Traffic Advisory -- REMINDER: I-287 southbound overnight lane closures continue this week for roadway repairs in Morris County. Read more: https://t.co/bR1DqyNasS https://t.co/kqFwM8gt90",
+      "source": "Twitter for iPhone",
+      "retweetCount": 4,
+      "replyCount": 1,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 1154,
+      "createdAt": "Mon Jun 30 20:24:52 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1939782207263871122",
+      "displayTextRange": [
+        0,
+        168
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "NewJerseyDOT",
+        "url": "https://x.com/NewJerseyDOT",
+        "twitterUrl": "https://twitter.com/NewJerseyDOT",
+        "id": "2891202783",
+        "name": "NJDOT",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1888397067787128833/FD48RYTU_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2891202783/1732311489",
+        "description": "",
+        "location": "",
+        "followers": 33212,
+        "following": 318,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Mon Nov 24 19:50:16 +0000 2014",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2483,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 5764,
+        "statusesCount": 21723,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Updates from NJ's Department of Transportation on projects and driving conditions throughout the state.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "state.nj.us/transportation/",
+                  "expanded_url": "http://www.state.nj.us/transportation/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/nZuh4skGvI"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/kqFwM8gt90",
+            "expanded_url": "https://x.com/NewJerseyDOT/status/1939782207263871122/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1939777775784673280",
+            "indices": [
+              169,
+              192
+            ],
+            "media_key": "3_1939777775784673280",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARrreZwU18AACgACGut9o92WEJIAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGut5nBTXwAAKAAIa632j3ZYQkgAA",
+                "media_key": "3_1939777775784673280"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/Gut5nBTXwAA0DOV.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1024,
+                  "w": 1829,
+                  "x": 219,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 1024,
+                  "x": 1024,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 898,
+                  "x": 1138,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 512,
+                  "x": 1331,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1024,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 1024,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/kqFwM8gt90"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "bit.ly/4nrVtW5",
+            "expanded_url": "http://bit.ly/4nrVtW5",
+            "indices": [
+              145,
+              168
+            ],
+            "url": "https://t.co/bR1DqyNasS"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1939787703111098539",
+      "url": "https://x.com/airicmusic/status/1939787703111098539",
+      "twitterUrl": "https://twitter.com/airicmusic/status/1939787703111098539",
+      "text": "fire.. this is what life is about right here... loving our neighbors as ourselves... salute @chinamactv 🫡\n\nVlog link:\nhttps://t.co/10KWK3lJAC\n\nLet's help his cause for this family! Dono link: https://t.co/zj69hW77IZ",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 5,
+      "likeCount": 4,
+      "quoteCount": 0,
+      "viewCount": 63,
+      "createdAt": "Mon Jun 30 20:46:42 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1939787703111098539",
+      "displayTextRange": [
+        0,
+        215
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "airicmusic",
+        "url": "https://x.com/airicmusic",
+        "twitterUrl": "https://twitter.com/airicmusic",
+        "id": "21447748",
+        "name": "Airic",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1878212486630903808/ZikkGOfw_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/21447748/1605399104",
+        "description": "",
+        "location": "Miami, FL",
+        "followers": 1450,
+        "following": 2502,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Fri Feb 20 23:50:50 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 16812,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1055,
+        "statusesCount": 10865,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1819148620865691909"
+        ],
+        "profile_bio": {
+          "description": "🇩🇴 Music Artist • Rec/Mix Engineer • ☧os☦︎millennialis✞ • Off-grid Living • ₿TC+Web3 on SOL • 📲 Text Me: +1 305-705-5533",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "airicmusic.com",
+                  "expanded_url": "http://airicmusic.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/AsvPdlqWNp"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "player_url",
+            "value": {
+              "string_value": "https://www.youtube.com/embed/IX9RIe-QKn0"
+            }
+          },
+          {
+            "key": "player_image_large",
+            "value": {
+              "image_value": {
+                "height": 197,
+                "url": "https://pbs.twimg.com/cards/player-placeholder.png",
+                "width": 351
+              }
+            }
+          },
+          {
+            "key": "player_image",
+            "value": {
+              "image_value": {
+                "height": 197,
+                "url": "https://pbs.twimg.com/cards/player-placeholder.png",
+                "width": 351
+              }
+            }
+          },
+          {
+            "key": "app_star_rating",
+            "value": {
+              "string_value": "4.66718"
+            }
+          },
+          {
+            "key": "description",
+            "value": {
+              "string_value": "🚨 ATTENTION 🚨Donate For Computer Center https://www.gofundme.co..."
+            }
+          },
+          {
+            "key": "player_width",
+            "value": {
+              "string_value": "1280"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.youtube.com"
+            }
+          },
+          {
+            "key": "app_is_free",
+            "value": {
+              "string_value": "true"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "10228272",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "app_url_resolved",
+            "value": {
+              "string_value": "vnd.youtube://www.youtube.com/watch?si=JpSpP0C2PSziHnz-&v=IX9RIe-QKn0&feature=youtu.be&feature=applinks"
+            }
+          },
+          {
+            "key": "app_num_ratings",
+            "value": {
+              "string_value": "48,959,137"
+            }
+          },
+          {
+            "key": "app_price_amount",
+            "value": {
+              "string_value": "0.0"
+            }
+          },
+          {
+            "key": "player_height",
+            "value": {
+              "string_value": "720"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "youtube.com"
+            }
+          },
+          {
+            "key": "app_name",
+            "value": {
+              "string_value": "YouTube"
+            }
+          },
+          {
+            "key": "app_id",
+            "value": {
+              "scribe_key": "publisher_app_id",
+              "string_value": "544007664"
+            }
+          },
+          {
+            "key": "player_image_small",
+            "value": {
+              "image_value": {
+                "height": 197,
+                "url": "https://pbs.twimg.com/cards/player-placeholder.png",
+                "width": 351
+              }
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "I Went HOMELESS in The Philippines…"
+            }
+          },
+          {
+            "key": "app_price_currency",
+            "value": {
+              "string_value": "USD"
+            }
+          },
+          {
+            "key": "app_url",
+            "value": {
+              "string_value": "https://t.co/redirect?url=vnd.youtube%3A%2F%2Fwww.youtube.com%2Fwatch%3Fsi%3DJpSpP0C2PSziHnz-%26v%3DIX9RIe-QKn0%26feature%3Dyoutu.be%26feature%3Dapplinks&sig=9636184291c8086b4f907b45ed568e6a85f9d297&ssr=true&slug=DjmyteOeWo"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/DjmyteOeWo"
+            }
+          },
+          {
+            "key": "player_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 197,
+                "url": "https://pbs.twimg.com/cards/player-placeholder.png",
+                "width": 351
+              }
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "player",
+        "url": "https://t.co/DjmyteOeWo",
+        "user_refs_results": [
+          {
+            "rest_id": "10228272",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 6025
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1984471345854566400/5pd8GpgC_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/10228272/1773248035"
+              },
+              "core": {
+                "created_at": "Tue Nov 13 21:43:46 +0000 2007",
+                "name": "YouTube",
+                "screen_name": "YouTube"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "San Bruno, CA"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2064694071537352925"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "like & subscribe",
+                "entities": {
+                  "description": {},
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "youtube.com",
+                        "expanded_url": "http://youtube.com/",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/GIOK0JwagA"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Square",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "C9191D"
+              },
+              "profile_translation": {
+                "translator_type_enum": "Regular"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 68838990,
+                "following": 1142
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "10228272",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 16188,
+                "tweets": 61488
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false,
+                "verified_type": "Business"
+              },
+              "website": {
+                "url": "https://t.co/GIOK0JwagA"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [
+          {
+            "display_url": "youtu.be/IX9RIe-QKn0?si…",
+            "expanded_url": "https://youtu.be/IX9RIe-QKn0?si=JpSpP0C2PSziHnz-",
+            "indices": [
+              118,
+              141
+            ],
+            "url": "https://t.co/10KWK3lJAC"
+          },
+          {
+            "display_url": "gofundme.com/f/bringing-hop…",
+            "expanded_url": "https://www.gofundme.com/f/bringing-hope-to-the-people-of-tondo-philippines",
+            "indices": [
+              192,
+              215
+            ],
+            "url": "https://t.co/zj69hW77IZ"
+          }
+        ],
+        "user_mentions": [
+          {
+            "id_str": "2213671537",
+            "indices": [
+              92,
+              103
+            ],
+            "name": "China Mac",
+            "screen_name": "chinamactv"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1939787682114064396",
+      "url": "https://x.com/DCPoliceDept/status/1939787682114064396",
+      "twitterUrl": "https://twitter.com/DCPoliceDept/status/1939787682114064396",
+      "text": "🎆MPD announces road closures, parking restrictions, and a security zone on the Potomac River in conjunction with Fourth of July festivities occurring across the District of Columbia. 🎇\nRead the full list here: https://t.co/aww6Th6LvT https://t.co/ZOMHdGxD3O",
+      "source": "Twitter for iPhone",
+      "retweetCount": 15,
+      "replyCount": 1,
+      "likeCount": 10,
+      "quoteCount": 1,
+      "viewCount": 11640,
+      "createdAt": "Mon Jun 30 20:46:37 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 3,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1939787682114064396",
+      "displayTextRange": [
+        0,
+        233
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "DCPoliceDept",
+        "url": "https://x.com/DCPoliceDept",
+        "twitterUrl": "https://twitter.com/DCPoliceDept",
+        "id": "285198536",
+        "name": "DC Police Department",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/2085309988092649472/8soyV2Bv_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/285198536/1769261376",
+        "description": "",
+        "location": "Washington, DC",
+        "followers": 277797,
+        "following": 473,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Apr 20 18:18:29 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5215,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 43130,
+        "statusesCount": 102491,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Updates & prelim info on active incidents & upcoming events. Will not reply instantly or in real time. Call 911 for emergencies.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/dcpolicedept",
+                  "expanded_url": "https://linktr.ee/dcpolicedept",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/N6DnwJRVNT"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/ZOMHdGxD3O",
+            "expanded_url": "https://x.com/DCPoliceDept/status/1939787682114064396/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1939787459698528256",
+            "indices": [
+              234,
+              257
+            ],
+            "media_key": "3_1939787459698528256",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARrrgmrLFpAACgACGuuCnpQWUAwAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGuuCassWkAAKAAIa64KelBZQDAAA",
+                "media_key": "3_1939787459698528256"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GuuCassWkAAHP8B.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 379,
+                  "w": 676,
+                  "x": 0,
+                  "y": 221
+                },
+                {
+                  "h": 600,
+                  "w": 600,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 600,
+                  "w": 526,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 600,
+                  "w": 300,
+                  "x": 2,
+                  "y": 0
+                },
+                {
+                  "h": 600,
+                  "w": 676,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 600,
+              "width": 676
+            },
+            "sizes": {
+              "large": {
+                "h": 600,
+                "w": 676
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/ZOMHdGxD3O"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "mpdc.dc.gov/release/traffi…",
+            "expanded_url": "https://mpdc.dc.gov/release/traffic-advisory-and-watercraft-restrictions-2025-fourth-july-celebration-and-other-events",
+            "indices": [
+              210,
+              233
+            ],
+            "url": "https://t.co/aww6Th6LvT"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
     {
       "type": "tweet",
       "id": "1939796436344090790",
@@ -216,8 +989,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186993,
-        "following": 87,
+        "followers": 187148,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -229,16 +1002,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31259,
-        "statusesCount": 146774,
+        "mediaCount": 31371,
+        "statusesCount": 146899,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -582,6 +1355,387 @@
             ],
             "name": "GIDI",
             "screen_name": "Gidi_Traffic"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1939805730363818164",
+      "url": "https://x.com/dzbb/status/1939805730363818164",
+      "twitterUrl": "https://twitter.com/dzbb/status/1939805730363818164",
+      "text": "TINGNAN: Tinatayang 50 pamilya, apektado ng sunog na sumiklab sa Brgy. Rosario, Pasig City ngayong gabi. | via @SurfaceCarlo https://t.co/mC355k2qpa",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 3107,
+      "createdAt": "Mon Jun 30 21:58:20 +0000 2025",
+      "lang": "tl",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1939805730363818164",
+      "displayTextRange": [
+        0,
+        124
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "dzbb",
+        "url": "https://x.com/dzbb",
+        "twitterUrl": "https://twitter.com/dzbb",
+        "id": "461853598",
+        "name": "DZBB Super Radyo",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1752867214339014656/Ali0l1kT_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/461853598/1788192343",
+        "description": "",
+        "location": "Republic of the Philippines",
+        "followers": 262176,
+        "following": 1006,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Thu Jan 12 08:18:11 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1966,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 364335,
+        "statusesCount": 1007815,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2097968439566741980"
+        ],
+        "profile_bio": {
+          "description": "The official X account of Super Radyo DZBB 594 kHz, the flagship AM radio station of GMA Network, Inc.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "gmanetwork.com/radio/streaming",
+                  "expanded_url": "http://www.gmanetwork.com/radio/streaming",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/FpRs3hHTdw"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "display_url": "pic.x.com/mC355k2qpa",
+            "expanded_url": "https://x.com/dzbb/status/1939805730363818164/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "1939805542987214848",
+            "indices": [
+              125,
+              148
+            ],
+            "media_key": "7_1939805542987214848",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAwoAARrrkt0jFjAACgACGuuTCMOaQLQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAADCgABGuuS3SMWMAAKAAIa65MIw5pAtAAA",
+                "media_key": "7_1939805542987214848"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1939805542987214848/pu/img/JhCcxsGFxgBGdaFw.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 576,
+              "width": 1024
+            },
+            "sizes": {
+              "large": {
+                "h": 576,
+                "w": 1024
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/mC355k2qpa",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 8966,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/ext_tw_video/1939805542987214848/pu/pl/-Gq8h1nvacfEvoHs.m3u8?tag=12"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1939805542987214848/pu/vid/avc1/480x270/V0jOtlAySu-epox4.mp4?tag=12"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1939805542987214848/pu/vid/avc1/640x360/k6Wfui2CXoHLl_xm.mp4?tag=12"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1939805542987214848/pu/vid/avc1/1024x576/rIaSDg5ZdFYAYohR.mp4?tag=12"
+                }
+              ]
+            }
+          },
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "display_url": "pic.x.com/mC355k2qpa",
+            "expanded_url": "https://x.com/dzbb/status/1939805730363818164/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "1939805571839844352",
+            "indices": [
+              125,
+              148
+            ],
+            "media_key": "7_1939805571839844352",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAwoAARrrkuPa1mAACgACGuuTCMOaQLQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAADCgABGuuS49rWYAAKAAIa65MIw5pAtAAA",
+                "media_key": "7_1939805571839844352"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1939805571839844352/pu/img/1SRv25xPyuC0f6CH.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 576,
+              "width": 1024
+            },
+            "sizes": {
+              "large": {
+                "h": 576,
+                "w": 1024
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/mC355k2qpa",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 10175,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/ext_tw_video/1939805571839844352/pu/pl/6x2zTZzhKTnbj4Ag.m3u8?tag=12"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1939805571839844352/pu/vid/avc1/480x270/WxAAQdRVEqud0Fcl.mp4?tag=12"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1939805571839844352/pu/vid/avc1/640x360/X5f0IOjNNwUMpTK6.mp4?tag=12"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1939805571839844352/pu/vid/avc1/1024x576/gZLB9rBjICO994j6.mp4?tag=12"
+                }
+              ]
+            }
+          },
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "display_url": "pic.x.com/mC355k2qpa",
+            "expanded_url": "https://x.com/dzbb/status/1939805730363818164/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "1939805602370248709",
+            "indices": [
+              125,
+              148
+            ],
+            "media_key": "7_1939805602370248709",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAwoAARrrkur2l2AFCgACGuuTCMOaQLQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAADCgABGuuS6vaXYAUKAAIa65MIw5pAtAAA",
+                "media_key": "7_1939805602370248709"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1939805602370248709/pu/img/NEtzqL28LEMm_wnY.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 576,
+              "width": 1024
+            },
+            "sizes": {
+              "large": {
+                "h": 576,
+                "w": 1024
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/mC355k2qpa",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 22429,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/ext_tw_video/1939805602370248709/pu/pl/g1PktjETW0no-8xV.m3u8?tag=12"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1939805602370248709/pu/vid/avc1/480x270/8fLN8-Ei7eZ_A4K3.mp4?tag=12"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1939805602370248709/pu/vid/avc1/640x360/OK5UgOLaiCOk7Col.mp4?tag=12"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1939805602370248709/pu/vid/avc1/1024x576/Mh2SD6IPVdVl9fFo.mp4?tag=12"
+                }
+              ]
+            }
+          },
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "display_url": "pic.x.com/mC355k2qpa",
+            "expanded_url": "https://x.com/dzbb/status/1939805730363818164/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "1939805687095160832",
+            "indices": [
+              125,
+              148
+            ],
+            "media_key": "7_1939805687095160832",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAwoAARrrkv6wlvAACgACGuuTCMOaQLQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAADCgABGuuS/rCW8AAKAAIa65MIw5pAtAAA",
+                "media_key": "7_1939805687095160832"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1939805687095160832/pu/img/np7o3Wh1MSbJvoGv.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 576,
+              "width": 1024
+            },
+            "sizes": {
+              "large": {
+                "h": 576,
+                "w": 1024
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/mC355k2qpa",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 12976,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/ext_tw_video/1939805687095160832/pu/pl/sG_PB_NegCHSxRLG.m3u8?tag=12"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1939805687095160832/pu/vid/avc1/480x270/U2GTwvW5xdyizJvp.mp4?tag=12"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1939805687095160832/pu/vid/avc1/640x360/huKT9m_tOtz-R0jV.mp4?tag=12"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/1939805687095160832/pu/vid/avc1/1024x576/93hNKcDfE_VC6SIe.mp4?tag=12"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "1485765451083055104",
+            "indices": [
+              111,
+              124
+            ],
+            "name": "Carlo Mateo",
+            "screen_name": "SurfaceCarlo"
           }
         ]
       },
