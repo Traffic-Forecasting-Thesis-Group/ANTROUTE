@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
+
 import {
   View,
   Text,
@@ -6,114 +7,272 @@ import {
   TouchableOpacity,
   StatusBar,
   ScrollView,
+  Alert,
 } from 'react-native';
-import { User, ChevronRight, LogOut, Bell, Lock, HelpCircle } from 'lucide-react-native';
-import { getStoredUser, signOut, AuthUser } from '../api/authService';
 
-interface MenuItem {
+import { useFocusEffect } from '@react-navigation/native';
+
+import {
+  User,
+  Lock,
+  Info,
+  CarFront,
+  Camera,
+  ChevronRight,
+} from 'lucide-react-native';
+
+import {
+  getCurrentUser,
+  getStoredUser,
+  signOut,
+  AuthUser,
+} from '../api/authService';
+
+type Chevron = 'right' | 'none';
+
+interface MenuRow {
   key: string;
   label: string;
+  subtitle: string;
   icon: React.ComponentType<{ size: number; color: string }>;
-  onPress: (navigation: any) => void;
+  iconColor: string;
+  chevron: Chevron;
+  onPress?: (navigation: any) => void;
 }
 
-const MENU_ITEMS: MenuItem[] = [
-  {
-    key: 'edit-profile',
-    label: 'Edit Profile',
-    icon: User,
-    onPress: (navigation) => navigation.navigate('EditProfileScreen'),
-  },
-  {
-    key: 'password',
-    label: 'Password',
-    icon: Lock,
-    onPress: (navigation) => navigation.navigate('PasswordScreen'),
-  },
-  {
-    key: 'notifications',
-    label: 'Notification Settings',
-    icon: Bell,
-    onPress: (navigation) => navigation.navigate('NotificationSettingsScreen'),
-  },
-  {
-    key: 'help',
-    label: 'Help & Support',
-    icon: HelpCircle,
-    onPress: () => {
-      // TODO: link to a real support screen or external URL once available
-    },
-  },
-];
+interface MenuSection {
+  title: string;
+  data: MenuRow[];
+}
+
+function getInitials(name?: string | null): string {
+  if (!name) return 'G';
+
+  const parts = name.trim().split(/\s+/);
+  const first = parts[0]?.[0] ?? '';
+  const last = parts.length > 1 ? parts[parts.length - 1][0] : '';
+
+  return (first + last).toUpperCase() || 'G';
+}
 
 export default function ProfileScreen({ navigation }: any) {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [isSigningOut, setIsSigningOut] = useState(false);
 
-  useEffect(() => {
-    let isMounted = true;
-    getStoredUser().then((storedUser) => {
-      if (isMounted) setUser(storedUser);
-    });
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      let isActive = true;
 
-  const handleSignOut = async () => {
-    setIsSigningOut(true);
-    try {
-      await signOut();
-      navigation.reset({ index: 0, routes: [{ name: 'Landing' }] });
-    } finally {
-      setIsSigningOut(false);
-    }
+      const loadUser = async () => {
+        const cached = await getStoredUser();
+
+        if (isActive && cached) {
+          setUser(cached);
+        }
+
+        const fresh = await getCurrentUser();
+
+        if (isActive && fresh) {
+          setUser(fresh);
+        }
+      };
+
+      loadUser();
+
+      return () => {
+        isActive = false;
+      };
+    }, [])
+  );
+
+  const handleSignOut = () => {
+    Alert.alert(
+      'Sign Out',
+      'Are you sure you want to sign out?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Sign Out',
+          style: 'destructive',
+          onPress: async () => {
+            setIsSigningOut(true);
+
+            try {
+              await signOut();
+
+              navigation.reset({
+                index: 0,
+                routes: [{ name: 'Landing' }],
+              });
+            } finally {
+              setIsSigningOut(false);
+            }
+          },
+        },
+      ]
+    );
   };
+
+  const SECTIONS: MenuSection[] = [
+    {
+      title: 'Account',
+      data: [
+        {
+          key: 'personal-info',
+          label: 'Personal Information',
+          subtitle: 'Name, email, phone',
+          icon: User,
+          iconColor: '#4475F2',
+          chevron: 'right',
+          onPress: (nav) => nav.navigate('EditProfileScreen'),
+        },
+        {
+          key: 'password',
+          label: 'Password & Security',
+          subtitle: 'Manage password',
+          icon: Lock,
+          iconColor: '#4475F2',
+          chevron: 'right',
+          onPress: (nav) => nav.navigate('PasswordScreen'),
+        },
+      ],
+    },
+    {
+      title: 'About',
+      data: [
+        {
+          key: 'antroute',
+          label: 'ANTRoute',
+          subtitle: 'Thesis Prototype',
+          icon: Info,
+          iconColor: '#4475F2',
+          chevron: 'right',
+          onPress: (nav) => nav.navigate('AboutScreen'),
+        },
+        {
+          key: 'vehicle-scope',
+          label: 'Vehicle Scope',
+          subtitle: '4-Wheel only',
+          icon: CarFront,
+          iconColor: '#4475F2',
+          chevron: 'none',
+        },
+      ],
+    },
+  ];
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="transparent"
+        translucent
+      />
 
-      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-        <Text style={styles.headerTitle}>Profile</Text>
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* Profile */}
+        <View style={styles.avatarSection}>
+          <View style={styles.avatarWrap}>
+            <View style={styles.avatarCircle}>
+              <Text style={styles.avatarInitials}>
+                {getInitials(user?.name)}
+              </Text>
+            </View>
 
-        <View style={styles.profileCard}>
-          <View style={styles.avatarCircle}>
-            <User size={28} color="#4475F2" />
+            <TouchableOpacity
+              style={styles.avatarEditBadge}
+              onPress={() => navigation.navigate('EditProfileScreen')}
+            >
+              <Camera size={12} color="#fff" />
+            </TouchableOpacity>
           </View>
-          <View style={styles.profileText}>
-            <Text style={styles.profileName}>{user?.name || 'Guest'}</Text>
-            <Text style={styles.profileEmail}>{user?.email || 'Not signed in'}</Text>
-          </View>
+
+          <Text style={styles.profileName}>
+            {user?.name || 'Guest'}
+          </Text>
+
+          <Text style={styles.profileEmail}>
+            {user?.email || 'Not signed in'}
+          </Text>
         </View>
 
-        <View style={styles.menuGroup}>
-          {MENU_ITEMS.map((item) => {
-            const Icon = item.icon;
-            return (
-              <TouchableOpacity
-                key={item.key}
-                style={styles.menuRow}
-                onPress={() => item.onPress(navigation)}
-              >
-                <View style={styles.menuLeft}>
-                  <Icon size={18} color="#4b5563" />
-                  <Text style={styles.menuLabel}>{item.label}</Text>
-                </View>
-                <ChevronRight size={18} color="#d1d5db" />
-              </TouchableOpacity>
-            );
-          })}
-        </View>
+        {/* Menu Sections */}
+        {SECTIONS.map((section) => (
+          <View key={section.title} style={styles.sectionWrap}>
+            <View style={styles.sectionHeaderRow}>
+              <Text style={styles.sectionHeaderText}>
+                {section.title.toUpperCase()}
+              </Text>
+            </View>
 
+            <View style={styles.menuGroup}>
+              {section.data.map((item, index) => {
+                const Icon = item.icon;
+                const isLast = index === section.data.length - 1;
+                const isPressable = !!item.onPress;
+                const RowWrapper = isPressable
+                  ? TouchableOpacity
+                  : View;
+
+                return (
+                  <RowWrapper
+                    key={item.key}
+                    style={[
+                      styles.menuRow,
+                      !isLast && styles.menuRowDivider,
+                    ]}
+                    {...(isPressable
+                      ? {
+                          onPress: () =>
+                            item.onPress!(navigation),
+                          activeOpacity: 0.7,
+                        }
+                      : {})}
+                  >
+                    <View style={styles.menuLeft}>
+                      <Icon
+                        size={18}
+                        color={item.iconColor}
+                      />
+
+                      <View>
+                        <Text style={styles.menuLabel}>
+                          {item.label}
+                        </Text>
+
+                        <Text style={styles.menuSubtitle}>
+                          {item.subtitle}
+                        </Text>
+                      </View>
+                    </View>
+
+                    {item.chevron === 'right' && (
+                      <ChevronRight
+                        size={18}
+                        color="#d1d5db"
+                      />
+                    )}
+                  </RowWrapper>
+                );
+              })}
+            </View>
+          </View>
+        ))}
+
+        {/* Sign Out */}
         <TouchableOpacity
           style={styles.signOutButton}
           onPress={handleSignOut}
           disabled={isSigningOut}
         >
-          <LogOut size={18} color="#ef4444" />
           <Text style={styles.signOutText}>
-            {isSigningOut ? 'Signing out…' : 'Sign out'}
+            {isSigningOut ? 'Signing out…' : 'Sign Out'}
           </Text>
         </TouchableOpacity>
       </ScrollView>
@@ -125,85 +284,134 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: StatusBar.currentHeight ? StatusBar.currentHeight + 10 : 50,
+    paddingTop: StatusBar.currentHeight
+      ? StatusBar.currentHeight + 10
+      : 50,
   },
+
   scrollContent: {
     paddingHorizontal: 20,
     paddingBottom: 30,
   },
-  headerTitle: {
-    fontSize: 22,
-    fontWeight: '700',
-    color: '#111827',
-    marginBottom: 16,
-  },
-  profileCard: {
-    flexDirection: 'row',
+
+  avatarSection: {
     alignItems: 'center',
-    backgroundColor: '#f9fafb',
-    borderRadius: 16,
-    padding: 16,
-    marginBottom: 20,
-    gap: 14,
+    marginTop: 10,
+    marginBottom: 24,
   },
+
+  avatarWrap: {
+    position: 'relative',
+    marginBottom: 12,
+  },
+
   avatarCircle: {
-    width: 52,
-    height: 52,
-    borderRadius: 26,
-    backgroundColor: '#eff6ff',
+    width: 72,
+    height: 72,
+    borderRadius: 36,
+    backgroundColor: '#4475F2',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  profileText: {
-    flex: 1,
+
+  avatarInitials: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#fff',
   },
+
+  avatarEditBadge: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: '#f59e0b',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#fff',
+  },
+
   profileName: {
     fontSize: 16,
     fontWeight: '700',
     color: '#111827',
   },
+
   profileEmail: {
     fontSize: 12,
-    color: '#6b7280',
+    color: '#9ca3af',
     marginTop: 2,
   },
+
+  sectionWrap: {
+    marginBottom: 18,
+  },
+
+  sectionHeaderRow: {
+    paddingVertical: 8,
+    paddingHorizontal: 4,
+  },
+
+  sectionHeaderText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#9ca3af',
+    letterSpacing: 0.5,
+  },
+
   menuGroup: {
     borderRadius: 16,
     borderWidth: 1,
     borderColor: '#f3f4f6',
     overflow: 'hidden',
-    marginBottom: 24,
   },
+
   menuRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: 16,
+    paddingVertical: 14,
     paddingHorizontal: 16,
+    backgroundColor: '#fff',
+  },
+
+  menuRowDivider: {
     borderBottomWidth: 1,
     borderBottomColor: '#f3f4f6',
   },
+
   menuLeft: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
   },
+
   menuLabel: {
     fontSize: 14,
-    fontWeight: '500',
+    fontWeight: '600',
     color: '#1f2937',
   },
+
+  menuSubtitle: {
+    fontSize: 11,
+    color: '#9ca3af',
+    marginTop: 1,
+  },
+
   signOutButton: {
-    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 8,
     paddingVertical: 14,
-    borderRadius: 30,
+    borderRadius: 14,
     borderWidth: 1,
     borderColor: '#fecaca',
-    backgroundColor: '#fff5f5',
+    backgroundColor: '#fff',
+    marginTop: 8,
   },
+
   signOutText: {
     fontSize: 14,
     fontWeight: '700',

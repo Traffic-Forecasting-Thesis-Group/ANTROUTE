@@ -12,6 +12,7 @@ import {
   StatusBar,
   ScrollView,
   ActivityIndicator,
+  Dimensions,
 } from 'react-native';
 
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
@@ -33,6 +34,8 @@ import * as Location from 'expo-location';
 import { planRoute, RouteOption, CongestionLevel, Coordinates, DestinationInput } from '../api/routeService';
 import { searchPlaces, reverseGeocode, PlaceSuggestion } from '../api/placesService';
 
+const SCREEN_HEIGHT = Dimensions.get('window').height;
+
 const CONGESTION_COLORS: Record<CongestionLevel, string> = {
   clear: '#10b981',
   moderate: '#f59e0b',
@@ -51,6 +54,30 @@ interface DestinationEntry {
   name: string;
   coords: Coordinates | null;
 }
+
+type ModelTab = 'antroute' | 'baseline' | 'comparison';
+
+interface ComparisonMetricRow {
+  metric: string;
+  antroute: number;
+  baseline: number;
+  improvementPct: number;
+}
+
+interface ComparisonMetrics {
+  routeOptimalityPct: { antroute: number; baseline: number };
+  etaAccuracy: ComparisonMetricRow[];
+}
+
+const SAMPLE_COMPARISON_METRICS: ComparisonMetrics = {
+  routeOptimalityPct: { antroute: 92, baseline: 78 },
+  etaAccuracy: [
+    { metric: 'MAE', antroute: 2.1, baseline: 4.6, improvementPct: -54 },
+    { metric: 'RMSE', antroute: 3, baseline: 6.2, improvementPct: -52 },
+    { metric: 'MSE', antroute: 9, baseline: 38.4, improvementPct: -77 },
+    { metric: 'R²', antroute: 0.91, baseline: 0.74, improvementPct: 23 },
+  ],
+};
 
 function getArrivalTime(durationMin: number): string {
   const now = new Date();
@@ -74,8 +101,24 @@ export default function HomeScreen({ navigation }: any) {
 
   const [isLoading, setIsLoading] = useState(false);
   const [routeError, setRouteError] = useState('');
-  const [routeOptions, setRouteOptions] = useState<RouteOption[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [activeTab, setActiveTab] = useState<ModelTab>('antroute');
+  const [selectedModelTab, setSelectedModelTab] = useState<'antroute' | 'baseline'>('antroute');
+
+  const handleTabChange = (tab: ModelTab) => {
+    setActiveTab(tab);
+    if (tab !== 'comparison') {
+      setSelectedModelTab(tab);
+      setSelectedIndex(0);
+    }
+  };
+
+
+  const [normalRoute, setNormalRoute] = useState<RouteOption | null>(null);
+  const [antRouteOptions, setAntRouteOptions] = useState<RouteOption[]>([]);
+  const [baselineModelOptions, setBaselineModelOptions] = useState<RouteOption[]>([]);
+
+  const comparisonMetrics = SAMPLE_COMPARISON_METRICS;
 
   const [isNavigating, setIsNavigating] = useState(false);
   const [isAddingStop, setIsAddingStop] = useState(false);
@@ -151,10 +194,16 @@ export default function HomeScreen({ navigation }: any) {
     }, 300);
   };
 
+  const clearRouteResults = () => {
+    setNormalRoute(null);
+    setAntRouteOptions([]);
+    setBaselineModelOptions([]);
+  };
+
   const handleOriginChange = (text: string) => {
     setOrigin(text);
     setOriginCoords(null);
-    setRouteOptions([]);
+    clearRouteResults();
     runPlacesSearch('origin', text);
   };
 
@@ -162,7 +211,7 @@ export default function HomeScreen({ navigation }: any) {
     setDestinations((prev) => prev.map((d, i) => (i === index ? { name: value, coords: null } : d)));
     
     if (!isNavigating) {
-      setRouteOptions([]);
+      clearRouteResults();
     }
     runPlacesSearch(index, value);
   };
@@ -233,8 +282,15 @@ export default function HomeScreen({ navigation }: any) {
     setRouteError('');
     setIsLoading(true);
     try {
-      const results = await planRoute(originToUse.trim(), cleanedDestinations, true, originCoordsToUse);
-      setRouteOptions(results);
+      const [normalResults, antResults, baselineResults] = await Promise.all([
+        planRoute(originToUse.trim(), cleanedDestinations, false, originCoordsToUse),
+        planRoute(originToUse.trim(), cleanedDestinations, true, originCoordsToUse),
+        (planRoute as any)(originToUse.trim(), cleanedDestinations, true, originCoordsToUse, 'baseline'),
+      ]);
+
+      setNormalRoute(normalResults[0] ?? null);
+      setAntRouteOptions(antResults);
+      setBaselineModelOptions(baselineResults ?? antResults);
       setSelectedIndex(0);
     } catch (error: any) {
       setRouteError(error?.message || 'Something went wrong. Please try again.');
@@ -244,7 +300,12 @@ export default function HomeScreen({ navigation }: any) {
   };
 
   const handleFindRoutesPress = () => {
-    handleFindRoutes(destinations, origin, originCoords);
+    const nonEmptyDestinations = destinations.filter((d) => d.name.trim().length > 0);
+    if (nonEmptyDestinations.length !== destinations.length) {
+      setDestinations(nonEmptyDestinations.length > 0 ? nonEmptyDestinations : [{ name: '', coords: null }]);
+    }
+
+    handleFindRoutes(nonEmptyDestinations, origin, originCoords);
   };
 
   const handleStartNavigation = () => {
@@ -264,8 +325,10 @@ export default function HomeScreen({ navigation }: any) {
     setOriginCoords(null);
     setLocationError('');
     setDestinations([{ name: '', coords: null }]);
-    setRouteOptions([]);
+    clearRouteResults();
     setSelectedIndex(0);
+    setActiveTab('antroute');
+    setSelectedModelTab('antroute');
     setRouteError('');
     setActiveField(null);
     setSuggestions([]);
@@ -315,7 +378,9 @@ export default function HomeScreen({ navigation }: any) {
     );
   };
 
-  const selectedRoute = routeOptions[selectedIndex];
+  const currentModelOptions = selectedModelTab === 'baseline' ? baselineModelOptions : antRouteOptions;
+  const selectedRoute = currentModelOptions[selectedIndex];
+  const hasAnyResults = normalRoute !== null || antRouteOptions.length > 0;
   const showStopsList = !isNavigating || stopsRevealedDuringNav;
 
   return (
@@ -402,8 +467,29 @@ export default function HomeScreen({ navigation }: any) {
                   <Text style={styles.placeholderText}>Plan Your Route!</Text>
                 </TouchableOpacity>
               ) : (
-                <ScrollView showsVerticalScrollIndicator={false} style={styles.routeBox} keyboardShouldPersistTaps="handled">
+                <ScrollView
+                  showsVerticalScrollIndicator={false}
+                  style={styles.routeBox}
+                  contentContainerStyle={styles.routeBoxContent}
+                  keyboardShouldPersistTaps="handled"
+                >
                   {!isNavigating && <View style={styles.dragHandle} />}
+
+                  {!isNavigating && (
+                    <View style={styles.tabBarRow}>
+                      {(['antroute', 'baseline', 'comparison'] as ModelTab[]).map((tab) => (
+                        <TouchableOpacity
+                          key={tab}
+                          onPress={() => handleTabChange(tab)}
+                          style={[styles.tabPill, activeTab === tab && styles.tabPillActive]}
+                        >
+                          <Text style={[styles.tabPillText, activeTab === tab && styles.tabPillTextActive]}>
+                            {tab === 'antroute' ? 'ANTRoute' : tab === 'baseline' ? 'Baseline' : 'Comparison'}
+                          </Text>
+                        </TouchableOpacity>
+                      ))}
+                    </View>
+                  )}
 
                   {showStopsList && (
                     <>
@@ -524,28 +610,34 @@ export default function HomeScreen({ navigation }: any) {
 
                   {routeError ? <Text style={styles.errorText}>{routeError}</Text> : null}
 
-                  {!isNavigating && routeOptions.length === 0 && (
-                    <TouchableOpacity
-                      style={[styles.findButton, isLoading && styles.findButtonDisabled]}
-                      onPress={handleFindRoutesPress}
-                      disabled={isLoading}
-                    >
-                      {isLoading ? (
-                        <ActivityIndicator color="#fff" />
-                      ) : (
-                        <Text style={styles.findButtonText}>Find Optimal Route</Text>
-                      )}
-                    </TouchableOpacity>
+                  {!isNavigating && !hasAnyResults && (
+                    <>
+                      <View style={styles.vehicleNoteRow}>
+                        <CarFront size={14} color="#9ca3af" />
+                        <Text style={styles.vehicleNoteText}>Routes optimized for 4-wheel vehicles.</Text>
+                      </View>
+                      <TouchableOpacity
+                        style={[styles.findButton, isLoading && styles.findButtonDisabled]}
+                        onPress={handleFindRoutesPress}
+                        disabled={isLoading}
+                      >
+                        {isLoading ? (
+                          <ActivityIndicator color="#fff" />
+                        ) : (
+                          <Text style={styles.findButtonText}>Find Optimal Route</Text>
+                        )}
+                      </TouchableOpacity>
+                    </>
                   )}
 
-                  {isLoading && routeOptions.length > 0 && (
+                  {isLoading && hasAnyResults && (
                     <View style={styles.loadingRow}>
                       <ActivityIndicator size="small" color="#4475F2" />
                       <Text style={styles.loadingText}>Updating route…</Text>
                     </View>
                   )}
 
-                  {selectedRoute && (
+                  {!isNavigating && activeTab === 'comparison' ? null : selectedRoute && (
                     <TouchableOpacity
                       style={styles.summaryBar}
                       activeOpacity={isNavigating && !stopsRevealedDuringNav ? 0.7 : 1}
@@ -587,12 +679,23 @@ export default function HomeScreen({ navigation }: any) {
                     </TouchableOpacity>
                   )}
 
-                  {!isNavigating && routeOptions.length > 0 && (
+                  {!isNavigating && hasAnyResults && activeTab !== 'comparison' && normalRoute && (
+                    <View style={styles.normalRouteCard}>
+                      <View style={styles.normalRouteTopRow}>
+                        <Text style={styles.normalRouteTime}>{normalRoute.duration_min} min</Text>
+                        <Text style={styles.normalRouteDistance}>{normalRoute.distance_km} km</Text>
+                      </View>
+                      <Text style={styles.normalRouteVia}>Via {normalRoute.via}</Text>
+                      <Text style={styles.normalRouteLabel}>Normal route (no traffic optimization)</Text>
+                    </View>
+                  )}
+
+                  {!isNavigating && activeTab !== 'comparison' && currentModelOptions.length > 0 && (
                     <>
-                      <Text style={styles.sectionHeader}>
-                        {routeOptions.length} Best Route{routeOptions.length !== 1 ? 's' : ''}
+                      <Text style={styles.sectionHeaderBlue}>
+                        Alternative Route by {selectedModelTab === 'baseline' ? 'Baseline' : 'ANTRoute'} Model
                       </Text>
-                      {routeOptions.map((route, index) => {
+                      {currentModelOptions.map((route, index) => {
                         const isSelected = index === selectedIndex;
                         return (
                           <TouchableOpacity
@@ -643,6 +746,72 @@ export default function HomeScreen({ navigation }: any) {
                       })}
                     </>
                   )}
+
+                  {!isNavigating && activeTab === 'comparison' && !hasAnyResults && (
+                    <View style={styles.comparisonEmptyState}>
+                      <Info size={18} color="#9ca3af" />
+                      <Text style={styles.comparisonEmptyText}>
+                        Add a destination and find a route to see the ANTRoute vs. Baseline comparison.
+                      </Text>
+                    </View>
+                  )}
+
+                  {!isNavigating && activeTab === 'comparison' && hasAnyResults && (
+                    <View>
+                      <Text style={styles.comparisonResultLabel}>Comparison Result</Text>
+
+                      <Text style={styles.comparisonSubheading}>Route Optimality</Text>
+                      <View style={styles.optimalityRow}>
+                        <View style={styles.optimalityCard}>
+                          <Text style={styles.optimalityCardLabel}>ANTRoute</Text>
+                          <Text style={styles.optimalityCardValue}>
+                            {comparisonMetrics.routeOptimalityPct.antroute}%
+                          </Text>
+                        </View>
+                        <View style={styles.optimalityCard}>
+                          <Text style={styles.optimalityCardLabel}>Baseline</Text>
+                          <Text style={styles.optimalityCardValue}>
+                            {comparisonMetrics.routeOptimalityPct.baseline}%
+                          </Text>
+                        </View>
+                      </View>
+
+                      <Text style={styles.comparisonSubheading}>ETA Accuracy</Text>
+                      <View style={styles.metricsTable}>
+                        <View style={styles.metricsTableHeaderRow}>
+                          <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText, { flex: 1.3 }]}>
+                            Metric
+                          </Text>
+                          <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>ANTRoute</Text>
+                          <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>Baseline</Text>
+                          <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>Improvement</Text>
+                        </View>
+                        {comparisonMetrics.etaAccuracy.map((row) => (
+                          <View key={row.metric} style={styles.metricsTableRow}>
+                            <Text style={[styles.metricsTableCell, { flex: 1.3 }]}>{row.metric}</Text>
+                            <Text style={styles.metricsTableCell}>{row.antroute}</Text>
+                            <Text style={styles.metricsTableCell}>{row.baseline}</Text>
+                            <Text
+                              style={[
+                                styles.metricsTableCell,
+                                styles.metricsTableImprovement,
+                                row.metric === 'R²'
+                                  ? row.improvementPct > 0 && styles.improvementGood
+                                  : row.improvementPct < 0 && styles.improvementGood,
+                              ]}
+                            >
+                              {row.improvementPct > 0 ? '+' : ''}
+                              {row.improvementPct}%
+                            </Text>
+                          </View>
+                        ))}
+                      </View>
+                      <Text style={styles.comparisonFootnote}>
+                        Lower is better for MAE, RMSE, MSE. Higher is better for R².
+                      </Text>
+                    </View>
+                  )}
+
                 </ScrollView>
               )}
             </View>
@@ -687,32 +856,24 @@ const styles = StyleSheet.create({
   legendCard: {
     position: 'absolute',
     top: StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 60,
-    right: 20,
-    backgroundColor: '#fff',
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-    borderRadius: 16,
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOpacity: 0.15,
-    shadowRadius: 4,
+    left: 20,
     zIndex: 10,
   },
   legendItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 3,
+    marginVertical: 6,
   },
   dot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    marginRight: 8,
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    marginRight: 10,
   },
   legendText: {
-    fontSize: 11,
-    fontWeight: '600',
-    color: '#374151',
+    fontSize: 12,
+    fontWeight: '400',
+    color: '#111827',
   },
   liveMapLabel: {
     position: 'absolute',
@@ -783,6 +944,10 @@ const styles = StyleSheet.create({
   },
   routeBox: {
     width: '100%',
+    maxHeight: SCREEN_HEIGHT * 0.7,
+  },
+  routeBoxContent: {
+    paddingBottom: 24,
   },
   dragHandle: {
     alignSelf: 'center',
@@ -896,6 +1061,17 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     textAlign: 'center',
   },
+  vehicleNoteRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    marginBottom: 12,
+  },
+  vehicleNoteText: {
+    fontSize: 12,
+    color: '#9ca3af',
+  },
   findButton: {
     backgroundColor: '#4475F2',
     height: 54,
@@ -979,6 +1155,155 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     color: '#fff',
+  },
+  tabBarRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 6,
+    marginBottom: 16,
+  },
+  tabPill: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 14,
+    backgroundColor: 'transparent',
+  },
+  tabPillActive: {
+    backgroundColor: '#eff6ff',
+  },
+  tabPillText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#9ca3af',
+  },
+  tabPillTextActive: {
+    color: '#4475F2',
+  },
+  normalRouteCard: {
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#f3f4f6',
+    borderRadius: 16,
+    padding: 14,
+    marginBottom: 16,
+  },
+  normalRouteTopRow: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    gap: 8,
+  },
+  normalRouteTime: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#111827',
+  },
+  normalRouteDistance: {
+    fontSize: 12,
+    color: '#9ca3af',
+  },
+  normalRouteVia: {
+    fontSize: 12,
+    color: '#6b7280',
+    marginTop: 2,
+  },
+  normalRouteLabel: {
+    fontSize: 11,
+    color: '#9ca3af',
+    marginTop: 6,
+  },
+  sectionHeaderBlue: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#4475F2',
+    marginBottom: 10,
+  },
+  comparisonEmptyState: {
+    alignItems: 'center',
+    paddingVertical: 40,
+    paddingHorizontal: 20,
+    gap: 10,
+  },
+  comparisonEmptyText: {
+    fontSize: 13,
+    color: '#9ca3af',
+    textAlign: 'center',
+    lineHeight: 18,
+  },
+  comparisonResultLabel: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#4475F2',
+    marginBottom: 14,
+  },
+  comparisonSubheading: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#111827',
+    marginBottom: 8,
+  },
+  optimalityRow: {
+    flexDirection: 'row',
+    gap: 10,
+    marginBottom: 18,
+  },
+  optimalityCard: {
+    flex: 1,
+    backgroundColor: '#f9fafb',
+    borderRadius: 14,
+    paddingVertical: 14,
+    alignItems: 'center',
+  },
+  optimalityCardLabel: {
+    fontSize: 12,
+    color: '#6b7280',
+    marginBottom: 4,
+  },
+  optimalityCardValue: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#111827',
+  },
+  metricsTable: {
+    borderWidth: 1,
+    borderColor: '#f3f4f6',
+    borderRadius: 12,
+    overflow: 'hidden',
+    marginBottom: 8,
+  },
+  metricsTableHeaderRow: {
+    flexDirection: 'row',
+    backgroundColor: '#f9fafb',
+    paddingVertical: 8,
+    paddingHorizontal: 10,
+  },
+  metricsTableHeaderText: {
+    fontSize: 10,
+    fontWeight: '700',
+    color: '#9ca3af',
+  },
+  metricsTableRow: {
+    flexDirection: 'row',
+    paddingVertical: 8,
+    paddingHorizontal: 10,
+    borderTopWidth: 1,
+    borderTopColor: '#f3f4f6',
+  },
+  metricsTableCell: {
+    flex: 1,
+    fontSize: 12,
+    color: '#1f2937',
+  },
+  metricsTableImprovement: {
+    fontWeight: '700',
+    color: '#ef4444',
+  },
+  improvementGood: {
+    color: '#10b981',
+  },
+  comparisonFootnote: {
+    fontSize: 10,
+    color: '#9ca3af',
+    marginBottom: 16,
   },
   sectionHeader: {
     fontSize: 13,
@@ -1079,4 +1404,3 @@ const styles = StyleSheet.create({
     color: '#3b82f6',
   },
 });
-

@@ -48,7 +48,7 @@
    ```bash
    cd frontend
    npm install
-   npm start
+   npx expo start
    ```
 
 ### New Contributor Run Order

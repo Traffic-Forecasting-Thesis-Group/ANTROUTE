@@ -36,7 +36,7 @@ async function persistSession(token: string, user: AuthUser | null) {
 
 function toReadableError(error: any, fallbackMessage: string): Error {
   if (error.response) {
-    return new Error(error.response.data?.message || fallbackMessage);
+    return new Error(error.response.data?.detail || error.response.data?.message || fallbackMessage);
   }
   if (error.request) {
     return new Error('Could not reach the server. Check your connection and try again.');
@@ -61,9 +61,6 @@ export async function getStoredUser(): Promise<AuthUser | null> {
   return storedUser ? JSON.parse(storedUser) : null;
 }
 
-/**
- * POST /auth/signin — adjust the path below to match backend's actual route.
- */
 export async function signIn(email: string, password: string): Promise<SignInResponse> {
   try {
     const { data } = await apiClient.post<SignInResponse>('/auth/signin', {
@@ -82,9 +79,6 @@ export async function signIn(email: string, password: string): Promise<SignInRes
   }
 }
 
-/**
- * POST /auth/signup — adjust the path below to match backend's actual route.
- */
 export async function signUp(name: string, email: string, password: string): Promise<SignUpResponse> {
   try {
     const { data } = await apiClient.post<SignUpResponse>('/auth/signup', {
@@ -107,4 +101,44 @@ export async function signUp(name: string, email: string, password: string): Pro
 export async function signOut(): Promise<void> {
   await AsyncStorage.multiRemove([TOKEN_KEY, USER_KEY]);
   applyAuthHeader(null);
+}
+
+export async function changePassword(currentPassword: string, newPassword: string): Promise<void> {
+  try {
+    await apiClient.post('/auth/change-password', {
+      current_password: currentPassword,
+      new_password: newPassword,
+    });
+  } catch (error: any) {
+    throw toReadableError(error, 'Could not update your password. Please try again.');
+  }
+}
+
+export async function deleteAccount(): Promise<void> {
+  try {
+    await apiClient.delete('/auth/account');
+  } catch (error: any) {
+    throw toReadableError(error, 'Could not delete your account. Please try again.');
+  }
+}
+
+export async function getCurrentUser(): Promise<AuthUser | null> {
+  try {
+    const { data } = await apiClient.get<AuthUser>('/auth/me');
+    await AsyncStorage.setItem(USER_KEY, JSON.stringify(data));
+    return data;
+  } catch (error: any) {
+    console.warn('getCurrentUser failed:', error?.message || error);
+    return null;
+  }
+}
+
+export async function updateProfile(name: string, email: string): Promise<AuthUser> {
+  try {
+    const { data } = await apiClient.patch<AuthUser>('/auth/me', { name, email });
+    await AsyncStorage.setItem(USER_KEY, JSON.stringify(data));
+    return data;
+  } catch (error: any) {
+    throw toReadableError(error, 'Could not update your profile. Please try again.');
+  }
 }

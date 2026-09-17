@@ -15,6 +15,9 @@ import SignUpScreen from '../screens/SignUpScreen';
 import HomeScreen from '../screens/HomeScreen';
 import FeedScreen from '../screens/FeedScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import PasswordScreen from '../screens/PasswordScreen';
+import EditProfileScreen from '../screens/EditProfileScreen';
+import AboutScreen from '../screens/AboutScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -109,6 +112,32 @@ export default function AppNavigator() {
         component={MainTabNavigator}
       />
 
+      <Stack.Screen
+        name="EditProfileScreen"
+        component={EditProfileScreen}
+        options={{
+          headerShown: false, 
+          animation: 'slide_from_right'
+        }}
+      />
+
+      <Stack.Screen
+        name="PasswordScreen"
+        component={PasswordScreen}
+        options={{
+          headerShown: false, 
+          animation: 'slide_from_right'
+        }}
+      />
+
+      <Stack.Screen
+        name="AboutScreen"
+        component={AboutScreen}
+        options={{
+          headerShown: false, 
+          animation: 'slide_from_right'
+        }}
+      />
     </Stack.Navigator>
   );
 }

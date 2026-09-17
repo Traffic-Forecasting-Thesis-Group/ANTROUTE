@@ -24,3 +24,17 @@ class UserOut(BaseModel):
 class AuthResponse(BaseModel):
     token: str
     user: UserOut
+
+
+class ChangePasswordRequest(BaseModel):
+    current_password: str
+    new_password: str
+
+
+class MessageResponse(BaseModel):
+    message: str
+
+
+class UpdateProfileRequest(BaseModel):
+    name: str
+    email: EmailStr
