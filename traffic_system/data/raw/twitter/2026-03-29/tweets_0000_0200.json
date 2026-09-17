@@ -5,7 +5,7 @@
     "window_start": "2026-03-29T00:00:00+08:00",
     "window_end": "2026-03-29T02:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 3,
+    "tweet_count": 4,
     "slices": [
       {
         "start": "2026-03-29T00:00:00+08:00",
@@ -116,8 +116,8 @@
         "start": "2026-03-29T01:15:00+08:00",
         "end": "2026-03-29T01:20:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-29T01:20:00+08:00",
@@ -232,8 +232,8 @@
         "favouritesCount": 129,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 5992,
-        "statusesCount": 9463,
+        "mediaCount": 6003,
+        "statusesCount": 9474,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -241,7 +241,38 @@
         "profile_bio": {
           "description": "Jhunjhunu Update is a Jhunjhunu’s 24X7 regional Youtube News channel which is operated by Jhunjhunu Update Team\n#jhunjhunu #news #jjn #jhunjhununews",
           "entities": {
-            "description": {},
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    112,
+                    122
+                  ],
+                  "text": "jhunjhunu"
+                },
+                {
+                  "indices": [
+                    123,
+                    128
+                  ],
+                  "text": "news"
+                },
+                {
+                  "indices": [
+                    129,
+                    133
+                  ],
+                  "text": "jjn"
+                },
+                {
+                  "indices": [
+                    134,
+                    148
+                  ],
+                  "text": "jhunjhununews"
+                }
+              ]
+            },
             "url": {
               "urls": [
                 {
@@ -271,9 +302,11 @@
             },
             "display_url": "pic.x.com/tw8f04luDK",
             "expanded_url": "https://x.com/JhunjhunuUpdate/status/2037922931066691888/video/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "id_str": "2037922346481364993",
             "indices": [
               154,
@@ -281,7 +314,10 @@
             ],
             "media_key": "13_2037922346481364993",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARxIJ5Ol2jABAAA=",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABHEgnk6XaMAEAAA==",
                 "media_key": "13_2037922346481364993"
               }
             },
@@ -294,23 +330,7 @@
             "sizes": {
               "large": {
                 "h": 1080,
-                "resize": "fit",
                 "w": 1920
-              },
-              "medium": {
-                "h": 675,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 383,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "video",
@@ -378,94 +398,12 @@
             ],
             "text": "झुंझुनू"
           }
-        ],
-        "media": [
-          {
-            "additional_media_info": {
-              "monetizable": false
-            },
-            "allow_download_status": {
-              "allow_download": true
-            },
-            "display_url": "pic.x.com/tw8f04luDK",
-            "expanded_url": "https://x.com/JhunjhunuUpdate/status/2037922931066691888/video/1",
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "id_str": "2037922346481364993",
-            "indices": [
-              154,
-              177
-            ],
-            "media_key": "13_2037922346481364993",
-            "media_results": {
-              "result": {
-                "media_key": "13_2037922346481364993"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2037922346481364993/img/XW4kKVXRZ0c936zY.jpg",
-            "original_info": {
-              "focus_rects": [],
-              "height": 1080,
-              "width": 1920
-            },
-            "sizes": {
-              "large": {
-                "h": 1080,
-                "resize": "fit",
-                "w": 1920
-              },
-              "medium": {
-                "h": 675,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 383,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
-              }
-            },
-            "type": "video",
-            "url": "https://t.co/tw8f04luDK",
-            "video_info": {
-              "aspect_ratio": [
-                16,
-                9
-              ],
-              "duration_millis": 120836,
-              "variants": [
-                {
-                  "content_type": "application/x-mpegURL",
-                  "url": "https://video.twimg.com/amplify_video/2037922346481364993/pl/rBqjXF-Aw7cfT3PB.m3u8?tag=14"
-                },
-                {
-                  "bitrate": 288000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2037922346481364993/vid/avc1/480x270/1-niKYgcEg1Qaz_a.mp4?tag=14"
-                },
-                {
-                  "bitrate": 832000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2037922346481364993/vid/avc1/640x360/NhESUf8c0kT0tbB3.mp4?tag=14"
-                },
-                {
-                  "bitrate": 2176000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/2037922346481364993/vid/avc1/1280x720/AL4NZHXdX7rJAoZP.mp4?tag=14"
-                }
-              ]
-            }
-          }
         ]
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -506,7 +444,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967070,
+        "followers": 3966554,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -519,11 +457,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 5284,
+        "favouritesCount": 5283,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888279,
+        "mediaCount": 61737,
+        "statusesCount": 888711,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -608,7 +546,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
         "description": "",
         "location": "Philippines",
-        "followers": 189496,
+        "followers": 190077,
         "following": 481,
         "status": "",
         "canDm": false,
@@ -621,16 +559,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 20345,
+        "favouritesCount": 20360,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 44368,
-        "statusesCount": 197201,
+        "mediaCount": 45246,
+        "statusesCount": 198788,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2093633872936456280"
+          "2099480545550090734"
         ],
         "profile_bio": {
           "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",
@@ -751,6 +689,293 @@
       "card": null,
       "place": {},
       "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2037942043658563863",
+      "url": "https://x.com/FTPfbd/status/2037942043658563863",
+      "twitterUrl": "https://twitter.com/FTPfbd/status/2037942043658563863",
+      "text": "🚨 Traffic Advisory – Bata ROB, Faridabad 🚨\n\nBata Railway Flyover par repair work ke chalte traffic phase-wise divert rahega.\n🗓 28 Mar – 11 Apr 2026\n🚧 One side closed at a time\n🔁 Use Neelam Flyover\nKripya route plan karke niklein &amp; follow traffic rules.\n @DC_Faridabad https://t.co/oFAmRlcyLi",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 1,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 428,
+      "createdAt": "Sat Mar 28 17:17:00 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2037942043658563863",
+      "displayTextRange": [
+        0,
+        271
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "FTPfbd",
+        "url": "https://x.com/FTPfbd",
+        "twitterUrl": "https://twitter.com/FTPfbd",
+        "id": "713713338845306880",
+        "name": "Traffic Police FBD",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1424739651554738182/TPzGbmDT_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/713713338845306880/1534230898",
+        "description": "",
+        "location": "Faridabad, India",
+        "followers": 16899,
+        "following": 40,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Sat Mar 26 13:04:54 +0000 2016",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1234,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1430,
+        "statusesCount": 4556,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official Twitter handle of Traffic Police, Faridabad. for any official complaint related to wrong challan or violation- please mail on dcptraffic.fbd-hry@nic.in",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "instagram.com/faridabad_traf…",
+                  "expanded_url": "https://www.instagram.com/faridabad_traffic_police",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/o8iVUBRlHA"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/oFAmRlcyLi",
+            "expanded_url": "https://x.com/FTPfbd/status/2037942043658563863/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 140,
+                    "w": 140,
+                    "x": 852,
+                    "y": 187
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 140,
+                    "w": 140,
+                    "x": 852,
+                    "y": 187
+                  }
+                ]
+              }
+            },
+            "id_str": "2037942024813617153",
+            "indices": [
+              272,
+              295
+            ],
+            "media_key": "3_2037942024813617153",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxIOXld2yABCgACHEg5fcEaMRcAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHEg5eV3bIAEKAAIcSDl9wRoxFwAA",
+                "media_key": "3_2037942024813617153"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HEg5eV3bIAEfwrh.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 573,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1167,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 640,
+                  "x": 96,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1280,
+              "width": 1024
+            },
+            "sizes": {
+              "large": {
+                "h": 1280,
+                "w": 1024
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/oFAmRlcyLi"
+          },
+          {
+            "display_url": "pic.x.com/oFAmRlcyLi",
+            "expanded_url": "https://x.com/FTPfbd/status/2037942043658563863/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 105,
+                    "w": 105,
+                    "x": 208,
+                    "y": 5
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 105,
+                    "w": 105,
+                    "x": 208,
+                    "y": 5
+                  }
+                ]
+              }
+            },
+            "id_str": "2037942027045007360",
+            "indices": [
+              272,
+              295
+            ],
+            "media_key": "3_2037942027045007360",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxIOXni23AACgACHEg5fcEaMRcAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHEg5eeLbcAAKAAIcSDl9wRoxFwAA",
+                "media_key": "3_2037942027045007360"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HEg5eeLbcAAD6mZ.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 573,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 386
+                },
+                {
+                  "h": 1024,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 160
+                },
+                {
+                  "h": 1167,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 89
+                },
+                {
+                  "h": 1280,
+                  "w": 640,
+                  "x": 160,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1280,
+              "width": 1024
+            },
+            "sizes": {
+              "large": {
+                "h": 1280,
+                "w": 1024
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/oFAmRlcyLi"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "925971044728496128",
+            "indices": [
+              258,
+              271
+            ],
+            "name": "DC Faridabad",
+            "screen_name": "DC_Faridabad"
+          }
+        ]
+      },
       "quoted_tweet": null,
       "retweeted_tweet": null,
       "isLimitedReply": false,

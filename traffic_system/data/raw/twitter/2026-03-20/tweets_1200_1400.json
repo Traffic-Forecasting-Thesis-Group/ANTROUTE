@@ -5,7 +5,7 @@
     "window_start": "2026-03-20T12:00:00+08:00",
     "window_end": "2026-03-20T14:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 9,
+    "tweet_count": 10,
     "slices": [
       {
         "start": "2026-03-20T12:00:00+08:00",
@@ -53,8 +53,8 @@
         "start": "2026-03-20T12:30:00+08:00",
         "end": "2026-03-20T12:35:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 0,
+        "accepted": 0
       },
       {
         "start": "2026-03-20T12:35:00+08:00",
@@ -102,15 +102,15 @@
         "start": "2026-03-20T13:05:00+08:00",
         "end": "2026-03-20T13:10:00+08:00",
         "status_code": 200,
-        "returned": 2,
-        "accepted": 2
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-20T13:10:00+08:00",
         "end": "2026-03-20T13:15:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-03-20T13:15:00+08:00",
@@ -144,8 +144,8 @@
         "start": "2026-03-20T13:35:00+08:00",
         "end": "2026-03-20T13:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-20T13:40:00+08:00",
@@ -165,8 +165,8 @@
         "start": "2026-03-20T13:50:00+08:00",
         "end": "2026-03-20T13:55:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-03-20T13:55:00+08:00",
@@ -178,161 +178,6 @@
     ]
   },
   "data": [
-    {
-      "type": "tweet",
-      "id": "2034850995851702611",
-      "url": "https://x.com/TheManilaTimes/status/2034850995851702611",
-      "twitterUrl": "https://twitter.com/TheManilaTimes/status/2034850995851702611",
-      "text": "CEBU CITY — Public transport groups staged a strike on Thursday, triggering widespread disruptions in jeepney operations across the city as they pressed for government action on soaring fuel costs. https://t.co/QlOarqUs5n",
-      "source": "Twitter for iPhone",
-      "retweetCount": 0,
-      "replyCount": 0,
-      "likeCount": 1,
-      "quoteCount": 0,
-      "viewCount": 157,
-      "createdAt": "Fri Mar 20 04:34:17 +0000 2026",
-      "lang": "en",
-      "bookmarkCount": 1,
-      "isReply": false,
-      "inReplyToId": null,
-      "conversationId": "2034850995851702611",
-      "displayTextRange": [
-        0,
-        221
-      ],
-      "inReplyToUserId": null,
-      "inReplyToUsername": null,
-      "author": {
-        "type": "user",
-        "userName": "TheManilaTimes",
-        "url": "https://x.com/TheManilaTimes",
-        "twitterUrl": "https://twitter.com/TheManilaTimes",
-        "id": "63411616",
-        "name": "The Manila Times",
-        "isVerified": false,
-        "isBlueVerified": true,
-        "verifiedType": null,
-        "profilePicture": "https://pbs.twimg.com/profile_images/1807713937775042560/18c9mMV5_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
-        "description": "",
-        "location": "Philippines",
-        "followers": 189494,
-        "following": 481,
-        "status": "",
-        "canDm": false,
-        "canMediaTag": true,
-        "createdAt": "Thu Aug 06 07:56:49 +0000 2009",
-        "entities": {
-          "description": {
-            "urls": []
-          },
-          "url": {}
-        },
-        "fastFollowersCount": 0,
-        "favouritesCount": 20345,
-        "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 44362,
-        "statusesCount": 197193,
-        "withheldInCountries": [],
-        "affiliatesHighlightedLabel": {},
-        "possiblySensitive": false,
-        "pinnedTweetIds": [
-          "2093633872936456280"
-        ],
-        "profile_bio": {
-          "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",
-          "entities": {
-            "description": {},
-            "url": {
-              "urls": [
-                {
-                  "display_url": "manilatimes.net",
-                  "expanded_url": "http://www.manilatimes.net/",
-                  "indices": [
-                    0,
-                    23
-                  ],
-                  "url": "https://t.co/rkmgx7wMNG"
-                }
-              ]
-            }
-          }
-        },
-        "isAutomated": false,
-        "automatedBy": null
-      },
-      "extendedEntities": {},
-      "card": {
-        "binding_values": [
-          {
-            "key": "description",
-            "value": {
-              "string_value": "CEBU CITY — Public transport groups staged a strike on Thursday, triggering widespread disruptions in jeepney operations across the city as they pressed for government action on soaring fuel costs. "
-            }
-          },
-          {
-            "key": "domain",
-            "value": {
-              "string_value": "www.manilatimes.net"
-            }
-          },
-          {
-            "key": "vanity_url",
-            "value": {
-              "scribe_key": "vanity_url",
-              "string_value": "manilatimes.net"
-            }
-          },
-          {
-            "key": "title",
-            "value": {
-              "string_value": "Cebu City transport strike triggers calls for government action"
-            }
-          },
-          {
-            "key": "card_url",
-            "value": {
-              "scribe_key": "card_url",
-              "string_value": "https://t.co/QlOarqUs5n"
-            }
-          }
-        ],
-        "card_platform": {
-          "platform": {
-            "audience": {
-              "name": "production"
-            },
-            "device": {
-              "name": "iPhone",
-              "version": "13"
-            }
-          }
-        },
-        "name": "summary_large_image",
-        "url": "https://t.co/QlOarqUs5n",
-        "user_refs_results": []
-      },
-      "place": {},
-      "entities": {
-        "urls": [
-          {
-            "display_url": "manilatimes.net/2026/03/19/reg…",
-            "expanded_url": "https://www.manilatimes.net/2026/03/19/regions/cebu-city-transport-strike-triggers-calls-for-government-action/2303711?utm_campaign=mrf-twitter-TheManilaTimes&mrfcid=2026032069ba23415d327473083dadd4",
-            "indices": [
-              198,
-              221
-            ],
-            "url": "https://t.co/QlOarqUs5n"
-          }
-        ]
-      },
-      "quoted_tweet": null,
-      "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
-      "article": null
-    },
     {
       "type": "tweet",
       "id": "2034856410455105643",
@@ -371,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2811559122/1753864423",
         "description": "",
         "location": "Philippines",
-        "followers": 2009162,
+        "followers": 2009382,
         "following": 224,
         "status": "",
         "canDm": false,
@@ -384,11 +229,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 165,
+        "favouritesCount": 163,
         "hasCustomTimelines": true,
         "isTranslator": true,
-        "mediaCount": 272412,
-        "statusesCount": 717592,
+        "mediaCount": 272700,
+        "statusesCount": 717938,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -618,7 +463,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -634,8 +479,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412023,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -684,108 +529,6 @@
     },
     {
       "type": "tweet",
-      "id": "2034859915937030452",
-      "url": "https://x.com/MMDA/status/2034859915937030452",
-      "twitterUrl": "https://twitter.com/MMDA/status/2034859915937030452",
-      "text": "MMDA ALERT: Road crash incident at Roxas Blvd Quirino NB involving dump truck, van and tricycle as of 12:16 PM. One lane occupied. MMDA enforcers are on site managing traffic. #mmda",
-      "source": "Twitter for iPhone",
-      "retweetCount": 0,
-      "replyCount": 0,
-      "likeCount": 0,
-      "quoteCount": 0,
-      "viewCount": 846,
-      "createdAt": "Fri Mar 20 05:09:44 +0000 2026",
-      "lang": "en",
-      "bookmarkCount": 0,
-      "isReply": false,
-      "inReplyToId": null,
-      "conversationId": "2034859915937030452",
-      "displayTextRange": [
-        0,
-        181
-      ],
-      "inReplyToUserId": null,
-      "inReplyToUsername": null,
-      "author": {
-        "type": "user",
-        "userName": "MMDA",
-        "url": "https://x.com/MMDA",
-        "twitterUrl": "https://twitter.com/MMDA",
-        "id": "171574926",
-        "name": "Official MMDA",
-        "isVerified": false,
-        "isBlueVerified": true,
-        "verifiedType": "Government",
-        "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
-        "description": "",
-        "location": "Metro Manila",
-        "followers": 3967068,
-        "following": 125,
-        "status": "",
-        "canDm": true,
-        "canMediaTag": true,
-        "createdAt": "Tue Jul 27 17:31:12 +0000 2010",
-        "entities": {
-          "description": {
-            "urls": []
-          },
-          "url": {}
-        },
-        "fastFollowersCount": 0,
-        "favouritesCount": 5284,
-        "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888279,
-        "withheldInCountries": [],
-        "affiliatesHighlightedLabel": {},
-        "possiblySensitive": false,
-        "pinnedTweetIds": [],
-        "profile_bio": {
-          "description": "Official X Account of the Metropolitan Manila Development Authority | Hotline 136 | digitalmedia@mmda.gov.ph | VIBER 0956-6632-221",
-          "entities": {
-            "description": {},
-            "url": {
-              "urls": [
-                {
-                  "display_url": "mmda.gov.ph",
-                  "expanded_url": "http://mmda.gov.ph",
-                  "indices": [
-                    0,
-                    23
-                  ],
-                  "url": "https://t.co/BHm5ofschj"
-                }
-              ]
-            }
-          }
-        },
-        "isAutomated": false,
-        "automatedBy": null
-      },
-      "extendedEntities": {},
-      "card": null,
-      "place": {},
-      "entities": {
-        "hashtags": [
-          {
-            "indices": [
-              176,
-              181
-            ],
-            "text": "mmda"
-          }
-        ]
-      },
-      "quoted_tweet": null,
-      "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
-      "article": null
-    },
-    {
-      "type": "tweet",
       "id": "2034859831358886144",
       "url": "https://x.com/MMDA/status/2034859831358886144",
       "twitterUrl": "https://twitter.com/MMDA/status/2034859831358886144",
@@ -822,7 +565,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967068,
+        "followers": 3966562,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -838,8 +581,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888279,
+        "mediaCount": 61737,
+        "statusesCount": 888713,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -924,8 +667,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/3263176950/1515756033",
         "description": "",
         "location": "Lucknow, Uttar Pradesh",
-        "followers": 58959,
-        "following": 79,
+        "followers": 59007,
+        "following": 78,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -937,11 +680,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 2532,
+        "favouritesCount": 2544,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 25925,
-        "statusesCount": 35328,
+        "mediaCount": 26011,
+        "statusesCount": 35465,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1111,6 +854,337 @@
     },
     {
       "type": "tweet",
+      "id": "2034860270838063504",
+      "url": "https://x.com/OhmPoon_PHfc819/status/2034860270838063504",
+      "twitterUrl": "https://twitter.com/OhmPoon_PHfc819/status/2034860270838063504",
+      "text": "Their visuals never declines fr it's serving fire 🔥🔥🔥 \n\nThank you for this phi 😭\n\n#OhmPoon #โอห์มปูน \n#OhmThitiwat #poon_mit12 https://t.co/2MWGZsRioA",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 11,
+      "quoteCount": 0,
+      "viewCount": 303,
+      "createdAt": "Fri Mar 20 05:11:09 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2034860270838063504",
+      "displayTextRange": [
+        0,
+        126
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "OhmPoon_PHfc819",
+        "url": "https://x.com/OhmPoon_PHfc819",
+        "twitterUrl": "https://twitter.com/OhmPoon_PHfc819",
+        "id": "1961112701629075458",
+        "name": "OhmPoon Philippines Official FC 🇵🇭",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2073777948516376576/EfEoNyae_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1961112701629075458/1782346153",
+        "description": "",
+        "location": "Republic of the Philippines",
+        "followers": 1226,
+        "following": 73,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Aug 28 17:04:55 +0000 2025",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 13254,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 9227,
+        "statusesCount": 22633,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2093119183576092749"
+        ],
+        "profile_bio": {
+          "description": "✨For @ohmthitiwat 🐻 and @poon_mit12 🐶 ✨\n\nCP '26 🐻🐶 🎥  🔜 #CupidsGhost || Solo 🎥 🔜 🐻 #HighandLowSeries |  #MyRomanceScammer on WeTV \n\n♡ #OhmPoon #โอห์มปูน 🇵🇭 ♡",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    56,
+                    68
+                  ],
+                  "text": "CupidsGhost"
+                },
+                {
+                  "indices": [
+                    83,
+                    100
+                  ],
+                  "text": "HighandLowSeries"
+                },
+                {
+                  "indices": [
+                    104,
+                    121
+                  ],
+                  "text": "MyRomanceScammer"
+                },
+                {
+                  "indices": [
+                    134,
+                    142
+                  ],
+                  "text": "OhmPoon"
+                },
+                {
+                  "indices": [
+                    143,
+                    152
+                  ],
+                  "text": "โอห์มปูน"
+                }
+              ],
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    5,
+                    17
+                  ],
+                  "name": "",
+                  "screen_name": "ohmthitiwat"
+                },
+                {
+                  "id_str": "",
+                  "indices": [
+                    24,
+                    35
+                  ],
+                  "name": "",
+                  "screen_name": "poon_mit12"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "tiktok.com/@ohmpoonph.off…",
+                  "expanded_url": "https://www.tiktok.com/@ohmpoonph.officialfc819?_r=1&_t=ZS-927qLFhwr49",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/O1XIAb3v7w"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/2MWGZsRioA",
+            "expanded_url": "https://x.com/OhmPoon_PHfc819/status/2034860270838063504/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 124,
+                    "w": 124,
+                    "x": 16,
+                    "y": 382
+                  },
+                  {
+                    "h": 132,
+                    "w": 132,
+                    "x": 738,
+                    "y": 1416
+                  },
+                  {
+                    "h": 448,
+                    "w": 448,
+                    "x": 584,
+                    "y": 100
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 124,
+                    "w": 124,
+                    "x": 16,
+                    "y": 382
+                  },
+                  {
+                    "h": 132,
+                    "w": 132,
+                    "x": 738,
+                    "y": 1416
+                  },
+                  {
+                    "h": 448,
+                    "w": 448,
+                    "x": 584,
+                    "y": 100
+                  }
+                ]
+              }
+            },
+            "id_str": "2034860261027594240",
+            "indices": [
+              127,
+              150
+            ],
+            "media_key": "3_2034860261027594240",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARw9RqBSG8AACgACHD1GoprboZAAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHD1GoFIbwAAKAAIcPUaimtuhkAAA",
+                "media_key": "3_2034860261027594240"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HD1GoFIbwAAWs-Z.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 749,
+                  "w": 1338,
+                  "x": 0,
+                  "y": 1110
+                },
+                {
+                  "h": 1338,
+                  "w": 1338,
+                  "x": 0,
+                  "y": 710
+                },
+                {
+                  "h": 1525,
+                  "w": 1338,
+                  "x": 0,
+                  "y": 523
+                },
+                {
+                  "h": 2048,
+                  "w": 1024,
+                  "x": 314,
+                  "y": 0
+                },
+                {
+                  "h": 2048,
+                  "w": 1338,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 1338
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 1338
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/2MWGZsRioA"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              82,
+              90
+            ],
+            "text": "OhmPoon"
+          },
+          {
+            "indices": [
+              91,
+              100
+            ],
+            "text": "โอห์มปูน"
+          },
+          {
+            "indices": [
+              102,
+              114
+            ],
+            "text": "OhmThitiwat"
+          },
+          {
+            "indices": [
+              115,
+              126
+            ],
+            "text": "poon_mit12"
+          }
+        ]
+      },
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "",
+        "url": "",
+        "twitterUrl": "",
+        "text": "",
+        "source": "Twitter for iPhone",
+        "retweetCount": 0,
+        "replyCount": 0,
+        "likeCount": 0,
+        "quoteCount": 0,
+        "viewCount": 0,
+        "createdAt": "",
+        "lang": "",
+        "bookmarkCount": 0,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "",
+        "displayTextRange": [],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {},
+        "extendedEntities": {},
+        "card": null,
+        "place": {},
+        "entities": {},
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
+        "article": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2034861506471633297",
       "url": "https://x.com/MakatiTraffic/status/2034861506471633297",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2034861506471633297",
@@ -1147,7 +1221,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1163,8 +1237,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412023,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1213,6 +1287,213 @@
     },
     {
       "type": "tweet",
+      "id": "2034866389929062463",
+      "url": "https://x.com/MadisonKing_fox/status/2034866389929062463",
+      "twitterUrl": "https://twitter.com/MadisonKing_fox/status/2034866389929062463",
+      "text": "Written by I Fucking Love Australia.  I don't mind giving other platforms a plug if they have reasonable information to share.\n- Pauline Hanson: The Battler’s Friend Who Arrives by Gulfstream\nThere’s a scam so old it predates democracy itself. Find the angriest people in the room. Tell them you’re one of them. Then rob them blind while they’re busy hating whoever you’ve pointed at.\nPauline Hanson has been running this scam for 30 years. And the only thing that’s changed is the mode of transport. She used to drive. Now she flies private. On someone else’s jet. Without telling anyone. Repeatedly.\nThis week, Hanson went on Sky News and called for Australia to help Donald Trump “stamp out evil” by joining the war in Iran. She wants Australian military involvement in a conflict that has closed the Strait of Hormuz, sent oil past $100 a barrel, triggered what the Australian government itself calls a “national crisis” in fuel supply, and put this country on a countdown clock of roughly 36 days of petrol before things get genuinely frightening.\nLet’s sit with that for a second. A senator whose entire brand is “looking out for the little guy” is calling for deeper involvement in the single biggest threat to ordinary Australians’ cost of living, fuel security, and economic stability in a generation. She’s demanding we pour accelerant on the fucking fire that is burning through your household budget right now.\nWhy?\nWell. Let’s follow the jet.\nIn October, Pauline Hanson and her chief of staff James Ashby climbed aboard Gina Rinehart’s Gulfstream 700, a $75 million aircraft registered through the Bank of Utah to Hancock Prospecting. They flew Brisbane to Perth to Osaka to Palm Beach. They landed in Florida on October 29. They checked into Rinehart’s $66 million mansion, conveniently located a short waddle from Donald Trump’s Mar-a-Lago resort.\nThey attended Trump’s Great Gatsby themed Halloween party (and trust me, she didn’t have to hire any costume). Pauline described it as “lovely.” I bet it was, Pauline. I bet the canapés were exquisite. I bet the champagne was French. I bet at no point during the evening did anyone discuss the price of unleaded petrol in fucking Rockhampton.\nThen she went to CPAC. The Conservative Political Action Conference. Tickets up to $25,000. And she stood at that podium and delivered a speech that could have been written by Hancock Prospecting’s PR department. Because it probably was. Ditch net zero. Save the miners. Ditch the Paris Agreement. Praise Trump. Warn about the death of the mining sector. This wasn’t a policy speech. This was an invoice being read aloud. This was a woman performing the terms and conditions of her sponsorship deal in front of a live audience.\nShe did not declare any of this on her Senate register of interests.\nThe Guardian broke the story. Hanson’s office scrambled to amend the register more than 2 months past the 35 day deadline. In breach of Senate rules. For a senator. A lawmaker. Someone who literally makes the rules, and can’t even follow them when they apply to her.\nThen a second flight surfaced. Melbourne to Sydney, on the Gulfstream, after attending the opening of a private college building funded by $2 million of Rinehart money. Adam Giles, Rinehart’s agricultural CEO, gave the opening address. Pauline was introduced as Gina’s “dear friend.” She thanked Gina for the “kind invitation.” She spoke about the mining sector and the evils of taxation like a ventriloquist’s dummy with a Queensland accent.\nAsked point blank at a press conference whether she’d received flights from Hancock Prospecting, she said “No.” Then she said “I can’t remember.” That’s the full Hanson playbook right there. Deny, then feign amnesia. The only thing she remembers with any consistency is which cameras are rolling.\nOh, and for that same event? She’d already charged taxpayers $9,000 for a chartered flight to get there. The taxpayer funded the trip out. Gina funded the trip home. Pauline declared neither. This isn’t double dipping. This is a triple pike with a billionaire twist and a perfect 10 from the Russian judge.\nThen on March 17, days ago, a third batch of undisclosed Rinehart flights emerged. Three separate failures to declare. At this point it’s not a breach of the rules. It’s a subscription service. Pauline Hanson gets unlimited free flights and Australia gets whatever Gina Rinehart wants for breakfast.\nNow. Let’s talk about what Gina wants.\nRinehart holds a $4.7 billion US stock portfolio. That includes investments in Trump Media and Technology. She’s been a member of the Trumpettes, Donald Trump’s personal female cheerleading network, since 2016. Her most senior executive has publicly endorsed One Nation. Hancock Prospecting donated $500,000 to the Liberals before the last election, and when Dutton lost, Rinehart publicly suggested the party hadn’t been Trumpy enough.\nSo she moved on. Found a cheaper vehicle. Pauline comes pre-installed with outrage, doesn’t ask too many questions, and can be refuelled mid-air on any Gulfstream with a decent snack trolley.\nWhen Ashby was asked about Rinehart’s financial support for One Nation, he told Nine Newspapers: “I haven’t seen any money from her.”\nMate. You were on her jet. In her mansion. At Mar-a-Lago. You flew across the Pacific on a $75 million aircraft and landed at a billionaire’s beachfront compound to go to a costume party with the President of the United States. The flight alone is worth more than most Australians earn in a year. What do you need to “see”? A novelty sized cheque with your name on it held up by Ed McMahon’s ghost?\nAnd this, this is the woman telling Australians to go to war.\nLet’s look at what that war has done. The Strait of Hormuz, which carries a fifth of the world’s seaborne oil and a fifth of global LNG, is effectively closed. Tanker traffic has dropped by 70%. Over 150 ships are anchored outside the strait waiting for a green light that isn’t coming. Oil hit $120 a barrel before easing to $100. Australian petrol has jumped 50 cents a litre. The government has released 762 million litres from emergency reserves and temporarily lowered fuel quality standards just to keep the pumps running. Chris Bowen is now giving weekly fuel updates instead of monthly. That’s not confidence. That’s a man checking the pulse on a patient he’s not sure is going to make it.\nAustralia holds roughly 36 days of petrol. 30 days of diesel. 29 days of jet fuel. We import 90% of our liquid fuel. We’ve been non-compliant with the IEA’s 90 day reserve obligation since 2012. We have 2 refineries left. If the supply chain from Asia slows even slightly, the buffer between normal and rationing is measured in weeks, not months.\nSri Lanka is already rationing fuel. The Philippines has put public servants on a 4 day week. China has told its refiners to halt fuel exports. Thailand told its news anchors to take their suit jackets off on air to show solidarity with energy saving measures. That’s where this is heading. And Pauline Hanson’s big idea is to send warships.\nResolve polling shows more than two thirds of Australians oppose joining this war. Italy publicly rejected Trump’s request. France rejected it. China rejected it. The Australian government has declined to send warships. Even Matt Canavan, the brand new Nationals leader, publicly torched Hanson for delivering nothing for Australians in her entire career.\nBut Sky News gives her the platform. Because Sky News isn’t journalism. Sky News is the departure lounge for Rinehart class passengers boarding the culture war express. It exists to keep people angry enough to vote against their own interests, and Pauline Hanson is the in-flight host serving complimentary outrage and peanuts.\nHere’s the truth. Pauline Hanson isn’t a populist. She’s a product. She’s a white-label brand of discount outrage manufactured by billionaire money, marketed through Murdoch media, and sold to Australians who deserve a hell of a lot better than a senator who can’t even remember which private jet she was on last Tuesday.\nShe doesn’t speak for the battler. The battler is at the servo watching the numbers tick past $2.20 a litre while Pauline is 40,000 feet above the Pacific sipping whatever they serve on a Gulfstream 700 and rehearsing her next speech about how net zero is killing the country.\nIf she wants to stamp out evil, here’s a list.\nDeclare your flights. All of them. On time. Like the rules say.\nPay back the $9,000 you charged taxpayers for a chartered flight to a Rinehart publicity event.\nExplain to the Australian people why your foreign policy positions perfectly mirror the financial interests of the woman who flies you around the world for free.\nAnd if you’re still itching to send Australians into a warzone after all that, do the only decent thing you’ve never done in 30 years of politics.\nGo first.\nPack a bag. Grab James Ashby. Catch a commercial flight for once in your life. And when you land in the Persian Gulf, you can explain to the troops why they’re there while their families back home are queuing for fuel that might run out in 5 weeks.\nYou won’t, of course. Because you’ve never been within a thousand kilometres of a consequence. You’ve spent 3 decades cosplaying as the voice of the people while being chauffeured through life by the richest woman in the country. You are the establishment dressed in a flag, riding a Gulfstream, pointing at brown people and calling it foreign policy.\nPauline Hanson doesn’t want to stamp out evil.\nPauline Hanson is the evil. Dressed up in a fish and chip shop apron, arriving by private jet, and charging you for the privilege.\n~Gman",
+      "source": "Twitter for iPhone",
+      "retweetCount": 12,
+      "replyCount": 11,
+      "likeCount": 33,
+      "quoteCount": 3,
+      "viewCount": 3338,
+      "createdAt": "Fri Mar 20 05:35:28 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 3,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2034866389929062463",
+      "displayTextRange": [
+        0,
+        275
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "MadisonKing_fox",
+        "url": "https://x.com/MadisonKing_fox",
+        "twitterUrl": "https://twitter.com/MadisonKing_fox",
+        "id": "1803786021664071681",
+        "name": "Code Black with Madison King 🇦🇺🫡🖤💛❤️🇦🇺h",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2033806929529856000/gKBQHTWX_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1803786021664071681/1774406441",
+        "description": "",
+        "location": "Australia ",
+        "followers": 26417,
+        "following": 1411,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Jun 20 13:44:47 +0000 2024",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 14154,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1143,
+        "statusesCount": 6784,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2092178404460355788"
+        ],
+        "profile_bio": {
+          "description": "https://t.co/TyOkay8chM\n\nAboriginal Aussie podcaster, author, political figure & journalist speaking uncomfortable truths people don’t want to hear.",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "ko-fi.com/cpdebackwithma…",
+                  "expanded_url": "http://ko-fi.com/cpdebackwithmadisonking",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/TyOkay8chM"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "ko-fi.com/cpdebackwithma…",
+                  "expanded_url": "https://ko-fi.com/cpdebackwithmadisonking",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/Y7d1DroxGX"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/xupq7NmOnk",
+            "expanded_url": "https://x.com/MadisonKing_fox/status/2034866389929062463/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 316,
+                    "w": 316,
+                    "x": 373,
+                    "y": 296
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 316,
+                    "w": 316,
+                    "x": 373,
+                    "y": 296
+                  }
+                ]
+              }
+            },
+            "id_str": "2034866275357532162",
+            "indices": [
+              276,
+              299
+            ],
+            "media_key": "3_2034866275357532162",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARw9TBikG6ACCgACHD1MM1EacD8AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHD1MGKQboAIKAAIcPUwzURpwPwAA",
+                "media_key": "3_2034866275357532162"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HD1MGKQboAIJmYD.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 706
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 468
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 393
+                },
+                {
+                  "h": 1920,
+                  "w": 960,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1920,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1920,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1920,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/xupq7NmOnk"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2034868906926706908",
       "url": "https://x.com/MakatiTraffic/status/2034868906926706908",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2034868906926706908",
@@ -1249,7 +1530,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1265,8 +1546,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412023,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1315,6 +1596,715 @@
     },
     {
       "type": "tweet",
+      "id": "2034870630005579903",
+      "url": "https://x.com/TheStarKenya/status/2034870630005579903",
+      "twitterUrl": "https://twitter.com/TheStarKenya/status/2034870630005579903",
+      "text": "The Kenya National Highways Authority has issued a traffic advisory after flooding and silt deposition disrupted sections of the Mai Mahiu–Suswa–Narok (B7) road on Thursday evening.\nhttps://t.co/bKZpfqIaWf",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 774,
+      "createdAt": "Fri Mar 20 05:52:18 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2034870630005579903",
+      "displayTextRange": [
+        0,
+        205
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "TheStarKenya",
+        "url": "https://x.com/TheStarKenya",
+        "twitterUrl": "https://twitter.com/TheStarKenya",
+        "id": "343326011",
+        "name": "TheStarKenya",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2009556323692650496/rJXVyIfV_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/343326011/1642792737",
+        "description": "",
+        "location": "Kenya",
+        "followers": 2419911,
+        "following": 527,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Jul 27 11:55:33 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 985,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 140270,
+        "statusesCount": 434810,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099448655480570332"
+        ],
+        "profile_bio": {
+          "description": "Independent Fresh And Different! 🇰🇪\nWhatsApp: +254727422422",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "the-star.co.ke",
+                  "expanded_url": "http://www.the-star.co.ke",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/d4cmodCUwY"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "alt": "KeNHA warns motorists after flooding disrupts Mai Mahiu–Suswa–Narok road",
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2099657369743441920/a8tGbz1r?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "alt": "KeNHA warns motorists after flooding disrupts Mai Mahiu–Suswa–Narok road",
+                "height": 150,
+                "url": "https://pbs.twimg.com/card_img/2099657369743441920/a8tGbz1r?format=jpg&name=280x150",
+                "width": 225
+              }
+            }
+          },
+          {
+            "key": "description",
+            "value": {
+              "string_value": "KeNHA warns motorists to delay travel as sections near Suswa become impassable after heavy rains"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.the-star.co.ke"
+            }
+          },
+          {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "alt": "KeNHA warns motorists after flooding disrupts Mai Mahiu–Suswa–Narok road",
+                "height": 320,
+                "url": "https://pbs.twimg.com/card_img/2099657369743441920/a8tGbz1r?format=jpg&name=800x320_1",
+                "width": 480
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "alt": "KeNHA warns motorists after flooding disrupts Mai Mahiu–Suswa–Narok road",
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2099657369743441920/a8tGbz1r?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "alt": "KeNHA warns motorists after flooding disrupts Mai Mahiu–Suswa–Narok road",
+                "height": 1066,
+                "url": "https://pbs.twimg.com/card_img/2099657369743441920/a8tGbz1r?format=jpg&name=orig",
+                "width": 1600
+              }
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "343326011",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "alt": "KeNHA warns motorists after flooding disrupts Mai Mahiu–Suswa–Narok road",
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2099657369743441920/a8tGbz1r?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "alt": "KeNHA warns motorists after flooding disrupts Mai Mahiu–Suswa–Narok road",
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2099657369743441920/a8tGbz1r?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "alt": "KeNHA warns motorists after flooding disrupts Mai Mahiu–Suswa–Narok road",
+                "height": 67,
+                "url": "https://pbs.twimg.com/card_img/2099657369743441920/a8tGbz1r?format=jpg&name=100x100",
+                "width": 100
+              }
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "343326011",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "alt": "KeNHA warns motorists after flooding disrupts Mai Mahiu–Suswa–Narok road",
+                "height": 1066,
+                "url": "https://pbs.twimg.com/card_img/2099657369743441920/a8tGbz1r?format=png&name=2048x2048_2_exp",
+                "width": 1600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "alt": "KeNHA warns motorists after flooding disrupts Mai Mahiu–Suswa–Narok road",
+                "height": 1066,
+                "url": "https://pbs.twimg.com/card_img/2099657369743441920/a8tGbz1r?format=jpg&name=orig",
+                "width": 1600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_alt_text",
+            "value": {
+              "string_value": "KeNHA warns motorists after flooding disrupts Mai Mahiu–Suswa–Narok road"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "the-star.co.ke"
+            }
+          },
+          {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "alt": "KeNHA warns motorists after flooding disrupts Mai Mahiu–Suswa–Narok road",
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2099657369743441920/a8tGbz1r?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_alt_text",
+            "value": {
+              "string_value": "KeNHA warns motorists after flooding disrupts Mai Mahiu–Suswa–Narok road"
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 55.92,
+                    "rgb": {
+                      "blue": 60,
+                      "green": 64,
+                      "red": 71
+                    }
+                  },
+                  {
+                    "percentage": 30.64,
+                    "rgb": {
+                      "blue": 255,
+                      "green": 255,
+                      "red": 255
+                    }
+                  },
+                  {
+                    "percentage": 3.81,
+                    "rgb": {
+                      "blue": 87,
+                      "green": 106,
+                      "red": 126
+                    }
+                  },
+                  {
+                    "percentage": 0.53,
+                    "rgb": {
+                      "blue": 98,
+                      "green": 71,
+                      "red": 55
+                    }
+                  },
+                  {
+                    "percentage": 0.45,
+                    "rgb": {
+                      "blue": 198,
+                      "green": 183,
+                      "red": 168
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "KeNHA warns motorists after flooding disrupts Mai Mahiu–Suswa–Narok road"
+            }
+          },
+          {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 55.92,
+                    "rgb": {
+                      "blue": 60,
+                      "green": 64,
+                      "red": 71
+                    }
+                  },
+                  {
+                    "percentage": 30.64,
+                    "rgb": {
+                      "blue": 255,
+                      "green": 255,
+                      "red": 255
+                    }
+                  },
+                  {
+                    "percentage": 3.81,
+                    "rgb": {
+                      "blue": 87,
+                      "green": 106,
+                      "red": 126
+                    }
+                  },
+                  {
+                    "percentage": 0.53,
+                    "rgb": {
+                      "blue": 98,
+                      "green": 71,
+                      "red": 55
+                    }
+                  },
+                  {
+                    "percentage": 0.45,
+                    "rgb": {
+                      "blue": 198,
+                      "green": 183,
+                      "red": 168
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "alt": "KeNHA warns motorists after flooding disrupts Mai Mahiu–Suswa–Narok road",
+                "height": 1066,
+                "url": "https://pbs.twimg.com/card_img/2099657369743441920/a8tGbz1r?format=png&name=2048x2048_2_exp",
+                "width": 1600
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "alt": "KeNHA warns motorists after flooding disrupts Mai Mahiu–Suswa–Narok road",
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2099657369743441920/a8tGbz1r?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 55.92,
+                    "rgb": {
+                      "blue": 60,
+                      "green": 64,
+                      "red": 71
+                    }
+                  },
+                  {
+                    "percentage": 30.64,
+                    "rgb": {
+                      "blue": 255,
+                      "green": 255,
+                      "red": 255
+                    }
+                  },
+                  {
+                    "percentage": 3.81,
+                    "rgb": {
+                      "blue": 87,
+                      "green": 106,
+                      "red": 126
+                    }
+                  },
+                  {
+                    "percentage": 0.53,
+                    "rgb": {
+                      "blue": 98,
+                      "green": 71,
+                      "red": 55
+                    }
+                  },
+                  {
+                    "percentage": 0.45,
+                    "rgb": {
+                      "blue": 198,
+                      "green": 183,
+                      "red": 168
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "alt": "KeNHA warns motorists after flooding disrupts Mai Mahiu–Suswa–Narok road",
+                "height": 1066,
+                "url": "https://pbs.twimg.com/card_img/2099657369743441920/a8tGbz1r?format=png&name=2048x2048_2_exp",
+                "width": 1600
+              }
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/bKZpfqIaWf"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "alt": "KeNHA warns motorists after flooding disrupts Mai Mahiu–Suswa–Narok road",
+                "height": 1066,
+                "url": "https://pbs.twimg.com/card_img/2099657369743441920/a8tGbz1r?format=jpg&name=orig",
+                "width": 1600
+              }
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/bKZpfqIaWf",
+        "user_refs_results": [
+          {
+            "rest_id": "343326011",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 985
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/2009556323692650496/rJXVyIfV_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/343326011/1642792737"
+              },
+              "core": {
+                "created_at": "Wed Jul 27 11:55:33 +0000 2011",
+                "name": "TheStarKenya",
+                "screen_name": "TheStarKenya"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Kenya"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099448655480570332"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Independent Fresh And Different! 🇰🇪\nWhatsApp: +254727422422",
+                "entities": {
+                  "description": {},
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "the-star.co.ke",
+                        "expanded_url": "http://www.the-star.co.ke",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/d4cmodCUwY"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "3B48D9"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 2419911,
+                "following": 527
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "343326011",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 140270,
+                "tweets": 434810
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/d4cmodCUwY"
+              }
+            }
+          },
+          {
+            "rest_id": "343326011",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 985
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/2009556323692650496/rJXVyIfV_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/343326011/1642792737"
+              },
+              "core": {
+                "created_at": "Wed Jul 27 11:55:33 +0000 2011",
+                "name": "TheStarKenya",
+                "screen_name": "TheStarKenya"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Kenya"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099448655480570332"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Independent Fresh And Different! 🇰🇪\nWhatsApp: +254727422422",
+                "entities": {
+                  "description": {},
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "the-star.co.ke",
+                        "expanded_url": "http://www.the-star.co.ke",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/d4cmodCUwY"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "3B48D9"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 2419911,
+                "following": 527
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "343326011",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 140270,
+                "tweets": 434810
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/d4cmodCUwY"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "the-star.co.ke/news/2026-03-2…",
+            "expanded_url": "https://www.the-star.co.ke/news/2026-03-20-floods-disrupt-mai-mahiu-suswa-narok-road",
+            "indices": [
+              182,
+              205
+            ],
+            "url": "https://t.co/bKZpfqIaWf"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2034870596832829583",
       "url": "https://x.com/TheLaSallian/status/2034870596832829583",
       "twitterUrl": "https://twitter.com/TheLaSallian/status/2034870596832829583",
@@ -1351,7 +2341,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/308855396/1788683694",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 189565,
+        "followers": 189559,
         "following": 47,
         "status": "",
         "canDm": false,
@@ -1367,8 +2357,8 @@
         "favouritesCount": 0,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 27861,
-        "statusesCount": 80094,
+        "mediaCount": 27971,
+        "statusesCount": 80347,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,

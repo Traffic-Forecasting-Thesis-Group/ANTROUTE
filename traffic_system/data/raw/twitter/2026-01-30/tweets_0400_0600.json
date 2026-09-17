@@ -5,7 +5,7 @@
     "window_start": "2026-01-30T04:00:00+08:00",
     "window_end": "2026-01-30T06:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 0,
+    "tweet_count": 1,
     "slices": [
       {
         "start": "2026-01-30T04:00:00+08:00",
@@ -165,8 +165,8 @@
         "start": "2026-01-30T05:50:00+08:00",
         "end": "2026-01-30T05:55:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-30T05:55:00+08:00",
@@ -177,5 +177,110 @@
       }
     ]
   },
-  "data": []
+  "data": [
+    {
+      "type": "tweet",
+      "id": "2016992345921577059",
+      "url": "https://x.com/NINAlerts/status/2016992345921577059",
+      "twitterUrl": "https://twitter.com/NINAlerts/status/2016992345921577059",
+      "text": "2026-01-29 16:44 EST | KY | LOUISVILLE |**TRAFFIC ADVISORY**| I-264 E RAMP TO POPLAR LVL RD | USE CAUTION. 2 R LNS BLKED BY OCC DISABLED VEH. EXPECT DELAYS IN AREA. @TRIMARCTRAFFIC | UEA04 |  \nMap",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 146,
+      "createdAt": "Thu Jan 29 21:50:23 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2016992345921577059",
+      "displayTextRange": [
+        0,
+        196
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "NINAlerts",
+        "url": "https://x.com/NINAlerts",
+        "twitterUrl": "https://twitter.com/NINAlerts",
+        "id": "1257065658447257600",
+        "name": "National Incident Networks",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2059740574064799755/xZhCP68b_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1257065658447257600/1779915407",
+        "description": "",
+        "location": "Pittsburgh, PA",
+        "followers": 3493,
+        "following": 1305,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Sun May 03 21:53:10 +0000 2020",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 18086,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 221,
+        "statusesCount": 53733,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "NINAlerts is a rapid-fire incident notification service delivering real-time breaking news on fires, shootings, and emergencies to the palm of your hand!",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "ninalerts.com",
+                  "expanded_url": "https://www.ninalerts.com/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/OFpJV1eyrT"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "1345339826",
+            "indices": [
+              165,
+              180
+            ],
+            "name": "TRIMARC",
+            "screen_name": "TRIMARCTRAFFIC"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    }
+  ]
 }

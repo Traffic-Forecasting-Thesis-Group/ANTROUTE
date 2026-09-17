@@ -5,14 +5,14 @@
     "window_start": "2026-03-13T02:00:00+08:00",
     "window_end": "2026-03-13T04:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 5,
+    "tweet_count": 7,
     "slices": [
       {
         "start": "2026-03-13T02:00:00+08:00",
         "end": "2026-03-13T02:05:00+08:00",
         "status_code": 200,
-        "returned": 2,
-        "accepted": 2
+        "returned": 3,
+        "accepted": 3
       },
       {
         "start": "2026-03-13T02:05:00+08:00",
@@ -151,8 +151,8 @@
         "start": "2026-03-13T03:40:00+08:00",
         "end": "2026-03-13T03:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-13T03:45:00+08:00",
@@ -178,6 +178,98 @@
     ]
   },
   "data": [
+    {
+      "type": "tweet",
+      "id": "2032155611299803294",
+      "url": "https://x.com/emersonpolice/status/2032155611299803294",
+      "twitterUrl": "https://twitter.com/emersonpolice/status/2032155611299803294",
+      "text": "Traffic advisory: Electrical wires are down at the intersection of Pascack Rd and Boilling St. There are road closures in the area. Plan alternate route.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 192,
+      "createdAt": "Thu Mar 12 18:03:48 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2032155611299803294",
+      "displayTextRange": [
+        0,
+        153
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "emersonpolice",
+        "url": "https://x.com/emersonpolice",
+        "twitterUrl": "https://twitter.com/emersonpolice",
+        "id": "578401436",
+        "name": "Emerson Police",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/947539119810506752/0wDoPGqK_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/578401436/1561836009",
+        "description": "",
+        "location": "Emerson",
+        "followers": 3101,
+        "following": 223,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sat May 12 21:16:17 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1297,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1332,
+        "statusesCount": 5929,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The Official Twitter Account, of the Emerson Police Department Emerson, New Jersey 07630. Proudly Serving the people of Emerson since 1903. Not monitored 24/7.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "emersonpd.org",
+                  "expanded_url": "http://emersonpd.org",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/arUbldyEuw"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
     {
       "type": "tweet",
       "id": "2032154845205954634",
@@ -216,8 +308,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15448383/1785196160",
         "description": "",
         "location": "Makati City",
-        "followers": 3563327,
-        "following": 1760,
+        "followers": 3563704,
+        "following": 1759,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -229,16 +321,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 32469,
+        "favouritesCount": 32468,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 206184,
-        "statusesCount": 1481594,
+        "mediaCount": 206976,
+        "statusesCount": 1484358,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2096772617701359926"
+          "2100132590577684690"
         ],
         "profile_bio": {
           "description": "Balanced News, Fearless Views. https://t.co/AuYsgsogFf",
@@ -383,7 +475,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197306,
+        "followers": 1197825,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -399,8 +491,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219320,
-        "statusesCount": 942043,
+        "mediaCount": 219508,
+        "statusesCount": 943047,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -443,6 +535,26 @@
       "card": {
         "binding_values": [
           {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2097023263260147712/ePaO4kRY?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 150,
+                "url": "https://pbs.twimg.com/card_img/2097023263260147712/ePaO4kRY?format=jpg&name=280x150",
+                "width": 225
+              }
+            }
+          },
+          {
             "key": "description",
             "value": {
               "string_value": "DUBAI, United Arab Emirates (AP) — Unrelenting Iranian attacks on shipping traffic and energy infrastructure pushed oil above $100 a barrel on Thursday, as..."
@@ -452,6 +564,36 @@
             "key": "domain",
             "value": {
               "string_value": "mb.com.ph"
+            }
+          },
+          {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 320,
+                "url": "https://pbs.twimg.com/card_img/2097023263260147712/ePaO4kRY?format=jpg&name=800x320_1",
+                "width": 480
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2097023263260147712/ePaO4kRY?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2097023263260147712/ePaO4kRY?format=jpg&name=orig",
+                "width": 1200
+              }
             }
           },
           {
@@ -465,10 +607,95 @@
             }
           },
           {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2097023263260147712/ePaO4kRY?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2097023263260147712/ePaO4kRY?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 67,
+                "url": "https://pbs.twimg.com/card_img/2097023263260147712/ePaO4kRY?format=jpg&name=100x100",
+                "width": 100
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2097023263260147712/ePaO4kRY?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2097023263260147712/ePaO4kRY?format=jpg&name=orig",
+                "width": 1200
+              }
+            }
+          },
+          {
             "key": "vanity_url",
             "value": {
               "scribe_key": "vanity_url",
               "string_value": "mb.com.ph"
+            }
+          },
+          {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2097023263260147712/ePaO4kRY?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 99.53,
+                    "rgb": {
+                      "blue": 107,
+                      "green": 95,
+                      "red": 81
+                    }
+                  },
+                  {
+                    "percentage": 0.31,
+                    "rgb": {
+                      "blue": 94,
+                      "green": 97,
+                      "red": 103
+                    }
+                  }
+                ]
+              }
             }
           },
           {
@@ -478,10 +705,100 @@
             }
           },
           {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 99.53,
+                    "rgb": {
+                      "blue": 107,
+                      "green": 95,
+                      "red": 81
+                    }
+                  },
+                  {
+                    "percentage": 0.31,
+                    "rgb": {
+                      "blue": 94,
+                      "green": 97,
+                      "red": 103
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2097023263260147712/ePaO4kRY?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2097023263260147712/ePaO4kRY?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 99.53,
+                    "rgb": {
+                      "blue": 107,
+                      "green": 95,
+                      "red": 81
+                    }
+                  },
+                  {
+                    "percentage": 0.31,
+                    "rgb": {
+                      "blue": 94,
+                      "green": 97,
+                      "red": 103
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2097023263260147712/ePaO4kRY?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
               "string_value": "https://t.co/caQMWGXP3W"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2097023263260147712/ePaO4kRY?format=jpg&name=orig",
+                "width": 1200
+              }
             }
           }
         ],
@@ -584,7 +901,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1197306,
+                "followers": 1197825,
                 "following": 141
               },
               "relationship_perspectives": {
@@ -602,8 +919,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 219320,
-                "tweets": 942043
+                "media_tweets": 219508,
+                "tweets": 943047
               },
               "verification": {
                 "is_blue_verified": true,
@@ -674,7 +991,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/32009466/1534948185",
         "description": "",
         "location": "Morris County NJ USA",
-        "followers": 11543,
+        "followers": 11548,
         "following": 93,
         "status": "",
         "canDm": false,
@@ -690,8 +1007,8 @@
         "favouritesCount": 18,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 3763,
-        "statusesCount": 9925,
+        "mediaCount": 3777,
+        "statusesCount": 9939,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -875,8 +1192,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/39453212/1785235955",
         "description": "",
         "location": "Philippines",
-        "followers": 5717142,
-        "following": 672,
+        "followers": 5718247,
+        "following": 674,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -888,16 +1205,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 14181,
+        "favouritesCount": 14180,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 213455,
-        "statusesCount": 1025453,
+        "mediaCount": 215128,
+        "statusesCount": 1028118,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2096631393191067840"
+          "2100074862379229250"
         ],
         "profile_bio": {
           "description": "Welcome to the official X account of GMA News.",
@@ -995,7 +1312,7 @@
             "result": {
               "__typename": "User",
               "action_counts": {
-                "favorites_count": 14181
+                "favorites_count": 14180
               },
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/2038588193520709632/gW-kXR9a_normal.jpg"
@@ -1025,7 +1342,7 @@
               },
               "pinned_items": {
                 "tweet_ids_str": [
-                  "2096631393191067840"
+                  "2100074862379229250"
                 ]
               },
               "privacy": {
@@ -1065,8 +1382,8 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 5717142,
-                "following": 672
+                "followers": 5718247,
+                "following": 674
               },
               "relationship_perspectives": {
                 "blocked_by": false,
@@ -1083,8 +1400,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 213455,
-                "tweets": 1025453
+                "media_tweets": 215128,
+                "tweets": 1028118
               },
               "verification": {
                 "is_blue_verified": true,
@@ -1178,7 +1495,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 15812,
+                "followers": 15805,
                 "following": 129
               },
               "relationship_perspectives": {
@@ -1268,7 +1585,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967069,
+        "followers": 3966562,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -1284,8 +1601,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888279,
+        "mediaCount": 61737,
+        "statusesCount": 888713,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1323,6 +1640,205 @@
               163
             ],
             "text": "mmda"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2032180502724297022",
+      "url": "https://x.com/eon_sanchez/status/2032180502724297022",
+      "twitterUrl": "https://twitter.com/eon_sanchez/status/2032180502724297022",
+      "text": "Pansamantalang lumikas sa Jose Rizal Elementary School sa Pasay ang nasa halos 50 pamilyang naapektuhan ng sunog nitong Huwebes ng gabi, March 12, sa Bgy. 85. @ABSCBNNews \n\n#SelfiePatrol https://t.co/xaV4pq9aHc",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 209,
+      "createdAt": "Thu Mar 12 19:42:42 +0000 2026",
+      "lang": "tl",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2032180502724297022",
+      "displayTextRange": [
+        0,
+        186
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "eon_sanchez",
+        "url": "https://x.com/eon_sanchez",
+        "twitterUrl": "https://twitter.com/eon_sanchez",
+        "id": "1973897866721783808",
+        "name": "Eon Sanchez",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2087122423519076352/QWaEvys6_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1973897866721783808/1760563521",
+        "description": "",
+        "location": "Manila, Philippines",
+        "followers": 362,
+        "following": 63,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Oct 02 23:48:35 +0000 2025",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 769,
+        "statusesCount": 1399,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Reporter, @ABSCBNNews | LVSanchez@abs-cbn.com",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    10,
+                    21
+                  ],
+                  "name": "",
+                  "screen_name": "ABSCBNNews"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "abs-cbn.com/author/eonsanc…",
+                  "expanded_url": "https://www.abs-cbn.com/author/eonsanchez",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/NGZduEh9hh"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/xaV4pq9aHc",
+            "expanded_url": "https://x.com/eon_sanchez/status/2032180502724297022/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "2032180331982491648",
+            "indices": [
+              187,
+              210
+            ],
+            "media_key": "13_2032180331982491648",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARwzwT63WhAAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABHDPBPrdaEAAAAA==",
+                "media_key": "13_2032180331982491648"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2032180331982491648/img/_9wKdlykv8o0n3x0.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 720,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1280
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/xaV4pq9aHc",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 187050,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/2032180331982491648/pl/75QxsceZMv_pA8OC.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2032180331982491648/vid/avc1/480x270/M_4vC1HW1u0zccpD.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2032180331982491648/vid/avc1/640x360/jb9qx9s7PFQUyupj.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2032180331982491648/vid/avc1/1280x720/3vnOGW1woU9_VLT_.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              173,
+              186
+            ],
+            "text": "SelfiePatrol"
+          }
+        ],
+        "user_mentions": [
+          {
+            "id_str": "15872418",
+            "indices": [
+              159,
+              170
+            ],
+            "name": "ABS-CBN News",
+            "screen_name": "ABSCBNNews"
           }
         ]
       },

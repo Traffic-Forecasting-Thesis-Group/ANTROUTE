@@ -5,21 +5,21 @@
     "window_start": "2026-01-25T16:00:00+08:00",
     "window_end": "2026-01-25T18:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 5,
+    "tweet_count": 9,
     "slices": [
       {
         "start": "2026-01-25T16:00:00+08:00",
         "end": "2026-01-25T16:05:00+08:00",
         "status_code": 200,
-        "returned": 2,
-        "accepted": 2
+        "returned": 3,
+        "accepted": 3
       },
       {
         "start": "2026-01-25T16:05:00+08:00",
         "end": "2026-01-25T16:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-25T16:10:00+08:00",
@@ -46,8 +46,8 @@
         "start": "2026-01-25T16:25:00+08:00",
         "end": "2026-01-25T16:30:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-25T16:30:00+08:00",
@@ -81,8 +81,8 @@
         "start": "2026-01-25T16:50:00+08:00",
         "end": "2026-01-25T16:55:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-25T16:55:00+08:00",
@@ -180,6 +180,161 @@
   "data": [
     {
       "type": "tweet",
+      "id": "2015334499886698759",
+      "url": "https://x.com/FinancialXpress/status/2015334499886698759",
+      "twitterUrl": "https://twitter.com/FinancialXpress/status/2015334499886698759",
+      "text": "Republic Day Parade 2026 Traffic Advisory: Check restricted and alternate routes https://t.co/xG48jOJ1iV",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 399,
+      "createdAt": "Sun Jan 25 08:02:42 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2015334499886698759",
+      "displayTextRange": [
+        0,
+        104
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "FinancialXpress",
+        "url": "https://x.com/FinancialXpress",
+        "twitterUrl": "https://twitter.com/FinancialXpress",
+        "id": "50279781",
+        "name": "Financial Express",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1997954014156386304/u-Z2pxA9_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/50279781/1781496270",
+        "description": "",
+        "location": "India",
+        "followers": 806847,
+        "following": 36,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Wed Jun 24 11:29:19 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2846,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 185633,
+        "statusesCount": 629878,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099460245827584336"
+        ],
+        "profile_bio": {
+          "description": "Your daily fix of financial news & more | The Indian Express Group",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "financialexpress.com",
+                  "expanded_url": "http://www.financialexpress.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/ZdL9Ep0STb"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Delhi Police Republic Day 2026 Traffic Advisory, DMRC Republic Day 2026 Station Closure List: Security has been tightened in New Delhi, Central and North Delhi districts, which include high-security..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "ebx.sh"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "ebx.sh"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Republic Day Parade 2026 Traffic Advisory: Check restricted and alternate routes"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/xG48jOJ1iV"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/xG48jOJ1iV",
+        "user_refs_results": []
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "ebx.sh/8EqCU3",
+            "expanded_url": "https://ebx.sh/8EqCU3",
+            "indices": [
+              81,
+              104
+            ],
+            "url": "https://t.co/xG48jOJ1iV"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2015333824154976273",
       "url": "https://x.com/MakatiTraffic/status/2015333824154976273",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2015333824154976273",
@@ -216,7 +371,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437257,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +387,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411426,
+        "mediaCount": 17208,
+        "statusesCount": 411995,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -318,7 +473,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/183127575/1763569424",
         "description": "",
         "location": "Republic of the Philippines",
-        "followers": 66506,
+        "followers": 67139,
         "following": 205,
         "status": "",
         "canDm": false,
@@ -334,13 +489,13 @@
         "favouritesCount": 14791,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 191055,
-        "statusesCount": 578683,
+        "mediaCount": 191310,
+        "statusesCount": 579830,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094458280462700834"
+          "2099890991675388393"
         ],
         "profile_bio": {
           "description": "Abante ang pinakamatinding tabloid sa Pilipinas ngayon! Mag-like, mag-follow at maging updated sa mga balitang sumasagitsit at pumupulandit - mainit-init pa!",
@@ -467,6 +622,264 @@
     },
     {
       "type": "tweet",
+      "id": "2015335785743172045",
+      "url": "https://x.com/TrueBriefly/status/2015335785743172045",
+      "twitterUrl": "https://twitter.com/TrueBriefly/status/2015335785743172045",
+      "text": "#BREAKING Delhi traffic advisory issued for Republic Day - Major roads in Delhi, Noida, Gurgaon, Faridabad, and Sonipat will have significant restrictions on Jan 25–26 to ensure smooth conduct of parades and events.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 116,
+      "createdAt": "Sun Jan 25 08:07:49 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2015335785743172045",
+      "displayTextRange": [
+        0,
+        215
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "TrueBriefly",
+        "url": "https://x.com/TrueBriefly",
+        "twitterUrl": "https://twitter.com/TrueBriefly",
+        "id": "2008044836608417793",
+        "name": "TrueBriefly",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2035268438856523776/yRMyaIYZ_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2008044836608417793/1774015153",
+        "description": "",
+        "location": "New Delhi, India",
+        "followers": 57,
+        "following": 151,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Jan 05 05:32:07 +0000 2026",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2368,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 249,
+        "statusesCount": 1472,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2094795506178507007"
+        ],
+        "profile_bio": {
+          "description": "TrueBriefly covers national and international breaking news and fects, latest news in politics, sports, business and cinema.",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              0,
+              9
+            ],
+            "text": "BREAKING"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2015340874247659921",
+      "url": "https://x.com/followlastma/status/2015340874247659921",
+      "twitterUrl": "https://twitter.com/followlastma/status/2015340874247659921",
+      "text": "TRAFFIC ADVISORY\n AGEGE PEN CINEMA\nDue to the ongoing mini Marathon, the Marathon starts from Orile Agege local government inward Odo Eran En route Oba Ogunji to Oke Koto, Oniwaya, Dopemu connecting Babajide Sanwoolu road to Agbotikuyo linking Old Ipaja Motor road and lastly to Orile Agege LCDA.\n\nTRAFFIC ADVISORY \n\nVehicles coming from Wemco Road can go through Ogba to Excellent Hotel linking College road to Iju road and continue their journey.\nVehicles coming from Pen Cinema can go through Moshalashi Alhaja linking Mobil Ashade and Continue their journey.\n\n#FollowLASTMA\n@TrafficChiefNG \n@lagostraffic961 \n@trafficpalava",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 363,
+      "createdAt": "Sun Jan 25 08:28:02 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2015340874247659921",
+      "displayTextRange": [
+        0,
+        278
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "followlastma",
+        "url": "https://x.com/followlastma",
+        "twitterUrl": "https://twitter.com/followlastma",
+        "id": "2202421710",
+        "name": "LASTMA",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2013645179513708544/1WOgDvRk_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
+        "description": "",
+        "location": "",
+        "followers": 187270,
+        "following": 89,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Tue Nov 19 03:37:05 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3020,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 31385,
+        "statusesCount": 146916,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099385380600533278"
+        ],
+        "profile_bio": {
+          "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "facebook.com/Ekolastma/",
+                  "expanded_url": "https://www.facebook.com/Ekolastma/",
+                  "indices": [
+                    82,
+                    105
+                  ],
+                  "url": "https://t.co/yzaGG1F9TK"
+                },
+                {
+                  "display_url": "youtube.com/@lastmatv?s",
+                  "expanded_url": "https://youtube.com/@lastmatv?s",
+                  "indices": [
+                    117,
+                    140
+                  ],
+                  "url": "https://t.co/GBJZ6NWejV"
+                }
+              ],
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    64,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "ekolastma_"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "lastma.org",
+                  "expanded_url": "https://lastma.org/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/ybifO4Q6W9"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              564,
+              577
+            ],
+            "text": "FollowLASTMA"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "1535062237",
+            "indices": [
+              578,
+              593
+            ],
+            "name": "#LagosTrafficReports",
+            "screen_name": "TrafficChiefNG"
+          },
+          {
+            "id_str": "2236243416",
+            "indices": [
+              595,
+              611
+            ],
+            "name": "Lagos Traffic Radio 96.1FM",
+            "screen_name": "lagostraffic961"
+          },
+          {
+            "id_str": "154514594",
+            "indices": [
+              613,
+              627
+            ],
+            "name": "TRAFFIC PALAVA",
+            "screen_name": "trafficpalava"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2015343885317186027",
       "url": "https://x.com/ddsahyadrinews/status/2015343885317186027",
       "twitterUrl": "https://twitter.com/ddsahyadrinews/status/2015343885317186027",
@@ -503,7 +916,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2981935146/1763445863",
         "description": "",
         "location": "Worli, Mumbai",
-        "followers": 23612,
+        "followers": 23630,
         "following": 316,
         "status": "",
         "canDm": false,
@@ -516,11 +929,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3812,
+        "favouritesCount": 3814,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 109842,
-        "statusesCount": 128272,
+        "mediaCount": 110339,
+        "statusesCount": 128810,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -746,6 +1159,187 @@
     },
     {
       "type": "tweet",
+      "id": "2015346622121574431",
+      "url": "https://x.com/BBabaseyi/status/2015346622121574431",
+      "twitterUrl": "https://twitter.com/BBabaseyi/status/2015346622121574431",
+      "text": "TRAFFIC ADVISORY\nHeavy traffic is reported at Multiple Bridge along the Sagamu–Ore/Benin Expressway due to a broken-down truck restricting movement to one lane. Travellers are advised to use alternative routes via Lagos–Epe–Ijebu-Ode, Ilishan–Ago–Iwoye, Okun Owa–Ijebu-Ode, and Epe–Ijebu-Ode. Motorists already caught in the gridlock are urged to remain patient. Operatives of relevant security and traffic management agencies are on ground to clear the obstruction and restore free flow of traffic as soon as possible. Any inconvenience is regretted.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 14,
+      "replyCount": 1,
+      "likeCount": 31,
+      "quoteCount": 0,
+      "viewCount": 2138,
+      "createdAt": "Sun Jan 25 08:50:52 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2015346622121574431",
+      "displayTextRange": [
+        0,
+        277
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "BBabaseyi",
+        "url": "https://x.com/BBabaseyi",
+        "twitterUrl": "https://twitter.com/BBabaseyi",
+        "id": "1896838828012318720",
+        "name": "DSP OLUSEYI BABASEYI",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2053834512291827712/i_yTEzOr_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1896838828012318720/1784480274",
+        "description": "",
+        "location": "Ogun state, Nigeria",
+        "followers": 5148,
+        "following": 441,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Mar 04 08:23:43 +0000 2025",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 438,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 288,
+        "statusesCount": 1883,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2078887630469562591"
+        ],
+        "profile_bio": {
+          "description": "THE POLICE PUBLIC RELATIONS OFFICER @OgunPoliceNg | Gateway Shield – General Complaints Line Toll-Free: 0800 000 9111",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    36,
+                    49
+                  ],
+                  "name": "",
+                  "screen_name": "OgunPoliceNg"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/wQg48TqBOK",
+            "expanded_url": "https://x.com/BBabaseyi/status/2015346622121574431/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2015346615473627136",
+            "indices": [
+              278,
+              301
+            ],
+            "media_key": "3_2015346615473627136",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARv38xGql2AACgACG/fzEzbXAB8AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG/fzEaqXYAAKAAIb9/MTNtcAHwAA",
+                "media_key": "3_2015346615473627136"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G_fzEaqXYAA1OqY.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 576,
+                  "w": 1029,
+                  "x": 30,
+                  "y": 0
+                },
+                {
+                  "h": 576,
+                  "w": 576,
+                  "x": 256,
+                  "y": 0
+                },
+                {
+                  "h": 576,
+                  "w": 505,
+                  "x": 292,
+                  "y": 0
+                },
+                {
+                  "h": 576,
+                  "w": 288,
+                  "x": 400,
+                  "y": 0
+                },
+                {
+                  "h": 576,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 576,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 576,
+                "w": 1280
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/wQg48TqBOK"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2015358274670055736",
       "url": "https://x.com/TV9Bharatvarsh/status/2015358274670055736",
       "twitterUrl": "https://twitter.com/TV9Bharatvarsh/status/2015358274670055736",
@@ -779,11 +1373,11 @@
         "isBlueVerified": true,
         "verifiedType": null,
         "profilePicture": "https://pbs.twimg.com/profile_images/1683468393599627266/uZNG-3Ey_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/1039759933728645120/1787740799",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1039759933728645120/1789380364",
         "description": "",
         "location": "Noida, India",
-        "followers": 409431,
-        "following": 18,
+        "followers": 409802,
+        "following": 19,
         "status": "",
         "canDm": false,
         "canMediaTag": true,
@@ -795,17 +1389,17 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 31,
+        "favouritesCount": 32,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 291382,
-        "statusesCount": 561531,
+        "mediaCount": 292841,
+        "statusesCount": 563106,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [],
         "profile_bio": {
-          "description": "Official handle of National Hindi News Channel TV9 भारतवर्ष. फेसबुक और यूट्यूब पर जुड़ें\nhttps://t.co/tmjuJblSMc   https://t.co/X5SvQv7PjI",
+          "description": "Official handle of National Hindi News Channel TV9 भारतवर्ष. फेसबुक और यूट्यूब पर जुड़ें\nhttps://t.co/tmjuJbmqBK   https://t.co/X5SvQv8n9g",
           "entities": {
             "description": {
               "urls": [
@@ -816,7 +1410,7 @@
                     89,
                     112
                   ],
-                  "url": "https://t.co/tmjuJblSMc"
+                  "url": "https://t.co/tmjuJbmqBK"
                 },
                 {
                   "display_url": "youtube.com/tv9bharatvarsh",
@@ -825,7 +1419,7 @@
                     115,
                     138
                   ],
-                  "url": "https://t.co/X5SvQv7PjI"
+                  "url": "https://t.co/X5SvQv8n9g"
                 }
               ]
             },
@@ -838,7 +1432,7 @@
                     0,
                     23
                   ],
-                  "url": "https://t.co/9VMTzOKogp"
+                  "url": "https://t.co/9VMTzOKW5X"
                 }
               ]
             }
@@ -921,13 +1515,13 @@
             "result": {
               "__typename": "User",
               "action_counts": {
-                "favorites_count": 31
+                "favorites_count": 32
               },
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/1683468393599627266/uZNG-3Ey_normal.jpg"
               },
               "banner": {
-                "image_url": "https://pbs.twimg.com/profile_banners/1039759933728645120/1787740799"
+                "image_url": "https://pbs.twimg.com/profile_banners/1039759933728645120/1789380364"
               },
               "core": {
                 "created_at": "Wed Sep 12 06:17:40 +0000 2018",
@@ -956,7 +1550,7 @@
               },
               "private_super_following": false,
               "profile_bio": {
-                "description": "Official handle of National Hindi News Channel TV9 भारतवर्ष. फेसबुक और यूट्यूब पर जुड़ें\nhttps://t.co/tmjuJblSMc   https://t.co/X5SvQv7PjI",
+                "description": "Official handle of National Hindi News Channel TV9 भारतवर्ष. फेसबुक और यूट्यूब पर जुड़ें\nhttps://t.co/tmjuJbmqBK   https://t.co/X5SvQv8n9g",
                 "entities": {
                   "description": {
                     "urls": [
@@ -967,7 +1561,7 @@
                           89,
                           112
                         ],
-                        "url": "https://t.co/tmjuJblSMc"
+                        "url": "https://t.co/tmjuJbmqBK"
                       },
                       {
                         "display_url": "youtube.com/tv9bharatvarsh",
@@ -976,7 +1570,7 @@
                           115,
                           138
                         ],
-                        "url": "https://t.co/X5SvQv7PjI"
+                        "url": "https://t.co/X5SvQv8n9g"
                       }
                     ]
                   },
@@ -989,7 +1583,7 @@
                           0,
                           23
                         ],
-                        "url": "https://t.co/9VMTzOKogp"
+                        "url": "https://t.co/9VMTzOKW5X"
                       }
                     ]
                   }
@@ -1008,8 +1602,8 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 409431,
-                "following": 18
+                "followers": 409802,
+                "following": 19
               },
               "relationship_perspectives": {
                 "blocked_by": false,
@@ -1026,15 +1620,15 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 291382,
-                "tweets": 561531
+                "media_tweets": 292841,
+                "tweets": 563106
               },
               "verification": {
                 "is_blue_verified": true,
                 "verified": false
               },
               "website": {
-                "url": "https://t.co/9VMTzOKogp"
+                "url": "https://t.co/9VMTzOKW5X"
               }
             }
           },
@@ -1043,13 +1637,13 @@
             "result": {
               "__typename": "User",
               "action_counts": {
-                "favorites_count": 31
+                "favorites_count": 32
               },
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/1683468393599627266/uZNG-3Ey_normal.jpg"
               },
               "banner": {
-                "image_url": "https://pbs.twimg.com/profile_banners/1039759933728645120/1787740799"
+                "image_url": "https://pbs.twimg.com/profile_banners/1039759933728645120/1789380364"
               },
               "core": {
                 "created_at": "Wed Sep 12 06:17:40 +0000 2018",
@@ -1078,7 +1672,7 @@
               },
               "private_super_following": false,
               "profile_bio": {
-                "description": "Official handle of National Hindi News Channel TV9 भारतवर्ष. फेसबुक और यूट्यूब पर जुड़ें\nhttps://t.co/tmjuJblSMc   https://t.co/X5SvQv7PjI",
+                "description": "Official handle of National Hindi News Channel TV9 भारतवर्ष. फेसबुक और यूट्यूब पर जुड़ें\nhttps://t.co/tmjuJbmqBK   https://t.co/X5SvQv8n9g",
                 "entities": {
                   "description": {
                     "urls": [
@@ -1089,7 +1683,7 @@
                           89,
                           112
                         ],
-                        "url": "https://t.co/tmjuJblSMc"
+                        "url": "https://t.co/tmjuJbmqBK"
                       },
                       {
                         "display_url": "youtube.com/tv9bharatvarsh",
@@ -1098,7 +1692,7 @@
                           115,
                           138
                         ],
-                        "url": "https://t.co/X5SvQv7PjI"
+                        "url": "https://t.co/X5SvQv8n9g"
                       }
                     ]
                   },
@@ -1111,7 +1705,7 @@
                           0,
                           23
                         ],
-                        "url": "https://t.co/9VMTzOKogp"
+                        "url": "https://t.co/9VMTzOKW5X"
                       }
                     ]
                   }
@@ -1130,8 +1724,8 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 409431,
-                "following": 18
+                "followers": 409802,
+                "following": 19
               },
               "relationship_perspectives": {
                 "blocked_by": false,
@@ -1148,15 +1742,15 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 291382,
-                "tweets": 561531
+                "media_tweets": 292841,
+                "tweets": 563106
               },
               "verification": {
                 "is_blue_verified": true,
                 "verified": false
               },
               "website": {
-                "url": "https://t.co/9VMTzOKogp"
+                "url": "https://t.co/9VMTzOKW5X"
               }
             }
           }
@@ -1243,7 +1837,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437257,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1259,8 +1853,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411426,
+        "mediaCount": 17208,
+        "statusesCount": 411995,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,

@@ -5,7 +5,7 @@
     "window_start": "2025-10-23T22:00:00+08:00",
     "window_end": "2025-10-24T00:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 2,
+    "tweet_count": 9,
     "slices": [
       {
         "start": "2025-10-23T22:00:00+08:00",
@@ -31,6 +31,7 @@
       {
         "start": "2025-10-23T22:15:00+08:00",
         "end": "2025-10-23T22:20:00+08:00",
+        "error": "HTTPSConnectionPool(host='api.twitterapi.io', port=443): Read timed out. (read timeout=30)",
         "status_code": 200,
         "returned": 1,
         "accepted": 1
@@ -46,8 +47,8 @@
         "start": "2025-10-23T22:25:00+08:00",
         "end": "2025-10-23T22:30:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-23T22:30:00+08:00",
@@ -60,8 +61,8 @@
         "start": "2025-10-23T22:35:00+08:00",
         "end": "2025-10-23T22:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-10-23T22:40:00+08:00",
@@ -95,15 +96,15 @@
         "start": "2025-10-23T23:00:00+08:00",
         "end": "2025-10-23T23:05:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-23T23:05:00+08:00",
         "end": "2025-10-23T23:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-23T23:10:00+08:00",
@@ -144,8 +145,8 @@
         "start": "2025-10-23T23:35:00+08:00",
         "end": "2025-10-23T23:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-23T23:40:00+08:00",
@@ -172,8 +173,8 @@
         "start": "2025-10-23T23:55:00+08:00",
         "end": "2025-10-24T00:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       }
     ]
   },
@@ -216,8 +217,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1737057829129764864/1775045920",
         "description": "",
         "location": "",
-        "followers": 741,
-        "following": 361,
+        "followers": 748,
+        "following": 360,
         "status": "",
         "canDm": false,
         "canMediaTag": true,
@@ -229,11 +230,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 2323,
+        "favouritesCount": 2340,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 923,
-        "statusesCount": 2224,
+        "mediaCount": 935,
+        "statusesCount": 2236,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -374,6 +375,1066 @@
     },
     {
       "type": "tweet",
+      "id": "1981367132001882456",
+      "url": "https://x.com/News5PH/status/1981367132001882456",
+      "twitterUrl": "https://twitter.com/News5PH/status/1981367132001882456",
+      "text": "#FrontlinePilipinas | Nilinaw ng DPWH na short circuit at hindi sumabog na computer ang pinagmulan ng sunog sa isa nilang gusali sa Quezon City. | via @DaveAbuel_ https://t.co/N5q1I1Cev0",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 801,
+      "createdAt": "Thu Oct 23 14:28:30 +0000 2025",
+      "lang": "tl",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1981367132001882456",
+      "displayTextRange": [
+        0,
+        162
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "News5PH",
+        "url": "https://x.com/News5PH",
+        "twitterUrl": "https://twitter.com/News5PH",
+        "id": "133152120",
+        "name": "News5",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1395577754511237121/LMCpXJaq_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/133152120/1785766152",
+        "description": "",
+        "location": "Philippines",
+        "followers": 867318,
+        "following": 2278,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Thu Apr 15 04:08:32 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2720,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 294873,
+        "statusesCount": 668419,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The Official Twitter account of News5 📲FB/IG/YT/TikTok: @News5Everywhere 📧: News5Aksyon@news5.com.ph",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    56,
+                    72
+                  ],
+                  "name": "",
+                  "screen_name": "News5Everywhere"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "news5.com.ph",
+                  "expanded_url": "http://www.news5.com.ph",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/skLJlFc2uO"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "description": "",
+              "monetizable": false,
+              "title": ""
+            },
+            "display_url": "pic.x.com/N5q1I1Cev0",
+            "expanded_url": "https://x.com/News5PH/status/1981367132001882456/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "1981317348129984524",
+            "indices": [
+              163,
+              186
+            ],
+            "media_key": "13_1981317348129984524",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARt/DaFym1AMAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG38NoXKbUAwAAA==",
+                "media_key": "13_1981317348129984524"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1981317348129984524/img/LFvQBm3ebSlV08iX.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 720,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1280
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/N5q1I1Cev0",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 185852,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1981317348129984524/pl/x7Lnhd3a3c0Rc8_2.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1981317348129984524/vid/avc1/480x270/4EYeVsy0QKOEZo4w.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1981317348129984524/vid/avc1/640x360/IhS53y6qH_odSRGx.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1981317348129984524/vid/avc1/1280x720/PwtLF8mIWDFCIwr8.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              0,
+              19
+            ],
+            "text": "FrontlinePilipinas"
+          }
+        ],
+        "user_mentions": [
+          {
+            "id_str": "546992714",
+            "indices": [
+              151,
+              162
+            ],
+            "name": "Dave Abuel",
+            "screen_name": "DaveAbuel_"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1981369712274788597",
+      "url": "https://x.com/lootgo_official/status/1981369712274788597",
+      "twitterUrl": "https://twitter.com/lootgo_official/status/1981369712274788597",
+      "text": "OCTOBER MADNESS: THE MAP IS ERUPTING !!\n\nThe ticket wars are out of control — nations are going ALL IN for a spot in the Quarter Finals !\n\nHere’s the latest Heat Check :\n\n🇰🇷 Korea – 57,494 vs 🇬🇷 Greece – 19,107 → Korea DOMINATES\n🇩🇪 Germany – 30,238 vs 🇪🇸 Spain – 29,432 → Neck and neck \n🇺🇸 USA – 42,084 vs 🇮🇩 Indonesia – 13,078 → USA CRUSHING IT\n🇮🇳 India – 19,206 vs 🇹🇷 Turkey – 16,212 → India HOLDING STRONG\n🇨🇳 China – 39,718 vs 🇨🇦 Canada – 22,780 → China LOCKED IN\n🇵🇭 Philippines – 21,490 vs 🇻🇳 Vietnam – 11,617 → PH LEADING THE CHARGE\n🇳🇬 Nigeria – 19,100 vs 🇸🇬 Singapore – 16,765 → Nigeria PULLING AHEAD\n🇯🇵 Japan – 51,935 vs 🇹🇭 Thailand – 10,910 → Japan DOMINANT\n\n🔥 Hypeboard Votes:\n🥇 Indonesia\n🥈 Philippines\n🥉 Thailand\n\nThe scoreboard’s on fire — but in Madness, one rally can flip EVERYTHING !\nWho’s making it to the Quarter Finals ?",
+      "source": "Twitter for iPhone",
+      "retweetCount": 12,
+      "replyCount": 13,
+      "likeCount": 79,
+      "quoteCount": 2,
+      "viewCount": 5836,
+      "createdAt": "Thu Oct 23 14:38:46 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1981369712274788597",
+      "displayTextRange": [
+        0,
+        276
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "lootgo_official",
+        "url": "https://x.com/lootgo_official",
+        "twitterUrl": "https://twitter.com/lootgo_official",
+        "id": "1888757803205947392",
+        "name": "LootGO",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1947490514921488384/TLSJg7Z5_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1888757803205947392/1745988237",
+        "description": "",
+        "location": "",
+        "followers": 84787,
+        "following": 732,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Feb 10 01:12:17 +0000 2025",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5496,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 749,
+        "statusesCount": 2565,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2084693909897384282"
+        ],
+        "profile_bio": {
+          "description": "The real-world crypto treasure hunt 🏴‍☠️ Monad Momentum project and Finalist @monad Madness /  Winner @Colosseum Solana Mobile Track",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    77,
+                    83
+                  ],
+                  "name": "",
+                  "screen_name": "monad"
+                },
+                {
+                  "id_str": "",
+                  "indices": [
+                    102,
+                    112
+                  ],
+                  "name": "",
+                  "screen_name": "Colosseum"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/lootgo_official",
+                  "expanded_url": "https://linktr.ee/lootgo_official",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/on8tLBjCIE"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/2VOn6Lorz3",
+            "expanded_url": "https://x.com/lootgo_official/status/1981369712274788597/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1981369229765988352",
+            "indices": [
+              277,
+              300
+            ],
+            "media_key": "3_1981369229765988352",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARt/PNEVF1AACgACG389QWzbUPUAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG3880RUXUAAKAAIbfz1BbNtQ9QAA",
+                "media_key": "3_1981369229765988352"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G3880RUXUAA3KRZ.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 627,
+                  "w": 1120,
+                  "x": 0,
+                  "y": 301
+                },
+                {
+                  "h": 928,
+                  "w": 928,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 928,
+                  "w": 814,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 928,
+                  "w": 464,
+                  "x": 76,
+                  "y": 0
+                },
+                {
+                  "h": 928,
+                  "w": 1120,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 928,
+              "width": 1120
+            },
+            "sizes": {
+              "large": {
+                "h": 928,
+                "w": 1120
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/2VOn6Lorz3"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1981369426110009645",
+      "url": "https://x.com/dna/status/1981369426110009645",
+      "twitterUrl": "https://twitter.com/dna/status/1981369426110009645",
+      "text": "Philippines: Massive Fire Rages Through Residential Area \n\n#Philippines #Fire #DNAVideos \n\nFor more videos, click here https://t.co/6ddeGFqM3o https://t.co/o4aQYlC2Z8",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 547,
+      "createdAt": "Thu Oct 23 14:37:37 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1981369426110009645",
+      "displayTextRange": [
+        0,
+        142
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "dna",
+        "url": "https://x.com/dna",
+        "twitterUrl": "https://twitter.com/dna",
+        "id": "17710740",
+        "name": "DNA",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2054863843562815488/I9gDdL35_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/17710740/1765470177",
+        "description": "",
+        "location": "",
+        "followers": 2119449,
+        "following": 18,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Fri Nov 28 15:39:38 +0000 2008",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 131,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 262559,
+        "statusesCount": 894053,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official Twitter handle of Daily News & Analysis.\nVisit https://t.co/91EzrWwCvB for the latest updates",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "dnaindia.com",
+                  "expanded_url": "http://dnaindia.com",
+                  "indices": [
+                    56,
+                    79
+                  ],
+                  "url": "https://t.co/91EzrWwCvB"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "dnaindia.com",
+                  "expanded_url": "https://www.dnaindia.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/iObiamQFdC"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "display_url": "pic.x.com/o4aQYlC2Z8",
+            "expanded_url": "https://x.com/dna/status/1981369426110009645/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "1981367701948805121",
+            "indices": [
+              143,
+              166
+            ],
+            "media_key": "13_1981367701948805121",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARt/O21cFzABAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG387bVwXMAEAAA==",
+                "media_key": "13_1981367701948805121"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1981367701948805121/img/kqIjxIerQANMgOSh.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1280,
+              "width": 720
+            },
+            "sizes": {
+              "large": {
+                "h": 1280,
+                "w": 720
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/o4aQYlC2Z8",
+            "video_info": {
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration_millis": 87307,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1981367701948805121/pl/GCsAtgQcZ5PKqPz-.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1981367701948805121/vid/avc1/320x568/I1JNW1XepYH5kHIx.mp4?tag=21"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1981367701948805121/vid/avc1/480x852/tuUwBO-0RTIYCnH0.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1981367701948805121/vid/avc1/720x1280/GhDqIH2WGfPVIE72.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              59,
+              71
+            ],
+            "text": "Philippines"
+          },
+          {
+            "indices": [
+              72,
+              77
+            ],
+            "text": "Fire"
+          },
+          {
+            "indices": [
+              78,
+              88
+            ],
+            "text": "DNAVideos"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "dnaindia.com/videos",
+            "expanded_url": "https://dnaindia.com/videos",
+            "indices": [
+              119,
+              142
+            ],
+            "url": "https://t.co/6ddeGFqM3o"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1981375124407538163",
+      "url": "https://x.com/ROL_Genesis/status/1981375124407538163",
+      "twitterUrl": "https://twitter.com/ROL_Genesis/status/1981375124407538163",
+      "text": "👑 RONIN — Unbreakable Resolve | ROLG Major 2025 Pre-Match Interview! 👑\n\n\"As Ronin, we stand united and strike as one — our resolve is unbreakable.\"\n\n💥 Get to know RONIN, a proud and disciplined guild ready to fight with heart and honor at the ROLG Major 2025 — the fiercest 10v10 guild clash in Ragnarok Landverse: Genesis.\n\nWe spoke with Odinson, and here’s what he had to say:\n🎤 Q: How has your guild been preparing for the ROLG Major 2025?\n⚔️ Odinson: Our team has been practicing very hard for the ROLG Major 2025. We will do our best.\n\n🎤 Q: What’s your main goal for this event?\n⚔️ Odinson:  For this competition, victory may not be the only goal we will achieve.\nFriendships and good experiences are also important.\nBut of course, finishing in the top three is something we will fight hard for.\n\n🎤 Q: Which guild do you see as your biggest rival?\n⚔️ Odinson:  Aside from thea Fi Guild, which I consider to be a small guild, the other guilds all seem big and respectable. (Pharaoh's Answer)\n\n🎤 Q: How do you keep morale high during tough matches?\n⚔️ Odinson:  Tough matches? We call those “warm-ups.”\n\n🎤 Q: What should other teams be careful about when facing RONIN?\n⚔️ Odinson:  OneQ is our secret weapon, watch out for him, he might give you a lot of points.\n\n🎤 Q: Message to your fans?\n⚔️ Odinson: To all our fans in the Philippines and Thailand\nThank you from the bottom of our hearts for your unwavering support.\nYour cheers give us the strength to keep moving forward,\nand your passion lights the fire that drives us to fight harder.\n\n🎤 Q: One word your rivals should remember?\n⚔️ Odinson:  Friendship.\n\n🎤 Q: One emoji to describe your strategy?\n⚔️ Odinson: 👊\n\n🔥 RONIN is entering the battlefield with unity, grit, and a secret weapon. Are the other guilds ready?",
+      "source": "Twitter for iPhone",
+      "retweetCount": 7,
+      "replyCount": 4,
+      "likeCount": 37,
+      "quoteCount": 1,
+      "viewCount": 6000,
+      "createdAt": "Thu Oct 23 15:00:16 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1981375124407538163",
+      "displayTextRange": [
+        0,
+        273
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ROL_Genesis",
+        "url": "https://x.com/ROL_Genesis",
+        "twitterUrl": "https://twitter.com/ROL_Genesis",
+        "id": "1869011929626550272",
+        "name": "Ragnarok Landverse: Genesis",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1869297429734166528/_BtSRiF3_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1869011929626550272/1734507925",
+        "description": "",
+        "location": "Maxion",
+        "followers": 12351,
+        "following": 20,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Dec 17 13:29:42 +0000 2024",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 276,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 543,
+        "statusesCount": 782,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1912854268534771853"
+        ],
+        "profile_bio": {
+          "description": "Yes, the MMOs Ragnarok you love, but more. Poring or Darling? Powered by @MaxionLabs on @Ronin_Network",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    73,
+                    84
+                  ],
+                  "name": "",
+                  "screen_name": "MaxionLabs"
+                },
+                {
+                  "id_str": "",
+                  "indices": [
+                    88,
+                    102
+                  ],
+                  "name": "",
+                  "screen_name": "Ronin_Network"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "discord.gg/HkX6MTGrxQ",
+                  "expanded_url": "https://discord.gg/HkX6MTGrxQ",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/wLG5eDlyNA"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/Tib5VCFYed",
+            "expanded_url": "https://x.com/ROL_Genesis/status/1981375124407538163/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 55,
+                    "w": 55,
+                    "x": 232,
+                    "y": 40
+                  },
+                  {
+                    "h": 51,
+                    "w": 51,
+                    "x": 414,
+                    "y": 71
+                  },
+                  {
+                    "h": 49,
+                    "w": 49,
+                    "x": 392,
+                    "y": 194
+                  },
+                  {
+                    "h": 61,
+                    "w": 61,
+                    "x": 318,
+                    "y": 63
+                  },
+                  {
+                    "h": 59,
+                    "w": 59,
+                    "x": 52,
+                    "y": 72
+                  },
+                  {
+                    "h": 57,
+                    "w": 57,
+                    "x": 201,
+                    "y": 140
+                  },
+                  {
+                    "h": 56,
+                    "w": 56,
+                    "x": 281,
+                    "y": 161
+                  },
+                  {
+                    "h": 55,
+                    "w": 55,
+                    "x": 75,
+                    "y": 181
+                  },
+                  {
+                    "h": 48,
+                    "w": 48,
+                    "x": 149,
+                    "y": 65
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 55,
+                    "w": 55,
+                    "x": 232,
+                    "y": 40
+                  },
+                  {
+                    "h": 51,
+                    "w": 51,
+                    "x": 414,
+                    "y": 71
+                  },
+                  {
+                    "h": 49,
+                    "w": 49,
+                    "x": 392,
+                    "y": 194
+                  },
+                  {
+                    "h": 61,
+                    "w": 61,
+                    "x": 318,
+                    "y": 63
+                  },
+                  {
+                    "h": 59,
+                    "w": 59,
+                    "x": 52,
+                    "y": 72
+                  },
+                  {
+                    "h": 57,
+                    "w": 57,
+                    "x": 201,
+                    "y": 140
+                  },
+                  {
+                    "h": 56,
+                    "w": 56,
+                    "x": 281,
+                    "y": 161
+                  },
+                  {
+                    "h": 55,
+                    "w": 55,
+                    "x": 75,
+                    "y": 181
+                  },
+                  {
+                    "h": 48,
+                    "w": 48,
+                    "x": 149,
+                    "y": 65
+                  }
+                ]
+              }
+            },
+            "id_str": "1981375121257615360",
+            "indices": [
+              274,
+              297
+            ],
+            "media_key": "3_1981375121257615360",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARt/QizNW1AACgACG39CLYkbUfMAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG39CLM1bUAAKAAIbf0ItiRtR8wAA",
+                "media_key": "3_1981375121257615360"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G39CLM1bUAAA-qH.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 287,
+                  "w": 512,
+                  "x": 0,
+                  "y": 353
+                },
+                {
+                  "h": 512,
+                  "w": 512,
+                  "x": 0,
+                  "y": 128
+                },
+                {
+                  "h": 584,
+                  "w": 512,
+                  "x": 0,
+                  "y": 56
+                },
+                {
+                  "h": 640,
+                  "w": 320,
+                  "x": 112,
+                  "y": 0
+                },
+                {
+                  "h": 640,
+                  "w": 512,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 640,
+              "width": 512
+            },
+            "sizes": {
+              "large": {
+                "h": 640,
+                "w": 512
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/Tib5VCFYed"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1981377393966399960",
+      "url": "https://x.com/AlertDC/status/1981377393966399960",
+      "twitterUrl": "https://twitter.com/AlertDC/status/1981377393966399960",
+      "text": "[AlertDC] Traffic Advisory: 38th Annual 17th Street High Heel Race (October 28)\n \nOn Tuesday, October 28, 2025, Mayor Muriel Bowser will present the 38th Annual 17th Street High Heel Race in the District of Columbia.  In conjunction with this event, ther https://t.co/r2TjOEgr76",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 951,
+      "createdAt": "Thu Oct 23 15:09:17 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1981377393966399960",
+      "displayTextRange": [
+        0,
+        278
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "AlertDC",
+        "url": "https://x.com/AlertDC",
+        "twitterUrl": "https://twitter.com/AlertDC",
+        "id": "1451173149286993926",
+        "name": "AlertDC",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1462534849726722050/R0frfp-b_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1451173149286993926/1646589309",
+        "description": "",
+        "location": "Washington, DC",
+        "followers": 27751,
+        "following": 69,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Thu Oct 21 13:07:07 +0000 2021",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 57,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 61,
+        "statusesCount": 12231,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {
+          "label": {
+            "badge": {
+              "url": "https://pbs.twimg.com/semantic_core_img/1428827730364096519/4ZXpTBhS?format=png&name=orig"
+            },
+            "description": "Automated",
+            "long_description": {
+              "entities": [
+                {
+                  "from_index": 13,
+                  "ref": {
+                    "__typename": "TimelineRichTextMention",
+                    "screen_name": "DC_HSEMA",
+                    "user_results": {
+                      "rest_id": "18768730",
+                      "result": {
+                        "__typename": "User",
+                        "rest_id": "18768730"
+                      }
+                    }
+                  },
+                  "to_index": 22
+                }
+              ],
+              "text": "Automated by @DC_HSEMA"
+            },
+            "user_label_type": "AutomatedLabel"
+          }
+        },
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "🚨 Washington DC’s official source for emergency alerts, traffic & safety info. Sign up at https://t.co/218q7jQCsk. Call 911 for emergencies & 311 for city services",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "alert.dc.gov",
+                  "expanded_url": "http://alert.dc.gov",
+                  "indices": [
+                    90,
+                    113
+                  ],
+                  "url": "https://t.co/218q7jQCsk"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "alert.dc.gov",
+                  "expanded_url": "http://alert.dc.gov",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/218q7jQCsk"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": true,
+        "automatedBy": "DC_HSEMA"
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "manager.everbridge.net/pub/2221221257…",
+            "expanded_url": "https://manager.everbridge.net/pub/2221221257170590",
+            "indices": [
+              255,
+              278
+            ],
+            "url": "https://t.co/r2TjOEgr76"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1981383251534258439",
       "url": "https://x.com/WJGBalderama/status/1981383251534258439",
       "twitterUrl": "https://twitter.com/WJGBalderama/status/1981383251534258439",
@@ -410,8 +1471,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1543340471023349760/1706437949",
         "description": "",
         "location": "Winchester, CA",
-        "followers": 3129,
-        "following": 2259,
+        "followers": 3127,
+        "following": 2269,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -423,11 +1484,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 21331,
+        "favouritesCount": 21387,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 1681,
-        "statusesCount": 40059,
+        "mediaCount": 1686,
+        "statusesCount": 40147,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -455,6 +1516,392 @@
       "quoted_tweet": null,
       "retweeted_tweet": null,
       "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1981384196439380382",
+      "url": "https://x.com/lexwrecks/status/1981384196439380382",
+      "twitterUrl": "https://twitter.com/lexwrecks/status/1981384196439380382",
+      "text": "Traffic Advisory for New Circle Rd -\nThe outer loop left lane is blocked between Tates Creek Rd and the Chinoe Rd overpass for repair work.  Use added caution and expect delays if traveling in this area. https://t.co/uKWVyW7CkT",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 1,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 1072,
+      "createdAt": "Thu Oct 23 15:36:19 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1981384196439380382",
+      "displayTextRange": [
+        0,
+        203
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "lexwrecks",
+        "url": "https://x.com/lexwrecks",
+        "twitterUrl": "https://twitter.com/lexwrecks",
+        "id": "322084058",
+        "name": "lexwrecks",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/868838906170572803/eiLDmrQV_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/322084058/1495982844",
+        "description": "",
+        "location": "Lexington, KY",
+        "followers": 20856,
+        "following": 76,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Wed Jun 22 16:18:20 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 34,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 9934,
+        "statusesCount": 36713,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Traffic information from the Lexington, KY Traffic Management Center.\nAccount not monitored 24/7.  For emergencies call 911.  Comment policy: https://t.co/FO5y2P9ab7",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "bit.ly/2roPZPv",
+                  "expanded_url": "http://bit.ly/2roPZPv",
+                  "indices": [
+                    142,
+                    165
+                  ],
+                  "url": "https://t.co/FO5y2P9ab7"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "lexingtonky.gov",
+                  "expanded_url": "http://www.lexingtonky.gov",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/IVjWrxBSdL"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/uKWVyW7CkT",
+            "expanded_url": "https://x.com/lexwrecks/status/1981384196439380382/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1981384127162015744",
+            "indices": [
+              204,
+              227
+            ],
+            "media_key": "3_1981384127162015744",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARt/Sl2nFuAACgACG39KbchXkZ4AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG39KXacW4AAKAAIbf0ptyFeRngAA",
+                "media_key": "3_1981384127162015744"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G39KXacW4AADKxk.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 405,
+                  "w": 723,
+                  "x": 0,
+                  "y": 105
+                },
+                {
+                  "h": 520,
+                  "w": 520,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 520,
+                  "w": 456,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 520,
+                  "w": 260,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 520,
+                  "w": 723,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 520,
+              "width": 723
+            },
+            "sizes": {
+              "large": {
+                "h": 520,
+                "w": 723
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/uKWVyW7CkT"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1981390062072815997",
+      "url": "https://x.com/RCMPNS/status/1981390062072815997",
+      "twitterUrl": "https://twitter.com/RCMPNS/status/1981390062072815997",
+      "text": "Traffic advisory: RCMP and other first responders are on the scene of a collision on Hwy. 104 westbound near Amherst. Please avoid the area where possible and expect delays. https://t.co/gC9Bgsuf10",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 5,
+      "quoteCount": 0,
+      "viewCount": 5068,
+      "createdAt": "Thu Oct 23 15:59:37 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1981390062072815997",
+      "displayTextRange": [
+        0,
+        173
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "RCMPNS",
+        "url": "https://x.com/RCMPNS",
+        "twitterUrl": "https://twitter.com/RCMPNS",
+        "id": "33671152",
+        "name": "RCMP Nova Scotia",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1260181431793451010/DlHMJ4H6_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/33671152/1724171732",
+        "description": "",
+        "location": "Nova Scotia, Canada",
+        "followers": 150683,
+        "following": 581,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Apr 20 21:28:56 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 7239,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 8830,
+        "statusesCount": 27993,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Account is not monitored 24/7. For emergencies, call 911. To report a crime, visit: https://t.co/V5qP7keWyK. Terms of use: https://t.co/SDdlnXhEAH. Fr: @grcne",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "bit.ly/3RtGtsI",
+                  "expanded_url": "https://bit.ly/3RtGtsI",
+                  "indices": [
+                    84,
+                    107
+                  ],
+                  "url": "https://t.co/V5qP7keWyK"
+                },
+                {
+                  "display_url": "bit.ly/43Qs9he",
+                  "expanded_url": "https://bit.ly/43Qs9he",
+                  "indices": [
+                    123,
+                    146
+                  ],
+                  "url": "https://t.co/SDdlnXhEAH"
+                }
+              ],
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    152,
+                    158
+                  ],
+                  "name": "",
+                  "screen_name": "grcne"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "rcmp-grc.gc.ca/en/ns/home",
+                  "expanded_url": "https://www.rcmp-grc.gc.ca/en/ns/home",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/D6Oh50tLhL"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/gC9Bgsuf10",
+            "expanded_url": "https://x.com/RCMPNS/status/1981390062072815997/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1981389987380617216",
+            "indices": [
+              174,
+              197
+            ],
+            "media_key": "3_1981389987380617216",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARt/T7IXVmAACgACG39Pw3tW4X0AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG39PshdWYAAKAAIbf0/De1bhfQAA",
+                "media_key": "3_1981389987380617216"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G39PshdWYAAUupw.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 475
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 947,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 540,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1080,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/gC9Bgsuf10"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": true,
       "communityInfo": null,
       "article": null
     }

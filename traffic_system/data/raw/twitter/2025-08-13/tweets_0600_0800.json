@@ -5,14 +5,14 @@
     "window_start": "2025-08-13T06:00:00+08:00",
     "window_end": "2025-08-13T08:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 4,
+    "tweet_count": 10,
     "slices": [
       {
         "start": "2025-08-13T06:00:00+08:00",
         "end": "2025-08-13T06:05:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-08-13T06:05:00+08:00",
@@ -39,8 +39,8 @@
         "start": "2025-08-13T06:20:00+08:00",
         "end": "2025-08-13T06:25:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-08-13T06:25:00+08:00",
@@ -60,15 +60,15 @@
         "start": "2025-08-13T06:35:00+08:00",
         "end": "2025-08-13T06:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-08-13T06:40:00+08:00",
         "end": "2025-08-13T06:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-08-13T06:45:00+08:00",
@@ -137,8 +137,8 @@
         "start": "2025-08-13T07:30:00+08:00",
         "end": "2025-08-13T07:35:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-08-13T07:35:00+08:00",
@@ -180,6 +180,98 @@
   "data": [
     {
       "type": "tweet",
+      "id": "1955389213890986263",
+      "url": "https://x.com/LAPDCentral/status/1955389213890986263",
+      "twitterUrl": "https://twitter.com/LAPDCentral/status/1955389213890986263",
+      "text": "⚠️Traffic Advisory⚠️ \n\nMarch is NB Los Angeles St approaching El Pueblo.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 1,
+      "likeCount": 4,
+      "quoteCount": 1,
+      "viewCount": 2259,
+      "createdAt": "Tue Aug 12 22:01:32 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1955389213890986263",
+      "displayTextRange": [
+        0,
+        72
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "LAPDCentral",
+        "url": "https://x.com/LAPDCentral",
+        "twitterUrl": "https://twitter.com/LAPDCentral",
+        "id": "1608131025774993408",
+        "name": "LAPD Central Division",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1810395052855926784/R0pSVKzE_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1608131025774993408/1705187163",
+        "description": "",
+        "location": "251 E 6th Street Los Angeles",
+        "followers": 10784,
+        "following": 128,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Dec 28 16:02:18 +0000 2022",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 751,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 486,
+        "statusesCount": 3132,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Offical Account of LAPD Central Division. Serving Downtown Los Angeles. *This account is not monitored 24/7*",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "lapdonline.org",
+                  "expanded_url": "http://lapdonline.org",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/W4L7E504v2"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1955388831412146638",
       "url": "https://x.com/MakatiTraffic/status/1955388831412146638",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/1955388831412146638",
@@ -216,7 +308,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437302,
+        "followers": 1437185,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +324,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411294,
+        "mediaCount": 17208,
+        "statusesCount": 411924,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -282,6 +374,98 @@
     },
     {
       "type": "tweet",
+      "id": "1955395059534401897",
+      "url": "https://x.com/LAPDCentral/status/1955395059534401897",
+      "twitterUrl": "https://twitter.com/LAPDCentral/status/1955395059534401897",
+      "text": "⚠️Traffic Advisory⚠️ \n\nAlameda remains closed between Aliso and Temple.  \n\nFor those who wish to access the SB 101 FWY please use EB Temple to NB Garey St and for those who wish to travel NB 101 FWY,  WB Temple from Alameda to NB Broadway.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 5,
+      "replyCount": 2,
+      "likeCount": 10,
+      "quoteCount": 2,
+      "viewCount": 3418,
+      "createdAt": "Tue Aug 12 22:24:46 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1955395059534401897",
+      "displayTextRange": [
+        0,
+        239
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "LAPDCentral",
+        "url": "https://x.com/LAPDCentral",
+        "twitterUrl": "https://twitter.com/LAPDCentral",
+        "id": "1608131025774993408",
+        "name": "LAPD Central Division",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1810395052855926784/R0pSVKzE_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1608131025774993408/1705187163",
+        "description": "",
+        "location": "251 E 6th Street Los Angeles",
+        "followers": 10784,
+        "following": 128,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Dec 28 16:02:18 +0000 2022",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 751,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 486,
+        "statusesCount": 3132,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Offical Account of LAPD Central Division. Serving Downtown Los Angeles. *This account is not monitored 24/7*",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "lapdonline.org",
+                  "expanded_url": "http://lapdonline.org",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/W4L7E504v2"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1955396377128718698",
       "url": "https://x.com/MakatiTraffic/status/1955396377128718698",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/1955396377128718698",
@@ -318,7 +502,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437302,
+        "followers": 1437185,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -334,8 +518,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411294,
+        "mediaCount": 17208,
+        "statusesCount": 411924,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -384,6 +568,665 @@
     },
     {
       "type": "tweet",
+      "id": "1955398545676075298",
+      "url": "https://x.com/mattdagley/status/1955398545676075298",
+      "twitterUrl": "https://twitter.com/mattdagley/status/1955398545676075298",
+      "text": "Halifax Rigional Police:\n\n\"Traffic Advisory – Bayers Lake\n\nDue to the ongoing wildfire in the Susies Lake area, the following roads will remain closed overnight:\n\n- Chain Lake Drive, between the Highway 102 off-ramp and Julius Blvd (inbound lane only)\n- Julius Blvd\n- Susie Lake Crescent between Julius Blvd and Hobsons Lake Drive\n\nThere are no mandatory evacuations at this time.\"",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 8,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 1638,
+      "createdAt": "Tue Aug 12 22:38:37 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1955398545676075298",
+      "displayTextRange": [
+        0,
+        278
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "mattdagley",
+        "url": "https://x.com/mattdagley",
+        "twitterUrl": "https://twitter.com/mattdagley",
+        "id": "16510068",
+        "name": "Matt Dagley",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/890663941294182401/a9eNIcAx_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/16510068/1643303821",
+        "description": "",
+        "location": "Halifax, Nova Scotia, Canada",
+        "followers": 8494,
+        "following": 2419,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Mon Sep 29 10:53:45 +0000 2008",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 80293,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 51162,
+        "statusesCount": 230907,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1957930087963111917"
+        ],
+        "profile_bio": {
+          "description": "🏆 Award Winning Videographer @DagleyMedia 🎥 Content Creator 💍 Weddings 🗞 News 🎤 Livestream 🚀 Drone ⚠️ Posts are my own ♻️ RP ≠ endorsement",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    29,
+                    41
+                  ],
+                  "name": "",
+                  "screen_name": "DagleyMedia"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "dagleymedia.com",
+                  "expanded_url": "http://dagleymedia.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/DQl4PXHDvd"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "1955397852391231615",
+        "url": "https://x.com/HfxRegPolice/status/1955397852391231615",
+        "twitterUrl": "https://twitter.com/HfxRegPolice/status/1955397852391231615",
+        "text": "Traffic Advisory – Bayers Lake\n\nDue to the ongoing wildfire in the Susies Lake area, the following roads will remain closed overnight:\n\n- Chain Lake Drive, between the Highway 102 off-ramp and Julius Blvd (inbound lane only)\n- Julius Blvd\n- Susie Lake Crescent between Julius Blvd and Hobsons Lake Drive\n\nThere are no mandatory evacuations at this time.\n\n25-115515",
+        "source": "Twitter for iPhone",
+        "retweetCount": 21,
+        "replyCount": 0,
+        "likeCount": 46,
+        "quoteCount": 7,
+        "viewCount": 19164,
+        "createdAt": "Tue Aug 12 22:35:52 +0000 2025",
+        "lang": "en",
+        "bookmarkCount": 3,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "1955397852391231615",
+        "displayTextRange": [
+          0,
+          280
+        ],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {
+          "type": "user",
+          "userName": "HfxRegPolice",
+          "url": "https://x.com/HfxRegPolice",
+          "twitterUrl": "https://twitter.com/HfxRegPolice",
+          "id": "90450219",
+          "name": "Halifax_Police",
+          "isVerified": false,
+          "isBlueVerified": true,
+          "verifiedType": "Government",
+          "profilePicture": "https://pbs.twimg.com/profile_images/1032257934439329792/hDwS_m6P_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/90450219/1747397272",
+          "description": "",
+          "location": "Halifax, Nova Scotia, Canada",
+          "followers": 132844,
+          "following": 302,
+          "status": "",
+          "canDm": false,
+          "canMediaTag": true,
+          "createdAt": "Mon Nov 16 18:18:45 +0000 2009",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 2040,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 5002,
+          "statusesCount": 24181,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [
+            "2008890388283572671"
+          ],
+          "profile_bio": {
+            "description": "Official account for Halifax Regional Police. Not monitored 24/7. Emergencies: 9-1-1. Non-emergency reporting: 902-490-5020. General inquiries: 902-490-5016.",
+            "entities": {
+              "description": {},
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "halifax.ca/police",
+                    "expanded_url": "https://www.halifax.ca/police",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/LqEicleCut"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {
+          "media": [
+            {
+              "display_url": "pic.x.com/ugxxl1eTZh",
+              "expanded_url": "https://x.com/HfxRegPolice/status/1955397852391231615/photo/1",
+              "ext_master_playlist_only": [],
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "ext_playlists": [],
+              "features": {
+                "large": {
+                  "faces": []
+                },
+                "orig": {
+                  "faces": []
+                }
+              },
+              "id_str": "1955397835530113024",
+              "indices": [
+                281,
+                304
+              ],
+              "media_key": "3_1955397835530113024",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARsi9/ilVxAACgACGyL3/JJXUH8AAA==",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAABCgABGyL3+KVXEAAKAAIbIvf8kldQfwAA",
+                  "media_key": "3_1955397835530113024"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/media/GyL3-KVXEAAOgFb.jpg",
+              "original_info": {
+                "focus_rects": [
+                  {
+                    "h": 2144,
+                    "w": 3829,
+                    "x": 134,
+                    "y": 0
+                  },
+                  {
+                    "h": 2144,
+                    "w": 2144,
+                    "x": 976,
+                    "y": 0
+                  },
+                  {
+                    "h": 2144,
+                    "w": 1881,
+                    "x": 1108,
+                    "y": 0
+                  },
+                  {
+                    "h": 2144,
+                    "w": 1072,
+                    "x": 1512,
+                    "y": 0
+                  },
+                  {
+                    "h": 2144,
+                    "w": 4096,
+                    "x": 0,
+                    "y": 0
+                  }
+                ],
+                "height": 2144,
+                "width": 4096
+              },
+              "sizes": {
+                "large": {
+                  "h": 1072,
+                  "w": 2048
+                }
+              },
+              "type": "photo",
+              "url": "https://t.co/ugxxl1eTZh"
+            }
+          ]
+        },
+        "card": null,
+        "place": {},
+        "entities": {
+          "hashtags": [],
+          "symbols": [],
+          "urls": [],
+          "user_mentions": []
+        },
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
+        "article": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1955397852391231615",
+      "url": "https://x.com/HfxRegPolice/status/1955397852391231615",
+      "twitterUrl": "https://twitter.com/HfxRegPolice/status/1955397852391231615",
+      "text": "Traffic Advisory – Bayers Lake\n\nDue to the ongoing wildfire in the Susies Lake area, the following roads will remain closed overnight:\n\n- Chain Lake Drive, between the Highway 102 off-ramp and Julius Blvd (inbound lane only)\n- Julius Blvd\n- Susie Lake Crescent between Julius Blvd and Hobsons Lake Drive\n\nThere are no mandatory evacuations at this time.\n\n25-115515",
+      "source": "Twitter for iPhone",
+      "retweetCount": 21,
+      "replyCount": 0,
+      "likeCount": 46,
+      "quoteCount": 7,
+      "viewCount": 19164,
+      "createdAt": "Tue Aug 12 22:35:52 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 3,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1955397852391231615",
+      "displayTextRange": [
+        0,
+        280
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "HfxRegPolice",
+        "url": "https://x.com/HfxRegPolice",
+        "twitterUrl": "https://twitter.com/HfxRegPolice",
+        "id": "90450219",
+        "name": "Halifax_Police",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1032257934439329792/hDwS_m6P_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/90450219/1747397272",
+        "description": "",
+        "location": "Halifax, Nova Scotia, Canada",
+        "followers": 132844,
+        "following": 302,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Mon Nov 16 18:18:45 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2040,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 5002,
+        "statusesCount": 24181,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2008890388283572671"
+        ],
+        "profile_bio": {
+          "description": "Official account for Halifax Regional Police. Not monitored 24/7. Emergencies: 9-1-1. Non-emergency reporting: 902-490-5020. General inquiries: 902-490-5016.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "halifax.ca/police",
+                  "expanded_url": "https://www.halifax.ca/police",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/LqEicleCut"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/ugxxl1eTZh",
+            "expanded_url": "https://x.com/HfxRegPolice/status/1955397852391231615/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1955397835530113024",
+            "indices": [
+              281,
+              304
+            ],
+            "media_key": "3_1955397835530113024",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARsi9/ilVxAACgACGyL3/JJXUH8AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGyL3+KVXEAAKAAIbIvf8kldQfwAA",
+                "media_key": "3_1955397835530113024"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GyL3-KVXEAAOgFb.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 2144,
+                  "w": 3829,
+                  "x": 134,
+                  "y": 0
+                },
+                {
+                  "h": 2144,
+                  "w": 2144,
+                  "x": 976,
+                  "y": 0
+                },
+                {
+                  "h": 2144,
+                  "w": 1881,
+                  "x": 1108,
+                  "y": 0
+                },
+                {
+                  "h": 2144,
+                  "w": 1072,
+                  "x": 1512,
+                  "y": 0
+                },
+                {
+                  "h": 2144,
+                  "w": 4096,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2144,
+              "width": 4096
+            },
+            "sizes": {
+              "large": {
+                "h": 1072,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/ugxxl1eTZh"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": true,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1955399507492979041",
+      "url": "https://x.com/HfxMda/status/1955399507492979041",
+      "twitterUrl": "https://twitter.com/HfxMda/status/1955399507492979041",
+      "text": "**** Via HRP\n\nTraffic Advisory – Bayers Lake\n \nDue to the wildfire in the Susies Lk area, following roads will remain closed overnight\n\nChain Lake Dr, between Hwy 102 &amp; Julius Blvd (inbound lane only)\nJulius Blvd\nSusie Lake Crs between Julius Blvd &amp; Hobsons Lake Dr #hfxtraffic https://t.co/Bk6XAEtpdA",
+      "source": "Twitter for iPhone",
+      "retweetCount": 8,
+      "replyCount": 4,
+      "likeCount": 14,
+      "quoteCount": 0,
+      "viewCount": 3973,
+      "createdAt": "Tue Aug 12 22:42:26 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1955399507492979041",
+      "displayTextRange": [
+        0,
+        285
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "HfxMda",
+        "url": "https://x.com/HfxMda",
+        "twitterUrl": "https://twitter.com/HfxMda",
+        "id": "1123297595072417793",
+        "name": "WaterfrontMdaHfx",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1229093102620749833/cFJ6p637_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1123297595072417793/1556661470",
+        "description": "",
+        "location": "HRM NS",
+        "followers": 17421,
+        "following": 56,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Apr 30 18:46:31 +0000 2019",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 31,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 24230,
+        "statusesCount": 34383,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Local news, weather, traffic and more from your community here and around the HRM \n\nwebpage: https://t.co/FKUNqY3mnM",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "waterfrontmediahfx.the902hxir.ca",
+                  "expanded_url": "https://waterfrontmediahfx.the902hxir.ca/",
+                  "indices": [
+                    93,
+                    116
+                  ],
+                  "url": "https://t.co/FKUNqY3mnM"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "waterfrontmediahfx.the902hxir.ca",
+                  "expanded_url": "https://waterfrontmediahfx.the902hxir.ca/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/FKUNqY3mnM"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/Bk6XAEtpdA",
+            "expanded_url": "https://x.com/HfxMda/status/1955399507492979041/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1955399505089642496",
+            "indices": [
+              286,
+              309
+            ],
+            "media_key": "3_1955399505089642496",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARsi+X1e18AACgACGyL5fe4XwWEAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGyL5fV7XwAAKAAIbIvl97hfBYQAA",
+                "media_key": "3_1955399505089642496"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GyL5fV7XwAANge3.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1147,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 218
+                },
+                {
+                  "h": 1365,
+                  "w": 1365,
+                  "x": 683,
+                  "y": 0
+                },
+                {
+                  "h": 1365,
+                  "w": 1197,
+                  "x": 851,
+                  "y": 0
+                },
+                {
+                  "h": 1365,
+                  "w": 683,
+                  "x": 1143,
+                  "y": 0
+                },
+                {
+                  "h": 1365,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1365,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 1365,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/Bk6XAEtpdA"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              274,
+              285
+            ],
+            "text": "hfxtraffic"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1955406807507300559",
       "url": "https://x.com/MMDA/status/1955406807507300559",
       "twitterUrl": "https://twitter.com/MMDA/status/1955406807507300559",
@@ -420,7 +1263,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967205,
+        "followers": 3966771,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -436,8 +1279,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61677,
-        "statusesCount": 888211,
+        "mediaCount": 61726,
+        "statusesCount": 888650,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -486,6 +1329,305 @@
     },
     {
       "type": "tweet",
+      "id": "1955411659415228594",
+      "url": "https://x.com/PickandRollAU/status/1955411659415228594",
+      "twitterUrl": "https://twitter.com/PickandRollAU/status/1955411659415228594",
+      "text": "GAME DAY | Where there is smoke there is fire!🔥\n\nThe Australian Boomers take on the Philippines in the quarter-finals of the FIBA Asia Cup tonight!🇦🇺🏀🦘\n\n⏰ 9:00 PM AEST\n📊 Live stats: https://t.co/NLIk6wVSBn\n📺 ESPN Australia\n\n#AussieHoops #AsiaCup #GoBoomers https://t.co/IgXLZiyxeN",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 1,
+      "likeCount": 7,
+      "quoteCount": 0,
+      "viewCount": 1489,
+      "createdAt": "Tue Aug 12 23:30:44 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1955411659415228594",
+      "displayTextRange": [
+        0,
+        256
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "PickandRollAU",
+        "url": "https://x.com/PickandRollAU",
+        "twitterUrl": "https://twitter.com/PickandRollAU",
+        "id": "1371830755",
+        "name": "The Pick and Roll 🇦🇺🏀",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1109944971094687744/6j6Tngp4_normal.png",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1371830755/1783984347",
+        "description": "",
+        "location": "Australia",
+        "followers": 31375,
+        "following": 7986,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Mon Apr 22 10:37:39 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 65536,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 21956,
+        "statusesCount": 84164,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Your source for Australian basketball.\n\nRead: https://t.co/wAgDvYC7sa\nLike: https://t.co/DfX35ENru8\nFollow: https://t.co/r1g5dvKcRq",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "pickandroll.com.au",
+                  "expanded_url": "https://pickandroll.com.au",
+                  "indices": [
+                    46,
+                    69
+                  ],
+                  "url": "https://t.co/wAgDvYC7sa"
+                },
+                {
+                  "display_url": "facebook.com/PickandRollAU",
+                  "expanded_url": "https://facebook.com/PickandRollAU",
+                  "indices": [
+                    76,
+                    99
+                  ],
+                  "url": "https://t.co/DfX35ENru8"
+                },
+                {
+                  "display_url": "instagram.com/PickandRollAU",
+                  "expanded_url": "https://instagram.com/PickandRollAU",
+                  "indices": [
+                    108,
+                    131
+                  ],
+                  "url": "https://t.co/r1g5dvKcRq"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/pickandrollau",
+                  "expanded_url": "https://linktr.ee/pickandrollau",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/TtpwdB9rA7"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/IgXLZiyxeN",
+            "expanded_url": "https://x.com/PickandRollAU/status/1955411659415228594/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "FIBA Asia Cup",
+                    "screen_name": "FIBAAsiaCup",
+                    "type": "user",
+                    "user_id": "925027126172143618"
+                  },
+                  {
+                    "name": "ESPN Australia & NZ",
+                    "screen_name": "ESPNAusNZ",
+                    "type": "user",
+                    "user_id": "212122380"
+                  },
+                  {
+                    "name": "Kayo Sports",
+                    "screen_name": "kayosports",
+                    "type": "user",
+                    "user_id": "1040095461720219648"
+                  }
+                ]
+              },
+              "large": {
+                "faces": [
+                  {
+                    "h": 148,
+                    "w": 148,
+                    "x": 611,
+                    "y": 69
+                  },
+                  {
+                    "h": 131,
+                    "w": 131,
+                    "x": 301,
+                    "y": 177
+                  },
+                  {
+                    "h": 139,
+                    "w": 139,
+                    "x": 14,
+                    "y": 4
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 148,
+                    "w": 148,
+                    "x": 611,
+                    "y": 69
+                  },
+                  {
+                    "h": 131,
+                    "w": 131,
+                    "x": 301,
+                    "y": 177
+                  },
+                  {
+                    "h": 139,
+                    "w": 139,
+                    "x": 14,
+                    "y": 4
+                  }
+                ]
+              }
+            },
+            "id_str": "1955409639912378369",
+            "indices": [
+              257,
+              280
+            ],
+            "media_key": "3_1955409639912378369",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARsjArURWhABCgACGyMEi0UaELIAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGyMCtRFaEAEKAAIbIwSLRRoQsgAA",
+                "media_key": "3_1955409639912378369"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GyMCtRFaEAENwWw.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 475
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 947,
+                  "x": 133,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 540,
+                  "x": 540,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1080,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/IgXLZiyxeN"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              224,
+              236
+            ],
+            "text": "AussieHoops"
+          },
+          {
+            "indices": [
+              237,
+              245
+            ],
+            "text": "AsiaCup"
+          },
+          {
+            "indices": [
+              246,
+              256
+            ],
+            "text": "GoBoomers"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "bit.ly/3HtMXpn",
+            "expanded_url": "https://bit.ly/3HtMXpn",
+            "indices": [
+              182,
+              205
+            ],
+            "url": "https://t.co/NLIk6wVSBn"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1955415250880376881",
       "url": "https://x.com/MakatiTraffic/status/1955415250880376881",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/1955415250880376881",
@@ -522,7 +1664,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437302,
+        "followers": 1437185,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -538,8 +1680,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411294,
+        "mediaCount": 17208,
+        "statusesCount": 411924,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,

@@ -5,7 +5,7 @@
     "window_start": "2025-11-30T04:00:00+08:00",
     "window_end": "2025-11-30T06:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 4,
+    "tweet_count": 5,
     "slices": [
       {
         "start": "2025-11-30T04:00:00+08:00",
@@ -144,8 +144,8 @@
         "start": "2025-11-30T05:35:00+08:00",
         "end": "2025-11-30T05:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-11-30T05:40:00+08:00",
@@ -189,7 +189,7 @@
       "replyCount": 0,
       "likeCount": 1,
       "quoteCount": 0,
-      "viewCount": 629,
+      "viewCount": 631,
       "createdAt": "Sat Nov 29 20:30:00 +0000 2025",
       "lang": "en",
       "bookmarkCount": 0,
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197264,
+        "followers": 1197882,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -232,8 +232,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219301,
-        "statusesCount": 941978,
+        "mediaCount": 219481,
+        "statusesCount": 942973,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -276,6 +276,26 @@
       "card": {
         "binding_values": [
           {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2099039261635018752/MJGFCiLO?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 150,
+                "url": "https://pbs.twimg.com/card_img/2099039261635018752/MJGFCiLO?format=jpg&name=280x150",
+                "width": 225
+              }
+            }
+          },
+          {
             "key": "description",
             "value": {
               "string_value": "The Department of Foreign Affairs (DFA) said that 63 Filipinos were safe from the Tai Po, Hong Kong fire incident, while one was injured and one remains..."
@@ -285,6 +305,36 @@
             "key": "domain",
             "value": {
               "string_value": "mb.com.ph"
+            }
+          },
+          {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 320,
+                "url": "https://pbs.twimg.com/card_img/2099039261635018752/MJGFCiLO?format=jpg&name=800x320_1",
+                "width": 481
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2099039261635018752/MJGFCiLO?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 799,
+                "url": "https://pbs.twimg.com/card_img/2099039261635018752/MJGFCiLO?format=jpg&name=orig",
+                "width": 1200
+              }
             }
           },
           {
@@ -298,10 +348,119 @@
             }
           },
           {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2099039261635018752/MJGFCiLO?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2099039261635018752/MJGFCiLO?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 67,
+                "url": "https://pbs.twimg.com/card_img/2099039261635018752/MJGFCiLO?format=jpg&name=100x100",
+                "width": 100
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 799,
+                "url": "https://pbs.twimg.com/card_img/2099039261635018752/MJGFCiLO?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "height": 799,
+                "url": "https://pbs.twimg.com/card_img/2099039261635018752/MJGFCiLO?format=jpg&name=orig",
+                "width": 1200
+              }
+            }
+          },
+          {
             "key": "vanity_url",
             "value": {
               "scribe_key": "vanity_url",
               "string_value": "mb.com.ph"
+            }
+          },
+          {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2099039261635018752/MJGFCiLO?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 32.62,
+                    "rgb": {
+                      "blue": 35,
+                      "green": 44,
+                      "red": 44
+                    }
+                  },
+                  {
+                    "percentage": 22.82,
+                    "rgb": {
+                      "blue": 232,
+                      "green": 190,
+                      "red": 148
+                    }
+                  },
+                  {
+                    "percentage": 11.42,
+                    "rgb": {
+                      "blue": 93,
+                      "green": 111,
+                      "red": 128
+                    }
+                  },
+                  {
+                    "percentage": 6.87,
+                    "rgb": {
+                      "blue": 69,
+                      "green": 57,
+                      "red": 29
+                    }
+                  },
+                  {
+                    "percentage": 5.74,
+                    "rgb": {
+                      "blue": 52,
+                      "green": 76,
+                      "red": 32
+                    }
+                  }
+                ]
+              }
             }
           },
           {
@@ -311,10 +470,148 @@
             }
           },
           {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 32.62,
+                    "rgb": {
+                      "blue": 35,
+                      "green": 44,
+                      "red": 44
+                    }
+                  },
+                  {
+                    "percentage": 22.82,
+                    "rgb": {
+                      "blue": 232,
+                      "green": 190,
+                      "red": 148
+                    }
+                  },
+                  {
+                    "percentage": 11.42,
+                    "rgb": {
+                      "blue": 93,
+                      "green": 111,
+                      "red": 128
+                    }
+                  },
+                  {
+                    "percentage": 6.87,
+                    "rgb": {
+                      "blue": 69,
+                      "green": 57,
+                      "red": 29
+                    }
+                  },
+                  {
+                    "percentage": 5.74,
+                    "rgb": {
+                      "blue": 52,
+                      "green": 76,
+                      "red": 32
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 799,
+                "url": "https://pbs.twimg.com/card_img/2099039261635018752/MJGFCiLO?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2099039261635018752/MJGFCiLO?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 32.62,
+                    "rgb": {
+                      "blue": 35,
+                      "green": 44,
+                      "red": 44
+                    }
+                  },
+                  {
+                    "percentage": 22.82,
+                    "rgb": {
+                      "blue": 232,
+                      "green": 190,
+                      "red": 148
+                    }
+                  },
+                  {
+                    "percentage": 11.42,
+                    "rgb": {
+                      "blue": 93,
+                      "green": 111,
+                      "red": 128
+                    }
+                  },
+                  {
+                    "percentage": 6.87,
+                    "rgb": {
+                      "blue": 69,
+                      "green": 57,
+                      "red": 29
+                    }
+                  },
+                  {
+                    "percentage": 5.74,
+                    "rgb": {
+                      "blue": 52,
+                      "green": 76,
+                      "red": 32
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "height": 799,
+                "url": "https://pbs.twimg.com/card_img/2099039261635018752/MJGFCiLO?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
               "string_value": "https://t.co/oxWSw7ZmX5"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "height": 799,
+                "url": "https://pbs.twimg.com/card_img/2099039261635018752/MJGFCiLO?format=jpg&name=orig",
+                "width": 1200
+              }
             }
           }
         ],
@@ -417,7 +714,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1197264,
+                "followers": 1197882,
                 "following": 141
               },
               "relationship_perspectives": {
@@ -435,8 +732,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 219301,
-                "tweets": 941978
+                "media_tweets": 219481,
+                "tweets": 942973
               },
               "verification": {
                 "is_blue_verified": true,
@@ -507,7 +804,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
         "description": "",
         "location": "Philippines",
-        "followers": 189441,
+        "followers": 190141,
         "following": 481,
         "status": "",
         "canDm": false,
@@ -520,16 +817,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 20345,
+        "favouritesCount": 20357,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 44323,
-        "statusesCount": 197133,
+        "mediaCount": 45186,
+        "statusesCount": 198670,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2093633872936456280"
+          "2099480545550090734"
         ],
         "profile_bio": {
           "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",
@@ -554,56 +851,7 @@
         "automatedBy": null
       },
       "extendedEntities": {},
-      "card": {
-        "binding_values": [
-          {
-            "key": "description",
-            "value": {
-              "string_value": "(UPDATE) THE Department of Health (DOH) said on Saturday that it has raised an alert for the expected rise in road traffic and firework-related injuries during the Christmas season."
-            }
-          },
-          {
-            "key": "domain",
-            "value": {
-              "string_value": "www.manilatimes.net"
-            }
-          },
-          {
-            "key": "vanity_url",
-            "value": {
-              "scribe_key": "vanity_url",
-              "string_value": "manilatimes.net"
-            }
-          },
-          {
-            "key": "title",
-            "value": {
-              "string_value": "Hospitals on alert for holiday injuries"
-            }
-          },
-          {
-            "key": "card_url",
-            "value": {
-              "scribe_key": "card_url",
-              "string_value": "https://t.co/fEHNZF7ODU"
-            }
-          }
-        ],
-        "card_platform": {
-          "platform": {
-            "audience": {
-              "name": "production"
-            },
-            "device": {
-              "name": "iPhone",
-              "version": "13"
-            }
-          }
-        },
-        "name": "summary_large_image",
-        "url": "https://t.co/fEHNZF7ODU",
-        "user_refs_results": []
-      },
+      "card": null,
       "place": {},
       "entities": {
         "urls": [
@@ -662,8 +910,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/461853598/1788192343",
         "description": "",
         "location": "Republic of the Philippines",
-        "followers": 262177,
-        "following": 1005,
+        "followers": 262163,
+        "following": 1006,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -678,13 +926,13 @@
         "favouritesCount": 1966,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 363260,
-        "statusesCount": 1006214,
+        "mediaCount": 364493,
+        "statusesCount": 1008049,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2095427727365231027"
+          "2097968439566741980"
         ],
         "profile_bio": {
           "description": "The official X account of Super Radyo DZBB 594 kHz, the flagship AM radio station of GMA Network, Inc.",
@@ -815,6 +1063,235 @@
     },
     {
       "type": "tweet",
+      "id": "1994883857011937769",
+      "url": "https://x.com/RCMPNS/status/1994883857011937769",
+      "twitterUrl": "https://twitter.com/RCMPNS/status/1994883857011937769",
+      "text": "✨🚦 Traffic Advisory🚦✨\nThe Beaver Bank Holiday Parade of Lights is set to shine bright on Sunday, November 30, from 6 p.m. – 7:30 p.m.🎄✨\nTo help keep everyone safe, RCMP Halifax Regional Detachment will be assisting with traffic control. Please note:\n📍 Road closure alert https://t.co/7W7LITuuN2",
+      "source": "Twitter for iPhone",
+      "retweetCount": 4,
+      "replyCount": 1,
+      "likeCount": 7,
+      "quoteCount": 1,
+      "viewCount": 3097,
+      "createdAt": "Sat Nov 29 21:39:09 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1994883857011937769",
+      "displayTextRange": [
+        0,
+        270
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "RCMPNS",
+        "url": "https://x.com/RCMPNS",
+        "twitterUrl": "https://twitter.com/RCMPNS",
+        "id": "33671152",
+        "name": "RCMP Nova Scotia",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1260181431793451010/DlHMJ4H6_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/33671152/1724171732",
+        "description": "",
+        "location": "Nova Scotia, Canada",
+        "followers": 150682,
+        "following": 581,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Apr 20 21:28:56 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 7239,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 8833,
+        "statusesCount": 27997,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Account is not monitored 24/7. For emergencies, call 911. To report a crime, visit: https://t.co/V5qP7keWyK. Terms of use: https://t.co/SDdlnXhEAH. Fr: @grcne",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "bit.ly/3RtGtsI",
+                  "expanded_url": "https://bit.ly/3RtGtsI",
+                  "indices": [
+                    84,
+                    107
+                  ],
+                  "url": "https://t.co/V5qP7keWyK"
+                },
+                {
+                  "display_url": "bit.ly/43Qs9he",
+                  "expanded_url": "https://bit.ly/43Qs9he",
+                  "indices": [
+                    123,
+                    146
+                  ],
+                  "url": "https://t.co/SDdlnXhEAH"
+                }
+              ],
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    152,
+                    158
+                  ],
+                  "name": "",
+                  "screen_name": "grcne"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "rcmp-grc.gc.ca/en/ns/home",
+                  "expanded_url": "https://www.rcmp-grc.gc.ca/en/ns/home",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/D6Oh50tLhL"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/7W7LITuuN2",
+            "expanded_url": "https://x.com/RCMPNS/status/1994883857011937769/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 42,
+                    "w": 42,
+                    "x": 1010,
+                    "y": 196
+                  },
+                  {
+                    "h": 48,
+                    "w": 48,
+                    "x": 111,
+                    "y": 756
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 42,
+                    "w": 42,
+                    "x": 1010,
+                    "y": 196
+                  },
+                  {
+                    "h": 48,
+                    "w": 48,
+                    "x": 111,
+                    "y": 756
+                  }
+                ]
+              }
+            },
+            "id_str": "1994883834001723393",
+            "indices": [
+              271,
+              294
+            ],
+            "media_key": "3_1994883834001723393",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARuvQEcV15ABCgACG69ATHFbkekAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG69ARxXXkAEKAAIbr0BMcVuR6QAA",
+                "media_key": "3_1994883834001723393"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G69ARxXXkAEwney.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 475
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 947,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 540,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1080,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/7W7LITuuN2"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": true,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1994888274012508349",
       "url": "https://x.com/dzbb/status/1994888274012508349",
       "twitterUrl": "https://twitter.com/dzbb/status/1994888274012508349",
@@ -851,8 +1328,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/461853598/1788192343",
         "description": "",
         "location": "Republic of the Philippines",
-        "followers": 262177,
-        "following": 1005,
+        "followers": 262163,
+        "following": 1006,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -867,13 +1344,13 @@
         "favouritesCount": 1966,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 363260,
-        "statusesCount": 1006214,
+        "mediaCount": 364493,
+        "statusesCount": 1008049,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2095427727365231027"
+          "2097968439566741980"
         ],
         "profile_bio": {
           "description": "The official X account of Super Radyo DZBB 594 kHz, the flagship AM radio station of GMA Network, Inc.",

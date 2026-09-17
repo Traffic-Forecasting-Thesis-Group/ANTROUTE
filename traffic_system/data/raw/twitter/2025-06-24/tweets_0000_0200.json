@@ -5,7 +5,7 @@
     "window_start": "2025-06-24T00:00:00+08:00",
     "window_end": "2025-06-24T02:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 3,
+    "tweet_count": 5,
     "slices": [
       {
         "start": "2025-06-24T00:00:00+08:00",
@@ -95,8 +95,8 @@
         "start": "2025-06-24T01:00:00+08:00",
         "end": "2025-06-24T01:05:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-06-24T01:05:00+08:00",
@@ -136,9 +136,10 @@
       {
         "start": "2025-06-24T01:30:00+08:00",
         "end": "2025-06-24T01:35:00+08:00",
+        "error": "HTTPSConnectionPool(host='api.twitterapi.io', port=443): Read timed out. (read timeout=30)",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-06-24T01:35:00+08:00",
@@ -180,6 +181,294 @@
   "data": [
     {
       "type": "tweet",
+      "id": "1937194677184397706",
+      "url": "https://x.com/missingcodec/status/1937194677184397706",
+      "twitterUrl": "https://twitter.com/missingcodec/status/1937194677184397706",
+      "text": "Manila traffic made me travel from Pureza to Trinoma from 4pm to 8:30 pm missing significant portion of Pusong Mamon. But I still saw portions of it and I must say... I think I have more affinity to this \"digitally enhanced\" scans than those overly processed restorations https://t.co/bQ95504TuQ",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 19,
+      "quoteCount": 0,
+      "viewCount": 798,
+      "createdAt": "Mon Jun 23 17:02:57 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 5,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1937194677184397706",
+      "displayTextRange": [
+        0,
+        271
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "missingcodec",
+        "url": "https://x.com/missingcodec",
+        "twitterUrl": "https://twitter.com/missingcodec",
+        "id": "1097782059198701569",
+        "name": "Epoy Deyto #SahodItaasPresyoIbaba",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1951973746904072192/kXDBZq2K_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1097782059198701569/1747930344",
+        "description": "",
+        "location": "Moon",
+        "followers": 2231,
+        "following": 879,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Feb 19 08:56:53 +0000 2019",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 66666,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 4888,
+        "statusesCount": 40572,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Bongbong Marcos kriminal, ikulong. Pagbayarin.\nImpeach Sara Duterte!\nSahod Itaas, Presyo Ibaba\nNo to Jeepney Phaseout!\n\nmail: mail@missingcodec.com",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "missingcodec.com",
+                  "expanded_url": "https://missingcodec.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/NbeNQPfE48"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/bQ95504TuQ",
+            "expanded_url": "https://x.com/missingcodec/status/1937194677184397706/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              }
+            },
+            "id_str": "1937193410957574146",
+            "indices": [
+              272,
+              295
+            ],
+            "media_key": "3_1937193410957574146",
+            "media_results": {
+              "result": {
+                "media_key": "3_1937193410957574146"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GuJLJMFagAIYqUt.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 2160,
+                  "w": 3857,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2160,
+                  "w": 2160,
+                  "x": 249,
+                  "y": 0
+                },
+                {
+                  "h": 2160,
+                  "w": 1895,
+                  "x": 382,
+                  "y": 0
+                },
+                {
+                  "h": 2160,
+                  "w": 1080,
+                  "x": 789,
+                  "y": 0
+                },
+                {
+                  "h": 2160,
+                  "w": 4096,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2160,
+              "width": 4096
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "resize": "fit",
+                "w": 2048
+              },
+              "medium": {
+                "h": 633,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 359,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/bQ95504TuQ"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/bQ95504TuQ",
+            "expanded_url": "https://x.com/missingcodec/status/1937194677184397706/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              }
+            },
+            "id_str": "1937193410957574146",
+            "indices": [
+              272,
+              295
+            ],
+            "media_key": "3_1937193410957574146",
+            "media_results": {
+              "result": {
+                "media_key": "3_1937193410957574146"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GuJLJMFagAIYqUt.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 2160,
+                  "w": 3857,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2160,
+                  "w": 2160,
+                  "x": 249,
+                  "y": 0
+                },
+                {
+                  "h": 2160,
+                  "w": 1895,
+                  "x": 382,
+                  "y": 0
+                },
+                {
+                  "h": 2160,
+                  "w": 1080,
+                  "x": 789,
+                  "y": 0
+                },
+                {
+                  "h": 2160,
+                  "w": 4096,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2160,
+              "width": 4096
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "resize": "fit",
+                "w": 2048
+              },
+              "medium": {
+                "h": 633,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 359,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/bQ95504TuQ"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1937200253444247751",
       "url": "https://x.com/followlastma/status/1937200253444247751",
       "twitterUrl": "https://twitter.com/followlastma/status/1937200253444247751",
@@ -216,8 +505,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186994,
-        "following": 87,
+        "followers": 187143,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -229,16 +518,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31259,
-        "statusesCount": 146774,
+        "mediaCount": 31370,
+        "statusesCount": 146898,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -262,6 +551,17 @@
                     140
                   ],
                   "url": "https://t.co/GBJZ6NWejV"
+                }
+              ],
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    64,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "ekolastma_"
                 }
               ]
             },
@@ -316,6 +616,346 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1937202237807489427",
+      "url": "https://x.com/blrcitytraffic/status/1937202237807489427",
+      "twitterUrl": "https://twitter.com/blrcitytraffic/status/1937202237807489427",
+      "text": "\"ಸಂಚಾರ ಸಲಹೆ ”\nವಾಹನ ಕೆಟ್ಟು ನಿಂತಿರುವುದರಿಂದ ಕೆ ಆರ್ ಪುರ ತೂಗು ಸೇತುವೆಯಿಂದ ನಗರದ ಕಡೆಗೆ ನಿಧಾನಗತಿಯ ಸಂಚಾರವಿರುತ್ತದೆ.\n\"Traffic advisory\"\nDue to a Vehicle breakdown, the road from K R Pura Hanging Bridge towards City is having slow-moving traffic. https://t.co/B9zuBye7wW",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 1637,
+      "createdAt": "Mon Jun 23 17:32:59 +0000 2025",
+      "lang": "et",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1937202237807489427",
+      "displayTextRange": [
+        0,
+        233
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "blrcitytraffic",
+        "url": "https://x.com/blrcitytraffic",
+        "twitterUrl": "https://twitter.com/blrcitytraffic",
+        "id": "1851545900",
+        "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1565259569588490240/HChz-Vdb_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1851545900/1713356586",
+        "description": "",
+        "location": "Bengaluru-560001",
+        "followers": 672639,
+        "following": 100,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Sep 10 13:44:16 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 60487,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 16948,
+        "statusesCount": 241264,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Promoting Traffic Awareness & Road Safety 🚦🛣 | Your Partners in Traffic Management 🚓💼 | #BengaluruTrafficPolice 🌆🚗",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.karnataka.gov.in",
+                  "expanded_url": "https://btp.karnataka.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/6LKf9FpGkG"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/B9zuBye7wW",
+            "expanded_url": "https://x.com/blrcitytraffic/status/1937202237807489427/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 81,
+                    "w": 81,
+                    "x": 1117,
+                    "y": 1403
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 60,
+                    "w": 60,
+                    "x": 837,
+                    "y": 1052
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 81,
+                    "w": 81,
+                    "x": 1117,
+                    "y": 1403
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 34,
+                    "w": 34,
+                    "x": 474,
+                    "y": 596
+                  }
+                ]
+              }
+            },
+            "id_str": "1937202201157599234",
+            "indices": [
+              234,
+              257
+            ],
+            "media_key": "3_1937202201157599234",
+            "media_results": {
+              "result": {
+                "media_key": "3_1937202201157599234"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GuJTI2IagAIlT3s.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 896,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 392
+                },
+                {
+                  "h": 1600,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 1404,
+                  "x": 138,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 800,
+                  "x": 440,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1600,
+              "width": 1600
+            },
+            "sizes": {
+              "large": {
+                "h": 1600,
+                "resize": "fit",
+                "w": 1600
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/B9zuBye7wW"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/B9zuBye7wW",
+            "expanded_url": "https://x.com/blrcitytraffic/status/1937202237807489427/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 81,
+                    "w": 81,
+                    "x": 1117,
+                    "y": 1403
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 60,
+                    "w": 60,
+                    "x": 837,
+                    "y": 1052
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 81,
+                    "w": 81,
+                    "x": 1117,
+                    "y": 1403
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 34,
+                    "w": 34,
+                    "x": 474,
+                    "y": 596
+                  }
+                ]
+              }
+            },
+            "id_str": "1937202201157599234",
+            "indices": [
+              234,
+              257
+            ],
+            "media_key": "3_1937202201157599234",
+            "media_results": {
+              "result": {
+                "media_key": "3_1937202201157599234"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GuJTI2IagAIlT3s.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 896,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 392
+                },
+                {
+                  "h": 1600,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 1404,
+                  "x": 138,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 800,
+                  "x": 440,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1600,
+              "width": 1600
+            },
+            "sizes": {
+              "large": {
+                "h": 1600,
+                "resize": "fit",
+                "w": 1600
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/B9zuBye7wW"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
       "article": null
     },
     {
@@ -356,7 +996,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/474871087/1786481218",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 112019,
+        "followers": 112842,
         "following": 224,
         "status": "",
         "canDm": true,
@@ -372,8 +1012,8 @@
         "favouritesCount": 530,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 75256,
-        "statusesCount": 137510,
+        "mediaCount": 75606,
+        "statusesCount": 137861,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -420,20 +1060,16 @@
             },
             "display_url": "pic.x.com/pSp5hktE54",
             "expanded_url": "https://x.com/mnlstandardph/status/1937205190790381777/photo/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": []
               },
-              "medium": {
-                "faces": []
-              },
               "orig": {
-                "faces": []
-              },
-              "small": {
                 "faces": []
               }
             },
@@ -444,7 +1080,10 @@
             ],
             "media_key": "3_1937205177624461319",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARriVdhlWoAHCgACGuJV23YagNEAAA==",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGuJV2GVagAcKAAIa4lXbdhqA0QAA",
                 "media_key": "3_1937205177624461319"
               }
             },
@@ -488,23 +1127,7 @@
             "sizes": {
               "large": {
                 "h": 1440,
-                "resize": "fit",
                 "w": 1440
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "photo",
@@ -514,108 +1137,11 @@
       },
       "card": null,
       "place": {},
-      "entities": {
-        "media": [
-          {
-            "allow_download_status": {
-              "allow_download": true
-            },
-            "display_url": "pic.x.com/pSp5hktE54",
-            "expanded_url": "https://x.com/mnlstandardph/status/1937205190790381777/photo/1",
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "features": {
-              "large": {
-                "faces": []
-              },
-              "medium": {
-                "faces": []
-              },
-              "orig": {
-                "faces": []
-              },
-              "small": {
-                "faces": []
-              }
-            },
-            "id_str": "1937205177624461319",
-            "indices": [
-              119,
-              142
-            ],
-            "media_key": "3_1937205177624461319",
-            "media_results": {
-              "result": {
-                "media_key": "3_1937205177624461319"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/media/GuJV2GVagAcDmI_.jpg",
-            "original_info": {
-              "focus_rects": [
-                {
-                  "h": 806,
-                  "w": 1440,
-                  "x": 0,
-                  "y": 137
-                },
-                {
-                  "h": 1440,
-                  "w": 1440,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 1440,
-                  "w": 1263,
-                  "x": 125,
-                  "y": 0
-                },
-                {
-                  "h": 1440,
-                  "w": 720,
-                  "x": 396,
-                  "y": 0
-                },
-                {
-                  "h": 1440,
-                  "w": 1440,
-                  "x": 0,
-                  "y": 0
-                }
-              ],
-              "height": 1440,
-              "width": 1440
-            },
-            "sizes": {
-              "large": {
-                "h": 1440,
-                "resize": "fit",
-                "w": 1440
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
-              }
-            },
-            "type": "photo",
-            "url": "https://t.co/pSp5hktE54"
-          }
-        ]
-      },
+      "entities": {},
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -656,8 +1182,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186994,
-        "following": 87,
+        "followers": 187143,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -669,16 +1195,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31259,
-        "statusesCount": 146774,
+        "mediaCount": 31370,
+        "statusesCount": 146898,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -702,6 +1228,17 @@
                     140
                   ],
                   "url": "https://t.co/GBJZ6NWejV"
+                }
+              ],
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    64,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "ekolastma_"
                 }
               ]
             },
@@ -756,6 +1293,8 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     }
   ]

@@ -5,7 +5,7 @@
     "window_start": "2026-05-08T22:00:00+08:00",
     "window_end": "2026-05-09T00:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 6,
+    "tweet_count": 10,
     "slices": [
       {
         "start": "2026-05-08T22:00:00+08:00",
@@ -25,8 +25,8 @@
         "start": "2026-05-08T22:10:00+08:00",
         "end": "2026-05-08T22:15:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-05-08T22:15:00+08:00",
@@ -39,8 +39,8 @@
         "start": "2026-05-08T22:20:00+08:00",
         "end": "2026-05-08T22:25:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-05-08T22:25:00+08:00",
@@ -158,8 +158,8 @@
         "start": "2026-05-08T23:45:00+08:00",
         "end": "2026-05-08T23:50:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-05-08T23:50:00+08:00",
@@ -172,8 +172,8 @@
         "start": "2026-05-08T23:55:00+08:00",
         "end": "2026-05-09T00:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       }
     ]
   },
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197306,
+        "followers": 1197836,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -232,8 +232,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219322,
-        "statusesCount": 942053,
+        "mediaCount": 219515,
+        "statusesCount": 943083,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -243,17 +243,7 @@
         "profile_bio": {
           "description": "Breaking news and stories from different sides. RTs from our journalists. Unparalleled journalism in the Philippines since 1900. #BeFullyInformed",
           "entities": {
-            "description": {
-              "hashtags": [
-                {
-                  "indices": [
-                    129,
-                    145
-                  ],
-                  "text": "BeFullyInformed"
-                }
-              ]
-            },
+            "description": {},
             "url": {
               "urls": [
                 {
@@ -278,19 +268,22 @@
           {
             "key": "description",
             "value": {
-              "string_value": "CAVITE – A fire broke out in a factory located at the First Cavite Industrial Estate in Dasmariñas City on Friday, May 8.The Dasmariñas City Fire Station..."
+              "string_value": "CAVITE – A fire broke out in a factory located at the First Cavite Industrial Estate in Dasmariñas City on Friday, May 8.The Dasmariñas City Fire Station...",
+              "type": "STRING"
             }
           },
           {
             "key": "domain",
             "value": {
-              "string_value": "mb.com.ph"
+              "string_value": "mb.com.ph",
+              "type": "STRING"
             }
           },
           {
             "key": "site",
             "value": {
               "scribe_key": "publisher_id",
+              "type": "USER",
               "user_value": {
                 "id_str": "15375209",
                 "path": []
@@ -301,20 +294,23 @@
             "key": "vanity_url",
             "value": {
               "scribe_key": "vanity_url",
-              "string_value": "mb.com.ph"
+              "string_value": "mb.com.ph",
+              "type": "STRING"
             }
           },
           {
             "key": "title",
             "value": {
-              "string_value": "Fire hits factory in Dasmariñas"
+              "string_value": "Fire hits factory in Dasmariñas",
+              "type": "STRING"
             }
           },
           {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
-              "string_value": "https://t.co/KXiAmfVDQU"
+              "string_value": "https://t.co/KXiAmfVDQU",
+              "type": "STRING"
             }
           }
         ],
@@ -324,8 +320,8 @@
               "name": "production"
             },
             "device": {
-              "name": "iPhone",
-              "version": "13"
+              "name": "Swift",
+              "version": "12"
             }
           }
         },
@@ -333,12 +329,12 @@
         "url": "https://t.co/KXiAmfVDQU",
         "user_refs_results": [
           {
-            "rest_id": "15375209",
             "result": {
               "__typename": "User",
               "action_counts": {
                 "favorites_count": 2416
               },
+              "affiliates_highlighted_label": {},
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/1923784408261115904/4xsy25CI_normal.jpg"
               },
@@ -353,9 +349,13 @@
               "dm_permissions": {
                 "can_dm": false
               },
-              "exclusive_tweet_following": false,
               "follow_request_sent": false,
-              "identity_profile_labels_highlighted_label": {},
+              "grok_translated_bio_with_availability": {
+                "is_available": false
+              },
+              "has_graduated_access": true,
+              "id": "VXNlcjoxNTM3NTIwOQ==",
+              "is_blue_verified": true,
               "location": {
                 "location": "Manila, Philippines"
               },
@@ -365,30 +365,20 @@
               "notifications_settings": {
                 "notifications_enabled": false
               },
+              "parody_commentary_fan_label": "None",
               "pinned_items": {
                 "tweet_ids_str": [
                   "1753236174330888263"
                 ]
               },
+              "possibly_sensitive": false,
               "privacy": {
-                "protected": false,
-                "suspended": false
+                "protected": false
               },
-              "private_super_following": false,
               "profile_bio": {
                 "description": "Breaking news and stories from different sides. RTs from our journalists. Unparalleled journalism in the Philippines since 1900. #BeFullyInformed",
                 "entities": {
-                  "description": {
-                    "hashtags": [
-                      {
-                        "indices": [
-                          129,
-                          145
-                        ],
-                        "text": "BeFullyInformed"
-                      }
-                    ]
-                  },
+                  "description": {},
                   "url": {
                     "urls": [
                       {
@@ -404,20 +394,16 @@
                   }
                 }
               },
+              "profile_description_language": "en",
               "profile_image_shape": "Circle",
               "profile_metadata": {
-                "profile_interstitial_type": "",
-                "profile_link_color": "303488"
+                "profile_interstitial_type": ""
               },
               "profile_translation": {
-                "translator_type_enum": "None"
-              },
-              "properties": {
-                "has_extended_profile": false,
-                "has_no_screen_name": false
+                "translator_type": "none"
               },
               "relationship_counts": {
-                "followers": 1197306,
+                "followers": 1197836,
                 "following": 141
               },
               "relationship_perspectives": {
@@ -429,17 +415,14 @@
                 "muting": false
               },
               "rest_id": "15375209",
-              "smart_blocked_by": false,
-              "smart_blocking": false,
               "super_follow_eligible": false,
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 219322,
-                "tweets": 942053
+                "media_tweets": 219515,
+                "tweets": 943083
               },
               "verification": {
-                "is_blue_verified": true,
                 "verified": false
               },
               "website": {
@@ -465,8 +448,976 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2052753765996929163",
+      "url": "https://x.com/XMobileArena/status/2052753765996929163",
+      "twitterUrl": "https://twitter.com/XMobileArena/status/2052753765996929163",
+      "text": "Know Before You Go: GAME 3 🏀\n\n⚠️ Traffic Advisory: Exit 19 Northbound entrance / exit ramps and Southbound exit ramp will be reopened in a limited capacity due to ongoing construction on Interstate 95. Fans attending the 76ers playoff home game on Friday should expect increased traffic at Exit 17 (Broad Street).\n \nThere will be additional traffic in the Sports Complex due to Phillies game at 6:40PM. \n \nFans are encouraged to take public transportation. Motorists should plan to arrive early to Xfinity Mobile Arena and use the following alternate routes: \n \nI-95 Southbound\nUse Exit 20 (Columbus Boulevard) to access the Sports Complex \n \nI-95 Northbound\nUse Exit 13 (Penrose Avenue / Platt Bridge)",
+      "source": "Twitter for iPhone",
+      "retweetCount": 11,
+      "replyCount": 3,
+      "likeCount": 35,
+      "quoteCount": 1,
+      "viewCount": 10482,
+      "createdAt": "Fri May 08 14:13:30 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 2,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2052753765996929163",
+      "displayTextRange": [
+        0,
+        278
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "XMobileArena",
+        "url": "https://x.com/XMobileArena",
+        "twitterUrl": "https://twitter.com/XMobileArena",
+        "id": "24840770",
+        "name": "Xfinity Mobile Arena",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1956013338464337931/X8c6Swz9_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/24840770/1788191440",
+        "description": "",
+        "location": "Philadelphia, PA",
+        "followers": 38280,
+        "following": 125,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Mar 17 04:41:24 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3832,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 6346,
+        "statusesCount": 14026,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {
+          "label": {
+            "badge": {
+              "url": "https://pbs.twimg.com/profile_images/1992575467438710784/q_YQzfuQ_bigger.jpg"
+            },
+            "description": "Philadelphia Flyers",
+            "url": {
+              "url": "https://twitter.com/NHLFlyers",
+              "urlType": "DeepLink"
+            },
+            "userLabelDisplayType": "Badge",
+            "userLabelType": "BusinessLabel"
+          }
+        },
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Home to the Philadelphia Flyers, 76ers, and your next live entertainment experience.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "XfinityMobileArena.com",
+                  "expanded_url": "https://XfinityMobileArena.com/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/9ZLzlBbhS3"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/fvHGaEDR3D",
+            "expanded_url": "https://x.com/XMobileArena/status/2052753765996929163/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "Philadelphia 76ers",
+                    "screen_name": "sixers",
+                    "type": "user",
+                    "user_id": "16201775"
+                  }
+                ]
+              },
+              "large": {
+                "faces": [
+                  {
+                    "h": 201,
+                    "w": 201,
+                    "x": 363,
+                    "y": 358
+                  },
+                  {
+                    "h": 218,
+                    "w": 218,
+                    "x": 634,
+                    "y": 355
+                  },
+                  {
+                    "h": 263,
+                    "w": 263,
+                    "x": 206,
+                    "y": 341
+                  },
+                  {
+                    "h": 603,
+                    "w": 603,
+                    "x": 391,
+                    "y": 535
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 178,
+                    "w": 178,
+                    "x": 322,
+                    "y": 318
+                  },
+                  {
+                    "h": 193,
+                    "w": 193,
+                    "x": 563,
+                    "y": 315
+                  },
+                  {
+                    "h": 233,
+                    "w": 233,
+                    "x": 183,
+                    "y": 303
+                  },
+                  {
+                    "h": 536,
+                    "w": 536,
+                    "x": 347,
+                    "y": 475
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 201,
+                    "w": 201,
+                    "x": 363,
+                    "y": 358
+                  },
+                  {
+                    "h": 218,
+                    "w": 218,
+                    "x": 634,
+                    "y": 355
+                  },
+                  {
+                    "h": 263,
+                    "w": 263,
+                    "x": 206,
+                    "y": 341
+                  },
+                  {
+                    "h": 603,
+                    "w": 603,
+                    "x": 391,
+                    "y": 535
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 101,
+                    "w": 101,
+                    "x": 182,
+                    "y": 180
+                  },
+                  {
+                    "h": 109,
+                    "w": 109,
+                    "x": 319,
+                    "y": 178
+                  },
+                  {
+                    "h": 132,
+                    "w": 132,
+                    "x": 103,
+                    "y": 171
+                  },
+                  {
+                    "h": 303,
+                    "w": 303,
+                    "x": 196,
+                    "y": 269
+                  }
+                ]
+              }
+            },
+            "id_str": "2052753758942011395",
+            "indices": [
+              279,
+              302
+            ],
+            "media_key": "3_2052753758942011395",
+            "media_results": {
+              "result": {
+                "media_key": "3_2052753758942011395"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HHzYqvUWIAM1zC2.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 203,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "resize": "fit",
+                "w": 1080
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 960
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 544
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/fvHGaEDR3D"
+          },
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/fvHGaEDR3D",
+            "expanded_url": "https://x.com/XMobileArena/status/2052753765996929163/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "Philadelphia 76ers",
+                    "screen_name": "sixers",
+                    "type": "user",
+                    "user_id": "16201775"
+                  }
+                ]
+              },
+              "large": {
+                "faces": [
+                  {
+                    "h": 61,
+                    "w": 61,
+                    "x": 233,
+                    "y": 772
+                  },
+                  {
+                    "h": 65,
+                    "w": 65,
+                    "x": 374,
+                    "y": 798
+                  },
+                  {
+                    "h": 67,
+                    "w": 67,
+                    "x": 35,
+                    "y": 829
+                  },
+                  {
+                    "h": 76,
+                    "w": 76,
+                    "x": 221,
+                    "y": 922
+                  },
+                  {
+                    "h": 127,
+                    "w": 127,
+                    "x": 843,
+                    "y": 541
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 54,
+                    "w": 54,
+                    "x": 207,
+                    "y": 686
+                  },
+                  {
+                    "h": 57,
+                    "w": 57,
+                    "x": 332,
+                    "y": 709
+                  },
+                  {
+                    "h": 59,
+                    "w": 59,
+                    "x": 31,
+                    "y": 736
+                  },
+                  {
+                    "h": 67,
+                    "w": 67,
+                    "x": 196,
+                    "y": 819
+                  },
+                  {
+                    "h": 112,
+                    "w": 112,
+                    "x": 749,
+                    "y": 480
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 61,
+                    "w": 61,
+                    "x": 233,
+                    "y": 772
+                  },
+                  {
+                    "h": 65,
+                    "w": 65,
+                    "x": 374,
+                    "y": 798
+                  },
+                  {
+                    "h": 67,
+                    "w": 67,
+                    "x": 35,
+                    "y": 829
+                  },
+                  {
+                    "h": 76,
+                    "w": 76,
+                    "x": 221,
+                    "y": 922
+                  },
+                  {
+                    "h": 127,
+                    "w": 127,
+                    "x": 843,
+                    "y": 541
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 30,
+                    "w": 30,
+                    "x": 117,
+                    "y": 388
+                  },
+                  {
+                    "h": 32,
+                    "w": 32,
+                    "x": 188,
+                    "y": 401
+                  },
+                  {
+                    "h": 33,
+                    "w": 33,
+                    "x": 17,
+                    "y": 417
+                  },
+                  {
+                    "h": 38,
+                    "w": 38,
+                    "x": 111,
+                    "y": 464
+                  },
+                  {
+                    "h": 63,
+                    "w": 63,
+                    "x": 424,
+                    "y": 272
+                  }
+                ]
+              }
+            },
+            "id_str": "2052753758984048643",
+            "indices": [
+              279,
+              302
+            ],
+            "media_key": "3_2052753758984048643",
+            "media_results": {
+              "result": {
+                "media_key": "3_2052753758984048643"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HHzYqveXkAMkYJ8.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 203,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "resize": "fit",
+                "w": 1080
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 960
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 544
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/fvHGaEDR3D"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "smarttags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2052755763026907348",
+      "url": "https://x.com/FTPfbd/status/2052755763026907348",
+      "twitterUrl": "https://twitter.com/FTPfbd/status/2052755763026907348",
+      "text": "🚧 Traffic Advisory 🚧\n\nNHPC Bypass Wine Shop to NHPC Office Road पर CC Road Reconstruction &amp; Curing Work जारी है। मार्ग पर यातायात प्रभावित रह सकता है। कृपया alternate routes का प्रयोग करें एवं Traffic Police का सहयोग करें\n #DriveSafe #TrafficAdvisory @FBDPolice @police_haryana https://t.co/9JrBCeNqBu",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 312,
+      "createdAt": "Fri May 08 14:21:26 +0000 2026",
+      "lang": "und",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2052755763026907348",
+      "displayTextRange": [
+        0,
+        281
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "FTPfbd",
+        "url": "https://x.com/FTPfbd",
+        "twitterUrl": "https://twitter.com/FTPfbd",
+        "id": "713713338845306880",
+        "name": "Traffic Police FBD",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1424739651554738182/TPzGbmDT_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/713713338845306880/1534230898",
+        "description": "",
+        "location": "Faridabad, India",
+        "followers": 16899,
+        "following": 40,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Sat Mar 26 13:04:54 +0000 2016",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1234,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1430,
+        "statusesCount": 4556,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official Twitter handle of Traffic Police, Faridabad. for any official complaint related to wrong challan or violation- please mail on dcptraffic.fbd-hry@nic.in",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "instagram.com/faridabad_traf…",
+                  "expanded_url": "https://www.instagram.com/faridabad_traffic_police",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/o8iVUBRlHA"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/9JrBCeNqBu",
+            "expanded_url": "https://x.com/FTPfbd/status/2052755763026907348/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 94,
+                    "w": 94,
+                    "x": 735,
+                    "y": 547
+                  },
+                  {
+                    "h": 118,
+                    "w": 118,
+                    "x": 21,
+                    "y": 10
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 83,
+                    "w": 83,
+                    "x": 653,
+                    "y": 486
+                  },
+                  {
+                    "h": 104,
+                    "w": 104,
+                    "x": 18,
+                    "y": 8
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 94,
+                    "w": 94,
+                    "x": 735,
+                    "y": 547
+                  },
+                  {
+                    "h": 118,
+                    "w": 118,
+                    "x": 21,
+                    "y": 10
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 47,
+                    "w": 47,
+                    "x": 370,
+                    "y": 275
+                  },
+                  {
+                    "h": 59,
+                    "w": 59,
+                    "x": 10,
+                    "y": 5
+                  }
+                ]
+              }
+            },
+            "id_str": "2052755746300002304",
+            "indices": [
+              282,
+              305
+            ],
+            "media_key": "3_2052755746300002304",
+            "media_results": {
+              "result": {
+                "media_key": "3_2052755746300002304"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HHzaeazagAACygq.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 405,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "resize": "fit",
+                "w": 1080
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 960
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 544
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/9JrBCeNqBu"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              227,
+              237
+            ],
+            "text": "DriveSafe"
+          },
+          {
+            "indices": [
+              238,
+              254
+            ],
+            "text": "TrafficAdvisory"
+          }
+        ],
+        "media": [
+          {
+            "display_url": "pic.x.com/9JrBCeNqBu",
+            "expanded_url": "https://x.com/FTPfbd/status/2052755763026907348/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 94,
+                    "w": 94,
+                    "x": 735,
+                    "y": 547
+                  },
+                  {
+                    "h": 118,
+                    "w": 118,
+                    "x": 21,
+                    "y": 10
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 83,
+                    "w": 83,
+                    "x": 653,
+                    "y": 486
+                  },
+                  {
+                    "h": 104,
+                    "w": 104,
+                    "x": 18,
+                    "y": 8
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 94,
+                    "w": 94,
+                    "x": 735,
+                    "y": 547
+                  },
+                  {
+                    "h": 118,
+                    "w": 118,
+                    "x": 21,
+                    "y": 10
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 47,
+                    "w": 47,
+                    "x": 370,
+                    "y": 275
+                  },
+                  {
+                    "h": 59,
+                    "w": 59,
+                    "x": 10,
+                    "y": 5
+                  }
+                ]
+              }
+            },
+            "id_str": "2052755746300002304",
+            "indices": [
+              282,
+              305
+            ],
+            "media_key": "3_2052755746300002304",
+            "media_results": {
+              "result": {
+                "media_key": "3_2052755746300002304"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HHzaeazagAACygq.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 405,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "resize": "fit",
+                "w": 1080
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 960
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 544
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/9JrBCeNqBu"
+          }
+        ],
+        "user_mentions": [
+          {
+            "id_str": "711865629834260480",
+            "indices": [
+              255,
+              265
+            ],
+            "name": "People’s Police - Faridabad Police",
+            "screen_name": "FBDPolice"
+          },
+          {
+            "id_str": "887564756629966848",
+            "indices": [
+              266,
+              281
+            ],
+            "name": "Haryana Police",
+            "screen_name": "police_haryana"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
       "article": null
     },
     {
@@ -502,12 +1453,12 @@
         "name": "Official MMDA",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": "Government",
+        "verifiedType": null,
         "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967069,
+        "followers": 3966535,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -520,11 +1471,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 5284,
+        "favouritesCount": 5282,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61685,
-        "statusesCount": 888289,
+        "mediaCount": 61737,
+        "statusesCount": 888716,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -567,8 +1518,6 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -604,12 +1553,12 @@
         "name": "Official MMDA",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": "Government",
+        "verifiedType": null,
         "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967068,
+        "followers": 3966539,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -622,11 +1571,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 5284,
+        "favouritesCount": 5282,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61685,
-        "statusesCount": 888289,
+        "mediaCount": 61737,
+        "statusesCount": 888716,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -669,8 +1618,6 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -711,7 +1658,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197309,
+        "followers": 1197836,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -727,8 +1674,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219322,
-        "statusesCount": 942053,
+        "mediaCount": 219515,
+        "statusesCount": 943083,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -738,17 +1685,7 @@
         "profile_bio": {
           "description": "Breaking news and stories from different sides. RTs from our journalists. Unparalleled journalism in the Philippines since 1900. #BeFullyInformed",
           "entities": {
-            "description": {
-              "hashtags": [
-                {
-                  "indices": [
-                    129,
-                    145
-                  ],
-                  "text": "BeFullyInformed"
-                }
-              ]
-            },
+            "description": {},
             "url": {
               "urls": [
                 {
@@ -771,71 +1708,24 @@
       "card": {
         "binding_values": [
           {
-            "key": "photo_image_full_size_large",
-            "value": {
-              "image_value": {
-                "height": 419,
-                "url": "https://pbs.twimg.com/card_img/2095801684035317763/RwAGmTb8?format=jpg&name=800x419",
-                "width": 800
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image",
-            "value": {
-              "image_value": {
-                "height": 150,
-                "url": "https://pbs.twimg.com/card_img/2095801684035317763/RwAGmTb8?format=jpg&name=280x150",
-                "width": 267
-              }
-            }
-          },
-          {
             "key": "description",
             "value": {
-              "string_value": "ZAMBOANGA CITY – A motor launch with over 100 drums of fuel for transport to Tawi-Tawi province was razed by fire Friday night, May 8, in a private wharf..."
+              "string_value": "ZAMBOANGA CITY – A motor launch with over 100 drums of fuel for transport to Tawi-Tawi province was razed by fire Friday night, May 8, in a private wharf...",
+              "type": "STRING"
             }
           },
           {
             "key": "domain",
             "value": {
-              "string_value": "mb.com.ph"
-            }
-          },
-          {
-            "key": "thumbnail_image_large",
-            "value": {
-              "image_value": {
-                "height": 320,
-                "url": "https://pbs.twimg.com/card_img/2095801684035317763/RwAGmTb8?format=jpg&name=800x320_1",
-                "width": 569
-              }
-            }
-          },
-          {
-            "key": "summary_photo_image_small",
-            "value": {
-              "image_value": {
-                "height": 202,
-                "url": "https://pbs.twimg.com/card_img/2095801684035317763/RwAGmTb8?format=jpg&name=386x202",
-                "width": 386
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image_original",
-            "value": {
-              "image_value": {
-                "height": 675,
-                "url": "https://pbs.twimg.com/card_img/2095801684035317763/RwAGmTb8?format=jpg&name=orig",
-                "width": 1200
-              }
+              "string_value": "mb.com.ph",
+              "type": "STRING"
             }
           },
           {
             "key": "site",
             "value": {
               "scribe_key": "publisher_id",
+              "type": "USER",
               "user_value": {
                 "id_str": "15375209",
                 "path": []
@@ -843,270 +1733,26 @@
             }
           },
           {
-            "key": "photo_image_full_size_small",
-            "value": {
-              "image_value": {
-                "height": 202,
-                "url": "https://pbs.twimg.com/card_img/2095801684035317763/RwAGmTb8?format=jpg&name=386x202",
-                "width": 386
-              }
-            }
-          },
-          {
-            "key": "summary_photo_image_large",
-            "value": {
-              "image_value": {
-                "height": 419,
-                "url": "https://pbs.twimg.com/card_img/2095801684035317763/RwAGmTb8?format=jpg&name=800x419",
-                "width": 800
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image_small",
-            "value": {
-              "image_value": {
-                "height": 81,
-                "url": "https://pbs.twimg.com/card_img/2095801684035317763/RwAGmTb8?format=jpg&name=144x144",
-                "width": 144
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image_x_large",
-            "value": {
-              "image_value": {
-                "height": 675,
-                "url": "https://pbs.twimg.com/card_img/2095801684035317763/RwAGmTb8?format=png&name=2048x2048_2_exp",
-                "width": 1200
-              }
-            }
-          },
-          {
-            "key": "photo_image_full_size_original",
-            "value": {
-              "image_value": {
-                "height": 675,
-                "url": "https://pbs.twimg.com/card_img/2095801684035317763/RwAGmTb8?format=jpg&name=orig",
-                "width": 1200
-              }
-            }
-          },
-          {
             "key": "vanity_url",
             "value": {
               "scribe_key": "vanity_url",
-              "string_value": "mb.com.ph"
-            }
-          },
-          {
-            "key": "photo_image_full_size",
-            "value": {
-              "image_value": {
-                "height": 314,
-                "url": "https://pbs.twimg.com/card_img/2095801684035317763/RwAGmTb8?format=jpg&name=600x314",
-                "width": 600
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image_color",
-            "value": {
-              "image_color_value": {
-                "palette": [
-                  {
-                    "percentage": 55.94,
-                    "rgb": {
-                      "blue": 43,
-                      "green": 62,
-                      "red": 130
-                    }
-                  },
-                  {
-                    "percentage": 14.23,
-                    "rgb": {
-                      "blue": 77,
-                      "green": 110,
-                      "red": 207
-                    }
-                  },
-                  {
-                    "percentage": 13.91,
-                    "rgb": {
-                      "blue": 18,
-                      "green": 29,
-                      "red": 60
-                    }
-                  },
-                  {
-                    "percentage": 8.24,
-                    "rgb": {
-                      "blue": 227,
-                      "green": 239,
-                      "red": 247
-                    }
-                  },
-                  {
-                    "percentage": 5.89,
-                    "rgb": {
-                      "blue": 46,
-                      "green": 77,
-                      "red": 160
-                    }
-                  }
-                ]
-              }
+              "string_value": "mb.com.ph",
+              "type": "STRING"
             }
           },
           {
             "key": "title",
             "value": {
-              "string_value": "Vessel loaded with fuel catches fire in Zamboanga City"
-            }
-          },
-          {
-            "key": "summary_photo_image_color",
-            "value": {
-              "image_color_value": {
-                "palette": [
-                  {
-                    "percentage": 55.94,
-                    "rgb": {
-                      "blue": 43,
-                      "green": 62,
-                      "red": 130
-                    }
-                  },
-                  {
-                    "percentage": 14.23,
-                    "rgb": {
-                      "blue": 77,
-                      "green": 110,
-                      "red": 207
-                    }
-                  },
-                  {
-                    "percentage": 13.91,
-                    "rgb": {
-                      "blue": 18,
-                      "green": 29,
-                      "red": 60
-                    }
-                  },
-                  {
-                    "percentage": 8.24,
-                    "rgb": {
-                      "blue": 227,
-                      "green": 239,
-                      "red": 247
-                    }
-                  },
-                  {
-                    "percentage": 5.89,
-                    "rgb": {
-                      "blue": 46,
-                      "green": 77,
-                      "red": 160
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          {
-            "key": "summary_photo_image_x_large",
-            "value": {
-              "image_value": {
-                "height": 675,
-                "url": "https://pbs.twimg.com/card_img/2095801684035317763/RwAGmTb8?format=png&name=2048x2048_2_exp",
-                "width": 1200
-              }
-            }
-          },
-          {
-            "key": "summary_photo_image",
-            "value": {
-              "image_value": {
-                "height": 314,
-                "url": "https://pbs.twimg.com/card_img/2095801684035317763/RwAGmTb8?format=jpg&name=600x314",
-                "width": 600
-              }
-            }
-          },
-          {
-            "key": "photo_image_full_size_color",
-            "value": {
-              "image_color_value": {
-                "palette": [
-                  {
-                    "percentage": 55.94,
-                    "rgb": {
-                      "blue": 43,
-                      "green": 62,
-                      "red": 130
-                    }
-                  },
-                  {
-                    "percentage": 14.23,
-                    "rgb": {
-                      "blue": 77,
-                      "green": 110,
-                      "red": 207
-                    }
-                  },
-                  {
-                    "percentage": 13.91,
-                    "rgb": {
-                      "blue": 18,
-                      "green": 29,
-                      "red": 60
-                    }
-                  },
-                  {
-                    "percentage": 8.24,
-                    "rgb": {
-                      "blue": 227,
-                      "green": 239,
-                      "red": 247
-                    }
-                  },
-                  {
-                    "percentage": 5.89,
-                    "rgb": {
-                      "blue": 46,
-                      "green": 77,
-                      "red": 160
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          {
-            "key": "photo_image_full_size_x_large",
-            "value": {
-              "image_value": {
-                "height": 675,
-                "url": "https://pbs.twimg.com/card_img/2095801684035317763/RwAGmTb8?format=png&name=2048x2048_2_exp",
-                "width": 1200
-              }
+              "string_value": "Vessel loaded with fuel catches fire in Zamboanga City",
+              "type": "STRING"
             }
           },
           {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
-              "string_value": "https://t.co/QrfEiv6jOJ"
-            }
-          },
-          {
-            "key": "summary_photo_image_original",
-            "value": {
-              "image_value": {
-                "height": 675,
-                "url": "https://pbs.twimg.com/card_img/2095801684035317763/RwAGmTb8?format=jpg&name=orig",
-                "width": 1200
-              }
+              "string_value": "https://t.co/QrfEiv6jOJ",
+              "type": "STRING"
             }
           }
         ],
@@ -1116,8 +1762,8 @@
               "name": "production"
             },
             "device": {
-              "name": "iPhone",
-              "version": "13"
+              "name": "Swift",
+              "version": "12"
             }
           }
         },
@@ -1125,12 +1771,12 @@
         "url": "https://t.co/QrfEiv6jOJ",
         "user_refs_results": [
           {
-            "rest_id": "15375209",
             "result": {
               "__typename": "User",
               "action_counts": {
                 "favorites_count": 2416
               },
+              "affiliates_highlighted_label": {},
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/1923784408261115904/4xsy25CI_normal.jpg"
               },
@@ -1145,9 +1791,13 @@
               "dm_permissions": {
                 "can_dm": false
               },
-              "exclusive_tweet_following": false,
               "follow_request_sent": false,
-              "identity_profile_labels_highlighted_label": {},
+              "grok_translated_bio_with_availability": {
+                "is_available": false
+              },
+              "has_graduated_access": true,
+              "id": "VXNlcjoxNTM3NTIwOQ==",
+              "is_blue_verified": true,
               "location": {
                 "location": "Manila, Philippines"
               },
@@ -1157,30 +1807,20 @@
               "notifications_settings": {
                 "notifications_enabled": false
               },
+              "parody_commentary_fan_label": "None",
               "pinned_items": {
                 "tweet_ids_str": [
                   "1753236174330888263"
                 ]
               },
+              "possibly_sensitive": false,
               "privacy": {
-                "protected": false,
-                "suspended": false
+                "protected": false
               },
-              "private_super_following": false,
               "profile_bio": {
                 "description": "Breaking news and stories from different sides. RTs from our journalists. Unparalleled journalism in the Philippines since 1900. #BeFullyInformed",
                 "entities": {
-                  "description": {
-                    "hashtags": [
-                      {
-                        "indices": [
-                          129,
-                          145
-                        ],
-                        "text": "BeFullyInformed"
-                      }
-                    ]
-                  },
+                  "description": {},
                   "url": {
                     "urls": [
                       {
@@ -1196,20 +1836,16 @@
                   }
                 }
               },
+              "profile_description_language": "en",
               "profile_image_shape": "Circle",
               "profile_metadata": {
-                "profile_interstitial_type": "",
-                "profile_link_color": "303488"
+                "profile_interstitial_type": ""
               },
               "profile_translation": {
-                "translator_type_enum": "None"
-              },
-              "properties": {
-                "has_extended_profile": false,
-                "has_no_screen_name": false
+                "translator_type": "none"
               },
               "relationship_counts": {
-                "followers": 1197309,
+                "followers": 1197836,
                 "following": 141
               },
               "relationship_perspectives": {
@@ -1221,17 +1857,14 @@
                 "muting": false
               },
               "rest_id": "15375209",
-              "smart_blocked_by": false,
-              "smart_blocking": false,
               "super_follow_eligible": false,
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 219322,
-                "tweets": 942053
+                "media_tweets": 219515,
+                "tweets": 943083
               },
               "verification": {
-                "is_blue_verified": true,
                 "verified": false
               },
               "website": {
@@ -1257,8 +1890,263 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2052777693419344360",
+      "url": "https://x.com/imadshield/status/2052777693419344360",
+      "twitterUrl": "https://twitter.com/imadshield/status/2052777693419344360",
+      "text": "🚨Why We’re Eating the Future to Pay the Past\n\nImagine buying a full sack of rice for your family, but before you get home, an invisible hand reaches inside and takes a large portion away. You paid the full price, yet your family receives less food than they should.\n\nYou paid for the full bag. But you never truly owned it.\nThat ghost is the ₱18.49 trillion debt of the Philippines.\n\nRight now, the country feels like a father working endless double shifts while the bank takes most of his salary before he even touches it. We are no longer simply borrowing money. We are sacrificing the future of our children just to keep the machine alive.\n\n🚨The Fire Called Interest\n\nEvery single day, the Philippine government spends around ₱1.8 billion on interest payments alone.\n\nNot the debt itself.\n\nJust the price of remaining buried in debt.\n\nEvery 24 hours, that amount could have built:\n\n➡️3,600 new classrooms\n\n➡️12,000 public hospital beds\n\n➡️4 million meals for hungry children\n\nInstead, the money disappears into the furnace of interest payments.\n\nWe celebrate massive infrastructure projects as symbols of progress, yet many are quietly paid for by the medicine our grandparents will never receive and the education our children will never fully have.\nThe Parasite in the System\nDebt behaves like a parasite.\nIt always feeds on the weakest first.\n\nPoliticians rarely feel the pain. Ordinary Filipinos do.\n\nIt is the exhausted mother waiting ten hours in a crowded public clinic because there are not enough doctors.\n\nIt is the student sweating inside an overcrowded classroom while using books older than they are.\n\nWe are trying to build a golden age on unstable ground. Every shiny bridge and towering project risks becoming another chain tied around the neck of future generations.\n\n🚨The Brutal Truth\n\nWe have become a nation trapped in a cycle of borrowing.\n\nWe borrow to pay old debt.\nThen we borrow again to fund new projects.\nThen we borrow once more just to pay the interest on previous loans.\n\nIf this continues, the Philippines risks becoming more than a struggling nation. It risks becoming a collection of assets slowly controlled by foreign creditors and financial institutions.\n\nRight now, the system appears stable only because the final bill has not yet arrived.\n\nBut someday it will.\n\nAnd when that day comes, it will not be today’s leaders who carry the burden.\n\nIt will be our children. The future is no longer being prepared. It is already being sold.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 6,
+      "replyCount": 1,
+      "likeCount": 17,
+      "quoteCount": 1,
+      "viewCount": 290,
+      "createdAt": "Fri May 08 15:48:35 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2052777693419344360",
+      "displayTextRange": [
+        0,
+        279
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "imadshield",
+        "url": "https://x.com/imadshield",
+        "twitterUrl": "https://twitter.com/imadshield",
+        "id": "1587111690482876418",
+        "name": "Agent Zero",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2054982560678350848/slbT9ATh_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1587111690482876418/1778781156",
+        "description": "",
+        "location": "Galaxy X",
+        "followers": 3728,
+        "following": 7333,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Mon Oct 31 15:58:25 +0000 2022",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 49198,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2244,
+        "statusesCount": 37322,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1782869398988218585"
+        ],
+        "profile_bio": {
+          "description": "Patriot of the Universe, kryptonite Coffee  enthusiast ☕ | My opinions are my own, Jedi advisor, Ex-Jedi became rogue, ex-member Jedi Order",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/352tywcKCR",
+            "expanded_url": "https://x.com/imadshield/status/2052777693419344360/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 87,
+                    "w": 87,
+                    "x": 390,
+                    "y": 714
+                  },
+                  {
+                    "h": 78,
+                    "w": 78,
+                    "x": 571,
+                    "y": 711
+                  },
+                  {
+                    "h": 289,
+                    "w": 289,
+                    "x": 358,
+                    "y": 328
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 67,
+                    "w": 67,
+                    "x": 304,
+                    "y": 557
+                  },
+                  {
+                    "h": 60,
+                    "w": 60,
+                    "x": 446,
+                    "y": 555
+                  },
+                  {
+                    "h": 225,
+                    "w": 225,
+                    "x": 279,
+                    "y": 256
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 87,
+                    "w": 87,
+                    "x": 390,
+                    "y": 714
+                  },
+                  {
+                    "h": 78,
+                    "w": 78,
+                    "x": 571,
+                    "y": 711
+                  },
+                  {
+                    "h": 289,
+                    "w": 289,
+                    "x": 358,
+                    "y": 328
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 38,
+                    "w": 38,
+                    "x": 172,
+                    "y": 315
+                  },
+                  {
+                    "h": 34,
+                    "w": 34,
+                    "x": 252,
+                    "y": 314
+                  },
+                  {
+                    "h": 127,
+                    "w": 127,
+                    "x": 158,
+                    "y": 145
+                  }
+                ]
+              }
+            },
+            "id_str": "2052777662834475008",
+            "indices": [
+              280,
+              303
+            ],
+            "media_key": "3_2052777662834475008",
+            "media_results": {
+              "result": {
+                "media_key": "3_2052777662834475008"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HHzuaIQbAAAqX29.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 573,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1167,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 768,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1536,
+              "width": 1024
+            },
+            "sizes": {
+              "large": {
+                "h": 1536,
+                "resize": "fit",
+                "w": 1024
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 800
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 453
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/352tywcKCR"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "smarttags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
       "article": null
     },
     {
@@ -1299,7 +2187,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
         "description": "",
         "location": "Philippines",
-        "followers": 189497,
+        "followers": 190098,
         "following": 481,
         "status": "",
         "canDm": false,
@@ -1312,16 +2200,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 20345,
+        "favouritesCount": 20361,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 44383,
-        "statusesCount": 197234,
+        "mediaCount": 45274,
+        "statusesCount": 198827,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2093633872936456280"
+          "2099480545550090734"
         ],
         "profile_bio": {
           "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",
@@ -1350,13 +2238,21 @@
           {
             "display_url": "pic.x.com/6PAATHBqUu",
             "expanded_url": "https://x.com/TheManilaTimes/status/2052777591262544292/photo/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "features": {
               "large": {
+                "faces": [
+                  {
+                    "h": 77,
+                    "w": 77,
+                    "x": 853,
+                    "y": 51
+                  }
+                ]
+              },
+              "medium": {
                 "faces": [
                   {
                     "h": 77,
@@ -1375,6 +2271,16 @@
                     "y": 51
                   }
                 ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 43,
+                    "w": 43,
+                    "x": 483,
+                    "y": 28
+                  }
+                ]
               }
             },
             "id_str": "2052777569557114884",
@@ -1384,10 +2290,7 @@
             ],
             "media_key": "3_2052777569557114884",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARx87lLMV3AECgACHHzuV9oWAaQAAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABHHzuUsxXcAQKAAIcfO5X2hYBpAAA",
                 "media_key": "3_2052777569557114884"
               }
             },
@@ -1431,7 +2334,23 @@
             "sizes": {
               "large": {
                 "h": 1200,
+                "resize": "fit",
                 "w": 960
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 960
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 544
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "photo",
@@ -1441,11 +2360,133 @@
       },
       "card": null,
       "place": {},
-      "entities": {},
+      "entities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/6PAATHBqUu",
+            "expanded_url": "https://x.com/TheManilaTimes/status/2052777591262544292/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 77,
+                    "w": 77,
+                    "x": 853,
+                    "y": 51
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 77,
+                    "w": 77,
+                    "x": 853,
+                    "y": 51
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 77,
+                    "w": 77,
+                    "x": 853,
+                    "y": 51
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 43,
+                    "w": 43,
+                    "x": 483,
+                    "y": 28
+                  }
+                ]
+              }
+            },
+            "id_str": "2052777569557114884",
+            "indices": [
+              200,
+              223
+            ],
+            "media_key": "3_2052777569557114884",
+            "media_results": {
+              "result": {
+                "media_key": "3_2052777569557114884"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HHzuUsxXcAQXZkH.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 538,
+                  "w": 960,
+                  "x": 0,
+                  "y": 662
+                },
+                {
+                  "h": 960,
+                  "w": 960,
+                  "x": 0,
+                  "y": 240
+                },
+                {
+                  "h": 1094,
+                  "w": 960,
+                  "x": 0,
+                  "y": 106
+                },
+                {
+                  "h": 1200,
+                  "w": 600,
+                  "x": 330,
+                  "y": 0
+                },
+                {
+                  "h": 1200,
+                  "w": 960,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1200,
+              "width": 960
+            },
+            "sizes": {
+              "large": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 960
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 960
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 544
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/6PAATHBqUu"
+          }
+        ]
+      },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -1486,7 +2527,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
         "description": "",
         "location": "Philippines",
-        "followers": 189497,
+        "followers": 190094,
         "following": 481,
         "status": "",
         "canDm": false,
@@ -1499,16 +2540,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 20345,
+        "favouritesCount": 20361,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 44383,
-        "statusesCount": 197234,
+        "mediaCount": 45274,
+        "statusesCount": 198827,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2093633872936456280"
+          "2099480545550090734"
         ],
         "profile_bio": {
           "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",
@@ -1537,11 +2578,9 @@
           {
             "display_url": "pic.x.com/FwdSY8cjWS",
             "expanded_url": "https://x.com/TheManilaTimes/status/2052778355024433326/photo/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": [
@@ -1550,6 +2589,16 @@
                     "w": 505,
                     "x": 350,
                     "y": 229
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 404,
+                    "w": 404,
+                    "x": 280,
+                    "y": 183
                   }
                 ]
               },
@@ -1562,6 +2611,16 @@
                     "y": 229
                   }
                 ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 228,
+                    "w": 228,
+                    "x": 158,
+                    "y": 103
+                  }
+                ]
               }
             },
             "id_str": "2052778330856792066",
@@ -1571,10 +2630,7 @@
             ],
             "media_key": "3_2052778330856792066",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARx87wQNVqACCgACHHzvCa3XkK4AAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABHHzvBA1WoAIKAAIcfO8JrdeQrgAA",
                 "media_key": "3_2052778330856792066"
               }
             },
@@ -1618,7 +2674,23 @@
             "sizes": {
               "large": {
                 "h": 1500,
+                "resize": "fit",
                 "w": 1200
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 960
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 544
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "photo",
@@ -1629,6 +2701,129 @@
       "card": null,
       "place": {},
       "entities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/FwdSY8cjWS",
+            "expanded_url": "https://x.com/TheManilaTimes/status/2052778355024433326/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 505,
+                    "w": 505,
+                    "x": 350,
+                    "y": 229
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 404,
+                    "w": 404,
+                    "x": 280,
+                    "y": 183
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 505,
+                    "w": 505,
+                    "x": 350,
+                    "y": 229
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 228,
+                    "w": 228,
+                    "x": 158,
+                    "y": 103
+                  }
+                ]
+              }
+            },
+            "id_str": "2052778330856792066",
+            "indices": [
+              231,
+              254
+            ],
+            "media_key": "3_2052778330856792066",
+            "media_results": {
+              "result": {
+                "media_key": "3_2052778330856792066"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HHzvBA1WoAIrNOe.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 672,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 828
+                },
+                {
+                  "h": 1200,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 300
+                },
+                {
+                  "h": 1368,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 132
+                },
+                {
+                  "h": 1500,
+                  "w": 750,
+                  "x": 262,
+                  "y": 0
+                },
+                {
+                  "h": 1500,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1500,
+              "width": 1200
+            },
+            "sizes": {
+              "large": {
+                "h": 1500,
+                "resize": "fit",
+                "w": 1200
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 960
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 544
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/FwdSY8cjWS"
+          }
+        ],
         "urls": [
           {
             "display_url": "mrf.lu/_QnW",
@@ -1643,8 +2838,299 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2052779930748956946",
+      "url": "https://x.com/NewJerseyDOT/status/2052779930748956946",
+      "twitterUrl": "https://twitter.com/NewJerseyDOT/status/2052779930748956946",
+      "text": "NJDOT Traffic Advisory -- Route 1&amp;9 Truck full closure this weekend for Passaic River Bridge work between Newark and Kearny. Read more: https://t.co/E3n5mg096j https://t.co/A9MzbOg5Mz",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 423,
+      "createdAt": "Fri May 08 15:57:28 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2052779930748956946",
+      "displayTextRange": [
+        0,
+        163
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "NewJerseyDOT",
+        "url": "https://x.com/NewJerseyDOT",
+        "twitterUrl": "https://twitter.com/NewJerseyDOT",
+        "id": "2891202783",
+        "name": "NJDOT",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1888397067787128833/FD48RYTU_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2891202783/1732311489",
+        "description": "",
+        "location": "",
+        "followers": 33218,
+        "following": 318,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Mon Nov 24 19:50:16 +0000 2014",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2483,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 5771,
+        "statusesCount": 21742,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Updates from NJ's Department of Transportation on projects and driving conditions throughout the state.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "state.nj.us/transportation/",
+                  "expanded_url": "http://www.state.nj.us/transportation/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/nZuh4skGvI"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/A9MzbOg5Mz",
+            "expanded_url": "https://x.com/NewJerseyDOT/status/2052779930748956946/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              }
+            },
+            "id_str": "2052779645905387529",
+            "indices": [
+              164,
+              187
+            ],
+            "media_key": "3_2052779645905387529",
+            "media_results": {
+              "result": {
+                "media_key": "3_2052779645905387529"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HHzwNjxXwAk-auM.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1024,
+                  "w": 1829,
+                  "x": 219,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 1024,
+                  "x": 1024,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 898,
+                  "x": 1138,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 512,
+                  "x": 1331,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1024,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 1024,
+                "resize": "fit",
+                "w": 2048
+              },
+              "medium": {
+                "h": 600,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 340,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/A9MzbOg5Mz"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/A9MzbOg5Mz",
+            "expanded_url": "https://x.com/NewJerseyDOT/status/2052779930748956946/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              }
+            },
+            "id_str": "2052779645905387529",
+            "indices": [
+              164,
+              187
+            ],
+            "media_key": "3_2052779645905387529",
+            "media_results": {
+              "result": {
+                "media_key": "3_2052779645905387529"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HHzwNjxXwAk-auM.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1024,
+                  "w": 1829,
+                  "x": 219,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 1024,
+                  "x": 1024,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 898,
+                  "x": 1138,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 512,
+                  "x": 1331,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1024,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 1024,
+                "resize": "fit",
+                "w": 2048
+              },
+              "medium": {
+                "h": 600,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 340,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/A9MzbOg5Mz"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "bit.ly/4db5DGb",
+            "expanded_url": "https://bit.ly/4db5DGb",
+            "indices": [
+              140,
+              163
+            ],
+            "url": "https://t.co/E3n5mg096j"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
       "article": null
     }
   ]

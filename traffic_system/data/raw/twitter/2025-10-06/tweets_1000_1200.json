@@ -5,7 +5,7 @@
     "window_start": "2025-10-06T10:00:00+08:00",
     "window_end": "2025-10-06T12:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 10,
+    "tweet_count": 13,
     "slices": [
       {
         "start": "2025-10-06T10:00:00+08:00",
@@ -18,8 +18,8 @@
         "start": "2025-10-06T10:05:00+08:00",
         "end": "2025-10-06T10:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-06T10:10:00+08:00",
@@ -102,8 +102,8 @@
         "start": "2025-10-06T11:05:00+08:00",
         "end": "2025-10-06T11:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-06T11:10:00+08:00",
@@ -172,12 +172,120 @@
         "start": "2025-10-06T11:55:00+08:00",
         "end": "2025-10-06T12:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       }
     ]
   },
   "data": [
+    {
+      "type": "tweet",
+      "id": "1975020528101449746",
+      "url": "https://x.com/CredenceResearc/status/1975020528101449746",
+      "twitterUrl": "https://twitter.com/CredenceResearc/status/1975020528101449746",
+      "text": "https://t.co/Nj9JwUzbF1",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 71,
+      "createdAt": "Mon Oct 06 02:09:22 +0000 2025",
+      "lang": "zxx",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1975020528101449746",
+      "displayTextRange": [
+        0,
+        23
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "CredenceResearc",
+        "url": "https://x.com/CredenceResearc",
+        "twitterUrl": "https://twitter.com/CredenceResearc",
+        "id": "711534057813909504",
+        "name": "Credence Research Inc",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1636383880109514757/p40f33sy_normal.jpg",
+        "coverPicture": "",
+        "description": "",
+        "location": "London, UNITED KINGDOM",
+        "followers": 186,
+        "following": 161,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sun Mar 20 12:45:13 +0000 2016",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 266,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1661,
+        "statusesCount": 3215,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Leading global market research & consulting firm. Empowering businesses with data-driven insights & strategic solutions to stay ahead.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "credenceresearch.com",
+                  "expanded_url": "https://www.credenceresearch.com/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/Y9GRMXgHyu"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/i/article/1975…",
+            "expanded_url": "http://x.com/i/article/1975018157770248192",
+            "indices": [
+              0,
+              23
+            ],
+            "url": "https://t.co/Nj9JwUzbF1"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": {
+        "title": "Glass Board Market – Redefining Modern Collaboration Spaces",
+        "preview_text": "Market Overview\nThe Glass Board Market size was valued at USD 1.18 billion in 2024 and is anticipated to reach USD 2.39 billion by 2032, at a CAGR of 9.2% during the forecast period. This market’s",
+        "cover_media_img_url": "https://pbs.twimg.com/media/G2iureeb0AAAojN.jpg"
+      }
+    },
     {
       "type": "tweet",
       "id": "1975022777838285045",
@@ -212,7 +320,7 @@
         "isVerified": false,
         "isBlueVerified": false,
         "verifiedType": null,
-        "profilePicture": "https://pbs.twimg.com/profile_images/2007548591569801216/8jf--AtJ_normal.jpg",
+        "profilePicture": "https://pbs.twimg.com/profile_images/2097163285997174784/6-9ulFm9_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/1473887413063667713/1737732103",
         "description": "",
         "location": "I probably own that street",
@@ -229,11 +337,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3454,
+        "favouritesCount": 3465,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 153,
-        "statusesCount": 1193,
+        "mediaCount": 155,
+        "statusesCount": 1200,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -241,7 +349,7 @@
           "2068158981537993136"
         ],
         "profile_bio": {
-          "description": "Full Stack LLM Development | Data Engineer | Backend | DevOps | AWS Certified | 25 🇵🇭 | 🇯🇵",
+          "description": "Full Stack LLM Development | Data Engineer | Backend | DevOps | AWS & Claude Certified | 25 🇵🇭 | 🇯🇵",
           "entities": {
             "description": {},
             "url": {
@@ -273,11 +381,11 @@
         "twitterUrl": "https://twitter.com/jesusfalcis/status/1974792113192890866",
         "text": "Sabi ng tweety bird ko, pinag tatawanan lang ng ibang Senador ang Trillion Peso March.\n\nWala daw na achieve except to release pressure like a safety valve. Mapapagod at makakalimutan din daw ng taumbayan.\n\nMukhang tama nga si JV Ejercito, the Senate (values) is burning down. 🔥",
         "source": "Twitter for iPhone",
-        "retweetCount": 1543,
+        "retweetCount": 1540,
         "replyCount": 185,
-        "likeCount": 7807,
+        "likeCount": 7792,
         "quoteCount": 285,
-        "viewCount": 445912,
+        "viewCount": 445949,
         "createdAt": "Sun Oct 05 11:01:44 +0000 2025",
         "lang": "tl",
         "bookmarkCount": 237,
@@ -304,8 +412,8 @@
           "coverPicture": "https://pbs.twimg.com/profile_banners/347392051/1782059960",
           "description": "",
           "location": "Philippines",
-          "followers": 47582,
-          "following": 1546,
+          "followers": 47818,
+          "following": 1549,
           "status": "",
           "canDm": true,
           "canMediaTag": false,
@@ -317,11 +425,11 @@
             "url": {}
           },
           "fastFollowersCount": 0,
-          "favouritesCount": 241118,
+          "favouritesCount": 242416,
           "hasCustomTimelines": true,
           "isTranslator": false,
-          "mediaCount": 2451,
-          "statusesCount": 20794,
+          "mediaCount": 2508,
+          "statusesCount": 20970,
           "withheldInCountries": [],
           "affiliatesHighlightedLabel": {},
           "possiblySensitive": false,
@@ -390,7 +498,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437288,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -406,8 +514,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411317,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -492,7 +600,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437288,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -508,8 +616,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411317,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -594,7 +702,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437288,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -610,8 +718,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411317,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -691,12 +799,12 @@
         "name": "Cyberabad Traffic Police",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": "Government",
+        "verifiedType": null,
         "profilePicture": "https://pbs.twimg.com/profile_images/1870140635849625605/sgwl7xbm_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/876684632325988352/1788351953",
         "description": "",
         "location": "Cyberabad",
-        "followers": 226780,
+        "followers": 226836,
         "following": 131,
         "status": "",
         "canDm": true,
@@ -709,11 +817,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3844,
+        "favouritesCount": 3866,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 11461,
-        "statusesCount": 42180,
+        "mediaCount": 11491,
+        "statusesCount": 42432,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -745,13 +853,21 @@
           {
             "display_url": "pic.x.com/eVvmwmZA68",
             "expanded_url": "https://x.com/CYBTRAFFIC/status/1975031689316651197/photo/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "features": {
               "large": {
+                "faces": [
+                  {
+                    "h": 81,
+                    "w": 81,
+                    "x": 96,
+                    "y": 372
+                  }
+                ]
+              },
+              "medium": {
                 "faces": [
                   {
                     "h": 81,
@@ -770,6 +886,16 @@
                     "y": 372
                   }
                 ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 76,
+                    "w": 76,
+                    "x": 90,
+                    "y": 351
+                  }
+                ]
               }
             },
             "id_str": "1975031683020890112",
@@ -779,10 +905,7 @@
             ],
             "media_key": "3_1975031683020890112",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtouNn+miAACgACG2i423Xb0L0AAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABG2i42f6aIAAKAAIbaLjbddvQvQAA",
                 "media_key": "3_1975031683020890112"
               }
             },
@@ -826,7 +949,23 @@
             "sizes": {
               "large": {
                 "h": 721,
+                "resize": "fit",
                 "w": 551
+              },
+              "medium": {
+                "h": 721,
+                "resize": "fit",
+                "w": 551
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 520
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "photo",
@@ -895,8 +1034,6 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -937,7 +1074,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/133152120/1785766152",
         "description": "",
         "location": "Philippines",
-        "followers": 865992,
+        "followers": 867305,
         "following": 2278,
         "status": "",
         "canDm": false,
@@ -950,11 +1087,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 2622,
+        "favouritesCount": 2720,
         "hasCustomTimelines": true,
-        "isTranslator": true,
-        "mediaCount": 293586,
-        "statusesCount": 666898,
+        "isTranslator": false,
+        "mediaCount": 294863,
+        "statusesCount": 668409,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -962,19 +1099,7 @@
         "profile_bio": {
           "description": "The Official Twitter account of News5 📲FB/IG/YT/TikTok: @News5Everywhere 📧: News5Aksyon@news5.com.ph",
           "entities": {
-            "description": {
-              "user_mentions": [
-                {
-                  "id_str": "",
-                  "indices": [
-                    56,
-                    72
-                  ],
-                  "name": "",
-                  "screen_name": "News5Everywhere"
-                }
-              ]
-            },
+            "description": {},
             "url": {
               "urls": [
                 {
@@ -998,16 +1123,15 @@
           {
             "additional_media_info": {
               "description": "",
+              "embeddable": true,
               "monetizable": false,
               "title": ""
             },
             "display_url": "pic.x.com/5sdkx4oakA",
             "expanded_url": "https://x.com/News5PH/status/1975031667292242251/video/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "id_str": "1975021962557902848",
             "indices": [
               201,
@@ -1015,10 +1139,7 @@
             ],
             "media_key": "13_1975021962557902848",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARtosALF29AAAAA=",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAAECgABG2iwAsXb0AAAAA==",
                 "media_key": "13_1975021962557902848"
               }
             },
@@ -1031,7 +1152,23 @@
             "sizes": {
               "large": {
                 "h": 1080,
+                "resize": "fit",
                 "w": 1920
+              },
+              "medium": {
+                "h": 675,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 383,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "video",
@@ -1074,11 +1211,99 @@
       },
       "card": null,
       "place": {},
-      "entities": {},
+      "entities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "description": "",
+              "embeddable": true,
+              "monetizable": false,
+              "title": ""
+            },
+            "display_url": "pic.x.com/5sdkx4oakA",
+            "expanded_url": "https://x.com/News5PH/status/1975031667292242251/video/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "id_str": "1975021962557902848",
+            "indices": [
+              201,
+              224
+            ],
+            "media_key": "13_1975021962557902848",
+            "media_results": {
+              "result": {
+                "media_key": "13_1975021962557902848"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1975021962557902848/img/jg4J06WR2yLGURLf.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1080,
+              "width": 1920
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "resize": "fit",
+                "w": 1920
+              },
+              "medium": {
+                "h": 675,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 383,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/5sdkx4oakA",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 325541,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1975021962557902848/pl/L4lv8HuxZB54tq1d.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1975021962557902848/vid/avc1/480x270/vNQmZPHFWJIy6FK9.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1975021962557902848/vid/avc1/640x360/0j1Jthiyw8bqaEAO.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1975021962557902848/vid/avc1/1280x720/gmk11pO9TUUpd0FD.mp4?tag=21"
+                },
+                {
+                  "bitrate": 10368000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1975021962557902848/vid/avc1/1920x1080/yFk88HBE3XnaqrVX.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -1092,7 +1317,7 @@
       "replyCount": 1,
       "likeCount": 0,
       "quoteCount": 0,
-      "viewCount": 878,
+      "viewCount": 879,
       "createdAt": "Mon Oct 06 03:04:32 +0000 2025",
       "lang": "en",
       "bookmarkCount": 0,
@@ -1119,7 +1344,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/876684632325988352/1788351953",
         "description": "",
         "location": "Cyberabad",
-        "followers": 226780,
+        "followers": 226836,
         "following": 131,
         "status": "",
         "canDm": true,
@@ -1132,11 +1357,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3844,
+        "favouritesCount": 3866,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 11461,
-        "statusesCount": 42180,
+        "mediaCount": 11491,
+        "statusesCount": 42432,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1374,7 +1599,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/876684632325988352/1788351953",
         "description": "",
         "location": "Cyberabad",
-        "followers": 226780,
+        "followers": 226836,
         "following": 131,
         "status": "",
         "canDm": true,
@@ -1387,11 +1612,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3844,
+        "favouritesCount": 3866,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 11461,
-        "statusesCount": 42180,
+        "mediaCount": 11491,
+        "statusesCount": 42432,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1579,6 +1804,233 @@
     },
     {
       "type": "tweet",
+      "id": "1975034742056558923",
+      "url": "https://x.com/ETNOWlive/status/1975034742056558923",
+      "twitterUrl": "https://twitter.com/ETNOWlive/status/1975034742056558923",
+      "text": "#NewsFatafat | Typhoon Matmo, the strongest to hit Guangdong this year, has weakened after landfall but continues to bring heavy rains to northern Vietnam. The storm forced evacuations of nearly 350,000 people across Guangdong and Hainan, disrupted travel during China’s National Day holiday, and caused flooding in southern China and the Philippines. Authorities warn flash floods and landslides remain a major risk\n\n#TyphoonMatmo #Guangdong #Vietnam #ChinaWeather",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 1859,
+      "createdAt": "Mon Oct 06 03:05:51 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1975034742056558923",
+      "displayTextRange": [
+        0,
+        279
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ETNOWlive",
+        "url": "https://x.com/ETNOWlive",
+        "twitterUrl": "https://twitter.com/ETNOWlive",
+        "id": "225012752",
+        "name": "ET NOW",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Business",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1863866767027933184/hC9WqRl-_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/225012752/1788376636",
+        "description": "",
+        "location": "India",
+        "followers": 868444,
+        "following": 64,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri Dec 10 12:49:29 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 6,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 326353,
+        "statusesCount": 788044,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {
+          "label": {
+            "badge": {
+              "url": "https://pbs.twimg.com/profile_images/1354074536925388802/qkHhpnVw_bigger.jpg"
+            },
+            "description": "TIMES NOW",
+            "url": {
+              "url": "https://twitter.com/TimesNow",
+              "url_type": "DeepLink"
+            },
+            "user_label_display_type": "Badge",
+            "user_label_type": "BusinessLabel"
+          }
+        },
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099859089644032504"
+        ],
+        "profile_bio": {
+          "description": "Your ultimate destination for business news, economic insights and expert opinions. Rise with India! Rise with ET NOW!",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "etnow.in",
+                  "expanded_url": "http://etnow.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/NEUHnwH8hO"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/IsiaqFj7u2",
+            "expanded_url": "https://x.com/ETNOWlive/status/1975034742056558923/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1975034723945639936",
+            "indices": [
+              280,
+              303
+            ],
+            "media_key": "3_1975034723945639936",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtou54D13AACgACG2i7ojtWIUsAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG2i7ngPXcAAKAAIbaLuiO1YhSwAA",
+                "media_key": "3_1975034723945639936"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G2i7ngPXcAA4plh.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 745
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 270
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 119
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/IsiaqFj7u2"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              0,
+              12
+            ],
+            "text": "NewsFatafat"
+          },
+          {
+            "indices": [
+              418,
+              431
+            ],
+            "text": "TyphoonMatmo"
+          },
+          {
+            "indices": [
+              432,
+              442
+            ],
+            "text": "Guangdong"
+          },
+          {
+            "indices": [
+              443,
+              451
+            ],
+            "text": "Vietnam"
+          },
+          {
+            "indices": [
+              452,
+              465
+            ],
+            "text": "ChinaWeather"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1975037700693774583",
       "url": "https://x.com/mnlstandardph/status/1975037700693774583",
       "twitterUrl": "https://twitter.com/mnlstandardph/status/1975037700693774583",
@@ -1615,7 +2067,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/474871087/1786481218",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 112085,
+        "followers": 112877,
         "following": 224,
         "status": "",
         "canDm": true,
@@ -1631,8 +2083,8 @@
         "favouritesCount": 530,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 75275,
-        "statusesCount": 137529,
+        "mediaCount": 75644,
+        "statusesCount": 137899,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1806,7 +2258,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
         "description": "",
         "location": "Philippines",
-        "followers": 189320,
+        "followers": 190134,
         "following": 481,
         "status": "",
         "canDm": false,
@@ -1819,16 +2271,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 20344,
+        "favouritesCount": 20357,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 44231,
-        "statusesCount": 196948,
+        "mediaCount": 45146,
+        "statusesCount": 198606,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2093633872936456280"
+          "2099480545550090734"
         ],
         "profile_bio": {
           "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",
@@ -1853,56 +2305,7 @@
         "automatedBy": null
       },
       "extendedEntities": {},
-      "card": {
-        "binding_values": [
-          {
-            "key": "description",
-            "value": {
-              "string_value": "BOGO CITY, Cebu — Travel to northern Cebu has become a grueling ordeal as traffic congestion continues to paralyze major routes leading to earthquake-hit towns."
-            }
-          },
-          {
-            "key": "domain",
-            "value": {
-              "string_value": "www.manilatimes.net"
-            }
-          },
-          {
-            "key": "vanity_url",
-            "value": {
-              "scribe_key": "vanity_url",
-              "string_value": "manilatimes.net"
-            }
-          },
-          {
-            "key": "title",
-            "value": {
-              "string_value": "Traffic congestion hampers relief operations in Cebu"
-            }
-          },
-          {
-            "key": "card_url",
-            "value": {
-              "scribe_key": "card_url",
-              "string_value": "https://t.co/A3Gw8rbEmC"
-            }
-          }
-        ],
-        "card_platform": {
-          "platform": {
-            "audience": {
-              "name": "production"
-            },
-            "device": {
-              "name": "iPhone",
-              "version": "13"
-            }
-          }
-        },
-        "name": "summary_large_image",
-        "url": "https://t.co/A3Gw8rbEmC",
-        "user_refs_results": []
-      },
+      "card": null,
       "place": {},
       "entities": {
         "urls": [
@@ -1914,6 +2317,239 @@
               184
             ],
             "url": "https://t.co/A3Gw8rbEmC"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1975047329414820139",
+      "url": "https://x.com/halairporttrfps/status/1975047329414820139",
+      "twitterUrl": "https://twitter.com/halairporttrfps/status/1975047329414820139",
+      "text": "\"Traffic Advisory\"\n Due to ongoing Metro  station work at karthik nagar,traffic movement is very slow from mahadevapura towards marathahalli ,we request all commuters please co-operate with us, Tq @blrcitytraffic @DCPTrEastBCP @CPBlr @Jointcptraffic @acpwfieldtrf https://t.co/aThiNX5T6e",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 4,
+      "quoteCount": 0,
+      "viewCount": 1424,
+      "createdAt": "Mon Oct 06 03:55:52 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1975047329414820139",
+      "displayTextRange": [
+        0,
+        263
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "halairporttrfps",
+        "url": "https://x.com/halairporttrfps",
+        "twitterUrl": "https://twitter.com/halairporttrfps",
+        "id": "3014057594",
+        "name": "HAL AIRPORT TRAFFIC BTP",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1431940538807111685/NlzIwwo7_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/3014057594/1698666640",
+        "description": "",
+        "location": "Bengaluru, India",
+        "followers": 12341,
+        "following": 64,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Feb 09 06:37:58 +0000 2015",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5826,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 7761,
+        "statusesCount": 20136,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2098702782719197542"
+        ],
+        "profile_bio": {
+          "description": "Official twitter account of HAL Airport Traffic Police Station (080-22943115). Dial Namma-112 in case of emergency. @blrcitytraffic",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    116,
+                    131
+                  ],
+                  "name": "",
+                  "screen_name": "blrcitytraffic"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.gov.in",
+                  "expanded_url": "https://btp.gov.in/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/aoci2eeC5I"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/aThiNX5T6e",
+            "expanded_url": "https://x.com/halairporttrfps/status/1975047329414820139/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1975047320128655360",
+            "indices": [
+              264,
+              287
+            ],
+            "media_key": "3_1975047320128655360",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtoxxLK2xAACgACG2jHFPRasSsAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG2jHEsrbEAAKAAIbaMcU9FqxKwAA",
+                "media_key": "3_1975047320128655360"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G2jHEsrbEAAoPgd.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 538,
+                  "w": 960,
+                  "x": 0,
+                  "y": 742
+                },
+                {
+                  "h": 960,
+                  "w": 960,
+                  "x": 0,
+                  "y": 320
+                },
+                {
+                  "h": 1094,
+                  "w": 960,
+                  "x": 0,
+                  "y": 186
+                },
+                {
+                  "h": 1280,
+                  "w": 640,
+                  "x": 288,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 960,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1280,
+              "width": 960
+            },
+            "sizes": {
+              "large": {
+                "h": 1280,
+                "w": 960
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/aThiNX5T6e"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "1851545900",
+            "indices": [
+              197,
+              212
+            ],
+            "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+            "screen_name": "blrcitytraffic"
+          },
+          {
+            "id_str": "2809049605",
+            "indices": [
+              213,
+              226
+            ],
+            "name": "DCP Traffic East ಉಪ ಪೊಲೀಸ್ ಆಯುಕ್ತರು ಸಂಚಾರ ಪೂರ್ವ",
+            "screen_name": "DCPTrEastBCP"
+          },
+          {
+            "id_str": "2687852605",
+            "indices": [
+              227,
+              233
+            ],
+            "name": "CP Bengaluru ಪೊಲೀಸ್ ಆಯುಕ್ತ ಬೆಂಗಳೂರು",
+            "screen_name": "CPBlr"
+          },
+          {
+            "id_str": "2809164276",
+            "indices": [
+              234,
+              249
+            ],
+            "name": "Joint CP, Traffic, Bengaluru",
+            "screen_name": "Jointcptraffic"
+          },
+          {
+            "id_str": "1361589347032600576",
+            "indices": [
+              250,
+              263
+            ],
+            "name": "ACP Whitefield Traffic ಎಸಿಪಿ ಸಂಚಾರ ವೈಟ್ ಫೀಲ್ಡ್",
+            "screen_name": "acpwfieldtrf"
           }
         ]
       },

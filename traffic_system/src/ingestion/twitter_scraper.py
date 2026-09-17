@@ -22,42 +22,96 @@ MANILA_TZ = pytz.timezone("Asia/Manila")
 DEFAULT_OUTPUT_ROOT = Path(__file__).resolve().parents[2] / "data" / "raw" / "twitter"
 
 TRAFFIC_KEYWORDS = (
+    # --- Traffic States & Congestion ---
     'traffic', 'trapik', '"traffic jam"', '"bumper to bumper"', 'standstill',
     '"heavy traffic"', '"mabagal na trapik"', '"mabigat na trapik"',
     '"light traffic"', '"magaan na trapik"', '"moving traffic"', 'dumadaloy',
     'congestion', 'congested', 'gridlock', '"slow moving"', '"creeping traffic"',
     'contraflow', 'counterflow', '"number coding"', '"coding scheme"', 'UVVRP',
+    
+    # --- Colloquial Congestion Slang ---
+    'tirik', 'tumirik', 'gapang', '"usad pagong"', '"walang galawan"', '"walang usad"',
+    '"di gumagalaw"', 'ipit', 'naipit', 'stuck', 'nganga', 'malala', '"trapik malala"',
+    'chokepoint', 'buhos', '"zipper lane"',
+
+    # --- Accidents, Collisions & Breakdown ---
     'accident', 'aksidente', 'banggaan', 'collision', 'nabangga', 'nabunggo',
     '"vehicular accident"', '"road crash"', '"road mishap"',
     '"multi-vehicle collision"', '"chain collision"', 'pileup', '"hit and run"',
     'tumakas', 'overturned', 'tumaob', 'natumba', '"motorcycle accident"',
-    '"sakay ng motor aksidente"', 'flooding', 'baha', 'bumabaha', '"flash flood"',
-    '"biglaang baha"', '"heavy rain"', '"malakas na ulan"', 'storm', 'bagyo',
-    'typhoon', '"waist-deep"', 'tuhod', 'baywang', 'impassable', '"hindi madaanan"',
+    '"sakay ng motor aksidente"', 'breakdown', '"nasira ang sasakyan"',
+    '"stalled vehicle"', '"tumigil sa gitna"', '"flat tire"', 'overheating',
+    '"nag-overheat"', 'towed', 'salpok', 'sumalpok', 'araro', 'inararo', 'semplang',
+
+    # --- Weather, Floods & Passability ---
+    'flooding', 'baha', 'bumabaha', '"flash flood"', '"biglaang baha"',
+    '"heavy rain"', '"malakas na ulan"', 'storm', 'bagyo', 'typhoon',
+    '"waist-deep"', 'tuhod', 'baywang', 'impassable', '"hindi madaanan"',
     'landslide', 'guho', '"pagguho ng lupa"', '"PAGASA warning"', '"signal no."',
+    '"gutter deep"', '"half tire"', '"tire deep"', '"knee deep"', '"chest deep"',
+    'lubog', '"lubog sa baha"', '"not passable"', '"not passable to light vehicles"', 'passable',
+
+    # --- Roadworks, Closures & Detours ---
     '"road closure"', '"sarado ang daan"', '"lane closure"', '"isang lane lang"',
     '"road construction"', '"kalsada gawa"', 'roadwork', '"ongoing repair"',
     'detour', '"alternate route"', '"alternative route"', 'rerouting', 'biniyahe',
     '"underpass closed"', '"flyover closed"', 'pothole', 'guwang', '"butas sa kalsada"',
+
+    # --- Disruptive Events, Strikes & Emergencies ---
     'protest', 'rally', 'welga', 'demonstration', 'martsa', '"barangay fiesta"',
     'procession', 'parada', 'motorcade', 'strike', '"transport strike"',
     '"tigil pasada"', 'fire', 'sunog', '"fire truck"', 'bumbero',
-    '"emergency response"', 'ambulansya', 'explosion', 'sabog', 'breakdown',
-    '"nasira ang sasakyan"', '"stalled vehicle"', '"tumigil sa gitna"',
-    '"flat tire"', 'overheating', '"nag-overheat"', 'towed',
+    '"emergency response"', 'ambulansya', 'explosion', 'sabog',
 )
+
 LOCATION_ANCHORS = (
+    # --- LGUs, Cities & NCR Anchors ---
     'EDSA', '"EDSA Guadalupe"', '"EDSA Ortigas"', '"EDSA Cubao"',
     '"EDSA Kamuning"', '"EDSA Balintawak"', '"EDSA Taft"', '"Roxas Boulevard"',
     '"Roxas Blvd"', 'Makati', 'Pasay', '"Quezon City"', 'Manila', 'Ortigas',
     'Pasig', 'Novaliches', 'Navotas', 'Mandaluyong', 'Paranaque', '"Las Pinas"',
-    'Muntinlupa', 'San Juan', 'Taguig', 'Marikina', 'Caloocan', 'Malabon', 'Valenzuela',
-    '"Metro Manila"', 'Philippines', 'Pilipinas',
+    'Muntinlupa', '"San Juan City"', 'Taguig', 'Marikina', 'Caloocan', 'Malabon', 'Valenzuela',
+    'Pateros', 'QC', 'Kyusi', '"Metro Manila"',
+
+    # --- Districts, Landmarks & Commercial Hubs ---
+    'BGC', '"Bonifacio Global City"', 'McKinley', '"Market Market"', 'Alabang',
+    '"BF Homes"', 'Sucat', 'Bicutan', 'Monumento', '"Bagong Silang"',
+    'MOA', '"Mall of Asia"', 'NAIA',
+
+    # --- Major Arterials & Radial Roads ---
+    'C-5', 'C5', 'Katipunan', 'Libis', 'Commonwealth', '"Commonwealth Ave"',
+    '"Quezon Ave"', '"Q. Ave"', 'España', 'Espana', '"Shaw Blvd"',
+    '"Aurora Blvd"', '"Ortigas Ave"', '"Taft Ave"', 'Buendia',
+    '"Gil Puyat"', '"Sen. Gil Puyat"', '"Ayala Ave"', '"Marcos Highway"',
+    '"Alabang-Zapote"', '"Alabang-Zapote Road"', '"Macapagal Blvd"',
+    '"Diosdado Macapagal"', '"Mindanao Ave"',
+
+    # --- Expressways ---
+    'Skyway', 'SLEX', 'NLEX', 'NAIAX', 'CAVITEX', '"C5 Southlink"',
 )
-MMDA_TERMS = (
+
+AUTHORITY_AND_META_TERMS = (
+    # --- MMDA Official Terms & Tags ---
     '#MMDAAlert', '#MetroManila', '#TrafficUpdate', '#EDSAUpdate', '#EDSATraffic',
     '#RoadClosure', '#TrafficAdvisory', '"MMDA advisory"', '"traffic advisory"',
-    'Metrobase',
+    'Metrobase', '@MMDA',
+
+    # --- Directional Flow ---
+    'NB', 'SB', 'EB', 'WB', 'Northbound', 'Southbound', 'Eastbound', 'Westbound',
+
+    # --- Law Enforcement & Transport Regulators ---
+    '@PNPHPG', '"PNP-HPG"', '"Highway Patrol Group"',
+    '@LTOPhilippines', '@LTFRB', '@DOTrPH',
+
+    # --- Infrastructure & Weather Agencies ---
+    '@DPWHph', '@dost_pagasa', '@NDRRMC_OpCen',
+
+    # --- Tollway Operators ---
+    '@NLEXexpressways', '@OfficialSLEX', '@SkywaySOMCO', '@TRBph',
+
+    # --- LGU Traffic Commands ---
+    '@MakatiTraffic', '@PasigInfo', '@QCGov',
+    '"Manila Traffic and Parking Bureau"', '"MTPB"',
 )
 
 
@@ -67,13 +121,31 @@ def _or_group(terms: tuple[str, ...]) -> str:
 
 INCIDENTS = _or_group(TRAFFIC_KEYWORDS)
 LOCATIONS = _or_group(LOCATION_ANCHORS)
-MMDA_TAGS = _or_group(MMDA_TERMS)
+AUTHORITIES = _or_group(AUTHORITY_AND_META_TERMS)
+
+# Keep the live query compact. The provider accepts the broader taxonomy above
+# for reference, but very large OR expressions can return empty results or fail.
+SEARCH_INCIDENTS = _or_group((
+    'traffic', 'trapik', 'congestion', 'gridlock', 'contraflow',
+    'accident', 'aksidente', 'banggaan', 'flooding', 'baha', 'landslide',
+    '"road closure"', 'protest', 'rally', 'fire', 'sunog', 'breakdown',
+))
+SEARCH_LOCATIONS = _or_group((
+    'EDSA', 'Makati', 'Pasay', '"Quezon City"', 'Manila', 'Pasig',
+    '"Metro Manila"', 'Philippines',
+))
+SEARCH_AUTHORITIES = _or_group((
+    '#MMDAAlert', '#TrafficUpdate', '#EDSAUpdate', '#EDSATraffic',
+    'Metrobase', '@MMDA', '"traffic advisory"',
+))
 
 
 def build_query(start_dt: datetime, end_dt: datetime) -> str:
     """Build a time-bounded traffic search query using Unix timestamps (UTC)."""
+    # Ordinary keywords require a Philippine location; official traffic terms
+    # can match independently because they already identify the traffic source.
     return (
-        f"(({INCIDENTS} {LOCATIONS}) OR {MMDA_TAGS}) "
+        f"(({SEARCH_INCIDENTS} {SEARCH_LOCATIONS}) OR {SEARCH_AUTHORITIES}) "
         f"since_time:{int(start_dt.timestamp())} until_time:{int(end_dt.timestamp())} "
         "-is:retweet -is:reply"
     )
@@ -191,8 +263,8 @@ def collect_full_month() -> list[Path]:
     """Collect tweets from June 2025 through May 2026 in daily batches."""
     outputs = []
 
-    # Use a half-open interval so every instant in the requested period is collected.
-    start_date = MANILA_TZ.localize(datetime(2025, 11, 27, 22, 0, 0))
+    # Adjusted to accurately start on June 1, 2025
+    start_date = MANILA_TZ.localize(datetime(2026, 1, 28, 4, 0, 0))
     end_date = MANILA_TZ.localize(datetime(2026, 6, 1, 0, 0, 0))
 
     current_start = start_date

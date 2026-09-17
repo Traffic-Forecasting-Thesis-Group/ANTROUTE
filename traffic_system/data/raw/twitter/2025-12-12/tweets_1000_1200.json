@@ -5,7 +5,7 @@
     "window_start": "2025-12-12T10:00:00+08:00",
     "window_end": "2025-12-12T12:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 5,
+    "tweet_count": 11,
     "slices": [
       {
         "start": "2025-12-12T10:00:00+08:00",
@@ -67,8 +67,8 @@
         "start": "2025-12-12T10:40:00+08:00",
         "end": "2025-12-12T10:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-12-12T10:45:00+08:00",
@@ -102,8 +102,8 @@
         "start": "2025-12-12T11:05:00+08:00",
         "end": "2025-12-12T11:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-12-12T11:10:00+08:00",
@@ -130,8 +130,8 @@
         "start": "2025-12-12T11:25:00+08:00",
         "end": "2025-12-12T11:30:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-12-12T11:30:00+08:00",
@@ -151,15 +151,15 @@
         "start": "2025-12-12T11:40:00+08:00",
         "end": "2025-12-12T11:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-12-12T11:45:00+08:00",
         "end": "2025-12-12T11:50:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-12-12T11:50:00+08:00",
@@ -172,8 +172,8 @@
         "start": "2025-12-12T11:55:00+08:00",
         "end": "2025-12-12T12:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       }
     ]
   },
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437257,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +232,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411409,
+        "mediaCount": 17208,
+        "statusesCount": 411976,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -318,8 +318,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/133152120/1785766152",
         "description": "",
         "location": "Philippines",
-        "followers": 866142,
-        "following": 2279,
+        "followers": 867339,
+        "following": 2278,
         "status": "",
         "canDm": false,
         "canMediaTag": true,
@@ -331,11 +331,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 2649,
+        "favouritesCount": 2720,
         "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 293739,
-        "statusesCount": 667088,
+        "isTranslator": true,
+        "mediaCount": 294879,
+        "statusesCount": 668425,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -343,7 +343,19 @@
         "profile_bio": {
           "description": "The Official Twitter account of News5 📲FB/IG/YT/TikTok: @News5Everywhere 📧: News5Aksyon@news5.com.ph",
           "entities": {
-            "description": {},
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    56,
+                    72
+                  ],
+                  "name": "",
+                  "screen_name": "News5Everywhere"
+                }
+              ]
+            },
             "url": {
               "urls": [
                 {
@@ -367,7 +379,6 @@
           {
             "additional_media_info": {
               "description": "",
-              "embeddable": true,
               "monetizable": false,
               "title": "Morning Biya-hey: Lagay ng trapiko ngayong Dec. 12, 2025 "
             },
@@ -376,9 +387,11 @@
             },
             "display_url": "pic.x.com/nMdKHCcuHj",
             "expanded_url": "https://x.com/News5PH/status/1999304893719515184/video/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "id_str": "1999295312360603648",
             "indices": [
               193,
@@ -386,7 +399,10 @@
             ],
             "media_key": "13_1999295312360603648",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARu+7H5uW4AAAAA=",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG77sfm5bgAAAAA==",
                 "media_key": "13_1999295312360603648"
               }
             },
@@ -399,23 +415,7 @@
             "sizes": {
               "large": {
                 "h": 720,
-                "resize": "fit",
                 "w": 1280
-              },
-              "medium": {
-                "h": 675,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 383,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "video",
@@ -458,102 +458,11 @@
       },
       "card": null,
       "place": {},
-      "entities": {
-        "media": [
-          {
-            "additional_media_info": {
-              "description": "",
-              "embeddable": true,
-              "monetizable": false,
-              "title": "Morning Biya-hey: Lagay ng trapiko ngayong Dec. 12, 2025 "
-            },
-            "allow_download_status": {
-              "allow_download": false
-            },
-            "display_url": "pic.x.com/nMdKHCcuHj",
-            "expanded_url": "https://x.com/News5PH/status/1999304893719515184/video/1",
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "id_str": "1999295312360603648",
-            "indices": [
-              193,
-              216
-            ],
-            "media_key": "13_1999295312360603648",
-            "media_results": {
-              "result": {
-                "media_key": "13_1999295312360603648"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/media/G771JMoagAUZIFd.jpg",
-            "original_info": {
-              "focus_rects": [],
-              "height": 720,
-              "width": 1280
-            },
-            "sizes": {
-              "large": {
-                "h": 720,
-                "resize": "fit",
-                "w": 1280
-              },
-              "medium": {
-                "h": 675,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 383,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
-              }
-            },
-            "type": "video",
-            "url": "https://t.co/nMdKHCcuHj",
-            "video_info": {
-              "aspect_ratio": [
-                16,
-                9
-              ],
-              "duration_millis": 380646,
-              "variants": [
-                {
-                  "content_type": "application/x-mpegURL",
-                  "url": "https://video.twimg.com/amplify_video/1999295312360603648/pl/YoXpU6d5FYsZJOxN.m3u8?tag=21"
-                },
-                {
-                  "bitrate": 256000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/1999295312360603648/vid/avc1/480x270/fyyg2ZbmY8eKnh8Q.mp4?tag=21"
-                },
-                {
-                  "bitrate": 832000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/1999295312360603648/vid/avc1/640x360/acj5JK5zOn3uFqrc.mp4?tag=21"
-                },
-                {
-                  "bitrate": 2176000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/1999295312360603648/vid/avc1/1280x720/5ZjlMC8isFP4elYl.mp4?tag=21"
-                },
-                {
-                  "bitrate": 10368000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/1999295312360603648/vid/avc1/1920x1080/8gWGCm17aDs5AHF4.mp4?tag=21"
-                }
-              ]
-            }
-          }
-        ]
-      },
+      "entities": {},
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -594,7 +503,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437257,
+        "followers": 1437180,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -610,8 +519,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411409,
+        "mediaCount": 17208,
+        "statusesCount": 411976,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -660,6 +569,406 @@
     },
     {
       "type": "tweet",
+      "id": "1999309258069041285",
+      "url": "https://x.com/ABSCBNNews/status/1999309258069041285",
+      "twitterUrl": "https://twitter.com/ABSCBNNews/status/1999309258069041285",
+      "text": "45 pamilya, nawalan ng tirahan sa sunog sa Quezon City https://t.co/ng9LrKUChc",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 2128,
+      "createdAt": "Fri Dec 12 02:44:07 +0000 2025",
+      "lang": "tl",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1999309258069041285",
+      "displayTextRange": [
+        0,
+        78
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ABSCBNNews",
+        "url": "https://x.com/ABSCBNNews",
+        "twitterUrl": "https://twitter.com/ABSCBNNews",
+        "id": "15872418",
+        "name": "ABS-CBN News",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1414904727674920961/aRgHKXj5_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/15872418/1747565518",
+        "description": "",
+        "location": "Manila, Philippines",
+        "followers": 9238630,
+        "following": 1098,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sat Aug 16 10:09:33 +0000 2008",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1186,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 351373,
+        "statusesCount": 1347005,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Stories, video, and multimedia for Filipinos worldwide, from ABS-CBN News and Current Affairs",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "abs-cbn.com",
+                  "expanded_url": "https://www.abs-cbn.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/GX0c1lEzlO"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Nasa 45 pamilya o katumbas ng 141 indibidwal ang nawalan ng tirahan sa sunog sa Barangay North Fairview, Quezon City, madaling araw ng Biyernes."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.abs-cbn.com"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "31313277",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "1859181579312242689",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "abs-cbn.com"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "45 pamilya, nawalan ng tirahan sa sunog sa Quezon City | ABS-CBN News"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/ng9LrKUChc"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/ng9LrKUChc",
+        "user_refs_results": [
+          {
+            "rest_id": "1859181579312242689",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 73
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/2072423947887607808/EMuVc7F__normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/1859181579312242689/1782939358"
+              },
+              "core": {
+                "created_at": "Wed Nov 20 10:26:55 +0000 2024",
+                "name": "Christopher Sitson ABS-CBN News",
+                "screen_name": "ChrisSitson"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "National Capital Region"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {},
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Reporter, ABS-CBN News ❤️💚💙 #kaCAyanin #BabySteps",
+                "entities": {
+                  "description": {
+                    "hashtags": [
+                      {
+                        "indices": [
+                          28,
+                          38
+                        ],
+                        "text": "kaCAyanin"
+                      },
+                      {
+                        "indices": [
+                          39,
+                          49
+                        ],
+                        "text": "BabySteps"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "1DA1F2"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 814,
+                "following": 42
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "1859181579312242689",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 1651,
+                "tweets": 2436
+              },
+              "verification": {
+                "is_blue_verified": false,
+                "verified": false
+              },
+              "website": {
+                "url": ""
+              }
+            }
+          },
+          {
+            "rest_id": "31313277",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 11481
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/2082820005016813568/PhYshX4T_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/31313277/1785417962"
+              },
+              "core": {
+                "created_at": "Wed Apr 15 02:35:56 +0000 2009",
+                "name": "ABS-CBN Entertainment",
+                "screen_name": "ABSCBN"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Manila, Philippines"
+              },
+              "media_permissions": {
+                "can_media_tag": false
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {},
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "The official Twitter account of ABS-CBN, the Philippines' largest network. https://t.co/Xkc1xyTDPu https://t.co/yN643GeRGp",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "facebook.com/ABSCBNnetwork/",
+                        "expanded_url": "http://facebook.com/ABSCBNnetwork/",
+                        "indices": [
+                          75,
+                          98
+                        ],
+                        "url": "https://t.co/Xkc1xyTDPu"
+                      },
+                      {
+                        "display_url": "instagram.com/abscbn/",
+                        "expanded_url": "http://instagram.com/abscbn/",
+                        "indices": [
+                          99,
+                          122
+                        ],
+                        "url": "https://t.co/yN643GeRGp"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "ent.abs-cbn.com",
+                        "expanded_url": "https://ent.abs-cbn.com/",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/Bi1HjYOs18"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "2FC2EF"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 1815773,
+                "following": 802
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "31313277",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 70340,
+                "tweets": 218690
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/Bi1HjYOs18"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "abs-cbn.com/news/nation/20…",
+            "expanded_url": "https://www.abs-cbn.com/news/nation/2025/12/12/45-pamilya-nawalan-ng-tirahan-sa-sunog-sa-quezon-city-1039",
+            "indices": [
+              55,
+              78
+            ],
+            "url": "https://t.co/ng9LrKUChc"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1999309481067577657",
       "url": "https://x.com/MakatiTraffic/status/1999309481067577657",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/1999309481067577657",
@@ -696,7 +1005,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437257,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -712,8 +1021,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411409,
+        "mediaCount": 17208,
+        "statusesCount": 411976,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -771,7 +1080,7 @@
       "replyCount": 0,
       "likeCount": 2,
       "quoteCount": 0,
-      "viewCount": 982,
+      "viewCount": 984,
       "createdAt": "Fri Dec 12 03:00:01 +0000 2025",
       "lang": "en",
       "bookmarkCount": 0,
@@ -798,8 +1107,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/39453212/1785235955",
         "description": "",
         "location": "Philippines",
-        "followers": 5717071,
-        "following": 672,
+        "followers": 5718302,
+        "following": 674,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -811,16 +1120,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 14181,
+        "favouritesCount": 14180,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 213374,
-        "statusesCount": 1025317,
+        "mediaCount": 214919,
+        "statusesCount": 1027816,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2096631393191067840"
+          "2099687625783136340"
         ],
         "profile_bio": {
           "description": "Welcome to the official X account of GMA News.",
@@ -918,7 +1227,7 @@
             "result": {
               "__typename": "User",
               "action_counts": {
-                "favorites_count": 14181
+                "favorites_count": 14180
               },
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/2038588193520709632/gW-kXR9a_normal.jpg"
@@ -948,7 +1257,7 @@
               },
               "pinned_items": {
                 "tweet_ids_str": [
-                  "2096631393191067840"
+                  "2099687625783136340"
                 ]
               },
               "privacy": {
@@ -988,8 +1297,8 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 5717071,
-                "following": 672
+                "followers": 5718302,
+                "following": 674
               },
               "relationship_perspectives": {
                 "blocked_by": false,
@@ -1006,8 +1315,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 213374,
-                "tweets": 1025317
+                "media_tweets": 214919,
+                "tweets": 1027816
               },
               "verification": {
                 "is_blue_verified": true,
@@ -1101,7 +1410,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 15813,
+                "followers": 15805,
                 "following": 129
               },
               "relationship_perspectives": {
@@ -1144,6 +1453,1076 @@
               262
             ],
             "url": "https://t.co/yrTyDkZ2K1"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1999315259941888044",
+      "url": "https://x.com/honolulupolice/status/1999315259941888044",
+      "twitterUrl": "https://twitter.com/honolulupolice/status/1999315259941888044",
+      "text": "‼️ Traffic Advisory: Kapahulu-Mōʻiliʻili Christmas Parade\n\n🚙 Please drive carefully, with patience and allow for more time to navigate the area. #HiTraffic https://t.co/by2OneL20M",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 479,
+      "createdAt": "Fri Dec 12 03:07:58 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1999315259941888044",
+      "displayTextRange": [
+        0,
+        155
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "honolulupolice",
+        "url": "https://x.com/honolulupolice",
+        "twitterUrl": "https://twitter.com/honolulupolice",
+        "id": "22763447",
+        "name": "Honolulu Police",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1433022874/hpd_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/22763447/1584674480",
+        "description": "",
+        "location": "City and County of Honolulu",
+        "followers": 27795,
+        "following": 1798,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Mar 04 12:40:04 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 272,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 5840,
+        "statusesCount": 16810,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Account is not monitored 24/7. For police service, call 911.\nSee below link for our posting guidelines.\nhttps://t.co/cmdiY2j55z…",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "honolulupd.org/social-media-g",
+                  "expanded_url": "http://honolulupd.org/social-media-g",
+                  "indices": [
+                    104,
+                    127
+                  ],
+                  "url": "https://t.co/cmdiY2j55z"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "honolulupd.org",
+                  "expanded_url": "http://www.honolulupd.org",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/QBZtxHyzxw"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/by2OneL20M",
+            "expanded_url": "https://x.com/honolulupolice/status/1999315259941888044/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "City of Honolulu",
+                    "screen_name": "HonoluluGov",
+                    "type": "user",
+                    "user_id": "199924401"
+                  },
+                  {
+                    "name": "Transportation HNL",
+                    "screen_name": "hnldts",
+                    "type": "user",
+                    "user_id": "22899307"
+                  },
+                  {
+                    "name": "Honolulu NCO",
+                    "screen_name": "HNLNCO",
+                    "type": "user",
+                    "user_id": "23284917"
+                  },
+                  {
+                    "name": "honolulucitycouncil",
+                    "screen_name": "hnlcitycouncil",
+                    "type": "user",
+                    "user_id": "1387904380641316864"
+                  }
+                ]
+              },
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1999315255638544384",
+            "indices": [
+              156,
+              179
+            ],
+            "media_key": "3_1999315255638544384",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARu+/qHWWtAACgACG77+otbaoCwAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG77+odZa0AAKAAIbvv6i1tqgLAAA",
+                "media_key": "3_1999315255638544384"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G77-odZa0AA_GOB.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 339
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 101
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 26
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 34,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/by2OneL20M"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              145,
+              155
+            ],
+            "text": "HiTraffic"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1999320312798937123",
+      "url": "https://x.com/halairporttrfps/status/1999320312798937123",
+      "twitterUrl": "https://twitter.com/halairporttrfps/status/1999320312798937123",
+      "text": "\"Traffic Advisory\"\n Slow movement from Marathahalli towards KB Halli due to ongoing Metro station work at MPS. Commuters, we request your patience &amp; cooperation. Thank you!  @blrcitytraffic @DCPTrEastBCP @CPBlr @Jointcptraffic @acpwfieldtrf https://t.co/kZZZkTEwRW",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 1,
+      "viewCount": 344,
+      "createdAt": "Fri Dec 12 03:28:02 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1999320312798937123",
+      "displayTextRange": [
+        0,
+        244
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "halairporttrfps",
+        "url": "https://x.com/halairporttrfps",
+        "twitterUrl": "https://twitter.com/halairporttrfps",
+        "id": "3014057594",
+        "name": "HAL AIRPORT TRAFFIC BTP",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1431940538807111685/NlzIwwo7_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/3014057594/1698666640",
+        "description": "",
+        "location": "Bengaluru, India",
+        "followers": 12341,
+        "following": 64,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Feb 09 06:37:58 +0000 2015",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5826,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 7761,
+        "statusesCount": 20136,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2098702782719197542"
+        ],
+        "profile_bio": {
+          "description": "Official twitter account of HAL Airport Traffic Police Station (080-22943115). Dial Namma-112 in case of emergency. @blrcitytraffic",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    116,
+                    131
+                  ],
+                  "name": "",
+                  "screen_name": "blrcitytraffic"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.gov.in",
+                  "expanded_url": "https://btp.gov.in/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/aoci2eeC5I"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/kZZZkTEwRW",
+            "expanded_url": "https://x.com/halairporttrfps/status/1999320312798937123/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 88,
+                    "w": 88,
+                    "x": 542,
+                    "y": 806
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 88,
+                    "w": 88,
+                    "x": 542,
+                    "y": 806
+                  }
+                ]
+              }
+            },
+            "id_str": "1999320302694862848",
+            "indices": [
+              245,
+              268
+            ],
+            "media_key": "3_1999320302694862848",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARu/AzjyWpAACgACG78DO0yagCMAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG78DOPJakAAKAAIbvwM7TJqAIwAA",
+                "media_key": "3_1999320302694862848"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G78DOPJakAAAsOP.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 516,
+                  "w": 922,
+                  "x": 0,
+                  "y": 817
+                },
+                {
+                  "h": 922,
+                  "w": 922,
+                  "x": 0,
+                  "y": 614
+                },
+                {
+                  "h": 1051,
+                  "w": 922,
+                  "x": 0,
+                  "y": 550
+                },
+                {
+                  "h": 1844,
+                  "w": 922,
+                  "x": 0,
+                  "y": 153
+                },
+                {
+                  "h": 2048,
+                  "w": 922,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2048,
+              "width": 922
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 922
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/kZZZkTEwRW"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "1851545900",
+            "indices": [
+              178,
+              193
+            ],
+            "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+            "screen_name": "blrcitytraffic"
+          },
+          {
+            "id_str": "2809049605",
+            "indices": [
+              194,
+              207
+            ],
+            "name": "DCP Traffic East ಉಪ ಪೊಲೀಸ್ ಆಯುಕ್ತರು ಸಂಚಾರ ಪೂರ್ವ",
+            "screen_name": "DCPTrEastBCP"
+          },
+          {
+            "id_str": "2687852605",
+            "indices": [
+              208,
+              214
+            ],
+            "name": "CP Bengaluru ಪೊಲೀಸ್ ಆಯುಕ್ತ ಬೆಂಗಳೂರು",
+            "screen_name": "CPBlr"
+          },
+          {
+            "id_str": "2809164276",
+            "indices": [
+              215,
+              230
+            ],
+            "name": "Joint CP, Traffic, Bengaluru",
+            "screen_name": "Jointcptraffic"
+          },
+          {
+            "id_str": "1361589347032600576",
+            "indices": [
+              231,
+              244
+            ],
+            "name": "ACP Whitefield Traffic ಎಸಿಪಿ ಸಂಚಾರ ವೈಟ್ ಫೀಲ್ಡ್",
+            "screen_name": "acpwfieldtrf"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1999323791777006059",
+      "url": "https://x.com/ChrisSitson/status/1999323791777006059",
+      "twitterUrl": "https://twitter.com/ChrisSitson/status/1999323791777006059",
+      "text": "Hindi nagdalawang-isip sina Ryan Solano at Juana Villagracia na iligtas ang kanilang mga alagang aso sa sunog na sumiklab sa kanilang lugar sa Rand St., Bgy. North Fairview, Quezon City, kaninang madaling araw ng Biyernes, December 12, 2025. @ABSCBNNews https://t.co/2nzGeQ3JBQ",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 4,
+      "quoteCount": 0,
+      "viewCount": 298,
+      "createdAt": "Fri Dec 12 03:41:52 +0000 2025",
+      "lang": "tl",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1999323791777006059",
+      "displayTextRange": [
+        0,
+        253
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ChrisSitson",
+        "url": "https://x.com/ChrisSitson",
+        "twitterUrl": "https://twitter.com/ChrisSitson",
+        "id": "1859181579312242689",
+        "name": "Christopher Sitson ABS-CBN News",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2072423947887607808/EMuVc7F__normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1859181579312242689/1782939358",
+        "description": "",
+        "location": "National Capital Region",
+        "followers": 814,
+        "following": 42,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Nov 20 10:26:55 +0000 2024",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 73,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1651,
+        "statusesCount": 2436,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Reporter, ABS-CBN News ❤️💚💙 #kaCAyanin #BabySteps",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    28,
+                    38
+                  ],
+                  "text": "kaCAyanin"
+                },
+                {
+                  "indices": [
+                    39,
+                    49
+                  ],
+                  "text": "BabySteps"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/2nzGeQ3JBQ",
+            "expanded_url": "https://x.com/ChrisSitson/status/1999323791777006059/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "1999323688110555139",
+            "indices": [
+              254,
+              277
+            ],
+            "media_key": "13_1999323688110555139",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARu/Bk0s2oADAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG78GTSzagAMAAA==",
+                "media_key": "13_1999323688110555139"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1999323688110555139/img/mjJpc_kR9nWOllRC.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 720,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1280
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/2nzGeQ3JBQ",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 72166,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1999323688110555139/pl/yAnUWHYGXkgEqx18.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1999323688110555139/vid/avc1/480x270/7sHSaTpNZG68uNST.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1999323688110555139/vid/avc1/640x360/vxDFayXAB9hz_5z3.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1999323688110555139/vid/avc1/1280x720/te0idrt0xuD0jpVU.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "15872418",
+            "indices": [
+              242,
+              253
+            ],
+            "name": "ABS-CBN News",
+            "screen_name": "ABSCBNNews"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1999324586526294495",
+      "url": "https://x.com/wftrps/status/1999324586526294495",
+      "twitterUrl": "https://twitter.com/wftrps/status/1999324586526294495",
+      "text": "Traffic Advisory' Slow moving Traffic with a vehicle breakdown,varthu kodi  towards Hagadur cross, it will be moved shortly. https://t.co/8SxWrr6xHn",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 0,
+      "likeCount": 4,
+      "quoteCount": 1,
+      "viewCount": 224,
+      "createdAt": "Fri Dec 12 03:45:01 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1999324586526294495",
+      "displayTextRange": [
+        0,
+        124
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "wftrps",
+        "url": "https://x.com/wftrps",
+        "twitterUrl": "https://twitter.com/wftrps",
+        "id": "1427538424513261572",
+        "name": "WHITEFIELD TRAFFIC PS BTP",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1610431515384766464/EKixD336_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1427538424513261572/1698664455",
+        "description": "",
+        "location": "XQV4+PV4, Kadugodi Rd, Kadugod",
+        "followers": 8051,
+        "following": 340,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Aug 17 07:52:18 +0000 2021",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 8048,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 9556,
+        "statusesCount": 23144,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1561965210944290816"
+        ],
+        "profile_bio": {
+          "description": "Whitefield Traffic Police Station  ☎️ 08022943706.\nhttps://t.co/nLW3eXyDqh\nhttps://t.co/ztwpDdQ1kT",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "facebook.com/whitefield",
+                  "expanded_url": "https://www.facebook.com/whitefield",
+                  "indices": [
+                    51,
+                    74
+                  ],
+                  "url": "https://t.co/nLW3eXyDqh"
+                },
+                {
+                  "display_url": "instagram.com/whitefieldtraf…",
+                  "expanded_url": "https://instagram.com/whitefieldtrafficps?utm_source=qr&igshid=ZDc4ODBmNj",
+                  "indices": [
+                    75,
+                    98
+                  ],
+                  "url": "https://t.co/ztwpDdQ1kT"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.gov.in",
+                  "expanded_url": "https://btp.gov.in/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/n23Fyy5nq9"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/8SxWrr6xHn",
+            "expanded_url": "https://x.com/wftrps/status/1999324586526294495/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "CP Bengaluru ಪೊಲೀಸ್ ಆಯುಕ್ತ ಬೆಂಗಳೂರು",
+                    "screen_name": "CPBlr",
+                    "type": "user",
+                    "user_id": "2687852605"
+                  },
+                  {
+                    "name": "Joint CP, Traffic, Bengaluru",
+                    "screen_name": "Jointcptraffic",
+                    "type": "user",
+                    "user_id": "2809164276"
+                  },
+                  {
+                    "name": "DCP Traffic East ಉಪ ಪೊಲೀಸ್ ಆಯುಕ್ತರು ಸಂಚಾರ ಪೂರ್ವ",
+                    "screen_name": "DCPTrEastBCP",
+                    "type": "user",
+                    "user_id": "2809049605"
+                  },
+                  {
+                    "name": "ACP Whitefield Traffic ಎಸಿಪಿ ಸಂಚಾರ ವೈಟ್ ಫೀಲ್ಡ್",
+                    "screen_name": "acpwfieldtrf",
+                    "type": "user",
+                    "user_id": "1361589347032600576"
+                  },
+                  {
+                    "name": "ಬೆಂಗಳೂರು ನಗರ ಪೊಲೀಸ್‌ BengaluruCityPolice",
+                    "screen_name": "BlrCityPolice",
+                    "type": "user",
+                    "user_id": "775296019"
+                  },
+                  {
+                    "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+                    "screen_name": "blrcitytraffic",
+                    "type": "user",
+                    "user_id": "1851545900"
+                  }
+                ]
+              },
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1999324583183409152",
+            "indices": [
+              125,
+              148
+            ],
+            "media_key": "3_1999324583183409152",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARu/Bx2TWmAACgACG78HHlqawd8AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG78HHZNaYAAKAAIbvwceWprB3wAA",
+                "media_key": "3_1999324583183409152"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G78HHZNaYAAMOJc.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 672,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 424
+                },
+                {
+                  "h": 1200,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 160
+                },
+                {
+                  "h": 1368,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 76
+                },
+                {
+                  "h": 1600,
+                  "w": 800,
+                  "x": 280,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1600,
+              "width": 1200
+            },
+            "sizes": {
+              "large": {
+                "h": 1600,
+                "w": 1200
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/8SxWrr6xHn"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1999327417756987609",
+      "url": "https://x.com/ABSCBNNews/status/1999327417756987609",
+      "twitterUrl": "https://twitter.com/ABSCBNNews/status/1999327417756987609",
+      "text": "Hindi nagdalawang-isip sina Ryan Solano at Juana Villagracia na iligtas ang kanilang mga alagang aso sa sunog na sumiklab sa kanilang lugar sa Rand St., Bgy. North Fairview, Quezon City, kaninang madaling araw ng Biyernes, December 12, 2025. | #SelfiePatrol ni @ChrisSitson https://t.co/MDIFUJw3Wk",
+      "source": "Twitter for iPhone",
+      "retweetCount": 4,
+      "replyCount": 0,
+      "likeCount": 17,
+      "quoteCount": 0,
+      "viewCount": 5925,
+      "createdAt": "Fri Dec 12 03:56:16 +0000 2025",
+      "lang": "tl",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1999327417756987609",
+      "displayTextRange": [
+        0,
+        273
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ABSCBNNews",
+        "url": "https://x.com/ABSCBNNews",
+        "twitterUrl": "https://twitter.com/ABSCBNNews",
+        "id": "15872418",
+        "name": "ABS-CBN News",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1414904727674920961/aRgHKXj5_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/15872418/1747565518",
+        "description": "",
+        "location": "Manila, Philippines",
+        "followers": 9238632,
+        "following": 1098,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sat Aug 16 10:09:33 +0000 2008",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1186,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 351375,
+        "statusesCount": 1347008,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Stories, video, and multimedia for Filipinos worldwide, from ABS-CBN News and Current Affairs",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "abs-cbn.com",
+                  "expanded_url": "https://www.abs-cbn.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/GX0c1lEzlO"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "description": "",
+              "monetizable": false,
+              "title": ""
+            },
+            "display_url": "pic.x.com/MDIFUJw3Wk",
+            "expanded_url": "https://x.com/ABSCBNNews/status/1999327417756987609/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "1999326304416727043",
+            "indices": [
+              274,
+              297
+            ],
+            "media_key": "13_1999326304416727043",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARu/CK5U2oADAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG78IrlTagAMAAA==",
+                "media_key": "13_1999326304416727043"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1999326304416727043/img/8qa8VzgMzOGRjTnv.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 720,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1280
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/MDIFUJw3Wk",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 72214,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1999326304416727043/pl/M5Z3tZH48EbNF7VN.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1999326304416727043/vid/avc1/480x270/sXxMITZocETRjBPR.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1999326304416727043/vid/avc1/640x360/qGs4erFP5F8QGmXh.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1999326304416727043/vid/avc1/1280x720/7ItnP5daeM1Ocub8.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              244,
+              257
+            ],
+            "text": "SelfiePatrol"
+          }
+        ],
+        "user_mentions": [
+          {
+            "id_str": "1859181579312242689",
+            "indices": [
+              261,
+              273
+            ],
+            "name": "Christopher Sitson ABS-CBN News",
+            "screen_name": "ChrisSitson"
           }
         ]
       },

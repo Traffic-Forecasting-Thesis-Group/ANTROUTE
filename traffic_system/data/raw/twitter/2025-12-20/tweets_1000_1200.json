@@ -5,7 +5,7 @@
     "window_start": "2025-12-20T10:00:00+08:00",
     "window_end": "2025-12-20T12:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 6,
+    "tweet_count": 5,
     "slices": [
       {
         "start": "2025-12-20T10:00:00+08:00",
@@ -137,8 +137,8 @@
         "start": "2025-12-20T11:30:00+08:00",
         "end": "2025-12-20T11:35:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 0,
+        "accepted": 0
       },
       {
         "start": "2025-12-20T11:35:00+08:00",
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437255,
+        "followers": 1437179,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +232,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411412,
+        "mediaCount": 17208,
+        "statusesCount": 411979,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -276,6 +276,8 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -316,7 +318,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437256,
+        "followers": 1437179,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -332,8 +334,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411412,
+        "mediaCount": 17208,
+        "statusesCount": 411979,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -376,6 +378,8 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -389,7 +393,7 @@
       "replyCount": 4,
       "likeCount": 25,
       "quoteCount": 0,
-      "viewCount": 1200,
+      "viewCount": 1201,
       "createdAt": "Sat Dec 20 02:48:01 +0000 2025",
       "lang": "en",
       "bookmarkCount": 2,
@@ -416,8 +420,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/17921072/1731917622",
         "description": "",
         "location": "'96 | he/they | 🇵🇭",
-        "followers": 3864,
-        "following": 883,
+        "followers": 3865,
+        "following": 885,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -429,11 +433,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 250273,
+        "favouritesCount": 250620,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 19309,
-        "statusesCount": 105903,
+        "mediaCount": 19327,
+        "statusesCount": 106062,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -443,7 +447,19 @@
         "profile_bio": {
           "description": "hi, hi. i draw. i love horror. billy the puppet enjoyer. check carrd for commissions. ty. | 🎶: @catpukeph",
           "entities": {
-            "description": {},
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    95,
+                    105
+                  ],
+                  "name": "",
+                  "screen_name": "catpukeph"
+                }
+              ]
+            },
             "url": {
               "urls": [
                 {
@@ -467,9 +483,11 @@
           {
             "display_url": "pic.x.com/wsDzE2oZ20",
             "expanded_url": "https://x.com/motherdanger_/status/2002209341857018217/photo/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": [
@@ -484,22 +502,6 @@
                     "w": 732,
                     "x": 364,
                     "y": 52
-                  }
-                ]
-              },
-              "medium": {
-                "faces": [
-                  {
-                    "h": 51,
-                    "w": 51,
-                    "x": 526,
-                    "y": 337
-                  },
-                  {
-                    "h": 428,
-                    "w": 428,
-                    "x": 213,
-                    "y": 30
                   }
                 ]
               },
@@ -518,22 +520,6 @@
                     "y": 52
                   }
                 ]
-              },
-              "small": {
-                "faces": [
-                  {
-                    "h": 29,
-                    "w": 29,
-                    "x": 298,
-                    "y": 191
-                  },
-                  {
-                    "h": 243,
-                    "w": 243,
-                    "x": 120,
-                    "y": 17
-                  }
-                ]
               }
             },
             "id_str": "2002209327814451200",
@@ -543,7 +529,10 @@
             ],
             "media_key": "3_2002209327814451200",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARvJRsaGWqAACgACG8lGyctbMWkAAA==",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG8lGxoZaoAAKAAIbyUbJy1sxaQAA",
                 "media_key": "3_2002209327814451200"
               }
             },
@@ -587,23 +576,7 @@
             "sizes": {
               "large": {
                 "h": 2048,
-                "resize": "fit",
                 "w": 1454
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 852
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 483
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "photo",
@@ -612,9 +585,11 @@
           {
             "display_url": "pic.x.com/wsDzE2oZ20",
             "expanded_url": "https://x.com/motherdanger_/status/2002209341857018217/photo/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": [
@@ -629,22 +604,6 @@
                     "w": 176,
                     "x": 452,
                     "y": 550
-                  }
-                ]
-              },
-              "medium": {
-                "faces": [
-                  {
-                    "h": 46,
-                    "w": 46,
-                    "x": 635,
-                    "y": 587
-                  },
-                  {
-                    "h": 103,
-                    "w": 103,
-                    "x": 264,
-                    "y": 322
                   }
                 ]
               },
@@ -663,22 +622,6 @@
                     "y": 550
                   }
                 ]
-              },
-              "small": {
-                "faces": [
-                  {
-                    "h": 26,
-                    "w": 26,
-                    "x": 359,
-                    "y": 332
-                  },
-                  {
-                    "h": 58,
-                    "w": 58,
-                    "x": 150,
-                    "y": 182
-                  }
-                ]
               }
             },
             "id_str": "2002209326702997506",
@@ -688,7 +631,10 @@
             ],
             "media_key": "3_2002209326702997506",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARvJRsZEGzACCgACG8lGyctbMWkAAA==",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG8lGxkQbMAIKAAIbyUbJy1sxaQAA",
                 "media_key": "3_2002209326702997506"
               }
             },
@@ -732,23 +678,7 @@
             "sizes": {
               "large": {
                 "h": 2048,
-                "resize": "fit",
                 "w": 1536
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 900
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 510
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "photo",
@@ -781,302 +711,12 @@
             ],
             "text": "이동욱"
           }
-        ],
-        "media": [
-          {
-            "display_url": "pic.x.com/wsDzE2oZ20",
-            "expanded_url": "https://x.com/motherdanger_/status/2002209341857018217/photo/1",
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "features": {
-              "large": {
-                "faces": [
-                  {
-                    "h": 88,
-                    "w": 88,
-                    "x": 898,
-                    "y": 576
-                  },
-                  {
-                    "h": 732,
-                    "w": 732,
-                    "x": 364,
-                    "y": 52
-                  }
-                ]
-              },
-              "medium": {
-                "faces": [
-                  {
-                    "h": 51,
-                    "w": 51,
-                    "x": 526,
-                    "y": 337
-                  },
-                  {
-                    "h": 428,
-                    "w": 428,
-                    "x": 213,
-                    "y": 30
-                  }
-                ]
-              },
-              "orig": {
-                "faces": [
-                  {
-                    "h": 88,
-                    "w": 88,
-                    "x": 898,
-                    "y": 576
-                  },
-                  {
-                    "h": 732,
-                    "w": 732,
-                    "x": 364,
-                    "y": 52
-                  }
-                ]
-              },
-              "small": {
-                "faces": [
-                  {
-                    "h": 29,
-                    "w": 29,
-                    "x": 298,
-                    "y": 191
-                  },
-                  {
-                    "h": 243,
-                    "w": 243,
-                    "x": 120,
-                    "y": 17
-                  }
-                ]
-              }
-            },
-            "id_str": "2002209327814451200",
-            "indices": [
-              125,
-              148
-            ],
-            "media_key": "3_2002209327814451200",
-            "media_results": {
-              "result": {
-                "media_key": "3_2002209327814451200"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/media/G8lGxoZaoAAxDMw.jpg",
-            "original_info": {
-              "focus_rects": [
-                {
-                  "h": 814,
-                  "w": 1454,
-                  "x": 0,
-                  "y": 361
-                },
-                {
-                  "h": 1454,
-                  "w": 1454,
-                  "x": 0,
-                  "y": 41
-                },
-                {
-                  "h": 1658,
-                  "w": 1454,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 2048,
-                  "w": 1024,
-                  "x": 256,
-                  "y": 0
-                },
-                {
-                  "h": 2048,
-                  "w": 1454,
-                  "x": 0,
-                  "y": 0
-                }
-              ],
-              "height": 2048,
-              "width": 1454
-            },
-            "sizes": {
-              "large": {
-                "h": 2048,
-                "resize": "fit",
-                "w": 1454
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 852
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 483
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
-              }
-            },
-            "type": "photo",
-            "url": "https://t.co/wsDzE2oZ20"
-          },
-          {
-            "display_url": "pic.x.com/wsDzE2oZ20",
-            "expanded_url": "https://x.com/motherdanger_/status/2002209341857018217/photo/1",
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "features": {
-              "large": {
-                "faces": [
-                  {
-                    "h": 80,
-                    "w": 80,
-                    "x": 1084,
-                    "y": 1002
-                  },
-                  {
-                    "h": 176,
-                    "w": 176,
-                    "x": 452,
-                    "y": 550
-                  }
-                ]
-              },
-              "medium": {
-                "faces": [
-                  {
-                    "h": 46,
-                    "w": 46,
-                    "x": 635,
-                    "y": 587
-                  },
-                  {
-                    "h": 103,
-                    "w": 103,
-                    "x": 264,
-                    "y": 322
-                  }
-                ]
-              },
-              "orig": {
-                "faces": [
-                  {
-                    "h": 80,
-                    "w": 80,
-                    "x": 1084,
-                    "y": 1002
-                  },
-                  {
-                    "h": 176,
-                    "w": 176,
-                    "x": 452,
-                    "y": 550
-                  }
-                ]
-              },
-              "small": {
-                "faces": [
-                  {
-                    "h": 26,
-                    "w": 26,
-                    "x": 359,
-                    "y": 332
-                  },
-                  {
-                    "h": 58,
-                    "w": 58,
-                    "x": 150,
-                    "y": 182
-                  }
-                ]
-              }
-            },
-            "id_str": "2002209326702997506",
-            "indices": [
-              125,
-              148
-            ],
-            "media_key": "3_2002209326702997506",
-            "media_results": {
-              "result": {
-                "media_key": "3_2002209326702997506"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/media/G8lGxkQbMAIP63l.jpg",
-            "original_info": {
-              "focus_rects": [
-                {
-                  "h": 860,
-                  "w": 1536,
-                  "x": 0,
-                  "y": 133
-                },
-                {
-                  "h": 1536,
-                  "w": 1536,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 1751,
-                  "w": 1536,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 2048,
-                  "w": 1024,
-                  "x": 51,
-                  "y": 0
-                },
-                {
-                  "h": 2048,
-                  "w": 1536,
-                  "x": 0,
-                  "y": 0
-                }
-              ],
-              "height": 2048,
-              "width": 1536
-            },
-            "sizes": {
-              "large": {
-                "h": 2048,
-                "resize": "fit",
-                "w": 1536
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 900
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 510
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
-              }
-            },
-            "type": "photo",
-            "url": "https://t.co/wsDzE2oZ20"
-          }
         ]
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -1117,7 +757,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437255,
+        "followers": 1437179,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1133,8 +773,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411412,
+        "mediaCount": 17208,
+        "statusesCount": 411979,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1177,6 +817,8 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -1217,7 +859,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/242696106/1759206391",
         "description": "",
         "location": "Philippines",
-        "followers": 247482,
+        "followers": 248122,
         "following": 112,
         "status": "",
         "canDm": false,
@@ -1233,8 +875,8 @@
         "favouritesCount": 1521,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 52712,
-        "statusesCount": 239341,
+        "mediaCount": 52749,
+        "statusesCount": 239578,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1278,9 +920,11 @@
           {
             "display_url": "pic.x.com/rX1ZabIY0F",
             "expanded_url": "https://x.com/interaksyon/status/2002211036469063877/photo/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": [
@@ -1295,22 +939,6 @@
                     "w": 187,
                     "x": 471,
                     "y": 411
-                  }
-                ]
-              },
-              "medium": {
-                "faces": [
-                  {
-                    "h": 77,
-                    "w": 77,
-                    "x": 858,
-                    "y": 19
-                  },
-                  {
-                    "h": 166,
-                    "w": 166,
-                    "x": 418,
-                    "y": 365
                   }
                 ]
               },
@@ -1329,22 +957,6 @@
                     "y": 411
                   }
                 ]
-              },
-              "small": {
-                "faces": [
-                  {
-                    "h": 43,
-                    "w": 43,
-                    "x": 486,
-                    "y": 11
-                  },
-                  {
-                    "h": 94,
-                    "w": 94,
-                    "x": 237,
-                    "y": 207
-                  }
-                ]
               }
             },
             "id_str": "2002211027258331136",
@@ -1354,7 +966,10 @@
             ],
             "media_key": "3_2002211027258331136",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARvJSFI1GlAACgACG8lIVFoa8MUAAA==",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG8lIUjUaUAAKAAIbyUhUWhrwxQAA",
                 "media_key": "3_2002211027258331136"
               }
             },
@@ -1398,23 +1013,7 @@
             "sizes": {
               "large": {
                 "h": 1350,
-                "resize": "fit",
                 "w": 1080
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 960
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 544
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "photo",
@@ -1425,153 +1024,6 @@
       "card": null,
       "place": {},
       "entities": {
-        "media": [
-          {
-            "display_url": "pic.x.com/rX1ZabIY0F",
-            "expanded_url": "https://x.com/interaksyon/status/2002211036469063877/photo/1",
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "features": {
-              "large": {
-                "faces": [
-                  {
-                    "h": 87,
-                    "w": 87,
-                    "x": 966,
-                    "y": 22
-                  },
-                  {
-                    "h": 187,
-                    "w": 187,
-                    "x": 471,
-                    "y": 411
-                  }
-                ]
-              },
-              "medium": {
-                "faces": [
-                  {
-                    "h": 77,
-                    "w": 77,
-                    "x": 858,
-                    "y": 19
-                  },
-                  {
-                    "h": 166,
-                    "w": 166,
-                    "x": 418,
-                    "y": 365
-                  }
-                ]
-              },
-              "orig": {
-                "faces": [
-                  {
-                    "h": 87,
-                    "w": 87,
-                    "x": 966,
-                    "y": 22
-                  },
-                  {
-                    "h": 187,
-                    "w": 187,
-                    "x": 471,
-                    "y": 411
-                  }
-                ]
-              },
-              "small": {
-                "faces": [
-                  {
-                    "h": 43,
-                    "w": 43,
-                    "x": 486,
-                    "y": 11
-                  },
-                  {
-                    "h": 94,
-                    "w": 94,
-                    "x": 237,
-                    "y": 207
-                  }
-                ]
-              }
-            },
-            "id_str": "2002211027258331136",
-            "indices": [
-              245,
-              268
-            ],
-            "media_key": "3_2002211027258331136",
-            "media_results": {
-              "result": {
-                "media_key": "3_2002211027258331136"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/media/G8lIUjUaUAA_GgK.jpg",
-            "original_info": {
-              "focus_rects": [
-                {
-                  "h": 605,
-                  "w": 1080,
-                  "x": 0,
-                  "y": 744
-                },
-                {
-                  "h": 1080,
-                  "w": 1080,
-                  "x": 0,
-                  "y": 270
-                },
-                {
-                  "h": 1231,
-                  "w": 1080,
-                  "x": 0,
-                  "y": 119
-                },
-                {
-                  "h": 1350,
-                  "w": 675,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 1350,
-                  "w": 1080,
-                  "x": 0,
-                  "y": 0
-                }
-              ],
-              "height": 1350,
-              "width": 1080
-            },
-            "sizes": {
-              "large": {
-                "h": 1350,
-                "resize": "fit",
-                "w": 1080
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 960
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 544
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
-              }
-            },
-            "type": "photo",
-            "url": "https://t.co/rX1ZabIY0F"
-          }
-        ],
         "urls": [
           {
             "display_url": "interaksyon.philstar.com/trends-spotlig…",
@@ -1586,500 +1038,8 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "article": null
-    },
-    {
-      "type": "tweet",
-      "id": "2002220109105168825",
-      "url": "https://x.com/chonggo/status/2002220109105168825",
-      "twitterUrl": "https://twitter.com/chonggo/status/2002220109105168825",
-      "text": "So wait…minamaliit ni @rowena_guanzon ang leadership position ng MMDA? The very agency who sees daily Metro Manila traffic with hundreds of thousands of vehicles (among other duties)? Coming from a person who can barely walk through Powerplant Mall without hysterics?!?",
-      "source": "Twitter for iPhone",
-      "retweetCount": 0,
-      "replyCount": 0,
-      "likeCount": 4,
-      "quoteCount": 0,
-      "viewCount": 176,
-      "createdAt": "Sat Dec 20 03:30:48 +0000 2025",
-      "lang": "en",
-      "bookmarkCount": 0,
-      "isReply": false,
-      "inReplyToId": null,
-      "conversationId": "2002220109105168825",
-      "displayTextRange": [
-        0,
-        269
-      ],
-      "inReplyToUserId": null,
-      "inReplyToUsername": null,
-      "author": {
-        "type": "user",
-        "userName": "chonggo",
-        "url": "https://x.com/chonggo",
-        "twitterUrl": "https://twitter.com/chonggo",
-        "id": "7928592",
-        "name": "The Glittery Glare",
-        "isVerified": false,
-        "isBlueVerified": false,
-        "verifiedType": null,
-        "profilePicture": "https://pbs.twimg.com/profile_images/2085488150668021760/beaCgNQ1_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/7928592/1607174375",
-        "description": "",
-        "location": "In between mirth and dread",
-        "followers": 1171,
-        "following": 1120,
-        "status": "",
-        "canDm": false,
-        "canMediaTag": false,
-        "createdAt": "Fri Aug 03 10:01:41 +0000 2007",
-        "entities": {
-          "description": {
-            "urls": []
-          },
-          "url": {}
-        },
-        "fastFollowersCount": 0,
-        "favouritesCount": 30200,
-        "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 2378,
-        "statusesCount": 45924,
-        "withheldInCountries": [],
-        "affiliatesHighlightedLabel": {},
-        "possiblySensitive": false,
-        "pinnedTweetIds": [
-          "1122157560948305922"
-        ],
-        "profile_bio": {
-          "description": "Asst. Prof of Visual Communication | UP Fine Arts | Tweets are my views | Monocular Pirate | PhD in Fine Arts, Texas Tech | Fulbright-CHED scholar",
-          "entities": {
-            "description": {},
-            "url": {
-              "urls": [
-                {
-                  "display_url": "lastpieceofshame.com",
-                  "expanded_url": "https://www.lastpieceofshame.com/",
-                  "indices": [
-                    0,
-                    23
-                  ],
-                  "url": "https://t.co/aSulwGpODO"
-                }
-              ]
-            }
-          }
-        },
-        "isAutomated": false,
-        "automatedBy": null
-      },
-      "extendedEntities": {},
-      "card": null,
-      "place": {},
-      "entities": {
-        "user_mentions": [
-          {
-            "id_str": "3265772426",
-            "indices": [
-              22,
-              37
-            ],
-            "name": "Rowena Guanzon",
-            "screen_name": "rowena_guanzon"
-          }
-        ]
-      },
-      "quoted_tweet": {
-        "type": "tweet",
-        "id": "2002111900294000691",
-        "url": "https://x.com/nabunturanguy/status/2002111900294000691",
-        "twitterUrl": "https://twitter.com/nabunturanguy/status/2002111900294000691",
-        "text": "Nagpapapansin talaga si Tiburcia! \nKawawa naman. https://t.co/hgRsldgzxp",
-        "source": "Twitter for iPhone",
-        "retweetCount": 25,
-        "replyCount": 80,
-        "likeCount": 234,
-        "quoteCount": 8,
-        "viewCount": 15402,
-        "createdAt": "Fri Dec 19 20:20:49 +0000 2025",
-        "lang": "tl",
-        "bookmarkCount": 4,
-        "isReply": false,
-        "inReplyToId": null,
-        "conversationId": "2002111900294000691",
-        "displayTextRange": [
-          0,
-          48
-        ],
-        "inReplyToUserId": null,
-        "inReplyToUsername": null,
-        "author": {
-          "type": "user",
-          "userName": "nabunturanguy",
-          "url": "https://x.com/nabunturanguy",
-          "twitterUrl": "https://twitter.com/nabunturanguy",
-          "id": "67737041",
-          "name": "DAVAOMIGRANT",
-          "isVerified": false,
-          "isBlueVerified": true,
-          "verifiedType": null,
-          "profilePicture": "https://pbs.twimg.com/profile_images/2075719913268981760/IOM40z_G_normal.jpg",
-          "coverPicture": "https://pbs.twimg.com/profile_banners/67737041/1768726879",
-          "description": "",
-          "location": "davao city",
-          "followers": 27156,
-          "following": 11019,
-          "status": "",
-          "canDm": true,
-          "canMediaTag": false,
-          "createdAt": "Fri Aug 21 22:23:19 +0000 2009",
-          "entities": {
-            "description": {
-              "urls": []
-            },
-            "url": {}
-          },
-          "fastFollowersCount": 0,
-          "favouritesCount": 276565,
-          "hasCustomTimelines": true,
-          "isTranslator": false,
-          "mediaCount": 18539,
-          "statusesCount": 83329,
-          "withheldInCountries": [],
-          "affiliatesHighlightedLabel": {},
-          "possiblySensitive": false,
-          "pinnedTweetIds": [],
-          "profile_bio": {
-            "description": "Irreverent, irrelevant, irritable at times, lovable most of the time. Read at your own risk! https://t.co/T3CV1wdX3X",
-            "entities": {
-              "description": {
-                "urls": [
-                  {
-                    "display_url": "ngl.link/@davaomigrant",
-                    "expanded_url": "http://ngl.link/@davaomigrant",
-                    "indices": [
-                      93,
-                      116
-                    ],
-                    "url": "https://t.co/T3CV1wdX3X"
-                  }
-                ]
-              }
-            }
-          },
-          "isAutomated": false,
-          "automatedBy": null
-        },
-        "extendedEntities": {
-          "media": [
-            {
-              "allow_download_status": {
-                "allow_download": true
-              },
-              "display_url": "pic.x.com/hgRsldgzxp",
-              "expanded_url": "https://x.com/nabunturanguy/status/2002111900294000691/photo/1",
-              "ext_media_availability": {
-                "status": "Available"
-              },
-              "features": {
-                "large": {
-                  "faces": [
-                    {
-                      "h": 187,
-                      "w": 187,
-                      "x": 853,
-                      "y": 110
-                    },
-                    {
-                      "h": 251,
-                      "w": 251,
-                      "x": 142,
-                      "y": 62
-                    }
-                  ]
-                },
-                "medium": {
-                  "faces": [
-                    {
-                      "h": 164,
-                      "w": 164,
-                      "x": 750,
-                      "y": 96
-                    },
-                    {
-                      "h": 220,
-                      "w": 220,
-                      "x": 124,
-                      "y": 54
-                    }
-                  ]
-                },
-                "orig": {
-                  "faces": [
-                    {
-                      "h": 187,
-                      "w": 187,
-                      "x": 853,
-                      "y": 110
-                    },
-                    {
-                      "h": 251,
-                      "w": 251,
-                      "x": 142,
-                      "y": 62
-                    }
-                  ]
-                },
-                "small": {
-                  "faces": [
-                    {
-                      "h": 93,
-                      "w": 93,
-                      "x": 425,
-                      "y": 54
-                    },
-                    {
-                      "h": 125,
-                      "w": 125,
-                      "x": 70,
-                      "y": 30
-                    }
-                  ]
-                }
-              },
-              "id_str": "2002111893373378560",
-              "indices": [
-                49,
-                72
-              ],
-              "media_key": "3_2002111893373378560",
-              "media_results": {
-                "result": {
-                  "media_key": "3_2002111893373378560"
-                }
-              },
-              "media_url_https": "https://pbs.twimg.com/media/G8juKM0a4AAm2Pn.jpg",
-              "original_info": {
-                "focus_rects": [
-                  {
-                    "h": 611,
-                    "w": 1091,
-                    "x": 0,
-                    "y": 683
-                  },
-                  {
-                    "h": 1091,
-                    "w": 1091,
-                    "x": 0,
-                    "y": 273
-                  },
-                  {
-                    "h": 1244,
-                    "w": 1091,
-                    "x": 0,
-                    "y": 120
-                  },
-                  {
-                    "h": 1364,
-                    "w": 682,
-                    "x": 409,
-                    "y": 0
-                  },
-                  {
-                    "h": 1364,
-                    "w": 1091,
-                    "x": 0,
-                    "y": 0
-                  }
-                ],
-                "height": 1364,
-                "width": 1091
-              },
-              "sizes": {
-                "large": {
-                  "h": 1364,
-                  "resize": "fit",
-                  "w": 1091
-                },
-                "medium": {
-                  "h": 1200,
-                  "resize": "fit",
-                  "w": 960
-                },
-                "small": {
-                  "h": 680,
-                  "resize": "fit",
-                  "w": 544
-                },
-                "thumb": {
-                  "h": 150,
-                  "resize": "crop",
-                  "w": 150
-                }
-              },
-              "type": "photo",
-              "url": "https://t.co/hgRsldgzxp"
-            }
-          ]
-        },
-        "card": null,
-        "place": {},
-        "entities": {
-          "media": [
-            {
-              "allow_download_status": {
-                "allow_download": true
-              },
-              "display_url": "pic.x.com/hgRsldgzxp",
-              "expanded_url": "https://x.com/nabunturanguy/status/2002111900294000691/photo/1",
-              "ext_media_availability": {
-                "status": "Available"
-              },
-              "features": {
-                "large": {
-                  "faces": [
-                    {
-                      "h": 187,
-                      "w": 187,
-                      "x": 853,
-                      "y": 110
-                    },
-                    {
-                      "h": 251,
-                      "w": 251,
-                      "x": 142,
-                      "y": 62
-                    }
-                  ]
-                },
-                "medium": {
-                  "faces": [
-                    {
-                      "h": 164,
-                      "w": 164,
-                      "x": 750,
-                      "y": 96
-                    },
-                    {
-                      "h": 220,
-                      "w": 220,
-                      "x": 124,
-                      "y": 54
-                    }
-                  ]
-                },
-                "orig": {
-                  "faces": [
-                    {
-                      "h": 187,
-                      "w": 187,
-                      "x": 853,
-                      "y": 110
-                    },
-                    {
-                      "h": 251,
-                      "w": 251,
-                      "x": 142,
-                      "y": 62
-                    }
-                  ]
-                },
-                "small": {
-                  "faces": [
-                    {
-                      "h": 93,
-                      "w": 93,
-                      "x": 425,
-                      "y": 54
-                    },
-                    {
-                      "h": 125,
-                      "w": 125,
-                      "x": 70,
-                      "y": 30
-                    }
-                  ]
-                }
-              },
-              "id_str": "2002111893373378560",
-              "indices": [
-                49,
-                72
-              ],
-              "media_key": "3_2002111893373378560",
-              "media_results": {
-                "result": {
-                  "media_key": "3_2002111893373378560"
-                }
-              },
-              "media_url_https": "https://pbs.twimg.com/media/G8juKM0a4AAm2Pn.jpg",
-              "original_info": {
-                "focus_rects": [
-                  {
-                    "h": 611,
-                    "w": 1091,
-                    "x": 0,
-                    "y": 683
-                  },
-                  {
-                    "h": 1091,
-                    "w": 1091,
-                    "x": 0,
-                    "y": 273
-                  },
-                  {
-                    "h": 1244,
-                    "w": 1091,
-                    "x": 0,
-                    "y": 120
-                  },
-                  {
-                    "h": 1364,
-                    "w": 682,
-                    "x": 409,
-                    "y": 0
-                  },
-                  {
-                    "h": 1364,
-                    "w": 1091,
-                    "x": 0,
-                    "y": 0
-                  }
-                ],
-                "height": 1364,
-                "width": 1091
-              },
-              "sizes": {
-                "large": {
-                  "h": 1364,
-                  "resize": "fit",
-                  "w": 1091
-                },
-                "medium": {
-                  "h": 1200,
-                  "resize": "fit",
-                  "w": 960
-                },
-                "small": {
-                  "h": 680,
-                  "resize": "fit",
-                  "w": 544
-                },
-                "thumb": {
-                  "h": 150,
-                  "resize": "crop",
-                  "w": 150
-                }
-              },
-              "type": "photo",
-              "url": "https://t.co/hgRsldgzxp"
-            }
-          ]
-        },
-        "quoted_tweet": null,
-        "retweeted_tweet": null,
-        "article": null
-      },
-      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     }
   ]

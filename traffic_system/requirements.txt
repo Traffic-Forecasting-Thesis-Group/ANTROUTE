@@ -1,7 +1,39 @@
-torch
-transformers
-sentencepiece
-requests
-python-dotenv
-sacremoses
+# ANTROUTE Traffic System Dependencies
+# Generated for reproducibility in local and Colab environments
+
+# --- Data Engineering & Core ---
+numpy==2.1.0
+pandas==2.2.2
+h5py==3.16.0
+python-dotenv==1.0.0
+requests==2.32.3
+pytz==2024.1
+
+# -- Preprocessing
 langdetect
+
+# --- Machine Learning / Deep Learning Framework ---
+# Note: In Colab, PyTorch is often pre-installed, but pinned here for strict reproducibility.
+torch==2.14.0
+torchvision==0.20.0
+
+# --- Natural Language Processing (NLP) ---
+transformers==5.7.0
+sentencepiece==0.2.1
+sacremoses==0.2.0
+
+# --- Computer Vision ---
+opencv-python==5.0.0.93
+ffmpeg-python==0.2.0
+
+# --- Graph Learning & Routing ---
+networkx==3.6.1
+
+# --- Evaluation, Metrics & Experiments ---
+scikit-learn==1.7.1
+matplotlib==3.9.2
+tqdm==4.67.3
+
+# --- Testing & Notebooks ---
+pytest==7.4.0
+ipykernel==6.29.5

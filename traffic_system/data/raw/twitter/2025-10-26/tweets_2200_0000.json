@@ -5,7 +5,7 @@
     "window_start": "2025-10-26T22:00:00+08:00",
     "window_end": "2025-10-27T00:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 4,
+    "tweet_count": 6,
     "slices": [
       {
         "start": "2025-10-26T22:00:00+08:00",
@@ -60,8 +60,8 @@
         "start": "2025-10-26T22:35:00+08:00",
         "end": "2025-10-26T22:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-26T22:40:00+08:00",
@@ -88,8 +88,8 @@
         "start": "2025-10-26T22:55:00+08:00",
         "end": "2025-10-26T23:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-26T23:00:00+08:00",
@@ -116,15 +116,15 @@
         "start": "2025-10-26T23:15:00+08:00",
         "end": "2025-10-26T23:20:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-26T23:20:00+08:00",
         "end": "2025-10-26T23:25:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 0,
+        "accepted": 0
       },
       {
         "start": "2025-10-26T23:25:00+08:00",
@@ -229,11 +229,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 50686,
+        "favouritesCount": 50774,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 6265,
-        "statusesCount": 63891,
+        "mediaCount": 6283,
+        "statusesCount": 64036,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -260,9 +260,11 @@
             },
             "display_url": "pic.x.com/yM6FDGieja",
             "expanded_url": "https://x.com/DaraWoman/status/1982449501362343981/video/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "id_str": "1982449127112708096",
             "indices": [
               127,
@@ -270,7 +272,10 @@
             ],
             "media_key": "13_1982449127112708096",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARuDEvpG1hAAAAA=",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG4MS+kbWEAAAAA==",
                 "media_key": "13_1982449127112708096"
               }
             },
@@ -283,23 +288,7 @@
             "sizes": {
               "large": {
                 "h": 1280,
-                "resize": "fit",
                 "w": 720
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 675
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 383
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "video",
@@ -337,94 +326,11 @@
       },
       "card": null,
       "place": {},
-      "entities": {
-        "media": [
-          {
-            "additional_media_info": {
-              "monetizable": false
-            },
-            "allow_download_status": {
-              "allow_download": true
-            },
-            "display_url": "pic.x.com/yM6FDGieja",
-            "expanded_url": "https://x.com/DaraWoman/status/1982449501362343981/video/1",
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "id_str": "1982449127112708096",
-            "indices": [
-              127,
-              150
-            ],
-            "media_key": "13_1982449127112708096",
-            "media_results": {
-              "result": {
-                "media_key": "13_1982449127112708096"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1982449127112708096/img/wfGGszBWsiVQKcSp.jpg",
-            "original_info": {
-              "focus_rects": [],
-              "height": 1280,
-              "width": 720
-            },
-            "sizes": {
-              "large": {
-                "h": 1280,
-                "resize": "fit",
-                "w": 720
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 675
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 383
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
-              }
-            },
-            "type": "video",
-            "url": "https://t.co/yM6FDGieja",
-            "video_info": {
-              "aspect_ratio": [
-                9,
-                16
-              ],
-              "duration_millis": 9611,
-              "variants": [
-                {
-                  "content_type": "application/x-mpegURL",
-                  "url": "https://video.twimg.com/amplify_video/1982449127112708096/pl/FyHiEAS1cMqLDuFR.m3u8?tag=14"
-                },
-                {
-                  "bitrate": 632000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/1982449127112708096/vid/avc1/320x568/-MtFwcd81bv6erdE.mp4?tag=14"
-                },
-                {
-                  "bitrate": 950000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/1982449127112708096/vid/avc1/480x852/Zj1JZLE0pYWHkKOA.mp4?tag=14"
-                },
-                {
-                  "bitrate": 2176000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/amplify_video/1982449127112708096/vid/avc1/720x1280/v3tM8qxvOjVAfkpT.mp4?tag=14"
-                }
-              ]
-            }
-          }
-        ]
-      },
+      "entities": {},
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -436,7 +342,7 @@
       "source": "Twitter for iPhone",
       "retweetCount": 28,
       "replyCount": 6,
-      "likeCount": 102,
+      "likeCount": 101,
       "quoteCount": 0,
       "viewCount": 29333,
       "createdAt": "Sun Oct 26 14:18:17 +0000 2025",
@@ -465,7 +371,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/4970411/1784717780",
         "description": "",
         "location": "Doha, Qatar",
-        "followers": 10042128,
+        "followers": 10052256,
         "following": 258,
         "status": "",
         "canDm": false,
@@ -478,16 +384,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 32995,
+        "favouritesCount": 33654,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 192899,
-        "statusesCount": 451570,
+        "mediaCount": 193907,
+        "statusesCount": 453396,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2096442629433315747"
+          "2099927515594641596"
         ],
         "profile_bio": {
           "description": "Your story. Your platform. For breaking news alerts, follow @AJENews. Join us on Telegram for real-time updates: https://t.co/xl7ggSArvE",
@@ -917,48 +823,48 @@
     },
     {
       "type": "tweet",
-      "id": "1982468233514147844",
-      "url": "https://x.com/MMDA/status/1982468233514147844",
-      "twitterUrl": "https://twitter.com/MMDA/status/1982468233514147844",
-      "text": "MMDA ALERT: Road crash incident at Roxas Blvd. after HK plaza SB involving 2 motorcycles as of 11:03 PM. One lane occupied. MMDA enforcers are on site managing traffic. #mmda",
+      "id": "1982456935937904745",
+      "url": "https://x.com/MrMinNin/status/1982456935937904745",
+      "twitterUrl": "https://twitter.com/MrMinNin/status/1982456935937904745",
+      "text": "🔥 @EdgenTech reveals: 5 things few people notice about $KAIA – the hidden gem of Kaia Chain! 💎\n1️⃣ Current Price Snapshot:\n💰 Around $0.108 (market cap ≈ $650M) — down ~63% from its ATH of $0.41 but slowly recovering 📈\n👉 With ~5.8B KAIA circulating, there’s still plenty of room for long-term growth.\n2️⃣ More than just a token – it’s a full Layer 1 network! ⚙️\n🚀 Kaia is an EVM-compatible blockchain built for Asia 🌏\n⚡ Fast transactions, near-instant finality.\n🪙 $KAIA powers the ecosystem — used for gas, staking, and smart contracts.\n3️⃣ Ecosystem expansion flying under the radar 🌐\n🤝 Binance recently enabled USDT support on Kaia, boosting liquidity!\n💡 Plans to launch a KRW-linked stablecoin for real-world payments in Korea, Thailand, and the Philippines.\n🧩 Focused on real adoption over hype — something many overlook.\n4️⃣ Opportunities & Risks in balance ⚖️\n✅ Opportunities:\n•     Solid tokenomics (most supply already circulating).\n•     If adoption and dApps rise, KAIA could rally hard 💥\n⚠️ Risks:\n•     Trading volume still modest 📉\n•     Needs more real users — not just good headlines.\n5️⃣ Small but powerful details 👀\n📲 Kaia is targeting Asian messenger integrations, a real use-case edge.\n🔄 Liquidity improving thanks to stablecoin support.\n🧠 Community remains small but strong — perfect for patient investors spotting early potential.\n💬 Final Take:\n$KAIA isn’t mooning yet — it’s charging quietly. ⚡\nIf you like to spot long-term gems early, Kaia deserves a close watch 💎\nBut if you’re chasing “instant pumps”... this might not be your play 😉\n(Not financial advice. Always DYOR before investing.)\n📊 #CryptoInsights #KaiaChain #Layer1 #Web3Asia #EdgenTech",
       "source": "Twitter for iPhone",
       "retweetCount": 0,
       "replyCount": 0,
-      "likeCount": 0,
+      "likeCount": 1,
       "quoteCount": 0,
-      "viewCount": 2692,
-      "createdAt": "Sun Oct 26 15:23:54 +0000 2025",
+      "viewCount": 86,
+      "createdAt": "Sun Oct 26 14:39:00 +0000 2025",
       "lang": "en",
       "bookmarkCount": 0,
       "isReply": false,
       "inReplyToId": null,
-      "conversationId": "1982468233514147844",
+      "conversationId": "1982456935937904745",
       "displayTextRange": [
         0,
-        174
+        272
       ],
       "inReplyToUserId": null,
       "inReplyToUsername": null,
       "author": {
         "type": "user",
-        "userName": "MMDA",
-        "url": "https://x.com/MMDA",
-        "twitterUrl": "https://twitter.com/MMDA",
-        "id": "171574926",
-        "name": "Official MMDA",
+        "userName": "MrMinNin",
+        "url": "https://x.com/MrMinNin",
+        "twitterUrl": "https://twitter.com/MrMinNin",
+        "id": "1226897026530476032",
+        "name": "MiNaNin",
         "isVerified": false,
-        "isBlueVerified": true,
-        "verifiedType": "Government",
-        "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2040071109895397376/E-KTXGe2_normal.jpg",
+        "coverPicture": "",
         "description": "",
-        "location": "Metro Manila",
-        "followers": 3967157,
-        "following": 125,
+        "location": "",
+        "followers": 3484,
+        "following": 259,
         "status": "",
-        "canDm": true,
+        "canDm": false,
         "canMediaTag": true,
-        "createdAt": "Tue Jul 27 17:31:12 +0000 2010",
+        "createdAt": "Mon Feb 10 15:53:48 +0000 2020",
         "entities": {
           "description": {
             "urls": []
@@ -966,29 +872,265 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 5284,
+        "favouritesCount": 457,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61677,
-        "statusesCount": 888217,
+        "mediaCount": 2517,
+        "statusesCount": 3513,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [],
         "profile_bio": {
-          "description": "Official X Account of the Metropolitan Manila Development Authority | Hotline 136 | digitalmedia@mmda.gov.ph | VIBER 0956-6632-221",
+          "description": "Building in public ⚡ | Tech, AI & Crypto Sharing lessons learned the hard way.",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/JKXyjgm7KN",
+            "expanded_url": "https://x.com/MrMinNin/status/1982456935937904745/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1982412213563338752",
+            "indices": [
+              273,
+              296
+            ],
+            "media_key": "3_1982412213563338752",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARuC8Wer1rAACgACG4MaFGkWkGkAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG4LxZ6vWsAAKAAIbgxoUaRaQaQAA",
+                "media_key": "3_1982412213563338752"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G4LxZ6vWsAAvWsE.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 860,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 146
+                },
+                {
+                  "h": 1024,
+                  "w": 1024,
+                  "x": 294,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 898,
+                  "x": 357,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 512,
+                  "x": 550,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1024,
+              "width": 1536
+            },
+            "sizes": {
+              "large": {
+                "h": 1024,
+                "w": 1536
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/JKXyjgm7KN"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              1615,
+              1630
+            ],
+            "text": "CryptoInsights"
+          },
+          {
+            "indices": [
+              1631,
+              1641
+            ],
+            "text": "KaiaChain"
+          },
+          {
+            "indices": [
+              1642,
+              1649
+            ],
+            "text": "Layer1"
+          },
+          {
+            "indices": [
+              1650,
+              1659
+            ],
+            "text": "Web3Asia"
+          },
+          {
+            "indices": [
+              1660,
+              1670
+            ],
+            "text": "EdgenTech"
+          }
+        ],
+        "symbols": [
+          {
+            "indices": [
+              55,
+              60
+            ],
+            "text": "KAIA"
+          },
+          {
+            "indices": [
+              463,
+              468
+            ],
+            "text": "KAIA"
+          },
+          {
+            "indices": [
+              1365,
+              1370
+            ],
+            "text": "KAIA"
+          }
+        ],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "2050523326355804160",
+            "indices": [
+              2,
+              12
+            ],
+            "name": "Edgen Tech",
+            "screen_name": "EdgenTech"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1982461671106039832",
+      "url": "https://x.com/TravelsCharlie/status/1982461671106039832",
+      "twitterUrl": "https://twitter.com/TravelsCharlie/status/1982461671106039832",
+      "text": "https://t.co/AgbTFMlVCH",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 16,
+      "quoteCount": 1,
+      "viewCount": 81936,
+      "createdAt": "Sun Oct 26 14:57:49 +0000 2025",
+      "lang": "zxx",
+      "bookmarkCount": 2,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1982461671106039832",
+      "displayTextRange": [
+        0,
+        23
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "TravelsCharlie",
+        "url": "https://x.com/TravelsCharlie",
+        "twitterUrl": "https://twitter.com/TravelsCharlie",
+        "id": "1373516137946738689",
+        "name": "Charlie Hub",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2054909663586680832/nUXx7UmP_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1373516137946738689/1784802470",
+        "description": "",
+        "location": "New York City, Thailand",
+        "followers": 3559,
+        "following": 1104,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sun Mar 21 06:06:12 +0000 2021",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2340,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 3383,
+        "statusesCount": 15419,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2089277183558848515"
+        ],
+        "profile_bio": {
+          "description": "Writer",
           "entities": {
             "description": {},
             "url": {
               "urls": [
                 {
-                  "display_url": "mmda.gov.ph",
-                  "expanded_url": "http://mmda.gov.ph",
+                  "display_url": "youtube.com/c/CharlieHubba…",
+                  "expanded_url": "https://www.youtube.com/c/CharlieHubbard1/videos",
                   "indices": [
                     0,
                     23
                   ],
-                  "url": "https://t.co/BHm5ofschj"
+                  "url": "https://t.co/HjhxUIWQrg"
                 }
               ]
             }
@@ -1001,13 +1143,310 @@
       "card": null,
       "place": {},
       "entities": {
-        "hashtags": [
+        "urls": [
           {
+            "display_url": "x.com/i/article/1982…",
+            "expanded_url": "http://x.com/i/article/1982459527137255424",
             "indices": [
-              169,
-              174
+              0,
+              23
             ],
-            "text": "mmda"
+            "url": "https://t.co/AgbTFMlVCH"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": {
+        "title": "Trump Dances Into Asia",
+        "preview_text": "As US President Trump stepped onto a red carpet at Kuala Lumpur International Airport from Air Force One, a dance company dressed in traditional Malaysian costumes was dancing to festive music as part",
+        "cover_media_img_url": "https://pbs.twimg.com/media/G4McuD7WQAAFtKs.jpg"
+      }
+    },
+    {
+      "type": "tweet",
+      "id": "1982467201018822700",
+      "url": "https://x.com/TimesNow/status/1982467201018822700",
+      "twitterUrl": "https://twitter.com/TimesNow/status/1982467201018822700",
+      "text": "Delhi Traffic Advisory for Chhath Puja 2025: Key Roads Closed for 2 Days; Check Diversions and Details\nhttps://t.co/kadRyjXqQ1",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 2118,
+      "createdAt": "Sun Oct 26 15:19:47 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1982467201018822700",
+      "displayTextRange": [
+        0,
+        126
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "TimesNow",
+        "url": "https://x.com/TimesNow",
+        "twitterUrl": "https://twitter.com/TimesNow",
+        "id": "240649814",
+        "name": "TIMES NOW",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Business",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1354074536925388802/qkHhpnVw_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/240649814/1778458107",
+        "description": "",
+        "location": "India",
+        "followers": 9827975,
+        "following": 367,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Thu Jan 20 12:17:23 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 857246,
+        "statusesCount": 1426175,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099884463756898491"
+        ],
+        "profile_bio": {
+          "description": "Breaking news. Bold debates. Unmatched speed. | #TimesNow",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    48,
+                    57
+                  ],
+                  "text": "TimesNow"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "timesnownews.com",
+                  "expanded_url": "http://www.timesnownews.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/3psyNdgjAt"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Delhi Traffic Police issued an advisory warning of congestion near Chhath Puja sites on October 27–28, 2025. Commuters advised to use public transport, avoid key routes, and plan travel in advance.,..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.timesnownews.com"
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "240649814",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "timesnownews.com"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Delhi Traffic Advisory for Chhath Puja 2025: Key Roads Closed for 2 Days; Check Diversions and..."
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/kadRyjXqQ1"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/kadRyjXqQ1",
+        "user_refs_results": [
+          {
+            "rest_id": "240649814",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 5
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1354074536925388802/qkHhpnVw_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/240649814/1778458107"
+              },
+              "core": {
+                "created_at": "Thu Jan 20 12:17:23 +0000 2011",
+                "name": "TIMES NOW",
+                "screen_name": "TimesNow"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "India"
+              },
+              "media_permissions": {
+                "can_media_tag": false
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099884463756898491"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Breaking news. Bold debates. Unmatched speed. | #TimesNow",
+                "entities": {
+                  "description": {
+                    "hashtags": [
+                      {
+                        "indices": [
+                          48,
+                          57
+                        ],
+                        "text": "TimesNow"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "timesnownews.com",
+                        "expanded_url": "http://www.timesnownews.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/3psyNdgjAt"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Square",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "1B95E0"
+              },
+              "profile_translation": {
+                "translator_type_enum": "Regular"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 9827975,
+                "following": 367
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "240649814",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 857246,
+                "tweets": 1426175
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false,
+                "verified_type": "Business"
+              },
+              "website": {
+                "url": "https://t.co/3psyNdgjAt"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "timesnownews.com/delhi/delhi-tr…",
+            "expanded_url": "https://www.timesnownews.com/delhi/delhi-traffic-advisory-for-chhath-puja-2025-road-closures-diversions-announced-for-october-27-28-check-full-list-article-153055544",
+            "indices": [
+              103,
+              126
+            ],
+            "url": "https://t.co/kadRyjXqQ1"
           }
         ]
       },
@@ -1024,9 +1463,9 @@
       "twitterUrl": "https://twitter.com/esbinsights/status/1982475500112302576",
       "text": "Kapag si Pablo ang nagtawag ng rally, baka mas dumugin ang EDSA. https://t.co/S5RznutNHO",
       "source": "Twitter for iPhone",
-      "retweetCount": 174,
+      "retweetCount": 172,
       "replyCount": 5,
-      "likeCount": 509,
+      "likeCount": 506,
       "quoteCount": 6,
       "viewCount": 5299,
       "createdAt": "Sun Oct 26 15:52:46 +0000 2025",
@@ -1055,8 +1494,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1911030935870713856/1776669187",
         "description": "",
         "location": "",
-        "followers": 680,
-        "following": 1084,
+        "followers": 675,
+        "following": 1080,
         "status": "",
         "canDm": false,
         "canMediaTag": true,
@@ -1068,11 +1507,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 51817,
+        "favouritesCount": 52341,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 838,
-        "statusesCount": 16925,
+        "mediaCount": 839,
+        "statusesCount": 17197,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,

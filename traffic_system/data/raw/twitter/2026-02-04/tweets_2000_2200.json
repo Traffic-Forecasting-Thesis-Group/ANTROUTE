@@ -5,7 +5,7 @@
     "window_start": "2026-02-04T20:00:00+08:00",
     "window_end": "2026-02-04T22:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 9,
+    "tweet_count": 18,
     "slices": [
       {
         "start": "2026-02-04T20:00:00+08:00",
@@ -53,8 +53,8 @@
         "start": "2026-02-04T20:30:00+08:00",
         "end": "2026-02-04T20:35:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-04T20:35:00+08:00",
@@ -67,8 +67,8 @@
         "start": "2026-02-04T20:40:00+08:00",
         "end": "2026-02-04T20:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-02-04T20:45:00+08:00",
@@ -95,15 +95,15 @@
         "start": "2026-02-04T21:00:00+08:00",
         "end": "2026-02-04T21:05:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-02-04T21:05:00+08:00",
         "end": "2026-02-04T21:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-04T21:10:00+08:00",
@@ -123,8 +123,8 @@
         "start": "2026-02-04T21:20:00+08:00",
         "end": "2026-02-04T21:25:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-04T21:25:00+08:00",
@@ -137,8 +137,8 @@
         "start": "2026-02-04T21:30:00+08:00",
         "end": "2026-02-04T21:35:00+08:00",
         "status_code": 200,
-        "returned": 2,
-        "accepted": 2
+        "returned": 3,
+        "accepted": 3
       },
       {
         "start": "2026-02-04T21:35:00+08:00",
@@ -158,8 +158,8 @@
         "start": "2026-02-04T21:45:00+08:00",
         "end": "2026-02-04T21:50:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-02-04T21:50:00+08:00",
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197293,
+        "followers": 1197834,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -232,8 +232,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219315,
-        "statusesCount": 942027,
+        "mediaCount": 219499,
+        "statusesCount": 943020,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -243,7 +243,17 @@
         "profile_bio": {
           "description": "Breaking news and stories from different sides. RTs from our journalists. Unparalleled journalism in the Philippines since 1900. #BeFullyInformed",
           "entities": {
-            "description": {},
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    129,
+                    145
+                  ],
+                  "text": "BeFullyInformed"
+                }
+              ]
+            },
             "url": {
               "urls": [
                 {
@@ -267,9 +277,11 @@
           {
             "display_url": "pic.x.com/9cCYPm7akS",
             "expanded_url": "https://x.com/manilabulletin/status/2019018108162244627/photo/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": [
@@ -278,16 +290,6 @@
                     "w": 96,
                     "x": 142,
                     "y": 922
-                  }
-                ]
-              },
-              "medium": {
-                "faces": [
-                  {
-                    "h": 89,
-                    "w": 89,
-                    "x": 133,
-                    "y": 864
                   }
                 ]
               },
@@ -300,16 +302,6 @@
                     "y": 922
                   }
                 ]
-              },
-              "small": {
-                "faces": [
-                  {
-                    "h": 50,
-                    "w": 50,
-                    "x": 75,
-                    "y": 489
-                  }
-                ]
               }
             },
             "id_str": "2018975375242715136",
@@ -319,7 +311,10 @@
             ],
             "media_key": "3_2018975375242715136",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwE12gjmmAACgACHAT+RawXgBMAAA==",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHATXaCOaYAAKAAIcBP5FrBeAEwAA",
                 "media_key": "3_2018975375242715136"
               }
             },
@@ -363,23 +358,7 @@
             "sizes": {
               "large": {
                 "h": 1280,
-                "resize": "fit",
                 "w": 1023
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 959
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 543
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "photo",
@@ -415,6 +394,8 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -455,7 +436,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437256,
+        "followers": 1437179,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -471,8 +452,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412002,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -515,6 +496,8 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -550,12 +533,12 @@
         "name": "Official MMDA",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": null,
+        "verifiedType": "Government",
         "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967082,
+        "followers": 3966602,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -571,8 +554,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888278,
+        "mediaCount": 61733,
+        "statusesCount": 888707,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -615,6 +598,206 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2019025646534656155",
+      "url": "https://x.com/AJEnglish/status/2019025646534656155",
+      "twitterUrl": "https://twitter.com/AJEnglish/status/2019025646534656155",
+      "text": "A massive fire swept through a village in Bongao, southern Philippines, displacing at least 5,000 people. The blaze broke out on Tuesday and raged for nearly four hours, destroying some 1,000 homes, according to state news agency PNA. https://t.co/aPcNazXPuw",
+      "source": "Twitter for iPhone",
+      "retweetCount": 76,
+      "replyCount": 3,
+      "likeCount": 113,
+      "quoteCount": 2,
+      "viewCount": 15500,
+      "createdAt": "Wed Feb 04 12:30:00 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 6,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2019025646534656155",
+      "displayTextRange": [
+        0,
+        234
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "AJEnglish",
+        "url": "https://x.com/AJEnglish",
+        "twitterUrl": "https://twitter.com/AJEnglish",
+        "id": "4970411",
+        "name": "Al Jazeera English",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Business",
+        "profilePicture": "https://pbs.twimg.com/profile_images/2043726724177776642/dkMa8Y0U_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/4970411/1784717780",
+        "description": "",
+        "location": "Doha, Qatar",
+        "followers": 10052599,
+        "following": 258,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Apr 17 08:23:08 +0000 2007",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 33693,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 193965,
+        "statusesCount": 453507,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2100016415084368273"
+        ],
+        "profile_bio": {
+          "description": "Your story. Your platform. For breaking news alerts, follow @AJENews. Join us on Telegram for real-time updates: https://t.co/xl7ggSArvE",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "t.me/AJENews_Offici…",
+                  "expanded_url": "https://t.me/AJENews_Official",
+                  "indices": [
+                    113,
+                    136
+                  ],
+                  "url": "https://t.co/xl7ggSArvE"
+                }
+              ],
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    60,
+                    68
+                  ],
+                  "name": "",
+                  "screen_name": "AJENews"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "aljazeera.com/live",
+                  "expanded_url": "http://aljazeera.com/live",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/rGl3DGqvLr"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "description": "More on Aljazeera.com",
+              "monetizable": false,
+              "title": "Video: Thousands displaced as fire razes homes in Philippines"
+            },
+            "allow_download_status": {
+              "allow_download": false
+            },
+            "display_url": "pic.x.com/aPcNazXPuw",
+            "expanded_url": "https://x.com/AJEnglish/status/2019025646534656155/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "2019014129185353728",
+            "indices": [
+              235,
+              258
+            ],
+            "media_key": "13_2019014129185353728",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARwE+qc+lnAAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABHAT6pz6WcAAAAA==",
+                "media_key": "13_2019014129185353728"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2019014129185353728/img/0MnagiWja51Jd0wz.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1920,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1920,
+                "w": 1080
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/aPcNazXPuw",
+            "video_info": {
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration_millis": 66858,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/2019014129185353728/pl/zjV6VLBSjYXWQPHs.m3u8?tag=21&v=cfc"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2019014129185353728/vid/avc1/320x568/XbD-B9wNozYpwA4P.mp4?tag=21"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2019014129185353728/vid/avc1/480x852/nONZUFzKkGP5VtXQ.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2019014129185353728/vid/avc1/720x1280/1JhQB3g97TiL7vth.mp4?tag=21"
+                },
+                {
+                  "bitrate": 10368000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2019014129185353728/vid/avc1/1080x1920/25WxcbO8_BemNpLr.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -655,7 +838,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437256,
+        "followers": 1437179,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -671,8 +854,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412002,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -715,6 +898,484 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2019028491153605072",
+      "url": "https://x.com/fdcpofficial/status/2019028491153605072",
+      "twitterUrl": "https://twitter.com/fdcpofficial/status/2019028491153605072",
+      "text": "YOU ASKED, WE DELIVER!\n\nFDCP Presents: A Curation of World Cinema Set A Lineup is extended starting TOMORROW!\n\nFeatured Films:\n• It Was Just An Accident (R13)\n• Sentimental Value (R13)\n• Resurrection (R16)\n• Sound of Falling (R18) — (screening in Robinsons Galleria, Gateway Cineplex, Power Plant Cinema, Shangri-La Red Carpet Cinemas, Ayala Malls Cinemas, and Cinema 76.)\n\nParticipating Cinemas:\nPower Plant – all films\nCinema 76 – Sentimental Value & Resurrection\nGateway Cineplex – all films\nRobinsons Galleria – Sentimental Value & Resurrection\nShangri-La Red Carpet Cinemas - all films\n\n🎟️Ticket Price: ₱250\n\nDon’t miss this chance to experience the world through cinema. See you there!\n\n#WorldCinema2026 #FDCPOfficial #StoriesInMotion #MovieOn",
+      "source": "Twitter for iPhone",
+      "retweetCount": 83,
+      "replyCount": 6,
+      "likeCount": 440,
+      "quoteCount": 63,
+      "viewCount": 61949,
+      "createdAt": "Wed Feb 04 12:41:18 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 58,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2019028491153605072",
+      "displayTextRange": [
+        0,
+        274
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "fdcpofficial",
+        "url": "https://x.com/fdcpofficial",
+        "twitterUrl": "https://twitter.com/fdcpofficial",
+        "id": "217345367",
+        "name": "Film Development Council of the Philippines",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2070050911909769216/fqU2swgy_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/217345367/1782373572",
+        "description": "",
+        "location": "Intramuros, Manila",
+        "followers": 8414,
+        "following": 223,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Fri Nov 19 07:57:31 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1636,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 3167,
+        "statusesCount": 5100,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2022924757944160281"
+        ],
+        "profile_bio": {
+          "description": "The official government council for the Philippine film industry. Promoting cinematic growth, culture, and education, and preserving our national film heritage.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "fdcp.ph",
+                  "expanded_url": "http://fdcp.ph",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/kaMZSjQZ5j"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/Mt9NAB8BiX",
+            "expanded_url": "https://x.com/fdcpofficial/status/2019028491153605072/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 216,
+                    "w": 216,
+                    "x": 789,
+                    "y": 711
+                  },
+                  {
+                    "h": 239,
+                    "w": 239,
+                    "x": 71,
+                    "y": 635
+                  },
+                  {
+                    "h": 384,
+                    "w": 384,
+                    "x": 449,
+                    "y": 552
+                  },
+                  {
+                    "h": 398,
+                    "w": 398,
+                    "x": 290,
+                    "y": 535
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 216,
+                    "w": 216,
+                    "x": 789,
+                    "y": 711
+                  },
+                  {
+                    "h": 239,
+                    "w": 239,
+                    "x": 71,
+                    "y": 635
+                  },
+                  {
+                    "h": 384,
+                    "w": 384,
+                    "x": 449,
+                    "y": 552
+                  },
+                  {
+                    "h": 398,
+                    "w": 398,
+                    "x": 290,
+                    "y": 535
+                  }
+                ]
+              }
+            },
+            "id_str": "2019028480059703296",
+            "indices": [
+              275,
+              298
+            ],
+            "media_key": "3_2019028480059703296",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwFB7SRWwAACgACHAUHtyaagdAAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHAUHtJFbAAAKAAIcBQe3JpqB0AAA",
+                "media_key": "3_2019028480059703296"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HAUHtJFbAAAmKcw.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 745
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 270
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 119
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 236,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/Mt9NAB8BiX"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              693,
+              709
+            ],
+            "text": "WorldCinema2026"
+          },
+          {
+            "indices": [
+              710,
+              723
+            ],
+            "text": "FDCPOfficial"
+          },
+          {
+            "indices": [
+              724,
+              740
+            ],
+            "text": "StoriesInMotion"
+          },
+          {
+            "indices": [
+              741,
+              749
+            ],
+            "text": "MovieOn"
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2019028470383407478",
+      "url": "https://x.com/imtheatan/status/2019028470383407478",
+      "twitterUrl": "https://twitter.com/imtheatan/status/2019028470383407478",
+      "text": "🚨 THE \"DE JESUS\" IMPEACHMENT COMPLAINT: ALLEGATIONS, COUNTERARGUMENTS, AND VOTES \n\nOn January 19, 2026, lawyer Andre de Jesus filed a 14-page impeachment complaint against the President, which was officially endorsed by Rep. Jernie Jett Nisay (Pusong Pinoy Party-list). \n\n=====================\n\nI. The complaint was built on six major grounds:\n\n1. The \"Kidnapping\" of Rodrigo Duterte: Alleging the President enabled the surrender of the former president to the International Criminal Court (ICC).\n\n2. Drug Addiction: Claiming Marcos is a drug addict, which supposedly impairs his leadership.\n\n3. Budget Failures: Failing to veto \"unconstitutional\" unprogrammed appropriations in the national budgets from 2023 to 2026.\n\n4. Corruption: Allegedly benefiting from kickbacks via ghost flood control projects.\n\n5. The ICI \"Shield\": Creating the Independent Commission for Infrastructure (ICI) to allegedly protect allies from corruption probes.\n\n6. Betrayal of Public Trust: Violating the Constitution by surrendering Duterte to foreign forces.\n\n=====================\n\nII. The Arguments: Accountability vs. Speculation\n\nAtty. De Jesus argued that while the President has dodged drug allegations, legal rules of evidence suggest that \"silence means consent\". \n\nHe claimed the ICI was \"weaponized\" to target political enemies while shielding the President’s allies. \n\nRep. Jett Nisay, the endorser, argued the process was necessary for the Filipino people to \"thresh out\" matters that have remained unanswered by Malacañang.\n\nHere is a detailed breakdown of what specific committee members said regarding the various grounds of the complaint:\n\n🔶 On Drug Addiction Allegations\nLawmakers largely dismissed the claim that President Marcos is a drug addict as speculative and legally weak.\n\nRep. Bernadette Barbers (Surigao del Norte): She noted that the claim relied entirely on a speech by Senator Imee Marcos and lacked \"authenticated records\" or any probative value, labeling it \"mere hearsay\".\n\nRep. Leila de Lima (Mamamayang Liberal): She argued that \"unfitness per se is not a ground for impeachment\" and noted the complaint failed to show how specific presidential acts were impaired by the alleged addiction. She further clarified that the President’s refusal to take a drug test is a \"conclusion and not a factual allegation\".\n\nRep. Brian Poe (FPJ Bayanihan): He pointed out that official records from 2021 and 2024 actually showed the President tested negative for cocaine.\n\n🔶On the Independent Commission for Infrastructure (ICI) \"Shield\"\n\nThe allegation that the ICI was created to protect the President's allies drew some of the strongest reactions.\n\nRep. Bienvenido Abante Jr. (Manila 6th District): He was visibly frustrated, calling the claim \"worthless\" and an insult to the skilled investigators on the commission. \n\nHe stated the allegation was \"embarrassing\" and suggested that if the complainant were president, perhaps he would use such a commission that way, but there was no evidence Marcos had done so.\n\nRep. Edgar Erice (Caloocan): While he agreed the ICI had \"failed\" due to member resignations, he argued that creating the body was a presidential prerogative and not an impeachable offense.\n\nRep. Gerville Luistro (Chairperson): She noted that while the ICI could have been given more investigative powers, like subpoena powers, its limitations did not constitute a ground for removal.\n\n🔶On the \"Kidnapping\" of Rodrigo Duterte\n\nLawmakers attacked the legal basis of the charge that the President \"kidnapped\" the former president by enabling his surrender to the International Criminal Court (ICC).\n\nRep. Joel Chua (Manila): He argued the charge was legally flawed because kidnapping must be committed by a \"private individual,\" not as a state act.\n\nRep. Terry Ridon (Bicol Saro): He observed that the complainant \"lacked personal knowledge\" and relied on news articles rather than certified documents.\n\nRep. Jan Padiernos (Galing sa Puso): He stated there must be a specific \"overt act attributable to the President\" to link him to the arrest, which the complaint failed to provide.\n\n🔶 On General Evidence and Substance\n\nRep. Mauricio Domogan (Baguio): He highlighted that the complaint relied on newspaper reports, which the Supreme Court has ruled cannot prove the truth of their contents and are generally considered hearsay.\n\nRep. Jernie Jett Nisay (Endorser): As the lone supporter of the complaint's substance, he argued the process was a necessary avenue for the Filipino people to \"thresh out\" matters that remained unanswered by the administration.\n\n=====================\n\nIII. The Final Vote and Conclusion\n\nThe House Committee on Justice, led by Chairperson Gerville Luistro, used a two-step process to decide the complaint's fate:\n\n1. Form: On February 2, the committee found the complaint sufficient in form (meaning it followed technical rules) with a vote of 46–1.\n\n2. Substance: On February 4, the committee voted on whether the charges had actual merit. The complaint was dismissed for being insufficient in substance.\n\n🔷 The Votes:\n-- 42 members voted to dismiss the complaint.\n-- 1 member (Nisay) voted to find it sufficient.\n-- 3 members (the Makabayan bloc) abstained from the vote.\n\n🔷 The Result: Because the complaint was junked by the committee, the 1987 Constitution prohibits any new impeachment proceedings from being initiated against President Marcos for one full year. \n\nCommittee Chair Luistro concluded that officials are not impeachable simply because a policy is criticized or based on \"suspicion alone\".\n\n🇵🇭",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 1,
+      "likeCount": 16,
+      "quoteCount": 0,
+      "viewCount": 492,
+      "createdAt": "Wed Feb 04 12:41:13 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2019028470383407478",
+      "displayTextRange": [
+        0,
+        269
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "imtheatan",
+        "url": "https://x.com/imtheatan",
+        "twitterUrl": "https://twitter.com/imtheatan",
+        "id": "1954558449565794305",
+        "name": "Thea Tan",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2096249271037415424/8aicYjco_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1954558449565794305/1758217446",
+        "description": "",
+        "location": "",
+        "followers": 4569,
+        "following": 600,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Sun Aug 10 15:01:07 +0000 2025",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 6490,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1841,
+        "statusesCount": 5643,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2023832250048286817"
+        ],
+        "profile_bio": {
+          "description": "🧬 Bio-Lab Founder | Former DSP Programmatic Ads Founder | UPD • ADMU • CAL 🇵🇭🇺🇸 This is my political account.",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/y0tdjqs7JJ",
+            "expanded_url": "https://x.com/imtheatan/status/2019028470383407478/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 129,
+                    "w": 129,
+                    "x": 568,
+                    "y": 588
+                  },
+                  {
+                    "h": 159,
+                    "w": 159,
+                    "x": 236,
+                    "y": 759
+                  },
+                  {
+                    "h": 307,
+                    "w": 307,
+                    "x": 335,
+                    "y": 127
+                  },
+                  {
+                    "h": 266,
+                    "w": 266,
+                    "x": 438,
+                    "y": 465
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 129,
+                    "w": 129,
+                    "x": 568,
+                    "y": 588
+                  },
+                  {
+                    "h": 159,
+                    "w": 159,
+                    "x": 236,
+                    "y": 759
+                  },
+                  {
+                    "h": 307,
+                    "w": 307,
+                    "x": 335,
+                    "y": 127
+                  },
+                  {
+                    "h": 266,
+                    "w": 266,
+                    "x": 438,
+                    "y": 465
+                  }
+                ]
+              }
+            },
+            "id_str": "2019019683249475584",
+            "indices": [
+              270,
+              293
+            ],
+            "media_key": "3_2019019683249475584",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwE/7Rmm1AACgACHAUHslCacXYAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHAT/tGabUAAKAAIcBQeyUJpxdgAA",
+                "media_key": "3_2019019683249475584"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HAT_tGabUAAu7lY.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1075,
+                  "w": 1920,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 660,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 947,
+                  "x": 727,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 540,
+                  "x": 930,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1920,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1080,
+              "width": 1920
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "w": 1920
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/y0tdjqs7JJ"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -755,7 +1416,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437256,
+        "followers": 1437179,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -771,8 +1432,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412002,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -815,6 +1476,184 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2019033272177582422",
+      "url": "https://x.com/KnoxKUB/status/2019033272177582422",
+      "twitterUrl": "https://twitter.com/KnoxKUB/status/2019033272177582422",
+      "text": "TRAFFIC ADVISORY (West Knox) - KUB crews will implement a temporary road closure on a short section of Woods-Smith Road between Solar Drive and McKamey Road daily from 8 a.m. – 3 p.m., February 4-5, as work is performed on the water and wastewater systems. Alternate routes include Woods-Smith Road, McKamey Road, and Cadbury Drive. Traffic control measures, including flaggers, barricades, and signage, will be in place to assist with maintaining traffic flow. Access to driveways and businesses will be maintained.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 345,
+      "createdAt": "Wed Feb 04 13:00:18 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2019033272177582422",
+      "displayTextRange": [
+        0,
+        273
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "KnoxKUB",
+        "url": "https://x.com/KnoxKUB",
+        "twitterUrl": "https://twitter.com/KnoxKUB",
+        "id": "370242993",
+        "name": "Knoxville Utilities Board",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1537504832470261760/ZwC4vEtm_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/370242993/1534852206",
+        "description": "",
+        "location": "Knoxville, Tennessee",
+        "followers": 5614,
+        "following": 776,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Sep 08 17:59:00 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2215,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 4194,
+        "statusesCount": 7418,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "We exist to serve the community we live in. We believe in clean water, reliable energy, and fiber internet for all. Report outages online or in our mobile app.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "kub.org",
+                  "expanded_url": "http://www.kub.org",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/4FHWVZ0lkW"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/WNRiSkqmZg",
+            "expanded_url": "https://x.com/KnoxKUB/status/2019033272177582422/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2019033249054367744",
+            "indices": [
+              274,
+              297
+            ],
+            "media_key": "3_2019033249054367744",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwFDArvlqAACgACHAUMEFHW4VYAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHAUMCu+WoAAKAAIcBQwQUdbhVgAA",
+                "media_key": "3_2019033249054367744"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HAUMCu-WoAAGIMZ.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 475
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 947,
+                  "x": 133,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 540,
+                  "x": 540,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1080,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/WNRiSkqmZg"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -855,7 +1694,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437256,
+        "followers": 1437179,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -871,8 +1710,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412002,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -915,6 +1754,464 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2019034453994070284",
+      "url": "https://x.com/furkanhabernet/status/2019034453994070284",
+      "twitterUrl": "https://twitter.com/furkanhabernet/status/2019034453994070284",
+      "text": "🔥Filipinler, Tawi-Tawi, Bongao'daki Barangay Lamion'da büyük bir yangın bir yerleşim bölgesini sardı \n\n📌 MDRRMO Bongao'ya göre tahminen 1.000 ev yıkıldı.\n\n#fire #Philippines \nhttps://t.co/9Cg4psap7J https://t.co/kuI2hLYkAp",
+      "source": "Twitter for iPhone",
+      "retweetCount": 5,
+      "replyCount": 0,
+      "likeCount": 18,
+      "quoteCount": 0,
+      "viewCount": 463,
+      "createdAt": "Wed Feb 04 13:05:00 +0000 2026",
+      "lang": "tr",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2019034453994070284",
+      "displayTextRange": [
+        0,
+        198
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "furkanhabernet",
+        "url": "https://x.com/furkanhabernet",
+        "twitterUrl": "https://twitter.com/furkanhabernet",
+        "id": "2901098985",
+        "name": "Furkan Haber",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1644346294331228168/I5KBIJ77_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2901098985/1734240589",
+        "description": "",
+        "location": "",
+        "followers": 61835,
+        "following": 0,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Mon Dec 01 19:51:44 +0000 2014",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 10,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 93117,
+        "statusesCount": 120077,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2091085670324322518"
+        ],
+        "profile_bio": {
+          "description": "Hak ile Batılı Ayırmak İçin...",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "furkanhaber.net",
+                  "expanded_url": "https://www.furkanhaber.net/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/GMOnfi4207"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "display_url": "pic.x.com/kuI2hLYkAp",
+            "expanded_url": "https://x.com/furkanhabernet/status/2019034453994070284/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "2019016773798928384",
+            "indices": [
+              199,
+              222
+            ],
+            "media_key": "13_2019016773798928384",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARwE/Q791yAAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABHAT9Dv3XIAAAAA==",
+                "media_key": "13_2019016773798928384"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2019016773798928384/img/62cWOQTkkFZWJLWa.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 854,
+              "width": 682
+            },
+            "sizes": {
+              "large": {
+                "h": 854,
+                "w": 682
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/kuI2hLYkAp",
+            "video_info": {
+              "aspect_ratio": [
+                341,
+                427
+              ],
+              "duration_millis": 56170,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/2019016773798928384/pl/V7bk_K7XRDdtJg1n.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2019016773798928384/vid/avc1/320x400/Ers-xo1th5IxeNTO.mp4?tag=21"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2019016773798928384/vid/avc1/480x600/9H-ZxMSzaMTaQhT4.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2019016773798928384/vid/avc1/682x854/ZrKpZYFdJzY84TSE.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              155,
+              160
+            ],
+            "text": "fire"
+          },
+          {
+            "indices": [
+              161,
+              173
+            ],
+            "text": "Philippines"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "furkanhaber.net",
+            "expanded_url": "http://furkanhaber.net",
+            "indices": [
+              175,
+              198
+            ],
+            "url": "https://t.co/9Cg4psap7J"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2019038248354398605",
+      "url": "https://x.com/anadoluagency/status/2019038248354398605",
+      "twitterUrl": "https://twitter.com/anadoluagency/status/2019038248354398605",
+      "text": "💢 Massive fire sweeps through islet in southern Philippines, destroying more than 1,000 small houses on Bongao Island in Tawi-Tawi\n\n🚨 About 5,000 people flee homes as fires spread across the Bangsamoro region within the last 24 hours https://t.co/9mkdzgfTy1 https://t.co/qGt36NDgW1",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 5,
+      "quoteCount": 0,
+      "viewCount": 718,
+      "createdAt": "Wed Feb 04 13:20:04 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2019038248354398605",
+      "displayTextRange": [
+        0,
+        257
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "anadoluagency",
+        "url": "https://x.com/anadoluagency",
+        "twitterUrl": "https://twitter.com/anadoluagency",
+        "id": "240265305",
+        "name": "Anadolu English",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Business",
+        "profilePicture": "https://pbs.twimg.com/profile_images/2082490084817772544/fafZJ4bW_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/240265305/1775422851",
+        "description": "",
+        "location": "Ankara - TÜRKİYE",
+        "followers": 316899,
+        "following": 21,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Wed Jan 19 14:45:49 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 304654,
+        "statusesCount": 420755,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {
+          "label": {
+            "badge": {
+              "url": "https://pbs.twimg.com/profile_images/2082451571762155520/P1cpbRr2_bigger.jpg"
+            },
+            "description": "Anadolu Ajansı",
+            "url": {
+              "url": "https://twitter.com/anadoluajansi",
+              "url_type": "DeepLink"
+            },
+            "user_label_display_type": "Badge",
+            "user_label_type": "BusinessLabel"
+          }
+        },
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "News from around the world, digital content, human interest stories Follow\n📸+ 🎥: @anadoluimages TR: @anadoluajansi AR: @aa_arabic https://t.co/K8RyCtAubO",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "t.me/anadoluagency_…",
+                  "expanded_url": "http://t.me/anadoluagency_en",
+                  "indices": [
+                    130,
+                    153
+                  ],
+                  "url": "https://t.co/K8RyCtAubO"
+                }
+              ],
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    81,
+                    95
+                  ],
+                  "name": "",
+                  "screen_name": "anadoluimages"
+                },
+                {
+                  "id_str": "",
+                  "indices": [
+                    100,
+                    114
+                  ],
+                  "name": "",
+                  "screen_name": "anadoluajansi"
+                },
+                {
+                  "id_str": "",
+                  "indices": [
+                    119,
+                    129
+                  ],
+                  "name": "",
+                  "screen_name": "aa_arabic"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "tiktok.com/@anadoluagency",
+                  "expanded_url": "http://tiktok.com/@anadoluagency",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/UDRCMjEfUE"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/qGt36NDgW1",
+            "expanded_url": "https://x.com/anadoluagency/status/2019038248354398605/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 78,
+                    "w": 78,
+                    "x": 245,
+                    "y": 961
+                  },
+                  {
+                    "h": 414,
+                    "w": 414,
+                    "x": 615,
+                    "y": 448
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 78,
+                    "w": 78,
+                    "x": 245,
+                    "y": 961
+                  },
+                  {
+                    "h": 414,
+                    "w": 414,
+                    "x": 615,
+                    "y": 448
+                  }
+                ]
+              }
+            },
+            "id_str": "2019038245233803265",
+            "indices": [
+              258,
+              281
+            ],
+            "media_key": "3_2019038245233803265",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwFEJYzFsABCgACHAUQlu0XQY0AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHAUQljMWwAEKAAIcBRCW7RdBjQAA",
+                "media_key": "3_2019038245233803265"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HAUQljMWwAEgTaS.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 627,
+                  "w": 1120,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1120,
+                  "w": 1120,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1120,
+                  "w": 982,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1120,
+                  "w": 560,
+                  "x": 28,
+                  "y": 0
+                },
+                {
+                  "h": 1120,
+                  "w": 1120,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1120,
+              "width": 1120
+            },
+            "sizes": {
+              "large": {
+                "h": 1120,
+                "w": 1120
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/qGt36NDgW1"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "v.aa.com.tr/3819704",
+            "expanded_url": "https://v.aa.com.tr/3819704",
+            "indices": [
+              234,
+              257
+            ],
+            "url": "https://t.co/9mkdzgfTy1"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -928,7 +2225,7 @@
       "replyCount": 0,
       "likeCount": 0,
       "quoteCount": 0,
-      "viewCount": 266,
+      "viewCount": 269,
       "createdAt": "Wed Feb 04 13:27:43 +0000 2026",
       "lang": "en",
       "bookmarkCount": 0,
@@ -955,7 +2252,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
         "description": "",
         "location": "Philippines",
-        "followers": 189484,
+        "followers": 190092,
         "following": 481,
         "status": "",
         "canDm": false,
@@ -968,16 +2265,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 20345,
+        "favouritesCount": 20357,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 44341,
-        "statusesCount": 197161,
+        "mediaCount": 45209,
+        "statusesCount": 198737,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2093633872936456280"
+          "2099480545550090734"
         ],
         "profile_bio": {
           "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",
@@ -1009,10 +2306,9 @@
             "value": {
               "image_value": {
                 "height": 419,
-                "url": "https://pbs.twimg.com/card_img/2094431946541514752/r9q4xS03?format=jpg&name=800x419",
+                "url": "https://pbs.twimg.com/card_img/2098095701062238214/v-a6UGvT?format=jpg&name=800x419",
                 "width": 800
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -1020,24 +2316,21 @@
             "value": {
               "image_value": {
                 "height": 144,
-                "url": "https://pbs.twimg.com/card_img/2094431946541514752/r9q4xS03?format=jpg&name=280x150",
+                "url": "https://pbs.twimg.com/card_img/2098095701062238214/v-a6UGvT?format=jpg&name=280x150",
                 "width": 280
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
             "key": "description",
             "value": {
-              "string_value": "MANILA, Philippines — A Filipino nurse died while two others were injured in a road accident in Tabuk, Saudi Arabia on January 31, the Department of Migrant Workers (DMW) said on Wednesday.",
-              "type": "STRING"
+              "string_value": "MANILA, Philippines — A Filipino nurse died while two others were injured in a road accident in Tabuk, Saudi Arabia on January 31, the Department of Migrant Workers (DMW) said on Wednesday."
             }
           },
           {
             "key": "domain",
             "value": {
-              "string_value": "www.manilatimes.net",
-              "type": "STRING"
+              "string_value": "www.manilatimes.net"
             }
           },
           {
@@ -1045,10 +2338,9 @@
             "value": {
               "image_value": {
                 "height": 308,
-                "url": "https://pbs.twimg.com/card_img/2094431946541514752/r9q4xS03?format=jpg&name=600x600",
+                "url": "https://pbs.twimg.com/card_img/2098095701062238214/v-a6UGvT?format=jpg&name=600x600",
                 "width": 600
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -1056,10 +2348,9 @@
             "value": {
               "image_value": {
                 "height": 202,
-                "url": "https://pbs.twimg.com/card_img/2094431946541514752/r9q4xS03?format=jpg&name=386x202",
+                "url": "https://pbs.twimg.com/card_img/2098095701062238214/v-a6UGvT?format=jpg&name=386x202",
                 "width": 386
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -1067,10 +2358,9 @@
             "value": {
               "image_value": {
                 "height": 616,
-                "url": "https://pbs.twimg.com/card_img/2094431946541514752/r9q4xS03?format=jpg&name=orig",
+                "url": "https://pbs.twimg.com/card_img/2098095701062238214/v-a6UGvT?format=jpg&name=orig",
                 "width": 1200
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -1078,10 +2368,9 @@
             "value": {
               "image_value": {
                 "height": 202,
-                "url": "https://pbs.twimg.com/card_img/2094431946541514752/r9q4xS03?format=jpg&name=386x202",
+                "url": "https://pbs.twimg.com/card_img/2098095701062238214/v-a6UGvT?format=jpg&name=386x202",
                 "width": 386
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -1089,10 +2378,9 @@
             "value": {
               "image_value": {
                 "height": 419,
-                "url": "https://pbs.twimg.com/card_img/2094431946541514752/r9q4xS03?format=jpg&name=800x419",
+                "url": "https://pbs.twimg.com/card_img/2098095701062238214/v-a6UGvT?format=jpg&name=800x419",
                 "width": 800
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -1100,10 +2388,9 @@
             "value": {
               "image_value": {
                 "height": 74,
-                "url": "https://pbs.twimg.com/card_img/2094431946541514752/r9q4xS03?format=jpg&name=144x144",
+                "url": "https://pbs.twimg.com/card_img/2098095701062238214/v-a6UGvT?format=jpg&name=144x144",
                 "width": 144
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -1111,10 +2398,9 @@
             "value": {
               "image_value": {
                 "height": 616,
-                "url": "https://pbs.twimg.com/card_img/2094431946541514752/r9q4xS03?format=png&name=2048x2048_2_exp",
+                "url": "https://pbs.twimg.com/card_img/2098095701062238214/v-a6UGvT?format=png&name=2048x2048_2_exp",
                 "width": 1200
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -1122,18 +2408,16 @@
             "value": {
               "image_value": {
                 "height": 616,
-                "url": "https://pbs.twimg.com/card_img/2094431946541514752/r9q4xS03?format=jpg&name=orig",
+                "url": "https://pbs.twimg.com/card_img/2098095701062238214/v-a6UGvT?format=jpg&name=orig",
                 "width": 1200
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
             "key": "vanity_url",
             "value": {
               "scribe_key": "vanity_url",
-              "string_value": "manilatimes.net",
-              "type": "STRING"
+              "string_value": "manilatimes.net"
             }
           },
           {
@@ -1141,10 +2425,9 @@
             "value": {
               "image_value": {
                 "height": 314,
-                "url": "https://pbs.twimg.com/card_img/2094431946541514752/r9q4xS03?format=jpg&name=600x314",
+                "url": "https://pbs.twimg.com/card_img/2098095701062238214/v-a6UGvT?format=jpg&name=600x314",
                 "width": 600
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -1193,15 +2476,13 @@
                     }
                   }
                 ]
-              },
-              "type": "IMAGE_COLOR"
+              }
             }
           },
           {
             "key": "title",
             "value": {
-              "string_value": "Filipino nurse dies, 2 others injured in Saudi accident",
-              "type": "STRING"
+              "string_value": "Filipino nurse dies, 2 others injured in Saudi accident"
             }
           },
           {
@@ -1250,8 +2531,7 @@
                     }
                   }
                 ]
-              },
-              "type": "IMAGE_COLOR"
+              }
             }
           },
           {
@@ -1259,10 +2539,9 @@
             "value": {
               "image_value": {
                 "height": 616,
-                "url": "https://pbs.twimg.com/card_img/2094431946541514752/r9q4xS03?format=png&name=2048x2048_2_exp",
+                "url": "https://pbs.twimg.com/card_img/2098095701062238214/v-a6UGvT?format=png&name=2048x2048_2_exp",
                 "width": 1200
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -1270,10 +2549,9 @@
             "value": {
               "image_value": {
                 "height": 314,
-                "url": "https://pbs.twimg.com/card_img/2094431946541514752/r9q4xS03?format=jpg&name=600x314",
+                "url": "https://pbs.twimg.com/card_img/2098095701062238214/v-a6UGvT?format=jpg&name=600x314",
                 "width": 600
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
@@ -1322,8 +2600,7 @@
                     }
                   }
                 ]
-              },
-              "type": "IMAGE_COLOR"
+              }
             }
           },
           {
@@ -1331,18 +2608,16 @@
             "value": {
               "image_value": {
                 "height": 616,
-                "url": "https://pbs.twimg.com/card_img/2094431946541514752/r9q4xS03?format=png&name=2048x2048_2_exp",
+                "url": "https://pbs.twimg.com/card_img/2098095701062238214/v-a6UGvT?format=png&name=2048x2048_2_exp",
                 "width": 1200
-              },
-              "type": "IMAGE"
+              }
             }
           },
           {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
-              "string_value": "https://t.co/3QSSDgyUv5",
-              "type": "STRING"
+              "string_value": "https://t.co/3QSSDgyUv5"
             }
           },
           {
@@ -1350,10 +2625,9 @@
             "value": {
               "image_value": {
                 "height": 616,
-                "url": "https://pbs.twimg.com/card_img/2094431946541514752/r9q4xS03?format=jpg&name=orig",
+                "url": "https://pbs.twimg.com/card_img/2098095701062238214/v-a6UGvT?format=jpg&name=orig",
                 "width": 1200
-              },
-              "type": "IMAGE"
+              }
             }
           }
         ],
@@ -1363,8 +2637,8 @@
               "name": "production"
             },
             "device": {
-              "name": "Swift",
-              "version": "12"
+              "name": "iPhone",
+              "version": "13"
             }
           }
         },
@@ -1388,6 +2662,8 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -1399,9 +2675,9 @@
       "source": "Twitter for iPhone",
       "retweetCount": 4,
       "replyCount": 7,
-      "likeCount": 19,
+      "likeCount": 17,
       "quoteCount": 1,
-      "viewCount": 2360,
+      "viewCount": 2361,
       "createdAt": "Wed Feb 04 13:34:30 +0000 2026",
       "lang": "en",
       "bookmarkCount": 1,
@@ -1428,8 +2704,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2870953361/1762160794",
         "description": "",
         "location": "Prague",
-        "followers": 74486,
-        "following": 2850,
+        "followers": 74758,
+        "following": 2849,
         "status": "",
         "canDm": false,
         "canMediaTag": true,
@@ -1441,21 +2717,52 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 11610,
+        "favouritesCount": 11616,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 4312,
-        "statusesCount": 10682,
+        "mediaCount": 4316,
+        "statusesCount": 10684,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2092623059114999864"
+          "2099461712835412159"
         ],
         "profile_bio": {
           "description": "🛰️🌎 Windy is an extraordinary tool for #weather #forecast visualization. It's fast, intuitive, detailed & most accurate #app trusted by #professionals",
           "entities": {
-            "description": {},
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    39,
+                    47
+                  ],
+                  "text": "weather"
+                },
+                {
+                  "indices": [
+                    48,
+                    57
+                  ],
+                  "text": "forecast"
+                },
+                {
+                  "indices": [
+                    120,
+                    124
+                  ],
+                  "text": "app"
+                },
+                {
+                  "indices": [
+                    136,
+                    150
+                  ],
+                  "text": "professionals"
+                }
+              ]
+            },
             "url": {
               "urls": [
                 {
@@ -1482,9 +2789,11 @@
             },
             "display_url": "pic.x.com/1WSHxfkRln",
             "expanded_url": "https://x.com/Windycom/status/2019041879103279303/video/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "id_str": "2019041856948989952",
             "indices": [
               277,
@@ -1492,7 +2801,10 @@
             ],
             "media_key": "7_2019041856948989952",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAwoAARwFE98eFvAACgACHAUT5EaWkMcAAA==",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAADCgABHAUT3x4W8AAKAAIcBRPkRpaQxwAA",
                 "media_key": "7_2019041856948989952"
               }
             },
@@ -1505,23 +2817,7 @@
             "sizes": {
               "large": {
                 "h": 1920,
-                "resize": "fit",
                 "w": 1080
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 675
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 383
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "video",
@@ -1577,6 +2873,8 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -1617,7 +2915,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437256,
+        "followers": 1437179,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1633,8 +2931,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412002,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1677,6 +2975,608 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2019040813469041115",
+      "url": "https://x.com/Earnbit2/status/2019040813469041115",
+      "twitterUrl": "https://twitter.com/Earnbit2/status/2019040813469041115",
+      "text": "🩸 Weekly price roundup (Jan 28–Feb 4): BTC sinks to $73K amid crypto bloodbath\n\nBitcoin crashed to a 15-month low near $73K in a brutal sell-off fueled by Kevin Warsh's Fed Chair nomination, a parallel crash in AI stocks, and a stark divergence from gold's rally. \n\nHere’s the breakdown.\n\n🚨 Key events\n\n🗞 Warsh's nomination sparks panic 🦅\n\nPresident Trump's pick of former Fed Governor Kevin Warsh as the next Fed Chair triggered a swift exit from risk assets. Traders interpreted the choice as a signal for tighter monetary policy and higher real interest rates. Warsh's infamous quote from the month Lehman Brothers collapsed — “I'm still not ready to relinquish my concerns on the inflation front” — is a reminder of his hawkish track record.\n\n🗞 Tech sector crash compounds crypto's woes 💻\n\nA broad sell-off in AI and tech stocks accelerated the crypto plunge. The downturn reflected worries about Big Tech concentration risk and overstretched AI valuations. Meanwhile, BlackRock's private debt fund is planning to mark down asset values by 19%, hinting at a deeper liquidity crunch. Microsoft, Meta Platforms, Apple, and Nvidia are in the red.\n\n🗞 Government shutdown ends, macro data delayed 🏛\n\nA partial US government shutdown over the weekend ended after Congress passed a $1.2T funding package and President Trump signed it. That pause delayed crucial data like the January jobs report, leaving markets in a macro information vacuum during the sell-off. Furthermore, the package only funds the Department of Homeland Security through Feb 13. \n\n🗞 Tether unveils open-source Bitcoin MiningOS ⛏️\n\nTether has unveiled its open-source Bitcoin Mining Operating System (MOS). This free software is a modular OS designed to democratize access — a set of industrial-grade management tools that can be used by everyone, from garage miners to large farms. MiningOS challenges proprietary systems and can potentially reshape network decentralization.\n\n📊 Crypto performance (7 days)\n\n💰 Bitcoin (BTC): Slipped below $90K on Jan. 28, hitting $82K two days later. After a brief bounce, it crashed to a weekly low of $73,111.91 on Feb. 3.\n\n⏰ Currently at $75,836.98 (-15.6%).\n\n🔹 Ether (ETH): Plunged below $3K, eventually accelerating to a low of $2,120.74. Yesterday, it led 24-hour leveraged liquidations with $84.3M wiped out.\n\n⏰ Now at $2,228.72 (-26.4%).\n\n↗ Top gainers\n\n🔸 CC (+6.5%) — Rose after Fireblocks' custody integration, reinforcing the Canton Network's role in the growing regulated tokenization ecosystem.\n\n🔸 MORPHO (+6.0) — Rocketed as Morpho and Mystic Finance launched the first modular lending market for XRP on the Flare Network, creating institutional-grade vaults.\n\n🔸 BDX (+2.1%) — Soared after the Philippines' leading crypto exchange https://t.co/gKPRatb1kE announced it would list the Beldex native token with a BDX/PHP trading pair.\n\n📉 Top losers\n\n🔻 DASH (-31.0%) & ZEC (-29.5%) — The entire privacy coin sector bled amid the macro sell-off, compounded by Indian exchanges beginning to delist the tokens to comply with new regulations.\n\n🔻 PUMP (-28.8%) — Joined the broad sell-off despite https://t.co/HvttL7aQOy’s DEX volume and revenue doubling in January, showing decoupling from strong protocol fundamentals.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 2,
+      "likeCount": 25,
+      "quoteCount": 0,
+      "viewCount": 1136,
+      "createdAt": "Wed Feb 04 13:30:16 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2019040813469041115",
+      "displayTextRange": [
+        0,
+        276
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "Earnbit2",
+        "url": "https://x.com/Earnbit2",
+        "twitterUrl": "https://twitter.com/Earnbit2",
+        "id": "1579156274540945408",
+        "name": "EarnBIT",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1945877845508521984/RtNsm_Bg_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1579156274540945408/1752768407",
+        "description": "",
+        "location": "",
+        "followers": 2042,
+        "following": 126,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Sun Oct 09 17:06:20 +0000 2022",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2528,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1027,
+        "statusesCount": 1659,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1967549255494602759"
+        ],
+        "profile_bio": {
+          "description": "💵 EarnBIT is your trusted cryptocurrency platform. \n\nDiscover endless trading and earning opportunities. Achieve your goals with our innovative tools! ⚙️",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "earnbit.com",
+                  "expanded_url": "https://earnbit.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/Cc7JnlRmdb"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/mJh9l0IfYt",
+            "expanded_url": "https://x.com/Earnbit2/status/2019040813469041115/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2019040602835259392",
+            "indices": [
+              277,
+              300
+            ],
+            "media_key": "3_2019040602835259392",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwFErsfFhAACgACHAUS7CnWgdsAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHAUSux8WEAAKAAIcBRLsKdaB2wAA",
+                "media_key": "3_2019040602835259392"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HAUSux8WEAAhxvb.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 672,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 675,
+                  "w": 675,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 675,
+                  "w": 592,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 675,
+                  "w": 338,
+                  "x": 41,
+                  "y": 0
+                },
+                {
+                  "h": 675,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 675,
+              "width": 1200
+            },
+            "sizes": {
+              "large": {
+                "h": 675,
+                "w": 1200
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/mJh9l0IfYt"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [
+          {
+            "display_url": "Coins.ph",
+            "expanded_url": "http://Coins.ph",
+            "indices": [
+              2749,
+              2772
+            ],
+            "url": "https://t.co/gKPRatb1kE"
+          },
+          {
+            "display_url": "Pump.fun",
+            "expanded_url": "http://Pump.fun",
+            "indices": [
+              3106,
+              3129
+            ],
+            "url": "https://t.co/HvttL7aQOy"
+          }
+        ],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2019044762452709674",
+      "url": "https://x.com/YWNReporter/status/2019044762452709674",
+      "twitterUrl": "https://twitter.com/YWNReporter/status/2019044762452709674",
+      "text": "A massive fire tore through a residential area in Barangay Lamion, Bongao, Tawi-Tawi, Philippines, destroying an estimated 1,000 homes. https://t.co/tIeratKDrH",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 5,
+      "quoteCount": 0,
+      "viewCount": 1056,
+      "createdAt": "Wed Feb 04 13:45:58 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2019044762452709674",
+      "displayTextRange": [
+        0,
+        135
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "YWNReporter",
+        "url": "https://x.com/YWNReporter",
+        "twitterUrl": "https://twitter.com/YWNReporter",
+        "id": "1343644345195520000",
+        "name": "Moshe Schwartz",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1896255718254084096/FE31k4Y0_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1343644345195520000/1740514544",
+        "description": "",
+        "location": "TriState",
+        "followers": 52022,
+        "following": 2297,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Dec 28 19:46:01 +0000 2020",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 6311,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 17461,
+        "statusesCount": 23486,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Newshound for @YWN • Covering world matters with a focus on the Middle East and the tri-state area • Enjoy OSINT • DM with Tips • Like 🚫 endorsement",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    14,
+                    18
+                  ],
+                  "name": "",
+                  "screen_name": "YWN"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "theyeshivaworld.com",
+                  "expanded_url": "http://www.theyeshivaworld.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/46ACLqekKS"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/tIeratKDrH",
+            "expanded_url": "https://x.com/YWNReporter/status/2019044762452709674/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "2019044620173279232",
+            "indices": [
+              136,
+              159
+            ],
+            "media_key": "13_2019044620173279232",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARwFFmJ7F4AAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABHAUWYnsXgAAAAA==",
+                "media_key": "13_2019044620173279232"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2019044620173279232/img/zwB6Hk2D721KS0o-.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 592,
+              "width": 480
+            },
+            "sizes": {
+              "large": {
+                "h": 592,
+                "w": 480
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/tIeratKDrH",
+            "video_info": {
+              "aspect_ratio": [
+                30,
+                37
+              ],
+              "duration_millis": 56261,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/2019044620173279232/pl/HmbFBwSMKqm5OFVl.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2019044620173279232/vid/avc1/320x394/_8UGilz1vno_V7Mb.mp4?tag=21"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2019044620173279232/vid/avc1/480x592/23nY7Hp1l5GxooOp.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2019044573486690622",
+      "url": "https://x.com/HorangdansPH/status/2019044573486690622",
+      "twitterUrl": "https://twitter.com/HorangdansPH/status/2019044573486690622",
+      "text": "🔴 𝙊𝙉 𝘼𝙄𝙍: 𝘕𝘌𝘞 𝘔𝘠𝘚𝘌𝘓𝘍\n\n𝘔𝘦𝘵𝘢𝘮𝘰𝘳𝘱𝘩𝘰𝘴𝘪𝘴— 𝘣𝘰𝘳𝘯 𝘪𝘯 𝙁𝙄𝙍𝙀.\n\n𝟬𝟯. 𝟮𝟬𝟮𝟲 \n#B4_NEW\n\n@KwonHoshi_ph @ETERN17EEN https://t.co/fGHTgq8JI8",
+      "source": "Twitter for iPhone",
+      "retweetCount": 24,
+      "replyCount": 0,
+      "likeCount": 94,
+      "quoteCount": 1,
+      "viewCount": 3413,
+      "createdAt": "Wed Feb 04 13:45:13 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 3,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2019044573486690622",
+      "displayTextRange": [
+        0,
+        96
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "HorangdansPH",
+        "url": "https://x.com/HorangdansPH",
+        "twitterUrl": "https://twitter.com/HorangdansPH",
+        "id": "1758393079126458368",
+        "name": "Horangdans Philippines",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1894241057074024448/rTZOWVK6_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1758393079126458368/1740457237",
+        "description": "",
+        "location": "",
+        "followers": 5080,
+        "following": 103,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri Feb 16 07:29:45 +0000 2024",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 4038,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1349,
+        "statusesCount": 4023,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Made especially for our talented star, Kwon Hoshi! 🌠\n#Hoshi #호시 #세븐틴 #horangdansph\n\ncontact us: horangdansph96@gmail.com\nIG: https://t.co/TfR0lwYK7L",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    53,
+                    59
+                  ],
+                  "text": "Hoshi"
+                },
+                {
+                  "indices": [
+                    60,
+                    63
+                  ],
+                  "text": "호시"
+                },
+                {
+                  "indices": [
+                    64,
+                    68
+                  ],
+                  "text": "세븐틴"
+                },
+                {
+                  "indices": [
+                    69,
+                    82
+                  ],
+                  "text": "horangdansph"
+                }
+              ],
+              "urls": [
+                {
+                  "display_url": "instagram.com/horangdansph",
+                  "expanded_url": "http://instagram.com/horangdansph",
+                  "indices": [
+                    125,
+                    148
+                  ],
+                  "url": "https://t.co/TfR0lwYK7L"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "display_url": "pic.x.com/fGHTgq8JI8",
+            "expanded_url": "https://x.com/HorangdansPH/status/2019044573486690622/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "2019044368292954112",
+            "indices": [
+              97,
+              120
+            ],
+            "media_key": "13_2019044368292954112",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARwFFifV2sAAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABHAUWJ9XawAAAAA==",
+                "media_key": "13_2019044368292954112"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2019044368292954112/img/xMqGfa_9cyXDqNrk.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1080,
+              "width": 1920
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "w": 1920
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/fGHTgq8JI8",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 23166,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/2019044368292954112/pl/56wRw63vjKSjfCgx.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2019044368292954112/vid/avc1/480x270/FQNv3SKxNIWUgWZA.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2019044368292954112/vid/avc1/640x360/T5lMRKta2FuPVelq.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2019044368292954112/vid/avc1/1280x720/O6_R-fuXr1_PHVvh.mp4?tag=21"
+                },
+                {
+                  "bitrate": 10368000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2019044368292954112/vid/avc1/1920x1080/uKRcOqyBZPmDlBlg.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              62,
+              69
+            ],
+            "text": "B4_NEW"
+          }
+        ],
+        "user_mentions": [
+          {
+            "id_str": "1758395535298285568",
+            "indices": [
+              71,
+              84
+            ],
+            "name": "Kwon Hoshi PH ఇ ◝‿◜ ఇ",
+            "screen_name": "KwonHoshi_ph"
+          },
+          {
+            "id_str": "1914007328141271040",
+            "indices": [
+              85,
+              96
+            ],
+            "name": "𝐸𝒯𝐸𝑅𝒩𝟣𝟩𝐸𝐸𝒩 💘🫧",
+            "screen_name": "ETERN17EEN"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     }
   ]

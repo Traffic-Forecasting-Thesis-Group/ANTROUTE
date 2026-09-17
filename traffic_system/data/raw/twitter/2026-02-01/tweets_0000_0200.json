@@ -5,7 +5,7 @@
     "window_start": "2026-02-01T00:00:00+08:00",
     "window_end": "2026-02-01T02:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 2,
+    "tweet_count": 4,
     "slices": [
       {
         "start": "2026-02-01T00:00:00+08:00",
@@ -18,6 +18,7 @@
         "start": "2026-02-01T00:05:00+08:00",
         "end": "2026-02-01T00:10:00+08:00",
         "status_code": 200,
+        "error": "521 Server Error: <none> for url: https://api.twitterapi.io/twitter/tweet/advanced_search?query=%28%28%28traffic+OR+trapik+OR+congestion+OR+gridlock+OR+contraflow+OR+accident+OR+aksidente+OR+banggaan+OR+flooding+OR+baha+OR+landslide+OR+%22road+closure%22+OR+protest+OR+rally+OR+fire+OR+sunog+OR+breakdown%29+%28EDSA+OR+Makati+OR+Pasay+OR+%22Quezon+City%22+OR+Manila+OR+Pasig+OR+%22Metro+Manila%22+OR+Philippines%29%29+OR+%28%23MMDAAlert+OR+%23TrafficUpdate+OR+%23EDSAUpdate+OR+%23EDSATraffic+OR+Metrobase+OR+%40MMDA+OR+%22traffic+advisory%22%29%29+since_time%3A1769875500+until_time%3A1769875800+-is%3Aretweet+-is%3Areply&queryType=Latest",
         "returned": 0,
         "accepted": 0
       },
@@ -144,8 +145,8 @@
         "start": "2026-02-01T01:35:00+08:00",
         "end": "2026-02-01T01:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-01T01:40:00+08:00",
@@ -172,8 +173,8 @@
         "start": "2026-02-01T01:55:00+08:00",
         "end": "2026-02-01T02:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       }
     ]
   },
@@ -211,12 +212,12 @@
         "name": "Hyderabad Traffic Police",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": null,
+        "verifiedType": "Government",
         "profilePicture": "https://pbs.twimg.com/profile_images/1830558048902901761/fpFeVotL_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/399923595/1753094677",
         "description": "",
         "location": "Hyderabad",
-        "followers": 293255,
+        "followers": 293331,
         "following": 57,
         "status": "",
         "canDm": true,
@@ -229,11 +230,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 15230,
+        "favouritesCount": 15246,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 14496,
-        "statusesCount": 88012,
+        "mediaCount": 14559,
+        "statusesCount": 88140,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -267,9 +268,11 @@
           {
             "display_url": "pic.x.com/ej8XauR9Gd",
             "expanded_url": "https://x.com/HYDTP/status/2017652053846433982/photo/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": [
@@ -278,16 +281,6 @@
                     "w": 498,
                     "x": 296,
                     "y": 95
-                  }
-                ]
-              },
-              "medium": {
-                "faces": [
-                  {
-                    "h": 373,
-                    "w": 373,
-                    "x": 222,
-                    "y": 71
                   }
                 ]
               },
@@ -300,16 +293,6 @@
                     "y": 95
                   }
                 ]
-              },
-              "small": {
-                "faces": [
-                  {
-                    "h": 211,
-                    "w": 211,
-                    "x": 125,
-                    "y": 40
-                  }
-                ]
               }
             },
             "id_str": "2017652040944783364",
@@ -319,7 +302,10 @@
             ],
             "media_key": "3_2017652040944783364",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwAI9dc2xAECgACHAAj2l3aoL4AAA==",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHAAj11zbEAQKAAIcACPaXdqgvgAA",
                 "media_key": "3_2017652040944783364"
               }
             },
@@ -363,23 +349,7 @@
             "sizes": {
               "large": {
                 "h": 900,
-                "resize": "fit",
                 "w": 1600
-              },
-              "medium": {
-                "h": 675,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 383,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "photo",
@@ -412,133 +382,12 @@
             ],
             "text": "TrafficUpdate"
           }
-        ],
-        "media": [
-          {
-            "display_url": "pic.x.com/ej8XauR9Gd",
-            "expanded_url": "https://x.com/HYDTP/status/2017652053846433982/photo/1",
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "features": {
-              "large": {
-                "faces": [
-                  {
-                    "h": 498,
-                    "w": 498,
-                    "x": 296,
-                    "y": 95
-                  }
-                ]
-              },
-              "medium": {
-                "faces": [
-                  {
-                    "h": 373,
-                    "w": 373,
-                    "x": 222,
-                    "y": 71
-                  }
-                ]
-              },
-              "orig": {
-                "faces": [
-                  {
-                    "h": 498,
-                    "w": 498,
-                    "x": 296,
-                    "y": 95
-                  }
-                ]
-              },
-              "small": {
-                "faces": [
-                  {
-                    "h": 211,
-                    "w": 211,
-                    "x": 125,
-                    "y": 40
-                  }
-                ]
-              }
-            },
-            "id_str": "2017652040944783364",
-            "indices": [
-              143,
-              166
-            ],
-            "media_key": "3_2017652040944783364",
-            "media_results": {
-              "result": {
-                "media_key": "3_2017652040944783364"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/media/HAAj11zbEAQEgR4.jpg",
-            "original_info": {
-              "focus_rects": [
-                {
-                  "h": 896,
-                  "w": 1600,
-                  "x": 0,
-                  "y": 4
-                },
-                {
-                  "h": 900,
-                  "w": 900,
-                  "x": 550,
-                  "y": 0
-                },
-                {
-                  "h": 900,
-                  "w": 789,
-                  "x": 606,
-                  "y": 0
-                },
-                {
-                  "h": 900,
-                  "w": 450,
-                  "x": 775,
-                  "y": 0
-                },
-                {
-                  "h": 900,
-                  "w": 1600,
-                  "x": 0,
-                  "y": 0
-                }
-              ],
-              "height": 900,
-              "width": 1600
-            },
-            "sizes": {
-              "large": {
-                "h": 900,
-                "resize": "fit",
-                "w": 1600
-              },
-              "medium": {
-                "h": 675,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 383,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
-              }
-            },
-            "type": "photo",
-            "url": "https://t.co/ej8XauR9Gd"
-          }
         ]
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -574,12 +423,12 @@
         "name": "Hyderabad Traffic Police",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": null,
+        "verifiedType": "Government",
         "profilePicture": "https://pbs.twimg.com/profile_images/1830558048902901761/fpFeVotL_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/399923595/1753094677",
         "description": "",
         "location": "Hyderabad",
-        "followers": 293255,
+        "followers": 293331,
         "following": 57,
         "status": "",
         "canDm": true,
@@ -592,11 +441,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 15230,
+        "favouritesCount": 15246,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 14496,
-        "statusesCount": 88012,
+        "mediaCount": 14559,
+        "statusesCount": 88140,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -630,20 +479,16 @@
           {
             "display_url": "pic.x.com/TGKgJBwHbc",
             "expanded_url": "https://x.com/HYDTP/status/2017651725965136259/photo/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": []
               },
-              "medium": {
-                "faces": []
-              },
               "orig": {
-                "faces": []
-              },
-              "small": {
                 "faces": []
               }
             },
@@ -654,7 +499,10 @@
             ],
             "media_key": "3_2017615246727516165",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwAAmCKmxAFCgACHAAjjgabEYMAAA==",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHAACYIqbEAUKAAIcACOOBpsRgwAA",
                 "media_key": "3_2017615246727516165"
               }
             },
@@ -698,23 +546,7 @@
             "sizes": {
               "large": {
                 "h": 900,
-                "resize": "fit",
                 "w": 1600
-              },
-              "medium": {
-                "h": 675,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 383,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "photo",
@@ -747,105 +579,205 @@
             ],
             "text": "TrafficUpdate"
           }
-        ],
-        "media": [
-          {
-            "display_url": "pic.x.com/TGKgJBwHbc",
-            "expanded_url": "https://x.com/HYDTP/status/2017651725965136259/photo/1",
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "features": {
-              "large": {
-                "faces": []
-              },
-              "medium": {
-                "faces": []
-              },
-              "orig": {
-                "faces": []
-              },
-              "small": {
-                "faces": []
-              }
-            },
-            "id_str": "2017615246727516165",
-            "indices": [
-              241,
-              264
-            ],
-            "media_key": "3_2017615246727516165",
-            "media_results": {
-              "result": {
-                "media_key": "3_2017615246727516165"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/media/HAACYIqbEAUgQ8o.jpg",
-            "original_info": {
-              "focus_rects": [
-                {
-                  "h": 896,
-                  "w": 1600,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 900,
-                  "w": 900,
-                  "x": 700,
-                  "y": 0
-                },
-                {
-                  "h": 900,
-                  "w": 789,
-                  "x": 811,
-                  "y": 0
-                },
-                {
-                  "h": 900,
-                  "w": 450,
-                  "x": 1015,
-                  "y": 0
-                },
-                {
-                  "h": 900,
-                  "w": 1600,
-                  "x": 0,
-                  "y": 0
-                }
-              ],
-              "height": 900,
-              "width": 1600
-            },
-            "sizes": {
-              "large": {
-                "h": 900,
-                "resize": "fit",
-                "w": 1600
-              },
-              "medium": {
-                "h": 675,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 383,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
-              }
-            },
-            "type": "photo",
-            "url": "https://t.co/TGKgJBwHbc"
-          }
         ]
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2017653192033452062",
+      "url": "https://x.com/bostonpolice/status/2017653192033452062",
+      "twitterUrl": "https://twitter.com/bostonpolice/status/2017653192033452062",
+      "text": "Traffic Advisory: Due to a manhole fire, Cambridge St has temporary two-way traffic on the inbound side to maintain access to MGH/other critical facilities. Expect impacts near TD Garden for vehicles/pedestrians. Please avoid the area if possible or allow extra travel time.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 4,
+      "replyCount": 0,
+      "likeCount": 12,
+      "quoteCount": 0,
+      "viewCount": 4970,
+      "createdAt": "Sat Jan 31 17:36:21 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2017653192033452062",
+      "displayTextRange": [
+        0,
+        274
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "bostonpolice",
+        "url": "https://x.com/bostonpolice",
+        "twitterUrl": "https://twitter.com/bostonpolice",
+        "id": "19185333",
+        "name": "Boston Police Dept.",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1681679396384456705/9r8m28Ah_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/19185333/1689705769",
+        "description": "",
+        "location": "Boston, MA",
+        "followers": 475486,
+        "following": 390,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Jan 19 14:49:36 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3516,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 14131,
+        "statusesCount": 28294,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Tweeting BPD News and real time emergency notifications. **For emergencies, please call 911. Account not monitored 24/7.\n\nhttps://t.co/fbZ2dpvaLw",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "police.boston.gov/mentalhealth",
+                  "expanded_url": "https://police.boston.gov/mentalhealth",
+                  "indices": [
+                    122,
+                    145
+                  ],
+                  "url": "https://t.co/fbZ2dpvaLw"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "bpdnews.com",
+                  "expanded_url": "http://bpdnews.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/chyt7oMh5w"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2017659090592502174",
+      "url": "https://x.com/DelanoPDHQ/status/2017659090592502174",
+      "twitterUrl": "https://twitter.com/DelanoPDHQ/status/2017659090592502174",
+      "text": "Traffic Advisory: NB &amp; SB SR-99 is closed in the area of Avenue 24 due to a multi-vehicle traffic collision. Northbound traffic is being rerouted through the City of Delano. Dense fog conditions are present. Expect significant delays and use alternate routes if available.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 1,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 373,
+      "createdAt": "Sat Jan 31 17:59:48 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2017659090592502174",
+      "displayTextRange": [
+        0,
+        276
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "DelanoPDHQ",
+        "url": "https://x.com/DelanoPDHQ",
+        "twitterUrl": "https://twitter.com/DelanoPDHQ",
+        "id": "1047534580490588161",
+        "name": "Delano Police Department",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1610535685584465920/_plU_wAf_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1047534580490588161/1546990370",
+        "description": "",
+        "location": "Delano, CA",
+        "followers": 594,
+        "following": 112,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Wed Oct 03 17:11:21 +0000 2018",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 73,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 136,
+        "statusesCount": 237,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official Twitter of the Delano Police Department #DelanoPD | Facebook: Delano Police Department | Instagram: DelanoPDHQ | Emergencies: Dial or Text 9-1-1",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    49,
+                    58
+                  ],
+                  "text": "DelanoPD"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     }
   ]

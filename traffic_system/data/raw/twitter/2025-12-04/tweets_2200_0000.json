@@ -5,7 +5,7 @@
     "window_start": "2025-12-04T22:00:00+08:00",
     "window_end": "2025-12-05T00:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 6,
+    "tweet_count": 13,
     "slices": [
       {
         "start": "2025-12-04T22:00:00+08:00",
@@ -60,8 +60,8 @@
         "start": "2025-12-04T22:35:00+08:00",
         "end": "2025-12-04T22:40:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-12-04T22:40:00+08:00",
@@ -88,8 +88,8 @@
         "start": "2025-12-04T22:55:00+08:00",
         "end": "2025-12-04T23:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-12-04T23:00:00+08:00",
@@ -116,8 +116,8 @@
         "start": "2025-12-04T23:15:00+08:00",
         "end": "2025-12-04T23:20:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-12-04T23:20:00+08:00",
@@ -137,22 +137,22 @@
         "start": "2025-12-04T23:30:00+08:00",
         "end": "2025-12-04T23:35:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-12-04T23:35:00+08:00",
         "end": "2025-12-04T23:40:00+08:00",
         "status_code": 200,
-        "returned": 2,
-        "accepted": 2
+        "returned": 3,
+        "accepted": 3
       },
       {
         "start": "2025-12-04T23:40:00+08:00",
         "end": "2025-12-04T23:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-12-04T23:45:00+08:00",
@@ -211,12 +211,12 @@
         "name": "Hyderabad Traffic Police",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": null,
+        "verifiedType": "Government",
         "profilePicture": "https://pbs.twimg.com/profile_images/1830558048902901761/fpFeVotL_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/399923595/1753094677",
         "description": "",
         "location": "Hyderabad",
-        "followers": 293253,
+        "followers": 293326,
         "following": 57,
         "status": "",
         "canDm": true,
@@ -229,11 +229,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 15230,
+        "favouritesCount": 15247,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 14490,
-        "statusesCount": 88006,
+        "mediaCount": 14558,
+        "statusesCount": 88139,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -267,20 +267,16 @@
           {
             "display_url": "pic.x.com/Xf5W1fv1QE",
             "expanded_url": "https://x.com/HYDTP/status/1996583668194980151/photo/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": []
               },
-              "medium": {
-                "faces": []
-              },
               "orig": {
-                "faces": []
-              },
-              "small": {
                 "faces": []
               }
             },
@@ -291,7 +287,10 @@
             ],
             "media_key": "3_1996583632841089024",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARu1SjxX2iAACgACG7VKRJMbsTcAAA==",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG7VKPFfaIAAKAAIbtUpEkxuxNwAA",
                 "media_key": "3_1996583632841089024"
               }
             },
@@ -335,23 +334,7 @@
             "sizes": {
               "large": {
                 "h": 900,
-                "resize": "fit",
                 "w": 1600
-              },
-              "medium": {
-                "h": 675,
-                "resize": "fit",
-                "w": 1200
-              },
-              "small": {
-                "h": 383,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "photo",
@@ -398,6 +381,8 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -433,12 +418,12 @@
         "name": "Hyderabad Traffic Police",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": null,
+        "verifiedType": "Government",
         "profilePicture": "https://pbs.twimg.com/profile_images/1830558048902901761/fpFeVotL_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/399923595/1753094677",
         "description": "",
         "location": "Hyderabad",
-        "followers": 293253,
+        "followers": 293326,
         "following": 57,
         "status": "",
         "canDm": true,
@@ -451,11 +436,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 15230,
+        "favouritesCount": 15247,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 14490,
-        "statusesCount": 88006,
+        "mediaCount": 14558,
+        "statusesCount": 88139,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -489,33 +474,13 @@
           {
             "display_url": "pic.x.com/hBdjf8FjXp",
             "expanded_url": "https://x.com/HYDTP/status/1996584435379249461/photo/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "features": {
               "large": {
-                "faces": [
-                  {
-                    "h": 40,
-                    "w": 40,
-                    "x": 612,
-                    "y": 48
-                  },
-                  {
-                    "h": 48,
-                    "w": 48,
-                    "x": 267,
-                    "y": 143
-                  },
-                  {
-                    "h": 74,
-                    "w": 74,
-                    "x": 459,
-                    "y": 163
-                  }
-                ]
-              },
-              "medium": {
                 "faces": [
                   {
                     "h": 40,
@@ -558,28 +523,6 @@
                     "y": 163
                   }
                 ]
-              },
-              "small": {
-                "faces": [
-                  {
-                    "h": 34,
-                    "w": 34,
-                    "x": 530,
-                    "y": 41
-                  },
-                  {
-                    "h": 41,
-                    "w": 41,
-                    "x": 231,
-                    "y": 123
-                  },
-                  {
-                    "h": 64,
-                    "w": 64,
-                    "x": 397,
-                    "y": 141
-                  }
-                ]
               }
             },
             "id_str": "1996584411501047809",
@@ -589,7 +532,10 @@
             ],
             "media_key": "3_1996584411501047809",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARu1SvGjmjABCgACG7VK9zLaoTUAAA==",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG7VK8aOaMAEKAAIbtUr3MtqhNQAA",
                 "media_key": "3_1996584411501047809"
               }
             },
@@ -633,23 +579,7 @@
             "sizes": {
               "large": {
                 "h": 314,
-                "resize": "fit",
                 "w": 785
-              },
-              "medium": {
-                "h": 314,
-                "resize": "fit",
-                "w": 785
-              },
-              "small": {
-                "h": 272,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "photo",
@@ -696,6 +626,315 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1996589337392156954",
+      "url": "https://x.com/DCPoliceDept/status/1996589337392156954",
+      "twitterUrl": "https://twitter.com/DCPoliceDept/status/1996589337392156954",
+      "text": "Today, the National Christmas Tree Lighting will take place.  Parking restrictions will begin at 9:30 a.m., and street closures will start at 1:00 p.m. today.\n\nTo view specific restrictions and closures, see this traffic advisory: https://t.co/dzvAtMwi7I",
+      "source": "Twitter for iPhone",
+      "retweetCount": 6,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 8550,
+      "createdAt": "Thu Dec 04 14:36:07 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1996589337392156954",
+      "displayTextRange": [
+        0,
+        254
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "DCPoliceDept",
+        "url": "https://x.com/DCPoliceDept",
+        "twitterUrl": "https://twitter.com/DCPoliceDept",
+        "id": "285198536",
+        "name": "DC Police Department",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/2085309988092649472/8soyV2Bv_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/285198536/1769261376",
+        "description": "",
+        "location": "Washington, DC",
+        "followers": 277786,
+        "following": 473,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Apr 20 18:18:29 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5215,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 43138,
+        "statusesCount": 102504,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Updates & prelim info on active incidents & upcoming events. Will not reply instantly or in real time. Call 911 for emergencies.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/dcpolicedept",
+                  "expanded_url": "https://linktr.ee/dcpolicedept",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/N6DnwJRVNT"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "On Thursday, December 4, 2025, the National Christmas Tree Lighting will take place in the District of Columbia. In conjunction with this event, there will be parking restrictions and a street..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "mpdc.dc.gov"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "mpdc.dc.gov"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "TRAFFIC ADVISORY: National Christmas Tree Lighting"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/dzvAtMwi7I"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary",
+        "url": "https://t.co/dzvAtMwi7I",
+        "user_refs_results": []
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "bit.ly/48xuMIJ",
+            "expanded_url": "http://bit.ly/48xuMIJ",
+            "indices": [
+              231,
+              254
+            ],
+            "url": "https://t.co/dzvAtMwi7I"
+          }
+        ]
+      },
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "1996006485688455550",
+        "url": "https://x.com/DCPoliceTraffic/status/1996006485688455550",
+        "twitterUrl": "https://twitter.com/DCPoliceTraffic/status/1996006485688455550",
+        "text": "FYI: On Thursday, December 4, 2025, the National Christmas Tree Lighting will take place in the District of Columbia. In conjunction with this event, there will be parking restrictions and a street closure motorists should take into consideration:\nhttps://t.co/n1qFhuuy5w",
+        "source": "Twitter for iPhone",
+        "retweetCount": 10,
+        "replyCount": 1,
+        "likeCount": 8,
+        "quoteCount": 4,
+        "viewCount": 20496,
+        "createdAt": "Wed Dec 03 00:00:04 +0000 2025",
+        "lang": "en",
+        "bookmarkCount": 1,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "1996006485688455550",
+        "displayTextRange": [
+          0,
+          271
+        ],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {
+          "type": "user",
+          "userName": "DCPoliceTraffic",
+          "url": "https://x.com/DCPoliceTraffic",
+          "twitterUrl": "https://twitter.com/DCPoliceTraffic",
+          "id": "3429128139",
+          "name": "DC Police Traffic",
+          "isVerified": false,
+          "isBlueVerified": false,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/637277935171411968/DeIBSevl_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/3429128139/1440773750",
+          "description": "",
+          "location": "Washington, DC",
+          "followers": 32979,
+          "following": 143,
+          "status": "",
+          "canDm": true,
+          "canMediaTag": true,
+          "createdAt": "Tue Aug 18 00:41:58 +0000 2015",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 7750,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 7435,
+          "statusesCount": 47047,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [
+            "2021000167135097309"
+          ],
+          "profile_bio": {
+            "description": "Providing timely traffic information to the Nation’s Capital.",
+            "entities": {
+              "description": {},
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "linktr.ee/dcpolicedept",
+                    "expanded_url": "https://linktr.ee/dcpolicedept",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/4HC5gynesd"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {},
+        "card": {
+          "binding_values": [
+            {
+              "key": "description",
+              "value": {
+                "string_value": "On Thursday, December 4, 2025, the National Christmas Tree Lighting will take place in the District of Columbia. In conjunction with this event, there will be parking restrictions and a street..."
+              }
+            },
+            {
+              "key": "domain",
+              "value": {
+                "string_value": "mpdc.dc.gov"
+              }
+            },
+            {
+              "key": "vanity_url",
+              "value": {
+                "scribe_key": "vanity_url",
+                "string_value": "mpdc.dc.gov"
+              }
+            },
+            {
+              "key": "title",
+              "value": {
+                "string_value": "TRAFFIC ADVISORY: National Christmas Tree Lighting"
+              }
+            },
+            {
+              "key": "card_url",
+              "value": {
+                "scribe_key": "card_url",
+                "string_value": "https://t.co/n1qFhuuy5w"
+              }
+            }
+          ],
+          "card_platform": {
+            "platform": {
+              "audience": {
+                "name": "production"
+              },
+              "device": {
+                "name": "iPhone",
+                "version": "13"
+              }
+            }
+          },
+          "name": "summary",
+          "url": "https://t.co/n1qFhuuy5w",
+          "user_refs_results": []
+        },
+        "place": {},
+        "entities": {
+          "urls": [
+            {
+              "display_url": "mpdc.dc.gov/release/traffi…",
+              "expanded_url": "https://mpdc.dc.gov/release/traffic-advisory-national-christmas-tree-lighting-2",
+              "indices": [
+                248,
+                271
+              ],
+              "url": "https://t.co/n1qFhuuy5w"
+            }
+          ]
+        },
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
+        "article": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -731,12 +970,12 @@
         "name": "Hyderabad Traffic Police",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": null,
+        "verifiedType": "Government",
         "profilePicture": "https://pbs.twimg.com/profile_images/1830558048902901761/fpFeVotL_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/399923595/1753094677",
         "description": "",
         "location": "Hyderabad",
-        "followers": 293253,
+        "followers": 293326,
         "following": 57,
         "status": "",
         "canDm": true,
@@ -749,11 +988,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 15230,
+        "favouritesCount": 15247,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 14490,
-        "statusesCount": 88006,
+        "mediaCount": 14558,
+        "statusesCount": 88139,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -787,21 +1026,13 @@
           {
             "display_url": "pic.x.com/7a2szbcrwz",
             "expanded_url": "https://x.com/HYDTP/status/1996589144810930416/photo/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "features": {
               "large": {
-                "faces": [
-                  {
-                    "h": 84,
-                    "w": 84,
-                    "x": 530,
-                    "y": 92
-                  }
-                ]
-              },
-              "medium": {
                 "faces": [
                   {
                     "h": 84,
@@ -820,16 +1051,6 @@
                     "y": 92
                   }
                 ]
-              },
-              "small": {
-                "faces": [
-                  {
-                    "h": 84,
-                    "w": 84,
-                    "x": 530,
-                    "y": 92
-                  }
-                ]
               }
             },
             "id_str": "1996589127400382464",
@@ -839,7 +1060,10 @@
             ],
             "media_key": "3_1996589127400382464",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARu1TzulG2AACgACG7VPP7LbQPAAAA==",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG7VPO6UbYAAKAAIbtU8/sttA8AAA",
                 "media_key": "3_1996589127400382464"
               }
             },
@@ -883,23 +1107,7 @@
             "sizes": {
               "large": {
                 "h": 424,
-                "resize": "fit",
                 "w": 622
-              },
-              "medium": {
-                "h": 424,
-                "resize": "fit",
-                "w": 622
-              },
-              "small": {
-                "h": 424,
-                "resize": "fit",
-                "w": 622
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "photo",
@@ -938,6 +1146,302 @@
               294
             ],
             "text": "DriveResponsibly"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1996594514451149226",
+      "url": "https://x.com/dtptraffic/status/1996594514451149226",
+      "twitterUrl": "https://twitter.com/dtptraffic/status/1996594514451149226",
+      "text": "TRAFFIC ADVISORY\n\nIn connection with administrative exigencies on 05.12.2025, traffic restrictions and diversions will be in place in carriageways & service roads around W Point, A Point, ITO Chowk, BSZ Marg, Delhi Gate, JLN Marg, Rajghat Crossing, Shanti Van Crossing, Hanuman Setu-Y Point, Netaji Subhash Marg, Nishad Raj Marg, Saleem Garh Flyover By-Pass, MGM-Pragati Maidan Tunnel to Hanuman Setu, Kashmere Gate, Vikas Marg & IP Marg.\n\n📍ROADS AFFECTED: \nAvoid from 09:00 AM to 12:00 noon. Use alternate routes.\n📍PARKING: Only in designated areas. No parking on Bahadur Shah Zafar Marg, JLN Marg & Ring Road (Hanuman Setu–Shanti Van to Rajghat, I.P. Flyover to Pragati Maidan Tunnel & Nishad Raj Marg, IP Marg).\n📍VEHICLES: Violators will be towed & prosecuted.\n📍Stay updated through Delhi Traffic Police channels\n\n#DPTrafficAdvisory",
+      "source": "Twitter for iPhone",
+      "retweetCount": 7,
+      "replyCount": 1,
+      "likeCount": 32,
+      "quoteCount": 1,
+      "viewCount": 9640,
+      "createdAt": "Thu Dec 04 14:56:41 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 3,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1996594514451149226",
+      "displayTextRange": [
+        0,
+        281
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "dtptraffic",
+        "url": "https://x.com/dtptraffic",
+        "twitterUrl": "https://twitter.com/dtptraffic",
+        "id": "143766231",
+        "name": "Delhi Traffic Police",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1747140324324225024/rLI5Hyjo_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/143766231/1651490407",
+        "description": "",
+        "location": "India, Delhi",
+        "followers": 1598582,
+        "following": 49,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Fri May 14 10:06:44 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 6970,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 15206,
+        "statusesCount": 417813,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099728178118041645"
+        ],
+        "profile_bio": {
+          "description": "24x7 Control Room : +91-11-25844444,1095",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "traffic.delhipolice.gov.in",
+                  "expanded_url": "https://traffic.delhipolice.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/U0jWSsRSeL"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/pBqD0wOrsZ",
+            "expanded_url": "https://x.com/dtptraffic/status/1996594514451149226/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              }
+            },
+            "id_str": "1996594469156835328",
+            "indices": [
+              282,
+              305
+            ],
+            "media_key": "3_1996594469156835328",
+            "media_results": {
+              "result": {
+                "media_key": "3_1996594469156835328"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G7VUF16aUAABHX0.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 896,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 1404,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 800,
+                  "x": 280,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1600,
+              "width": 1600
+            },
+            "sizes": {
+              "large": {
+                "h": 1600,
+                "resize": "fit",
+                "w": 1600
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/pBqD0wOrsZ"
+          },
+          {
+            "display_url": "pic.x.com/pBqD0wOrsZ",
+            "expanded_url": "https://x.com/dtptraffic/status/1996594514451149226/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              }
+            },
+            "id_str": "1996594495891353600",
+            "indices": [
+              282,
+              305
+            ],
+            "media_key": "3_1996594495891353600",
+            "media_results": {
+              "result": {
+                "media_key": "3_1996594495891353600"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G7VUHZgasAA2_zz.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 896,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 1404,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 800,
+                  "x": 200,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1600,
+              "width": 1600
+            },
+            "sizes": {
+              "large": {
+                "h": 1600,
+                "resize": "fit",
+                "w": 1600
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/pBqD0wOrsZ"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              817,
+              835
+            ],
+            "text": "DPTrafficAdvisory"
           }
         ],
         "symbols": [],
@@ -986,8 +1490,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1461701356272504835/1787810694",
         "description": "",
         "location": "",
-        "followers": 1947,
-        "following": 654,
+        "followers": 1950,
+        "following": 653,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -999,11 +1503,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 126613,
+        "favouritesCount": 127065,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 8876,
-        "statusesCount": 52212,
+        "mediaCount": 8895,
+        "statusesCount": 52291,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1026,12 +1530,12 @@
               "monetizable": false,
               "source_user": {
                 "user_results": {
+                  "rest_id": "1461701356272504835",
                   "result": {
                     "__typename": "User",
                     "action_counts": {
-                      "favorites_count": 126613
+                      "favorites_count": 127065
                     },
-                    "affiliates_highlighted_label": {},
                     "avatar": {
                       "image_url": "https://pbs.twimg.com/profile_images/2092855854232215552/IPM11kSM_normal.jpg"
                     },
@@ -1046,13 +1550,9 @@
                     "dm_permissions": {
                       "can_dm": true
                     },
+                    "exclusive_tweet_following": false,
                     "follow_request_sent": false,
-                    "grok_translated_bio_with_availability": {
-                      "is_available": false
-                    },
-                    "has_graduated_access": true,
-                    "id": "VXNlcjoxNDYxNzAxMzU2MjcyNTA0ODM1",
-                    "is_blue_verified": false,
+                    "identity_profile_labels_highlighted_label": {},
                     "location": {
                       "location": ""
                     },
@@ -1062,16 +1562,16 @@
                     "notifications_settings": {
                       "notifications_enabled": false
                     },
-                    "parody_commentary_fan_label": "None",
                     "pinned_items": {
                       "tweet_ids_str": [
                         "1969788230607466696"
                       ]
                     },
-                    "possibly_sensitive": false,
                     "privacy": {
-                      "protected": false
+                      "protected": false,
+                      "suspended": false
                     },
+                    "private_super_following": false,
                     "profile_bio": {
                       "description": "yoojung's gf real",
                       "entities": {
@@ -1080,14 +1580,19 @@
                     },
                     "profile_image_shape": "Circle",
                     "profile_metadata": {
-                      "profile_interstitial_type": ""
+                      "profile_interstitial_type": "",
+                      "profile_link_color": "1DA1F2"
                     },
                     "profile_translation": {
-                      "translator_type": "none"
+                      "translator_type_enum": "None"
+                    },
+                    "properties": {
+                      "has_extended_profile": true,
+                      "has_no_screen_name": false
                     },
                     "relationship_counts": {
-                      "followers": 1947,
-                      "following": 654
+                      "followers": 1950,
+                      "following": 653
                     },
                     "relationship_perspectives": {
                       "blocked_by": false,
@@ -1098,14 +1603,17 @@
                       "muting": false
                     },
                     "rest_id": "1461701356272504835",
+                    "smart_blocked_by": false,
+                    "smart_blocking": false,
                     "super_follow_eligible": false,
                     "super_followed_by": false,
                     "super_following": false,
                     "tweet_counts": {
-                      "media_tweets": 8876,
-                      "tweets": 52212
+                      "media_tweets": 8895,
+                      "tweets": 52291
                     },
                     "verification": {
+                      "is_blue_verified": false,
                       "verified": false
                     },
                     "website": {
@@ -1117,9 +1625,11 @@
             },
             "display_url": "pic.x.com/jyP1Ytcvgp",
             "expanded_url": "https://x.com/zclilsun/status/1741829841304129633/video/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "id_str": "1741829810299793408",
             "indices": [
               16,
@@ -1127,7 +1637,10 @@
             ],
             "media_key": "7_1741829810299793408",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAwoAARgsOPveGvAACgACG7VXcALWUS8AAA==",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAADCgABGCw4+94a8AAKAAIbtVdwAtZRLwAA",
                 "media_key": "7_1741829810299793408"
               }
             },
@@ -1140,23 +1653,7 @@
             "sizes": {
               "large": {
                 "h": 720,
-                "resize": "fit",
                 "w": 960
-              },
-              "medium": {
-                "h": 720,
-                "resize": "fit",
-                "w": 960
-              },
-              "small": {
-                "h": 510,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "source_status_id_str": "1741829841304129633",
@@ -1196,183 +1693,539 @@
       },
       "card": null,
       "place": {},
-      "entities": {
-        "media": [
-          {
-            "additional_media_info": {
-              "monetizable": false,
-              "source_user": {
-                "user_results": {
-                  "result": {
-                    "__typename": "User",
-                    "action_counts": {
-                      "favorites_count": 126613
-                    },
-                    "affiliates_highlighted_label": {},
-                    "avatar": {
-                      "image_url": "https://pbs.twimg.com/profile_images/2092855854232215552/IPM11kSM_normal.jpg"
-                    },
-                    "banner": {
-                      "image_url": "https://pbs.twimg.com/profile_banners/1461701356272504835/1787810694"
-                    },
-                    "core": {
-                      "created_at": "Fri Nov 19 14:22:25 +0000 2021",
-                      "name": "avi",
-                      "screen_name": "Ieegakyung"
-                    },
-                    "dm_permissions": {
-                      "can_dm": true
-                    },
-                    "follow_request_sent": false,
-                    "grok_translated_bio_with_availability": {
-                      "is_available": false
-                    },
-                    "has_graduated_access": true,
-                    "id": "VXNlcjoxNDYxNzAxMzU2MjcyNTA0ODM1",
-                    "is_blue_verified": false,
-                    "location": {
-                      "location": ""
-                    },
-                    "media_permissions": {
-                      "can_media_tag": false
-                    },
-                    "notifications_settings": {
-                      "notifications_enabled": false
-                    },
-                    "parody_commentary_fan_label": "None",
-                    "pinned_items": {
-                      "tweet_ids_str": [
-                        "1969788230607466696"
-                      ]
-                    },
-                    "possibly_sensitive": false,
-                    "privacy": {
-                      "protected": false
-                    },
-                    "profile_bio": {
-                      "description": "yoojung's gf real",
-                      "entities": {
-                        "description": {}
-                      }
-                    },
-                    "profile_image_shape": "Circle",
-                    "profile_metadata": {
-                      "profile_interstitial_type": ""
-                    },
-                    "profile_translation": {
-                      "translator_type": "none"
-                    },
-                    "relationship_counts": {
-                      "followers": 1947,
-                      "following": 654
-                    },
-                    "relationship_perspectives": {
-                      "blocked_by": false,
-                      "blocking": false,
-                      "followed_by": false,
-                      "following": false,
-                      "live_following": false,
-                      "muting": false
-                    },
-                    "rest_id": "1461701356272504835",
-                    "super_follow_eligible": false,
-                    "super_followed_by": false,
-                    "super_following": false,
-                    "tweet_counts": {
-                      "media_tweets": 8876,
-                      "tweets": 52212
-                    },
-                    "verification": {
-                      "verified": false
-                    },
-                    "website": {
-                      "url": ""
-                    }
-                  }
-                }
-              }
-            },
-            "display_url": "pic.x.com/jyP1Ytcvgp",
-            "expanded_url": "https://x.com/zclilsun/status/1741829841304129633/video/1",
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "id_str": "1741829810299793408",
-            "indices": [
-              16,
-              39
-            ],
-            "media_key": "7_1741829810299793408",
-            "media_results": {
-              "result": {
-                "media_key": "7_1741829810299793408"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1741829810299793408/pu/img/N_3b5uEpIyUMufrF.jpg",
-            "original_info": {
-              "focus_rects": [],
-              "height": 720,
-              "width": 960
-            },
-            "sizes": {
-              "large": {
-                "h": 720,
-                "resize": "fit",
-                "w": 960
-              },
-              "medium": {
-                "h": 720,
-                "resize": "fit",
-                "w": 960
-              },
-              "small": {
-                "h": 510,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
-              }
-            },
-            "source_status_id_str": "1741829841304129633",
-            "source_user_id_str": "1461701356272504835",
-            "type": "video",
-            "url": "https://t.co/jyP1Ytcvgp",
-            "video_info": {
-              "aspect_ratio": [
-                4,
-                3
-              ],
-              "duration_millis": 7069,
-              "variants": [
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1996599375959843169",
+      "url": "https://x.com/PTI_News/status/1996599375959843169",
+      "twitterUrl": "https://twitter.com/PTI_News/status/1996599375959843169",
+      "text": "Delhi Traffic Police (@dtptraffic) posts, \"TRAFFIC ADVISORY In connection with administrative exigencies on 05.12.2025, traffic restrictions and diversions will be in place in carriageways & service roads around W Point, A Point, ITO Chowk, BSZ Marg, Delhi Gate, JLN Marg, Rajghat Crossing, Shanti Van Crossing, Hanuman Setu-Y Point, Netaji Subhash Marg, Nishad Raj Marg, Saleem Garh Flyover By-Pass, MGM-Pragati Maidan Tunnel to Hanuman Setu, Kashmere Gate, Vikas Marg & IP Marg...\"",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 6,
+      "quoteCount": 0,
+      "viewCount": 2424,
+      "createdAt": "Thu Dec 04 15:16:00 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1996599375959843169",
+      "displayTextRange": [
+        0,
+        284
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "PTI_News",
+        "url": "https://x.com/PTI_News",
+        "twitterUrl": "https://twitter.com/PTI_News",
+        "id": "245687754",
+        "name": "Press Trust of India",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1618421776794677248/EYJex5NK_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/245687754/1674868151",
+        "description": "",
+        "location": "New Delhi, India",
+        "followers": 4625676,
+        "following": 3,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Feb 01 07:31:18 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 0,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 351976,
+        "statusesCount": 552101,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "India’s largest and most trusted news agency since 1949.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
                 {
-                  "content_type": "application/x-mpegURL",
-                  "url": "https://video.twimg.com/ext_tw_video/1741829810299793408/pu/pl/MxWqIEeQ9Z7CvJ0P.m3u8?tag=12"
-                },
-                {
-                  "bitrate": 256000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/ext_tw_video/1741829810299793408/pu/vid/avc1/360x270/JIhrlOyVNf_Sxz5z.mp4?tag=12"
-                },
-                {
-                  "bitrate": 832000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/ext_tw_video/1741829810299793408/pu/vid/avc1/480x360/o23KPsAUnDu_YnTD.mp4?tag=12"
-                },
-                {
-                  "bitrate": 2176000,
-                  "content_type": "video/mp4",
-                  "url": "https://video.twimg.com/ext_tw_video/1741829810299793408/pu/vid/avc1/960x720/K5rk6FOoDOD9PUY_.mp4?tag=12"
+                  "display_url": "ptinews.com",
+                  "expanded_url": "http://www.ptinews.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/GeapPFhBO9"
                 }
               ]
             }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/mk2ZANbDjo",
+            "expanded_url": "https://x.com/PTI_News/status/1996599375959843169/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1996598253362810880",
+            "indices": [
+              285,
+              308
+            ],
+            "media_key": "3_1996598253362810880",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARu1V4hy2xAACgACG7VYjdLaYWEAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG7VXiHLbEAAKAAIbtViN0tphYQAA",
+                "media_key": "3_1996598253362810880"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G7VXiHLbEAAkhGf.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 717,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1275,
+                  "w": 1275,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1275,
+                  "w": 1118,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1275,
+                  "w": 638,
+                  "x": 224,
+                  "y": 0
+                },
+                {
+                  "h": 1275,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1275,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 1275,
+                "w": 1280
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/mk2ZANbDjo"
+          },
+          {
+            "display_url": "pic.x.com/mk2ZANbDjo",
+            "expanded_url": "https://x.com/PTI_News/status/1996599375959843169/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1996598277593300992",
+            "indices": [
+              285,
+              308
+            ],
+            "media_key": "3_1996598277593300992",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARu1V44XGwAACgACG7VYjdLaYWEAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG7VXjhcbAAAKAAIbtViN0tphYQAA",
+                "media_key": "3_1996598277593300992"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G7VXjhcbAAAoYTQ.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 712,
+                  "w": 1271,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1271,
+                  "w": 1271,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 1123,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 640,
+                  "x": 223,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 1271,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1280,
+              "width": 1271
+            },
+            "sizes": {
+              "large": {
+                "h": 1280,
+                "w": 1271
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/mk2ZANbDjo"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "143766231",
+            "indices": [
+              22,
+              33
+            ],
+            "name": "Delhi Traffic Police",
+            "screen_name": "dtptraffic"
           }
         ]
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1996603561166393715",
+      "url": "https://x.com/Stat_Cult/status/1996603561166393715",
+      "twitterUrl": "https://twitter.com/Stat_Cult/status/1996603561166393715",
+      "text": "💃 Top Countries for OnlyFans Female Creators 💃\n\n1. 🇺🇸 United States – ~924,000 women  \n2. 🇧🇷 Brazil – ~239,000 women  \n3. 🇬🇧 United Kingdom – ~235,000 women  \n4. 🇨🇦 Canada – ~147,000 women  \n5. 🇦🇺 Australia – ~118,000 women  \n6. 🇩🇪 Germany – ~88,000 women  \n7. 🇫🇷 France – ~59,000 women  \n8. 🇮🇹 Italy – ~42,000 women (est. from traffic data)  \n9. 🇪🇸 Spain – ~38,000 women (est. from traffic data)  \n10. 🇲🇽 Mexico – ~25,000 women (est. from regional growth)  \n11. 🇮🇳 India – ~21,000 women (est. from emerging market shares)  \n12. 🇵🇾 Paraguay – ~17,000 women (est. from 4% user share)  \n13. 🇧🇩 Bangladesh – ~17,000 women (est. from 4% user share)  \n14. 🇳🇱 Netherlands – ~15,000 women (est. from EU trends)  \n15. 🇮🇪 Ireland – ~12,000 women (est. from English-speaking growth)  \n16. 🇳🇿 New Zealand – ~10,000 women (est. from Oceania data)  \n17. 🇿🇦 South Africa – ~8,500 women (est. from African market)  \n18. 🇵🇭 Philippines – ~7,500 women (est. from Asia-Pacific)  \n19. 🇦🇷 Argentina – ~6,500 women (est. from Latin America)  \n20. 🇨🇴 Colombia – ~5,500 women (est. from regional expansion)\n\n*By the total number of female creators 2025 estimated\n**84% of all creators are women\n***US dominates due to population size",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 2,
+      "likeCount": 18,
+      "quoteCount": 1,
+      "viewCount": 3922,
+      "createdAt": "Thu Dec 04 15:32:38 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 7,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1996603561166393715",
+      "displayTextRange": [
+        0,
+        272
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "Stat_Cult",
+        "url": "https://x.com/Stat_Cult",
+        "twitterUrl": "https://twitter.com/Stat_Cult",
+        "id": "1675918392442908673",
+        "name": "World of StatHistics",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1872645963824996352/Am0ss8RY_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1675918392442908673/1763535244",
+        "description": "",
+        "location": "SUBSCRIBE →",
+        "followers": 82795,
+        "following": 449,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Mon Jul 03 17:24:33 +0000 2023",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 24456,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 3831,
+        "statusesCount": 11638,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "📊 Where Every Number Tells a Story | Turning Raw Data into Real Stories 📊",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "x.com/Stat_Cult/crea…",
+                  "expanded_url": "https://x.com/Stat_Cult/creator-subscriptions/subscribe",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/0Gj3p144wR"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/lrOCUCXP1r",
+            "expanded_url": "https://x.com/Stat_Cult/status/1996603561166393715/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1996603557035003904",
+            "indices": [
+              273,
+              296
+            ],
+            "media_key": "3_1996603557035003904",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARu1XFtOWlAACgACG7VcXESaUXMAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG7VcW05aUAAKAAIbtVxcRJpRcwAA",
+                "media_key": "3_1996603557035003904"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G7VcW05aUAAqk6T.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 746,
+                  "w": 1333,
+                  "x": 0,
+                  "y": 77
+                },
+                {
+                  "h": 1333,
+                  "w": 1333,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1520,
+                  "w": 1333,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2000,
+                  "w": 1000,
+                  "x": 50,
+                  "y": 0
+                },
+                {
+                  "h": 2000,
+                  "w": 1333,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2000,
+              "width": 1333
+            },
+            "sizes": {
+              "large": {
+                "h": 2000,
+                "w": 1333
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/lrOCUCXP1r"
+          },
+          {
+            "display_url": "pic.x.com/lrOCUCXP1r",
+            "expanded_url": "https://x.com/Stat_Cult/status/1996603561166393715/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 433,
+                    "w": 433,
+                    "x": 539,
+                    "y": 535
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 433,
+                    "w": 433,
+                    "x": 539,
+                    "y": 535
+                  }
+                ]
+              }
+            },
+            "id_str": "1996603554304507904",
+            "indices": [
+              273,
+              296
+            ],
+            "media_key": "3_1996603554304507904",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARu1XFqrmkAACgACG7VcXESaUXMAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG7VcWquaQAAKAAIbtVxcRJpRcwAA",
+                "media_key": "3_1996603554304507904"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G7VcWquaQAArC2G.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 746,
+                  "w": 1333,
+                  "x": 0,
+                  "y": 377
+                },
+                {
+                  "h": 1333,
+                  "w": 1333,
+                  "x": 0,
+                  "y": 84
+                },
+                {
+                  "h": 1520,
+                  "w": 1333,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2000,
+                  "w": 1000,
+                  "x": 333,
+                  "y": 0
+                },
+                {
+                  "h": 2000,
+                  "w": 1333,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2000,
+              "width": 1333
+            },
+            "sizes": {
+              "large": {
+                "h": 2000,
+                "w": 1333
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/lrOCUCXP1r"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -1408,12 +2261,12 @@
         "name": "Official MMDA",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": null,
+        "verifiedType": "Government",
         "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967089,
+        "followers": 3966703,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -1429,8 +2282,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61681,
-        "statusesCount": 888258,
+        "mediaCount": 61731,
+        "statusesCount": 888695,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1473,6 +2326,448 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1996604296763478194",
+      "url": "https://x.com/dtptraffic/status/1996604296763478194",
+      "twitterUrl": "https://twitter.com/dtptraffic/status/1996604296763478194",
+      "text": "TRAFFIC ADVISORY\n\nSpecial traffic arrangements will be in place in New Delhi District on 05.12.2025 due to a special event.\n\n📍RESTRICTIONS AND NO PARKING ZONES:\nDifferent stretches including Mother Teresa Crescent, Teen Murti Marg, Akbar Road, MLNP, Janpath Road, Firoz Shah Road, Sikandra Road, Windsor Place, Mandi House, Mathura Road & Bhairon Marg will remain restricted during:\n•10:00–11:30 AM\n•11:00 AM–12:30 PM\n•03:00–05:00 PM\n•05:00–09:00 PM\n\n📍MAJOR DIVERSIONS:\nVande Matram Marg → Simon Boliver Marg • R/A Kautilya Marg • Sunheri Masjid • R/A Rail Bhawan • Janpath Tolstoy Marg • Tolstoy KG Marg • Barakhamba Road, etc.\n\n📍ROUTES TO AVOID:\nMother Teresa Crescent • Teen Murti Marg • Akbar Road • MLNP • Janpath Road • Firoz Shah Road • Sikandra Road • W-Point • Mathura Road • Bhairon Road\n\n📍SUGGESTED ALTERNATIVES:\nVande Matram Marg • Yashwant Place • Maulana Azad Road • K. Kamraj Marg • Raisina Road • Rafi Marg • DDU Marg • Asaf Ali Road.\n\n📍PUBLIC ADVISORY:\nUse public transport, follow traffic police directions and plan travel to ISBT/Railway Stations/Airports in advance\n\n📍STAY UPDATED THROUGH DELHI TRAFFIC POLICE CHANNELS\n\n#DPTrafficAdvisory",
+      "source": "Twitter for iPhone",
+      "retweetCount": 5,
+      "replyCount": 8,
+      "likeCount": 56,
+      "quoteCount": 1,
+      "viewCount": 15945,
+      "createdAt": "Thu Dec 04 15:35:34 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 9,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1996604296763478194",
+      "displayTextRange": [
+        0,
+        274
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "dtptraffic",
+        "url": "https://x.com/dtptraffic",
+        "twitterUrl": "https://twitter.com/dtptraffic",
+        "id": "143766231",
+        "name": "Delhi Traffic Police",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1747140324324225024/rLI5Hyjo_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/143766231/1651490407",
+        "description": "",
+        "location": "India, Delhi",
+        "followers": 1598582,
+        "following": 49,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri May 14 10:06:44 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 6970,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 15206,
+        "statusesCount": 417813,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099728178118041645"
+        ],
+        "profile_bio": {
+          "description": "24x7 Control Room : +91-11-25844444,1095",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "traffic.delhipolice.gov.in",
+                  "expanded_url": "https://traffic.delhipolice.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/U0jWSsRSeL"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/ugexGDdCSQ",
+            "expanded_url": "https://x.com/dtptraffic/status/1996604296763478194/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 228,
+                    "w": 228,
+                    "x": 12,
+                    "y": 1525
+                  },
+                  {
+                    "h": 264,
+                    "w": 264,
+                    "x": 1332,
+                    "y": 169
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 285,
+                    "w": 285,
+                    "x": 15,
+                    "y": 1907
+                  },
+                  {
+                    "h": 330,
+                    "w": 330,
+                    "x": 1665,
+                    "y": 212
+                  }
+                ]
+              }
+            },
+            "id_str": "1996604166077292544",
+            "indices": [
+              275,
+              298
+            ],
+            "media_key": "3_1996604166077292544",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARu1XOkcGiAACgACG7VdB4mbELIAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG7Vc6RwaIAAKAAIbtV0HiZsQsgAA",
+                "media_key": "3_1996604166077292544"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G7Vc6RwaIAARmtr.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1434,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2246,
+                  "x": 93,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 1280,
+                  "x": 576,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2560,
+              "width": 2560
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/ugexGDdCSQ"
+          },
+          {
+            "display_url": "pic.x.com/ugexGDdCSQ",
+            "expanded_url": "https://x.com/dtptraffic/status/1996604296763478194/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1996604213380689920",
+            "indices": [
+              275,
+              298
+            ],
+            "media_key": "3_1996604213380689920",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARu1XPQfmrAACgACG7VdB4mbELIAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG7Vc9B+asAAKAAIbtV0HiZsQsgAA",
+                "media_key": "3_1996604213380689920"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G7Vc9B-asAAsp4A.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1434,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2246,
+                  "x": 314,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 1280,
+                  "x": 960,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2560,
+              "width": 2560
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/ugexGDdCSQ"
+          },
+          {
+            "display_url": "pic.x.com/ugexGDdCSQ",
+            "expanded_url": "https://x.com/dtptraffic/status/1996604296763478194/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1996604241147047936",
+            "indices": [
+              275,
+              298
+            ],
+            "media_key": "3_1996604241147047936",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARu1XPqWm7AACgACG7VdB4mbELIAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG7Vc+pabsAAKAAIbtV0HiZsQsgAA",
+                "media_key": "3_1996604241147047936"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G7Vc-pabsAAhhiL.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1434,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2246,
+                  "x": 314,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 1280,
+                  "x": 960,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2560,
+              "width": 2560
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/ugexGDdCSQ"
+          },
+          {
+            "display_url": "pic.x.com/ugexGDdCSQ",
+            "expanded_url": "https://x.com/dtptraffic/status/1996604296763478194/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1996604265318739968",
+            "indices": [
+              275,
+              298
+            ],
+            "media_key": "3_1996604265318739968",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARu1XQA3WnAACgACG7VdB4mbELIAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG7VdADdacAAKAAIbtV0HiZsQsgAA",
+                "media_key": "3_1996604265318739968"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G7VdADdacAAwQHs.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1434,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 115
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2246,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2560,
+              "width": 2560
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/ugexGDdCSQ"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              1140,
+              1158
+            ],
+            "text": "DPTrafficAdvisory"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -1508,12 +2803,12 @@
         "name": "Official MMDA",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": null,
+        "verifiedType": "Government",
         "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967089,
+        "followers": 3966703,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -1529,8 +2824,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61681,
-        "statusesCount": 888258,
+        "mediaCount": 61731,
+        "statusesCount": 888695,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1573,6 +2868,387 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1996606455185899676",
+      "url": "https://x.com/PTI_News/status/1996606455185899676",
+      "twitterUrl": "https://twitter.com/PTI_News/status/1996606455185899676",
+      "text": "Delhi Traffic Police posts:\n\nTRAFFIC ADVISORY\n\nSpecial traffic arrangements will be in place in New Delhi District on 05.12.2025 due to a special event.\n\n📍RESTRICTIONS AND NO PARKING ZONES:\nDifferent stretches including Mother Teresa Crescent, Teen Murti Marg, Akbar Road, MLNP, Janpath Road, Firoz Shah Road, Sikandra Road, Windsor Place, Mandi House, Mathura Road & Bhairon Marg will remain restricted during:\n•10:00–11:30 AM\n•11:00 AM–12:30 PM\n•03:00–05:00 PM\n•05:00–09:00 PM\n\n📍MAJOR DIVERSIONS:\nVande Matram Marg → Simon Boliver Marg • R/A Kautilya Marg • Sunheri Masjid • R/A Rail Bhawan • Janpath Tolstoy Marg • Tolstoy KG Marg • Barakhamba Road, etc.\n\n📍ROUTES TO AVOID:\nMother Teresa Crescent • Teen Murti Marg • Akbar Road • MLNP • Janpath Road • Firoz Shah Road • Sikandra Road • W-Point • Mathura Road • Bhairon Road\n\n📍SUGGESTED ALTERNATIVES:\nVande Matram Marg • Yashwant Place • Maulana Azad Road • K. Kamraj Marg • Raisina Road • Rafi Marg • DDU Marg • Asaf Ali Road.\n\n📍PUBLIC ADVISORY:\nUse public transport, follow traffic police directions and plan travel to ISBT/Railway Stations/Airports in advance\n\n📍STAY UPDATED THROUGH DELHI TRAFFIC POLICE CHANNELS",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 6,
+      "quoteCount": 0,
+      "viewCount": 2764,
+      "createdAt": "Thu Dec 04 15:44:08 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1996606455185899676",
+      "displayTextRange": [
+        0,
+        278
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "PTI_News",
+        "url": "https://x.com/PTI_News",
+        "twitterUrl": "https://twitter.com/PTI_News",
+        "id": "245687754",
+        "name": "Press Trust of India",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1618421776794677248/EYJex5NK_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/245687754/1674868151",
+        "description": "",
+        "location": "New Delhi, India",
+        "followers": 4625676,
+        "following": 3,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Feb 01 07:31:18 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 0,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 351976,
+        "statusesCount": 552101,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "India’s largest and most trusted news agency since 1949.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "ptinews.com",
+                  "expanded_url": "http://www.ptinews.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/GeapPFhBO9"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/fazXNne1yG",
+            "expanded_url": "https://x.com/PTI_News/status/1996606455185899676/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1996606419848835072",
+            "indices": [
+              279,
+              302
+            ],
+            "media_key": "3_1996606419848835072",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARu1XvXbWrAACgACG7Ve/hWbgJwAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG7Ve9dtasAAKAAIbtV7+FZuAnAAA",
+                "media_key": "3_1996606419848835072"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G7Ve9dtasAAfKos.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 157,
+                  "w": 281,
+                  "x": 0,
+                  "y": 288
+                },
+                {
+                  "h": 281,
+                  "w": 281,
+                  "x": 0,
+                  "y": 226
+                },
+                {
+                  "h": 320,
+                  "w": 281,
+                  "x": 0,
+                  "y": 206
+                },
+                {
+                  "h": 562,
+                  "w": 281,
+                  "x": 0,
+                  "y": 75
+                },
+                {
+                  "h": 637,
+                  "w": 281,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 637,
+              "width": 281
+            },
+            "sizes": {
+              "large": {
+                "h": 637,
+                "w": 281
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/fazXNne1yG"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1996605712026534307",
+      "url": "https://x.com/PH_JiminUnited/status/1996605712026534307",
+      "twitterUrl": "https://twitter.com/PH_JiminUnited/status/1996605712026534307",
+      "text": "SPOTIFY - Philippines 🇵🇭 \nDecember 1, 2025 \n\n🎵 Daily Top Songs \n#165 - RE-ENTRY #Jimin_Who 👏\nwith 116,961 streams \n\nSPOTIFY - GLOBAL Daily Top Songs 🌍\n#49 - Jimin (🔻8) \nwith 2,195,176 (-13,026) streams 🚨\n\nChristmas songs are flooding the charts, and competition is tighter than ever. We need to stay sharp and keep WHO steady. Stream whenever you can, even softly in the background — every play helps Jimin hold his ground this holiday season. 💛🎧🔥",
+      "source": "Twitter for iPhone",
+      "retweetCount": 14,
+      "replyCount": 0,
+      "likeCount": 43,
+      "quoteCount": 0,
+      "viewCount": 778,
+      "createdAt": "Thu Dec 04 15:41:11 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1996605712026534307",
+      "displayTextRange": [
+        0,
+        272
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "PH_JiminUnited",
+        "url": "https://x.com/PH_JiminUnited",
+        "twitterUrl": "https://twitter.com/PH_JiminUnited",
+        "id": "1656832791794028544",
+        "name": "JIMIN UNITED PH",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1889337744725508096/6Ai-TP-X_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1656832791794028544/1769335238",
+        "description": "",
+        "location": "est. 2023 🇵🇭",
+        "followers": 6591,
+        "following": 171,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri May 12 01:25:10 +0000 2023",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 11836,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 5005,
+        "statusesCount": 15537,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2095492640305545271"
+        ],
+        "profile_bio": {
+          "description": "Philippine Fanbase dedicated to Park Jimin —the main dancer and lead vocalist of BTS, a songwriter and producer, #1 Billboard Hot 100 singer, the Global IT Boy.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "ingrv.es/Face",
+                  "expanded_url": "http://ingrv.es/Face",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/Z3vE4eFEjf"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/S9dEA82dOT",
+            "expanded_url": "https://x.com/PH_JiminUnited/status/1996605712026534307/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 238,
+                    "w": 238,
+                    "x": 132,
+                    "y": 174
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 238,
+                    "w": 238,
+                    "x": 132,
+                    "y": 174
+                  }
+                ]
+              }
+            },
+            "id_str": "1996605631802044416",
+            "indices": [
+              273,
+              296
+            ],
+            "media_key": "3_1996605631802044416",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARu1Xj5gGvAACgACG7VeUQ3bgaMAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG7VePmAa8AAKAAIbtV5RDduBowAA",
+                "media_key": "3_1996605631802044416"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G7VePmAa8AAiqhX.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 475
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 947,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 540,
+                  "x": 189,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1080,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/S9dEA82dOT"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              80,
+              90
+            ],
+            "text": "Jimin_Who"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     }
   ]

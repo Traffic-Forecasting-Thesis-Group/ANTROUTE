@@ -5,7 +5,7 @@
     "window_start": "2026-02-22T12:00:00+08:00",
     "window_end": "2026-02-22T14:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 8,
+    "tweet_count": 13,
     "slices": [
       {
         "start": "2026-02-22T12:00:00+08:00",
@@ -46,8 +46,8 @@
         "start": "2026-02-22T12:25:00+08:00",
         "end": "2026-02-22T12:30:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-22T12:30:00+08:00",
@@ -116,8 +116,8 @@
         "start": "2026-02-22T13:15:00+08:00",
         "end": "2026-02-22T13:20:00+08:00",
         "status_code": 200,
-        "returned": 2,
-        "accepted": 2
+        "returned": 3,
+        "accepted": 3
       },
       {
         "start": "2026-02-22T13:20:00+08:00",
@@ -144,8 +144,8 @@
         "start": "2026-02-22T13:35:00+08:00",
         "end": "2026-02-22T13:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-02-22T13:40:00+08:00",
@@ -172,12 +172,116 @@
         "start": "2026-02-22T13:55:00+08:00",
         "end": "2026-02-22T14:00:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       }
     ]
   },
   "data": [
+    {
+      "type": "tweet",
+      "id": "2025427355297083767",
+      "url": "https://x.com/bostonpolice/status/2025427355297083767",
+      "twitterUrl": "https://twitter.com/bostonpolice/status/2025427355297083767",
+      "text": "Traffic Advisory: McClellan Hwy closed both directions at Boardman St, East Boston, due to crash with downed power lines. Avoid area and use alternate routes.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 1,
+      "likeCount": 7,
+      "quoteCount": 0,
+      "viewCount": 6192,
+      "createdAt": "Sun Feb 22 04:28:06 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2025427355297083767",
+      "displayTextRange": [
+        0,
+        158
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "bostonpolice",
+        "url": "https://x.com/bostonpolice",
+        "twitterUrl": "https://twitter.com/bostonpolice",
+        "id": "19185333",
+        "name": "Boston Police Dept.",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1681679396384456705/9r8m28Ah_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/19185333/1689705769",
+        "description": "",
+        "location": "Boston, MA",
+        "followers": 475483,
+        "following": 390,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Jan 19 14:49:36 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3516,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 14131,
+        "statusesCount": 28294,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Tweeting BPD News and real time emergency notifications. **For emergencies, please call 911. Account not monitored 24/7.\n\nhttps://t.co/fbZ2dpvaLw",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "police.boston.gov/mentalhealth",
+                  "expanded_url": "https://police.boston.gov/mentalhealth",
+                  "indices": [
+                    122,
+                    145
+                  ],
+                  "url": "https://t.co/fbZ2dpvaLw"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "bpdnews.com",
+                  "expanded_url": "http://bpdnews.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/chyt7oMh5w"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
     {
       "type": "tweet",
       "id": "2025435384616726529",
@@ -216,7 +320,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437251,
+        "followers": 1437176,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +336,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412012,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -318,8 +422,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/39453212/1785235955",
         "description": "",
         "location": "Philippines",
-        "followers": 5717135,
-        "following": 672,
+        "followers": 5718241,
+        "following": 674,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -331,16 +435,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 14181,
+        "favouritesCount": 14180,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 213452,
-        "statusesCount": 1025443,
+        "mediaCount": 215093,
+        "statusesCount": 1028062,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2096631393191067840"
+          "2100074862379229250"
         ],
         "profile_bio": {
           "description": "Welcome to the official X account of GMA News.",
@@ -447,6 +551,116 @@
     },
     {
       "type": "tweet",
+      "id": "2025439282207572254",
+      "url": "https://x.com/TransportGuy/status/2025439282207572254",
+      "twitterUrl": "https://twitter.com/TransportGuy/status/2025439282207572254",
+      "text": "https://t.co/z6k6Ak2bdJ",
+      "source": "Twitter for iPhone",
+      "retweetCount": 6,
+      "replyCount": 15,
+      "likeCount": 51,
+      "quoteCount": 3,
+      "viewCount": 10384,
+      "createdAt": "Sun Feb 22 05:15:30 +0000 2026",
+      "lang": "zxx",
+      "bookmarkCount": 7,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2025439282207572254",
+      "displayTextRange": [
+        0,
+        23
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "TransportGuy",
+        "url": "https://x.com/TransportGuy",
+        "twitterUrl": "https://twitter.com/TransportGuy",
+        "id": "2024854333805010944",
+        "name": "James Deakin",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2026657449453965312/j_4iodtF_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2024854333805010944/1771722791",
+        "description": "",
+        "location": "Philippines ",
+        "followers": 1159,
+        "following": 78,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri Feb 20 14:31:28 +0000 2026",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 417,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 67,
+        "statusesCount": 244,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2033078635792576640"
+        ],
+        "profile_bio": {
+          "description": "Dad of 3. Transport journalist. Road safety & policy advocate. Miss Earth Host. Podcaster. Working toward a better transport experience for all",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "jamesdeakin.ph",
+                  "expanded_url": "https://jamesdeakin.ph",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/BdVDh67sVn"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/i/article/2025…",
+            "expanded_url": "http://x.com/i/article/2025132777910534151",
+            "indices": [
+              0,
+              23
+            ],
+            "url": "https://t.co/z6k6Ak2bdJ"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": {
+        "title": "Proof of Life: What AI can’t fake is the one thing keeping you real.",
+        "preview_text": "Look at these two images side by side. Both beautiful. Both technically accomplished. One was made by a human. One was made by AI.\nWhich one do you prefer?\nDoesn't matter, because you probably can't",
+        "cover_media_img_url": "https://pbs.twimg.com/media/HBq7-rTaQAA_33I.jpg"
+      }
+    },
+    {
+      "type": "tweet",
       "id": "2025439155757703304",
       "url": "https://x.com/MakatiTraffic/status/2025439155757703304",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2025439155757703304",
@@ -483,7 +697,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437251,
+        "followers": 1437176,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -499,8 +713,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412012,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -549,6 +763,440 @@
     },
     {
       "type": "tweet",
+      "id": "2025445266652856624",
+      "url": "https://x.com/RNC_PoliceNL/status/2025445266652856624",
+      "twitterUrl": "https://twitter.com/RNC_PoliceNL/status/2025445266652856624",
+      "text": "⚠️TRAFFIC ADVISORY ⚠️\n\nSunday, Feb 22 @ 210 am. \n\nRNC are on scene on the eastbound Pitts Memorial Dr ramp leading to Richard Nolan Dr for multiple vehicles stuck on the ramp in the drifting snow. \n\nPlease remain away from the area as conditions are deteriorating. \n\n#nltraffic https://t.co/I2NpxIXsDn",
+      "source": "Twitter for iPhone",
+      "retweetCount": 5,
+      "replyCount": 0,
+      "likeCount": 8,
+      "quoteCount": 1,
+      "viewCount": 9204,
+      "createdAt": "Sun Feb 22 05:39:17 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2025445266652856624",
+      "displayTextRange": [
+        0,
+        277
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "RNC_PoliceNL",
+        "url": "https://x.com/RNC_PoliceNL",
+        "twitterUrl": "https://twitter.com/RNC_PoliceNL",
+        "id": "2320904928",
+        "name": "Royal Newfoundland Constabulary",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1771891663599779840/gfZxEVuA_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2320904928/1738760163",
+        "description": "",
+        "location": "Newfoundland and Labrador, Can",
+        "followers": 85425,
+        "following": 99,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Fri Jan 31 14:46:37 +0000 2014",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 7454,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 6409,
+        "statusesCount": 20923,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1887122546539008037"
+        ],
+        "profile_bio": {
+          "description": "This account is NOT monitored 24/7 • EMERGENCY CALL 911 • Reports not requiring immediate police assistance can be made by calling 709-729-8000",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "rnc.gov.nl.ca/join",
+                  "expanded_url": "https://www.rnc.gov.nl.ca/join",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/Lur2oU3E8p"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/I2NpxIXsDn",
+            "expanded_url": "https://x.com/RNC_PoliceNL/status/2025445266652856624/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2025445263356104704",
+            "indices": [
+              278,
+              301
+            ],
+            "media_key": "3_2025445263356104704",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwb07xaVpAACgACHBvTvR7XATAAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHBvTvFpWkAAKAAIcG9O9HtcBMAAA",
+                "media_key": "3_2025445263356104704"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HBvTvFpWkAA-Vlk.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 717,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 720,
+                  "x": 184,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 632,
+                  "x": 228,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 360,
+                  "x": 364,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 720,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1280
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/I2NpxIXsDn"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              267,
+              277
+            ],
+            "text": "nltraffic"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": true,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2025445109521871173",
+      "url": "https://x.com/wftrps/status/2025445109521871173",
+      "twitterUrl": "https://twitter.com/wftrps/status/2025445109521871173",
+      "text": "Traffic Advisory'\n🔺 Slow moving traffic due to Santhe/ Varthur weekly vegetable market. \n#FollowTrafficRules and #MaintainLaneDisipline\nKindly co-operate.\n📌 Call 112 for the immediate assistance during any emergency. https://t.co/zyKheglL8m",
+      "source": "Twitter for iPhone",
+      "retweetCount": 5,
+      "replyCount": 1,
+      "likeCount": 6,
+      "quoteCount": 0,
+      "viewCount": 702,
+      "createdAt": "Sun Feb 22 05:38:39 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2025445109521871173",
+      "displayTextRange": [
+        0,
+        216
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "wftrps",
+        "url": "https://x.com/wftrps",
+        "twitterUrl": "https://twitter.com/wftrps",
+        "id": "1427538424513261572",
+        "name": "WHITEFIELD TRAFFIC PS BTP",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1610431515384766464/EKixD336_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1427538424513261572/1698664455",
+        "description": "",
+        "location": "XQV4+PV4, Kadugodi Rd, Kadugod",
+        "followers": 8056,
+        "following": 340,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Aug 17 07:52:18 +0000 2021",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 8049,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 9569,
+        "statusesCount": 23159,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1561965210944290816"
+        ],
+        "profile_bio": {
+          "description": "Whitefield Traffic Police Station  ☎️ 08022943706.\nhttps://t.co/nLW3eXyDqh\nhttps://t.co/ztwpDdQ1kT",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "facebook.com/whitefield",
+                  "expanded_url": "https://www.facebook.com/whitefield",
+                  "indices": [
+                    51,
+                    74
+                  ],
+                  "url": "https://t.co/nLW3eXyDqh"
+                },
+                {
+                  "display_url": "instagram.com/whitefieldtraf…",
+                  "expanded_url": "https://instagram.com/whitefieldtrafficps?utm_source=qr&igshid=ZDc4ODBmNj",
+                  "indices": [
+                    75,
+                    98
+                  ],
+                  "url": "https://t.co/ztwpDdQ1kT"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.gov.in",
+                  "expanded_url": "https://btp.gov.in/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/n23Fyy5nq9"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/zyKheglL8m",
+            "expanded_url": "https://x.com/wftrps/status/2025445109521871173/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "CP Bengaluru ಪೊಲೀಸ್ ಆಯುಕ್ತ ಬೆಂಗಳೂರು",
+                    "screen_name": "CPBlr",
+                    "type": "user",
+                    "user_id": "2687852605"
+                  },
+                  {
+                    "name": "Joint CP, Traffic, Bengaluru",
+                    "screen_name": "Jointcptraffic",
+                    "type": "user",
+                    "user_id": "2809164276"
+                  },
+                  {
+                    "name": "DCP Traffic East ಉಪ ಪೊಲೀಸ್ ಆಯುಕ್ತರು ಸಂಚಾರ ಪೂರ್ವ",
+                    "screen_name": "DCPTrEastBCP",
+                    "type": "user",
+                    "user_id": "2809049605"
+                  },
+                  {
+                    "name": "ACP Whitefield Traffic ಎಸಿಪಿ ಸಂಚಾರ ವೈಟ್ ಫೀಲ್ಡ್",
+                    "screen_name": "acpwfieldtrf",
+                    "type": "user",
+                    "user_id": "1361589347032600576"
+                  },
+                  {
+                    "name": "ಬೆಂಗಳೂರು ನಗರ ಪೊಲೀಸ್‌ BengaluruCityPolice",
+                    "screen_name": "BlrCityPolice",
+                    "type": "user",
+                    "user_id": "775296019"
+                  },
+                  {
+                    "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+                    "screen_name": "blrcitytraffic",
+                    "type": "user",
+                    "user_id": "1851545900"
+                  }
+                ]
+              },
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2025445098667081729",
+            "indices": [
+              217,
+              240
+            ],
+            "media_key": "3_2025445098667081729",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwb05YCG4ABCgACHBvTmIkacUUAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHBvTlgIbgAEKAAIcG9OYiRpxRQAA",
+                "media_key": "3_2025445098667081729"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HBvTlgIbgAEsdZx.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 840,
+                  "w": 1500,
+                  "x": 0,
+                  "y": 660
+                },
+                {
+                  "h": 1500,
+                  "w": 1500,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1500,
+                  "w": 1316,
+                  "x": 184,
+                  "y": 0
+                },
+                {
+                  "h": 1500,
+                  "w": 750,
+                  "x": 750,
+                  "y": 0
+                },
+                {
+                  "h": 1500,
+                  "w": 1500,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1500,
+              "width": 1500
+            },
+            "sizes": {
+              "large": {
+                "h": 1500,
+                "w": 1500
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/zyKheglL8m"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              89,
+              108
+            ],
+            "text": "FollowTrafficRules"
+          },
+          {
+            "indices": [
+              113,
+              135
+            ],
+            "text": "MaintainLaneDisipline"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2025446195519246627",
       "url": "https://x.com/altermidya/status/2025446195519246627",
       "twitterUrl": "https://twitter.com/altermidya/status/2025446195519246627",
@@ -585,7 +1233,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2927430241/1727770375",
         "description": "",
         "location": "Quezon City",
-        "followers": 35583,
+        "followers": 35573,
         "following": 463,
         "status": "",
         "canDm": true,
@@ -601,8 +1249,8 @@
         "favouritesCount": 1980,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 9732,
-        "statusesCount": 28734,
+        "mediaCount": 9749,
+        "statusesCount": 28763,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1093,7 +1741,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197303,
+        "followers": 1197820,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -1109,8 +1757,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219318,
-        "statusesCount": 942038,
+        "mediaCount": 219503,
+        "statusesCount": 943035,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1841,7 +2489,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437251,
+        "followers": 1437176,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1857,8 +2505,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412012,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1943,8 +2591,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/461853598/1788192343",
         "description": "",
         "location": "Republic of the Philippines",
-        "followers": 262176,
-        "following": 1005,
+        "followers": 262173,
+        "following": 1006,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -1959,13 +2607,13 @@
         "favouritesCount": 1966,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 363323,
-        "statusesCount": 1006287,
+        "mediaCount": 364590,
+        "statusesCount": 1008196,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2095427727365231027"
+          "2097968439566741980"
         ],
         "profile_bio": {
           "description": "The official X account of Super Radyo DZBB 594 kHz, the flagship AM radio station of GMA Network, Inc.",
@@ -2087,6 +2735,297 @@
     },
     {
       "type": "tweet",
+      "id": "2025450036990280070",
+      "url": "https://x.com/manilabulletin/status/2025450036990280070",
+      "twitterUrl": "https://twitter.com/manilabulletin/status/2025450036990280070",
+      "text": "Manila 6th district Rep. Bienvenido \"Benny\" Abante Jr. has given an early breakdown of what voters should look for in the event that Vice President Sara Duterte ends up tangling with Naga City Mayor Leni Robredo in the high-stakes 2028 Palace race.\n\nhttps://t.co/GGfFe3hnVp",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 3,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 622,
+      "createdAt": "Sun Feb 22 05:58:14 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2025450036990280070",
+      "displayTextRange": [
+        0,
+        273
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "manilabulletin",
+        "url": "https://x.com/manilabulletin",
+        "twitterUrl": "https://twitter.com/manilabulletin",
+        "id": "15375209",
+        "name": "Manila Bulletin News",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1923784408261115904/4xsy25CI_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
+        "description": "",
+        "location": "Manila, Philippines",
+        "followers": 1197820,
+        "following": 141,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Thu Jul 10 07:55:26 +0000 2008",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2416,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 219503,
+        "statusesCount": 943035,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1753236174330888263"
+        ],
+        "profile_bio": {
+          "description": "Breaking news and stories from different sides. RTs from our journalists. Unparalleled journalism in the Philippines since 1900. #BeFullyInformed",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    129,
+                    145
+                  ],
+                  "text": "BeFullyInformed"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "mb.com.ph",
+                  "expanded_url": "http://www.mb.com.ph",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/WofHJVa7g9"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Manila 6th district Rep. Bienvenido"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "mb.com.ph"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "15375209",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "mb.com.ph"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Will it be Sara vs Leni in 2028? Solon offers his criteria for voters"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/GGfFe3hnVp"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/GGfFe3hnVp",
+        "user_refs_results": [
+          {
+            "rest_id": "15375209",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 2416
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1923784408261115904/4xsy25CI_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/15375209/1770000605"
+              },
+              "core": {
+                "created_at": "Thu Jul 10 07:55:26 +0000 2008",
+                "name": "Manila Bulletin News",
+                "screen_name": "manilabulletin"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Manila, Philippines"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "1753236174330888263"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Breaking news and stories from different sides. RTs from our journalists. Unparalleled journalism in the Philippines since 1900. #BeFullyInformed",
+                "entities": {
+                  "description": {
+                    "hashtags": [
+                      {
+                        "indices": [
+                          129,
+                          145
+                        ],
+                        "text": "BeFullyInformed"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "mb.com.ph",
+                        "expanded_url": "http://www.mb.com.ph",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/WofHJVa7g9"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "303488"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 1197820,
+                "following": 141
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "15375209",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 219503,
+                "tweets": 943035
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/WofHJVa7g9"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "mb.com.ph/2026/02/22/wil…",
+            "expanded_url": "https://mb.com.ph/2026/02/22/will-it-be-sara-vs-leni-in-2028-solon-offers-his-criteria-for-voters",
+            "indices": [
+              250,
+              273
+            ],
+            "url": "https://t.co/GGfFe3hnVp"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2025449725647052896",
       "url": "https://x.com/ABSCBNNews/status/2025449725647052896",
       "twitterUrl": "https://twitter.com/ABSCBNNews/status/2025449725647052896",
@@ -2096,7 +3035,7 @@
       "replyCount": 1,
       "likeCount": 11,
       "quoteCount": 0,
-      "viewCount": 3021,
+      "viewCount": 3022,
       "createdAt": "Sun Feb 22 05:57:00 +0000 2026",
       "lang": "en",
       "bookmarkCount": 0,
@@ -2123,7 +3062,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15872418/1747565518",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 9238529,
+        "followers": 9238564,
         "following": 1098,
         "status": "",
         "canDm": false,
@@ -2139,14 +3078,12 @@
         "favouritesCount": 1186,
         "hasCustomTimelines": true,
         "isTranslator": true,
-        "mediaCount": 350164,
-        "statusesCount": 1345145,
+        "mediaCount": 351494,
+        "statusesCount": 1347182,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
-        "pinnedTweetIds": [
-          "2096958982250430882"
-        ],
+        "pinnedTweetIds": [],
         "profile_bio": {
           "description": "Stories, video, and multimedia for Filipinos worldwide, from ABS-CBN News and Current Affairs",
           "entities": {
@@ -2234,7 +3171,7 @@
             "result": {
               "__typename": "User",
               "action_counts": {
-                "favorites_count": 11482
+                "favorites_count": 11481
               },
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/2082820005016813568/PhYshX4T_normal.jpg"
@@ -2321,7 +3258,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1815733,
+                "followers": 1815779,
                 "following": 802
               },
               "relationship_perspectives": {
@@ -2339,8 +3276,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 70276,
-                "tweets": 218607
+                "media_tweets": 70342,
+                "tweets": 218692
               },
               "verification": {
                 "is_blue_verified": true,

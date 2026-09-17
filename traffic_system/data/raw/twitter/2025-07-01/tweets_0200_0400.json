@@ -5,7 +5,7 @@
     "window_start": "2025-07-01T02:00:00+08:00",
     "window_end": "2025-07-01T04:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 1,
+    "tweet_count": 5,
     "slices": [
       {
         "start": "2025-07-01T02:00:00+08:00",
@@ -25,8 +25,8 @@
         "start": "2025-07-01T02:10:00+08:00",
         "end": "2025-07-01T02:15:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-07-01T02:15:00+08:00",
@@ -67,15 +67,15 @@
         "start": "2025-07-01T02:40:00+08:00",
         "end": "2025-07-01T02:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-07-01T02:45:00+08:00",
         "end": "2025-07-01T02:50:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-07-01T02:50:00+08:00",
@@ -172,12 +172,564 @@
         "start": "2025-07-01T03:55:00+08:00",
         "end": "2025-07-01T04:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       }
     ]
   },
   "data": [
+    {
+      "type": "tweet",
+      "id": "1939748407121215505",
+      "url": "https://x.com/Linden_PD/status/1939748407121215505",
+      "twitterUrl": "https://twitter.com/Linden_PD/status/1939748407121215505",
+      "text": "Traffic Advisory: N. Wood Ave will be reduced to one lane in each direction near Elizabeth Ave until Thurs 7/3 https://t.co/TPQ06dODVp",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 105,
+      "createdAt": "Mon Jun 30 18:10:33 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1939748407121215505",
+      "displayTextRange": [
+        0,
+        134
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "Linden_PD",
+        "url": "https://x.com/Linden_PD",
+        "twitterUrl": "https://twitter.com/Linden_PD",
+        "id": "960928538",
+        "name": "Linden Police Dept",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1856138771223244800/ayb7z35K_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/960928538/1480973562",
+        "description": "",
+        "location": "301 N Wood Ave Linden, NJ",
+        "followers": 1666,
+        "following": 178,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Nov 20 18:05:51 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2454,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1304,
+        "statusesCount": 2870,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Welcome to the Official Twitter page for the Linden, NJ Police Department. l Not monitored 24-7 l",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linden-nj.gov/directory/poli…",
+                  "expanded_url": "https://linden-nj.gov/directory/police/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/PIJcbHE8w8"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Traffic Advisory: N. Wood Ave will be reduced to one lane in each direction near Elizabeth Ave Until Thursday, July 3 to faciliate the removal of a crane from the property. The lane closures will ..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "nixle.us"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "nixle.us"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Traffic Advisory: N. Wood Ave will be reduced to one lane in each direction near Elizabeth Ave ......"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/TPQ06dODVp"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary",
+        "url": "https://t.co/TPQ06dODVp",
+        "user_refs_results": []
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "nixle.us/GFBPK",
+            "expanded_url": "http://nixle.us/GFBPK",
+            "indices": [
+              111,
+              134
+            ],
+            "url": "https://t.co/TPQ06dODVp"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1939756860711870836",
+      "url": "https://x.com/LowellPD/status/1939756860711870836",
+      "twitterUrl": "https://twitter.com/LowellPD/status/1939756860711870836",
+      "text": "Traffic Advisory\nJuly 4th Festivities\n\nLPD10 https://t.co/kbdbZZgAQe",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 868,
+      "createdAt": "Mon Jun 30 18:44:09 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1939756860711870836",
+      "displayTextRange": [
+        0,
+        44
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "LowellPD",
+        "url": "https://x.com/LowellPD",
+        "twitterUrl": "https://twitter.com/LowellPD",
+        "id": "115483185",
+        "name": "Lowell PD",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1667230270406139926/676ObLTt_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/115483185/1785959498",
+        "description": "",
+        "location": "Lowell, Massachusetts",
+        "followers": 21151,
+        "following": 687,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Feb 18 20:09:31 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2920,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 4105,
+        "statusesCount": 9892,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1143152109728227329"
+        ],
+        "profile_bio": {
+          "description": "The LPD serves the City of Lowell, MA. Disclaimers & Terms of Use: https://t.co/6Ov5SXwt37 CodeRED: https://t.co/sPj90weJHR…",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "lowellma.gov/aup/termsofuse",
+                  "expanded_url": "http://lowellma.gov/aup/termsofuse",
+                  "indices": [
+                    67,
+                    90
+                  ],
+                  "url": "https://t.co/6Ov5SXwt37"
+                },
+                {
+                  "display_url": "public.coderedweb.com/CNE/en-US/BFB7",
+                  "expanded_url": "http://public.coderedweb.com/CNE/en-US/BFB7",
+                  "indices": [
+                    100,
+                    123
+                  ],
+                  "url": "https://t.co/sPj90weJHR"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "lowellpolice.org",
+                  "expanded_url": "https://lowellpolice.org/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/bGu036tbKT"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/kbdbZZgAQe",
+            "expanded_url": "https://x.com/LowellPD/status/1939756860711870836/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "City of Lowell, MA",
+                    "screen_name": "CityofLowellMA",
+                    "type": "user",
+                    "user_id": "138497386"
+                  }
+                ]
+              },
+              "large": {
+                "faces": [
+                  {
+                    "h": 341,
+                    "w": 341,
+                    "x": 642,
+                    "y": 655
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 341,
+                    "w": 341,
+                    "x": 642,
+                    "y": 655
+                  }
+                ]
+              }
+            },
+            "id_str": "1939756755937787904",
+            "indices": [
+              45,
+              68
+            ],
+            "media_key": "3_1939756755937787904",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARrrZn4EVgAACgACGutmlmlboXQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGutmfgRWAAAKAAIa62aWaVuhdAAA",
+                "media_key": "3_1939756755937787904"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GutmfgRWAAA7iAK.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 924,
+                  "w": 1650,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1320,
+                  "w": 1320,
+                  "x": 123,
+                  "y": 0
+                },
+                {
+                  "h": 1320,
+                  "w": 1158,
+                  "x": 204,
+                  "y": 0
+                },
+                {
+                  "h": 1320,
+                  "w": 660,
+                  "x": 453,
+                  "y": 0
+                },
+                {
+                  "h": 1320,
+                  "w": 1650,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1320,
+              "width": 1650
+            },
+            "sizes": {
+              "large": {
+                "h": 1320,
+                "w": 1650
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/kbdbZZgAQe"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1939757101657751714",
+      "url": "https://x.com/blrcitytraffic/status/1939757101657751714",
+      "twitterUrl": "https://twitter.com/blrcitytraffic/status/1939757101657751714",
+      "text": "“ಸಂಚಾರ ಸಲಹೆ\"\nಬಿಎಂಆರ್‌ಸಿಎಲ್ ಕಾಮಗಾರಿಯಿಂದಾಗಿ, ಟಿನ್‌ಫ್ಯಾಕ್ಟರಿಯಿಂದ ಕೆಆರ್ ಪುರಂ ಕಡೆಗೆ ನಿಧಾನಗತಿಯ ಸಂಚಾರವಿರುತ್ತದೆ.  \n\"Traffic advisory”\n Due to BMRCL work, the road from the Tinfactory towards KR Puram is experiencing slow-moving traffic. https://t.co/NRy8mP3Cbs",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 1284,
+      "createdAt": "Mon Jun 30 18:45:06 +0000 2025",
+      "lang": "und",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1939757101657751714",
+      "displayTextRange": [
+        0,
+        228
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "blrcitytraffic",
+        "url": "https://x.com/blrcitytraffic",
+        "twitterUrl": "https://twitter.com/blrcitytraffic",
+        "id": "1851545900",
+        "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1565259569588490240/HChz-Vdb_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1851545900/1713356586",
+        "description": "",
+        "location": "Bengaluru-560001",
+        "followers": 672638,
+        "following": 100,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Sep 10 13:44:16 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 60487,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 16948,
+        "statusesCount": 241266,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Promoting Traffic Awareness & Road Safety 🚦🛣 | Your Partners in Traffic Management 🚓💼 | #BengaluruTrafficPolice 🌆🚗",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    88,
+                    111
+                  ],
+                  "text": "BengaluruTrafficPolice"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.karnataka.gov.in",
+                  "expanded_url": "https://btp.karnataka.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/6LKf9FpGkG"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/NRy8mP3Cbs",
+            "expanded_url": "https://x.com/blrcitytraffic/status/1939757101657751714/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1939757090735783936",
+            "indices": [
+              229,
+              252
+            ],
+            "media_key": "3_1939757090735783936",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARrrZsv32gAACgACGutmzoLaAKIAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGutmy/faAAAKAAIa62bOgtoAogAA",
+                "media_key": "3_1939757090735783936"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/Gutmy_faAAAH-sI.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 255,
+                  "w": 455,
+                  "x": 0,
+                  "y": 217
+                },
+                {
+                  "h": 455,
+                  "w": 455,
+                  "x": 0,
+                  "y": 117
+                },
+                {
+                  "h": 519,
+                  "w": 455,
+                  "x": 0,
+                  "y": 80
+                },
+                {
+                  "h": 599,
+                  "w": 300,
+                  "x": 155,
+                  "y": 0
+                },
+                {
+                  "h": 599,
+                  "w": 455,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 599,
+              "width": 455
+            },
+            "sizes": {
+              "large": {
+                "h": 599,
+                "w": 455
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/NRy8mP3Cbs"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
     {
       "type": "tweet",
       "id": "1939760853084987464",
@@ -216,7 +768,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197121,
+        "followers": 1197850,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -232,8 +784,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219263,
-        "statusesCount": 941820,
+        "mediaCount": 219464,
+        "statusesCount": 942849,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -285,6 +837,171 @@
               220
             ],
             "url": "https://t.co/tU8nkeyqg1"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1939775663583691084",
+      "url": "https://x.com/SantaClaraPD/status/1939775663583691084",
+      "twitterUrl": "https://twitter.com/SantaClaraPD/status/1939775663583691084",
+      "text": "Traffic Advisory for Levi’s® Stadium and the Surrounding Area – Wednesday July 2 https://t.co/d8RHJSxsFq",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 2,
+      "likeCount": 6,
+      "quoteCount": 2,
+      "viewCount": 2642,
+      "createdAt": "Mon Jun 30 19:58:52 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1939775663583691084",
+      "displayTextRange": [
+        0,
+        104
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "SantaClaraPD",
+        "url": "https://x.com/SantaClaraPD",
+        "twitterUrl": "https://twitter.com/SantaClaraPD",
+        "id": "1674319488",
+        "name": "Santa Clara Police",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/2077415340230012928/3yLOm30j_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1674319488/1779637655",
+        "description": "",
+        "location": "601 El Camino Real",
+        "followers": 26552,
+        "following": 627,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri Aug 16 00:10:41 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1844,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 3600,
+        "statusesCount": 6717,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Do NOT report matters requiring police, fire or medical assistance on Twitter; call 408-615-5580 or dial 911 in an emergency https://t.co/92DX8FO7vO",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "SantaClaraca.gov/SocialMedia",
+                  "expanded_url": "http://SantaClaraca.gov/SocialMedia",
+                  "indices": [
+                    125,
+                    148
+                  ],
+                  "url": "https://t.co/92DX8FO7vO"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "scpd.org",
+                  "expanded_url": "http://www.scpd.org",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/Dg3nIdptNX"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "The CONCACAF Gold Cup will take place on Wednesday, July 2, 2025 at 7:00 p.m. at Levi's Stadium. Heavy traffic and delays are anticipated on major thoroughfares leading to and from the stadium, ..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "local.nixle.com"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "local.nixle.com"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Traffic Advisory for Levi’s® Stadium and the Surrounding Area – Wednesday July 2 from Santa Clara..."
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/d8RHJSxsFq"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary",
+        "url": "https://t.co/d8RHJSxsFq",
+        "user_refs_results": []
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "local.nixle.com/alert/11700025…",
+            "expanded_url": "https://local.nixle.com/alert/11700025/?sub_id=0",
+            "indices": [
+              81,
+              104
+            ],
+            "url": "https://t.co/d8RHJSxsFq"
           }
         ]
       },

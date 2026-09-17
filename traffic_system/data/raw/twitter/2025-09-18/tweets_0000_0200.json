@@ -5,14 +5,14 @@
     "window_start": "2025-09-18T00:00:00+08:00",
     "window_end": "2025-09-18T02:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 4,
+    "tweet_count": 9,
     "slices": [
       {
         "start": "2025-09-18T00:00:00+08:00",
         "end": "2025-09-18T00:05:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-09-18T00:05:00+08:00",
@@ -39,8 +39,8 @@
         "start": "2025-09-18T00:20:00+08:00",
         "end": "2025-09-18T00:25:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-09-18T00:25:00+08:00",
@@ -116,22 +116,22 @@
         "start": "2025-09-18T01:15:00+08:00",
         "end": "2025-09-18T01:20:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-09-18T01:20:00+08:00",
         "end": "2025-09-18T01:25:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-09-18T01:25:00+08:00",
         "end": "2025-09-18T01:30:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-09-18T01:30:00+08:00",
@@ -180,6 +180,98 @@
   "data": [
     {
       "type": "tweet",
+      "id": "1968345019246579779",
+      "url": "https://x.com/SheriffLeeFL/status/1968345019246579779",
+      "twitterUrl": "https://twitter.com/SheriffLeeFL/status/1968345019246579779",
+      "text": "🚨 TRAFFIC ADVISORY 🚨 \n\nDeputies are working a traffic crash at East Terry St and Imperial Pwy. All lanes of traffic are currenlty blocked. Please avoid this area as deputies work the crash.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 1,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 773,
+      "createdAt": "Wed Sep 17 16:03:17 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1968345019246579779",
+      "displayTextRange": [
+        0,
+        189
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "SheriffLeeFL",
+        "url": "https://x.com/SheriffLeeFL",
+        "twitterUrl": "https://twitter.com/SheriffLeeFL",
+        "id": "47961633",
+        "name": "Carmine Marceno - Lee County Sheriff",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1993327649410744320/F5t60cuk_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/47961633/1767980969",
+        "description": "",
+        "location": "Lee County, FL",
+        "followers": 44535,
+        "following": 1540,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Jun 17 13:36:41 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3426,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 4230,
+        "statusesCount": 15999,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The Official feed for Lee County Sheriff Carmine Marceno",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "sheriffleefl.org",
+                  "expanded_url": "http://www.sheriffleefl.org",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/Wa5PAhl4yj"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1968347461543714976",
       "url": "https://x.com/NHAIROJammu/status/1968347461543714976",
       "twitterUrl": "https://twitter.com/NHAIROJammu/status/1968347461543714976",
@@ -216,7 +308,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1947196716832391168/1788330849",
         "description": "",
         "location": "Jammu",
-        "followers": 333,
+        "followers": 335,
         "following": 47,
         "status": "",
         "canDm": false,
@@ -229,11 +321,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 815,
+        "favouritesCount": 840,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 316,
-        "statusesCount": 646,
+        "mediaCount": 323,
+        "statusesCount": 654,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -477,6 +569,282 @@
     },
     {
       "type": "tweet",
+      "id": "1968350091430777160",
+      "url": "https://x.com/dtptraffic/status/1968350091430777160",
+      "twitterUrl": "https://twitter.com/dtptraffic/status/1968350091430777160",
+      "text": "TRAFFIC ADVISORY\n\nIn connection with programme “Mera Desh Pahle” at KD Jhadav Wrestling Hall, Indira Gandhi Indoor Stadium on 18.09.2025, Thursday (05:00 PM onwards).\n\n📍 Diversions/restrictions on IP Marg, Vikas Marg & Ring Road (Rajghat–IP Depot) from 4 PM to 10 PM\n📍 Parking only for labeled vehicles, labels must be displayed with vehicle no.\n📍 Stay updated through Delhi Traffic Police channels\n\n#DPTrafficAdvisory",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 1877,
+      "createdAt": "Wed Sep 17 16:23:26 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1968350091430777160",
+      "displayTextRange": [
+        0,
+        280
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "dtptraffic",
+        "url": "https://x.com/dtptraffic",
+        "twitterUrl": "https://twitter.com/dtptraffic",
+        "id": "143766231",
+        "name": "Delhi Traffic Police",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1747140324324225024/rLI5Hyjo_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/143766231/1651490407",
+        "description": "",
+        "location": "India, Delhi",
+        "followers": 1598556,
+        "following": 49,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri May 14 10:06:44 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 6968,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 15206,
+        "statusesCount": 417776,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099728178118041645"
+        ],
+        "profile_bio": {
+          "description": "24x7 Control Room : +91-11-25844444,1095",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "traffic.delhipolice.gov.in",
+                  "expanded_url": "https://traffic.delhipolice.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/U0jWSsRSeL"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/ofAaANSEWk",
+            "expanded_url": "https://x.com/dtptraffic/status/1968350091430777160/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 236,
+                    "w": 236,
+                    "x": 8,
+                    "y": 1149
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 295,
+                    "w": 295,
+                    "x": 10,
+                    "y": 1437
+                  }
+                ]
+              }
+            },
+            "id_str": "1968350012145848321",
+            "indices": [
+              281,
+              304
+            ],
+            "media_key": "3_1968350012145848321",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtQ++hDltABCgACG1D7+rlW0UgAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG1D76EOW0AEKAAIbUPv6uVbRSAAA",
+                "media_key": "3_1968350012145848321"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G1D76EOW0AEtnL3.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1434,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2246,
+                  "x": 314,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 1280,
+                  "x": 960,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2560,
+              "width": 2560
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/ofAaANSEWk"
+          },
+          {
+            "display_url": "pic.x.com/ofAaANSEWk",
+            "expanded_url": "https://x.com/dtptraffic/status/1968350091430777160/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1968350069658144768",
+            "indices": [
+              281,
+              304
+            ],
+            "media_key": "3_1968350069658144768",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtQ+/WnltAACgACG1D7+rlW0UgAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG1D79aeW0AAKAAIbUPv6uVbRSAAA",
+                "media_key": "3_1968350069658144768"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G1D79aeW0AA1hMF.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1434,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2246,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 1280,
+                  "x": 320,
+                  "y": 0
+                },
+                {
+                  "h": 2560,
+                  "w": 2560,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2560,
+              "width": 2560
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/ofAaANSEWk"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              400,
+              418
+            ],
+            "text": "DPTrafficAdvisory"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1968355457745166551",
       "url": "https://x.com/ABSCBNNews/status/1968355457745166551",
       "twitterUrl": "https://twitter.com/ABSCBNNews/status/1968355457745166551",
@@ -486,7 +854,7 @@
       "replyCount": 3,
       "likeCount": 21,
       "quoteCount": 0,
-      "viewCount": 9187,
+      "viewCount": 9188,
       "createdAt": "Wed Sep 17 16:44:46 +0000 2025",
       "lang": "en",
       "bookmarkCount": 0,
@@ -513,7 +881,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15872418/1747565518",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 9238515,
+        "followers": 9238595,
         "following": 1098,
         "status": "",
         "canDm": false,
@@ -529,8 +897,8 @@
         "favouritesCount": 1186,
         "hasCustomTimelines": true,
         "isTranslator": true,
-        "mediaCount": 349901,
-        "statusesCount": 1344967,
+        "mediaCount": 351335,
+        "statusesCount": 1346936,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -568,7 +936,7 @@
                   "result": {
                     "__typename": "User",
                     "action_counts": {
-                      "favorites_count": 17961
+                      "favorites_count": 17938
                     },
                     "avatar": {
                       "image_url": "https://pbs.twimg.com/profile_images/2031643044391575552/146RylrW_normal.jpg"
@@ -633,7 +1001,7 @@
                       "has_no_screen_name": false
                     },
                     "relationship_counts": {
-                      "followers": 275,
+                      "followers": 279,
                       "following": 198
                     },
                     "relationship_perspectives": {
@@ -651,8 +1019,8 @@
                     "super_followed_by": false,
                     "super_following": false,
                     "tweet_counts": {
-                      "media_tweets": 837,
-                      "tweets": 3663
+                      "media_tweets": 857,
+                      "tweets": 3691
                     },
                     "verification": {
                       "is_blue_verified": false,
@@ -795,7 +1163,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967185,
+        "followers": 3966717,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -811,8 +1179,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61677,
-        "statusesCount": 888213,
+        "mediaCount": 61731,
+        "statusesCount": 888686,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -861,6 +1229,197 @@
     },
     {
       "type": "tweet",
+      "id": "1968364159311167835",
+      "url": "https://x.com/writeandlift/status/1968364159311167835",
+      "twitterUrl": "https://twitter.com/writeandlift/status/1968364159311167835",
+      "text": "I had a young guy (20 years old) reach out on IG, asking how he could effectively gain power and influence by the time he's 30.\n\nHere's what I told him.\n\nFirst, recognize that the \"traditional path\" is dead. You can't trust the advice of boomer (or Gen X) parents. Take their advice with caution: unless you're getting a degree from an elite institution, you'll likely end up saddled with debt and competing with third-world H1B applicants for a $60k/year job.\n\nIn most cases, the scorn and eyerolls from family FAR outweigh the alternative.\n\nInstead, spend a week on YouTube learning a fundamental skill that will allow you to work remotely. Email marketing, content creation, building AI agents, etc. If you can't find a business willing to hire you, walk into 50 boomer-owned companies a day and pitch your service. The fact that you're young and saying words like \n\"Meta ads\" will cement your authority, despite any true experience. This is a language they don't speak, and they need help. \n\nWorst case scenario, find a simple trades job that pays decent; solar installation, HVAC, apprentice masonry/concrete, etc.\n\nYour goal isn't to make this your full-time thing; it's to stack cash. \n\nIf you live in an expensive metro area, you need to buy three things:\n\n- A car you can comfortably sleep in\n- A monthly membership at a nice gym with a co-working space and showers\n- A power strip that can be plugged into a cigarette lighter in your car\n- An air fryer\n- A laptop (if you don't already have one)\n\nLive as cheaply as possible. Spartan.\n\nAgain, your goal is to stack as much cash as humanly possible. $1,500/mo for a shitty apartment is $18,000 a year you're throwing away—just for a place to sleep.\n\nIdeally, a rough breakdown of your income should look like:\n\n- 50% should go into Bitcoin or other safe crypto investments (don't trust the S&P if you're young... a bubble is going to burst)\n\n- 10% (~$700/mo) should go into an aggressive Roth IRA for long-term compounding growth and security.\n\n- 20% should go into the education of a chosen skill or interest. E.g: An online business model (TikTok Shop, Amazon FBA, etc.)\n\n- (if working remotely) 10% should go into automating your daily tasks to free up time. Hire a virtual assistant from the Philippines to do most of your work for you. Show up for the meetings when you have to. \n\n- 20% or less should go into basic living expenses: food, gym, gas, etc.\n\nYour goal right now is to avoid, at all costs, \"becoming a standard American adult.\" You don't need a furnished apartment, you don't need a car payment, you don't need debt, you don't even need a wife or girlfriend. \n\nYou need escape velocity.\n\nYour days should consist of:\n\n- Necessary work (to stack cash)\n- Working out and prayer (to stay on the path)\n- Practicing your skill (this will eventually become your vehicle to escape)\n- Meeting people, traveling, and connecting with others (explore, drive, network)\n\nWhatever you choose to pursue: business, art, fitness, etc. You must post about it online. You must have a digital footprint. \n\nIf you commit yourself to this lifestyle for 5 years, you'll come out the other side richer than 95% of your peers, with a learned skill and brand that you can monetize.\n\nAt this point, choose where you want to live, start looking for a relationship, and plan your next phase in life from a place of grounded certainty. \n\nYou run your own business, make your own money, and can effectively leverage your cash to grow it further or influence the world in the direction you desire.\n\nIf this sounds outlandish—it is. This isn't your father's America. \n\nCreative thinking. Personal leverage. Intense and focused resource gathering. Omitting the standard timeline.\n\nThis is the new way.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 4,
+      "quoteCount": 0,
+      "viewCount": 231,
+      "createdAt": "Wed Sep 17 17:19:20 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1968364159311167835",
+      "displayTextRange": [
+        0,
+        275
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "writeandlift",
+        "url": "https://x.com/writeandlift",
+        "twitterUrl": "https://twitter.com/writeandlift",
+        "id": "1854323265386532864",
+        "name": "Joe",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1866937428172476416/b3bFlEsb_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1854323265386532864/1733947601",
+        "description": "",
+        "location": "Nowhere, USA",
+        "followers": 923,
+        "following": 807,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Nov 07 00:41:40 +0000 2024",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 12004,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 543,
+        "statusesCount": 2880,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "COO @launchsocials Building Online Businesses | Marketing Wizard | Writer | Family Man | Orthodox Christian ☦️",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    4,
+                    18
+                  ],
+                  "name": "",
+                  "screen_name": "launchsocials"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "apply.launchsocials.com/sales-page-622…",
+                  "expanded_url": "https://apply.launchsocials.com/sales-page-622728881722915846070?utm_source=nxb",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/joTGf3TkqM"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/qTnZRXMLIr",
+            "expanded_url": "https://x.com/buildandwrite/status/1968364159311167835/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1968363476830633984",
+            "indices": [
+              276,
+              299
+            ],
+            "media_key": "3_1968363476830633984",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtRCCdBV8AACgACG1EIxihaQVsAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG1EIJ0FXwAAKAAIbUQjGKFpBWwAA",
+                "media_key": "3_1968363476830633984"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G1EIJ0FXwAALoVt.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 412,
+                  "w": 736,
+                  "x": 0,
+                  "y": 320
+                },
+                {
+                  "h": 736,
+                  "w": 736,
+                  "x": 0,
+                  "y": 158
+                },
+                {
+                  "h": 839,
+                  "w": 736,
+                  "x": 0,
+                  "y": 78
+                },
+                {
+                  "h": 917,
+                  "w": 459,
+                  "x": 160,
+                  "y": 0
+                },
+                {
+                  "h": 917,
+                  "w": 736,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 917,
+              "width": 736
+            },
+            "sizes": {
+              "large": {
+                "h": 917,
+                "w": 736
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/qTnZRXMLIr"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1968365406541988263",
       "url": "https://x.com/followlastma/status/1968365406541988263",
       "twitterUrl": "https://twitter.com/followlastma/status/1968365406541988263",
@@ -897,8 +1456,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186993,
-        "following": 87,
+        "followers": 187171,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -910,16 +1469,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31261,
-        "statusesCount": 146776,
+        "mediaCount": 31380,
+        "statusesCount": 146909,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -1073,6 +1632,300 @@
         "urls": [],
         "user_mentions": []
       },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1968365026563211459",
+      "url": "https://x.com/GreaterKashmir/status/1968365026563211459",
+      "twitterUrl": "https://twitter.com/GreaterKashmir/status/1968365026563211459",
+      "text": "TRAFFIC POLICE HEADQUARTERS, J&K, JAMMU/SRINAGAR \nTRAFFIC PLAN & ADVISORY FOR  18-09-2025:- \nNH-44 (NHW)\nJammu-Srinagar NHW (NH-44) has NOT been fully restored at Tharad, Udhampur. \n\nThere was very slow movement observed on NH-44 due to intermittent rain, single lane traffic, undulating & uneven surface of the road at Tharad.  \n\nTraffic managed on regulated manner at Tharad, Udhampur on NH-44 due to single lane about 250-300 Mtrs.\n\n Commuters are advised to follow lane discipline; overtaking, wrong lane driving will cause congestion.\n\nSubject to fair weather and good road condition, tomorrow only one way traffic shall be permitted for LMVs from Jammu towards Srinagar on  NH-44.\n\nThese vehicles shall be allowed from Nagrota (Jammu) between 0700 hrs to 1000 hrs\n\nNo LMV shall be allowed from Srinagar towards Jammu on NH-44. \n\nLMVs going towards Distt. Doda, Kishtwar and Ramban from Jammu shall be allowed from Nagrota (Jammu) between 0700 hrs 1000 hrs.  However, LMVs/HMVs coming from Distt. Doda, Kishtwar and Ramban towards Jammu  will be permitted to move but these vehicle must cross the Nashri Tunnel before 1000 hrs. \n\nMughal road is open for LMVs from Srinagar towards Jammu  and vice versa. \n\nHMVs/Load Carriers:- \nSubject to fair weather and better road conditions, HMVs shall be allowed from NAVYUG Tunnel (Qazigund side) towards Jammu after assessing the traffic situation and road condition on NH-44.  TCU Srinagar shall liaise with TCU Ramban before releasing the HMVs. \n\nSFs Convoy Movement:-\nSecurity Forces are advised/requested not to ply against advisory /traffic plan in view of possible traffic congestion because of narrow carriage way between Tharad and Balinallah/Marog and Kishtwar Pathar on Jammu-Srinagar NHW. Tomorrow they may ply from Srinagar towards Jammu after confirming the status of NHW from TCU Ramban.\n\nKishtwar- Sinthan- Anantnag NH-244:- \nSubject to fair weather and good road condition, after getting green signal from NHIDCL, only LMVs shall be allowed from both sides viz from Anantnag towards Kishtwar and vice- versa on Kishtwar-Sinthan-Anantnag road. These vehicles shall be allowed from PP Parana towards Anantnag from 0800 hrs to 1600 hrs and from PP Daksum towards Kishtwar from 0900 hrs. to 1500 hrs. as per order issued by SDM Chhatroo vide No. SDM/C/2025-26/146-53 dated 16-05-2025 and SDM Kokernag vide No. SDM/KNG/665-71 dated 16-05-2025.     \n\nSSG ROAD  \nSubject to fair weather and good road condition, (after getting green signal from the BRO) traffic movement shall be allowed on regulated manner on Srinagar-Sonamarg-Gumari road. LMVs followed by HMVs shall be allowed from Minamarg towards Srinagar at 0500 hrs. to 1000 hrs. Similarly, LMVs followed by HMVs shall be allowed from Sonamarg towards Kargil at 1130 hrs to 1730 hrs . No vehicle shall be allowed after cut off timing. \nSFs Convoy, plying from Srinagar to Kargil and vice versa shall plan their movement in such a manner so that Civil Traffic (both UP and DOWN) don't get disturbed.\n\nMughal Road:- \nSubject to fair weather and good road condition, after getting green signal from Road maintenance agencies (GREF). LMVs Passenger/Private Cars shall be allowed from both sides viz Jammu towards Srinagar and vice versa via Poonch. These vehicles shall be allowed from Behramgala (Baffliaz) between 0600 hrs. to 1730 hrs  and from Herpora (shopian) between 0600 hrs and 1700 hrs as per advisory issued by District Magistrate Poonch vide  No. DMP/J/9291-9318 dated 31-08-2025. However, HMVs carrying fresh fruits six tyres only shall be allowed  from Shopian towards Poonch and No HMV shall be allowed after 1000 hrs. from Herpora Naka. Moreover, No HMV will be allowed from Jammu towards Mughal road. TCU Jammu and TCU Srinagar will inform all concerned about the traffic advisory and cut off timings.\n\nCUT OFF TIMINGS FOR LMVs/PASSENGER/PRIVATE CARs GOING TOWARDS JAMMU VIA MUGHAL ROAD- \nTRC Srinagar 1330 hrs\nNowgam Peaks 1400 hrs\nPantha Chowk 1400 hrs\nChandhara Pampore 1500 hrs\nGalandar via Kakapora 1500 hrs\nMarvel Crossing  1500 hrs\nKandizal (Peaks NH-44) 1500 hrs\nKhudwani 1500 hrs\nChawalgam Kulgam 1515 hrs\nKeegam NH-44 1530 hrs\nHerpora 1600 hrs.\n\n ADVISORY :- \nPeople are advised to undertake journey only after confirming status of the road from Traffic control units as under:-  \n•Jammu (0191-2459048, 0191- 2740550, 9419147732, 103)\n•Srinagar (0194-2450022, 2485396, 18001807091, 103)\n•Ramban (9419993745, 1800-180-7043)\n•Udhampur (8491928625) \n•PCR Kishtwar  (9906154100) \n•PCR Kargil (9541902330, 9541902331)\n@Traffic_hqrs",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 1299,
+      "createdAt": "Wed Sep 17 17:22:47 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1968365026563211459",
+      "displayTextRange": [
+        0,
+        284
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "GreaterKashmir",
+        "url": "https://x.com/GreaterKashmir",
+        "twitterUrl": "https://twitter.com/GreaterKashmir",
+        "id": "582941136",
+        "name": "Greater Kashmir",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1256534008634073088/rh2JW915_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/582941136/1676040502",
+        "description": "",
+        "location": "Srinagar, Jammu and Kashmir",
+        "followers": 559456,
+        "following": 56,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Thu May 17 15:11:29 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 164,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 48927,
+        "statusesCount": 208555,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099739060361408718"
+        ],
+        "profile_bio": {
+          "description": "Greater Kashmir brings to you latest news, videos and features from Kashmir and the rest of the world, breaking round the clock",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "greaterkashmir.com",
+                  "expanded_url": "http://www.greaterkashmir.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/pcTGoaIsnU"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "872351011544891392",
+            "indices": [
+              4549,
+              4562
+            ],
+            "name": "J&K Traffic Police",
+            "screen_name": "Traffic_hqrs"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1968366336871993809",
+      "url": "https://x.com/ILStatePoliceT7/status/1968366336871993809",
+      "twitterUrl": "https://twitter.com/ILStatePoliceT7/status/1968366336871993809",
+      "text": "⚠️Traffic Advisory⚠️ \n\nTroopers are on scene of a serious crash at the intersection of US 36 &amp; IL 32 just south of La Place. The intersection will be closed for the next 3 to 4 hours for cleanup operations. If you are in the area please use caution and seek an alternate route. https://t.co/DH92XcIhMP",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 1,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 267,
+      "createdAt": "Wed Sep 17 17:27:59 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1968366336871993809",
+      "displayTextRange": [
+        0,
+        281
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ILStatePoliceT7",
+        "url": "https://x.com/ILStatePoliceT7",
+        "twitterUrl": "https://twitter.com/ILStatePoliceT7",
+        "id": "3459572596",
+        "name": "Illinois State Police Troop 7",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1850887845709328384/BA8S1dQE_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/3459572596/1648821845",
+        "description": "",
+        "location": "Pesotum, IL",
+        "followers": 2464,
+        "following": 1776,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Thu Aug 27 16:42:10 +0000 2015",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2380,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 619,
+        "statusesCount": 2624,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Troop 7 encompasses Champaign, Coles, Douglas, Edgar, Macon, Moultrie, Piatt, Shelby, and Vermillion counties.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "isp.illinois.gov/Patrol/Troop7",
+                  "expanded_url": "https://isp.illinois.gov/Patrol/Troop7",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/n5rKG5vqQG"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/DH92XcIhMP",
+            "expanded_url": "https://x.com/ILStatePoliceT7/status/1968366336871993809/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 41,
+                    "w": 41,
+                    "x": 553,
+                    "y": 396
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 41,
+                    "w": 41,
+                    "x": 553,
+                    "y": 396
+                  }
+                ]
+              }
+            },
+            "id_str": "1968366316017913856",
+            "indices": [
+              282,
+              305
+            ],
+            "media_key": "3_1968366316017913856",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtRCrxOF5AACgACG1EKwSkXkdEAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG1EKvE4XkAAKAAIbUQrBKReR0QAA",
+                "media_key": "3_1968366316017913856"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G1EKvE4XkAA4UqL.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 630,
+                  "w": 1125,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 630,
+                  "w": 630,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 630,
+                  "w": 553,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 630,
+                  "w": 315,
+                  "x": 113,
+                  "y": 0
+                },
+                {
+                  "h": 630,
+                  "w": 1200,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 630,
+              "width": 1200
+            },
+            "sizes": {
+              "large": {
+                "h": 630,
+                "w": 1200
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/DH92XcIhMP"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
       "quoted_tweet": null,
       "retweeted_tweet": null,
       "isLimitedReply": false,

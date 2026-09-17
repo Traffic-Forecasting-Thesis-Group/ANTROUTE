@@ -5,7 +5,7 @@
     "window_start": "2026-02-20T02:00:00+08:00",
     "window_end": "2026-02-20T04:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 3,
+    "tweet_count": 6,
     "slices": [
       {
         "start": "2026-02-20T02:00:00+08:00",
@@ -18,8 +18,8 @@
         "start": "2026-02-20T02:05:00+08:00",
         "end": "2026-02-20T02:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-20T02:10:00+08:00",
@@ -116,8 +116,8 @@
         "start": "2026-02-20T03:15:00+08:00",
         "end": "2026-02-20T03:20:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-20T03:20:00+08:00",
@@ -144,8 +144,8 @@
         "start": "2026-02-20T03:35:00+08:00",
         "end": "2026-02-20T03:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-20T03:40:00+08:00",
@@ -180,16 +180,199 @@
   "data": [
     {
       "type": "tweet",
+      "id": "2024545777805123884",
+      "url": "https://x.com/lexwrecks/status/2024545777805123884",
+      "twitterUrl": "https://twitter.com/lexwrecks/status/2024545777805123884",
+      "text": "Traffic Advisory:\nOutbound Winchester Rd at Fortune Dr -\nThe right and middle lanes are blocked due to emergency traffic signal repairs.  Use added caution. https://t.co/cNHIK21x8s",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 1096,
+      "createdAt": "Thu Feb 19 18:05:02 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2024545777805123884",
+      "displayTextRange": [
+        0,
+        156
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "lexwrecks",
+        "url": "https://x.com/lexwrecks",
+        "twitterUrl": "https://twitter.com/lexwrecks",
+        "id": "322084058",
+        "name": "lexwrecks",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/868838906170572803/eiLDmrQV_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/322084058/1495982844",
+        "description": "",
+        "location": "Lexington, KY",
+        "followers": 20856,
+        "following": 76,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Wed Jun 22 16:18:20 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 34,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 9940,
+        "statusesCount": 36719,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Traffic information from the Lexington, KY Traffic Management Center.\nAccount not monitored 24/7.  For emergencies call 911.  Comment policy: https://t.co/FO5y2P9ab7",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "bit.ly/2roPZPv",
+                  "expanded_url": "http://bit.ly/2roPZPv",
+                  "indices": [
+                    142,
+                    165
+                  ],
+                  "url": "https://t.co/FO5y2P9ab7"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "lexingtonky.gov",
+                  "expanded_url": "http://www.lexingtonky.gov",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/IVjWrxBSdL"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/cNHIK21x8s",
+            "expanded_url": "https://x.com/lexwrecks/status/2024545777805123884/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2024545725141446656",
+            "indices": [
+              157,
+              180
+            ],
+            "media_key": "3_2024545725141446656",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwYoZxKl3AACgACHBihqI2XYSwAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHBihnEqXcAAKAAIcGKGojZdhLAAA",
+                "media_key": "3_2024545725141446656"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HBihnEqXcAAg4-e.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 729,
+                  "w": 1302,
+                  "x": 0,
+                  "y": 118
+                },
+                {
+                  "h": 847,
+                  "w": 847,
+                  "x": 455,
+                  "y": 0
+                },
+                {
+                  "h": 847,
+                  "w": 743,
+                  "x": 559,
+                  "y": 0
+                },
+                {
+                  "h": 847,
+                  "w": 424,
+                  "x": 731,
+                  "y": 0
+                },
+                {
+                  "h": 847,
+                  "w": 1302,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 847,
+              "width": 1302
+            },
+            "sizes": {
+              "large": {
+                "h": 847,
+                "w": 1302
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/cNHIK21x8s"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2024551557732192530",
       "url": "https://x.com/HumanityChad/status/2024551557732192530",
       "twitterUrl": "https://twitter.com/HumanityChad/status/2024551557732192530",
       "text": "Rare Footage of a Gunner Laid to Rest With His Aircraft 🫡\n\nIn 1942, Loyce Edward Deen left his home in Oklahoma to join the U.S. Navy. Serving as an aerial gunner aboard a TBF Avenger torpedo bomber on the aircraft carrier USS Essex, he took part in numerous Pacific operations, including the Philippines, Iwo Jima, Leyte, and others.\n\nOn November 5, 1944, during a mission over Manila Bay, his aircraft was struck by enemy anti-aircraft fire. Loyce, just 23 years old, was killed instantly. Footage shows sailors taking his fingerprints and retrieving his dog tag - yet they never remove him from his seat.\n\nWhy? The answer is both simple and profoundly moving. The aircraft, too severely damaged to be repaired, was scheduled to be committed to the sea.\n\nIn an extraordinarily rare tribute for the time, especially during an era when every airplane was precious, Loyce Deen was laid to rest still strapped in the cockpit of the plane he flew. The crew gathered on deck to bid him farewell, honoring both the man and the machine that carried him through battle.",
       "source": "Twitter for iPhone",
-      "retweetCount": 405,
+      "retweetCount": 403,
       "replyCount": 76,
-      "likeCount": 2627,
+      "likeCount": 2620,
       "quoteCount": 24,
-      "viewCount": 86107,
+      "viewCount": 86111,
       "createdAt": "Thu Feb 19 18:28:00 +0000 2026",
       "lang": "en",
       "bookmarkCount": 224,
@@ -216,8 +399,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1689693400881414144/1694773369",
         "description": "",
         "location": "Faith in Humanity.",
-        "followers": 484556,
-        "following": 254,
+        "followers": 484746,
+        "following": 255,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -229,16 +412,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 428,
+        "favouritesCount": 427,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 16821,
-        "statusesCount": 21243,
+        "mediaCount": 16881,
+        "statusesCount": 21303,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2095263735288123619"
+          "2097525903651991752"
         ],
         "profile_bio": {
           "description": "We share sweet, happy & heartwarming content.",
@@ -369,7 +552,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
         "description": "",
         "location": "Philippines",
-        "followers": 189490,
+        "followers": 190084,
         "following": 481,
         "status": "",
         "canDm": false,
@@ -382,16 +565,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 20345,
+        "favouritesCount": 20357,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 44344,
-        "statusesCount": 197165,
+        "mediaCount": 45221,
+        "statusesCount": 198753,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2093633872936456280"
+          "2099480545550090734"
         ],
         "profile_bio": {
           "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",
@@ -527,7 +710,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/60017224/1713346807",
         "description": "",
         "location": "Qatar",
-        "followers": 116820,
+        "followers": 117009,
         "following": 272,
         "status": "",
         "canDm": false,
@@ -540,11 +723,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 1374,
+        "favouritesCount": 1375,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 68161,
-        "statusesCount": 340413,
+        "mediaCount": 68216,
+        "statusesCount": 340897,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -575,28 +758,6 @@
       "card": {
         "binding_values": [
           {
-            "key": "photo_image_full_size_large",
-            "value": {
-              "image_value": {
-                "alt": "Ashghal announces partial closure at Souq Al Wakra Intersection",
-                "height": 419,
-                "url": "https://pbs.twimg.com/card_img/2095677578203803652/5hi3LiR2?format=jpg&name=800x419",
-                "width": 800
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image",
-            "value": {
-              "image_value": {
-                "alt": "Ashghal announces partial closure at Souq Al Wakra Intersection",
-                "height": 150,
-                "url": "https://pbs.twimg.com/card_img/2095677578203803652/5hi3LiR2?format=jpg&name=280x150",
-                "width": 200
-              }
-            }
-          },
-          {
             "key": "description",
             "value": {
               "string_value": "Doha, Qatar: The Public Works Authority (Ashghal) announces a partial nighttime closure at Souq Al Wakra Intersection for traffic coming from Al Jabal..."
@@ -606,94 +767,6 @@
             "key": "domain",
             "value": {
               "string_value": "thepeninsulaqatar.com"
-            }
-          },
-          {
-            "key": "thumbnail_image_large",
-            "value": {
-              "image_value": {
-                "alt": "Ashghal announces partial closure at Souq Al Wakra Intersection",
-                "height": 300,
-                "url": "https://pbs.twimg.com/card_img/2095677578203803652/5hi3LiR2?format=jpg&name=400x400",
-                "width": 400
-              }
-            }
-          },
-          {
-            "key": "summary_photo_image_small",
-            "value": {
-              "image_value": {
-                "alt": "Ashghal announces partial closure at Souq Al Wakra Intersection",
-                "height": 202,
-                "url": "https://pbs.twimg.com/card_img/2095677578203803652/5hi3LiR2?format=jpg&name=386x202",
-                "width": 386
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image_original",
-            "value": {
-              "image_value": {
-                "alt": "Ashghal announces partial closure at Souq Al Wakra Intersection",
-                "height": 750,
-                "url": "https://pbs.twimg.com/card_img/2095677578203803652/5hi3LiR2?format=jpg&name=orig",
-                "width": 1000
-              }
-            }
-          },
-          {
-            "key": "photo_image_full_size_small",
-            "value": {
-              "image_value": {
-                "alt": "Ashghal announces partial closure at Souq Al Wakra Intersection",
-                "height": 202,
-                "url": "https://pbs.twimg.com/card_img/2095677578203803652/5hi3LiR2?format=jpg&name=386x202",
-                "width": 386
-              }
-            }
-          },
-          {
-            "key": "summary_photo_image_large",
-            "value": {
-              "image_value": {
-                "alt": "Ashghal announces partial closure at Souq Al Wakra Intersection",
-                "height": 419,
-                "url": "https://pbs.twimg.com/card_img/2095677578203803652/5hi3LiR2?format=jpg&name=800x419",
-                "width": 800
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image_small",
-            "value": {
-              "image_value": {
-                "alt": "Ashghal announces partial closure at Souq Al Wakra Intersection",
-                "height": 75,
-                "url": "https://pbs.twimg.com/card_img/2095677578203803652/5hi3LiR2?format=jpg&name=100x100",
-                "width": 100
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image_x_large",
-            "value": {
-              "image_value": {
-                "alt": "Ashghal announces partial closure at Souq Al Wakra Intersection",
-                "height": 750,
-                "url": "https://pbs.twimg.com/card_img/2095677578203803652/5hi3LiR2?format=png&name=2048x2048_2_exp",
-                "width": 1000
-              }
-            }
-          },
-          {
-            "key": "photo_image_full_size_original",
-            "value": {
-              "image_value": {
-                "alt": "Ashghal announces partial closure at Souq Al Wakra Intersection",
-                "height": 750,
-                "url": "https://pbs.twimg.com/card_img/2095677578203803652/5hi3LiR2?format=jpg&name=orig",
-                "width": 1000
-              }
             }
           },
           {
@@ -710,69 +783,9 @@
             }
           },
           {
-            "key": "photo_image_full_size",
-            "value": {
-              "image_value": {
-                "alt": "Ashghal announces partial closure at Souq Al Wakra Intersection",
-                "height": 314,
-                "url": "https://pbs.twimg.com/card_img/2095677578203803652/5hi3LiR2?format=jpg&name=600x314",
-                "width": 600
-              }
-            }
-          },
-          {
             "key": "summary_photo_image_alt_text",
             "value": {
               "string_value": "Ashghal announces partial closure at Souq Al Wakra Intersection"
-            }
-          },
-          {
-            "key": "thumbnail_image_color",
-            "value": {
-              "image_color_value": {
-                "palette": [
-                  {
-                    "percentage": 80.92,
-                    "rgb": {
-                      "blue": 217,
-                      "green": 219,
-                      "red": 218
-                    }
-                  },
-                  {
-                    "percentage": 4.98,
-                    "rgb": {
-                      "blue": 90,
-                      "green": 157,
-                      "red": 84
-                    }
-                  },
-                  {
-                    "percentage": 4.9,
-                    "rgb": {
-                      "blue": 241,
-                      "green": 204,
-                      "red": 160
-                    }
-                  },
-                  {
-                    "percentage": 1.68,
-                    "rgb": {
-                      "blue": 107,
-                      "green": 46,
-                      "red": 156
-                    }
-                  },
-                  {
-                    "percentage": 1.46,
-                    "rgb": {
-                      "blue": 157,
-                      "green": 204,
-                      "red": 205
-                    }
-                  }
-                ]
-              }
             }
           },
           {
@@ -782,152 +795,10 @@
             }
           },
           {
-            "key": "summary_photo_image_color",
-            "value": {
-              "image_color_value": {
-                "palette": [
-                  {
-                    "percentage": 80.92,
-                    "rgb": {
-                      "blue": 217,
-                      "green": 219,
-                      "red": 218
-                    }
-                  },
-                  {
-                    "percentage": 4.98,
-                    "rgb": {
-                      "blue": 90,
-                      "green": 157,
-                      "red": 84
-                    }
-                  },
-                  {
-                    "percentage": 4.9,
-                    "rgb": {
-                      "blue": 241,
-                      "green": 204,
-                      "red": 160
-                    }
-                  },
-                  {
-                    "percentage": 1.68,
-                    "rgb": {
-                      "blue": 107,
-                      "green": 46,
-                      "red": 156
-                    }
-                  },
-                  {
-                    "percentage": 1.46,
-                    "rgb": {
-                      "blue": 157,
-                      "green": 204,
-                      "red": 205
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          {
-            "key": "summary_photo_image_x_large",
-            "value": {
-              "image_value": {
-                "alt": "Ashghal announces partial closure at Souq Al Wakra Intersection",
-                "height": 750,
-                "url": "https://pbs.twimg.com/card_img/2095677578203803652/5hi3LiR2?format=png&name=2048x2048_2_exp",
-                "width": 1000
-              }
-            }
-          },
-          {
-            "key": "summary_photo_image",
-            "value": {
-              "image_value": {
-                "alt": "Ashghal announces partial closure at Souq Al Wakra Intersection",
-                "height": 314,
-                "url": "https://pbs.twimg.com/card_img/2095677578203803652/5hi3LiR2?format=jpg&name=600x314",
-                "width": 600
-              }
-            }
-          },
-          {
-            "key": "photo_image_full_size_color",
-            "value": {
-              "image_color_value": {
-                "palette": [
-                  {
-                    "percentage": 80.92,
-                    "rgb": {
-                      "blue": 217,
-                      "green": 219,
-                      "red": 218
-                    }
-                  },
-                  {
-                    "percentage": 4.98,
-                    "rgb": {
-                      "blue": 90,
-                      "green": 157,
-                      "red": 84
-                    }
-                  },
-                  {
-                    "percentage": 4.9,
-                    "rgb": {
-                      "blue": 241,
-                      "green": 204,
-                      "red": 160
-                    }
-                  },
-                  {
-                    "percentage": 1.68,
-                    "rgb": {
-                      "blue": 107,
-                      "green": 46,
-                      "red": 156
-                    }
-                  },
-                  {
-                    "percentage": 1.46,
-                    "rgb": {
-                      "blue": 157,
-                      "green": 204,
-                      "red": 205
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          {
-            "key": "photo_image_full_size_x_large",
-            "value": {
-              "image_value": {
-                "alt": "Ashghal announces partial closure at Souq Al Wakra Intersection",
-                "height": 750,
-                "url": "https://pbs.twimg.com/card_img/2095677578203803652/5hi3LiR2?format=png&name=2048x2048_2_exp",
-                "width": 1000
-              }
-            }
-          },
-          {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
               "string_value": "https://t.co/RRt5IED0aN"
-            }
-          },
-          {
-            "key": "summary_photo_image_original",
-            "value": {
-              "image_value": {
-                "alt": "Ashghal announces partial closure at Souq Al Wakra Intersection",
-                "height": 750,
-                "url": "https://pbs.twimg.com/card_img/2095677578203803652/5hi3LiR2?format=jpg&name=orig",
-                "width": 1000
-              }
             }
           }
         ],
@@ -966,6 +837,286 @@
               263
             ],
             "url": "https://t.co/RRt5IED0aN"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2024564504139334130",
+      "url": "https://x.com/bostonpolice/status/2024564504139334130",
+      "twitterUrl": "https://twitter.com/bostonpolice/status/2024564504139334130",
+      "text": "TRAFFIC ADVISORY: Downtown Boston, Saturday, February 21, 2026 \n\nLearn More At: https://t.co/r2wGJcJyoy #A1",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 1,
+      "likeCount": 2,
+      "quoteCount": 1,
+      "viewCount": 5750,
+      "createdAt": "Thu Feb 19 19:19:27 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2024564504139334130",
+      "displayTextRange": [
+        0,
+        107
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "bostonpolice",
+        "url": "https://x.com/bostonpolice",
+        "twitterUrl": "https://twitter.com/bostonpolice",
+        "id": "19185333",
+        "name": "Boston Police Dept.",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1681679396384456705/9r8m28Ah_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/19185333/1689705769",
+        "description": "",
+        "location": "Boston, MA",
+        "followers": 475486,
+        "following": 390,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Jan 19 14:49:36 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3516,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 14131,
+        "statusesCount": 28294,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Tweeting BPD News and real time emergency notifications. **For emergencies, please call 911. Account not monitored 24/7.\n\nhttps://t.co/fbZ2dpvaLw",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "police.boston.gov/mentalhealth",
+                  "expanded_url": "https://police.boston.gov/mentalhealth",
+                  "indices": [
+                    122,
+                    145
+                  ],
+                  "url": "https://t.co/fbZ2dpvaLw"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "bpdnews.com",
+                  "expanded_url": "http://bpdnews.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/chyt7oMh5w"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              104,
+              107
+            ],
+            "text": "A1"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "police.boston.gov/2026/02/19/tra…",
+            "expanded_url": "https://police.boston.gov/2026/02/19/traffic-advisory-downtown-boston-saturday-february-21-2026/",
+            "indices": [
+              80,
+              103
+            ],
+            "url": "https://t.co/r2wGJcJyoy"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2024568713282724035",
+      "url": "https://x.com/DCPoliceTraffic/status/2024568713282724035",
+      "twitterUrl": "https://twitter.com/DCPoliceTraffic/status/2024568713282724035",
+      "text": "FYI: On Sunday, February 22, 2026, the Chinese New Year Parade will take place in the District of Columbia. In conjunction with this event, there will be parking restrictions and street closures that motorists should take into consideration:\nhttps://t.co/VQW3kPD65i",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 2,
+      "likeCount": 4,
+      "quoteCount": 0,
+      "viewCount": 1928,
+      "createdAt": "Thu Feb 19 19:36:10 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2024568713282724035",
+      "displayTextRange": [
+        0,
+        265
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "DCPoliceTraffic",
+        "url": "https://x.com/DCPoliceTraffic",
+        "twitterUrl": "https://twitter.com/DCPoliceTraffic",
+        "id": "3429128139",
+        "name": "DC Police Traffic",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/637277935171411968/DeIBSevl_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/3429128139/1440773750",
+        "description": "",
+        "location": "Washington, DC",
+        "followers": 32977,
+        "following": 143,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Aug 18 00:41:58 +0000 2015",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 7750,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 7436,
+        "statusesCount": 47049,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2021000167135097309"
+        ],
+        "profile_bio": {
+          "description": "Providing timely traffic information to the Nation’s Capital.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/dcpolicedept",
+                  "expanded_url": "https://linktr.ee/dcpolicedept",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/4HC5gynesd"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "On Sunday, February 22, 2026, the Chinese New Year Parade will take place in the District of Columbia. In conjunction with this event, there will be parking restrictions and street closures that..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "mpdc.dc.gov"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "mpdc.dc.gov"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "TRAFFIC ADVISORY: 2026 Chinese New Year Parade"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/VQW3kPD65i"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary",
+        "url": "https://t.co/VQW3kPD65i",
+        "user_refs_results": []
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "mpdc.dc.gov/release/traffi…",
+            "expanded_url": "https://mpdc.dc.gov/release/traffic-advisory-2026-chinese-new-year-parade",
+            "indices": [
+              242,
+              265
+            ],
+            "url": "https://t.co/VQW3kPD65i"
           }
         ]
       },
