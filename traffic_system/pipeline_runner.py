@@ -30,6 +30,8 @@ def process_directory(raw_dir: Path, source_type: str, cleaner: TextCleaner, nlp
     print(f"Found {len(json_files)} {source_type} file(s).")
 
     for file_path in json_files:
+        rel_path = file_path.relative_to(raw_dir)
+        out_file = PROCESSED_DIR / source_type.lower() / rel_path
         print(f"\nProcessing file: {file_path.name}")
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
@@ -42,6 +44,23 @@ def process_directory(raw_dir: Path, source_type: str, cleaner: TextCleaner, nlp
         if not items:
             print("No data found in file.")
             continue
+
+        if out_file.exists():
+            try:
+                with out_file.open('r', encoding='utf-8') as f:
+                    existing_payload = json.load(f)
+                existing_items = existing_payload.get("data", [])
+            except Exception:
+                existing_items = []
+
+            if len(existing_items) == len(items):
+                print(f"Skipping existing output: {out_file}")
+                continue
+
+            print(
+                f"Existing output is incomplete ({len(existing_items)}/{len(items)} records); "
+                "reprocessing."
+            )
 
         processed_records = []
 
@@ -89,8 +108,6 @@ def process_directory(raw_dir: Path, source_type: str, cleaner: TextCleaner, nlp
 
         # Save processed data preserving the folder structure
         if processed_records:
-            rel_path = file_path.relative_to(raw_dir)
-            out_file = PROCESSED_DIR / source_type.lower() / rel_path
             out_file.parent.mkdir(parents=True, exist_ok=True)
 
             final_payload = {

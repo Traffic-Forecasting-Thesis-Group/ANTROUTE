@@ -20,21 +20,29 @@ def main():
     pipeline = BatchNLPPipeline()
 
     # DataLoader for batching. Reduce batch_size if running out of RAM/VRAM.
-    batch_size = 16 
+    batch_size = 16
     dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=False)
 
+    all_translations = []
     all_embeddings = []
 
     print(f"Processing {len(dataset)} tweets in batches of {batch_size}...")
     for i, batch_texts in enumerate(dataloader):
         print(f"Processing batch {i + 1}/{len(dataloader)}")
-        embeddings = pipeline.process_batch(batch_texts)
-        all_embeddings.append(embeddings.cpu())
+        # process_batch returns a list of {"english_translation", "embedding_vector"} dicts.
+        results = pipeline.process_batch(batch_texts)
+        if not results:
+            continue
+        all_translations.extend(r["english_translation"] for r in results)
+        all_embeddings.append(torch.tensor([r["embedding_vector"] for r in results]))
 
-    # Concatenate and save the final tensor
+    # Concatenate and save the final tensor alongside the aligned translations
     final_embeddings_tensor = torch.cat(all_embeddings, dim=0)
-    torch.save(final_embeddings_tensor, output_path)
-    
+    torch.save({
+        "embeddings": final_embeddings_tensor,
+        "english_translations": all_translations,
+    }, output_path)
+
     print(f"Processing complete! Embeddings saved to {output_path}")
     print(f"Final tensor shape: {final_embeddings_tensor.shape}")
 
