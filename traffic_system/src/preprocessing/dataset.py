@@ -27,5 +27,10 @@ class TwitterTrafficDataset(Dataset):
         # Safely extract text, defaulting to an empty string if missing
         tweet_obj = self.data[idx]
         raw_tweet = tweet_obj.get('text', '') if isinstance(tweet_obj, dict) else str(tweet_obj)
-        
-        return self.cleaner.clean(raw_tweet)
+
+        # Return only the cleaned text string (not the full dict with "entities").
+        # DataLoader's default collate_fn can batch a list of strings directly,
+        # which is what BatchNLPPipeline.process_batch() expects. Returning the
+        # dict instead breaks collation once "entities" lists differ in length
+        # across items in a batch.
+        return self.cleaner.clean(raw_tweet)["cleaned_text"]    
