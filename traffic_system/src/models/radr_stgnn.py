@@ -85,7 +85,7 @@ class GRUTemporalLayer(nn.Module):
 class RADRSTGNN(nn.Module):
     def __init__(
         self,
-        in_features: int,
+        in_features: int = 128,
         gcn_hidden: int = 64,
         gcn_out: int = 32,
         gcn_layers: int = 2,
