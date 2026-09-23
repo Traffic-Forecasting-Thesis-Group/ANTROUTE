@@ -5,14 +5,14 @@
     "window_start": "2026-03-06T10:00:00+08:00",
     "window_end": "2026-03-06T12:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 10,
+    "tweet_count": 15,
     "slices": [
       {
         "start": "2026-03-06T10:00:00+08:00",
         "end": "2026-03-06T10:05:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-03-06T10:05:00+08:00",
@@ -25,8 +25,8 @@
         "start": "2026-03-06T10:10:00+08:00",
         "end": "2026-03-06T10:15:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-06T10:15:00+08:00",
@@ -88,8 +88,8 @@
         "start": "2026-03-06T10:55:00+08:00",
         "end": "2026-03-06T11:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-03-06T11:00:00+08:00",
@@ -123,8 +123,8 @@
         "start": "2026-03-06T11:20:00+08:00",
         "end": "2026-03-06T11:25:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-06T11:25:00+08:00",
@@ -180,6 +180,449 @@
   "data": [
     {
       "type": "tweet",
+      "id": "2029739537837031779",
+      "url": "https://x.com/KeyFlo_App/status/2029739537837031779",
+      "twitterUrl": "https://twitter.com/KeyFlo_App/status/2029739537837031779",
+      "text": "716 Million People Own Crypto. Only 70 Million Use It. Here’s Why.\n\nCrypto never had a mobile moment. Not because the technology wasn't ready, but because the interface was broken from the start. Here's the data behind the drop-off.\n\n716 Million People Own Crypto. Only 70 Million Use It. Here’s Why. Crypto has a mobile problem nobody wants to admit. 716 million people worldwide own some form of cryptocurrency. Only 40 to 70 million actively use it. The gap exists because sending money on a phone is a genuinely bad experience. Not complicated in a learning-curve way. Bad in a designed-to-fail way.\n\nHere’s the truth: 78% of people access crypto on their phones. And yet, the entire crypto ecosystem was built for desktop power users, browser extensions, and people with 20 minutes to spare. The gap between those two realities is why crypto hasn’t gone mainstream. Friction.\n\nA Paradox Hiding in Plain Sight\nLet’s put real data to this feeling:\n\n73% of first-time crypto users quit after their very first error. Not their second. Their first. The margin for error on mobile is zero, and nobody tells you that when you’re getting started. 37% of new wallet users make exactly one transaction, then disappear. 81% never reach ten. And here’s the stat that captures the whole problem in one line:\n\n78% of people visit crypto sites on mobile. But MetaMask — the world’s most popular wallet — still gets 70% of its traffic from desktop browsers. People want mobile crypto. The tools just won’t let them have it. Meanwhile, desktop wallets have shrunk to just 9% of usage. The users moved to mobile.\n\nWhat Actually Breaks the Transaction\nIt’s not one problem. It’s five.\n\n1. App switching.\n\nSend crypto on mobile and you’re immediately bouncing between your messaging app, your wallet, a block explorer to confirm, and back. A study of nearly 46,000 app reviews of the top five crypto wallets found that both new and experienced users consistently struggle with the same thing: the flow is broken before you even get to the transaction. Every switch is a micro-abandonment. Six times out of ten, the brain says: not worth it.\n\n2. Transactions that fail silently.\n\nNetwork congestion. Wrong chain. Gas set too low. Node errors. On mobile, these don’t produce clear error messages, they produce silence. Or a spinning loader that never resolves. The same study found users calling wallets ‘scams’, not because they were, but because a failed transaction with no explanation looks exactly like theft.\n\n3. Gas fee confusion.\n\nPeople from traditional payment backgrounds assume transactions are free, fast, and reversible. Gas is none of those things. MetaMask only introduced the ability to pay gas fees in non-ETH tokens in February 2025. That was a 2025 fix for a problem that’s existed since 2015.\n\n4. Address complexity.\n\n42 characters. Hexadecimal. Chain-specific formatting. One wrong character and the money is gone. Forever. This isn’t a crypto problem. It’s a UX crime.\n\n5. Jargon overload.\n\nSeed phrases. Gas. Wrapped tokens. EVM-compatible. Signing transactions. This is a foreign language, and nobody provides a dictionary at the door. The result: a 90%+ drop-off from people who own crypto to people who actually use it. Out of an estimated 716 million crypto owners globally, only 40–70 million are active.\n\nThe Infrastructure Is Finally Here\nHere’s what makes all of this so frustrating: the underlying technology finally works. Stablecoins processed $33 trillion in 2025, a 72% year-over-year increase. USDC alone grew 78% in the same period. The stablecoin market crossed $314 billion and is projected to hit $1.9 trillion by 2030 according to Citi. Layer 2 networks like Base, Optimism, and Arbitrum bring transaction costs down to cents, sometimes fractions of a cent. A transfer that cost $20 in Ethereum fees three years ago now costs $0.01. The GENIUS Act was signed into law in July 2025, creating the first federal regulatory framework for stablecoins. Visa’s stablecoin settlement hit a $4.5 billion annualized run rate. Stripe acquired stablecoin infrastructure company Bridge for $1.1 billion. Visa. Stripe. Western Union. They are all building on stablecoin rails.\n\n280 Million People Are Still Paying the ‘Stupid Tax’\nEvery month, 280 million people send money across borders. The global average fee for sending $200 internationally is 6.49%. Sub-Saharan Africa corridors average 7.7%. The UN set a goal to get this below 3% by 2030. Stablecoins already do it for under 1%.\n\nMaria in New York sends $500 to her mom in the Philippines every month. Western Union charges her $40 in direct fees plus a hidden exchange rate markup: roughly $55 total. That’s 11% of the transfer. Over a year: $660.\n\nWith a stablecoin wallet, sending 500 USDC costs cents on a Layer 2 network, wallet to wallet. The real cost comes at the edges: converting dollars to stablecoins (on-ramp) and converting stablecoins back to local currency for her mom to use (off-ramp). With a good provider, that end-to-end journey lands between 1–3% in total fees, and still a fraction of Western Union’s 11%. Annual savings: $600.\n\nHowever, Maria doesn’t use a stablecoin wallet. Because the one time she tried, she got lost between apps, confused by gas fees, and gave up. The product failed her. Not the other way around.\n\n3 Billion People Already Know Where Payments Should Live\nWhatsApp has 3 billion monthly active users. They open the app an average of 23 times per day. That’s 930 times a month. 930 moments where a payment could happen. If the tools were there. WeChat figured this out. WeChat Pay now has 1.3 billion users and processes over 1 billion transactions daily, totaling more than $15 trillion annually. Users didn’t download a separate finance app. They just started paying inside their conversations. The transition was invisible. The payment was already where the conversation was.\n\nWhatsApp tried to replicate this. WhatsApp Pay launched in India in 2020. Five years later, it has about 10 million monthly active payment users, in a country with 500 million WhatsApp users. Google Pay has hundreds of millions more in the same market. WhatsApp Pay is available in just three markets — India, Brazil, and Singapore. It doesn’t support crypto or stablecoins, and has seen minimal product investment even after regulatory restrictions were lifted. In India, it has fewer than 10 million active payment users despite 500 million WhatsApp users in the country.\n\nThe opportunity is wide open. A cross-platform, stablecoin-native payment layer that works inside every conversation.\n\nYour Keyboard Is Already There\nYou type on your keyboard 150 times a day. WhatsApp. Telegram. iMessage. Signal. Twitter. Every app where you communicate passes through the same keyboard. The keyboard is the most-used interface on your phone. Every message, every search, it all goes through it. So what if the payment layer lived there too? Not another app to open. Not another account to create. Not another reason to switch contexts.\n\nYou’re chatting with someone. You want to send $10. You tap your keyboard. A payment window appears. You type 10. Send. That’s it. Done in 5 seconds. You never left the conversation.\n\nThat’s what Keyflo is. A keyboard wallet. Stablecoin payments built into the one interface that’s already everywhere you are.\n\nNo gas confusion. No app switching. No seed phrase to lose. Just: type, tap, send.\n\nBe Among the First to Use It\nKeyflo is built for the 78% of people who already live on their phones, and for the 280 million who keep paying 6–11% in remittance fees because the mobile alternative was never good enough to trust.\n\nWe’re opening access in waves. Early users get first access to new features, priority support, and the chance to actually shape what gets built next.\n\nThe keyboard is already in your hand. Join the waitlist at https://t.co/okr2ltZuWj.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 5,
+      "quoteCount": 0,
+      "viewCount": 234,
+      "createdAt": "Fri Mar 06 02:03:11 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2029739537837031779",
+      "displayTextRange": [
+        0,
+        280
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "KeyFlo_App",
+        "url": "https://x.com/KeyFlo_App",
+        "twitterUrl": "https://twitter.com/KeyFlo_App",
+        "id": "1977915321483968512",
+        "name": "Keyflo",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1985316648161837057/b4uh92Gu_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1977915321483968512/1763479710",
+        "description": "",
+        "location": "USA",
+        "followers": 80,
+        "following": 161,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Oct 14 01:53:13 +0000 2025",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 151,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 58,
+        "statusesCount": 174,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2039122037029875989"
+        ],
+        "profile_bio": {
+          "description": "Send money in seconds, spend and receive globally.\n\nJoin the waitlist for early access: https://t.co/okr2lu02LR",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "keyflo.app",
+                  "expanded_url": "http://keyflo.app",
+                  "indices": [
+                    88,
+                    111
+                  ],
+                  "url": "https://t.co/okr2lu02LR"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/keyfloapp",
+                  "expanded_url": "https://linktr.ee/keyfloapp",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/lCLgmYO7EF"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "height": 262,
+                "url": "https://pbs.twimg.com/card_img/2097947588070723589/E_h1lxEA?format=png&name=600x314",
+                "width": 500
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 144,
+                "url": "https://pbs.twimg.com/card_img/2097947588070723589/E_h1lxEA?format=png&name=144x144",
+                "width": 144
+              }
+            }
+          },
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Keyflo is a mobile keyboard with an embedded crypto wallet, enabling frictionless, peer-to-peer stablecoin payments directly within messaging apps."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "keyflo.app"
+            }
+          },
+          {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 320,
+                "url": "https://pbs.twimg.com/card_img/2097947588070723589/E_h1lxEA?format=png&name=800x320_1",
+                "width": 320
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2097947588070723589/E_h1lxEA?format=png&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 500,
+                "url": "https://pbs.twimg.com/card_img/2097947588070723589/E_h1lxEA?format=png&name=orig",
+                "width": 500
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2097947588070723589/E_h1lxEA?format=png&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "height": 262,
+                "url": "https://pbs.twimg.com/card_img/2097947588070723589/E_h1lxEA?format=png&name=600x314",
+                "width": 500
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 100,
+                "url": "https://pbs.twimg.com/card_img/2097947588070723589/E_h1lxEA?format=png&name=100x100",
+                "width": 100
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 500,
+                "url": "https://pbs.twimg.com/card_img/2097947588070723589/E_h1lxEA?format=png&name=2048x2048_2_exp",
+                "width": 500
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "height": 500,
+                "url": "https://pbs.twimg.com/card_img/2097947588070723589/E_h1lxEA?format=png&name=orig",
+                "width": 500
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "keyflo.app"
+            }
+          },
+          {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "height": 262,
+                "url": "https://pbs.twimg.com/card_img/2097947588070723589/E_h1lxEA?format=png&name=600x314",
+                "width": 500
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 92.08,
+                    "rgb": {
+                      "blue": 0,
+                      "green": 0,
+                      "red": 0
+                    }
+                  },
+                  {
+                    "percentage": 7.32,
+                    "rgb": {
+                      "blue": 25,
+                      "green": 80,
+                      "red": 255
+                    }
+                  },
+                  {
+                    "percentage": 0.41,
+                    "rgb": {
+                      "blue": 12,
+                      "green": 37,
+                      "red": 118
+                    }
+                  },
+                  {
+                    "percentage": 0.12,
+                    "rgb": {
+                      "blue": 6,
+                      "green": 19,
+                      "red": 62
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Keyflo – Transact Without Leaving the Chat"
+            }
+          },
+          {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 92.08,
+                    "rgb": {
+                      "blue": 0,
+                      "green": 0,
+                      "red": 0
+                    }
+                  },
+                  {
+                    "percentage": 7.32,
+                    "rgb": {
+                      "blue": 25,
+                      "green": 80,
+                      "red": 255
+                    }
+                  },
+                  {
+                    "percentage": 0.41,
+                    "rgb": {
+                      "blue": 12,
+                      "green": 37,
+                      "red": 118
+                    }
+                  },
+                  {
+                    "percentage": 0.12,
+                    "rgb": {
+                      "blue": 6,
+                      "green": 19,
+                      "red": 62
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 500,
+                "url": "https://pbs.twimg.com/card_img/2097947588070723589/E_h1lxEA?format=png&name=2048x2048_2_exp",
+                "width": 500
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "height": 262,
+                "url": "https://pbs.twimg.com/card_img/2097947588070723589/E_h1lxEA?format=png&name=600x314",
+                "width": 500
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 92.08,
+                    "rgb": {
+                      "blue": 0,
+                      "green": 0,
+                      "red": 0
+                    }
+                  },
+                  {
+                    "percentage": 7.32,
+                    "rgb": {
+                      "blue": 25,
+                      "green": 80,
+                      "red": 255
+                    }
+                  },
+                  {
+                    "percentage": 0.41,
+                    "rgb": {
+                      "blue": 12,
+                      "green": 37,
+                      "red": 118
+                    }
+                  },
+                  {
+                    "percentage": 0.12,
+                    "rgb": {
+                      "blue": 6,
+                      "green": 19,
+                      "red": 62
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "height": 500,
+                "url": "https://pbs.twimg.com/card_img/2097947588070723589/E_h1lxEA?format=png&name=2048x2048_2_exp",
+                "width": 500
+              }
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/okr2ltZuWj"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "height": 500,
+                "url": "https://pbs.twimg.com/card_img/2097947588070723589/E_h1lxEA?format=png&name=orig",
+                "width": 500
+              }
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/okr2ltZuWj",
+        "user_refs_results": []
+      },
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [
+          {
+            "display_url": "keyflo.app",
+            "expanded_url": "http://keyflo.app",
+            "indices": [
+              7861,
+              7884
+            ],
+            "url": "https://t.co/okr2ltZuWj"
+          }
+        ],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2029738955160334837",
       "url": "https://x.com/MMDA/status/2029738955160334837",
       "twitterUrl": "https://twitter.com/MMDA/status/2029738955160334837",
@@ -216,7 +659,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967067,
+        "followers": 3966561,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -232,8 +675,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888279,
+        "mediaCount": 61738,
+        "statusesCount": 888713,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -282,6 +725,832 @@
     },
     {
       "type": "tweet",
+      "id": "2029741821929345377",
+      "url": "https://x.com/milkywaycupcake/status/2029741821929345377",
+      "twitterUrl": "https://twitter.com/milkywaycupcake/status/2029741821929345377",
+      "text": "Metal Moon Magazine X TOC\n\nby: Wish Fire\n\nSaint Gothic\n\nMetal Moon Magazine X TOC\n\n1.10K\n\n2.Alchemy\n\n3.Brass Bells\n\n4.Damascus\n\n5.Dream Symbols\n\nhttps://t.co/oS26Tb4bh3 Angel\n\n7.Gunmetal\n\n8.Horseshoes\n\n9.Iridescent Glitter\n\n10.Parthenon\n\n11.Platinum Star\n\n12.Rainbow Pyrite\n\n13.Rare-earth element\n\n14.Rose Gold\n\n15.Silver & Iron\n\n16.Steel Blue\n\n17.Vampir\n\nhttps://t.co/03vwHP7Yio Games\n\n19.White Titanium\n\nMetal Moon Magazine X TOC\n\nGuns are primarily made from metal, which is the most common material used due to its strength and durability. The most frequently used metals include:\n\nSteel: Commonly used for the barrel and frame of firearms, providing strength and resistance to wear.\n\nAluminum: Lightweight and used in the frames of many modern guns, offering a balance of weight and durability.\n\nCarbon Steel: Often used for critical components due to its hardness and strength.\n\nGunmetal: An alloy of copper, tin, and zinc, historically used but now largely replaced by steel.\n\nOther materials like wood and plastic may also be used, but metal remains the mainstay in gun manufacturing.\n\nhttps://t.co/FSoiZHNu94\n\nFirst trailer for ‘The Handmaid’s Tale’ sequel series ‘THE TESTAMENTS’, starring Chase Infiniti\n\nhttps://t.co/yZa67HqOb3\n\nhttps://t.co/wtuMAWgkZc\n\nMy friend's daughter forgot the word “dandelion” so she described it as “the one that explodes into wishes.”\n\nI like that better.\n\nhttps://t.co/MWiW8nYdQ3\n\nInnalillahi wa inna ilaihi raji’un.\n\nSaya dan segenap keluarga turut berduka cita yang mendalam atas wafatnya Almh. Hj. Hindun Susilowati, istri dari Pengasuh Pondok Pesantren Al-Muayyad, Bapak KH. Drs. Abdul Rozaq Shofawi.\n\nhttps://t.co/fsN5TdBdTe\n\nA Brocken Spectre spotted while hiking at Rainbow Mountain, Peru – a rare atmospheric optical phenomenon where the shadow of a person is seen on mist with a halo\n\nhttps://t.co/eoIdxNfOAP\n\neverchanginghorizon\n\nMetal Moon Magazine X TOC X Gunmetal\n\nhttps://t.co/0AEY8HRSbZ\n\nAt that point that’s when they spiritually destroyed you\n\nYou’ll say so you don’t know that guy and they’ll say I guess it’s me I’m not sure how\n\nThe overwhelming majority of mass shootings in the United States are perpetrated by males, with females accounting for a very small percentage\n\nBut several—particularly in the Caribbean, Central/South America, and parts of Africa—have higher overall homicide and violent crime rates\n\nIn summary, no country fully matches the U.S.’s combination of high mass shooting frequency (especially broad-definition events) and widespread gun access\n\nOther nations with notable (but much lower) numbers include Russia, Yemen, Philippines, Uganda, France, Germany, and Canada—but these are typically in the single digits or low dozens compared to hundreds\n\nFor public mass shootings (e.g., rampage-style events with multiple fatalities in public settings, often 4+ killed excluding shooter), the U.S. has far more incidents and deaths than any other country.\n\nI know people are worried about the situation in the Middle East.\n\nhttps://t.co/WNfnWjufAe\n\nHere’s what the government is doing to support British nationals to get home safely.\n\nProtecting British lives is, and always will be, my number one priority.\n\nhttps://t.co/VfmbESs74k\n\nLabour will neither pull up the drawbridge nor throw open the borders.\n\nWe believe in a migration system that is fair, but firm. Compassionate, but controlled.\n\nOne that commands the confidence of those communities this party was created to serve.\n\nhttps://t.co/m3y0vpMIoL\n\nThe United States stands out globally for its high rates of gun violence and mass shootings, particularly when using broad definitions like the Gun Violence Archive\n\nMetal Moon Magazine X TOC X Gunmetal\n\n*mass shootings, typically 3+ or 4+ fatalities in public settings, excluding gang/domestic/robbery-related*\n\n2023: Around 655–722 (sources vary slightly on exact counts).\n\n463 mass shootings a year in America *ai\n\n*Approximations\n\nThis translates to an average of roughly 500–600 per year in the post-2020 era, though earlier years (pre-2020) were often in the 300–400 range. Over longer periods (e.g., 2015–2022), some analyses cite averages around 463 per year under similar broad criteria.\n\nThe most commonly cited source in media and public discourse is the Gun Violence Archive (GVA), a nonprofit that tracks gun violence incidents. It defines a mass shooting broadly as any incident where four or more people are shot (injured or killed),.\n\nSaint Gothic\n\n@saintgothic\n\nexcluding the shooter. This includes a wide range of events, such as those tied to domestic violence, gang activity, or disputes—not just high-profile public rampages\n\nhttps://t.co/EXwbDmAXPA\n\n\"Estaréis perfectamente a salvo, o enfrentaréis una muerte absolutamente garantizada.\"\n\nhttps://t.co/G83Xkz9s8y\n\nhttps://t.co/83tuWBjCr2\n\nJUST IN: Missile warning issued in Dubai, UAE.\n\nhttps://t.co/bftJuFClHv\n\nhttps://t.co/LOdkX9NuPx\n\nhttps://t.co/9eXFjPiJPH\n\nتتعامل حالياً الدفاعات الجوية الإماراتية مع تهديدات صاروخية وطائرات مسيرة قادمة من إيران\n\nوتؤكد وزارة الدفاع أن الأصوات المسموعة في مناطق متفرقة من الدولة هي نتيجة اعتراض كل من منظومات الدفاع الجوي للصواريخ البالستية، والمقاتلات للطائرات المسيرة والجوالة.\n\nUAE air defences are currently responding to incoming missile and drone\n\nThe State of Azerbaijan strongly condemns this heinous terrorist act. Those responsible must be brought to justice without delay. The Iranian side must provide an official explanation to Azerbaijan, issue an apology, and ensure that the perpetrators are held criminally accountable.\n\nhttps://t.co/JlpxCeUY81\n\nWe stand firmly with the Jewish community and will not tolerate antisemitism or any attempt to divide our communities.\n\nThe Azerbaijani people can be assured that any hostile force will feel the full might of our “Iron Fist.”\nhttps://t.co/UA1DmoxoH4\nhttps://t.co/XUvpR1EwOj\n\nMatthew 6:6 🤍 Let it be between you and God. The world doesn’t need to know.\nDo not let your adornment be merely outward—arranging the hair, wearing gold [jewelry], or putting on fine apparel—rather let it be the hidden person of the heart, with the incorruptible beauty of a gentle and quiet spirit, which is very precious in the sight of God 1 Peter 3:3-4\nSo says 3 percent or so of women here are convicted sex offenders compared to the fifty six percent of men in public as convicted sex offenders\nAnd that sex offender status is just on people convicted not people that get away with their abuse\nIn fact they should give more weapons to women\n*Self-defense\nIf you can’t have weapons well all the animals won’t be eaten\nWe just look at it all as victim shaming/ blaming\nLots of hell for women here\nSexual Aggression: A broader range of 29% to 50% of menreport engaging in some form of sexual aggression, which includes verbal coercion or unwanted sexual contact, even if it does not meet the legal definition of rape.\n\nThe Prince of Wales, known as the Duke of Cornwall while in Cornwall, tries his hand at making pasties during a visit to the Gear Farm Pasty Company, a family-run farm known for producing traditional Cornish pasties in St Martin, Helston, as he visits Cornwall for St Piran's Day.\nhttps://t.co/fs2T4Fk0GK\nHaute and Freddy are ready to release their debut album, 'Big Disgrace,' in all its maximalist pop glory\nhttps://t.co/cNdAIdOQL8\nhttps://t.co/Y59Tu0Mv4n\nIn der „Kaisers-Wien-Krimi-Reihe“ ermittelt Maximilian Kaiser in seinem Wien.\nMenschliche Abgründe, Einsamkeit und soziale Kälte sind die Schattenseiten einer Stadt. Denn nicht jeder hier hat ein „goldenes Wienerherz“.\nhttps://t.co/1eMKQb0Tvd\nKadının eli değer, her şey değişir…\nhttps://t.co/yW29OFjFiH\n“We are pursuing a sensitive policy that centers on the security of 86 million, God willing, we will maintain this stance to the end.”\nhttps://t.co/B4vJlNWBzp\nhttps://t.co/5CpAFWV2Cp\nhttps://t.co/05U7PdZkBE\nThe Iranian regime posed an immiment threat to the United States and our service members.\nhttps://t.co/qJbsMhSMET\nPresident Trump has the constitutional authority and responsibility to take decisive action for the safety of our nation.\nJessie Buckley as Agnes Shakespeare in HAMNET. Nominated for Actress in a Leading Role at the 98th Oscars.\nhttps://t.co/dWtl9o78DL\nWatch the #Oscars LIVE on Sunday, March 15th, at 7e/4p on ABC and Hulu. #OnlyAtTheOscars\nhttps://t.co/5ta2cwIIOC\n美国中央司令部(CENTCOM)继续发布有关“史诗狂怒行动”的解密视频，并表示伊朗袭击美军和地区伙伴的能力正在迅速下降，而美国的作战威力却在不断增强。\n视频显示，美军在伊朗展开精准打击，目标是伊朗政权的指挥控制设施、防空能力、导弹和无人机发射场地以及军用机场。\n更多内容 https://t.co/rhNk5mtsQx\nhttps://t.co/XGiLhJlicT\nThe U.S. State Department is actively assisting Americans to leave the Middle East, if they wish to do so.\nRequest Emergency Assistance:\n+1-202-501-4444\nEnroll in https://t.co/lX7iOxtFUp\nhttps://t.co/4og2KbcWSC\nhttps://t.co/6flpj1KNw1\nHonored to meet Cardinal Pierbattista Pizzaballa, the Latin Patriarch of Jerusalem. A productive discussion on strengthening the Christian community in Israel and standing united against hatred and antisemitism.\nhttps://t.co/aQ6UOnQN4r\nCardinal Pizzaballa says \"Every day, in our churches and in our homes, let us pray that God will hear the cry of the suffering and grant peace\" in Lent Homily\nhttps://t.co/bQ1EcMxVvU\n“Satan wants to rule where Jesus lived.”\n~Cardinal Pizzaballa Latin Patriarch, Jerusalem.\nhttps://t.co/GYrlbh6EGW\nIt's infuriating to hear so many stores of women being told what they should do to deal with the violent men in their lives.\n\nInstead of being protected from that violence.\n\nI'm sorry.\n\nIt's just bloody awful.\nhttps://t.co/lpBda1858r\nhttps://t.co/WkI76DKxTp\nIf you told me early last Saturday I'd get a shot of a snowy owl flying directly towards me and bathed in golden hour, early-evening sunshine, I wouldn't have believed you. But, here we are, and here is this absolute dream shot.\nhttps://t.co/Caer6yH1Kg\nhttps://t.co/KtnhN5WS80\nhttps://t.co/dWcrK0rH43\nhttps://t.co/AMLdzfBIIP\n\nJISOO LUCIENDO ABSOLUTAMENTE HERMOSA, PRECIOSA, DIVINA Y PERFECTA EN EL DETRÁS DE CÁMARA DE 'GO'\nhttps://t.co/Ojw5Jq6MUS\nLA BELLEZA DE KIM JISOO ES IRREAL, LA VERDADERA DEFINICIÓN DE BELLEZA Y PERFECCIÓN, OMGGG JISOOOO",
+      "source": "Twitter for iPhone",
+      "retweetCount": 21,
+      "replyCount": 1,
+      "likeCount": 7,
+      "quoteCount": 0,
+      "viewCount": 1110,
+      "createdAt": "Fri Mar 06 02:12:15 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2029741821929345377",
+      "displayTextRange": [
+        0,
+        273
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "milkywaycupcake",
+        "url": "https://x.com/milkywaycupcake",
+        "twitterUrl": "https://twitter.com/milkywaycupcake",
+        "id": "939777380322746369",
+        "name": "Wish fire ♡",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2076576393987837952/QfNRt93G_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/939777380322746369/1783928993",
+        "description": "",
+        "location": "Elk Grove, CA",
+        "followers": 15209,
+        "following": 10248,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Sun Dec 10 08:42:42 +0000 2017",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 35542,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 21226,
+        "statusesCount": 159487,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2100056590347018480"
+        ],
+        "profile_bio": {
+          "description": "fairytales & music 🎵",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "fireshrine.life",
+                  "expanded_url": "http://www.fireshrine.life",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/mqCWayLVaU"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              8204,
+              8211
+            ],
+            "text": "Oscars"
+          },
+          {
+            "indices": [
+              8266,
+              8282
+            ],
+            "text": "OnlyAtTheOscars"
+          }
+        ],
+        "symbols": [],
+        "urls": [
+          {
+            "display_url": "6.Guardian",
+            "expanded_url": "http://6.Guardian",
+            "indices": [
+              145,
+              168
+            ],
+            "url": "https://t.co/oS26Tb4bh3"
+          },
+          {
+            "display_url": "18.Video",
+            "expanded_url": "http://18.Video",
+            "indices": [
+              356,
+              379
+            ],
+            "url": "https://t.co/03vwHP7Yio"
+          },
+          {
+            "display_url": "x.com/LUXURYLAW/stat…",
+            "expanded_url": "http://www.x.com/LUXURYLAW/status/2029590123034099963",
+            "indices": [
+              1094,
+              1117
+            ],
+            "url": "https://t.co/FSoiZHNu94"
+          },
+          {
+            "display_url": "x.com/DiscussingFilm…",
+            "expanded_url": "http://www.x.com/DiscussingFilm/status/2029569864751260089",
+            "indices": [
+              1216,
+              1239
+            ],
+            "url": "https://t.co/yZa67HqOb3"
+          },
+          {
+            "display_url": "x.com/itsme_urstruly…",
+            "expanded_url": "http://www.x.com/itsme_urstruly/status/2029278630438994297",
+            "indices": [
+              1241,
+              1264
+            ],
+            "url": "https://t.co/wtuMAWgkZc"
+          },
+          {
+            "display_url": "x.com/Go_Jover/statu…",
+            "expanded_url": "http://www.x.com/Go_Jover/status/2029385989026922847",
+            "indices": [
+              1397,
+              1420
+            ],
+            "url": "https://t.co/MWiW8nYdQ3"
+          },
+          {
+            "display_url": "x.com/jokowi/status/…",
+            "expanded_url": "http://www.x.com/jokowi/status/2029525017382523307",
+            "indices": [
+              1647,
+              1670
+            ],
+            "url": "https://t.co/fsN5TdBdTe"
+          },
+          {
+            "display_url": "x.com/wrzl/status/20…",
+            "expanded_url": "http://www.x.com/wrzl/status/2029449834030100521",
+            "indices": [
+              1835,
+              1858
+            ],
+            "url": "https://t.co/eoIdxNfOAP"
+          },
+          {
+            "display_url": "tuckercarlson.com",
+            "expanded_url": "http://tuckercarlson.com",
+            "indices": [
+              1919,
+              1942
+            ],
+            "url": "https://t.co/0AEY8HRSbZ"
+          },
+          {
+            "display_url": "x.com/Keir_Starmer/s…",
+            "expanded_url": "http://www.x.com/Keir_Starmer/status/2029177834124533836",
+            "indices": [
+              3005,
+              3028
+            ],
+            "url": "https://t.co/WNfnWjufAe"
+          },
+          {
+            "display_url": "x.com/Keir_Starmer/s…",
+            "expanded_url": "http://www.x.com/Keir_Starmer/status/2029194497310040358",
+            "indices": [
+              3190,
+              3213
+            ],
+            "url": "https://t.co/VfmbESs74k"
+          },
+          {
+            "display_url": "x.com/ShabanaMahmood…",
+            "expanded_url": "http://www.x.com/ShabanaMahmood/status/2029470634263093652",
+            "indices": [
+              3464,
+              3487
+            ],
+            "url": "https://t.co/m3y0vpMIoL"
+          },
+          {
+            "display_url": "x.com/GivenchyBeauty…",
+            "expanded_url": "http://www.x.com/GivenchyBeautyJ/status/2029693447733416434",
+            "indices": [
+              4636,
+              4659
+            ],
+            "url": "https://t.co/EXwbDmAXPA"
+          },
+          {
+            "display_url": "x.com/SwatiESP/statu…",
+            "expanded_url": "http://www.x.com/SwatiESP/status/2029692514911895846",
+            "indices": [
+              4749,
+              4772
+            ],
+            "url": "https://t.co/G83Xkz9s8y"
+          },
+          {
+            "display_url": "x.com/MarioNawfal/st…",
+            "expanded_url": "http://www.x.com/MarioNawfal/status/2029590437531689173",
+            "indices": [
+              4774,
+              4797
+            ],
+            "url": "https://t.co/83tuWBjCr2"
+          },
+          {
+            "display_url": "x.com/BRICSinfo/stat…",
+            "expanded_url": "http://www.x.com/BRICSinfo/status/2029590493181497817",
+            "indices": [
+              4847,
+              4870
+            ],
+            "url": "https://t.co/bftJuFClHv"
+          },
+          {
+            "display_url": "x.com/Gerashchenko_e…",
+            "expanded_url": "http://www.x.com/Gerashchenko_en/status/2029569818936938806",
+            "indices": [
+              4872,
+              4895
+            ],
+            "url": "https://t.co/LOdkX9NuPx"
+          },
+          {
+            "display_url": "x.com/antmillionsbot…",
+            "expanded_url": "http://www.x.com/antmillionsbot/status/2029615866711540116",
+            "indices": [
+              4897,
+              4920
+            ],
+            "url": "https://t.co/9eXFjPiJPH"
+          },
+          {
+            "display_url": "x.com/presidentaz/st…",
+            "expanded_url": "http://www.x.com/presidentaz/status/2029564842307125414",
+            "indices": [
+              5536,
+              5559
+            ],
+            "url": "https://t.co/JlpxCeUY81"
+          },
+          {
+            "display_url": "x.com/presidentaz/st…",
+            "expanded_url": "http://www.x.com/presidentaz/status/2029568952947368125",
+            "indices": [
+              5787,
+              5810
+            ],
+            "url": "https://t.co/UA1DmoxoH4"
+          },
+          {
+            "display_url": "x.com/SenateGOP/stat…",
+            "expanded_url": "http://www.x.com/SenateGOP/status/2029631257131504117",
+            "indices": [
+              5811,
+              5834
+            ],
+            "url": "https://t.co/XUvpR1EwOj"
+          },
+          {
+            "display_url": "x.com/aaronchown/sta…",
+            "expanded_url": "http://www.x.com/aaronchown/status/2029615059786146299",
+            "indices": [
+              7140,
+              7163
+            ],
+            "url": "https://t.co/fs2T4Fk0GK"
+          },
+          {
+            "display_url": "x.com/RollingStone/s…",
+            "expanded_url": "http://www.x.com/RollingStone/status/2029617942363529234",
+            "indices": [
+              7269,
+              7292
+            ],
+            "url": "https://t.co/cNdAIdOQL8"
+          },
+          {
+            "display_url": "x.com/myfacehunter/s…",
+            "expanded_url": "http://www.x.com/myfacehunter/status/2029303847970312320",
+            "indices": [
+              7293,
+              7316
+            ],
+            "url": "https://t.co/Y59Tu0Mv4n"
+          },
+          {
+            "display_url": "x.com/film_wurm/stat…",
+            "expanded_url": "http://www.x.com/film_wurm/status/2029231074526527524",
+            "indices": [
+              7536,
+              7559
+            ],
+            "url": "https://t.co/1eMKQb0Tvd"
+          },
+          {
+            "display_url": "x.com/MahinurOzdemir…",
+            "expanded_url": "http://www.x.com/MahinurOzdemir/status/2029619625772646557",
+            "indices": [
+              7596,
+              7619
+            ],
+            "url": "https://t.co/yW29OFjFiH"
+          },
+          {
+            "display_url": "x.com/RTEdijital/sta…",
+            "expanded_url": "http://www.x.com/RTEdijital/status/2029618182734987396",
+            "indices": [
+              7755,
+              7778
+            ],
+            "url": "https://t.co/B4vJlNWBzp"
+          },
+          {
+            "display_url": "x.com/USNationalGuar…",
+            "expanded_url": "http://www.x.com/USNationalGuard/status/2029617950286819416",
+            "indices": [
+              7779,
+              7802
+            ],
+            "url": "https://t.co/5CpAFWV2Cp"
+          },
+          {
+            "display_url": "arab.news/rbqtg",
+            "expanded_url": "http://arab.news/rbqtg",
+            "indices": [
+              7803,
+              7826
+            ],
+            "url": "https://t.co/05U7PdZkBE"
+          },
+          {
+            "display_url": "x.com/saintgothic/st…",
+            "expanded_url": "http://www.x.com/saintgothic/status/2029621307307123094",
+            "indices": [
+              7917,
+              7940
+            ],
+            "url": "https://t.co/qJbsMhSMET"
+          },
+          {
+            "display_url": "x.com/TheAcademy/sta…",
+            "expanded_url": "http://www.x.com/TheAcademy/status/2029588044051829204",
+            "indices": [
+              8170,
+              8193
+            ],
+            "url": "https://t.co/dWtl9o78DL"
+          },
+          {
+            "display_url": "x.com/THR/status/202…",
+            "expanded_url": "http://www.x.com/THR/status/2029617548925489545",
+            "indices": [
+              8283,
+              8306
+            ],
+            "url": "https://t.co/5ta2cwIIOC"
+          },
+          {
+            "display_url": "voachinese.com",
+            "expanded_url": "https://voachinese.com",
+            "indices": [
+              8443,
+              8466
+            ],
+            "url": "https://t.co/rhNk5mtsQx"
+          },
+          {
+            "display_url": "x.com/VOAChinese/sta…",
+            "expanded_url": "http://www.x.com/VOAChinese/status/2029618296283107560",
+            "indices": [
+              8467,
+              8490
+            ],
+            "url": "https://t.co/XGiLhJlicT"
+          },
+          {
+            "display_url": "Step.State.Gov",
+            "expanded_url": "http://Step.State.Gov",
+            "indices": [
+              8654,
+              8677
+            ],
+            "url": "https://t.co/lX7iOxtFUp"
+          },
+          {
+            "display_url": "x.com/StateDept/stat…",
+            "expanded_url": "http://www.x.com/StateDept/status/2029550975896227906",
+            "indices": [
+              8678,
+              8701
+            ],
+            "url": "https://t.co/4og2KbcWSC"
+          },
+          {
+            "display_url": "x.com/LPJerusalem",
+            "expanded_url": "https://x.com/LPJerusalem",
+            "indices": [
+              8702,
+              8725
+            ],
+            "url": "https://t.co/6flpj1KNw1"
+          },
+          {
+            "display_url": "x.com/YacovLivne/sta…",
+            "expanded_url": "http://www.x.com/YacovLivne/status/2027029886846579180",
+            "indices": [
+              8938,
+              8961
+            ],
+            "url": "https://t.co/aQ6UOnQN4r"
+          },
+          {
+            "display_url": "x.com/catholicnews1/…",
+            "expanded_url": "http://www.x.com/catholicnews1/status/2025647782694895725",
+            "indices": [
+              9121,
+              9144
+            ],
+            "url": "https://t.co/bQ1EcMxVvU"
+          },
+          {
+            "display_url": "x.com/Nance726/statu…",
+            "expanded_url": "http://www.x.com/Nance726/status/2024667478744584342",
+            "indices": [
+              9235,
+              9258
+            ],
+            "url": "https://t.co/GYrlbh6EGW"
+          },
+          {
+            "display_url": "x.com/ThatAussieWoma…",
+            "expanded_url": "http://www.x.com/ThatAussieWoman/status/2029493863069745214",
+            "indices": [
+              9469,
+              9492
+            ],
+            "url": "https://t.co/lpBda1858r"
+          },
+          {
+            "display_url": "winston.visitlink.me/PlYx10",
+            "expanded_url": "http://winston.visitlink.me/PlYx10",
+            "indices": [
+              9493,
+              9516
+            ],
+            "url": "https://t.co/WkI76DKxTp"
+          },
+          {
+            "display_url": "x.com/RobWrightImage…",
+            "expanded_url": "http://www.x.com/RobWrightImages/status/2029353502577676418",
+            "indices": [
+              9746,
+              9769
+            ],
+            "url": "https://t.co/Caer6yH1Kg"
+          },
+          {
+            "display_url": "x.com/MANOMAGlC/stat…",
+            "expanded_url": "http://www.x.com/MANOMAGlC/status/2029413799867105424",
+            "indices": [
+              9770,
+              9793
+            ],
+            "url": "https://t.co/KtnhN5WS80"
+          },
+          {
+            "display_url": "x.com/bvlgrlisa",
+            "expanded_url": "https://x.com/bvlgrlisa",
+            "indices": [
+              9794,
+              9817
+            ],
+            "url": "https://t.co/dWcrK0rH43"
+          },
+          {
+            "display_url": "x.com/empiremagazine",
+            "expanded_url": "https://x.com/empiremagazine",
+            "indices": [
+              9818,
+              9841
+            ],
+            "url": "https://t.co/AMLdzfBIIP"
+          },
+          {
+            "display_url": "x.com/LalisaTay_1327…",
+            "expanded_url": "http://www.x.com/LalisaTay_1327/status/2029468455565398284",
+            "indices": [
+              9940,
+              9963
+            ],
+            "url": "https://t.co/Ojw5Jq6MUS"
+          }
+        ],
+        "user_mentions": [
+          {
+            "id_str": "1394853216991399940",
+            "indices": [
+              4454,
+              4466
+            ],
+            "name": "Saint Gothic",
+            "screen_name": "saintgothic"
+          }
+        ]
+      },
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "2029468455565398284",
+        "url": "https://x.com/LalisaTay_1327/status/2029468455565398284",
+        "twitterUrl": "https://twitter.com/LalisaTay_1327/status/2029468455565398284",
+        "text": "JISOO LUCIENDO ABSOLUTAMENTE HERMOSA, PRECIOSA, DIVINA Y PERFECTA EN EL DETRÁS DE CÁMARA DE 'GO'\n\nLA BELLEZA DE KIM JISOO ES IRREAL, LA VERDADERA DEFINICIÓN DE BELLEZA Y PERFECCIÓN, OMGGG JISOOOO  https://t.co/BqyhG4Txi7",
+        "source": "Twitter for iPhone",
+        "retweetCount": 22,
+        "replyCount": 0,
+        "likeCount": 117,
+        "quoteCount": 0,
+        "viewCount": 1651,
+        "createdAt": "Thu Mar 05 08:06:00 +0000 2026",
+        "lang": "es",
+        "bookmarkCount": 3,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "2029468455565398284",
+        "displayTextRange": [
+          0,
+          220
+        ],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {
+          "type": "user",
+          "userName": "LalisaTay_1327",
+          "url": "https://x.com/LalisaTay_1327",
+          "twitterUrl": "https://twitter.com/LalisaTay_1327",
+          "id": "1605999406825803811",
+          "name": "'",
+          "isVerified": false,
+          "isBlueVerified": false,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/2098205473401167872/1DAaWTmK_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/1605999406825803811/1789086142",
+          "description": "",
+          "location": "BLΛƆKPIИK",
+          "followers": 9772,
+          "following": 6301,
+          "status": "",
+          "canDm": false,
+          "canMediaTag": false,
+          "createdAt": "Thu Dec 22 18:51:41 +0000 2022",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 46355,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 12068,
+          "statusesCount": 65560,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [
+            "1712270972538011971"
+          ],
+          "profile_bio": {
+            "description": "FAN ACCOUNT | BLACKPINK",
+            "entities": {
+              "description": {}
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {
+          "media": [
+            {
+              "additional_media_info": {
+                "description": "",
+                "monetizable": false,
+                "source_user": {
+                  "user_results": {
+                    "rest_id": "1273850774380883975",
+                    "result": {
+                      "__typename": "User",
+                      "action_counts": {
+                        "favorites_count": 29
+                      },
+                      "avatar": {
+                        "image_url": "https://pbs.twimg.com/profile_images/1741474772356337664/UF1xJJ_Z_normal.jpg"
+                      },
+                      "banner": {
+                        "image_url": "https://pbs.twimg.com/profile_banners/1273850774380883975/1772168767"
+                      },
+                      "core": {
+                        "created_at": "Fri Jun 19 05:32:29 +0000 2020",
+                        "name": "BLACKPINKOFFICIAL",
+                        "screen_name": "BLACKPINK"
+                      },
+                      "dm_permissions": {
+                        "can_dm": false
+                      },
+                      "exclusive_tweet_following": false,
+                      "follow_request_sent": false,
+                      "identity_profile_labels_highlighted_label": {},
+                      "location": {
+                        "location": ""
+                      },
+                      "media_permissions": {
+                        "can_media_tag": false
+                      },
+                      "notifications_settings": {
+                        "notifications_enabled": false
+                      },
+                      "pinned_items": {
+                        "tweet_ids_str": [
+                          "2027248020275052776"
+                        ]
+                      },
+                      "privacy": {
+                        "protected": false,
+                        "suspended": false
+                      },
+                      "private_super_following": false,
+                      "profile_bio": {
+                        "description": "BLΛƆKPIИK",
+                        "entities": {
+                          "description": {},
+                          "url": {
+                            "urls": [
+                              {
+                                "display_url": "orcd.co/blackpink-dead…",
+                                "expanded_url": "https://orcd.co/blackpink-deadline",
+                                "indices": [
+                                  0,
+                                  23
+                                ],
+                                "url": "https://t.co/VsQr82rBw3"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "profile_image_shape": "Circle",
+                      "profile_metadata": {
+                        "profile_interstitial_type": "",
+                        "profile_link_color": "1DA1F2"
+                      },
+                      "profile_translation": {
+                        "translator_type_enum": "None"
+                      },
+                      "properties": {
+                        "has_extended_profile": true,
+                        "has_no_screen_name": false
+                      },
+                      "relationship_counts": {
+                        "followers": 11682435,
+                        "following": 1
+                      },
+                      "relationship_perspectives": {
+                        "blocked_by": false,
+                        "blocking": false,
+                        "followed_by": false,
+                        "following": false,
+                        "live_following": false,
+                        "muting": false
+                      },
+                      "rest_id": "1273850774380883975",
+                      "smart_blocked_by": false,
+                      "smart_blocking": false,
+                      "super_follow_eligible": false,
+                      "super_followed_by": false,
+                      "super_following": false,
+                      "tweet_counts": {
+                        "media_tweets": 993,
+                        "tweets": 1486
+                      },
+                      "verification": {
+                        "is_blue_verified": true,
+                        "verified": false
+                      },
+                      "website": {
+                        "url": "https://t.co/VsQr82rBw3"
+                      }
+                    }
+                  }
+                },
+                "title": "‘GO’ with JISOO"
+              },
+              "allow_download_status": {
+                "allow_download": false
+              },
+              "display_url": "pic.x.com/BqyhG4Txi7",
+              "expanded_url": "https://x.com/BLACKPINK/status/2029466960728342883/video/1",
+              "ext_master_playlist_only": [],
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "ext_media_restrictions": {
+                "is_dmca": false
+              },
+              "ext_playlists": [],
+              "id_str": "2029457941133492224",
+              "indices": [
+                197,
+                220
+              ],
+              "media_key": "13_2029457941133492224",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARwqFT6z24AAAAA=",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAAECgABHCoVPrPbgAAAAA==",
+                  "media_key": "13_2029457941133492224"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/media/HCoVvgrWgAAHJFy.jpg",
+              "original_info": {
+                "focus_rects": [],
+                "height": 3840,
+                "width": 2160
+              },
+              "sizes": {
+                "large": {
+                  "h": 2048,
+                  "w": 1152
+                }
+              },
+              "source_status_id_str": "2029466960728342883",
+              "source_user_id_str": "1273850774380883975",
+              "type": "video",
+              "url": "https://t.co/BqyhG4Txi7",
+              "video_info": {
+                "aspect_ratio": [
+                  9,
+                  16
+                ],
+                "duration_millis": 22022,
+                "variants": [
+                  {
+                    "content_type": "application/x-mpegURL",
+                    "url": "https://video.twimg.com/amplify_video/2029457941133492224/pl/mN2GskgAXO86f3jA.m3u8?tag=21&v=9de"
+                  },
+                  {
+                    "bitrate": 632000,
+                    "content_type": "video/mp4",
+                    "url": "https://video.twimg.com/amplify_video/2029457941133492224/vid/avc1/320x568/xazVw98PFiQ7WMue.mp4?tag=21"
+                  },
+                  {
+                    "bitrate": 950000,
+                    "content_type": "video/mp4",
+                    "url": "https://video.twimg.com/amplify_video/2029457941133492224/vid/avc1/480x852/QE0IavUArpyf7QIE.mp4?tag=21"
+                  },
+                  {
+                    "bitrate": 2176000,
+                    "content_type": "video/mp4",
+                    "url": "https://video.twimg.com/amplify_video/2029457941133492224/vid/avc1/720x1280/0eXehPyxAGrarC9F.mp4?tag=21"
+                  },
+                  {
+                    "bitrate": 10368000,
+                    "content_type": "video/mp4",
+                    "url": "https://video.twimg.com/amplify_video/2029457941133492224/vid/avc1/1080x1920/QT6sppCsooOfMj5k.mp4?tag=21"
+                  },
+                  {
+                    "bitrate": 25128000,
+                    "content_type": "video/mp4",
+                    "url": "https://video.twimg.com/amplify_video/2029457941133492224/vid/avc1/2160x3840/HQHFpyRL48NXePz2.mp4?tag=21"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "card": null,
+        "place": {},
+        "entities": {},
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
+        "article": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2029745927486066869",
       "url": "https://x.com/MakatiTraffic/status/2029745927486066869",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2029745927486066869",
@@ -318,7 +1587,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437251,
+        "followers": 1437170,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -334,8 +1603,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412016,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -420,8 +1689,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/74886399/1762132752",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 143734,
-        "following": 1036,
+        "followers": 143757,
+        "following": 1034,
         "status": "",
         "canDm": false,
         "canMediaTag": true,
@@ -436,8 +1705,8 @@
         "favouritesCount": 8103,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 299851,
-        "statusesCount": 861912,
+        "mediaCount": 300809,
+        "statusesCount": 863345,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -599,7 +1868,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967080,
+        "followers": 3966561,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -615,8 +1884,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888279,
+        "mediaCount": 61738,
+        "statusesCount": 888713,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -701,7 +1970,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437252,
+        "followers": 1437170,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -717,8 +1986,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412016,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -774,7 +2043,7 @@
       "source": "Twitter for iPhone",
       "retweetCount": 7,
       "replyCount": 1,
-      "likeCount": 11,
+      "likeCount": 10,
       "quoteCount": 1,
       "viewCount": 2007,
       "createdAt": "Fri Mar 06 02:40:53 +0000 2026",
@@ -798,12 +2067,12 @@
         "name": "U.S. Embassy in the Philippines",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": "Government",
+        "verifiedType": null,
         "profilePicture": "https://pbs.twimg.com/profile_images/1346638982512140288/1dwGxG0V_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/78489442/1770345835",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 660603,
+        "followers": 660557,
         "following": 1381,
         "status": "",
         "canDm": true,
@@ -816,11 +2085,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 7724,
+        "favouritesCount": 7726,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 538,
-        "statusesCount": 1294,
+        "mediaCount": 539,
+        "statusesCount": 1299,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {
           "label": {
@@ -830,10 +2099,10 @@
             "description": "Department of State",
             "url": {
               "url": "https://twitter.com/StateDept",
-              "url_type": "DeepLink"
+              "urlType": "DeepLink"
             },
-            "user_label_display_type": "Badge",
-            "user_label_type": "BusinessLabel"
+            "userLabelDisplayType": "Badge",
+            "userLabelType": "BusinessLabel"
           }
         },
         "possiblySensitive": false,
@@ -842,15 +2111,6 @@
           "description": "Official X account of the U.S. Embassy in the Philippines. #FriendsPartnersAllies 🇺🇸🇵🇭 | Terms of Use: https://t.co/SJ7FbWxQiy",
           "entities": {
             "description": {
-              "hashtags": [
-                {
-                  "indices": [
-                    59,
-                    81
-                  ],
-                  "text": "FriendsPartnersAllies"
-                }
-              ],
               "urls": [
                 {
                   "display_url": "state.gov/tou",
@@ -887,16 +2147,20 @@
             "display_url": "pic.x.com/HKvf34B0Jp",
             "expanded_url": "https://x.com/USEmbassyPH/status/2029749025868804465/photo/1",
             "ext_alt_text": " Message to U.S. Citizens: Demonstration Alert – Protest Activity in the Philippines",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": []
               },
+              "medium": {
+                "faces": []
+              },
               "orig": {
+                "faces": []
+              },
+              "small": {
                 "faces": []
               }
             },
@@ -907,10 +2171,7 @@
             ],
             "media_key": "3_2029748865608699904",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwrHdbV29AACgACHCsd/CYa8XEAAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABHCsd1tXb0AAKAAIcKx38JhrxcQAA",
                 "media_key": "3_2029748865608699904"
               }
             },
@@ -954,7 +2215,23 @@
             "sizes": {
               "large": {
                 "h": 1250,
+                "resize": "fit",
                 "w": 2000
+              },
+              "medium": {
+                "h": 750,
+                "resize": "fit",
+                "w": 1200
+              },
+              "small": {
+                "h": 425,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "photo",
@@ -1009,8 +2286,6 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -1051,7 +2326,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437251,
+        "followers": 1437170,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1067,8 +2342,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412016,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1153,7 +2428,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
         "description": "",
         "location": "Philippines",
-        "followers": 189491,
+        "followers": 190083,
         "following": 481,
         "status": "",
         "canDm": false,
@@ -1166,16 +2441,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 20345,
+        "favouritesCount": 20358,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 44354,
-        "statusesCount": 197178,
+        "mediaCount": 45229,
+        "statusesCount": 198765,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2093633872936456280"
+          "2099480545550090734"
         ],
         "profile_bio": {
           "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",
@@ -1203,6 +2478,26 @@
       "card": {
         "binding_values": [
           {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2100145021437845504/EBATq9Dx?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 150,
+                "url": "https://pbs.twimg.com/card_img/2100145021437845504/EBATq9Dx?format=jpg&name=280x150",
+                "width": 200
+              }
+            }
+          },
+          {
             "key": "description",
             "value": {
               "string_value": "MANILA, Philippines — Over 200 families were affected by the fire that ravaged a residential area in Tondo, Manila early Friday."
@@ -1215,10 +2510,149 @@
             }
           },
           {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 299,
+                "url": "https://pbs.twimg.com/card_img/2100145021437845504/EBATq9Dx?format=jpg&name=400x400",
+                "width": 400
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2100145021437845504/EBATq9Dx?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 898,
+                "url": "https://pbs.twimg.com/card_img/2100145021437845504/EBATq9Dx?format=jpg&name=orig",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2100145021437845504/EBATq9Dx?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2100145021437845504/EBATq9Dx?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 75,
+                "url": "https://pbs.twimg.com/card_img/2100145021437845504/EBATq9Dx?format=jpg&name=100x100",
+                "width": 100
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 898,
+                "url": "https://pbs.twimg.com/card_img/2100145021437845504/EBATq9Dx?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "height": 898,
+                "url": "https://pbs.twimg.com/card_img/2100145021437845504/EBATq9Dx?format=jpg&name=orig",
+                "width": 1200
+              }
+            }
+          },
+          {
             "key": "vanity_url",
             "value": {
               "scribe_key": "vanity_url",
               "string_value": "manilatimes.net"
+            }
+          },
+          {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2100145021437845504/EBATq9Dx?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 81.78,
+                    "rgb": {
+                      "blue": 13,
+                      "green": 16,
+                      "red": 13
+                    }
+                  },
+                  {
+                    "percentage": 12.7,
+                    "rgb": {
+                      "blue": 117,
+                      "green": 119,
+                      "red": 120
+                    }
+                  },
+                  {
+                    "percentage": 1.29,
+                    "rgb": {
+                      "blue": 51,
+                      "green": 58,
+                      "red": 95
+                    }
+                  },
+                  {
+                    "percentage": 0.97,
+                    "rgb": {
+                      "blue": 92,
+                      "green": 18,
+                      "red": 22
+                    }
+                  },
+                  {
+                    "percentage": 0.55,
+                    "rgb": {
+                      "blue": 41,
+                      "green": 54,
+                      "red": 76
+                    }
+                  }
+                ]
+              }
             }
           },
           {
@@ -1228,10 +2662,148 @@
             }
           },
           {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 81.78,
+                    "rgb": {
+                      "blue": 13,
+                      "green": 16,
+                      "red": 13
+                    }
+                  },
+                  {
+                    "percentage": 12.7,
+                    "rgb": {
+                      "blue": 117,
+                      "green": 119,
+                      "red": 120
+                    }
+                  },
+                  {
+                    "percentage": 1.29,
+                    "rgb": {
+                      "blue": 51,
+                      "green": 58,
+                      "red": 95
+                    }
+                  },
+                  {
+                    "percentage": 0.97,
+                    "rgb": {
+                      "blue": 92,
+                      "green": 18,
+                      "red": 22
+                    }
+                  },
+                  {
+                    "percentage": 0.55,
+                    "rgb": {
+                      "blue": 41,
+                      "green": 54,
+                      "red": 76
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 898,
+                "url": "https://pbs.twimg.com/card_img/2100145021437845504/EBATq9Dx?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2100145021437845504/EBATq9Dx?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 81.78,
+                    "rgb": {
+                      "blue": 13,
+                      "green": 16,
+                      "red": 13
+                    }
+                  },
+                  {
+                    "percentage": 12.7,
+                    "rgb": {
+                      "blue": 117,
+                      "green": 119,
+                      "red": 120
+                    }
+                  },
+                  {
+                    "percentage": 1.29,
+                    "rgb": {
+                      "blue": 51,
+                      "green": 58,
+                      "red": 95
+                    }
+                  },
+                  {
+                    "percentage": 0.97,
+                    "rgb": {
+                      "blue": 92,
+                      "green": 18,
+                      "red": 22
+                    }
+                  },
+                  {
+                    "percentage": 0.55,
+                    "rgb": {
+                      "blue": 41,
+                      "green": 54,
+                      "red": 76
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "height": 898,
+                "url": "https://pbs.twimg.com/card_img/2100145021437845504/EBATq9Dx?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
               "string_value": "https://t.co/A3Ik2nL5VJ"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "height": 898,
+                "url": "https://pbs.twimg.com/card_img/2100145021437845504/EBATq9Dx?format=jpg&name=orig",
+                "width": 1200
+              }
             }
           }
         ],
@@ -1261,6 +2833,438 @@
               152
             ],
             "url": "https://t.co/A3Ik2nL5VJ"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2029753807450910765",
+      "url": "https://x.com/jaimaharashtran/status/2029753807450910765",
+      "twitterUrl": "https://twitter.com/jaimaharashtran/status/2029753807450910765",
+      "text": "Pune Traffic Changes: पुण्यात आज वाहतुकीत महत्त्वाचे बदल! 'या' रस्त्यांवरील वाहतूक वळवली; पाहा पर्यायी रस्ते कोणते?\nhttps://t.co/tJme1ExVk5",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 58,
+      "createdAt": "Fri Mar 06 02:59:53 +0000 2026",
+      "lang": "mr",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2029753807450910765",
+      "displayTextRange": [
+        0,
+        139
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "jaimaharashtran",
+        "url": "https://x.com/jaimaharashtran",
+        "twitterUrl": "https://twitter.com/jaimaharashtran",
+        "id": "598515806",
+        "name": "JAI MAHARASHTRA NEWS",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2080472479819329536/gJQOGiCz_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/598515806/1789317511",
+        "description": "",
+        "location": "",
+        "followers": 187436,
+        "following": 232,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Sun Jun 03 17:44:02 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 371,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 176249,
+        "statusesCount": 511435,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official Handle Of Jai Maharashtra News Channel",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "छत्रपती शिवाजी महाराज जयंतीनिमित्त पुण्यात भव्य मिरवणुका निघणार असल्याने शहरातील मध्यवर्ती भागातील वाहतुकीत मोठे बदल करण्यात आले आहेत."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.jaimaharashtranews.com"
+            }
+          },
+          {
+            "key": "photo_image_full_size_alt_text",
+            "value": {
+              "string_value": "https://www.jaimaharashtranews.com/assets/Image/imglogo/footer-logo.png"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "jaimaharashtranews.com"
+            }
+          },
+          {
+            "key": "summary_photo_image_alt_text",
+            "value": {
+              "string_value": "https://www.jaimaharashtranews.com/assets/Image/imglogo/footer-logo.png"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Pune Traffic Changes: पुण्यात आज वाहतुकीत महत्त्वाचे बदल! 'या' रस्त्यांवरील वाहतूक वळवली; पाहा..."
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/tJme1ExVk5"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/tJme1ExVk5",
+        "user_refs_results": []
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "jaimaharashtranews.com/home/chhatrapa…",
+            "expanded_url": "https://www.jaimaharashtranews.com/home/chhatrapati-shivaji-maharaj-jayanti-pune-procession-traffic-advisory-laxmi-road-shivaji-road-tilak-road-alternative-routes-pune-police/49865",
+            "indices": [
+              116,
+              139
+            ],
+            "url": "https://t.co/tJme1ExVk5"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2029752789166084322",
+      "url": "https://x.com/prajavani/status/2029752789166084322",
+      "twitterUrl": "https://twitter.com/prajavani/status/2029752789166084322",
+      "text": "‘5–ಕೆ ಸೇಫ್ ಎ ಥಾನ್’ ಓಟ: ವಾಹನ ಸಂಚಾರ ಮಾರ್ಗ ಬದಲು\n#Bengaluru \nhttps://t.co/AbSjpQeVx7",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 113,
+      "createdAt": "Fri Mar 06 02:55:50 +0000 2026",
+      "lang": "kn",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2029752789166084322",
+      "displayTextRange": [
+        0,
+        80
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "prajavani",
+        "url": "https://x.com/prajavani",
+        "twitterUrl": "https://twitter.com/prajavani",
+        "id": "199202745",
+        "name": "Prajavani",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1472539615378636801/nZQ0fFVu_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/199202745/1719827636",
+        "description": "",
+        "location": "Bengaluru",
+        "followers": 328026,
+        "following": 0,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Wed Oct 06 08:26:20 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 80,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 41747,
+        "statusesCount": 343844,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2081052917155639699"
+        ],
+        "profile_bio": {
+          "description": "Prajavani - ‘X’ Account of The Most Trusted Kannada daily | ಅತ್ಯಂತ ವಿಶ್ವಾಸಾರ್ಹ ಕನ್ನಡ ದಿನ ಪತ್ರಿಕೆ ಪ್ರಜಾವಾಣಿಯ ‘ಎಕ್ಸ್‌’ ಖಾತೆ",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "prajavani.net",
+                  "expanded_url": "https://www.prajavani.net",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/y8ARcMkYS7"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "‘5–ಕೆ ಸೇಫ್ ಎ ಥಾನ್’ ಓಟ: ವಾಹನ ಸಂಚಾರ ಮಾರ್ಗ ಬದಲು"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.prajavani.net"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "199202745",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "prajavani.net"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "‘5–ಕೆ ಸೇಫ್ ಎ ಥಾನ್’ ಓಟ: ವಾಹನ ಸಂಚಾರ ಮಾರ್ಗ ಬದಲು"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/AbSjpQeVx7"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/AbSjpQeVx7",
+        "user_refs_results": [
+          {
+            "rest_id": "199202745",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 80
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1472539615378636801/nZQ0fFVu_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/199202745/1719827636"
+              },
+              "core": {
+                "created_at": "Wed Oct 06 08:26:20 +0000 2010",
+                "name": "Prajavani",
+                "screen_name": "prajavani"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Bengaluru"
+              },
+              "media_permissions": {
+                "can_media_tag": false
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2081052917155639699"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Prajavani - ‘X’ Account of The Most Trusted Kannada daily | ಅತ್ಯಂತ ವಿಶ್ವಾಸಾರ್ಹ ಕನ್ನಡ ದಿನ ಪತ್ರಿಕೆ ಪ್ರಜಾವಾಣಿಯ ‘ಎಕ್ಸ್‌’ ಖಾತೆ",
+                "entities": {
+                  "description": {},
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "prajavani.net",
+                        "expanded_url": "https://www.prajavani.net",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/y8ARcMkYS7"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "990000"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 328026,
+                "following": 0
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "199202745",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 41747,
+                "tweets": 343844
+              },
+              "verification": {
+                "is_blue_verified": false,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/y8ARcMkYS7"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              45,
+              55
+            ],
+            "text": "Bengaluru"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "prajavani.net/district/benga…",
+            "expanded_url": "https://www.prajavani.net/district/bengaluru-city/bengaluru-traffic-advisory-march-7-5k-safe-a-thon-kasturba-road-restrictions-3814435",
+            "indices": [
+              57,
+              80
+            ],
+            "url": "https://t.co/AbSjpQeVx7"
           }
         ]
       },
@@ -1308,8 +3312,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2020885545023668224/1773201737",
         "description": "",
         "location": "Manila",
-        "followers": 162,
-        "following": 153,
+        "followers": 164,
+        "following": 154,
         "status": "",
         "canDm": false,
         "canMediaTag": false,
@@ -1321,11 +3325,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 429,
+        "favouritesCount": 439,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 97,
-        "statusesCount": 770,
+        "mediaCount": 102,
+        "statusesCount": 792,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1721,6 +3725,846 @@
     },
     {
       "type": "tweet",
+      "id": "2029759140114092154",
+      "url": "https://x.com/Republic_Bharat/status/2029759140114092154",
+      "twitterUrl": "https://twitter.com/Republic_Bharat/status/2029759140114092154",
+      "text": "Delhi Traffic Advisory: दिल्ली में 3 दिन ट्रैफिक डायवर्ट, इस खास आयोजन के चलते जारी हुई एडवाइजरी; इन रास्‍तों पर जाने से करें परहेज\n.\n.\n.\n#DelhiTraffic #TrafficAdvisory #RadhaSoamiSatsang #Chhattarpur #DelhiRoads #TrafficAlert #SatsangEvent #AvoidRoutes\n\nhttps://t.co/HE0oGZdak6",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 389,
+      "createdAt": "Fri Mar 06 03:21:04 +0000 2026",
+      "lang": "hi",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2029759140114092154",
+      "displayTextRange": [
+        0,
+        278
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "Republic_Bharat",
+        "url": "https://x.com/Republic_Bharat",
+        "twitterUrl": "https://twitter.com/Republic_Bharat",
+        "id": "938002728898347008",
+        "name": "Republic Bharat - रिपब्लिक भारत",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Business",
+        "profilePicture": "https://pbs.twimg.com/profile_images/2076699773718167553/aq-q8g4a_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/938002728898347008/1788359610",
+        "description": "",
+        "location": "Mumbai, India",
+        "followers": 1990935,
+        "following": 9,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Dec 05 11:10:52 +0000 2017",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 198,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 131240,
+        "statusesCount": 303873,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {
+          "label": {
+            "badge": {
+              "url": "https://pbs.twimg.com/profile_images/1914989164283777024/6EZwamJd_bigger.jpg"
+            },
+            "description": "Republic",
+            "url": {
+              "url": "https://twitter.com/republic",
+              "url_type": "DeepLink"
+            },
+            "user_label_display_type": "Badge",
+            "user_label_type": "BusinessLabel"
+          }
+        },
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "रिपब्लिक का अब वही भरोसा हिंदी में भी. जुड़ें सही और सटीक खबरों के लिए सिर्फ रिपब्लिक भारत के साथ. https://t.co/gAWa7pnXAl",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "t.me/RepublicBharat…",
+                  "expanded_url": "http://t.me/RepublicBharatHindi",
+                  "indices": [
+                    99,
+                    122
+                  ],
+                  "url": "https://t.co/gAWa7pnXAl"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "republicbharat.com",
+                  "expanded_url": "http://www.republicbharat.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/HrRsSQaBBq"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "alt": "Radha Soami Satsang Delhi",
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2099841650973409280/leNCBPBU?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "alt": "Radha Soami Satsang Delhi",
+                "height": 150,
+                "url": "https://pbs.twimg.com/card_img/2099841650973409280/leNCBPBU?format=jpg&name=280x150",
+                "width": 266
+              }
+            }
+          },
+          {
+            "key": "description",
+            "value": {
+              "string_value": "दिल्ली में 6 से लेकर 8 मार्च तक कई रास्तों पर ट्रैफिक डायवर्ट किया गया है। दिल्ली ट्रैफिक पुलिस ने कुछ रास्तों से बचने की सलाह भी दी है। पढ़ें ताजा ट्रैफिक एडवाइजरी"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.republicbharat.com"
+            }
+          },
+          {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "alt": "Radha Soami Satsang Delhi",
+                "height": 320,
+                "url": "https://pbs.twimg.com/card_img/2099841650973409280/leNCBPBU?format=jpg&name=800x320_1",
+                "width": 568
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "alt": "Radha Soami Satsang Delhi",
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2099841650973409280/leNCBPBU?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "alt": "Radha Soami Satsang Delhi",
+                "height": 680,
+                "url": "https://pbs.twimg.com/card_img/2099841650973409280/leNCBPBU?format=jpg&name=orig",
+                "width": 1208
+              }
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "938002728898347008",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "alt": "Radha Soami Satsang Delhi",
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2099841650973409280/leNCBPBU?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "alt": "Radha Soami Satsang Delhi",
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2099841650973409280/leNCBPBU?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "alt": "Radha Soami Satsang Delhi",
+                "height": 81,
+                "url": "https://pbs.twimg.com/card_img/2099841650973409280/leNCBPBU?format=jpg&name=144x144",
+                "width": 144
+              }
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "938002728898347008",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "alt": "Radha Soami Satsang Delhi",
+                "height": 680,
+                "url": "https://pbs.twimg.com/card_img/2099841650973409280/leNCBPBU?format=png&name=2048x2048_2_exp",
+                "width": 1208
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "alt": "Radha Soami Satsang Delhi",
+                "height": 680,
+                "url": "https://pbs.twimg.com/card_img/2099841650973409280/leNCBPBU?format=jpg&name=orig",
+                "width": 1208
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_alt_text",
+            "value": {
+              "string_value": "Radha Soami Satsang Delhi"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "republicbharat.com"
+            }
+          },
+          {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "alt": "Radha Soami Satsang Delhi",
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2099841650973409280/leNCBPBU?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_alt_text",
+            "value": {
+              "string_value": "Radha Soami Satsang Delhi"
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 23.06,
+                    "rgb": {
+                      "blue": 46,
+                      "green": 45,
+                      "red": 46
+                    }
+                  },
+                  {
+                    "percentage": 17.59,
+                    "rgb": {
+                      "blue": 186,
+                      "green": 192,
+                      "red": 197
+                    }
+                  },
+                  {
+                    "percentage": 12.48,
+                    "rgb": {
+                      "blue": 60,
+                      "green": 95,
+                      "red": 118
+                    }
+                  },
+                  {
+                    "percentage": 6.09,
+                    "rgb": {
+                      "blue": 25,
+                      "green": 101,
+                      "red": 148
+                    }
+                  },
+                  {
+                    "percentage": 4.67,
+                    "rgb": {
+                      "blue": 126,
+                      "green": 157,
+                      "red": 198
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "app_country",
+            "value": {
+              "string_value": "IN"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Delhi Traffic Advisory: दिल्ली में 3 दिन ट्रैफिक डायवर्ट, इस खास आयोजन के चलते जारी हुई एडवाइजरी;..."
+            }
+          },
+          {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 23.06,
+                    "rgb": {
+                      "blue": 46,
+                      "green": 45,
+                      "red": 46
+                    }
+                  },
+                  {
+                    "percentage": 17.59,
+                    "rgb": {
+                      "blue": 186,
+                      "green": 192,
+                      "red": 197
+                    }
+                  },
+                  {
+                    "percentage": 12.48,
+                    "rgb": {
+                      "blue": 60,
+                      "green": 95,
+                      "red": 118
+                    }
+                  },
+                  {
+                    "percentage": 6.09,
+                    "rgb": {
+                      "blue": 25,
+                      "green": 101,
+                      "red": 148
+                    }
+                  },
+                  {
+                    "percentage": 4.67,
+                    "rgb": {
+                      "blue": 126,
+                      "green": 157,
+                      "red": 198
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "alt": "Radha Soami Satsang Delhi",
+                "height": 680,
+                "url": "https://pbs.twimg.com/card_img/2099841650973409280/leNCBPBU?format=png&name=2048x2048_2_exp",
+                "width": 1208
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "alt": "Radha Soami Satsang Delhi",
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2099841650973409280/leNCBPBU?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 23.06,
+                    "rgb": {
+                      "blue": 46,
+                      "green": 45,
+                      "red": 46
+                    }
+                  },
+                  {
+                    "percentage": 17.59,
+                    "rgb": {
+                      "blue": 186,
+                      "green": 192,
+                      "red": 197
+                    }
+                  },
+                  {
+                    "percentage": 12.48,
+                    "rgb": {
+                      "blue": 60,
+                      "green": 95,
+                      "red": 118
+                    }
+                  },
+                  {
+                    "percentage": 6.09,
+                    "rgb": {
+                      "blue": 25,
+                      "green": 101,
+                      "red": 148
+                    }
+                  },
+                  {
+                    "percentage": 4.67,
+                    "rgb": {
+                      "blue": 126,
+                      "green": 157,
+                      "red": 198
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "alt": "Radha Soami Satsang Delhi",
+                "height": 680,
+                "url": "https://pbs.twimg.com/card_img/2099841650973409280/leNCBPBU?format=png&name=2048x2048_2_exp",
+                "width": 1208
+              }
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/HE0oGZdak6"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "alt": "Radha Soami Satsang Delhi",
+                "height": 680,
+                "url": "https://pbs.twimg.com/card_img/2099841650973409280/leNCBPBU?format=jpg&name=orig",
+                "width": 1208
+              }
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/HE0oGZdak6",
+        "user_refs_results": [
+          {
+            "rest_id": "938002728898347008",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 198
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/2076699773718167553/aq-q8g4a_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/938002728898347008/1788359610"
+              },
+              "core": {
+                "created_at": "Tue Dec 05 11:10:52 +0000 2017",
+                "name": "Republic Bharat - रिपब्लिक भारत",
+                "screen_name": "Republic_Bharat"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {
+                "label": {
+                  "badge": {
+                    "url": "https://pbs.twimg.com/profile_images/1914989164283777024/6EZwamJd_bigger.jpg"
+                  },
+                  "description": "Republic",
+                  "url": {
+                    "url": "https://twitter.com/republic",
+                    "url_type": "DeepLink"
+                  },
+                  "user_label_display_type": "Badge",
+                  "user_label_type": "BusinessLabel"
+                }
+              },
+              "location": {
+                "location": "Mumbai, India"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {},
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "रिपब्लिक का अब वही भरोसा हिंदी में भी. जुड़ें सही और सटीक खबरों के लिए सिर्फ रिपब्लिक भारत के साथ. https://t.co/gAWa7pnXAl",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "t.me/RepublicBharat…",
+                        "expanded_url": "http://t.me/RepublicBharatHindi",
+                        "indices": [
+                          99,
+                          122
+                        ],
+                        "url": "https://t.co/gAWa7pnXAl"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "republicbharat.com",
+                        "expanded_url": "http://www.republicbharat.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/HrRsSQaBBq"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Square",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "E81C4F"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 1990935,
+                "following": 9
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "938002728898347008",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 131240,
+                "tweets": 303873
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false,
+                "verified_type": "Business"
+              },
+              "website": {
+                "url": "https://t.co/HrRsSQaBBq"
+              }
+            }
+          },
+          {
+            "rest_id": "938002728898347008",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 198
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/2076699773718167553/aq-q8g4a_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/938002728898347008/1788359610"
+              },
+              "core": {
+                "created_at": "Tue Dec 05 11:10:52 +0000 2017",
+                "name": "Republic Bharat - रिपब्लिक भारत",
+                "screen_name": "Republic_Bharat"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {
+                "label": {
+                  "badge": {
+                    "url": "https://pbs.twimg.com/profile_images/1914989164283777024/6EZwamJd_bigger.jpg"
+                  },
+                  "description": "Republic",
+                  "url": {
+                    "url": "https://twitter.com/republic",
+                    "url_type": "DeepLink"
+                  },
+                  "user_label_display_type": "Badge",
+                  "user_label_type": "BusinessLabel"
+                }
+              },
+              "location": {
+                "location": "Mumbai, India"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {},
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "रिपब्लिक का अब वही भरोसा हिंदी में भी. जुड़ें सही और सटीक खबरों के लिए सिर्फ रिपब्लिक भारत के साथ. https://t.co/gAWa7pnXAl",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "t.me/RepublicBharat…",
+                        "expanded_url": "http://t.me/RepublicBharatHindi",
+                        "indices": [
+                          99,
+                          122
+                        ],
+                        "url": "https://t.co/gAWa7pnXAl"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "republicbharat.com",
+                        "expanded_url": "http://www.republicbharat.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/HrRsSQaBBq"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Square",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "E81C4F"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 1990935,
+                "following": 9
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "938002728898347008",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 131240,
+                "tweets": 303873
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false,
+                "verified_type": "Business"
+              },
+              "website": {
+                "url": "https://t.co/HrRsSQaBBq"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              138,
+              151
+            ],
+            "text": "DelhiTraffic"
+          },
+          {
+            "indices": [
+              152,
+              168
+            ],
+            "text": "TrafficAdvisory"
+          },
+          {
+            "indices": [
+              169,
+              187
+            ],
+            "text": "RadhaSoamiSatsang"
+          },
+          {
+            "indices": [
+              188,
+              200
+            ],
+            "text": "Chhattarpur"
+          },
+          {
+            "indices": [
+              201,
+              212
+            ],
+            "text": "DelhiRoads"
+          },
+          {
+            "indices": [
+              213,
+              226
+            ],
+            "text": "TrafficAlert"
+          },
+          {
+            "indices": [
+              227,
+              240
+            ],
+            "text": "SatsangEvent"
+          },
+          {
+            "indices": [
+              241,
+              253
+            ],
+            "text": "AvoidRoutes"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "republicbharat.com/india/delhi-nc…",
+            "expanded_url": "https://www.republicbharat.com/india/delhi-ncr/delhi-traffic-affected-3-days-avoid-routes-radha-soami-satsang-advisory-delhi-traffic-advisory-road-bhati-mines-chhattarpur-traffic",
+            "indices": [
+              255,
+              278
+            ],
+            "url": "https://t.co/HE0oGZdak6"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2029761859801469360",
       "url": "https://x.com/manilabulletin/status/2029761859801469360",
       "twitterUrl": "https://twitter.com/manilabulletin/status/2029761859801469360",
@@ -1757,7 +4601,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197306,
+        "followers": 1197831,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -1773,8 +4617,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219320,
-        "statusesCount": 942041,
+        "mediaCount": 219505,
+        "statusesCount": 943044,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1958,7 +4802,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1197306,
+                "followers": 1197831,
                 "following": 141
               },
               "relationship_perspectives": {
@@ -1976,8 +4820,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 219320,
-                "tweets": 942041
+                "media_tweets": 219505,
+                "tweets": 943044
               },
               "verification": {
                 "is_blue_verified": true,

@@ -5,7 +5,7 @@
     "window_start": "2026-03-24T20:00:00+08:00",
     "window_end": "2026-03-24T22:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 12,
+    "tweet_count": 16,
     "slices": [
       {
         "start": "2026-03-24T20:00:00+08:00",
@@ -18,8 +18,8 @@
         "start": "2026-03-24T20:05:00+08:00",
         "end": "2026-03-24T20:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-24T20:10:00+08:00",
@@ -95,8 +95,8 @@
         "start": "2026-03-24T21:00:00+08:00",
         "end": "2026-03-24T21:05:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-03-24T21:05:00+08:00",
@@ -116,8 +116,8 @@
         "start": "2026-03-24T21:15:00+08:00",
         "end": "2026-03-24T21:20:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-24T21:20:00+08:00",
@@ -137,8 +137,8 @@
         "start": "2026-03-24T21:30:00+08:00",
         "end": "2026-03-24T21:35:00+08:00",
         "status_code": 200,
-        "returned": 2,
-        "accepted": 2
+        "returned": 3,
+        "accepted": 3
       },
       {
         "start": "2026-03-24T21:35:00+08:00",
@@ -180,6 +180,420 @@
   "data": [
     {
       "type": "tweet",
+      "id": "2036414953566179814",
+      "url": "https://x.com/IndiaTodayFLASH/status/2036414953566179814",
+      "twitterUrl": "https://twitter.com/IndiaTodayFLASH/status/2036414953566179814",
+      "text": "Delhi issues traffic advisory for film fest at Bharat Mandapam: Check routes https://t.co/yVeGEKgxXX",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 183,
+      "createdAt": "Tue Mar 24 12:08:54 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036414953566179814",
+      "displayTextRange": [
+        0,
+        100
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "IndiaTodayFLASH",
+        "url": "https://x.com/IndiaTodayFLASH",
+        "twitterUrl": "https://twitter.com/IndiaTodayFLASH",
+        "id": "1073676020",
+        "name": "IndiaTodayFLASH",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/787569612745428992/4QK6rGHI_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1073676020/1687867665",
+        "description": "",
+        "location": "",
+        "followers": 1043647,
+        "following": 117,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Jan 09 12:46:38 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 137,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 6577,
+        "statusesCount": 768164,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "No dragging feet on news. Crisp & short news shots served here",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Traffic restrictions will be in place near Pragati Maidan from March 25 to 31 due to the film festival. With curbs on key roads like Mathura and Bhairon, commuters are advised to plan ahead and use..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.indiatoday.in"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "19897138",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "19897138",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "indiatoday.in"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Delhi issues traffic advisory for film fest at Bharat Mandapam: Check routes"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/yVeGEKgxXX"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/yVeGEKgxXX",
+        "user_refs_results": [
+          {
+            "rest_id": "19897138",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 4431
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/2018221822471495680/N4dSGrXM_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/19897138/1789479162"
+              },
+              "core": {
+                "created_at": "Mon Feb 02 07:21:54 +0000 2009",
+                "name": "IndiaToday",
+                "screen_name": "IndiaToday"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "India"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2100199592503701706"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Brings you news breaks: Exclusive political, entertainment, sports insight, unbiased-nonaligned. https://t.co/4QkZBcgPH5| https://t.co/pmDGIBbj9z",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "instagram.com/indiatoday",
+                        "expanded_url": "http://instagram.com/indiatoday",
+                        "indices": [
+                          97,
+                          120
+                        ],
+                        "url": "https://t.co/4QkZBcgPH5"
+                      },
+                      {
+                        "display_url": "facebook.com/IndiaToday",
+                        "expanded_url": "http://facebook.com/IndiaToday",
+                        "indices": [
+                          122,
+                          145
+                        ],
+                        "url": "https://t.co/pmDGIBbj9z"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "indiatoday.in",
+                        "expanded_url": "http://www.indiatoday.in/",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/saDvonqrdB"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Square",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "1DA1F2"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 6251636,
+                "following": 84
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "19897138",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 569243,
+                "tweets": 1527362
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false,
+                "verified_type": "Business"
+              },
+              "website": {
+                "url": "https://t.co/saDvonqrdB"
+              }
+            }
+          },
+          {
+            "rest_id": "19897138",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 4431
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/2018221822471495680/N4dSGrXM_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/19897138/1789479162"
+              },
+              "core": {
+                "created_at": "Mon Feb 02 07:21:54 +0000 2009",
+                "name": "IndiaToday",
+                "screen_name": "IndiaToday"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "India"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2100199592503701706"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Brings you news breaks: Exclusive political, entertainment, sports insight, unbiased-nonaligned. https://t.co/4QkZBcgPH5| https://t.co/pmDGIBbj9z",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "instagram.com/indiatoday",
+                        "expanded_url": "http://instagram.com/indiatoday",
+                        "indices": [
+                          97,
+                          120
+                        ],
+                        "url": "https://t.co/4QkZBcgPH5"
+                      },
+                      {
+                        "display_url": "facebook.com/IndiaToday",
+                        "expanded_url": "http://facebook.com/IndiaToday",
+                        "indices": [
+                          122,
+                          145
+                        ],
+                        "url": "https://t.co/pmDGIBbj9z"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "indiatoday.in",
+                        "expanded_url": "http://www.indiatoday.in/",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/saDvonqrdB"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Square",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "1DA1F2"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 6251636,
+                "following": 84
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "19897138",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 569243,
+                "tweets": 1527362
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false,
+                "verified_type": "Business"
+              },
+              "website": {
+                "url": "https://t.co/saDvonqrdB"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "indiatoday.in/information/st…",
+            "expanded_url": "https://www.indiatoday.in/information/story/delhi-issues-traffic-advisory-for-film-fest-at-bharat-mandapam-check-routes-2886456-2026-03-24",
+            "indices": [
+              77,
+              100
+            ],
+            "url": "https://t.co/yVeGEKgxXX"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2036417010519908688",
       "url": "https://x.com/itsz4u/status/2036417010519908688",
       "twitterUrl": "https://twitter.com/itsz4u/status/2036417010519908688",
@@ -208,16 +622,16 @@
         "url": "https://x.com/itsz4u",
         "twitterUrl": "https://twitter.com/itsz4u",
         "id": "1329001473271742465",
-        "name": "Girazelle | HEATHs TIME | ia",
+        "name": "Girazelle | ia",
         "isVerified": false,
         "isBlueVerified": false,
         "verifiedType": null,
-        "profilePicture": "https://pbs.twimg.com/profile_images/2082304743544905728/rzcSrWT__normal.jpg",
+        "profilePicture": "https://pbs.twimg.com/profile_images/2097335965434175488/ORm3qiMl_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/1329001473271742465/1784648248",
         "description": "",
         "location": "",
-        "followers": 442,
-        "following": 402,
+        "followers": 454,
+        "following": 405,
         "status": "",
         "canDm": false,
         "canMediaTag": true,
@@ -229,11 +643,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 26981,
+        "favouritesCount": 27751,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 1651,
-        "statusesCount": 20234,
+        "mediaCount": 1697,
+        "statusesCount": 20700,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -291,8 +705,8 @@
           "coverPicture": "https://pbs.twimg.com/profile_banners/1374006455678820377/1778402859",
           "description": "",
           "location": "",
-          "followers": 822,
-          "following": 854,
+          "followers": 819,
+          "following": 853,
           "status": "",
           "canDm": true,
           "canMediaTag": true,
@@ -304,11 +718,11 @@
             "url": {}
           },
           "fastFollowersCount": 0,
-          "favouritesCount": 15697,
+          "favouritesCount": 15675,
           "hasCustomTimelines": true,
           "isTranslator": false,
           "mediaCount": 458,
-          "statusesCount": 10993,
+          "statusesCount": 10986,
           "withheldInCountries": [],
           "affiliatesHighlightedLabel": {},
           "possiblySensitive": false,
@@ -483,7 +897,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -499,8 +913,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412025,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -585,7 +999,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197309,
+        "followers": 1197824,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -601,8 +1015,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219320,
-        "statusesCount": 942045,
+        "mediaCount": 219510,
+        "statusesCount": 943056,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -786,7 +1200,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1197309,
+                "followers": 1197824,
                 "following": 141
               },
               "relationship_perspectives": {
@@ -804,8 +1218,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 219320,
-                "tweets": 942045
+                "media_tweets": 219510,
+                "tweets": 943056
               },
               "verification": {
                 "is_blue_verified": true,
@@ -845,11 +1259,11 @@
       "twitterUrl": "https://twitter.com/bayaning_roblox/status/2036418983994466559",
       "text": "PROTEST AGAINST THE CICC'S PLAN TO BAN ROBLOX IN THE PHILIPPINES! SAVE OUR PHILIPPINE ROBLOX DEVELOPERS!\n\nApril 6th 2026\n3 PM\nSunken Garden, UP Diliman, Quezon City\n\nEvery Robloxian is welcome! https://t.co/hTYHMzdqoE",
       "source": "Twitter for iPhone",
-      "retweetCount": 13,
+      "retweetCount": 12,
       "replyCount": 12,
       "likeCount": 37,
       "quoteCount": 4,
-      "viewCount": 7534,
+      "viewCount": 7536,
       "createdAt": "Tue Mar 24 12:24:55 +0000 2026",
       "lang": "en",
       "bookmarkCount": 4,
@@ -876,8 +1290,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1427524619230060548/1783208778",
         "description": "",
         "location": "Around Katipunan",
-        "followers": 410,
-        "following": 1454,
+        "followers": 414,
+        "following": 1458,
         "status": "",
         "canDm": false,
         "canMediaTag": false,
@@ -889,11 +1303,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 49223,
+        "favouritesCount": 49524,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 1268,
-        "statusesCount": 22939,
+        "mediaCount": 1274,
+        "statusesCount": 23157,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1094,7 +1508,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1110,8 +1524,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412025,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1169,7 +1583,7 @@
       "replyCount": 3,
       "likeCount": 17,
       "quoteCount": 4,
-      "viewCount": 8068,
+      "viewCount": 8127,
       "createdAt": "Tue Mar 24 12:37:38 +0000 2026",
       "lang": "zxx",
       "bookmarkCount": 5,
@@ -1196,7 +1610,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1807617136946556928/1764410083",
         "description": "",
         "location": "",
-        "followers": 2761,
+        "followers": 2760,
         "following": 142,
         "status": "",
         "canDm": true,
@@ -1306,7 +1720,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1322,8 +1736,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412025,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1408,7 +1822,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1424,8 +1838,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412025,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1474,6 +1888,698 @@
     },
     {
       "type": "tweet",
+      "id": "2036427814619205822",
+      "url": "https://x.com/asusrogph/status/2036427814619205822",
+      "twitterUrl": "https://twitter.com/asusrogph/status/2036427814619205822",
+      "text": "Powering the next level of gaming networks.⚡​\n\n🎮 Adaptive QoE prioritizes gaming traffic​\n🤖 Router Assistant optimizes network management\n🚀 GTNet boosts server connection\n\nBuilt for gamers who demand more.​\n\nGT-BE19000AI 👉 https://t.co/4hWnCRIsLc \n\n#ROGRapture #GamingRouter https://t.co/VlSvqanHeJ",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 191,
+      "createdAt": "Tue Mar 24 13:00:00 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036427814619205822",
+      "displayTextRange": [
+        0,
+        274
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "asusrogph",
+        "url": "https://x.com/asusrogph",
+        "twitterUrl": "https://twitter.com/asusrogph",
+        "id": "882452674133622785",
+        "name": "ROG Philippines",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2009207973386833921/B3Ypwmsg_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/882452674133622785/1780885726",
+        "description": "",
+        "location": "",
+        "followers": 3755,
+        "following": 14,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Jul 05 04:14:47 +0000 2017",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 152,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1297,
+        "statusesCount": 1571,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2063810785621721169"
+        ],
+        "profile_bio": {
+          "description": "The world's #1 gaming brand! #ROG #ForThoseWhoDare",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    29,
+                    33
+                  ],
+                  "text": "ROG"
+                },
+                {
+                  "indices": [
+                    34,
+                    50
+                  ],
+                  "text": "ForThoseWhoDare"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "ph.rog.gg/whatsnew",
+                  "expanded_url": "https://ph.rog.gg/whatsnew",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/BRpWAs1gJo"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/VlSvqanHeJ",
+            "expanded_url": "https://x.com/asusrogph/status/2036427814619205822/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 65,
+                    "w": 65,
+                    "x": 798,
+                    "y": 1023
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 65,
+                    "w": 65,
+                    "x": 798,
+                    "y": 1023
+                  }
+                ]
+              }
+            },
+            "id_str": "2035337791022972928",
+            "indices": [
+              275,
+              298
+            ],
+            "media_key": "3_2035337791022972928",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARw++O/v2kAACgACHELYTtUaUL4AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHD747+/aQAAKAAIcQthO1RpQvgAA",
+                "media_key": "3_2035337791022972928"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HD747-_aQAA3wdO.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 745
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 270
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 119
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 203,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/VlSvqanHeJ"
+          },
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/VlSvqanHeJ",
+            "expanded_url": "https://x.com/asusrogph/status/2036427814619205822/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 131,
+                    "w": 131,
+                    "x": 267,
+                    "y": 325
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 131,
+                    "w": 131,
+                    "x": 267,
+                    "y": 325
+                  }
+                ]
+              }
+            },
+            "id_str": "2035337803186450433",
+            "indices": [
+              275,
+              298
+            ],
+            "media_key": "3_2035337803186450433",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARw++PLE2jABCgACHELYTtUaUL4AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHD748sTaMAEKAAIcQthO1RpQvgAA",
+                "media_key": "3_2035337803186450433"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HD748sTaMAE9wtN.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 405,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/VlSvqanHeJ"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              249,
+              260
+            ],
+            "text": "ROGRapture"
+          },
+          {
+            "indices": [
+              261,
+              274
+            ],
+            "text": "GamingRouter"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "rog.gg/GTBE19000AI",
+            "expanded_url": "https://rog.gg/GTBE19000AI",
+            "indices": [
+              223,
+              246
+            ],
+            "url": "https://t.co/4hWnCRIsLc"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2036431878236819520",
+      "url": "https://x.com/ShanizamD/status/2036431878236819520",
+      "twitterUrl": "https://twitter.com/ShanizamD/status/2036431878236819520",
+      "text": "Philippines are seeking an investigation on popular games (in Asia; Free Fire, Mobile Legend Bang Bang) especially Minecraft and Roblox. These game are being investigated by the authorities for child safety concerns.\n\nThe senators in Philippines are seeking to implement \"age verification (face ID and/or ID-Government verification) protocols and safety standard\" on the online platforms.\n\nRisa Hontiveros (Philippines Senator) said: \"Instead of banning platforms, the policymakers should pursue risk-based safety measures, alongside efforts to improve digital literacy and promote responsible gaming among young users.\"",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 2,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 592,
+      "createdAt": "Tue Mar 24 13:16:09 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036431878236819520",
+      "displayTextRange": [
+        0,
+        275
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ShanizamD",
+        "url": "https://x.com/ShanizamD",
+        "twitterUrl": "https://twitter.com/ShanizamD",
+        "id": "1521709742108065792",
+        "name": "Dani",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1870920727114969088/xZyN6Za4_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1521709742108065792/1787912930",
+        "description": "",
+        "location": "------------------------------",
+        "followers": 134,
+        "following": 296,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed May 04 04:34:21 +0000 2022",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 6665,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 233,
+        "statusesCount": 6855,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2090411795848851710"
+        ],
+        "profile_bio": {
+          "description": "PFP by @FafaMarissa\nI STAND WITH PALASTINE \n\n$RBLX #Roblox\n(Communities updates weekly) \n(stocks weekly)",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    51,
+                    58
+                  ],
+                  "text": "Roblox"
+                }
+              ],
+              "symbols": [
+                {
+                  "indices": [
+                    45,
+                    50
+                  ],
+                  "text": "RBLX"
+                }
+              ],
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    7,
+                    19
+                  ],
+                  "name": "",
+                  "screen_name": "FafaMarissa"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "2036333466720342518",
+        "url": "https://x.com/TotoyGamingYT/status/2036333466720342518",
+        "twitterUrl": "https://twitter.com/TotoyGamingYT/status/2036333466720342518",
+        "text": "A Philippine senator filed a resolution seeking an investigation on games like Roblox, Minecraft, Call of Duty, Free Fire, and other similar “multiplayer environments that enable real-time communication and interaction among users.” https://t.co/RhqyIznWob",
+        "source": "Twitter for iPhone",
+        "retweetCount": 134,
+        "replyCount": 136,
+        "likeCount": 1207,
+        "quoteCount": 724,
+        "viewCount": 790289,
+        "createdAt": "Tue Mar 24 06:45:06 +0000 2026",
+        "lang": "en",
+        "bookmarkCount": 210,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "2036333466720342518",
+        "displayTextRange": [
+          0,
+          232
+        ],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {
+          "type": "user",
+          "userName": "TotoyGamingYT",
+          "url": "https://x.com/TotoyGamingYT",
+          "twitterUrl": "https://twitter.com/TotoyGamingYT",
+          "id": "1412986642395107337",
+          "name": "Totoy",
+          "isVerified": false,
+          "isBlueVerified": false,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/1655813276230631424/_8szSqKq_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/1412986642395107337/1728891620",
+          "description": "",
+          "location": "",
+          "followers": 10154,
+          "following": 726,
+          "status": "",
+          "canDm": true,
+          "canMediaTag": false,
+          "createdAt": "Thu Jul 08 04:08:43 +0000 2021",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 11240,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 3933,
+          "statusesCount": 16939,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [
+            "2076872865509695499"
+          ],
+          "profile_bio": {
+            "description": "Roblox YouTuber • Email - totoygamingyt.contact@gmail.com",
+            "entities": {
+              "description": {},
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "linktr.ee/Totoy",
+                    "expanded_url": "https://linktr.ee/Totoy",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/DoPpZ9SRdZ"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {
+          "media": [
+            {
+              "display_url": "pic.x.com/RhqyIznWob",
+              "expanded_url": "https://x.com/TotoyGamingYT/status/2036333466720342518/photo/1",
+              "ext_master_playlist_only": [],
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "ext_playlists": [],
+              "features": {
+                "large": {
+                  "faces": []
+                },
+                "orig": {
+                  "faces": []
+                }
+              },
+              "id_str": "2036331884347838464",
+              "indices": [
+                233,
+                256
+              ],
+              "media_key": "3_2036331884347838464",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxCgQ9TWtAACgACHEKCf8AbEfYAAA==",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAABCgABHEKBD1Na0AAKAAIcQoJ/wBsR9gAA",
+                  "media_key": "3_2036331884347838464"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/media/HEKBD1Na0AAqk7F.png",
+              "original_info": {
+                "focus_rects": [
+                  {
+                    "h": 126,
+                    "w": 225,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 225,
+                    "w": 225,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 225,
+                    "w": 197,
+                    "x": 28,
+                    "y": 0
+                  },
+                  {
+                    "h": 225,
+                    "w": 113,
+                    "x": 112,
+                    "y": 0
+                  },
+                  {
+                    "h": 225,
+                    "w": 225,
+                    "x": 0,
+                    "y": 0
+                  }
+                ],
+                "height": 225,
+                "width": 225
+              },
+              "sizes": {
+                "large": {
+                  "h": 225,
+                  "w": 225
+                }
+              },
+              "type": "photo",
+              "url": "https://t.co/RhqyIznWob"
+            },
+            {
+              "display_url": "pic.x.com/RhqyIznWob",
+              "expanded_url": "https://x.com/TotoyGamingYT/status/2036333466720342518/photo/1",
+              "ext_master_playlist_only": [],
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "ext_playlists": [],
+              "features": {
+                "large": {
+                  "faces": []
+                },
+                "orig": {
+                  "faces": []
+                }
+              },
+              "id_str": "2036331996591562754",
+              "indices": [
+                233,
+                256
+              ],
+              "media_key": "3_2036331996591562754",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxCgSl1miACCgACHEKCf8AbEfYAAA==",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAABCgABHEKBKXWaIAIKAAIcQoJ/wBsR9gAA",
+                  "media_key": "3_2036331996591562754"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/media/HEKBKXWaIAIBNaS.jpg",
+              "original_info": {
+                "focus_rects": [
+                  {
+                    "h": 573,
+                    "w": 1024,
+                    "x": 0,
+                    "y": 405
+                  },
+                  {
+                    "h": 1024,
+                    "w": 1024,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 1024,
+                    "w": 898,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 1024,
+                    "w": 512,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 1024,
+                    "w": 1024,
+                    "x": 0,
+                    "y": 0
+                  }
+                ],
+                "height": 1024,
+                "width": 1024
+              },
+              "sizes": {
+                "large": {
+                  "h": 1024,
+                  "w": 1024
+                }
+              },
+              "type": "photo",
+              "url": "https://t.co/RhqyIznWob"
+            }
+          ]
+        },
+        "card": null,
+        "place": {},
+        "entities": {},
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
+        "article": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2036432929057104255",
       "url": "https://x.com/MMDA/status/2036432929057104255",
       "twitterUrl": "https://twitter.com/MMDA/status/2036432929057104255",
@@ -1510,7 +2616,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967068,
+        "followers": 3966553,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -1523,11 +2629,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 5284,
+        "favouritesCount": 5283,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888279,
+        "mediaCount": 61737,
+        "statusesCount": 888712,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1612,8 +2718,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/3263176950/1515756033",
         "description": "",
         "location": "Lucknow, Uttar Pradesh",
-        "followers": 58959,
-        "following": 79,
+        "followers": 59007,
+        "following": 78,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -1625,11 +2731,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 2532,
+        "favouritesCount": 2544,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 25925,
-        "statusesCount": 35328,
+        "mediaCount": 26011,
+        "statusesCount": 35465,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1835,7 +2941,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1851,8 +2957,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412026,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1901,6 +3007,475 @@
     },
     {
       "type": "tweet",
+      "id": "2036435362919358932",
+      "url": "https://x.com/JagranNews/status/2036435362919358932",
+      "twitterUrl": "https://twitter.com/JagranNews/status/2036435362919358932",
+      "text": "दिल्ली में 25-31 मार्च तक फिल्म फेस्टिवल, ट्रैफिक एडवाइजरी जारी; कई मार्गों पर पार्किंग प्रतिबंधित\n\n#Delhi \n\nhttps://t.co/lC55G9iKMM",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 282,
+      "createdAt": "Tue Mar 24 13:30:00 +0000 2026",
+      "lang": "hi",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036435362919358932",
+      "displayTextRange": [
+        0,
+        132
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "JagranNews",
+        "url": "https://x.com/JagranNews",
+        "twitterUrl": "https://twitter.com/JagranNews",
+        "id": "64639742",
+        "name": "Dainik Jagran",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1521018433487654913/P8acm3Mz_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/64639742/1753334746",
+        "description": "",
+        "location": "India",
+        "followers": 2315998,
+        "following": 82,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Aug 11 05:51:40 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2288,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 80158,
+        "statusesCount": 479630,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099858523270336554"
+        ],
+        "profile_bio": {
+          "description": "Dainik Jagran's Official Account. The World's Largest Read Newspaper\n\nइंस्टाग्राम पर फॉलो करेंः https://t.co/ISHkUhIW4W\nDainik Jagran App: https://t.co/Zty4xB91Kh",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "rb.gy/phzht9",
+                  "expanded_url": "https://rb.gy/phzht9",
+                  "indices": [
+                    96,
+                    119
+                  ],
+                  "url": "https://t.co/ISHkUhIW4W"
+                },
+                {
+                  "display_url": "surl.li/gzveek",
+                  "expanded_url": "https://surl.li/gzveek",
+                  "indices": [
+                    139,
+                    162
+                  ],
+                  "url": "https://t.co/Zty4xB91Kh"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "jagran.com",
+                  "expanded_url": "http://www.jagran.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/v4dvVLeGIK"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "दिल्ली में बुधवार से 31 मार्च तक फिल्म फेस्टिवल आयोजित हो रहा है। ट्रैफिक पुलिस ने इसके लिए विशेष एडवाइजरी जारी की है। मथुरा रोड और भैरों रोड पर सुबह 10 बजे से रात 10 बजे तक पार्किंग प्रतिबंधित..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.jagran.com"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "64639742",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "64639742",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_alt_text",
+            "value": {
+              "string_value": "Jagran"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "jagran.com"
+            }
+          },
+          {
+            "key": "summary_photo_image_alt_text",
+            "value": {
+              "string_value": "Jagran"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "दिल्ली में फिल्म फेस्टिवल के दौरान कई मार्गों पर प्रभावित रहेगा यातायात, ट्रैफिक एडवाइजरी जारी -..."
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/lC55G9iKMM"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/lC55G9iKMM",
+        "user_refs_results": [
+          {
+            "rest_id": "64639742",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 2288
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1521018433487654913/P8acm3Mz_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/64639742/1753334746"
+              },
+              "core": {
+                "created_at": "Tue Aug 11 05:51:40 +0000 2009",
+                "name": "Dainik Jagran",
+                "screen_name": "JagranNews"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "India"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099858523270336554"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Dainik Jagran's Official Account. The World's Largest Read Newspaper\n\nइंस्टाग्राम पर फॉलो करेंः https://t.co/ISHkUhIW4W\nDainik Jagran App: https://t.co/Zty4xB91Kh",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "rb.gy/phzht9",
+                        "expanded_url": "https://rb.gy/phzht9",
+                        "indices": [
+                          96,
+                          119
+                        ],
+                        "url": "https://t.co/ISHkUhIW4W"
+                      },
+                      {
+                        "display_url": "surl.li/gzveek",
+                        "expanded_url": "https://surl.li/gzveek",
+                        "indices": [
+                          139,
+                          162
+                        ],
+                        "url": "https://t.co/Zty4xB91Kh"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "jagran.com",
+                        "expanded_url": "http://www.jagran.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/v4dvVLeGIK"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "0084B4"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 2315998,
+                "following": 82
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "64639742",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": true,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 80158,
+                "tweets": 479630
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/v4dvVLeGIK"
+              }
+            }
+          },
+          {
+            "rest_id": "64639742",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 2288
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1521018433487654913/P8acm3Mz_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/64639742/1753334746"
+              },
+              "core": {
+                "created_at": "Tue Aug 11 05:51:40 +0000 2009",
+                "name": "Dainik Jagran",
+                "screen_name": "JagranNews"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "India"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099858523270336554"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Dainik Jagran's Official Account. The World's Largest Read Newspaper\n\nइंस्टाग्राम पर फॉलो करेंः https://t.co/ISHkUhIW4W\nDainik Jagran App: https://t.co/Zty4xB91Kh",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "rb.gy/phzht9",
+                        "expanded_url": "https://rb.gy/phzht9",
+                        "indices": [
+                          96,
+                          119
+                        ],
+                        "url": "https://t.co/ISHkUhIW4W"
+                      },
+                      {
+                        "display_url": "surl.li/gzveek",
+                        "expanded_url": "https://surl.li/gzveek",
+                        "indices": [
+                          139,
+                          162
+                        ],
+                        "url": "https://t.co/Zty4xB91Kh"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "jagran.com",
+                        "expanded_url": "http://www.jagran.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/v4dvVLeGIK"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "0084B4"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 2315998,
+                "following": 82
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "64639742",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": true,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 80158,
+                "tweets": 479630
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/v4dvVLeGIK"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              100,
+              106
+            ],
+            "text": "Delhi"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "jagran.com/delhi/new-delh…",
+            "expanded_url": "https://www.jagran.com/delhi/new-delhi-city-delhi-film-festival-traffic-advisory-parking-restrictions-40182799.html",
+            "indices": [
+              109,
+              132
+            ],
+            "url": "https://t.co/lC55G9iKMM"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2036442699524612339",
       "url": "https://x.com/HYDTP/status/2036442699524612339",
       "twitterUrl": "https://twitter.com/HYDTP/status/2036442699524612339",
@@ -1910,7 +3485,7 @@
       "replyCount": 0,
       "likeCount": 17,
       "quoteCount": 0,
-      "viewCount": 1308,
+      "viewCount": 1309,
       "createdAt": "Tue Mar 24 13:59:09 +0000 2026",
       "lang": "en",
       "bookmarkCount": 1,
@@ -1937,7 +3512,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/399923595/1753094677",
         "description": "",
         "location": "Hyderabad",
-        "followers": 293258,
+        "followers": 293338,
         "following": 57,
         "status": "",
         "canDm": true,
@@ -1950,11 +3525,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 15230,
+        "favouritesCount": 15246,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 14500,
-        "statusesCount": 88018,
+        "mediaCount": 14563,
+        "statusesCount": 88147,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,

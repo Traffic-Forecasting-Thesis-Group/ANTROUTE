@@ -5,7 +5,7 @@
     "window_start": "2026-03-17T16:00:00+08:00",
     "window_end": "2026-03-17T18:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 9,
+    "tweet_count": 12,
     "slices": [
       {
         "start": "2026-03-17T16:00:00+08:00",
@@ -25,8 +25,8 @@
         "start": "2026-03-17T16:10:00+08:00",
         "end": "2026-03-17T16:15:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-17T16:15:00+08:00",
@@ -39,8 +39,8 @@
         "start": "2026-03-17T16:20:00+08:00",
         "end": "2026-03-17T16:25:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-17T16:25:00+08:00",
@@ -130,8 +130,8 @@
         "start": "2026-03-17T17:25:00+08:00",
         "end": "2026-03-17T17:30:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-03-17T17:30:00+08:00",
@@ -180,6 +180,110 @@
   "data": [
     {
       "type": "tweet",
+      "id": "2033818148021883116",
+      "url": "https://x.com/Electroversenet/status/2033818148021883116",
+      "twitterUrl": "https://twitter.com/Electroversenet/status/2033818148021883116",
+      "text": "In Macugnaga, Italy, a remarkable 1.47 meters (58 inches) of snow fell in just one day — one of the most intense short-duration snowfall events ever reported in the region.\n\nFull breakdown &amp; more:\n\nhttps://t.co/bWM55PI7UO",
+      "source": "Twitter for iPhone",
+      "retweetCount": 9,
+      "replyCount": 0,
+      "likeCount": 24,
+      "quoteCount": 1,
+      "viewCount": 845,
+      "createdAt": "Tue Mar 17 08:10:07 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2033818148021883116",
+      "displayTextRange": [
+        0,
+        225
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "Electroversenet",
+        "url": "https://x.com/Electroversenet",
+        "twitterUrl": "https://twitter.com/Electroversenet",
+        "id": "1018425398869282817",
+        "name": "Electroverse",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1018426779273441281/12ZdHl1m_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1018425398869282817/1788411077",
+        "description": "",
+        "location": "",
+        "followers": 48037,
+        "following": 0,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sun Jul 15 09:21:51 +0000 2018",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 4301,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1613,
+        "statusesCount": 16376,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Documenting the climate with factual daily reporting.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "electroverse.substack.com",
+                  "expanded_url": "https://electroverse.substack.com/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/hOsL6cttso"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "electroverse.substack.com/p/rare-march-c…",
+            "expanded_url": "https://electroverse.substack.com/p/rare-march-cold-hits-the-philippines",
+            "indices": [
+              202,
+              225
+            ],
+            "url": "https://t.co/bWM55PI7UO"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2033819665781428296",
       "url": "https://x.com/MakatiTraffic/status/2033819665781428296",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2033819665781428296",
@@ -216,7 +320,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +336,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412023,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -282,6 +386,374 @@
     },
     {
       "type": "tweet",
+      "id": "2033821138254524737",
+      "url": "https://x.com/rapplerdotcom/status/2033821138254524737",
+      "twitterUrl": "https://twitter.com/rapplerdotcom/status/2033821138254524737",
+      "text": "Members of the Ati community are contesting moves to cancel their land ownership papers covering 3.1 hectares in Boracay – land previously granted to them by the government for farming and livelihood https://t.co/hoUPSEt2BL",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 0,
+      "likeCount": 6,
+      "quoteCount": 0,
+      "viewCount": 735,
+      "createdAt": "Tue Mar 17 08:22:00 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2033821138254524737",
+      "displayTextRange": [
+        0,
+        223
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "rapplerdotcom",
+        "url": "https://x.com/rapplerdotcom",
+        "twitterUrl": "https://twitter.com/rapplerdotcom",
+        "id": "330826792",
+        "name": "Rappler",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1583252893368717313/wUCmGve8_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/330826792/1763601261",
+        "description": "",
+        "location": "Philippines",
+        "followers": 3307550,
+        "following": 412,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Jul 07 06:34:10 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 7585,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 281962,
+        "statusesCount": 1139072,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2098366108176625685"
+        ],
+        "profile_bio": {
+          "description": "Rappler is the Philippines' leading digital media company that's driven by uncompromising journalism, enabled by technology, & enriched by communities of action",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "rappler.com",
+                  "expanded_url": "http://www.rappler.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/81BJWWQwVf"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Members of the Ati community are contesting moves to cancel their land ownership papers covering 3.1 hectares in Boracay – land previously granted to them by the government for farming and livelihood"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.rappler.com"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "330826792",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "2647250390",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "rappler.com"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Who owns this Boracay land? IPs protest over canceled land titles "
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/hoUPSEt2BL"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/hoUPSEt2BL",
+        "user_refs_results": [
+          {
+            "rest_id": "2647250390",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 50
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1400859340194521093/tRbHtj8i_normal.jpg"
+              },
+              "banner": {
+                "image_url": ""
+              },
+              "core": {
+                "created_at": "Tue Jul 15 09:17:26 +0000 2014",
+                "name": "Herbie Gomez",
+                "screen_name": "herbie_gomez"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": ""
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {},
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "",
+                "entities": {
+                  "description": {}
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "1DA1F2"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 202,
+                "following": 72
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "2647250390",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 142,
+                "tweets": 937
+              },
+              "verification": {
+                "is_blue_verified": false,
+                "verified": false
+              },
+              "website": {
+                "url": ""
+              }
+            }
+          },
+          {
+            "rest_id": "330826792",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 7585
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1583252893368717313/wUCmGve8_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/330826792/1763601261"
+              },
+              "core": {
+                "created_at": "Thu Jul 07 06:34:10 +0000 2011",
+                "name": "Rappler",
+                "screen_name": "rapplerdotcom"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Philippines"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2098366108176625685"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Rappler is the Philippines' leading digital media company that's driven by uncompromising journalism, enabled by technology, & enriched by communities of action",
+                "entities": {
+                  "description": {},
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "rappler.com",
+                        "expanded_url": "http://www.rappler.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/81BJWWQwVf"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "E76229"
+              },
+              "profile_translation": {
+                "translator_type_enum": "Regular"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 3307550,
+                "following": 412
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "330826792",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 281962,
+                "tweets": 1139072
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/81BJWWQwVf"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "rappler.com/philippines/vi…",
+            "expanded_url": "https://www.rappler.com/philippines/visayas/boracay-indigenous-peoples-protest-canceled-land-titles/",
+            "indices": [
+              200,
+              223
+            ],
+            "url": "https://t.co/hoUPSEt2BL"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2033827347749830848",
       "url": "https://x.com/MakatiTraffic/status/2033827347749830848",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2033827347749830848",
@@ -318,7 +790,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -334,8 +806,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412023,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -420,7 +892,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -436,8 +908,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412023,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -522,7 +994,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -538,8 +1010,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412023,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -624,7 +1096,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/18276124/1756657291",
         "description": "",
         "location": "Manila",
-        "followers": 31561,
+        "followers": 31552,
         "following": 323,
         "status": "",
         "canDm": false,
@@ -637,11 +1109,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 998,
+        "favouritesCount": 999,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 8326,
-        "statusesCount": 43743,
+        "mediaCount": 8334,
+        "statusesCount": 43758,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1136,7 +1608,7 @@
       "replyCount": 0,
       "likeCount": 3,
       "quoteCount": 0,
-      "viewCount": 377,
+      "viewCount": 378,
       "createdAt": "Tue Mar 17 09:24:56 +0000 2026",
       "lang": "en",
       "bookmarkCount": 0,
@@ -1157,13 +1629,13 @@
         "id": "1266621060",
         "name": "DD NEWS SRINAGAR",
         "isVerified": false,
-        "isBlueVerified": false,
+        "isBlueVerified": true,
         "verifiedType": null,
         "profilePicture": "https://pbs.twimg.com/profile_images/2055137526432837632/gEHd1fqk_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/1266621060/1778906126",
         "description": "",
         "location": "Srinagar, India",
-        "followers": 52306,
+        "followers": 52319,
         "following": 183,
         "status": "",
         "canDm": false,
@@ -1179,12 +1651,14 @@
         "favouritesCount": 455,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 38489,
-        "statusesCount": 67322,
+        "mediaCount": 38711,
+        "statusesCount": 67602,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
-        "pinnedTweetIds": [],
+        "pinnedTweetIds": [
+          "2099332311347249509"
+        ],
         "profile_bio": {
           "description": "Official Twitter handle of Regional News Unit, DDK Srinagar, Kashmir.",
           "entities": {
@@ -1315,6 +1789,105 @@
     },
     {
       "type": "tweet",
+      "id": "2033837566689218833",
+      "url": "https://x.com/Ryan_HS_Song/status/2033837566689218833",
+      "twitterUrl": "https://twitter.com/Ryan_HS_Song/status/2033837566689218833",
+      "text": "Korean refiners will be forced to slash run rates by 20–40% from April. The war-driven supply shock may be unavoidable. The government response, however, is entirely self-inflicted.\n\nAt the onset of the crisis, the president was busy touring Singapore and the Philippines, showing zero sense of urgency. The administration delivered nothing that could remotely qualify as a response.\n\nIf anyone still believes diplomatic photo-ops matter more than energy security in the middle of a supply crisis, they have no understanding of how the real world works.\n\nAnd after all that, the solution was an outdated fuel price cap. A policy straight out of a different era. The industry minister repeating “diversify crude imports” adds nothing when physical flows are already constrained.\n\nThe recent semiconductor boom and the irrational equity rally clearly gave people the wrong idea about Korea’s fundamentals. Strip away the noise, and the level of crisis management is exactly what you would expect.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 10,
+      "replyCount": 1,
+      "likeCount": 48,
+      "quoteCount": 0,
+      "viewCount": 3575,
+      "createdAt": "Tue Mar 17 09:27:17 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 3,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2033837566689218833",
+      "displayTextRange": [
+        0,
+        280
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "Ryan_HS_Song",
+        "url": "https://x.com/Ryan_HS_Song",
+        "twitterUrl": "https://twitter.com/Ryan_HS_Song",
+        "id": "59729798",
+        "name": "Ryan Song",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2010710911775105024/p3zFwkQN_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/59729798/1387937457",
+        "description": "",
+        "location": "Seoul, Korea",
+        "followers": 16398,
+        "following": 175,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Fri Jul 24 08:41:22 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 292,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 4208,
+        "statusesCount": 63136,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2034419461059674266"
+        ],
+        "profile_bio": {
+          "description": "I give info, you decide. I may not always be right.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "t.me/ryanarchives20…",
+                  "expanded_url": "https://t.me/ryanarchives2022",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/se7l5YPE2Z"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2033837495398633603",
       "url": "https://x.com/michael_delizo/status/2033837495398633603",
       "twitterUrl": "https://twitter.com/michael_delizo/status/2033837495398633603",
@@ -1324,7 +1897,7 @@
       "replyCount": 1,
       "likeCount": 13,
       "quoteCount": 1,
-      "viewCount": 1399,
+      "viewCount": 1400,
       "createdAt": "Tue Mar 17 09:27:00 +0000 2026",
       "lang": "en",
       "bookmarkCount": 1,
@@ -1351,8 +1924,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/133609984/1616685285",
         "description": "",
         "location": "Philippines",
-        "followers": 26937,
-        "following": 554,
+        "followers": 26940,
+        "following": 555,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -1367,8 +1940,8 @@
         "favouritesCount": 2999,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 4277,
-        "statusesCount": 13702,
+        "mediaCount": 4280,
+        "statusesCount": 13708,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1519,7 +2092,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15872418/1747565518",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 9238508,
+        "followers": 9238563,
         "following": 1098,
         "status": "",
         "canDm": false,
@@ -1535,14 +2108,12 @@
         "favouritesCount": 1186,
         "hasCustomTimelines": true,
         "isTranslator": true,
-        "mediaCount": 350164,
-        "statusesCount": 1345145,
+        "mediaCount": 351515,
+        "statusesCount": 1347210,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
-        "pinnedTweetIds": [
-          "2096958982250430882"
-        ],
+        "pinnedTweetIds": [],
         "profile_bio": {
           "description": "Stories, video, and multimedia for Filipinos worldwide, from ABS-CBN News and Current Affairs",
           "entities": {
@@ -1646,8 +2217,8 @@
                       "has_no_screen_name": false
                     },
                     "relationship_counts": {
-                      "followers": 26937,
-                      "following": 554
+                      "followers": 26940,
+                      "following": 555
                     },
                     "relationship_perspectives": {
                       "blocked_by": false,
@@ -1664,8 +2235,8 @@
                     "super_followed_by": false,
                     "super_following": false,
                     "tweet_counts": {
-                      "media_tweets": 4277,
-                      "tweets": 13702
+                      "media_tweets": 4280,
+                      "tweets": 13708
                     },
                     "verification": {
                       "is_blue_verified": false,
@@ -1808,7 +2379,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967068,
+        "followers": 3966562,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -1824,8 +2395,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888279,
+        "mediaCount": 61737,
+        "statusesCount": 888713,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,

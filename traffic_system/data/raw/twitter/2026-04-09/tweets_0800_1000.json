@@ -5,7 +5,7 @@
     "window_start": "2026-04-09T08:00:00+08:00",
     "window_end": "2026-04-09T10:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 7,
+    "tweet_count": 11,
     "slices": [
       {
         "start": "2026-04-09T08:00:00+08:00",
@@ -109,8 +109,8 @@
         "start": "2026-04-09T09:10:00+08:00",
         "end": "2026-04-09T09:15:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-04-09T09:15:00+08:00",
@@ -151,8 +151,8 @@
         "start": "2026-04-09T09:40:00+08:00",
         "end": "2026-04-09T09:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-04-09T09:45:00+08:00",
@@ -165,15 +165,15 @@
         "start": "2026-04-09T09:50:00+08:00",
         "end": "2026-04-09T09:55:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-04-09T09:55:00+08:00",
         "end": "2026-04-09T10:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       }
     ]
   },
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437250,
+        "followers": 1437168,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +232,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412031,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -276,6 +276,8 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -316,7 +318,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437250,
+        "followers": 1437168,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -332,8 +334,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412031,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -418,7 +420,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
         "description": "",
         "location": "Philippines",
-        "followers": 189498,
+        "followers": 190082,
         "following": 481,
         "status": "",
         "canDm": false,
@@ -431,16 +433,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 20345,
+        "favouritesCount": 20361,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 44372,
-        "statusesCount": 197212,
+        "mediaCount": 45249,
+        "statusesCount": 198793,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2093633872936456280"
+          "2099480545550090734"
         ],
         "profile_bio": {
           "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",
@@ -470,33 +472,38 @@
           {
             "key": "description",
             "value": {
-              "string_value": "SEN. Bong Go urged the public to intensify disaster preparedness and fire safety measures as his team provided aid to families displaced by a fire at the San Dionisio Covered Court in Parañaque City."
+              "string_value": "SEN. Bong Go urged the public to intensify disaster preparedness and fire safety measures as his team provided aid to families displaced by a fire at the San Dionisio Covered Court in Parañaque City.",
+              "type": "STRING"
             }
           },
           {
             "key": "domain",
             "value": {
-              "string_value": "www.manilatimes.net"
+              "string_value": "www.manilatimes.net",
+              "type": "STRING"
             }
           },
           {
             "key": "vanity_url",
             "value": {
               "scribe_key": "vanity_url",
-              "string_value": "manilatimes.net"
+              "string_value": "manilatimes.net",
+              "type": "STRING"
             }
           },
           {
             "key": "title",
             "value": {
-              "string_value": "Go bats for fire safety after Parañaque blaze"
+              "string_value": "Go bats for fire safety after Parañaque blaze",
+              "type": "STRING"
             }
           },
           {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
-              "string_value": "https://t.co/zBwwWmZwtM"
+              "string_value": "https://t.co/zBwwWmZwtM",
+              "type": "STRING"
             }
           }
         ],
@@ -506,8 +513,8 @@
               "name": "production"
             },
             "device": {
-              "name": "iPhone",
-              "version": "13"
+              "name": "Swift",
+              "version": "12"
             }
           }
         },
@@ -531,8 +538,6 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -573,7 +578,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437250,
+        "followers": 1437168,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -589,8 +594,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412031,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -639,6 +644,371 @@
     },
     {
       "type": "tweet",
+      "id": "2042047872179564840",
+      "url": "https://x.com/sanjeevkafley/status/2042047872179564840",
+      "twitterUrl": "https://twitter.com/sanjeevkafley/status/2042047872179564840",
+      "text": "A strong El Niño is expected to impact the Philippines, bringing heavy rains and flooding at first, followed by prolonged heat and drought.\n\nPreparedness has never been more important.\n\nTogether with @philredcross, @ifrc are closely monitoring the situation.\n\nEl Niño is coming. The real question is: are we ready to keep our communities safe and resilient?\n\nTake anticipatory action.\nStay hydrated. Stay prepared.\n\n#ElNiñoPH #BePrepared #ClimateAction #RedCross #Resilience",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 5,
+      "quoteCount": 0,
+      "viewCount": 80,
+      "createdAt": "Thu Apr 09 01:12:06 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2042047872179564840",
+      "displayTextRange": [
+        0,
+        278
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "sanjeevkafley",
+        "url": "https://x.com/sanjeevkafley",
+        "twitterUrl": "https://twitter.com/sanjeevkafley",
+        "id": "1879425433",
+        "name": "Sanjeev Kafley",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2029119892776271872/eJZFlW0G_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1879425433/1775346930",
+        "description": "",
+        "location": "#Yangon, #Myanmar",
+        "followers": 2358,
+        "following": 601,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Sep 18 13:00:34 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 7682,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 948,
+        "statusesCount": 1974,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Head of Delegation at @ifrc Myanmar  🇲🇲 .\n\nFollow me for humanitarian updates in Myanmar🇲🇲🇲🇲",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    22,
+                    27
+                  ],
+                  "name": "",
+                  "screen_name": "ifrc"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "ifrc.org",
+                  "expanded_url": "http://www.ifrc.org",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/HJWZY06sRL"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/s8eZnvE1ZN",
+            "expanded_url": "https://x.com/sanjeevkafley/status/2042047872179564840/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "IFRC Asia Pacific",
+                    "screen_name": "IFRCAsiaPacific",
+                    "type": "user",
+                    "user_id": "3062054052"
+                  },
+                  {
+                    "name": "Alexander Matheou",
+                    "screen_name": "AJMatheou",
+                    "type": "user",
+                    "user_id": "816329114789548032"
+                  }
+                ]
+              },
+              "large": {
+                "faces": [
+                  {
+                    "h": 56,
+                    "w": 56,
+                    "x": 283,
+                    "y": 913
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 56,
+                    "w": 56,
+                    "x": 283,
+                    "y": 913
+                  }
+                ]
+              }
+            },
+            "id_str": "2042047869444878337",
+            "indices": [
+              279,
+              302
+            ],
+            "media_key": "3_2042047869444878337",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxWz7fQmvABCgACHFbPuHOa8SgAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHFbPt9Ca8AEKAAIcVs+4c5rxKAAA",
+                "media_key": "3_2042047869444878337"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HFbPt9Ca8AEtWLG.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 947,
+                  "x": 94,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 540,
+                  "x": 297,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1080,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/s8eZnvE1ZN"
+          },
+          {
+            "display_url": "pic.x.com/s8eZnvE1ZN",
+            "expanded_url": "https://x.com/sanjeevkafley/status/2042047872179564840/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "IFRC Asia Pacific",
+                    "screen_name": "IFRCAsiaPacific",
+                    "type": "user",
+                    "user_id": "3062054052"
+                  },
+                  {
+                    "name": "Alexander Matheou",
+                    "screen_name": "AJMatheou",
+                    "type": "user",
+                    "user_id": "816329114789548032"
+                  }
+                ]
+              },
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2042047870048858113",
+            "indices": [
+              279,
+              302
+            ],
+            "media_key": "3_2042047870048858113",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxWz7f0mvABCgACHFbPuHOa8SgAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHFbPt/Sa8AEKAAIcVs+4c5rxKAAA",
+                "media_key": "3_2042047870048858113"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HFbPt_Sa8AETUek.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 947,
+                  "x": 94,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 540,
+                  "x": 297,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1080,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/s8eZnvE1ZN"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              416,
+              425
+            ],
+            "text": "ElNiñoPH"
+          },
+          {
+            "indices": [
+              426,
+              437
+            ],
+            "text": "BePrepared"
+          },
+          {
+            "indices": [
+              438,
+              452
+            ],
+            "text": "ClimateAction"
+          },
+          {
+            "indices": [
+              453,
+              462
+            ],
+            "text": "RedCross"
+          },
+          {
+            "indices": [
+              463,
+              474
+            ],
+            "text": "Resilience"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "32391821",
+            "indices": [
+              200,
+              213
+            ],
+            "name": "Philippine Red Cross",
+            "screen_name": "philredcross"
+          },
+          {
+            "id_str": "16025112",
+            "indices": [
+              215,
+              220
+            ],
+            "name": "IFRC",
+            "screen_name": "ifrc"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2042048599366987843",
       "url": "https://x.com/MakatiTraffic/status/2042048599366987843",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2042048599366987843",
@@ -675,7 +1045,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437250,
+        "followers": 1437168,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -691,8 +1061,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412031,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -741,6 +1111,172 @@
     },
     {
       "type": "tweet",
+      "id": "2042055494185923027",
+      "url": "https://x.com/lylegoldstein/status/2042055494185923027",
+      "twitterUrl": "https://twitter.com/lylegoldstein/status/2042055494185923027",
+      "text": "\"On April 6, the Japan Ground Self-Defense Force (JGSDF) dispatched approximately 420 personnel to the Philippines to participate in the U.S.-Philippines \"Shield\" joint military exercises. The drills cover subjects ranging from land combat command and coordination to live-fire exercises. Led by the United States and the Philippines—with the participation of Japan, Australia, and New Zealand—the exercises involve a total force of over 7,000 personnel. This marks the first time since the end of World War II that Japanese military personnel have directly participated in a Philippines-related military exercise from start to finish, rather than participating in their previous capacity as \"observers.\"\n\nJudging by the location and the selection of training subjects, these exercises possess a distinct and immediate strategic relevance. Luzon Island, where the drills are being held, borders the Bashi Channel to the north and faces the South China Sea to the west; it serves as a critical nexus connecting the Taiwan Strait and the South China Sea, as well as a key component in the construction of the \"First Island Chain.\" Publicly available information indicates that this year's \"Shield\" exercises focus on multi-domain operations, enhanced combat readiness, and the strengthening of interoperability among participating forces. These training objectives clearly extend beyond the scope of traditional military interactions, moving instead toward a higher intensity and a greater emphasis on joint combat preparedness.\n\nOn the surface, this might appear to be merely an escalation in defense cooperation—another extension of the so-called \"enhanced security partnership\" between the Philippines and Japan. However, anyone possessing a basic reverence for history and a sound judgment regarding regional dynamics can readily discern that this development has crossed a 'red line' laden with profound historical symbolism.\"GT-China, 8Apr",
+      "source": "Twitter for iPhone",
+      "retweetCount": 6,
+      "replyCount": 0,
+      "likeCount": 14,
+      "quoteCount": 1,
+      "viewCount": 1829,
+      "createdAt": "Thu Apr 09 01:42:24 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 5,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2042055494185923027",
+      "displayTextRange": [
+        0,
+        277
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "lylegoldstein",
+        "url": "https://x.com/lylegoldstein",
+        "twitterUrl": "https://twitter.com/lylegoldstein",
+        "id": "1452690176325656582",
+        "name": "Lyle Goldstein",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1453057562291625984/BWvHb8oQ_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1452690176325656582/1635270690",
+        "description": "",
+        "location": "",
+        "followers": 11284,
+        "following": 4843,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Mon Oct 25 17:35:14 +0000 2021",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 667,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 3970,
+        "statusesCount": 4814,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Director, Asia Engagement at Defense Priorities.  I am an expert on both China and Russia, as well as security issues across the Asia-Pacific and Eurasia.",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/pW38mM50wp",
+            "expanded_url": "https://x.com/lylegoldstein/status/2042055494185923027/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2042055304574050304",
+            "indices": [
+              278,
+              301
+            ],
+            "media_key": "3_2042055304574050304",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxW1nrw1qAACgACHFbWpxaWMdMAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHFbWevDWoAAKAAIcVtanFpYx0wAA",
+                "media_key": "3_2042055304574050304"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HFbWevDWoAAIS8_.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1138,
+                  "w": 2032,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1396,
+                  "w": 1396,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1396,
+                  "w": 1225,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1396,
+                  "w": 698,
+                  "x": 107,
+                  "y": 0
+                },
+                {
+                  "h": 1396,
+                  "w": 2032,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1396,
+              "width": 2032
+            },
+            "sizes": {
+              "large": {
+                "h": 1396,
+                "w": 2032
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/pW38mM50wp"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2042056149105537389",
       "url": "https://x.com/MakatiTraffic/status/2042056149105537389",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2042056149105537389",
@@ -777,7 +1313,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437250,
+        "followers": 1437168,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -793,8 +1329,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412031,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -879,7 +1415,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
         "description": "",
         "location": "Philippines",
-        "followers": 189498,
+        "followers": 190082,
         "following": 481,
         "status": "",
         "canDm": false,
@@ -892,16 +1428,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 20345,
+        "favouritesCount": 20361,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 44372,
-        "statusesCount": 197212,
+        "mediaCount": 45249,
+        "statusesCount": 198793,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2093633872936456280"
+          "2099480545550090734"
         ],
         "profile_bio": {
           "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",
@@ -929,6 +1465,26 @@
       "card": {
         "binding_values": [
           {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2097061408613543938/gx0X-WCP?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 150,
+                "url": "https://pbs.twimg.com/card_img/2097061408613543938/gx0X-WCP?format=jpg&name=280x150",
+                "width": 225
+              }
+            }
+          },
+          {
             "key": "description",
             "value": {
               "string_value": "NEW YORK — Oil prices plunged below $95 per barrel, and stock markets surged worldwide Wednesday after President Donald Trump pulled back from his threat to destroy Iran."
@@ -941,10 +1497,149 @@
             }
           },
           {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 320,
+                "url": "https://pbs.twimg.com/card_img/2097061408613543938/gx0X-WCP?format=jpg&name=800x320_1",
+                "width": 480
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2097061408613543938/gx0X-WCP?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2097061408613543938/gx0X-WCP?format=jpg&name=orig",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2097061408613543938/gx0X-WCP?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2097061408613543938/gx0X-WCP?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 67,
+                "url": "https://pbs.twimg.com/card_img/2097061408613543938/gx0X-WCP?format=jpg&name=100x100",
+                "width": 100
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2097061408613543938/gx0X-WCP?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2097061408613543938/gx0X-WCP?format=jpg&name=orig",
+                "width": 1200
+              }
+            }
+          },
+          {
             "key": "vanity_url",
             "value": {
               "scribe_key": "vanity_url",
               "string_value": "manilatimes.net"
+            }
+          },
+          {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2097061408613543938/gx0X-WCP?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 36.38,
+                    "rgb": {
+                      "blue": 55,
+                      "green": 41,
+                      "red": 44
+                    }
+                  },
+                  {
+                    "percentage": 9.28,
+                    "rgb": {
+                      "blue": 249,
+                      "green": 148,
+                      "red": 55
+                    }
+                  },
+                  {
+                    "percentage": 7.26,
+                    "rgb": {
+                      "blue": 253,
+                      "green": 195,
+                      "red": 98
+                    }
+                  },
+                  {
+                    "percentage": 5.87,
+                    "rgb": {
+                      "blue": 105,
+                      "green": 52,
+                      "red": 47
+                    }
+                  },
+                  {
+                    "percentage": 5.66,
+                    "rgb": {
+                      "blue": 24,
+                      "green": 7,
+                      "red": 84
+                    }
+                  }
+                ]
+              }
             }
           },
           {
@@ -954,10 +1649,148 @@
             }
           },
           {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 36.38,
+                    "rgb": {
+                      "blue": 55,
+                      "green": 41,
+                      "red": 44
+                    }
+                  },
+                  {
+                    "percentage": 9.28,
+                    "rgb": {
+                      "blue": 249,
+                      "green": 148,
+                      "red": 55
+                    }
+                  },
+                  {
+                    "percentage": 7.26,
+                    "rgb": {
+                      "blue": 253,
+                      "green": 195,
+                      "red": 98
+                    }
+                  },
+                  {
+                    "percentage": 5.87,
+                    "rgb": {
+                      "blue": 105,
+                      "green": 52,
+                      "red": 47
+                    }
+                  },
+                  {
+                    "percentage": 5.66,
+                    "rgb": {
+                      "blue": 24,
+                      "green": 7,
+                      "red": 84
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2097061408613543938/gx0X-WCP?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2097061408613543938/gx0X-WCP?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 36.38,
+                    "rgb": {
+                      "blue": 55,
+                      "green": 41,
+                      "red": 44
+                    }
+                  },
+                  {
+                    "percentage": 9.28,
+                    "rgb": {
+                      "blue": 249,
+                      "green": 148,
+                      "red": 55
+                    }
+                  },
+                  {
+                    "percentage": 7.26,
+                    "rgb": {
+                      "blue": 253,
+                      "green": 195,
+                      "red": 98
+                    }
+                  },
+                  {
+                    "percentage": 5.87,
+                    "rgb": {
+                      "blue": 105,
+                      "green": 52,
+                      "red": 47
+                    }
+                  },
+                  {
+                    "percentage": 5.66,
+                    "rgb": {
+                      "blue": 24,
+                      "green": 7,
+                      "red": 84
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2097061408613543938/gx0X-WCP?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
               "string_value": "https://t.co/unoYA5cOdE"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2097061408613543938/gx0X-WCP?format=jpg&name=orig",
+                "width": 1200
+              }
             }
           }
         ],
@@ -987,6 +1820,328 @@
               194
             ],
             "url": "https://t.co/unoYA5cOdE"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2042057450036117702",
+      "url": "https://x.com/JoeGiannacco/status/2042057450036117702",
+      "twitterUrl": "https://twitter.com/JoeGiannacco/status/2042057450036117702",
+      "text": "One week in the Philippines. Everyone here is so friendly, no dents on cars, traffic is absolutely crazy. Everything is so clean, churches everywhere in Bible verses on billboards, prayers during meetings. The food is fantastic, it’s very hot, but not humid. NBA rules here.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 3,
+      "likeCount": 4,
+      "quoteCount": 0,
+      "viewCount": 132,
+      "createdAt": "Thu Apr 09 01:50:10 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2042057450036117702",
+      "displayTextRange": [
+        0,
+        274
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "JoeGiannacco",
+        "url": "https://x.com/JoeGiannacco",
+        "twitterUrl": "https://twitter.com/JoeGiannacco",
+        "id": "1545533814",
+        "name": "Braves Joe",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1980930718122332160/kOKAdnkr_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1545533814/1688446005",
+        "description": "",
+        "location": "Florida",
+        "followers": 2168,
+        "following": 3111,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Tue Jun 25 11:58:25 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 35324,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1539,
+        "statusesCount": 20481,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Believer in Christ The Redeemer! UF/UCF grad, Braves fan. Follow me and I’ll follow you back. Love to talk #Braves and politics.",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    107,
+                    114
+                  ],
+                  "text": "Braves"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2042059463285469221",
+      "url": "https://x.com/halairporttrfps/status/2042059463285469221",
+      "twitterUrl": "https://twitter.com/halairporttrfps/status/2042059463285469221",
+      "text": "\"Traffic Advisory\"\nTraffic is moving slowly in both directions between Mahadevapura and Marathahalli due to ongoing metro station work at Kartik Nagar. We appreciate your patience and cooperation. Thank you! \n@blrcitytraffic @DCPTrEastBCP @CPBlr @Jointcptraffic @acpwfieldtrf https://t.co/7Xga40joa8",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 711,
+      "createdAt": "Thu Apr 09 01:58:10 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2042059463285469221",
+      "displayTextRange": [
+        0,
+        275
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "halairporttrfps",
+        "url": "https://x.com/halairporttrfps",
+        "twitterUrl": "https://twitter.com/halairporttrfps",
+        "id": "3014057594",
+        "name": "HAL AIRPORT TRAFFIC BTP",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1431940538807111685/NlzIwwo7_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/3014057594/1698666640",
+        "description": "",
+        "location": "Bengaluru, India",
+        "followers": 12343,
+        "following": 64,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Feb 09 06:37:58 +0000 2015",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5829,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 7764,
+        "statusesCount": 20147,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2100145281115492778"
+        ],
+        "profile_bio": {
+          "description": "Official twitter account of HAL Airport Traffic Police Station (080-22943115). Dial Namma-112 in case of emergency. @blrcitytraffic",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    116,
+                    131
+                  ],
+                  "name": "",
+                  "screen_name": "blrcitytraffic"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.gov.in",
+                  "expanded_url": "https://btp.gov.in/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/aoci2eeC5I"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/7Xga40joa8",
+            "expanded_url": "https://x.com/halairporttrfps/status/2042059463285469221/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2042059453915394048",
+            "indices": [
+              276,
+              299
+            ],
+            "media_key": "3_2042059453915394048",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxW2kEI2vAACgACHFbaQzda8CUAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHFbaQQja8AAKAAIcVtpDN1rwJQAA",
+                "media_key": "3_2042059453915394048"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HFbaQQja8AAjphJ.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 538,
+                  "w": 960,
+                  "x": 0,
+                  "y": 723
+                },
+                {
+                  "h": 960,
+                  "w": 960,
+                  "x": 0,
+                  "y": 320
+                },
+                {
+                  "h": 1094,
+                  "w": 960,
+                  "x": 0,
+                  "y": 186
+                },
+                {
+                  "h": 1280,
+                  "w": 640,
+                  "x": 320,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 960,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1280,
+              "width": 960
+            },
+            "sizes": {
+              "large": {
+                "h": 1280,
+                "w": 960
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/7Xga40joa8"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "1851545900",
+            "indices": [
+              209,
+              224
+            ],
+            "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+            "screen_name": "blrcitytraffic"
+          },
+          {
+            "id_str": "2809049605",
+            "indices": [
+              225,
+              238
+            ],
+            "name": "DCP Traffic East ಉಪ ಪೊಲೀಸ್ ಆಯುಕ್ತರು ಸಂಚಾರ ಪೂರ್ವ",
+            "screen_name": "DCPTrEastBCP"
+          },
+          {
+            "id_str": "2687852605",
+            "indices": [
+              239,
+              245
+            ],
+            "name": "CP Bengaluru ಪೊಲೀಸ್ ಆಯುಕ್ತ ಬೆಂಗಳೂರು",
+            "screen_name": "CPBlr"
+          },
+          {
+            "id_str": "2809164276",
+            "indices": [
+              246,
+              261
+            ],
+            "name": "Joint CP, Traffic, Bengaluru",
+            "screen_name": "Jointcptraffic"
+          },
+          {
+            "id_str": "1361589347032600576",
+            "indices": [
+              262,
+              275
+            ],
+            "name": "ACP Whitefield Traffic ಎಸಿಪಿ ಸಂಚಾರ ವೈಟ್ ಫೀಲ್ಡ್",
+            "screen_name": "acpwfieldtrf"
           }
         ]
       },

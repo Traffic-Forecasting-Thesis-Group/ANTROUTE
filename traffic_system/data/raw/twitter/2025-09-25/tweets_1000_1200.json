@@ -5,7 +5,7 @@
     "window_start": "2025-09-25T10:00:00+08:00",
     "window_end": "2025-09-25T12:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 10,
+    "tweet_count": 20,
     "slices": [
       {
         "start": "2025-09-25T10:00:00+08:00",
@@ -25,8 +25,8 @@
         "start": "2025-09-25T10:10:00+08:00",
         "end": "2025-09-25T10:15:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-09-25T10:15:00+08:00",
@@ -46,8 +46,8 @@
         "start": "2025-09-25T10:25:00+08:00",
         "end": "2025-09-25T10:30:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-09-25T10:30:00+08:00",
@@ -88,22 +88,22 @@
         "start": "2025-09-25T10:55:00+08:00",
         "end": "2025-09-25T11:00:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 3,
+        "accepted": 3
       },
       {
         "start": "2025-09-25T11:00:00+08:00",
         "end": "2025-09-25T11:05:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-09-25T11:05:00+08:00",
         "end": "2025-09-25T11:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-09-25T11:10:00+08:00",
@@ -137,8 +137,8 @@
         "start": "2025-09-25T11:30:00+08:00",
         "end": "2025-09-25T11:35:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-09-25T11:35:00+08:00",
@@ -151,15 +151,15 @@
         "start": "2025-09-25T11:40:00+08:00",
         "end": "2025-09-25T11:45:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-09-25T11:45:00+08:00",
         "end": "2025-09-25T11:50:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-09-25T11:50:00+08:00",
@@ -178,6 +178,177 @@
     ]
   },
   "data": [
+    {
+      "type": "tweet",
+      "id": "1971034733460193538",
+      "url": "https://x.com/DOHgovph/status/1971034733460193538",
+      "twitterUrl": "https://twitter.com/DOHgovph/status/1971034733460193538",
+      "text": "DOH: MAG-INGAT SA BANTA NG PAGKALUNOD DAHIL SA BAHA\n\nBunsod ng paparating na Severe Tropical Storm Opong, inaasahan ang pagbaha ngayong araw sa mga probinsya ng Northern Samar, Eastern Samar, Sorsogon, Masbate, Samar, at Biliran. https://t.co/jzH4tFco99",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 927,
+      "createdAt": "Thu Sep 25 02:11:15 +0000 2025",
+      "lang": "tl",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1971034733460193538",
+      "displayTextRange": [
+        0,
+        229
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "DOHgovph",
+        "url": "https://x.com/DOHgovph",
+        "twitterUrl": "https://twitter.com/DOHgovph",
+        "id": "186347409",
+        "name": "Department of Health Philippines",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1649784075568431109/Z1GQev7a_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/186347409/1704259765",
+        "description": "",
+        "location": "Manila, Philippines",
+        "followers": 663442,
+        "following": 65,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Fri Sep 03 06:06:53 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 52,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 7156,
+        "statusesCount": 19962,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The official twitter account of the Department of Health Philippines.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "doh.gov.ph",
+                  "expanded_url": "http://www.doh.gov.ph",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/jblJp5xeWI"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/jzH4tFco99",
+            "expanded_url": "https://x.com/DOHgovph/status/1971034733460193538/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1971034718344019969",
+            "indices": [
+              230,
+              253
+            ],
+            "media_key": "3_1971034718344019969",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtahaIi24ABCgACG1qFpafaAQIAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG1qFoiLbgAEKAAIbWoWlp9oBAgAA",
+                "media_key": "3_1971034718344019969"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G1qFoiLbgAEqVsV.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 717,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1459,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 800,
+                  "x": 120,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1600,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 1600,
+                "w": 1280
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/jzH4tFco99"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
     {
       "type": "tweet",
       "id": "1971035677358776645",
@@ -216,7 +387,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437301,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +403,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411303,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -282,6 +453,447 @@
     },
     {
       "type": "tweet",
+      "id": "1971039368858272191",
+      "url": "https://x.com/republic/status/1971039368858272191",
+      "twitterUrl": "https://twitter.com/republic/status/1971039368858272191",
+      "text": "UP International Trade Show 2025: Traffic Advisory Issued In Noida, Greater Noida - Know Entry &amp; Parking Guidelines, Road Diversions, Alternate Routes\n\nhttps://t.co/zY6cIyMRhz",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 1807,
+      "createdAt": "Thu Sep 25 02:29:40 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1971039368858272191",
+      "displayTextRange": [
+        0,
+        179
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "republic",
+        "url": "https://x.com/republic",
+        "twitterUrl": "https://twitter.com/republic",
+        "id": "811972460560019456",
+        "name": "Republic",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Business",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1914989164283777024/6EZwamJd_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/811972460560019456/1789367809",
+        "description": "",
+        "location": "Mumbai, India",
+        "followers": 2813002,
+        "following": 10,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Dec 22 16:31:35 +0000 2016",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3675,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 297910,
+        "statusesCount": 767722,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099833656747708601"
+        ],
+        "profile_bio": {
+          "description": "The official handle of the Republic Media Network | DIGITAL | TV | MEDIA | Subscribe to WhatsApp Channel Here - https://t.co/xyHvysKg6I",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "tinyurl.com/RDigitalWhatsA…",
+                  "expanded_url": "https://tinyurl.com/RDigitalWhatsApp",
+                  "indices": [
+                    112,
+                    135
+                  ],
+                  "url": "https://t.co/xyHvysKg6I"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "republicpositiveinfluencer.in",
+                  "expanded_url": "https://www.republicpositiveinfluencer.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/AmbGYiNmJt"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "The five-day trade show will be inaugurated by PM Modi. Chief Minister Yogi Adityanath, senior ministers, diplomats, industry leaders, and international delegates will also be in attendance."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.republicworld.com"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "811972460560019456",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "811972460560019456",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_alt_text",
+            "value": {
+              "string_value": "UP International Trade Show 2025: Delhi-Noida-Greater Noida Traffic Advisory Issued - Know Enty & Parking Guidelines, Road Diversions, Alternate Routes"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "republicworld.com"
+            }
+          },
+          {
+            "key": "summary_photo_image_alt_text",
+            "value": {
+              "string_value": "UP International Trade Show 2025: Delhi-Noida-Greater Noida Traffic Advisory Issued - Know Enty & Parking Guidelines, Road Diversions, Alternate Routes"
+            }
+          },
+          {
+            "key": "app_country",
+            "value": {
+              "string_value": "IN"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "UP International Trade Show 2025: Traffic Advisory Issued In Noida, Greater Noida - Know Entry &..."
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/zY6cIyMRhz"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/zY6cIyMRhz",
+        "user_refs_results": [
+          {
+            "rest_id": "811972460560019456",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 3675
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1914989164283777024/6EZwamJd_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/811972460560019456/1789367809"
+              },
+              "core": {
+                "created_at": "Thu Dec 22 16:31:35 +0000 2016",
+                "name": "Republic",
+                "screen_name": "republic"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Mumbai, India"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099833656747708601"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "The official handle of the Republic Media Network | DIGITAL | TV | MEDIA | Subscribe to WhatsApp Channel Here - https://t.co/xyHvysKg6I",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "tinyurl.com/RDigitalWhatsA…",
+                        "expanded_url": "https://tinyurl.com/RDigitalWhatsApp",
+                        "indices": [
+                          112,
+                          135
+                        ],
+                        "url": "https://t.co/xyHvysKg6I"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "republicpositiveinfluencer.in",
+                        "expanded_url": "https://www.republicpositiveinfluencer.in",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/AmbGYiNmJt"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Square",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "FF0000"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 2813002,
+                "following": 10
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "811972460560019456",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 297910,
+                "tweets": 767722
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false,
+                "verified_type": "Business"
+              },
+              "website": {
+                "url": "https://t.co/AmbGYiNmJt"
+              }
+            }
+          },
+          {
+            "rest_id": "811972460560019456",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 3675
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1914989164283777024/6EZwamJd_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/811972460560019456/1789367809"
+              },
+              "core": {
+                "created_at": "Thu Dec 22 16:31:35 +0000 2016",
+                "name": "Republic",
+                "screen_name": "republic"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Mumbai, India"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099833656747708601"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "The official handle of the Republic Media Network | DIGITAL | TV | MEDIA | Subscribe to WhatsApp Channel Here - https://t.co/xyHvysKg6I",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "tinyurl.com/RDigitalWhatsA…",
+                        "expanded_url": "https://tinyurl.com/RDigitalWhatsApp",
+                        "indices": [
+                          112,
+                          135
+                        ],
+                        "url": "https://t.co/xyHvysKg6I"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "republicpositiveinfluencer.in",
+                        "expanded_url": "https://www.republicpositiveinfluencer.in",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/AmbGYiNmJt"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Square",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "FF0000"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 2813002,
+                "following": 10
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "811972460560019456",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 297910,
+                "tweets": 767722
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false,
+                "verified_type": "Business"
+              },
+              "website": {
+                "url": "https://t.co/AmbGYiNmJt"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "republicworld.com/india/up-inter…",
+            "expanded_url": "https://www.republicworld.com/india/up-international-trade-show-2025-traffic-advisory-issued-in-noida-greater-noida-know-entry-parking-guidelines-road-diversions-alternate-routes",
+            "indices": [
+              156,
+              179
+            ],
+            "url": "https://t.co/zY6cIyMRhz"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1971038441325678760",
       "url": "https://x.com/mkule/status/1971038441325678760",
       "twitterUrl": "https://twitter.com/mkule/status/1971038441325678760",
@@ -318,7 +930,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/156963753/1785973549",
         "description": "",
         "location": "Ermita, Manila",
-        "followers": 6081,
+        "followers": 6077,
         "following": 106,
         "status": "",
         "canDm": true,
@@ -514,7 +1126,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437301,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -530,8 +1142,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411303,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -616,7 +1228,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/876684632325988352/1788351953",
         "description": "",
         "location": "Cyberabad",
-        "followers": 226780,
+        "followers": 226832,
         "following": 131,
         "status": "",
         "canDm": true,
@@ -629,11 +1241,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3844,
+        "favouritesCount": 3866,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 11461,
-        "statusesCount": 42177,
+        "mediaCount": 11491,
+        "statusesCount": 42430,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -836,7 +1448,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437301,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -852,8 +1464,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411303,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -909,9 +1521,9 @@
       "source": "Twitter for iPhone",
       "retweetCount": 35,
       "replyCount": 0,
-      "likeCount": 285,
+      "likeCount": 284,
       "quoteCount": 8,
-      "viewCount": 13911,
+      "viewCount": 13914,
       "createdAt": "Thu Sep 25 02:58:59 +0000 2025",
       "lang": "en",
       "bookmarkCount": 22,
@@ -938,7 +1550,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/306818072/1775351084",
         "description": "",
         "location": "Philippines",
-        "followers": 327467,
+        "followers": 327522,
         "following": 558,
         "status": "",
         "canDm": false,
@@ -954,8 +1566,8 @@
         "favouritesCount": 8924,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 168484,
-        "statusesCount": 293249,
+        "mediaCount": 168803,
+        "statusesCount": 293702,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1087,14 +1699,885 @@
     },
     {
       "type": "tweet",
+      "id": "1971045970462031986",
+      "url": "https://x.com/halairporttrfps/status/1971045970462031986",
+      "twitterUrl": "https://twitter.com/halairporttrfps/status/1971045970462031986",
+      "text": "\"Traffic Advisory\"\n Due to ongoing Metro  station work at karthik nagar,traffic movement is very slow from mahadevapura towards marathahalli ,we request all commuters please co-operate with us, Tq @blrcitytraffic @DCPTrEastBCP @CPBlr @Jointcptraffic @acpwfieldtrf https://t.co/zLpyKv8sRJ",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 1,
+      "viewCount": 1385,
+      "createdAt": "Thu Sep 25 02:55:54 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1971045970462031986",
+      "displayTextRange": [
+        0,
+        263
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "halairporttrfps",
+        "url": "https://x.com/halairporttrfps",
+        "twitterUrl": "https://twitter.com/halairporttrfps",
+        "id": "3014057594",
+        "name": "HAL AIRPORT TRAFFIC BTP",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1431940538807111685/NlzIwwo7_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/3014057594/1698666640",
+        "description": "",
+        "location": "Bengaluru, India",
+        "followers": 12340,
+        "following": 64,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Feb 09 06:37:58 +0000 2015",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5826,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 7761,
+        "statusesCount": 20136,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2098702782719197542"
+        ],
+        "profile_bio": {
+          "description": "Official twitter account of HAL Airport Traffic Police Station (080-22943115). Dial Namma-112 in case of emergency. @blrcitytraffic",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    116,
+                    131
+                  ],
+                  "name": "",
+                  "screen_name": "blrcitytraffic"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.gov.in",
+                  "expanded_url": "https://btp.gov.in/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/aoci2eeC5I"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/zLpyKv8sRJ",
+            "expanded_url": "https://x.com/halairporttrfps/status/1971045970462031986/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1971045958034018304",
+            "indices": [
+              264,
+              287
+            ],
+            "media_key": "3_1971045958034018304",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtaj9sUllAACgACG1qP3flawHIAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG1qP2xSWUAAKAAIbWo/d+VrAcgAA",
+                "media_key": "3_1971045958034018304"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G1qP2xSWUAAVsZL.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 895,
+                  "w": 1599,
+                  "x": 0,
+                  "y": 225
+                },
+                {
+                  "h": 1120,
+                  "w": 1120,
+                  "x": 279,
+                  "y": 0
+                },
+                {
+                  "h": 1120,
+                  "w": 982,
+                  "x": 348,
+                  "y": 0
+                },
+                {
+                  "h": 1120,
+                  "w": 560,
+                  "x": 559,
+                  "y": 0
+                },
+                {
+                  "h": 1120,
+                  "w": 1599,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1120,
+              "width": 1599
+            },
+            "sizes": {
+              "large": {
+                "h": 1120,
+                "w": 1599
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/zLpyKv8sRJ"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "1851545900",
+            "indices": [
+              197,
+              212
+            ],
+            "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+            "screen_name": "blrcitytraffic"
+          },
+          {
+            "id_str": "2809049605",
+            "indices": [
+              213,
+              226
+            ],
+            "name": "DCP Traffic East ಉಪ ಪೊಲೀಸ್ ಆಯುಕ್ತರು ಸಂಚಾರ ಪೂರ್ವ",
+            "screen_name": "DCPTrEastBCP"
+          },
+          {
+            "id_str": "2687852605",
+            "indices": [
+              227,
+              233
+            ],
+            "name": "CP Bengaluru ಪೊಲೀಸ್ ಆಯುಕ್ತ ಬೆಂಗಳೂರು",
+            "screen_name": "CPBlr"
+          },
+          {
+            "id_str": "2809164276",
+            "indices": [
+              234,
+              249
+            ],
+            "name": "Joint CP, Traffic, Bengaluru",
+            "screen_name": "Jointcptraffic"
+          },
+          {
+            "id_str": "1361589347032600576",
+            "indices": [
+              250,
+              263
+            ],
+            "name": "ACP Whitefield Traffic ಎಸಿಪಿ ಸಂಚಾರ ವೈಟ್ ಫೀಲ್ಡ್",
+            "screen_name": "acpwfieldtrf"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1971045891164495939",
+      "url": "https://x.com/USEmbassyPH/status/1971045891164495939",
+      "twitterUrl": "https://twitter.com/USEmbassyPH/status/1971045891164495939",
+      "text": "U.S. citizens in the Philippines: Please continue monitoring local media, @dost_pagasa, and @NDRRMC_OpCen for updates on the weather and flooding situation in your area.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 2,
+      "likeCount": 8,
+      "quoteCount": 0,
+      "viewCount": 1684,
+      "createdAt": "Thu Sep 25 02:55:35 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1971045891164495939",
+      "displayTextRange": [
+        0,
+        169
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "USEmbassyPH",
+        "url": "https://x.com/USEmbassyPH",
+        "twitterUrl": "https://twitter.com/USEmbassyPH",
+        "id": "78489442",
+        "name": "U.S. Embassy in the Philippines",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1346638982512140288/1dwGxG0V_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/78489442/1770345835",
+        "description": "",
+        "location": "Manila, Philippines",
+        "followers": 660562,
+        "following": 1381,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Wed Sep 30 02:28:08 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 7726,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 539,
+        "statusesCount": 1299,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {
+          "label": {
+            "badge": {
+              "url": "https://pbs.twimg.com/profile_images/2065445010053431296/I2jXbYJL_bigger.jpg"
+            },
+            "description": "Department of State",
+            "url": {
+              "url": "https://twitter.com/StateDept",
+              "url_type": "DeepLink"
+            },
+            "user_label_display_type": "Badge",
+            "user_label_type": "BusinessLabel"
+          }
+        },
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official X account of the U.S. Embassy in the Philippines. #FriendsPartnersAllies 🇺🇸🇵🇭 | Terms of Use: https://t.co/SJ7FbWxQiy",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    59,
+                    81
+                  ],
+                  "text": "FriendsPartnersAllies"
+                }
+              ],
+              "urls": [
+                {
+                  "display_url": "state.gov/tou",
+                  "expanded_url": "http://state.gov/tou",
+                  "indices": [
+                    103,
+                    126
+                  ],
+                  "url": "https://t.co/SJ7FbWxQiy"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "ph.usembassy.gov",
+                  "expanded_url": "https://ph.usembassy.gov/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/hyzklUyGrZ"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "202890266",
+            "indices": [
+              74,
+              86
+            ],
+            "name": "PAGASA-DOST",
+            "screen_name": "dost_pagasa"
+          },
+          {
+            "id_str": "203343685",
+            "indices": [
+              92,
+              105
+            ],
+            "name": "NDRRMC",
+            "screen_name": "NDRRMC_OpCen"
+          }
+        ]
+      },
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "1971002909006627243",
+        "url": "https://x.com/dost_pagasa/status/1971002909006627243",
+        "twitterUrl": "https://twitter.com/dost_pagasa/status/1971002909006627243",
+        "text": "TROPICAL CYCLONE BULLETIN NR. 8\nSevere Tropical Storm #OpongPH (BUALOI)\nIssued at 8:00 AM, 25 September 2025\nValid for broadcast until the next bulletin at 11:00 AM today.\n\nSEVERE TROPICAL STORM OPONG MAINTAINS ITS STRENGTH WHILE OVER THE PHILIPPINE SEA.",
+        "source": "Twitter for iPhone",
+        "retweetCount": 66,
+        "replyCount": 3,
+        "likeCount": 203,
+        "quoteCount": 17,
+        "viewCount": 66277,
+        "createdAt": "Thu Sep 25 00:04:47 +0000 2025",
+        "lang": "en",
+        "bookmarkCount": 12,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "1971002909006627243",
+        "displayTextRange": [
+          0,
+          254
+        ],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {
+          "type": "user",
+          "userName": "dost_pagasa",
+          "url": "https://x.com/dost_pagasa",
+          "twitterUrl": "https://twitter.com/dost_pagasa",
+          "id": "202890266",
+          "name": "PAGASA-DOST",
+          "isVerified": false,
+          "isBlueVerified": true,
+          "verifiedType": "Government",
+          "profilePicture": "https://pbs.twimg.com/profile_images/1907656520868966402/Hhz8apng_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/202890266/1743655733",
+          "description": "",
+          "location": "Quezon City, PHILIPPINES",
+          "followers": 5538590,
+          "following": 27,
+          "status": "",
+          "canDm": false,
+          "canMediaTag": false,
+          "createdAt": "Fri Oct 15 01:42:39 +0000 2010",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 43,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 34290,
+          "statusesCount": 137829,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [
+            "2096440583007134043"
+          ],
+          "profile_bio": {
+            "description": "The official Twitter account of Philippine Atmospheric, Geophysical and Astronomical Services Administration (PAGASA-DOST)",
+            "entities": {
+              "description": {},
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "pagasa.dost.gov.ph",
+                    "expanded_url": "http://www.pagasa.dost.gov.ph/",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/HDZbWYEsfm"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {
+          "media": [
+            {
+              "display_url": "pic.x.com/2sUNeXtepp",
+              "expanded_url": "https://x.com/dost_pagasa/status/1971002909006627243/photo/1",
+              "ext_master_playlist_only": [],
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "ext_playlists": [],
+              "features": {
+                "large": {
+                  "faces": [
+                    {
+                      "h": 43,
+                      "w": 43,
+                      "x": 216,
+                      "y": 212
+                    }
+                  ]
+                },
+                "orig": {
+                  "faces": [
+                    {
+                      "h": 43,
+                      "w": 43,
+                      "x": 216,
+                      "y": 212
+                    }
+                  ]
+                }
+              },
+              "id_str": "1971002843654971392",
+              "indices": [
+                255,
+                278
+              ],
+              "media_key": "3_1971002843654971392",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtaaKS7VuAACgACG1pos/KaAasAAA==",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAABCgABG1popLtW4AAKAAIbWmiz8poBqwAA",
+                  "media_key": "3_1971002843654971392"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/media/G1popLtW4AAPOAO.jpg",
+              "original_info": {
+                "focus_rects": [
+                  {
+                    "h": 619,
+                    "w": 1105,
+                    "x": 0,
+                    "y": 179
+                  },
+                  {
+                    "h": 798,
+                    "w": 798,
+                    "x": 291,
+                    "y": 0
+                  },
+                  {
+                    "h": 798,
+                    "w": 700,
+                    "x": 340,
+                    "y": 0
+                  },
+                  {
+                    "h": 798,
+                    "w": 399,
+                    "x": 491,
+                    "y": 0
+                  },
+                  {
+                    "h": 798,
+                    "w": 1105,
+                    "x": 0,
+                    "y": 0
+                  }
+                ],
+                "height": 798,
+                "width": 1105
+              },
+              "sizes": {
+                "large": {
+                  "h": 798,
+                  "w": 1105
+                }
+              },
+              "type": "photo",
+              "url": "https://t.co/2sUNeXtepp"
+            },
+            {
+              "display_url": "pic.x.com/2sUNeXtepp",
+              "expanded_url": "https://x.com/dost_pagasa/status/1971002909006627243/photo/1",
+              "ext_master_playlist_only": [],
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "ext_playlists": [],
+              "features": {
+                "large": {
+                  "faces": []
+                },
+                "orig": {
+                  "faces": []
+                }
+              },
+              "id_str": "1971002845815083008",
+              "indices": [
+                255,
+                278
+              ],
+              "media_key": "3_1971002845815083008",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtaaKU8F5AACgACG1pos/KaAasAAA==",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAABCgABG1popTwXkAAKAAIbWmiz8poBqwAA",
+                  "media_key": "3_1971002845815083008"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/media/G1popTwXkAAyGdI.jpg",
+              "original_info": {
+                "focus_rects": [
+                  {
+                    "h": 1518,
+                    "w": 2710,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 2230,
+                    "w": 2230,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 2230,
+                    "w": 1956,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 2230,
+                    "w": 1115,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 2230,
+                    "w": 2710,
+                    "x": 0,
+                    "y": 0
+                  }
+                ],
+                "height": 2230,
+                "width": 2710
+              },
+              "sizes": {
+                "large": {
+                  "h": 1685,
+                  "w": 2048
+                }
+              },
+              "type": "photo",
+              "url": "https://t.co/2sUNeXtepp"
+            },
+            {
+              "display_url": "pic.x.com/2sUNeXtepp",
+              "expanded_url": "https://x.com/dost_pagasa/status/1971002909006627243/photo/1",
+              "ext_master_playlist_only": [],
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "ext_playlists": [],
+              "features": {
+                "large": {
+                  "faces": [
+                    {
+                      "h": 221,
+                      "w": 221,
+                      "x": 309,
+                      "y": 365
+                    }
+                  ]
+                },
+                "orig": {
+                  "faces": [
+                    {
+                      "h": 238,
+                      "w": 238,
+                      "x": 333,
+                      "y": 393
+                    }
+                  ]
+                }
+              },
+              "id_str": "1971002843453849601",
+              "indices": [
+                255,
+                278
+              ],
+              "media_key": "3_1971002843453849601",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtaaKSvWgABCgACG1pos/KaAasAAA==",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAABCgABG1popK9aAAEKAAIbWmiz8poBqwAA",
+                  "media_key": "3_1971002843453849601"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/media/G1popK9aAAEHNni.png",
+              "original_info": {
+                "focus_rects": [
+                  {
+                    "h": 1232,
+                    "w": 2200,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 1700,
+                    "w": 1700,
+                    "x": 500,
+                    "y": 0
+                  },
+                  {
+                    "h": 1700,
+                    "w": 1491,
+                    "x": 709,
+                    "y": 0
+                  },
+                  {
+                    "h": 1700,
+                    "w": 850,
+                    "x": 1350,
+                    "y": 0
+                  },
+                  {
+                    "h": 1700,
+                    "w": 2200,
+                    "x": 0,
+                    "y": 0
+                  }
+                ],
+                "height": 1700,
+                "width": 2200
+              },
+              "sizes": {
+                "large": {
+                  "h": 1583,
+                  "w": 2048
+                }
+              },
+              "type": "photo",
+              "url": "https://t.co/2sUNeXtepp"
+            },
+            {
+              "display_url": "pic.x.com/2sUNeXtepp",
+              "expanded_url": "https://x.com/dost_pagasa/status/1971002909006627243/photo/1",
+              "ext_master_playlist_only": [],
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "ext_playlists": [],
+              "features": {
+                "large": {
+                  "faces": [
+                    {
+                      "h": 107,
+                      "w": 107,
+                      "x": 851,
+                      "y": 963
+                    },
+                    {
+                      "h": 451,
+                      "w": 451,
+                      "x": 77,
+                      "y": 795
+                    },
+                    {
+                      "h": 443,
+                      "w": 443,
+                      "x": 87,
+                      "y": 1091
+                    },
+                    {
+                      "h": 457,
+                      "w": 457,
+                      "x": 63,
+                      "y": 943
+                    }
+                  ]
+                },
+                "orig": {
+                  "faces": [
+                    {
+                      "h": 174,
+                      "w": 174,
+                      "x": 1372,
+                      "y": 1553
+                    },
+                    {
+                      "h": 728,
+                      "w": 728,
+                      "x": 125,
+                      "y": 1282
+                    },
+                    {
+                      "h": 715,
+                      "w": 715,
+                      "x": 141,
+                      "y": 1759
+                    },
+                    {
+                      "h": 737,
+                      "w": 737,
+                      "x": 103,
+                      "y": 1521
+                    }
+                  ]
+                }
+              },
+              "id_str": "1971002843474821123",
+              "indices": [
+                255,
+                278
+              ],
+              "media_key": "3_1971002843474821123",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtaaKSwmgADCgACG1pos/KaAasAAA==",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAABCgABG1popLCaAAMKAAIbWmiz8poBqwAA",
+                  "media_key": "3_1971002843474821123"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/media/G1popLCaAAMTDlx.jpg",
+              "original_info": {
+                "focus_rects": [
+                  {
+                    "h": 1848,
+                    "w": 3300,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 3000,
+                    "w": 3000,
+                    "x": 231,
+                    "y": 0
+                  },
+                  {
+                    "h": 3000,
+                    "w": 2632,
+                    "x": 415,
+                    "y": 0
+                  },
+                  {
+                    "h": 3000,
+                    "w": 1500,
+                    "x": 981,
+                    "y": 0
+                  },
+                  {
+                    "h": 3000,
+                    "w": 3300,
+                    "x": 0,
+                    "y": 0
+                  }
+                ],
+                "height": 3000,
+                "width": 3300
+              },
+              "sizes": {
+                "large": {
+                  "h": 1862,
+                  "w": 2048
+                }
+              },
+              "type": "photo",
+              "url": "https://t.co/2sUNeXtepp"
+            }
+          ]
+        },
+        "card": null,
+        "place": {},
+        "entities": {
+          "hashtags": [
+            {
+              "indices": [
+                54,
+                62
+              ],
+              "text": "OpongPH"
+            }
+          ],
+          "symbols": [],
+          "urls": [],
+          "user_mentions": []
+        },
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
+        "article": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1971047898541707336",
       "url": "https://x.com/altermidya/status/1971047898541707336",
       "twitterUrl": "https://twitter.com/altermidya/status/1971047898541707336",
       "text": "‘RELEASE ALL CHILDREN NOW!’\n\nChildren’s rights group Salinlahi leads a protest action outside the Manila Police District HQ in Manila to condemn the violent arrest of minors who participated in the anti-corruption protest last September 21. \n\nSalinlahi reports that 91 minors have been detained so far. In a Facebook post, NUPL President Atty. Ephraim Cortez revealed that there is information spreading that the minors nabbed in Mendiola will be brought before Mayor Isko Moreno to be reprimanded. Atty. Cortez that this would be a violation of children’s rights to due process and protection from humiliation.",
       "source": "Twitter for iPhone",
-      "retweetCount": 1021,
+      "retweetCount": 1014,
       "replyCount": 5,
-      "likeCount": 2120,
+      "likeCount": 2110,
       "quoteCount": 9,
       "viewCount": 38069,
       "createdAt": "Thu Sep 25 03:03:33 +0000 2025",
@@ -1123,7 +2606,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2927430241/1727770375",
         "description": "",
         "location": "Quezon City",
-        "followers": 35577,
+        "followers": 35575,
         "following": 463,
         "status": "",
         "canDm": true,
@@ -1139,8 +2622,8 @@
         "favouritesCount": 1980,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 9731,
-        "statusesCount": 28732,
+        "mediaCount": 9748,
+        "statusesCount": 28762,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1457,6 +2940,276 @@
     },
     {
       "type": "tweet",
+      "id": "1971047010036769104",
+      "url": "https://x.com/ABC7/status/1971047010036769104",
+      "twitterUrl": "https://twitter.com/ABC7/status/1971047010036769104",
+      "text": "Over a dozen deaths are being blamed on Typhoon Ragasa after the massive storm battered parts of Taiwan and the Philippines.\n\nDramatic video out of Hong Kong today shows a massive wave from the typhoon flooding an empty restaurant. https://t.co/IAziCzpM1t",
+      "source": "Twitter for iPhone",
+      "retweetCount": 4,
+      "replyCount": 2,
+      "likeCount": 12,
+      "quoteCount": 0,
+      "viewCount": 7434,
+      "createdAt": "Thu Sep 25 03:00:02 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1971047010036769104",
+      "displayTextRange": [
+        0,
+        231
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ABC7",
+        "url": "https://x.com/ABC7",
+        "twitterUrl": "https://twitter.com/ABC7",
+        "id": "16374678",
+        "name": "ABC7 Eyewitness News",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Business",
+        "profilePicture": "https://pbs.twimg.com/profile_images/2018449684092821504/IdOS5_46_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/16374678/1680888849",
+        "description": "",
+        "location": "",
+        "followers": 1375494,
+        "following": 520,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Sat Sep 20 04:22:30 +0000 2008",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 4402,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 105290,
+        "statusesCount": 330834,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Your #1 breaking news and local news source in Southern California and the greater Los Angeles area. When you witness news, share it with #abc7eyewitness.",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    138,
+                    153
+                  ],
+                  "text": "abc7eyewitness"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "abc7.com",
+                  "expanded_url": "http://abc7.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/JHh3UkJcXL"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "display_url": "pic.x.com/IAziCzpM1t",
+            "expanded_url": "https://x.com/ABC7/status/1971047010036769104/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "1971013118038855680",
+            "indices": [
+              232,
+              255
+            ],
+            "media_key": "13_1971013118038855680",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARtacfzsV1AAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG1px/OxXUAAAAA==",
+                "media_key": "13_1971013118038855680"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G1pyDpAWYAAXPvM.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1920,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1920,
+                "w": 1080
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/IAziCzpM1t",
+            "video_info": {
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration_millis": 34200,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1971013118038855680/pl/MKgTCOBoF913CN6N.m3u8?tag=16&v=f5e"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1971013118038855680/vid/avc1/320x568/YBjpOK_UhFXt3kok.mp4?tag=16"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1971013118038855680/vid/avc1/480x852/5XUmzNoJutro6JNt.mp4?tag=16"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1971013118038855680/vid/avc1/720x1280/5GTP1bU7e3BPPPs4.mp4?tag=16"
+                },
+                {
+                  "bitrate": 10368000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1971013118038855680/vid/avc1/1080x1920/l5IDB7sZot-c8L6i.mp4?tag=16"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1971049376886776157",
+      "url": "https://x.com/ChpSolano/status/1971049376886776157",
+      "twitterUrl": "https://twitter.com/ChpSolano/status/1971049376886776157",
+      "text": "***TRAFFIC ADVISORY***\nI-80 eastbound, west of the Codelia Scales, lanes #1-3 are closed due to a crash. The estimated time for reopening is not yet available. Consider using alternate routes.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 1,
+      "viewCount": 876,
+      "createdAt": "Thu Sep 25 03:09:26 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1971049376886776157",
+      "displayTextRange": [
+        0,
+        192
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ChpSolano",
+        "url": "https://x.com/ChpSolano",
+        "twitterUrl": "https://twitter.com/ChpSolano",
+        "id": "3137816484",
+        "name": "CHP SOLANO",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2056441988225126400/CJgXUzac_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/3137816484/1728143489",
+        "description": "",
+        "location": "Fairfield, CA",
+        "followers": 4324,
+        "following": 155,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Fri Apr 03 21:02:18 +0000 2015",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 31,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 478,
+        "statusesCount": 1073,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "This is the official X account of the CHP Solano Area. For emergencies, call 911.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "chp.ca.gov",
+                  "expanded_url": "http://www.chp.ca.gov",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/asRLhR8NVe"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1971050014995775666",
       "url": "https://x.com/jeffcaparas/status/1971050014995775666",
       "twitterUrl": "https://twitter.com/jeffcaparas/status/1971050014995775666",
@@ -1493,7 +3246,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/194041108/1781445260",
         "description": "",
         "location": "Quezon City, Philippines",
-        "followers": 2601,
+        "followers": 2649,
         "following": 197,
         "status": "",
         "canDm": true,
@@ -1506,11 +3259,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 377,
+        "favouritesCount": 379,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 1898,
-        "statusesCount": 7148,
+        "mediaCount": 1921,
+        "statusesCount": 7257,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1685,7 +3438,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15872418/1747565518",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 9238495,
+        "followers": 9238613,
         "following": 1098,
         "status": "",
         "canDm": false,
@@ -1701,8 +3454,8 @@
         "favouritesCount": 1186,
         "hasCustomTimelines": true,
         "isTranslator": true,
-        "mediaCount": 349909,
-        "statusesCount": 1344977,
+        "mediaCount": 351349,
+        "statusesCount": 1346951,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1831,6 +3584,159 @@
     },
     {
       "type": "tweet",
+      "id": "1971054555723936035",
+      "url": "https://x.com/komonews/status/1971054555723936035",
+      "twitterUrl": "https://twitter.com/komonews/status/1971054555723936035",
+      "text": "Typhoon Ragasa leaves trail of destruction in Taiwan and Philippines, killing dozens:\n\nhttps://t.co/76PKUiidag",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 1,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 2640,
+      "createdAt": "Thu Sep 25 03:30:01 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1971054555723936035",
+      "displayTextRange": [
+        0,
+        110
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "komonews",
+        "url": "https://x.com/komonews",
+        "twitterUrl": "https://twitter.com/komonews",
+        "id": "16086928",
+        "name": "KOMO News",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1488661635300401155/RKijlz7r_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/16086928/1643759569",
+        "description": "",
+        "location": "Seattle, WA",
+        "followers": 498739,
+        "following": 2242,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Mon Sep 01 19:48:55 +0000 2008",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 6146,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 82266,
+        "statusesCount": 397369,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The latest breaking news, traffic, and weather from Seattle and Western Washington.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "komonews.com",
+                  "expanded_url": "http://komonews.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/wOYxEXibj4"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Typhoon Ragasa, one of the strongest in years, whipped waves taller than lampposts onto Hong Kong promenades and turned seas rough on the southern Chinese coast"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "komonews.com"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "komonews.com"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Typhoon Ragasa leaves trail of destruction in Taiwan and Philippines, killing dozens"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/76PKUiidag"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/76PKUiidag",
+        "user_refs_results": []
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "komonews.com/news/nation-wo…",
+            "expanded_url": "https://komonews.com/news/nation-world/typhoon-ragasa-leaves-trail-of-destruction-in-taiwan-and-philippines-killing-dozens-southern-chinese-coast-flooding-submerged-guangdong-province-wewather",
+            "indices": [
+              87,
+              110
+            ],
+            "url": "https://t.co/76PKUiidag"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1971057490667442282",
       "url": "https://x.com/CYBTRAFFIC/status/1971057490667442282",
       "twitterUrl": "https://twitter.com/CYBTRAFFIC/status/1971057490667442282",
@@ -1867,7 +3773,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/876684632325988352/1788351953",
         "description": "",
         "location": "Cyberabad",
-        "followers": 226780,
+        "followers": 226832,
         "following": 131,
         "status": "",
         "canDm": true,
@@ -1880,11 +3786,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3844,
+        "favouritesCount": 3866,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 11461,
-        "statusesCount": 42177,
+        "mediaCount": 11491,
+        "statusesCount": 42430,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2063,6 +3969,1419 @@
       "retweeted_tweet": null,
       "isLimitedReply": false,
       "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1971057108364951989",
+      "url": "https://x.com/interaksyon/status/1971057108364951989",
+      "twitterUrl": "https://twitter.com/interaksyon/status/1971057108364951989",
+      "text": "From Paris and Rome to Jakarta, Nepal, New York and Philippines, a curious banner has appeared in protest squares.\n\nHere's how \"One Piece\" pirate flag became the global emblem of Gen Z resistance 👇🏽\n\nhttps://t.co/fMowtZZZZj",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 1490,
+      "createdAt": "Thu Sep 25 03:40:09 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1971057108364951989",
+      "displayTextRange": [
+        0,
+        223
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "interaksyon",
+        "url": "https://x.com/interaksyon",
+        "twitterUrl": "https://twitter.com/interaksyon",
+        "id": "242696106",
+        "name": "Interaksyon",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1112526314651541505/wkeSIvRI_normal.png",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/242696106/1759206391",
+        "description": "",
+        "location": "Philippines",
+        "followers": 248100,
+        "following": 112,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Jan 25 11:24:31 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1521,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 52749,
+        "statusesCount": 239567,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Your thoughts on the news. https://t.co/A8Xm0H80qD",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "facebook.com/Interaksyon",
+                  "expanded_url": "http://facebook.com/Interaksyon",
+                  "indices": [
+                    27,
+                    50
+                  ],
+                  "url": "https://t.co/A8Xm0H80qD"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "interaksyon.com",
+                  "expanded_url": "http://www.interaksyon.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/BJbqpmQvqg"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2099284450261577732/1GoLQcNy?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 150,
+                "url": "https://pbs.twimg.com/card_img/2099284450261577732/1GoLQcNy?format=jpg&name=280x150",
+                "width": 225
+              }
+            }
+          },
+          {
+            "key": "description",
+            "value": {
+              "string_value": "From Paris and Rome to Jakarta, Indonesia, and New York, a curious banner has appeared in protest squares. With hollow cheeks, a broad grin and a straw"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "interaksyon.philstar.com"
+            }
+          },
+          {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 320,
+                "url": "https://pbs.twimg.com/card_img/2099284450261577732/1GoLQcNy?format=jpg&name=800x320_1",
+                "width": 480
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2099284450261577732/1GoLQcNy?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 533,
+                "url": "https://pbs.twimg.com/card_img/2099284450261577732/1GoLQcNy?format=jpg&name=orig",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2099284450261577732/1GoLQcNy?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2099284450261577732/1GoLQcNy?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 67,
+                "url": "https://pbs.twimg.com/card_img/2099284450261577732/1GoLQcNy?format=jpg&name=100x100",
+                "width": 100
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 533,
+                "url": "https://pbs.twimg.com/card_img/2099284450261577732/1GoLQcNy?format=png&name=2048x2048_2_exp",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "height": 533,
+                "url": "https://pbs.twimg.com/card_img/2099284450261577732/1GoLQcNy?format=jpg&name=orig",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "interaksyon.philstar.com"
+            }
+          },
+          {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2099284450261577732/1GoLQcNy?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 35.69,
+                    "rgb": {
+                      "blue": 74,
+                      "green": 65,
+                      "red": 54
+                    }
+                  },
+                  {
+                    "percentage": 27.22,
+                    "rgb": {
+                      "blue": 252,
+                      "green": 227,
+                      "red": 196
+                    }
+                  },
+                  {
+                    "percentage": 12.3,
+                    "rgb": {
+                      "blue": 100,
+                      "green": 129,
+                      "red": 113
+                    }
+                  },
+                  {
+                    "percentage": 2.44,
+                    "rgb": {
+                      "blue": 253,
+                      "green": 211,
+                      "red": 174
+                    }
+                  },
+                  {
+                    "percentage": 2.37,
+                    "rgb": {
+                      "blue": 190,
+                      "green": 204,
+                      "red": 206
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "From anime to activism: How the ‘One Piece’ pirate flag became the global emblem of Gen Z resistance"
+            }
+          },
+          {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 35.69,
+                    "rgb": {
+                      "blue": 74,
+                      "green": 65,
+                      "red": 54
+                    }
+                  },
+                  {
+                    "percentage": 27.22,
+                    "rgb": {
+                      "blue": 252,
+                      "green": 227,
+                      "red": 196
+                    }
+                  },
+                  {
+                    "percentage": 12.3,
+                    "rgb": {
+                      "blue": 100,
+                      "green": 129,
+                      "red": 113
+                    }
+                  },
+                  {
+                    "percentage": 2.44,
+                    "rgb": {
+                      "blue": 253,
+                      "green": 211,
+                      "red": 174
+                    }
+                  },
+                  {
+                    "percentage": 2.37,
+                    "rgb": {
+                      "blue": 190,
+                      "green": 204,
+                      "red": 206
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 533,
+                "url": "https://pbs.twimg.com/card_img/2099284450261577732/1GoLQcNy?format=png&name=2048x2048_2_exp",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2099284450261577732/1GoLQcNy?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 35.69,
+                    "rgb": {
+                      "blue": 74,
+                      "green": 65,
+                      "red": 54
+                    }
+                  },
+                  {
+                    "percentage": 27.22,
+                    "rgb": {
+                      "blue": 252,
+                      "green": 227,
+                      "red": 196
+                    }
+                  },
+                  {
+                    "percentage": 12.3,
+                    "rgb": {
+                      "blue": 100,
+                      "green": 129,
+                      "red": 113
+                    }
+                  },
+                  {
+                    "percentage": 2.44,
+                    "rgb": {
+                      "blue": 253,
+                      "green": 211,
+                      "red": 174
+                    }
+                  },
+                  {
+                    "percentage": 2.37,
+                    "rgb": {
+                      "blue": 190,
+                      "green": 204,
+                      "red": 206
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "height": 533,
+                "url": "https://pbs.twimg.com/card_img/2099284450261577732/1GoLQcNy?format=png&name=2048x2048_2_exp",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/fMowtZZZZj"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "height": 533,
+                "url": "https://pbs.twimg.com/card_img/2099284450261577732/1GoLQcNy?format=jpg&name=orig",
+                "width": 800
+              }
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/fMowtZZZZj",
+        "user_refs_results": []
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "interaksyon.philstar.com/trends-spotlig…",
+            "expanded_url": "https://interaksyon.philstar.com/trends-spotlights/2025/09/25/302625/from-anime-to-activism-how-the-one-piece-pirate-flag-became-the-global-emblem-of-gen-z-resistance/",
+            "indices": [
+              200,
+              223
+            ],
+            "url": "https://t.co/fMowtZZZZj"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1971059158091763903",
+      "url": "https://x.com/ChpSolano/status/1971059158091763903",
+      "twitterUrl": "https://twitter.com/ChpSolano/status/1971059158091763903",
+      "text": "*** TRAFFIC ADVISORY ***\nI-80 westbound to I-680 southbound transition ramp is closed due to a crash. The estimated time for reopening is not yet available, consider using alternate routes. https://t.co/UMw9UmINyb",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 1,
+      "viewCount": 2273,
+      "createdAt": "Thu Sep 25 03:48:18 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1971059158091763903",
+      "displayTextRange": [
+        0,
+        189
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ChpSolano",
+        "url": "https://x.com/ChpSolano",
+        "twitterUrl": "https://twitter.com/ChpSolano",
+        "id": "3137816484",
+        "name": "CHP SOLANO",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2056441988225126400/CJgXUzac_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/3137816484/1728143489",
+        "description": "",
+        "location": "Fairfield, CA",
+        "followers": 4324,
+        "following": 155,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Fri Apr 03 21:02:18 +0000 2015",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 31,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 478,
+        "statusesCount": 1073,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "This is the official X account of the CHP Solano Area. For emergencies, call 911.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "chp.ca.gov",
+                  "expanded_url": "http://www.chp.ca.gov",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/asRLhR8NVe"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/UMw9UmINyb",
+            "expanded_url": "https://x.com/ChpSolano/status/1971059158091763903/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 54,
+                    "w": 54,
+                    "x": 152,
+                    "y": 531
+                  },
+                  {
+                    "h": 146,
+                    "w": 146,
+                    "x": 468,
+                    "y": 1045
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 48,
+                    "w": 48,
+                    "x": 135,
+                    "y": 472
+                  },
+                  {
+                    "h": 129,
+                    "w": 129,
+                    "x": 416,
+                    "y": 928
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 54,
+                    "w": 54,
+                    "x": 152,
+                    "y": 531
+                  },
+                  {
+                    "h": 146,
+                    "w": 146,
+                    "x": 468,
+                    "y": 1045
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 27,
+                    "w": 27,
+                    "x": 76,
+                    "y": 267
+                  },
+                  {
+                    "h": 73,
+                    "w": 73,
+                    "x": 235,
+                    "y": 526
+                  }
+                ]
+              }
+            },
+            "id_str": "1971059137153843200",
+            "indices": [
+              190,
+              213
+            ],
+            "media_key": "3_1971059137153843200",
+            "media_results": {
+              "result": {
+                "media_key": "3_1971059137153843200"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G1qb15VXwAA-VQV.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 406
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 168
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 93
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 236,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "resize": "fit",
+                "w": 1080
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 960
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 544
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/UMw9UmINyb"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/UMw9UmINyb",
+            "expanded_url": "https://x.com/ChpSolano/status/1971059158091763903/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 54,
+                    "w": 54,
+                    "x": 152,
+                    "y": 531
+                  },
+                  {
+                    "h": 146,
+                    "w": 146,
+                    "x": 468,
+                    "y": 1045
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 48,
+                    "w": 48,
+                    "x": 135,
+                    "y": 472
+                  },
+                  {
+                    "h": 129,
+                    "w": 129,
+                    "x": 416,
+                    "y": 928
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 54,
+                    "w": 54,
+                    "x": 152,
+                    "y": 531
+                  },
+                  {
+                    "h": 146,
+                    "w": 146,
+                    "x": 468,
+                    "y": 1045
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 27,
+                    "w": 27,
+                    "x": 76,
+                    "y": 267
+                  },
+                  {
+                    "h": 73,
+                    "w": 73,
+                    "x": 235,
+                    "y": 526
+                  }
+                ]
+              }
+            },
+            "id_str": "1971059137153843200",
+            "indices": [
+              190,
+              213
+            ],
+            "media_key": "3_1971059137153843200",
+            "media_results": {
+              "result": {
+                "media_key": "3_1971059137153843200"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G1qb15VXwAA-VQV.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 406
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 168
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 93
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 236,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "resize": "fit",
+                "w": 1080
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 960
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 544
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/UMw9UmINyb"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1971058672982970759",
+      "url": "https://x.com/ETNowSwadesh/status/1971058672982970759",
+      "twitterUrl": "https://twitter.com/ETNowSwadesh/status/1971058672982970759",
+      "text": "नोएडा वाले ध्यान दें! आज शहर में होंगे PM मोदी, CM योगी - कई सड़कों पर रूट डायवर्जन; देखें ट्रैफिक एडवाइजरी\n\n#Modi #Govt #CMYogi #Noida\n\nhttps://t.co/M9WN2bHwI4",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 246,
+      "createdAt": "Thu Sep 25 03:46:22 +0000 2025",
+      "lang": "hi",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1971058672982970759",
+      "displayTextRange": [
+        0,
+        160
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ETNowSwadesh",
+        "url": "https://x.com/ETNowSwadesh",
+        "twitterUrl": "https://twitter.com/ETNowSwadesh",
+        "id": "1430371834436878349",
+        "name": "ET Now Swadesh",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1978280850786512897/V7wi1st0_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1430371834436878349/1776488043",
+        "description": "",
+        "location": "India",
+        "followers": 37662,
+        "following": 57,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Wed Aug 25 03:30:41 +0000 2021",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 41,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 126058,
+        "statusesCount": 212867,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {
+          "label": {
+            "badge": {
+              "url": "https://pbs.twimg.com/profile_images/1876159990408577024/quBPfe6a_bigger.jpg"
+            },
+            "description": "@zoomtv",
+            "url": {
+              "url": "https://twitter.com/ZoomTV",
+              "urlType": "DeepLink"
+            },
+            "userLabelDisplayType": "Badge",
+            "userLabelType": "BusinessLabel"
+          }
+        },
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099749392970649994"
+        ],
+        "profile_bio": {
+          "description": "A Times Network Company\n\nYouTube: https://t.co/H3uxIZkoDT\n\nFacebook: https://t.co/FLEQy2Tzm3\n\nInstagram: https://t.co/xn3a6UJXnW",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "youtube.com/@etnowswadesh",
+                  "expanded_url": "http://youtube.com/@etnowswadesh",
+                  "indices": [
+                    34,
+                    57
+                  ],
+                  "url": "https://t.co/H3uxIZkoDT"
+                },
+                {
+                  "display_url": "facebook.com/etnowswadesh",
+                  "expanded_url": "http://facebook.com/etnowswadesh",
+                  "indices": [
+                    69,
+                    92
+                  ],
+                  "url": "https://t.co/FLEQy2Tzm3"
+                },
+                {
+                  "display_url": "instagram.com/etnowswadesh",
+                  "expanded_url": "http://instagram.com/etnowswadesh",
+                  "indices": [
+                    105,
+                    128
+                  ],
+                  "url": "https://t.co/xn3a6UJXnW"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "hindi.etnownews.com",
+                  "expanded_url": "https://hindi.etnownews.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/zcgHt65V1f"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "UP International Trade Show 2025: ग्रेटर नोएडा में आज से यूपी ट्रेड शो की शुरुआत हो रही है। इसका उद्घाटन प्रधानमंत्री नरेंद्र मोदी करेंगे। वह हेलीकॉप्टर से कार्यक्रम स्थल पर पहुंचेंगे। मुख्यमंत्री...",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "hindi.etnownews.com",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "type": "USER",
+              "user_value": {
+                "id_str": "1430371834436878349",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "type": "USER",
+              "user_value": {
+                "id_str": "1430371834436878349",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "hindi.etnownews.com",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "नोएडा वाले ध्यान दें! आज शहर में होंगे PM मोदी, CM योगी - कई सड़कों पर रूट डायवर्जन; देखें ट्रैफिक...",
+              "type": "STRING"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/M9WN2bHwI4",
+              "type": "STRING"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "Swift",
+              "version": "12"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/M9WN2bHwI4",
+        "user_refs_results": [
+          {
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 41
+              },
+              "affiliates_highlighted_label": {
+                "label": {
+                  "badge": {
+                    "url": "https://pbs.twimg.com/profile_images/1876159990408577024/quBPfe6a_bigger.jpg"
+                  },
+                  "description": "@zoomtv",
+                  "url": {
+                    "url": "https://twitter.com/ZoomTV",
+                    "urlType": "DeepLink"
+                  },
+                  "userLabelDisplayType": "Badge",
+                  "userLabelType": "BusinessLabel"
+                }
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1978280850786512897/V7wi1st0_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/1430371834436878349/1776488043"
+              },
+              "core": {
+                "created_at": "Wed Aug 25 03:30:41 +0000 2021",
+                "name": "ET Now Swadesh",
+                "screen_name": "ETNowSwadesh"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "follow_request_sent": false,
+              "grok_translated_bio_with_availability": {
+                "is_available": false
+              },
+              "has_graduated_access": true,
+              "id": "VXNlcjoxNDMwMzcxODM0NDM2ODc4MzQ5",
+              "is_blue_verified": true,
+              "location": {
+                "location": "India"
+              },
+              "media_permissions": {
+                "can_media_tag": false
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "parody_commentary_fan_label": "None",
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099749392970649994"
+                ]
+              },
+              "possibly_sensitive": false,
+              "privacy": {
+                "protected": false
+              },
+              "professional": {
+                "category": [
+                  {
+                    "icon_name": "IconBriefcaseStroke",
+                    "id": 580,
+                    "name": "Media & News Company"
+                  }
+                ],
+                "professional_type": "Business",
+                "rest_id": "1476559934753886209"
+              },
+              "profile_bio": {
+                "description": "A Times Network Company\n\nYouTube: https://t.co/H3uxIZkoDT\n\nFacebook: https://t.co/FLEQy2Tzm3\n\nInstagram: https://t.co/xn3a6UJXnW",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "youtube.com/@etnowswadesh",
+                        "expanded_url": "http://youtube.com/@etnowswadesh",
+                        "indices": [
+                          34,
+                          57
+                        ],
+                        "url": "https://t.co/H3uxIZkoDT"
+                      },
+                      {
+                        "display_url": "facebook.com/etnowswadesh",
+                        "expanded_url": "http://facebook.com/etnowswadesh",
+                        "indices": [
+                          69,
+                          92
+                        ],
+                        "url": "https://t.co/FLEQy2Tzm3"
+                      },
+                      {
+                        "display_url": "instagram.com/etnowswadesh",
+                        "expanded_url": "http://instagram.com/etnowswadesh",
+                        "indices": [
+                          105,
+                          128
+                        ],
+                        "url": "https://t.co/xn3a6UJXnW"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "hindi.etnownews.com",
+                        "expanded_url": "https://hindi.etnownews.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/zcgHt65V1f"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_description_language": "en",
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": ""
+              },
+              "profile_translation": {
+                "translator_type": "none"
+              },
+              "relationship_counts": {
+                "followers": 37662,
+                "following": 57
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "1430371834436878349",
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 126058,
+                "tweets": 212867
+              },
+              "verification": {
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/zcgHt65V1f"
+              }
+            }
+          },
+          {
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 41
+              },
+              "affiliates_highlighted_label": {
+                "label": {
+                  "badge": {
+                    "url": "https://pbs.twimg.com/profile_images/1876159990408577024/quBPfe6a_bigger.jpg"
+                  },
+                  "description": "@zoomtv",
+                  "url": {
+                    "url": "https://twitter.com/ZoomTV",
+                    "urlType": "DeepLink"
+                  },
+                  "userLabelDisplayType": "Badge",
+                  "userLabelType": "BusinessLabel"
+                }
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1978280850786512897/V7wi1st0_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/1430371834436878349/1776488043"
+              },
+              "core": {
+                "created_at": "Wed Aug 25 03:30:41 +0000 2021",
+                "name": "ET Now Swadesh",
+                "screen_name": "ETNowSwadesh"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "follow_request_sent": false,
+              "grok_translated_bio_with_availability": {
+                "is_available": false
+              },
+              "has_graduated_access": true,
+              "id": "VXNlcjoxNDMwMzcxODM0NDM2ODc4MzQ5",
+              "is_blue_verified": true,
+              "location": {
+                "location": "India"
+              },
+              "media_permissions": {
+                "can_media_tag": false
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "parody_commentary_fan_label": "None",
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099749392970649994"
+                ]
+              },
+              "possibly_sensitive": false,
+              "privacy": {
+                "protected": false
+              },
+              "professional": {
+                "category": [
+                  {
+                    "icon_name": "IconBriefcaseStroke",
+                    "id": 580,
+                    "name": "Media & News Company"
+                  }
+                ],
+                "professional_type": "Business",
+                "rest_id": "1476559934753886209"
+              },
+              "profile_bio": {
+                "description": "A Times Network Company\n\nYouTube: https://t.co/H3uxIZkoDT\n\nFacebook: https://t.co/FLEQy2Tzm3\n\nInstagram: https://t.co/xn3a6UJXnW",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "youtube.com/@etnowswadesh",
+                        "expanded_url": "http://youtube.com/@etnowswadesh",
+                        "indices": [
+                          34,
+                          57
+                        ],
+                        "url": "https://t.co/H3uxIZkoDT"
+                      },
+                      {
+                        "display_url": "facebook.com/etnowswadesh",
+                        "expanded_url": "http://facebook.com/etnowswadesh",
+                        "indices": [
+                          69,
+                          92
+                        ],
+                        "url": "https://t.co/FLEQy2Tzm3"
+                      },
+                      {
+                        "display_url": "instagram.com/etnowswadesh",
+                        "expanded_url": "http://instagram.com/etnowswadesh",
+                        "indices": [
+                          105,
+                          128
+                        ],
+                        "url": "https://t.co/xn3a6UJXnW"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "hindi.etnownews.com",
+                        "expanded_url": "https://hindi.etnownews.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/zcgHt65V1f"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_description_language": "en",
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": ""
+              },
+              "profile_translation": {
+                "translator_type": "none"
+              },
+              "relationship_counts": {
+                "followers": 37662,
+                "following": 57
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "1430371834436878349",
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 126058,
+                "tweets": 212867
+              },
+              "verification": {
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/zcgHt65V1f"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              109,
+              114
+            ],
+            "text": "Modi"
+          },
+          {
+            "indices": [
+              115,
+              120
+            ],
+            "text": "Govt"
+          },
+          {
+            "indices": [
+              121,
+              128
+            ],
+            "text": "CMYogi"
+          },
+          {
+            "indices": [
+              129,
+              135
+            ],
+            "text": "Noida"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "hindi.etnownews.com/news/up-intern…",
+            "expanded_url": "https://hindi.etnownews.com/news/up-international-trade-show-2025-noida-traffic-advisory-issued-pm-modi-cm-yogi-to-visit-check-routes-to-avoid-article-152889826",
+            "indices": [
+              137,
+              160
+            ],
+            "url": "https://t.co/M9WN2bHwI4"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
       "article": null
     }
   ]

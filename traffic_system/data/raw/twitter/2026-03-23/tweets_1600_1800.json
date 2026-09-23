@@ -5,21 +5,21 @@
     "window_start": "2026-03-23T16:00:00+08:00",
     "window_end": "2026-03-23T18:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 11,
+    "tweet_count": 14,
     "slices": [
       {
         "start": "2026-03-23T16:00:00+08:00",
         "end": "2026-03-23T16:05:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-03-23T16:05:00+08:00",
         "end": "2026-03-23T16:10:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 0,
+        "accepted": 0
       },
       {
         "start": "2026-03-23T16:10:00+08:00",
@@ -32,8 +32,8 @@
         "start": "2026-03-23T16:15:00+08:00",
         "end": "2026-03-23T16:20:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-23T16:20:00+08:00",
@@ -116,8 +116,8 @@
         "start": "2026-03-23T17:15:00+08:00",
         "end": "2026-03-23T17:20:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-03-23T17:20:00+08:00",
@@ -144,8 +144,8 @@
         "start": "2026-03-23T17:35:00+08:00",
         "end": "2026-03-23T17:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-23T17:40:00+08:00",
@@ -178,6 +178,420 @@
     ]
   },
   "data": [
+    {
+      "type": "tweet",
+      "id": "2035990425677467842",
+      "url": "https://x.com/IndiaTodayFLASH/status/2035990425677467842",
+      "twitterUrl": "https://twitter.com/IndiaTodayFLASH/status/2035990425677467842",
+      "text": "Delhi traffic advisory: Navratri rush, diverted routes near Jhandewalan https://t.co/Fq6dIo3Syp",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 146,
+      "createdAt": "Mon Mar 23 08:01:59 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2035990425677467842",
+      "displayTextRange": [
+        0,
+        95
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "IndiaTodayFLASH",
+        "url": "https://x.com/IndiaTodayFLASH",
+        "twitterUrl": "https://twitter.com/IndiaTodayFLASH",
+        "id": "1073676020",
+        "name": "IndiaTodayFLASH",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/787569612745428992/4QK6rGHI_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1073676020/1687867665",
+        "description": "",
+        "location": "",
+        "followers": 1043647,
+        "following": 117,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Jan 09 12:46:38 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 137,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 6577,
+        "statusesCount": 768164,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "No dragging feet on news. Crisp & short news shots served here",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "With Navratri crowds swelling near Jhandewalan Temple, Delhi Traffic Police has issued an advisory with key route diversions in place. Commuters are likely to face congestion on major roads and are..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.indiatoday.in"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "19897138",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "19897138",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "indiatoday.in"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Delhi traffic advisory: Navratri rush, diverted routes near Jhandewalan"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/Fq6dIo3Syp"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/Fq6dIo3Syp",
+        "user_refs_results": [
+          {
+            "rest_id": "19897138",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 4431
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/2018221822471495680/N4dSGrXM_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/19897138/1789479162"
+              },
+              "core": {
+                "created_at": "Mon Feb 02 07:21:54 +0000 2009",
+                "name": "IndiaToday",
+                "screen_name": "IndiaToday"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "India"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2100169387387081130"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Brings you news breaks: Exclusive political, entertainment, sports insight, unbiased-nonaligned. https://t.co/4QkZBcgPH5| https://t.co/pmDGIBbj9z",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "instagram.com/indiatoday",
+                        "expanded_url": "http://instagram.com/indiatoday",
+                        "indices": [
+                          97,
+                          120
+                        ],
+                        "url": "https://t.co/4QkZBcgPH5"
+                      },
+                      {
+                        "display_url": "facebook.com/IndiaToday",
+                        "expanded_url": "http://facebook.com/IndiaToday",
+                        "indices": [
+                          122,
+                          145
+                        ],
+                        "url": "https://t.co/pmDGIBbj9z"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "indiatoday.in",
+                        "expanded_url": "http://www.indiatoday.in/",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/saDvonqrdB"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Square",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "1DA1F2"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 6251649,
+                "following": 84
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "19897138",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 569241,
+                "tweets": 1527358
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false,
+                "verified_type": "Business"
+              },
+              "website": {
+                "url": "https://t.co/saDvonqrdB"
+              }
+            }
+          },
+          {
+            "rest_id": "19897138",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 4431
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/2018221822471495680/N4dSGrXM_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/19897138/1789479162"
+              },
+              "core": {
+                "created_at": "Mon Feb 02 07:21:54 +0000 2009",
+                "name": "IndiaToday",
+                "screen_name": "IndiaToday"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "India"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2100169387387081130"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Brings you news breaks: Exclusive political, entertainment, sports insight, unbiased-nonaligned. https://t.co/4QkZBcgPH5| https://t.co/pmDGIBbj9z",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "instagram.com/indiatoday",
+                        "expanded_url": "http://instagram.com/indiatoday",
+                        "indices": [
+                          97,
+                          120
+                        ],
+                        "url": "https://t.co/4QkZBcgPH5"
+                      },
+                      {
+                        "display_url": "facebook.com/IndiaToday",
+                        "expanded_url": "http://facebook.com/IndiaToday",
+                        "indices": [
+                          122,
+                          145
+                        ],
+                        "url": "https://t.co/pmDGIBbj9z"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "indiatoday.in",
+                        "expanded_url": "http://www.indiatoday.in/",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/saDvonqrdB"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Square",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "1DA1F2"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 6251649,
+                "following": 84
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "19897138",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 569241,
+                "tweets": 1527358
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false,
+                "verified_type": "Business"
+              },
+              "website": {
+                "url": "https://t.co/saDvonqrdB"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "indiatoday.in/information/st…",
+            "expanded_url": "https://www.indiatoday.in/information/story/delhi-traffic-advisory-navratri-rush-diverted-routes-near-jhandewalan-2885792-2026-03-23",
+            "indices": [
+              72,
+              95
+            ],
+            "url": "https://t.co/Fq6dIo3Syp"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
     {
       "type": "tweet",
       "id": "2035990275626315968",
@@ -216,7 +630,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +646,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412025,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -282,48 +696,48 @@
     },
     {
       "type": "tweet",
-      "id": "2035992393103864181",
-      "url": "https://x.com/MMDA/status/2035992393103864181",
-      "twitterUrl": "https://twitter.com/MMDA/status/2035992393103864181",
-      "text": "MMDA ALERT: Stalled truck due to mechanical trouble at Roxas Blvd. Buendia Flyover SB as of 3:59 PM. One lane occupied. MMDA enforcers are on site managing traffic. #mmda",
+      "id": "2035994887829557565",
+      "url": "https://x.com/ArabianBusiness/status/2035994887829557565",
+      "twitterUrl": "https://twitter.com/ArabianBusiness/status/2035994887829557565",
+      "text": "Dubai Police have issued a traffic advisory calling on motorists to exercise caution amid unstable weather conditions, including rain, strong winds, thunder and reduced visibility.\n\nAuthorities urged drivers to reduce speed, maintain safe distances and avoid sudden braking, particularly on wet roads and when approaching curves.\n\nMotorists were also advised to ensure vehicles are road-ready, including checking tyres, windshield wipers and lighting systems before driving.\n\nDubai Police warned against driving through valleys, flood channels and areas with water accumulation and advised residents to avoid visiting beaches and coastal areas during the current conditions.\n\nThe advisory forms part of ongoing efforts to enhance road safety and minimise accident risks during adverse weather, with authorities encouraging the public to follow official guidance at all times.\n\nMore details here: https://t.co/bqli8oJe1q",
       "source": "Twitter for iPhone",
       "retweetCount": 0,
       "replyCount": 0,
-      "likeCount": 1,
+      "likeCount": 3,
       "quoteCount": 0,
-      "viewCount": 656,
-      "createdAt": "Mon Mar 23 08:09:48 +0000 2026",
+      "viewCount": 651,
+      "createdAt": "Mon Mar 23 08:19:42 +0000 2026",
       "lang": "en",
       "bookmarkCount": 0,
       "isReply": false,
       "inReplyToId": null,
-      "conversationId": "2035992393103864181",
+      "conversationId": "2035994887829557565",
       "displayTextRange": [
         0,
-        170
+        274
       ],
       "inReplyToUserId": null,
       "inReplyToUsername": null,
       "author": {
         "type": "user",
-        "userName": "MMDA",
-        "url": "https://x.com/MMDA",
-        "twitterUrl": "https://twitter.com/MMDA",
-        "id": "171574926",
-        "name": "Official MMDA",
+        "userName": "ArabianBusiness",
+        "url": "https://x.com/ArabianBusiness",
+        "twitterUrl": "https://twitter.com/ArabianBusiness",
+        "id": "16112354",
+        "name": "ArabianBusiness.com",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": "Government",
-        "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1993579995382661127/_FaUxwqe_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/16112354/1641449899",
         "description": "",
-        "location": "Metro Manila",
-        "followers": 3967068,
-        "following": 125,
+        "location": "Middle East",
+        "followers": 83118,
+        "following": 14,
         "status": "",
-        "canDm": true,
+        "canDm": false,
         "canMediaTag": true,
-        "createdAt": "Tue Jul 27 17:31:12 +0000 2010",
+        "createdAt": "Wed Sep 03 13:07:02 +0000 2008",
         "entities": {
           "description": {
             "urls": []
@@ -331,29 +745,41 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 5284,
+        "favouritesCount": 414,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888279,
+        "mediaCount": 15787,
+        "statusesCount": 94433,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [],
         "profile_bio": {
-          "description": "Official X Account of the Metropolitan Manila Development Authority | Hotline 136 | digitalmedia@mmda.gov.ph | VIBER 0956-6632-221",
+          "description": "https://t.co/gfzSi29ov5",
           "entities": {
-            "description": {},
-            "url": {
+            "description": {
               "urls": [
                 {
-                  "display_url": "mmda.gov.ph",
-                  "expanded_url": "http://mmda.gov.ph",
+                  "display_url": "arabianbusiness.com/subscribe",
+                  "expanded_url": "https://www.arabianbusiness.com/subscribe",
                   "indices": [
                     0,
                     23
                   ],
-                  "url": "https://t.co/BHm5ofschj"
+                  "url": "https://t.co/gfzSi29ov5"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "arabianbusiness.com",
+                  "expanded_url": "http://www.arabianbusiness.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/pFhLVOztT2"
                 }
               ]
             }
@@ -362,19 +788,103 @@
         "isAutomated": false,
         "automatedBy": null
       },
-      "extendedEntities": {},
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/mSmTrqFJ25",
+            "expanded_url": "https://x.com/ArabianBusiness/status/2035994887829557565/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2035994871916617728",
+            "indices": [
+              275,
+              298
+            ],
+            "media_key": "3_2035994871916617728",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxBToyBG2AACgACHEFOkDWXkT0AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHEFOjIEbYAAKAAIcQU6QNZeRPQAA",
+                "media_key": "3_2035994871916617728"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HEFOjIEbYAAirh5.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1835,
+                  "w": 3277,
+                  "x": 0,
+                  "y": 2052
+                },
+                {
+                  "h": 3277,
+                  "w": 3277,
+                  "x": 0,
+                  "y": 819
+                },
+                {
+                  "h": 3736,
+                  "w": 3277,
+                  "x": 0,
+                  "y": 360
+                },
+                {
+                  "h": 4096,
+                  "w": 2048,
+                  "x": 307,
+                  "y": 0
+                },
+                {
+                  "h": 4096,
+                  "w": 3277,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 4096,
+              "width": 3277
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 1639
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/mSmTrqFJ25"
+          }
+        ]
+      },
       "card": null,
       "place": {},
       "entities": {
-        "hashtags": [
+        "hashtags": [],
+        "symbols": [],
+        "urls": [
           {
+            "display_url": "arabianbusiness.com/abnews/dubai-p…",
+            "expanded_url": "https://www.arabianbusiness.com/abnews/dubai-police-issue-traffic-advisory-amid-rain-strong-winds-and-reduced-visibility",
             "indices": [
-              165,
-              170
+              896,
+              919
             ],
-            "text": "mmda"
+            "url": "https://t.co/bqli8oJe1q"
           }
-        ]
+        ],
+        "user_mentions": []
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
@@ -389,11 +899,11 @@
       "twitterUrl": "https://twitter.com/AJEnglish/status/2035998010858250501",
       "text": "Protest against US-Israel war on Iran outside US embassy in Manila, Philippines. \n\n🔴 LIVE updates: https://t.co/gZPhHf1ozX https://t.co/MrQla6AlZc",
       "source": "Twitter for iPhone",
-      "retweetCount": 681,
+      "retweetCount": 679,
       "replyCount": 34,
-      "likeCount": 2525,
+      "likeCount": 2517,
       "quoteCount": 22,
-      "viewCount": 63298,
+      "viewCount": 63305,
       "createdAt": "Mon Mar 23 08:32:07 +0000 2026",
       "lang": "en",
       "bookmarkCount": 68,
@@ -417,10 +927,10 @@
         "isBlueVerified": true,
         "verifiedType": "Business",
         "profilePicture": "https://pbs.twimg.com/profile_images/2043726724177776642/dkMa8Y0U_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/4970411/1784717780",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/4970411/1789557988",
         "description": "",
         "location": "Doha, Qatar",
-        "followers": 10043431,
+        "followers": 10052702,
         "following": 258,
         "status": "",
         "canDm": false,
@@ -433,16 +943,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 33097,
+        "favouritesCount": 33699,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 193036,
-        "statusesCount": 451825,
+        "mediaCount": 193985,
+        "statusesCount": 453562,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2096951639110189557"
+          "2100016415084368273"
         ],
         "profile_bio": {
           "description": "Your story. Your platform. For breaking news alerts, follow @AJENews. Join us on Telegram for real-time updates: https://t.co/xl7ggSArvE",
@@ -930,7 +1440,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -946,8 +1456,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412025,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1032,7 +1542,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197308,
+        "followers": 1197823,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -1048,8 +1558,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219320,
-        "statusesCount": 942045,
+        "mediaCount": 219510,
+        "statusesCount": 943056,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1227,7 +1737,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1243,8 +1753,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412025,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1342,11 +1852,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 972,
+        "favouritesCount": 973,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 29404,
-        "statusesCount": 30114,
+        "mediaCount": 29455,
+        "statusesCount": 30166,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1799,7 +2309,7 @@
       "replyCount": 1,
       "likeCount": 1,
       "quoteCount": 0,
-      "viewCount": 1170,
+      "viewCount": 1171,
       "createdAt": "Mon Mar 23 09:03:37 +0000 2026",
       "lang": "en",
       "bookmarkCount": 0,
@@ -1826,7 +2336,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967068,
+        "followers": 3966553,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -1839,11 +2349,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 5284,
+        "favouritesCount": 5283,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888279,
+        "mediaCount": 61737,
+        "statusesCount": 888712,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2003,7 +2513,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437248,
+        "followers": 1437169,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -2019,8 +2529,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412025,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2105,7 +2615,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1224983077937541120/1775013519",
         "description": "",
         "location": "Quezon City, Philippines",
-        "followers": 116296,
+        "followers": 116433,
         "following": 39,
         "status": "",
         "canDm": true,
@@ -2121,8 +2631,8 @@
         "favouritesCount": 910,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 30266,
-        "statusesCount": 42531,
+        "mediaCount": 30354,
+        "statusesCount": 42619,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2520,12 +3030,12 @@
         "name": "Official MMDA",
         "isVerified": false,
         "isBlueVerified": true,
-        "verifiedType": "Government",
+        "verifiedType": null,
         "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967069,
+        "followers": 3966553,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -2538,11 +3048,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 5284,
+        "favouritesCount": 5283,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888279,
+        "mediaCount": 61737,
+        "statusesCount": 888712,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2585,9 +3095,422 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2036009707056267293",
+      "url": "https://x.com/dzrhnews/status/2036009707056267293",
+      "twitterUrl": "https://twitter.com/dzrhnews/status/2036009707056267293",
+      "text": "Nagliyab ang isang taxi sa bahagi ng Andrews Avenue sa Villamor, Pasay City pasado alas-dose ngayong Lunes, Marso 23.\n\nAyon sa driver, nakatigil siya sa stoplight sa nasabing lugar nang biglang umusok ang kanyang sasakyan.\n\nBASAHIN: https://t.co/0hPwVzw5VV https://t.co/DGubc7vMbX",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 195,
+      "createdAt": "Mon Mar 23 09:18:36 +0000 2026",
+      "lang": "tl",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036009707056267293",
+      "displayTextRange": [
+        0,
+        256
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "dzrhnews",
+        "url": "https://x.com/dzrhnews",
+        "twitterUrl": "https://twitter.com/dzrhnews",
+        "id": "74886399",
+        "name": "DZRH NEWS",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2077640307458633728/kXNIDvgI_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/74886399/1762132752",
+        "description": "",
+        "location": "Manila, Philippines",
+        "followers": 143758,
+        "following": 1034,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Thu Sep 17 00:35:08 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 8103,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 300822,
+        "statusesCount": 863360,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The official X account of MBC Media Group's flagship radio station DZRH 666 kHz: Una sa Pilipinas, Una sa Pilipino",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "dzrh.com.ph",
+                  "expanded_url": "http://www.dzrh.com.ph",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/rKJXaTpAtz"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/DGubc7vMbX",
+            "expanded_url": "https://x.com/dzrhnews/status/2036009707056267293/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              }
+            },
+            "id_str": "2036009703117869056",
+            "indices": [
+              257,
+              280
+            ],
+            "media_key": "3_2036009703117869056",
+            "media_results": {
+              "result": {
+                "media_key": "3_2036009703117869056"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HEFcCamW0AApCQL.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1344,
+                  "w": 2400,
+                  "x": 0,
+                  "y": 1653
+                },
+                {
+                  "h": 2400,
+                  "w": 2400,
+                  "x": 0,
+                  "y": 600
+                },
+                {
+                  "h": 2736,
+                  "w": 2400,
+                  "x": 0,
+                  "y": 264
+                },
+                {
+                  "h": 3000,
+                  "w": 1500,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 3000,
+                  "w": 2400,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 3000,
+              "width": 2400
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "resize": "fit",
+                "w": 1638
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 960
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 544
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/DGubc7vMbX"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/DGubc7vMbX",
+            "expanded_url": "https://x.com/dzrhnews/status/2036009707056267293/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "medium": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              },
+              "small": {
+                "faces": []
+              }
+            },
+            "id_str": "2036009703117869056",
+            "indices": [
+              257,
+              280
+            ],
+            "media_key": "3_2036009703117869056",
+            "media_results": {
+              "result": {
+                "media_key": "3_2036009703117869056"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HEFcCamW0AApCQL.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1344,
+                  "w": 2400,
+                  "x": 0,
+                  "y": 1653
+                },
+                {
+                  "h": 2400,
+                  "w": 2400,
+                  "x": 0,
+                  "y": 600
+                },
+                {
+                  "h": 2736,
+                  "w": 2400,
+                  "x": 0,
+                  "y": 264
+                },
+                {
+                  "h": 3000,
+                  "w": 1500,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 3000,
+                  "w": 2400,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 3000,
+              "width": 2400
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "resize": "fit",
+                "w": 1638
+              },
+              "medium": {
+                "h": 1200,
+                "resize": "fit",
+                "w": 960
+              },
+              "small": {
+                "h": 680,
+                "resize": "fit",
+                "w": 544
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/DGubc7vMbX"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "dzrh.com.ph/post/taxi-catc…",
+            "expanded_url": "https://dzrh.com.ph/post/taxi-catches-fire-in-pasay",
+            "indices": [
+              233,
+              256
+            ],
+            "url": "https://t.co/0hPwVzw5VV"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2036014862619623566",
+      "url": "https://x.com/BosaiForum_PR/status/2036014862619623566",
+      "twitterUrl": "https://twitter.com/BosaiForum_PR/status/2036014862619623566",
+      "text": "https://t.co/VEEGD90qqx",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 15,
+      "quoteCount": 0,
+      "viewCount": 247,
+      "createdAt": "Mon Mar 23 09:39:05 +0000 2026",
+      "lang": "zxx",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2036014862619623566",
+      "displayTextRange": [
+        0,
+        23
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "BosaiForum_PR",
+        "url": "https://x.com/BosaiForum_PR",
+        "twitterUrl": "https://twitter.com/BosaiForum_PR",
+        "id": "1701147681635352576",
+        "name": "さき@世界防災フォーラム｜広報",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1723987551122542592/w-6dr0hC_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1701147681635352576/1699863952",
+        "description": "",
+        "location": "",
+        "followers": 2050,
+        "following": 1866,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Mon Sep 11 08:17:12 +0000 2023",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 97193,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 135,
+        "statusesCount": 9284,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1701513313438548176"
+        ],
+        "profile_bio": {
+          "description": "防災への道は一歩ずつ。災害で苦しむ人を0にすることは難しいけれど、小さな行動が大きな変化を生むと確信しています。一緒に考え方を変え、行動を変えていきませんか？防災の新しい視点、学びの旅で得た気づきを毎日発信中。みなさんの応援が力になります！防災での行動変容で、大切ないのちを守りましょう！@WorldBosaiForum",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    144,
+                    160
+                  ],
+                  "name": "",
+                  "screen_name": "WorldBosaiForum"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "worldbosaiforum.com",
+                  "expanded_url": "https://worldbosaiforum.com/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/4O67BCQDkY"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/i/article/2036…",
+            "expanded_url": "http://x.com/i/article/2036012676770639872",
+            "indices": [
+              0,
+              23
+            ],
+            "url": "https://t.co/VEEGD90qqx"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
       "isLimitedReply": false,
       "communityInfo": null,
-      "article": null
+      "article": {
+        "title": "海外ニュースまとめ",
+        "preview_text": "今日は「世界気象デー」です。 今週の海外ニュースを並べてみたら、気象に関わる話題が自然と多く集まっていました。 気温、降水量、氷河。\n世界中で「気象」が、人の命や暮らしに直接ぶつかってきています。",
+        "cover_media_img_url": "https://pbs.twimg.com/media/HEFe8pYa0AA80an.jpg"
+      }
     }
   ]
 }

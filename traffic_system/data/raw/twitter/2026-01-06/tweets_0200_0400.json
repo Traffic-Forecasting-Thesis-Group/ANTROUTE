@@ -5,7 +5,7 @@
     "window_start": "2026-01-06T02:00:00+08:00",
     "window_end": "2026-01-06T04:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 1,
+    "tweet_count": 2,
     "slices": [
       {
         "start": "2026-01-06T02:00:00+08:00",
@@ -53,8 +53,8 @@
         "start": "2026-01-06T02:30:00+08:00",
         "end": "2026-01-06T02:35:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-06T02:35:00+08:00",
@@ -180,6 +180,204 @@
   "data": [
     {
       "type": "tweet",
+      "id": "2008245176150749590",
+      "url": "https://x.com/harrrybuilds/status/2008245176150749590",
+      "twitterUrl": "https://twitter.com/harrrybuilds/status/2008245176150749590",
+      "text": "System Design 101\n\nSQL vs. NoSQL.\n\nChoosing the wrong database can cripple your application’s growth (or give you nightmares about data consistency).\n\nHere is the breakdown of when to use which, explained simply. \n\n-The Core Difference\nSQL (Relational) Think: Excel Sheets. \n• Structure: Tables, Rows, Columns. \n• Schema: Rigid (Must define before adding data). \n• Scaling: Vertical (Bigger servers).\n\nNoSQL (Non-Relational) Think: Manila Folders. \n• Structure: Documents, Key-Pairs, Graphs. \n• Schema: Flexible (Add whatever, whenever). \n• Scaling: Horizontal (More servers).\n\n-When to choose SQL? (Postgres, MySQL)\nChoose SQL when data integrity is non-negotiable.\n• Financial systems (Banking) \n• Inventory management \n• Complex relationships (Joins)\n\nIf you need ACID compliance (Atomic, Consistent, Isolated, Durable), you need SQL.\n\nWhen to choose NoSQL? (MongoDB, Redis, Cassandra)\nChoose NoSQL when speed and scale matter more than strict structure.\n\n• Real-time Big Data (IoT sensors) \n• Content Management (varying product attributes) \n• Rapid prototyping (schema changes daily) \n• High-velocity feeds (Twitter timeline)\n\n- Real World Examples\n\nThe Bank (SQL): I send you $50. The DB must deduct from me and add to you perfectly. If power fails halfway, the transaction rolls back. Zero error margin.\n\nThe Social App (NoSQL): I post a photo. It needs to show up on 1M feeds instantly. If one user sees it 2 seconds late? Who cares. Speed wins.\n\n-The \"Senior Dev\" Secret\nYou don't have to pick just one.\nUse \"Polyglot Persistence.\"\n\nExample: An E-commerce app. \n• SQL for billing & user accounts (Safety). \n• NoSQL for the product catalog & reviews (Flexibility). \n• Redis for the shopping cart (Speed).\n\nTL;DR\nSQL = Strict, Safe, Complex Queries. NoSQL = Flexible, Fast, Massive Scale.\n\nWhich team are you on? Postgres or Mongo?\n\n#SystemDesign #SoftwareEngineering",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 4,
+      "quoteCount": 0,
+      "viewCount": 76,
+      "createdAt": "Mon Jan 05 18:32:16 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2008245176150749590",
+      "displayTextRange": [
+        0,
+        276
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "harrrybuilds",
+        "url": "https://x.com/harrrybuilds",
+        "twitterUrl": "https://twitter.com/harrrybuilds",
+        "id": "1970328931174912000",
+        "name": "harry",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2012404909170405376/3WHsj5Tr_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1970328931174912000/1769357489",
+        "description": "",
+        "location": "x.com",
+        "followers": 158,
+        "following": 168,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Sep 23 03:26:50 +0000 2025",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1767,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 92,
+        "statusesCount": 621,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "understanding how large scale systems work | Java Developer",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "harrysblog.vercel.app",
+                  "expanded_url": "https://harrysblog.vercel.app/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/ePP4qP7uPd"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/b4YAqEtzsa",
+            "expanded_url": "https://x.com/harrrybuilds/status/2008245176150749590/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2008245046395699200",
+            "indices": [
+              277,
+              300
+            ],
+            "media_key": "3_2008245046395699200",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARveuDrEWoAACgACG964WPpbcZYAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG964OsRagAAKAAIb3rhY+ltxlgAA",
+                "media_key": "3_2008245046395699200"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G964OsRagAAvVvM.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 516,
+                  "w": 921,
+                  "x": 45,
+                  "y": 0
+                },
+                {
+                  "h": 516,
+                  "w": 516,
+                  "x": 442,
+                  "y": 0
+                },
+                {
+                  "h": 516,
+                  "w": 453,
+                  "x": 474,
+                  "y": 0
+                },
+                {
+                  "h": 516,
+                  "w": 258,
+                  "x": 571,
+                  "y": 0
+                },
+                {
+                  "h": 516,
+                  "w": 966,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 516,
+              "width": 966
+            },
+            "sizes": {
+              "large": {
+                "h": 516,
+                "w": 966
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/b4YAqEtzsa"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              1840,
+              1853
+            ],
+            "text": "SystemDesign"
+          },
+          {
+            "indices": [
+              1854,
+              1874
+            ],
+            "text": "SoftwareEngineering"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": {
+        "id": "1493446837214187523",
+        "name": "Build in Public",
+        "custom_banner_media_url": "https://pbs.twimg.com/community_banner_img/1915033378811772928/KdaKUaRP?format=png&name=orig"
+      },
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2008263150802817228",
       "url": "https://x.com/followlastma/status/2008263150802817228",
       "twitterUrl": "https://twitter.com/followlastma/status/2008263150802817228",
@@ -216,8 +414,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 187003,
-        "following": 87,
+        "followers": 187258,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -229,16 +427,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3016,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31274,
-        "statusesCount": 146793,
+        "mediaCount": 31384,
+        "statusesCount": 146914,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",

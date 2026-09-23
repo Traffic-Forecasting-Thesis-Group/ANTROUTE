@@ -5,7 +5,7 @@
     "window_start": "2025-09-07T00:00:00+08:00",
     "window_end": "2025-09-07T02:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 2,
+    "tweet_count": 3,
     "slices": [
       {
         "start": "2025-09-07T00:00:00+08:00",
@@ -60,8 +60,8 @@
         "start": "2025-09-07T00:35:00+08:00",
         "end": "2025-09-07T00:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-09-07T00:40:00+08:00",
@@ -189,7 +189,7 @@
       "replyCount": 1,
       "likeCount": 2,
       "quoteCount": 0,
-      "viewCount": 108,
+      "viewCount": 109,
       "createdAt": "Sat Sep 06 16:02:59 +0000 2025",
       "lang": "qme",
       "bookmarkCount": 0,
@@ -216,8 +216,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1273165576261775361/1664042037",
         "description": "",
         "location": "Nagaon, India",
-        "followers": 674,
-        "following": 509,
+        "followers": 675,
+        "following": 508,
         "status": "",
         "canDm": false,
         "canMediaTag": true,
@@ -265,9 +265,11 @@
           {
             "display_url": "pic.x.com/nEOAnin6H1",
             "expanded_url": "https://x.com/Bidyajyoti_/status/1964358679756476781/photo/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": [
@@ -276,16 +278,6 @@
                     "w": 67,
                     "x": 95,
                     "y": 852
-                  }
-                ]
-              },
-              "medium": {
-                "faces": [
-                  {
-                    "h": 62,
-                    "w": 62,
-                    "x": 89,
-                    "y": 798
                   }
                 ]
               },
@@ -298,16 +290,6 @@
                     "y": 852
                   }
                 ]
-              },
-              "small": {
-                "faces": [
-                  {
-                    "h": 35,
-                    "w": 35,
-                    "x": 50,
-                    "y": 452
-                  }
-                ]
               }
             },
             "id_str": "1964358669933400064",
@@ -317,7 +299,10 @@
             ],
             "media_key": "3_1964358669933400064",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtCzc181tAACgACG0LNz8ZXEW0AAA==",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG0LNzXzW0AAKAAIbQs3PxlcRbQAA",
                 "media_key": "3_1964358669933400064"
               }
             },
@@ -361,23 +346,7 @@
             "sizes": {
               "large": {
                 "h": 1280,
-                "resize": "fit",
                 "w": 963
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 903
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 512
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "photo",
@@ -386,20 +355,16 @@
           {
             "display_url": "pic.x.com/nEOAnin6H1",
             "expanded_url": "https://x.com/Bidyajyoti_/status/1964358679756476781/photo/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "features": {
               "large": {
                 "faces": []
               },
-              "medium": {
-                "faces": []
-              },
               "orig": {
-                "faces": []
-              },
-              "small": {
                 "faces": []
               }
             },
@@ -410,7 +375,10 @@
             ],
             "media_key": "3_1964358669887258624",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtCzc16FsAACgACG0LNz8ZXEW0AAA==",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG0LNzXoWwAAKAAIbQs3PxlcRbQAA",
                 "media_key": "3_1964358669887258624"
               }
             },
@@ -454,23 +422,7 @@
             "sizes": {
               "large": {
                 "h": 1280,
-                "resize": "fit",
                 "w": 960
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 900
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 510
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "photo",
@@ -489,226 +441,12 @@
             ],
             "text": "TrafficUpdate"
           }
-        ],
-        "media": [
-          {
-            "display_url": "pic.x.com/nEOAnin6H1",
-            "expanded_url": "https://x.com/Bidyajyoti_/status/1964358679756476781/photo/1",
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "features": {
-              "large": {
-                "faces": [
-                  {
-                    "h": 67,
-                    "w": 67,
-                    "x": 95,
-                    "y": 852
-                  }
-                ]
-              },
-              "medium": {
-                "faces": [
-                  {
-                    "h": 62,
-                    "w": 62,
-                    "x": 89,
-                    "y": 798
-                  }
-                ]
-              },
-              "orig": {
-                "faces": [
-                  {
-                    "h": 67,
-                    "w": 67,
-                    "x": 95,
-                    "y": 852
-                  }
-                ]
-              },
-              "small": {
-                "faces": [
-                  {
-                    "h": 35,
-                    "w": 35,
-                    "x": 50,
-                    "y": 452
-                  }
-                ]
-              }
-            },
-            "id_str": "1964358669933400064",
-            "indices": [
-              15,
-              38
-            ],
-            "media_key": "3_1964358669933400064",
-            "media_results": {
-              "result": {
-                "media_key": "3_1964358669933400064"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/media/G0LNzXzW0AAHQVS.jpg",
-            "original_info": {
-              "focus_rects": [
-                {
-                  "h": 539,
-                  "w": 963,
-                  "x": 0,
-                  "y": 466
-                },
-                {
-                  "h": 963,
-                  "w": 963,
-                  "x": 0,
-                  "y": 254
-                },
-                {
-                  "h": 1098,
-                  "w": 963,
-                  "x": 0,
-                  "y": 182
-                },
-                {
-                  "h": 1280,
-                  "w": 640,
-                  "x": 323,
-                  "y": 0
-                },
-                {
-                  "h": 1280,
-                  "w": 963,
-                  "x": 0,
-                  "y": 0
-                }
-              ],
-              "height": 1280,
-              "width": 963
-            },
-            "sizes": {
-              "large": {
-                "h": 1280,
-                "resize": "fit",
-                "w": 963
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 903
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 512
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
-              }
-            },
-            "type": "photo",
-            "url": "https://t.co/nEOAnin6H1"
-          },
-          {
-            "display_url": "pic.x.com/nEOAnin6H1",
-            "expanded_url": "https://x.com/Bidyajyoti_/status/1964358679756476781/photo/1",
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "features": {
-              "large": {
-                "faces": []
-              },
-              "medium": {
-                "faces": []
-              },
-              "orig": {
-                "faces": []
-              },
-              "small": {
-                "faces": []
-              }
-            },
-            "id_str": "1964358669887258624",
-            "indices": [
-              15,
-              38
-            ],
-            "media_key": "3_1964358669887258624",
-            "media_results": {
-              "result": {
-                "media_key": "3_1964358669887258624"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/media/G0LNzXoWwAApLjn.jpg",
-            "original_info": {
-              "focus_rects": [
-                {
-                  "h": 538,
-                  "w": 960,
-                  "x": 0,
-                  "y": 83
-                },
-                {
-                  "h": 960,
-                  "w": 960,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 1094,
-                  "w": 960,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 1280,
-                  "w": 640,
-                  "x": 160,
-                  "y": 0
-                },
-                {
-                  "h": 1280,
-                  "w": 960,
-                  "x": 0,
-                  "y": 0
-                }
-              ],
-              "height": 1280,
-              "width": 960
-            },
-            "sizes": {
-              "large": {
-                "h": 1280,
-                "resize": "fit",
-                "w": 960
-              },
-              "medium": {
-                "h": 1200,
-                "resize": "fit",
-                "w": 900
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 510
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
-              }
-            },
-            "type": "photo",
-            "url": "https://t.co/nEOAnin6H1"
-          }
         ]
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -749,7 +487,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
         "description": "",
         "location": "Philippines",
-        "followers": 189294,
+        "followers": 190119,
         "following": 481,
         "status": "",
         "canDm": false,
@@ -762,16 +500,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 20344,
+        "favouritesCount": 20357,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 44220,
-        "statusesCount": 196905,
+        "mediaCount": 45132,
+        "statusesCount": 198590,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2093633872936456280"
+          "2099480545550090734"
         ],
         "profile_bio": {
           "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",
@@ -864,6 +602,192 @@
       "retweeted_tweet": null,
       "isLimitedReply": false,
       "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1964367109615714378",
+      "url": "https://x.com/all_for_YUJU/status/1964367109615714378",
+      "twitterUrl": "https://twitter.com/all_for_YUJU/status/1964367109615714378",
+      "text": "OMG !! Top15 WORLDWIDE !! It's huge !!!\n\n Ziyu is trending at TOP 15 WORLDWIDE &amp; Within Top 10 in 5 countries 🔥 YUNIs are on fire !! \n\n#15 WORLDWIDE 🌎\n#1 Vietnam\n#5 Malaysia \n#8 Indonesia \n#8 Thailand\n#10 Philippines \n\nTHE NIGHT ZI YU SHINE\n#ZIYUTooDeepintoTheTerminatorLine https://t.co/1RJL1tOTV3",
+      "source": "Twitter for iPhone",
+      "retweetCount": 181,
+      "replyCount": 34,
+      "likeCount": 390,
+      "quoteCount": 22,
+      "viewCount": 7373,
+      "createdAt": "Sat Sep 06 16:36:29 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 6,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1964367109615714378",
+      "displayTextRange": [
+        0,
+        278
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "all_for_YUJU",
+        "url": "https://x.com/all_for_YUJU",
+        "twitterUrl": "https://twitter.com/all_for_YUJU",
+        "id": "986470779343683585",
+        "name": "💙",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2037495844489109504/v_2FrX2I_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/986470779343683585/1580056828",
+        "description": "",
+        "location": "",
+        "followers": 145,
+        "following": 168,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Wed Apr 18 05:05:36 +0000 2018",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 68460,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 545,
+        "statusesCount": 3195,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "GFRIEND, SVTXTWS, ZIYU 🩷",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/1RJL1tOTV3",
+            "expanded_url": "https://x.com/all_for_YUJU/status/1964367109615714378/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 296,
+                    "w": 296,
+                    "x": 1014,
+                    "y": 1004
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 296,
+                    "w": 296,
+                    "x": 1014,
+                    "y": 1004
+                  }
+                ]
+              }
+            },
+            "id_str": "1964367107061403650",
+            "indices": [
+              279,
+              302
+            ],
+            "media_key": "3_1964367107061403650",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtC1Xno21ACCgACG0LVeoEbAEoAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG0LVeejbUAIKAAIbQtV6gRsASgAA",
+                "media_key": "3_1964367107061403650"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G0LVeejbUAIxKaO.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1147,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 92
+                },
+                {
+                  "h": 1383,
+                  "w": 1383,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1383,
+                  "w": 1213,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1383,
+                  "w": 692,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1383,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1383,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 1383,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/1RJL1tOTV3"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              245,
+              278
+            ],
+            "text": "ZIYUTooDeepintoTheTerminatorLine"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": {
+        "id": "1938920778898251977",
+        "name": "ZI YU (梓渝) GLOBAL COMMUNITY",
+        "custom_banner_media_url": "https://pbs.twimg.com/community_banner_img/1965849079852023808/04Edfym4?format=jpg&name=orig"
+      },
       "article": null
     }
   ]

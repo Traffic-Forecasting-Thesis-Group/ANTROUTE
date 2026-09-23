@@ -5,7 +5,7 @@
     "window_start": "2025-09-26T02:00:00+08:00",
     "window_end": "2025-09-26T04:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 3,
+    "tweet_count": 8,
     "slices": [
       {
         "start": "2025-09-26T02:00:00+08:00",
@@ -32,8 +32,8 @@
         "start": "2025-09-26T02:15:00+08:00",
         "end": "2025-09-26T02:20:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-09-26T02:20:00+08:00",
@@ -81,8 +81,8 @@
         "start": "2025-09-26T02:50:00+08:00",
         "end": "2025-09-26T02:55:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-09-26T02:55:00+08:00",
@@ -123,15 +123,15 @@
         "start": "2025-09-26T03:20:00+08:00",
         "end": "2025-09-26T03:25:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-09-26T03:25:00+08:00",
         "end": "2025-09-26T03:30:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-09-26T03:30:00+08:00",
@@ -180,6 +180,85 @@
   "data": [
     {
       "type": "tweet",
+      "id": "1971278249402695961",
+      "url": "https://x.com/WeatherMonitors/status/1971278249402695961",
+      "twitterUrl": "https://twitter.com/WeatherMonitors/status/1971278249402695961",
+      "text": "Today, severe flooding has been reported in several countries, including Brazil, Mexico, Thailand, the Philippines, China, India, Lebanon, Uruguay, Panama, and Ghana, with lighter flooding in Italy and the Dominican Republic (September 25, 2025) (Confirmed update)",
+      "source": "Twitter for iPhone",
+      "retweetCount": 16,
+      "replyCount": 4,
+      "likeCount": 51,
+      "quoteCount": 3,
+      "viewCount": 2761,
+      "createdAt": "Thu Sep 25 18:18:53 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 3,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1971278249402695961",
+      "displayTextRange": [
+        0,
+        264
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "WeatherMonitors",
+        "url": "https://x.com/WeatherMonitors",
+        "twitterUrl": "https://twitter.com/WeatherMonitors",
+        "id": "1786841191159681024",
+        "name": "Weather Monitor",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1971807005892661249/k6qWwg3x_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1786841191159681024/1764653222",
+        "description": "",
+        "location": "Earth",
+        "followers": 91223,
+        "following": 576,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Sat May 04 19:32:13 +0000 2024",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 10548,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 11533,
+        "statusesCount": 15309,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Stay informed with accurate updates on extreme weather, wildfires, volcanic eruptions, and breaking news worldwide. Selective sharing. DM for credit or removal.",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1971278631516373079",
       "url": "https://x.com/dost_pagasa/status/1971278631516373079",
       "twitterUrl": "https://twitter.com/dost_pagasa/status/1971278631516373079",
@@ -216,7 +295,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/202890266/1743655733",
         "description": "",
         "location": "Quezon City, PHILIPPINES",
-        "followers": 5538850,
+        "followers": 5538591,
         "following": 27,
         "status": "",
         "canDm": false,
@@ -232,13 +311,13 @@
         "favouritesCount": 43,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 34151,
-        "statusesCount": 137690,
+        "mediaCount": 34290,
+        "statusesCount": 137829,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2095346702891077775"
+          "2096440583007134043"
         ],
         "profile_bio": {
           "description": "The official Twitter account of Philippine Atmospheric, Geophysical and Astronomical Services Administration (PAGASA-DOST)",
@@ -390,6 +469,180 @@
     },
     {
       "type": "tweet",
+      "id": "1971286222967353777",
+      "url": "https://x.com/BackpirchCrew/status/1971286222967353777",
+      "twitterUrl": "https://twitter.com/BackpirchCrew/status/1971286222967353777",
+      "text": "🚨LANDFALL: Bualoi (OpongPH), now a Category 1 Typhoon, has made landfall over the town of San Policarpo on the island of Eastern Samar in the Philippines. A huge plume of shudderingly cold, torrential convection is now pouring tropical rainwater through the rainforest canopies of the Eastern Visayas, Central Visayas, and southern Bicol Regions as the storm begins her crossing of the Philippine archipelago. Rapid street flooding has already been reported in Leyte, and rainfall pockets of 300+ mm (10+ in.) are possible over the next 24 hours.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 25,
+      "replyCount": 4,
+      "likeCount": 146,
+      "quoteCount": 1,
+      "viewCount": 16767,
+      "createdAt": "Thu Sep 25 18:50:34 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 7,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1971286222967353777",
+      "displayTextRange": [
+        0,
+        277
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "BackpirchCrew",
+        "url": "https://x.com/BackpirchCrew",
+        "twitterUrl": "https://twitter.com/BackpirchCrew",
+        "id": "1693295976562192384",
+        "name": "Backpirch Weather",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1693296304745525248/Nn9za1DX_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1693295976562192384/1692548492",
+        "description": "",
+        "location": "The Eye",
+        "followers": 27519,
+        "following": 66,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sun Aug 20 16:17:32 +0000 2023",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 55855,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 5201,
+        "statusesCount": 14633,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1694426486579626182"
+        ],
+        "profile_bio": {
+          "description": "We provide advanced analysis and live coverage of tropical cyclones worldwide. Follow for hourly updates.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "backpirchweather.com",
+                  "expanded_url": "http://backpirchweather.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/ev23Tfe9N8"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/k9rcwfKgKs",
+            "expanded_url": "https://x.com/BackpirchCrew/status/1971286222967353777/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "1971281432698880001",
+            "indices": [
+              278,
+              301
+            ],
+            "media_key": "13_1971281432698880001",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARtbZgTMVwABAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG1tmBMxXAAEAAA==",
+                "media_key": "13_1971281432698880001"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1971281432698880001/img/dEz37CW-1r7GKkKS.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 682,
+              "width": 682
+            },
+            "sizes": {
+              "large": {
+                "h": 682,
+                "w": 682
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/k9rcwfKgKs",
+            "video_info": {
+              "aspect_ratio": [
+                1,
+                1
+              ],
+              "duration_millis": 24215,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1971281432698880001/pl/tCD04lNoUFnS653D.m3u8?tag=21&v=cfc"
+                },
+                {
+                  "bitrate": 432000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1971281432698880001/vid/avc1/320x320/NnA1VcQIwok_kKQS.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1971281432698880001/vid/avc1/540x540/-ikMEfYq2jvwM_pD.mp4?tag=21"
+                },
+                {
+                  "bitrate": 1280000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1971281432698880001/vid/avc1/682x682/qAND-KgQeeNUVLGL.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1971288048831955411",
       "url": "https://x.com/ABSCBNNews/status/1971288048831955411",
       "twitterUrl": "https://twitter.com/ABSCBNNews/status/1971288048831955411",
@@ -397,7 +650,7 @@
       "source": "Twitter for iPhone",
       "retweetCount": 2,
       "replyCount": 0,
-      "likeCount": 15,
+      "likeCount": 14,
       "quoteCount": 0,
       "viewCount": 10154,
       "createdAt": "Thu Sep 25 18:57:50 +0000 2025",
@@ -426,7 +679,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15872418/1747565518",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 9238496,
+        "followers": 9238614,
         "following": 1098,
         "status": "",
         "canDm": false,
@@ -442,8 +695,8 @@
         "favouritesCount": 1186,
         "hasCustomTimelines": true,
         "isTranslator": true,
-        "mediaCount": 349910,
-        "statusesCount": 1344978,
+        "mediaCount": 351350,
+        "statusesCount": 1346952,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -551,7 +804,7 @@
                       "has_no_screen_name": false
                     },
                     "relationship_counts": {
-                      "followers": 799,
+                      "followers": 814,
                       "following": 42
                     },
                     "relationship_perspectives": {
@@ -569,8 +822,8 @@
                     "super_followed_by": false,
                     "super_following": false,
                     "tweet_counts": {
-                      "media_tweets": 1618,
-                      "tweets": 2377
+                      "media_tweets": 1649,
+                      "tweets": 2434
                     },
                     "verification": {
                       "is_blue_verified": false,
@@ -713,8 +966,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/3244771589/1470157092",
         "description": "",
         "location": "United Kingdom",
-        "followers": 59037,
-        "following": 1451,
+        "followers": 59061,
+        "following": 1450,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -729,8 +982,8 @@
         "favouritesCount": 607,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 7935,
-        "statusesCount": 10594,
+        "mediaCount": 8046,
+        "statusesCount": 10707,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -854,6 +1107,1148 @@
       "card": null,
       "place": {},
       "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1971294126529249420",
+      "url": "https://x.com/FREDERICA_CADE/status/1971294126529249420",
+      "twitterUrl": "https://twitter.com/FREDERICA_CADE/status/1971294126529249420",
+      "text": "Corn farmers tip hats to Rahm Emanuel Japan &amp; Philippines deals “He got not just one, but three deals…soybeans, corn and beef to help farmers all across America. That’s really unheard of,”https://t.co/BDqrFfwa7G\n\nFire and Ash\nHalo 3 Quantico Error 17 Pokemon Center",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 153,
+      "createdAt": "Thu Sep 25 19:21:59 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1971294126529249420",
+      "displayTextRange": [
+        0,
+        269
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "FREDERICA_CADE",
+        "url": "https://x.com/FREDERICA_CADE",
+        "twitterUrl": "https://twitter.com/FREDERICA_CADE",
+        "id": "173619316",
+        "name": "FREDERICA CADE",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/540514930063974400/vnP-eWXV_normal.png",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/173619316/1451568317",
+        "description": "",
+        "location": "South Carolina, USA",
+        "followers": 1215,
+        "following": 2419,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Sun Aug 01 23:14:31 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5273,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 4758,
+        "statusesCount": 76220,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1983036091310506415"
+        ],
+        "profile_bio": {
+          "description": "Average working American, GenX",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "fredericacade.wordpress.com",
+                  "expanded_url": "http://fredericacade.wordpress.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/HZSxYopyUA"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2097401867042955266/2MU00TPt?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 150,
+                "url": "https://pbs.twimg.com/card_img/2097401867042955266/2MU00TPt?format=jpg&name=280x150",
+                "width": 225
+              }
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.politico.com"
+            }
+          },
+          {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 320,
+                "url": "https://pbs.twimg.com/card_img/2097401867042955266/2MU00TPt?format=jpg&name=800x320_1",
+                "width": 480
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2097401867042955266/2MU00TPt?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2097401867042955266/2MU00TPt?format=jpg&name=orig",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "9300262",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2097401867042955266/2MU00TPt?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2097401867042955266/2MU00TPt?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 67,
+                "url": "https://pbs.twimg.com/card_img/2097401867042955266/2MU00TPt?format=jpg&name=100x100",
+                "width": 100
+              }
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "9300262",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2097401867042955266/2MU00TPt?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2097401867042955266/2MU00TPt?format=jpg&name=orig",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "politico.com"
+            }
+          },
+          {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2097401867042955266/2MU00TPt?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 49.41,
+                    "rgb": {
+                      "blue": 154,
+                      "green": 180,
+                      "red": 147
+                    }
+                  },
+                  {
+                    "percentage": 21.63,
+                    "rgb": {
+                      "blue": 46,
+                      "green": 49,
+                      "red": 66
+                    }
+                  },
+                  {
+                    "percentage": 11.74,
+                    "rgb": {
+                      "blue": 94,
+                      "green": 108,
+                      "red": 156
+                    }
+                  },
+                  {
+                    "percentage": 4.19,
+                    "rgb": {
+                      "blue": 84,
+                      "green": 160,
+                      "red": 183
+                    }
+                  },
+                  {
+                    "percentage": 2.37,
+                    "rgb": {
+                      "blue": 72,
+                      "green": 41,
+                      "red": 38
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Corn farmers tip hats to Rahm Emanuel"
+            }
+          },
+          {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 49.41,
+                    "rgb": {
+                      "blue": 154,
+                      "green": 180,
+                      "red": 147
+                    }
+                  },
+                  {
+                    "percentage": 21.63,
+                    "rgb": {
+                      "blue": 46,
+                      "green": 49,
+                      "red": 66
+                    }
+                  },
+                  {
+                    "percentage": 11.74,
+                    "rgb": {
+                      "blue": 94,
+                      "green": 108,
+                      "red": 156
+                    }
+                  },
+                  {
+                    "percentage": 4.19,
+                    "rgb": {
+                      "blue": 84,
+                      "green": 160,
+                      "red": 183
+                    }
+                  },
+                  {
+                    "percentage": 2.37,
+                    "rgb": {
+                      "blue": 72,
+                      "green": 41,
+                      "red": 38
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2097401867042955266/2MU00TPt?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2097401867042955266/2MU00TPt?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 49.41,
+                    "rgb": {
+                      "blue": 154,
+                      "green": 180,
+                      "red": 147
+                    }
+                  },
+                  {
+                    "percentage": 21.63,
+                    "rgb": {
+                      "blue": 46,
+                      "green": 49,
+                      "red": 66
+                    }
+                  },
+                  {
+                    "percentage": 11.74,
+                    "rgb": {
+                      "blue": 94,
+                      "green": 108,
+                      "red": 156
+                    }
+                  },
+                  {
+                    "percentage": 4.19,
+                    "rgb": {
+                      "blue": 84,
+                      "green": 160,
+                      "red": 183
+                    }
+                  },
+                  {
+                    "percentage": 2.37,
+                    "rgb": {
+                      "blue": 72,
+                      "green": 41,
+                      "red": 38
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2097401867042955266/2MU00TPt?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/BDqrFfwa7G"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "height": 800,
+                "url": "https://pbs.twimg.com/card_img/2097401867042955266/2MU00TPt?format=jpg&name=orig",
+                "width": 1200
+              }
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/BDqrFfwa7G",
+        "user_refs_results": [
+          {
+            "rest_id": "9300262",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 203
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1821642506800353280/xIpx4wIO_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/9300262/1479760803"
+              },
+              "core": {
+                "created_at": "Mon Oct 08 00:29:38 +0000 2007",
+                "name": "POLITICO",
+                "screen_name": "politico"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Washington, D.C."
+              },
+              "media_permissions": {
+                "can_media_tag": false
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2098155823847383156"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Politics. Policy. Power.\nCongress nerds 👉 https://t.co/vg62iVhofj\nLongreads and opinions 👉 @politicomag\nGot a news tip? 👉 https://t.co/JBzpu588Hy",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "politico.com/congress",
+                        "expanded_url": "http://politico.com/congress",
+                        "indices": [
+                          42,
+                          65
+                        ],
+                        "url": "https://t.co/vg62iVhofj"
+                      },
+                      {
+                        "display_url": "politi.co/2LcOtt5",
+                        "expanded_url": "http://politi.co/2LcOtt5",
+                        "indices": [
+                          122,
+                          145
+                        ],
+                        "url": "https://t.co/JBzpu588Hy"
+                      }
+                    ],
+                    "user_mentions": [
+                      {
+                        "id_str": "",
+                        "indices": [
+                          91,
+                          103
+                        ],
+                        "name": "",
+                        "screen_name": "politicomag"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "politico.com",
+                        "expanded_url": "http://politico.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/scdhnZnzfN"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "DD2E44"
+              },
+              "profile_translation": {
+                "translator_type_enum": "Regular"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 5200864,
+                "following": 1262
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "9300262",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 159628,
+                "tweets": 415470
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/scdhnZnzfN"
+              }
+            }
+          },
+          {
+            "rest_id": "9300262",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 203
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1821642506800353280/xIpx4wIO_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/9300262/1479760803"
+              },
+              "core": {
+                "created_at": "Mon Oct 08 00:29:38 +0000 2007",
+                "name": "POLITICO",
+                "screen_name": "politico"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Washington, D.C."
+              },
+              "media_permissions": {
+                "can_media_tag": false
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2098155823847383156"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Politics. Policy. Power.\nCongress nerds 👉 https://t.co/vg62iVhofj\nLongreads and opinions 👉 @politicomag\nGot a news tip? 👉 https://t.co/JBzpu588Hy",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "politico.com/congress",
+                        "expanded_url": "http://politico.com/congress",
+                        "indices": [
+                          42,
+                          65
+                        ],
+                        "url": "https://t.co/vg62iVhofj"
+                      },
+                      {
+                        "display_url": "politi.co/2LcOtt5",
+                        "expanded_url": "http://politi.co/2LcOtt5",
+                        "indices": [
+                          122,
+                          145
+                        ],
+                        "url": "https://t.co/JBzpu588Hy"
+                      }
+                    ],
+                    "user_mentions": [
+                      {
+                        "id_str": "",
+                        "indices": [
+                          91,
+                          103
+                        ],
+                        "name": "",
+                        "screen_name": "politicomag"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "politico.com",
+                        "expanded_url": "http://politico.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/scdhnZnzfN"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "DD2E44"
+              },
+              "profile_translation": {
+                "translator_type_enum": "Regular"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 5200864,
+                "following": 1262
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "9300262",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 159628,
+                "tweets": 415470
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/scdhnZnzfN"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "politico.com/newsletters/il…",
+            "expanded_url": "https://www.politico.com/newsletters/illinois-playbook/2025/06/03/farmers-tip-hats-to-rahm-emanuel-00381853",
+            "indices": [
+              192,
+              215
+            ],
+            "url": "https://t.co/BDqrFfwa7G"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1971294119424360825",
+      "url": "https://x.com/FCT_DRTS/status/1971294119424360825",
+      "twitterUrl": "https://twitter.com/FCT_DRTS/status/1971294119424360825",
+      "text": "TRAFFIC ADVISORY\nDay 5, 26th September 2025\n\nConstruction of Access Road (Aterial Road N11, N16, N40 and SILS 03) in Karsana District, Renewed Hope Estate.\n\nThe FCT Motoring public are hereby notified of movement of dignitaries along the Renewed Hope Estate at Karsana Junction.\n\nAs such, traffic will be staggered along the route.\nAscending Federal Housing Bridge toward Karsana (venue of the event) will be slightly affected.\n\nTraffic control and security personnel will be deployed accordingly.\n\nYour usual cooperation is highly solicited.\n\n— Head Traffic, DRTS",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 1,
+      "likeCount": 6,
+      "quoteCount": 0,
+      "viewCount": 440,
+      "createdAt": "Thu Sep 25 19:21:57 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1971294119424360825",
+      "displayTextRange": [
+        0,
+        278
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "FCT_DRTS",
+        "url": "https://x.com/FCT_DRTS",
+        "twitterUrl": "https://twitter.com/FCT_DRTS",
+        "id": "1668202025836789761",
+        "name": "FCT Directorate of Road Traffic Services (FCT VIO)",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1668203644200669184/XnM1CxBq_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1668202025836789761/1686566394",
+        "description": "",
+        "location": "DRTS HQ Mabushi, FCT, Abuja",
+        "followers": 742,
+        "following": 14,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Mon Jun 12 10:22:53 +0000 2023",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 78,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 180,
+        "statusesCount": 272,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1793303719037096120"
+        ],
+        "profile_bio": {
+          "description": "The Directorate of Road Traffic Services as currently constituted performs the Motor Vehicle Administration and Traffic Control Functions in the FCT",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "drts.gov.ng",
+                  "expanded_url": "http://drts.gov.ng",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/krcCu3LMVe"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/WS80pgWVOc",
+            "expanded_url": "https://x.com/FCT_DRTS/status/1971294119424360825/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 135,
+                    "w": 135,
+                    "x": 127,
+                    "y": 426
+                  },
+                  {
+                    "h": 169,
+                    "w": 169,
+                    "x": 240,
+                    "y": 846
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 135,
+                    "w": 135,
+                    "x": 127,
+                    "y": 426
+                  },
+                  {
+                    "h": 169,
+                    "w": 169,
+                    "x": 240,
+                    "y": 846
+                  }
+                ]
+              }
+            },
+            "id_str": "1971294108913119233",
+            "indices": [
+              279,
+              302
+            ],
+            "media_key": "3_1971294108913119233",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtbcYw1ljABCgACG1txjqgbAXkAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG1txjDWWMAEKAAIbW3GOqBsBeQAA",
+                "media_key": "3_1971294108913119233"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G1txjDWWMAEtOai.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 947,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 540,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1080,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/WS80pgWVOc"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1971295074005962946",
+      "url": "https://x.com/mcpnews/status/1971295074005962946",
+      "twitterUrl": "https://twitter.com/mcpnews/status/1971295074005962946",
+      "text": "TRAFFIC ADVISORY: A multi-vehicle collision has North Stonestreet Ave shut down between Lincoln Ave &amp; Crab Ave. An RV involved in the crash is leaking gas. @MCFRS hazmat is on scene. \nDrivers are advised to seek an alternate route and expect significant delays. \n#RoadClosure https://t.co/FFBo5zmKXB",
+      "source": "Twitter for iPhone",
+      "retweetCount": 6,
+      "replyCount": 0,
+      "likeCount": 8,
+      "quoteCount": 0,
+      "viewCount": 2064,
+      "createdAt": "Thu Sep 25 19:25:45 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1971295074005962946",
+      "displayTextRange": [
+        0,
+        279
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "mcpnews",
+        "url": "https://x.com/mcpnews",
+        "twitterUrl": "https://twitter.com/mcpnews",
+        "id": "291734275",
+        "name": "Montgomery County Department of Police",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/2056342222908309504/BVAj5gqu_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/291734275/1779104232",
+        "description": "",
+        "location": "Montgomery County, Maryland",
+        "followers": 110972,
+        "following": 245,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon May 02 14:45:34 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 4262,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 11415,
+        "statusesCount": 25958,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2098428888661532900"
+        ],
+        "profile_bio": {
+          "description": "Montgomery County Dept. of Police, MD. Not monitored 24/7. PLEASE DO NOT REPORT INCIDENTS ON X! Call 301-279-8000 or 911.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "montgomerycountymd.gov/pol",
+                  "expanded_url": "http://www.montgomerycountymd.gov/pol",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/gDt23rB3Wf"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/FFBo5zmKXB",
+            "expanded_url": "https://x.com/mcpnews/status/1971295074005962946/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1971295047447453696",
+            "indices": [
+              280,
+              303
+            ],
+            "media_key": "3_1971295047447453696",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtbcma6l6AACgACG1tybOmaUMIAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG1tyZrqXoAAKAAIbW3Js6ZpQwgAA",
+                "media_key": "3_1971295047447453696"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G1tyZrqXoAAXisC.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 896,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 900,
+                  "w": 900,
+                  "x": 70,
+                  "y": 0
+                },
+                {
+                  "h": 900,
+                  "w": 789,
+                  "x": 126,
+                  "y": 0
+                },
+                {
+                  "h": 900,
+                  "w": 450,
+                  "x": 295,
+                  "y": 0
+                },
+                {
+                  "h": 900,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 900,
+              "width": 1600
+            },
+            "sizes": {
+              "large": {
+                "h": 900,
+                "w": 1600
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/FFBo5zmKXB"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              267,
+              279
+            ],
+            "text": "RoadClosure"
+          }
+        ],
+        "user_mentions": [
+          {
+            "id_str": "17836558",
+            "indices": [
+              160,
+              166
+            ],
+            "name": "MontgomeryCo(MD)Fire",
+            "screen_name": "MCFRS"
+          }
+        ]
+      },
       "quoted_tweet": null,
       "retweeted_tweet": null,
       "isLimitedReply": false,

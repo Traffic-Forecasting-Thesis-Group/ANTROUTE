@@ -5,14 +5,14 @@
     "window_start": "2025-06-14T02:00:00+08:00",
     "window_end": "2025-06-14T04:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 7,
+    "tweet_count": 13,
     "slices": [
       {
         "start": "2025-06-14T02:00:00+08:00",
         "end": "2025-06-14T02:05:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-06-14T02:05:00+08:00",
@@ -95,22 +95,22 @@
         "start": "2025-06-14T03:00:00+08:00",
         "end": "2025-06-14T03:05:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-06-14T03:05:00+08:00",
         "end": "2025-06-14T03:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-06-14T03:10:00+08:00",
         "end": "2025-06-14T03:15:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-06-14T03:15:00+08:00",
@@ -143,6 +143,7 @@
       {
         "start": "2025-06-14T03:35:00+08:00",
         "end": "2025-06-14T03:40:00+08:00",
+        "error": "HTTPSConnectionPool(host='api.twitterapi.io', port=443): Read timed out. (read timeout=30)",
         "status_code": 200,
         "returned": 0,
         "accepted": 0
@@ -178,6 +179,201 @@
     ]
   },
   "data": [
+    {
+      "type": "tweet",
+      "id": "1933585205077413905",
+      "url": "https://x.com/PortMiami/status/1933585205077413905",
+      "twitterUrl": "https://twitter.com/PortMiami/status/1933585205077413905",
+      "text": "Traffic Advisory ⚠️\n\nThere is a protest is planned for Saturday, June 14, 2025, from 11:00 AM to 2:00 PM, at the Freedom Tower on Biscayne Blvd. \n\nPortMiami visitors are advised to use the PortMiami Tunnel during this time. Please allow for possible delays. \n\n#PortMiami https://t.co/J6jAAi6Jvk",
+      "source": "Twitter for iPhone",
+      "retweetCount": 4,
+      "replyCount": 1,
+      "likeCount": 10,
+      "quoteCount": 0,
+      "viewCount": 1053,
+      "createdAt": "Fri Jun 13 18:00:11 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1933585205077413905",
+      "displayTextRange": [
+        0,
+        270
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "PortMiami",
+        "url": "https://x.com/PortMiami",
+        "twitterUrl": "https://twitter.com/PortMiami",
+        "id": "169066756",
+        "name": "PortMiami",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1984579025579253760/LWl0HBvQ_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/169066756/1671031826",
+        "description": "",
+        "location": "Miami, FL",
+        "followers": 21597,
+        "following": 748,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Jul 21 13:23:11 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3498,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 3474,
+        "statusesCount": 6044,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Welcome to PortMiami 🚢🌎 News from the Cruise Capital of the World® and Cargo Gateway of the Americas®.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "miamidade.gov/portmiami/",
+                  "expanded_url": "https://www.miamidade.gov/portmiami/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/Pt9JhlttfC"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/J6jAAi6Jvk",
+            "expanded_url": "https://x.com/PortMiami/status/1933585205077413905/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 339,
+                    "w": 339,
+                    "x": 25,
+                    "y": 523
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 706,
+                    "w": 706,
+                    "x": 54,
+                    "y": 1088
+                  }
+                ]
+              }
+            },
+            "id_str": "1933585198416801792",
+            "indices": [
+              271,
+              294
+            ],
+            "media_key": "3_1933585198416801792",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARrVeX5OljAACgACGtV5f9uXEBEAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGtV5fk6WMAAKAAIa1Xl/25cQEQAA",
+                "media_key": "3_1933585198416801792"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GtV5fk6WMAAYt4L.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 2383,
+                  "w": 4256,
+                  "x": 0,
+                  "y": 191
+                },
+                {
+                  "h": 2832,
+                  "w": 2832,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2832,
+                  "w": 2484,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2832,
+                  "w": 1416,
+                  "x": 462,
+                  "y": 0
+                },
+                {
+                  "h": 2832,
+                  "w": 4256,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2832,
+              "width": 4256
+            },
+            "sizes": {
+              "large": {
+                "h": 1363,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/J6jAAi6Jvk"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              260,
+              270
+            ],
+            "text": "PortMiami"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
     {
       "type": "tweet",
       "id": "1933591193645887661",
@@ -216,8 +412,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186993,
-        "following": 87,
+        "followers": 187136,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -229,16 +425,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31257,
-        "statusesCount": 146772,
+        "mediaCount": 31368,
+        "statusesCount": 146896,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -369,8 +565,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186993,
-        "following": 87,
+        "followers": 187136,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -382,16 +578,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31257,
-        "statusesCount": 146772,
+        "mediaCount": 31368,
+        "statusesCount": 146896,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -522,8 +718,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186993,
-        "following": 87,
+        "followers": 187136,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -535,16 +731,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31257,
-        "statusesCount": 146772,
+        "mediaCount": 31368,
+        "statusesCount": 146896,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -675,8 +871,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186993,
-        "following": 87,
+        "followers": 187136,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -688,16 +884,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31257,
-        "statusesCount": 146772,
+        "mediaCount": 31368,
+        "statusesCount": 146896,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -895,8 +1091,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186993,
-        "following": 87,
+        "followers": 187136,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -908,16 +1104,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31257,
-        "statusesCount": 146772,
+        "mediaCount": 31368,
+        "statusesCount": 146896,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -1012,6 +1208,719 @@
     },
     {
       "type": "tweet",
+      "id": "1933600436981821856",
+      "url": "https://x.com/CityofLowellMA/status/1933600436981821856",
+      "twitterUrl": "https://twitter.com/CityofLowellMA/status/1933600436981821856",
+      "text": "🚧 Traffic Advisory: Lane shifts &amp; closures on Route 110 in Lowell, Dracut &amp; Methuen now through November. Weekdays, 7AM–3:30PM. One lane open each way. Expect delays—use caution. Work is weather dependent. https://t.co/WzbRyn58LW",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 5,
+      "quoteCount": 1,
+      "viewCount": 883,
+      "createdAt": "Fri Jun 13 19:00:43 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1933600436981821856",
+      "displayTextRange": [
+        0,
+        213
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "CityofLowellMA",
+        "url": "https://x.com/CityofLowellMA",
+        "twitterUrl": "https://twitter.com/CityofLowellMA",
+        "id": "138497386",
+        "name": "City of Lowell, MA",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/642349298336800768/vn6vCY1Q_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/138497386/1661777306",
+        "description": "",
+        "location": "Lowell, MA",
+        "followers": 10928,
+        "following": 334,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Thu Apr 29 18:22:03 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 855,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1731,
+        "statusesCount": 5373,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Welcome to the official account for the City of Lowell, MA. (978) 674-4000",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/cityoflowellma",
+                  "expanded_url": "http://linktr.ee/cityoflowellma",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/uGtj1uGM1U"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/WzbRyn58LW",
+            "expanded_url": "https://x.com/CityofLowellMA/status/1933600436981821856/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1933600433626288129",
+            "indices": [
+              214,
+              237
+            ],
+            "media_key": "3_1933600433626288129",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARrVh1mH1hABCgACGtWHWk/XcaAAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGtWHWYfWEAEKAAIa1YdaT9dxoAAA",
+                "media_key": "3_1933600433626288129"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GtWHWYfWEAEyDop.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 103
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 947,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 540,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1080,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/WzbRyn58LW"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1933602376977662349",
+      "url": "https://x.com/blrcitytraffic/status/1933602376977662349",
+      "twitterUrl": "https://twitter.com/blrcitytraffic/status/1933602376977662349",
+      "text": "“ಸಂಚಾರ ಸಲಹೆ ”\nವೀರಣ್ಣಪಾಳ್ಯ ಬಳಿ ಬಿಎಂಆರ್‌ಸಿಎಲ್ ಕಾಮಗಾರಿ ನಡೆಯುತ್ತಿರುವುದರಿಂದ ಹೆಬ್ಬಾಳ ಕಡೆಗೆ ನಿಧಾನಗತಿಯ  ಸಂಚಾರವಿರುತ್ತದೆ.\n\"Traffic advisory\"\nDue to BMRCL work near Veerannapalya towards Hebbala,is having slow-moving traffic.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 1519,
+      "createdAt": "Fri Jun 13 19:08:25 +0000 2025",
+      "lang": "und",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1933602376977662349",
+      "displayTextRange": [
+        0,
+        214
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "blrcitytraffic",
+        "url": "https://x.com/blrcitytraffic",
+        "twitterUrl": "https://twitter.com/blrcitytraffic",
+        "id": "1851545900",
+        "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1565259569588490240/HChz-Vdb_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1851545900/1713356586",
+        "description": "",
+        "location": "Bengaluru-560001",
+        "followers": 672637,
+        "following": 100,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Sep 10 13:44:16 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 60487,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 16948,
+        "statusesCount": 241263,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Promoting Traffic Awareness & Road Safety 🚦🛣 | Your Partners in Traffic Management 🚓💼 | #BengaluruTrafficPolice 🌆🚗",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    88,
+                    111
+                  ],
+                  "text": "BengaluruTrafficPolice"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.karnataka.gov.in",
+                  "expanded_url": "https://btp.karnataka.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/6LKf9FpGkG"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1933601951914111472",
+      "url": "https://x.com/DCPoliceTraffic/status/1933601951914111472",
+      "twitterUrl": "https://twitter.com/DCPoliceTraffic/status/1933601951914111472",
+      "text": "FYI: On Saturday, June 14, 2025, A Taste of the DMV will take place in the District of Columbia. In conjunction with this event, there will be parking restrictions and street closures motorists should take into consideration:\nhttps://t.co/wG5mkAC2cr",
+      "source": "Twitter for iPhone",
+      "retweetCount": 4,
+      "replyCount": 1,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 3408,
+      "createdAt": "Fri Jun 13 19:06:44 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1933601951914111472",
+      "displayTextRange": [
+        0,
+        249
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "DCPoliceTraffic",
+        "url": "https://x.com/DCPoliceTraffic",
+        "twitterUrl": "https://twitter.com/DCPoliceTraffic",
+        "id": "3429128139",
+        "name": "DC Police Traffic",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/637277935171411968/DeIBSevl_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/3429128139/1440773750",
+        "description": "",
+        "location": "Washington, DC",
+        "followers": 32984,
+        "following": 143,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Aug 18 00:41:58 +0000 2015",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 7750,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 7435,
+        "statusesCount": 47047,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2021000167135097309"
+        ],
+        "profile_bio": {
+          "description": "Providing timely traffic information to the Nation’s Capital.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "linktr.ee/dcpolicedept",
+                  "expanded_url": "https://linktr.ee/dcpolicedept",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/4HC5gynesd"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "On Saturday, June 14, 2025, A Taste of the DMV will take place in the District of Columbia. In conjunction with this event, there will be parking restrictions and street closures motorists should..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "mpdc.dc.gov"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "mpdc.dc.gov"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "TRAFFIC ADVISORY: A Taste of the DMV"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/wG5mkAC2cr"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary",
+        "url": "https://t.co/wG5mkAC2cr",
+        "user_refs_results": []
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "mpdc.dc.gov/release/traffi…",
+            "expanded_url": "https://mpdc.dc.gov/release/traffic-advisory-taste-dmv-0",
+            "indices": [
+              226,
+              249
+            ],
+            "url": "https://t.co/wG5mkAC2cr"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1933603924168356057",
+      "url": "https://x.com/blrcitytraffic/status/1933603924168356057",
+      "twitterUrl": "https://twitter.com/blrcitytraffic/status/1933603924168356057",
+      "text": "“ಸಂಚಾರ ಸಲಹೆ ”\nಕಲ್ಯಾಣನಗರ ಜಂಕ್ಷನ್ ಬಳಿ ಬಿಎಂಆರ್‌ಸಿಎಲ್ ಕಾಮಗಾರಿ ನಡೆಯುತ್ತಿರುವುದರಿಂದ ಬಾಬುಸಪಾಳ್ಯ ಕಡೆಗೆ ನಿಧಾನಗತಿಯ  ಸಂಚಾರವಿರುತ್ತದೆ.\n\"Traffic advisory\"\nDue to BMRCL work near Kalyananagara Junction towards Babusapalya,is having slow-moving traffic.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 1415,
+      "createdAt": "Fri Jun 13 19:14:34 +0000 2025",
+      "lang": "und",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1933603924168356057",
+      "displayTextRange": [
+        0,
+        236
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "blrcitytraffic",
+        "url": "https://x.com/blrcitytraffic",
+        "twitterUrl": "https://twitter.com/blrcitytraffic",
+        "id": "1851545900",
+        "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1565259569588490240/HChz-Vdb_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1851545900/1713356586",
+        "description": "",
+        "location": "Bengaluru-560001",
+        "followers": 672637,
+        "following": 100,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Sep 10 13:44:16 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 60487,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 16948,
+        "statusesCount": 241263,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Promoting Traffic Awareness & Road Safety 🚦🛣 | Your Partners in Traffic Management 🚓💼 | #BengaluruTrafficPolice 🌆🚗",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    88,
+                    111
+                  ],
+                  "text": "BengaluruTrafficPolice"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.karnataka.gov.in",
+                  "expanded_url": "https://btp.karnataka.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/6LKf9FpGkG"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1933603796438978916",
+      "url": "https://x.com/NewJerseyDOT/status/1933603796438978916",
+      "twitterUrl": "https://twitter.com/NewJerseyDOT/status/1933603796438978916",
+      "text": "NJDOT Traffic Advisory -- I-80 westbound full closure tonight to reopen all westbound lanes Saturday morning in Wharton, Morris County. Read more: https://t.co/z01OVPiIP6 https://t.co/VWbpf1fMg2",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 18,
+      "likeCount": 8,
+      "quoteCount": 1,
+      "viewCount": 9957,
+      "createdAt": "Fri Jun 13 19:14:04 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1933603796438978916",
+      "displayTextRange": [
+        0,
+        170
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "NewJerseyDOT",
+        "url": "https://x.com/NewJerseyDOT",
+        "twitterUrl": "https://twitter.com/NewJerseyDOT",
+        "id": "2891202783",
+        "name": "NJDOT",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1888397067787128833/FD48RYTU_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2891202783/1732311489",
+        "description": "",
+        "location": "",
+        "followers": 33213,
+        "following": 318,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Mon Nov 24 19:50:16 +0000 2014",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2483,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 5763,
+        "statusesCount": 21722,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Updates from NJ's Department of Transportation on projects and driving conditions throughout the state.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "state.nj.us/transportation/",
+                  "expanded_url": "http://www.state.nj.us/transportation/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/nZuh4skGvI"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/VWbpf1fMg2",
+            "expanded_url": "https://x.com/NewJerseyDOT/status/1933603796438978916/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1933602048903094272",
+            "indices": [
+              171,
+              194
+            ],
+            "media_key": "3_1933602048903094272",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARrViNGd1iAACgACGtWKaH8XkWQAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGtWI0Z3WIAAKAAIa1YpofxeRZAAA",
+                "media_key": "3_1933602048903094272"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GtWI0Z3WIAAvoDR.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1024,
+                  "w": 1829,
+                  "x": 219,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 1024,
+                  "x": 1024,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 898,
+                  "x": 1138,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 512,
+                  "x": 1331,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1024,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 1024,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/VWbpf1fMg2"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "bit.ly/44dV5Tk",
+            "expanded_url": "https://bit.ly/44dV5Tk",
+            "indices": [
+              147,
+              170
+            ],
+            "url": "https://t.co/z01OVPiIP6"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1933607434272321593",
       "url": "https://x.com/followlastma/status/1933607434272321593",
       "twitterUrl": "https://twitter.com/followlastma/status/1933607434272321593",
@@ -1048,8 +1957,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186993,
-        "following": 87,
+        "followers": 187136,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -1061,16 +1970,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31257,
-        "statusesCount": 146772,
+        "mediaCount": 31368,
+        "statusesCount": 146896,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -1201,8 +2110,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186993,
-        "following": 87,
+        "followers": 187136,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -1214,16 +2123,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31257,
-        "statusesCount": 146772,
+        "mediaCount": 31368,
+        "statusesCount": 146896,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -1247,17 +2156,6 @@
                     140
                   ],
                   "url": "https://t.co/GBJZ6NWejV"
-                }
-              ],
-              "user_mentions": [
-                {
-                  "id_str": "",
-                  "indices": [
-                    64,
-                    75
-                  ],
-                  "name": "",
-                  "screen_name": "ekolastma_"
                 }
               ]
             },
@@ -1312,8 +2210,6 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     }
   ]

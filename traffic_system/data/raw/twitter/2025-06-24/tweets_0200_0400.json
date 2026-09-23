@@ -5,7 +5,7 @@
     "window_start": "2025-06-24T02:00:00+08:00",
     "window_end": "2025-06-24T04:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 3,
+    "tweet_count": 8,
     "slices": [
       {
         "start": "2025-06-24T02:00:00+08:00",
@@ -39,8 +39,8 @@
         "start": "2025-06-24T02:20:00+08:00",
         "end": "2025-06-24T02:25:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-06-24T02:25:00+08:00",
@@ -67,8 +67,8 @@
         "start": "2025-06-24T02:40:00+08:00",
         "end": "2025-06-24T02:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-06-24T02:45:00+08:00",
@@ -137,22 +137,22 @@
         "start": "2025-06-24T03:30:00+08:00",
         "end": "2025-06-24T03:35:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-06-24T03:35:00+08:00",
         "end": "2025-06-24T03:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-06-24T03:40:00+08:00",
         "end": "2025-06-24T03:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-06-24T03:45:00+08:00",
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15872418/1747565518",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 9238520,
+        "followers": 9238731,
         "following": 1098,
         "status": "",
         "canDm": false,
@@ -231,9 +231,9 @@
         "fastFollowersCount": 0,
         "favouritesCount": 1186,
         "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 349873,
-        "statusesCount": 1344936,
+        "isTranslator": true,
+        "mediaCount": 351185,
+        "statusesCount": 1346715,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -266,22 +266,19 @@
           {
             "key": "description",
             "value": {
-              "string_value": "Matinding ulan ang bumuhos ngayong Lunes ng hapon sa Metro Manila at iba pang parte rin ng Pilipinas na dulot ng muling pag-ihip ng habagat.",
-              "type": "STRING"
+              "string_value": "Matinding ulan ang bumuhos ngayong Lunes ng hapon sa Metro Manila at iba pang parte rin ng Pilipinas na dulot ng muling pag-ihip ng habagat."
             }
           },
           {
             "key": "domain",
             "value": {
-              "string_value": "www.abs-cbn.com",
-              "type": "STRING"
+              "string_value": "www.abs-cbn.com"
             }
           },
           {
             "key": "site",
             "value": {
               "scribe_key": "publisher_id",
-              "type": "USER",
               "user_value": {
                 "id_str": "31313277",
                 "path": []
@@ -292,23 +289,20 @@
             "key": "vanity_url",
             "value": {
               "scribe_key": "vanity_url",
-              "string_value": "abs-cbn.com",
-              "type": "STRING"
+              "string_value": "abs-cbn.com"
             }
           },
           {
             "key": "title",
             "value": {
-              "string_value": "TV PATROL: Habagat nagdala ng matinding ulan sa Metro Manila at iba pang bahagi ng bansa | ABS-CBN...",
-              "type": "STRING"
+              "string_value": "TV PATROL: Habagat nagdala ng matinding ulan sa Metro Manila at iba pang bahagi ng bansa | ABS-CBN..."
             }
           },
           {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
-              "string_value": "https://t.co/YUudM7OB5u",
-              "type": "STRING"
+              "string_value": "https://t.co/YUudM7OB5u"
             }
           }
         ],
@@ -318,8 +312,8 @@
               "name": "production"
             },
             "device": {
-              "name": "Swift",
-              "version": "12"
+              "name": "iPhone",
+              "version": "13"
             }
           }
         },
@@ -327,12 +321,12 @@
         "url": "https://t.co/YUudM7OB5u",
         "user_refs_results": [
           {
+            "rest_id": "31313277",
             "result": {
               "__typename": "User",
               "action_counts": {
-                "favorites_count": 11482
+                "favorites_count": 11481
               },
-              "affiliates_highlighted_label": {},
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/2082820005016813568/PhYshX4T_normal.jpg"
               },
@@ -347,13 +341,9 @@
               "dm_permissions": {
                 "can_dm": false
               },
+              "exclusive_tweet_following": false,
               "follow_request_sent": false,
-              "grok_translated_bio_with_availability": {
-                "is_available": false
-              },
-              "has_graduated_access": true,
-              "id": "VXNlcjozMTMxMzI3Nw==",
-              "is_blue_verified": true,
+              "identity_profile_labels_highlighted_label": {},
               "location": {
                 "location": "Manila, Philippines"
               },
@@ -363,23 +353,12 @@
               "notifications_settings": {
                 "notifications_enabled": false
               },
-              "parody_commentary_fan_label": "None",
               "pinned_items": {},
-              "possibly_sensitive": false,
               "privacy": {
-                "protected": false
+                "protected": false,
+                "suspended": false
               },
-              "professional": {
-                "category": [
-                  {
-                    "icon_name": "IconBriefcaseStroke",
-                    "id": 580,
-                    "name": "Media & News Company"
-                  }
-                ],
-                "professional_type": "Business",
-                "rest_id": "1445235035074797570"
-              },
+              "private_super_following": false,
               "profile_bio": {
                 "description": "The official Twitter account of ABS-CBN, the Philippines' largest network. https://t.co/Xkc1xyTDPu https://t.co/yN643GeRGp",
                 "entities": {
@@ -420,16 +399,20 @@
                   }
                 }
               },
-              "profile_description_language": "en",
               "profile_image_shape": "Circle",
               "profile_metadata": {
-                "profile_interstitial_type": ""
+                "profile_interstitial_type": "",
+                "profile_link_color": "2FC2EF"
               },
               "profile_translation": {
-                "translator_type": "none"
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1815759,
+                "followers": 1815781,
                 "following": 802
               },
               "relationship_perspectives": {
@@ -441,14 +424,17 @@
                 "muting": false
               },
               "rest_id": "31313277",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
               "super_follow_eligible": false,
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 70259,
-                "tweets": 218587
+                "media_tweets": 70333,
+                "tweets": 218679
               },
               "verification": {
+                "is_blue_verified": true,
                 "verified": false
               },
               "website": {
@@ -474,6 +460,8 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -487,7 +475,7 @@
       "replyCount": 1,
       "likeCount": 8,
       "quoteCount": 1,
-      "viewCount": 1996,
+      "viewCount": 1997,
       "createdAt": "Mon Jun 23 18:16:33 +0000 2025",
       "lang": "en",
       "bookmarkCount": 1,
@@ -514,7 +502,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/29792675/1755725801",
         "description": "",
         "location": "San Francisco, CA",
-        "followers": 18468,
+        "followers": 18467,
         "following": 143,
         "status": "",
         "canDm": false,
@@ -540,6 +528,15 @@
           "description": "Keeping People Moving by Bridge, Bus & Ferry. This is the official X account for the #GoldenGateBridge District. Learn more at https://t.co/Yli4SVaT1V.",
           "entities": {
             "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    85,
+                    102
+                  ],
+                  "text": "GoldenGateBridge"
+                }
+              ],
               "urls": [
                 {
                   "display_url": "goldengate.org",
@@ -575,27 +572,13 @@
           {
             "display_url": "pic.x.com/r7YXibSGyS",
             "expanded_url": "https://x.com/GGBridge/status/1937213201441083393/photo/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "features": {
               "large": {
-                "faces": [
-                  {
-                    "h": 41,
-                    "w": 41,
-                    "x": 484,
-                    "y": 291
-                  },
-                  {
-                    "h": 40,
-                    "w": 40,
-                    "x": 794,
-                    "y": 317
-                  }
-                ]
-              },
-              "medium": {
                 "faces": [
                   {
                     "h": 41,
@@ -626,22 +609,6 @@
                     "y": 317
                   }
                 ]
-              },
-              "small": {
-                "faces": [
-                  {
-                    "h": 25,
-                    "w": 25,
-                    "x": 304,
-                    "y": 183
-                  },
-                  {
-                    "h": 25,
-                    "w": 25,
-                    "x": 499,
-                    "y": 199
-                  }
-                ]
               }
             },
             "id_str": "1937213196793782272",
@@ -651,7 +618,10 @@
             ],
             "media_key": "3_1937213196793782272",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARriXSOBF6AACgACGuJdJJYX0AEAAA==",
               "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGuJdI4EXoAAKAAIa4l0klhfQAQAA",
                 "media_key": "3_1937213196793782272"
               }
             },
@@ -695,23 +665,7 @@
             "sizes": {
               "large": {
                 "h": 1080,
-                "resize": "fit",
                 "w": 1080
-              },
-              "medium": {
-                "h": 1080,
-                "resize": "fit",
-                "w": 1080
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "photo",
@@ -738,98 +692,151 @@
             "text": "TrafficUpdate"
           }
         ],
+        "urls": [
+          {
+            "display_url": "goldengate.org/ggb-temporary-…",
+            "expanded_url": "http://goldengate.org/ggb-temporary-wednesday-midday-lane-closures/",
+            "indices": [
+              209,
+              232
+            ],
+            "url": "https://t.co/M1qrvjp6uy"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1937214585888706569",
+      "url": "https://x.com/FCT_DRTS/status/1937214585888706569",
+      "twitterUrl": "https://twitter.com/FCT_DRTS/status/1937214585888706569",
+      "text": "Traffic Advisory \nProjects Commissioning in the FCT\nDay 9 - Tuesday 24th June, 2025\n\nIn continuation of the ongoing commissioning of projects in the\nFCT, there will be commissioning of the newly constructed right-hand service carriage way of the Inner Northern Expressway (INEX) from Ring Road 3 (RR 3) to Outer Northern Expressway (Murtala\nMohammed Expressway).\n\nAs such, Traffic will be slightly disrupted on the Jabi - Airport road, as its popularly called.\n\nFurthermore, the Idu Railway Road will equally experience high traffic volume as dignitaries will be headed towards the venue of the event along INEX by bridge over railway lines.\n\nDei-Dei-Kubwa road could be another existing route after the commissioning.\n\nTraffic control personnel and security agents will be deployed accordingly to ensure seamless traffic flows along the route.\n\n- Head, Traffic (DRTS)",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 336,
+      "createdAt": "Mon Jun 23 18:22:03 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1937214585888706569",
+      "displayTextRange": [
+        0,
+        278
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "FCT_DRTS",
+        "url": "https://x.com/FCT_DRTS",
+        "twitterUrl": "https://twitter.com/FCT_DRTS",
+        "id": "1668202025836789761",
+        "name": "FCT Directorate of Road Traffic Services (FCT VIO)",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1668203644200669184/XnM1CxBq_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1668202025836789761/1686566394",
+        "description": "",
+        "location": "DRTS HQ Mabushi, FCT, Abuja",
+        "followers": 741,
+        "following": 14,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Mon Jun 12 10:22:53 +0000 2023",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 78,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 180,
+        "statusesCount": 272,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1793303719037096120"
+        ],
+        "profile_bio": {
+          "description": "The Directorate of Road Traffic Services as currently constituted performs the Motor Vehicle Administration and Traffic Control Functions in the FCT",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "drts.gov.ng",
+                  "expanded_url": "http://drts.gov.ng",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/krcCu3LMVe"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
         "media": [
           {
-            "display_url": "pic.x.com/r7YXibSGyS",
-            "expanded_url": "https://x.com/GGBridge/status/1937213201441083393/photo/1",
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/8cQWWUyE58",
+            "expanded_url": "https://x.com/FCT_DRTS/status/1937214585888706569/photo/1",
+            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
+            "ext_playlists": [],
             "features": {
               "large": {
-                "faces": [
-                  {
-                    "h": 41,
-                    "w": 41,
-                    "x": 484,
-                    "y": 291
-                  },
-                  {
-                    "h": 40,
-                    "w": 40,
-                    "x": 794,
-                    "y": 317
-                  }
-                ]
-              },
-              "medium": {
-                "faces": [
-                  {
-                    "h": 41,
-                    "w": 41,
-                    "x": 484,
-                    "y": 291
-                  },
-                  {
-                    "h": 40,
-                    "w": 40,
-                    "x": 794,
-                    "y": 317
-                  }
-                ]
+                "faces": []
               },
               "orig": {
-                "faces": [
-                  {
-                    "h": 41,
-                    "w": 41,
-                    "x": 484,
-                    "y": 291
-                  },
-                  {
-                    "h": 40,
-                    "w": 40,
-                    "x": 794,
-                    "y": 317
-                  }
-                ]
-              },
-              "small": {
-                "faces": [
-                  {
-                    "h": 25,
-                    "w": 25,
-                    "x": 304,
-                    "y": 183
-                  },
-                  {
-                    "h": 25,
-                    "w": 25,
-                    "x": 499,
-                    "y": 199
-                  }
-                ]
+                "faces": []
               }
             },
-            "id_str": "1937213196793782272",
+            "id_str": "1937214569304166400",
             "indices": [
-              271,
-              294
+              279,
+              302
             ],
-            "media_key": "3_1937213196793782272",
+            "media_key": "3_1937214569304166400",
             "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARriXmMRFhAACgACGuJeZu2aEAkAAA==",
               "result": {
-                "media_key": "3_1937213196793782272"
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGuJeYxEWEAAKAAIa4l5m7ZoQCQAA",
+                "media_key": "3_1937214569304166400"
               }
             },
-            "media_url_https": "https://pbs.twimg.com/media/GuJdI4EXoAAmPG-.jpg",
+            "media_url_https": "https://pbs.twimg.com/media/GuJeYxEWEAADWr2.jpg",
             "original_info": {
               "focus_rects": [
                 {
                   "h": 605,
                   "w": 1080,
                   "x": 0,
-                  "y": 475
+                  "y": 0
                 },
                 {
                   "h": 1080,
@@ -846,7 +853,7 @@
                 {
                   "h": 1080,
                   "w": 540,
-                  "x": 540,
+                  "x": 459,
                   "y": 0
                 },
                 {
@@ -862,43 +869,27 @@
             "sizes": {
               "large": {
                 "h": 1080,
-                "resize": "fit",
                 "w": 1080
-              },
-              "medium": {
-                "h": 1080,
-                "resize": "fit",
-                "w": 1080
-              },
-              "small": {
-                "h": 680,
-                "resize": "fit",
-                "w": 680
-              },
-              "thumb": {
-                "h": 150,
-                "resize": "crop",
-                "w": 150
               }
             },
             "type": "photo",
-            "url": "https://t.co/r7YXibSGyS"
-          }
-        ],
-        "urls": [
-          {
-            "display_url": "goldengate.org/ggb-temporary-…",
-            "expanded_url": "http://goldengate.org/ggb-temporary-wednesday-midday-lane-closures/",
-            "indices": [
-              209,
-              232
-            ],
-            "url": "https://t.co/M1qrvjp6uy"
+            "url": "https://t.co/8cQWWUyE58"
           }
         ]
       },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -939,8 +930,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186994,
-        "following": 87,
+        "followers": 187143,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -952,16 +943,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31259,
-        "statusesCount": 146774,
+        "mediaCount": 31370,
+        "statusesCount": 146898,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -985,6 +976,17 @@
                     140
                   ],
                   "url": "https://t.co/GBJZ6NWejV"
+                }
+              ],
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    64,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "ekolastma_"
                 }
               ]
             },
@@ -1039,6 +1041,897 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1937220167861465478",
+      "url": "https://x.com/followlastma/status/1937220167861465478",
+      "twitterUrl": "https://twitter.com/followlastma/status/1937220167861465478",
+      "text": "[7:40PM] #Agege #TrafficUpdate \n\nAppreciable traffic movement from Fumec inward to Acme Junction.\nBusy traffic conditions on Ijaye Road, inward and outward Odo Eran, connecting Oba Ogunji, attributed to evening rush hour and traffic alternation.\nFast-paced traffic movement on Oba Akran, from Dangote U-turn inward Mobil Ashade, down to Akilo.\nFast traffic flow on Guinness inward Akanni Doherty, with minor delays at Mangoro Ashade due to traffic light alternation.\nFast-paced traffic movement on Capitol inward Oniwaya Junction, down to Alfa Nla.\nBusy traffic conditions on Okekoto inward Shofunde, due to alternation, while the stretch connecting Agbotikuyo down to NYSC is moving at a fast pace.\nFast-paced traffic movement on Old Abeokuta Road, from Isokoko inward to Total underneath the bridge, connecting Nitel down to Oko Oba, with minor delays at Abbatoir due to alternation.\n\n#FollowLASTMA",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 666,
+      "createdAt": "Mon Jun 23 18:44:14 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1937220167861465478",
+      "displayTextRange": [
+        0,
+        280
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "followlastma",
+        "url": "https://x.com/followlastma",
+        "twitterUrl": "https://twitter.com/followlastma",
+        "id": "2202421710",
+        "name": "LASTMA",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2013645179513708544/1WOgDvRk_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
+        "description": "",
+        "location": "",
+        "followers": 187143,
+        "following": 89,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Tue Nov 19 03:37:05 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3020,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 31370,
+        "statusesCount": 146898,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099385380600533278"
+        ],
+        "profile_bio": {
+          "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "facebook.com/Ekolastma/",
+                  "expanded_url": "https://www.facebook.com/Ekolastma/",
+                  "indices": [
+                    82,
+                    105
+                  ],
+                  "url": "https://t.co/yzaGG1F9TK"
+                },
+                {
+                  "display_url": "youtube.com/@lastmatv?s",
+                  "expanded_url": "https://youtube.com/@lastmatv?s",
+                  "indices": [
+                    117,
+                    140
+                  ],
+                  "url": "https://t.co/GBJZ6NWejV"
+                }
+              ],
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    64,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "ekolastma_"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "lastma.org",
+                  "expanded_url": "https://lastma.org/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/ybifO4Q6W9"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              9,
+              15
+            ],
+            "text": "Agege"
+          },
+          {
+            "indices": [
+              16,
+              30
+            ],
+            "text": "TrafficUpdate"
+          },
+          {
+            "indices": [
+              887,
+              900
+            ],
+            "text": "FollowLASTMA"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1937231686670123241",
+      "url": "https://x.com/manilabulletin/status/1937231686670123241",
+      "twitterUrl": "https://twitter.com/manilabulletin/status/1937231686670123241",
+      "text": "A man sustained severe burns after he was set on fire by another man out of jealousy in Barangay Pitogo, Taguig on June 20.\n\nhttps://t.co/S9ztAH2x92",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 1216,
+      "createdAt": "Mon Jun 23 19:30:00 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1937231686670123241",
+      "displayTextRange": [
+        0,
+        148
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "manilabulletin",
+        "url": "https://x.com/manilabulletin",
+        "twitterUrl": "https://twitter.com/manilabulletin",
+        "id": "15375209",
+        "name": "Manila Bulletin News",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1923784408261115904/4xsy25CI_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
+        "description": "",
+        "location": "Manila, Philippines",
+        "followers": 1197852,
+        "following": 141,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Thu Jul 10 07:55:26 +0000 2008",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2416,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 219464,
+        "statusesCount": 942847,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1753236174330888263"
+        ],
+        "profile_bio": {
+          "description": "Breaking news and stories from different sides. RTs from our journalists. Unparalleled journalism in the Philippines since 1900. #BeFullyInformed",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    129,
+                    145
+                  ],
+                  "text": "BeFullyInformed"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "mb.com.ph",
+                  "expanded_url": "http://www.mb.com.ph",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/WofHJVa7g9"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "A man sustained severe burns after he was set on fire by another man out of jealousy in Barangay Pitogo, Taguig on June 20.The victim,  identified as James,..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "mb.com.ph"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "15375209",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "mb.com.ph"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Man set on fire in Taguig"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/S9ztAH2x92"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/S9ztAH2x92",
+        "user_refs_results": [
+          {
+            "rest_id": "15375209",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 2416
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1923784408261115904/4xsy25CI_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/15375209/1770000605"
+              },
+              "core": {
+                "created_at": "Thu Jul 10 07:55:26 +0000 2008",
+                "name": "Manila Bulletin News",
+                "screen_name": "manilabulletin"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Manila, Philippines"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "1753236174330888263"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Breaking news and stories from different sides. RTs from our journalists. Unparalleled journalism in the Philippines since 1900. #BeFullyInformed",
+                "entities": {
+                  "description": {
+                    "hashtags": [
+                      {
+                        "indices": [
+                          129,
+                          145
+                        ],
+                        "text": "BeFullyInformed"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "mb.com.ph",
+                        "expanded_url": "http://www.mb.com.ph",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/WofHJVa7g9"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "303488"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 1197852,
+                "following": 141
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "15375209",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 219464,
+                "tweets": 942847
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/WofHJVa7g9"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "mb.com.ph/2025/06/23/man…",
+            "expanded_url": "https://mb.com.ph/2025/06/23/man-set-on-fire-in-taguig",
+            "indices": [
+              125,
+              148
+            ],
+            "url": "https://t.co/S9ztAH2x92"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1937232973226750077",
+      "url": "https://x.com/followlastma/status/1937232973226750077",
+      "twitterUrl": "https://twitter.com/followlastma/status/1937232973226750077",
+      "text": "[8:30PM] #OpebiAllen #TrafficUpdate \n\nSmooth traffic flow at Allen Intersection.\nGood traffic conditions at Adebola House, Opebi Road, Ikosi Road, and from Welfare Junction to Olusosu Ojota.\nUncongested traffic on Opebi Link Bridge.\nGood traffic movement on Armoire inward Allen Intersection and return journey.\nFree-flowing traffic on Billings Way stretch and Allen Intersection inward Radio, with a smooth return journey.\n\n#FollowLASTMA",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 598,
+      "createdAt": "Mon Jun 23 19:35:07 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1937232973226750077",
+      "displayTextRange": [
+        0,
+        278
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "followlastma",
+        "url": "https://x.com/followlastma",
+        "twitterUrl": "https://twitter.com/followlastma",
+        "id": "2202421710",
+        "name": "LASTMA",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2013645179513708544/1WOgDvRk_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
+        "description": "",
+        "location": "",
+        "followers": 187143,
+        "following": 89,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Tue Nov 19 03:37:05 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3020,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 31370,
+        "statusesCount": 146898,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099385380600533278"
+        ],
+        "profile_bio": {
+          "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "facebook.com/Ekolastma/",
+                  "expanded_url": "https://www.facebook.com/Ekolastma/",
+                  "indices": [
+                    82,
+                    105
+                  ],
+                  "url": "https://t.co/yzaGG1F9TK"
+                },
+                {
+                  "display_url": "youtube.com/@lastmatv?s",
+                  "expanded_url": "https://youtube.com/@lastmatv?s",
+                  "indices": [
+                    117,
+                    140
+                  ],
+                  "url": "https://t.co/GBJZ6NWejV"
+                }
+              ],
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    64,
+                    75
+                  ],
+                  "name": "",
+                  "screen_name": "ekolastma_"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "lastma.org",
+                  "expanded_url": "https://lastma.org/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/ybifO4Q6W9"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              9,
+              20
+            ],
+            "text": "OpebiAllen"
+          },
+          {
+            "indices": [
+              21,
+              35
+            ],
+            "text": "TrafficUpdate"
+          },
+          {
+            "indices": [
+              425,
+              438
+            ],
+            "text": "FollowLASTMA"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1937234499152085074",
+      "url": "https://x.com/Trijicon/status/1937234499152085074",
+      "twitterUrl": "https://twitter.com/Trijicon/status/1937234499152085074",
+      "text": "Training to lead from the front. 3d MLR runs live-fire at PTA with VCOGs on deck—prepping to support exercises in the Philippines. It’s our honor to provide gear to U.S. Marines around the globe.\n\n📷: @USMC &amp; Marine Cpl. Malia Sparks https://t.co/um1d3bY1fT",
+      "source": "Twitter for iPhone",
+      "retweetCount": 9,
+      "replyCount": 2,
+      "likeCount": 148,
+      "quoteCount": 1,
+      "viewCount": 5413,
+      "createdAt": "Mon Jun 23 19:41:11 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 4,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1937234499152085074",
+      "displayTextRange": [
+        0,
+        236
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "Trijicon",
+        "url": "https://x.com/Trijicon",
+        "twitterUrl": "https://twitter.com/Trijicon",
+        "id": "260955638",
+        "name": "Trijicon, Inc.",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2061485624557776896/TQFoAnOw_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/260955638/1777906834",
+        "description": "",
+        "location": "Wixom, MI USA",
+        "followers": 177120,
+        "following": 374,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri Mar 04 23:31:07 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3565,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 3182,
+        "statusesCount": 4766,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2098040267307683906"
+        ],
+        "profile_bio": {
+          "description": "We design & manufacture Brilliant Aiming Solutions™ for #Hunting, #LawEnforcement, #Military, #PersonalDefense & Shooting Enthusiasts around the world.",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    56,
+                    64
+                  ],
+                  "text": "Hunting"
+                },
+                {
+                  "indices": [
+                    66,
+                    81
+                  ],
+                  "text": "LawEnforcement"
+                },
+                {
+                  "indices": [
+                    83,
+                    92
+                  ],
+                  "text": "Military"
+                },
+                {
+                  "indices": [
+                    94,
+                    110
+                  ],
+                  "text": "PersonalDefense"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "trijicon.com",
+                  "expanded_url": "https://www.trijicon.com/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/VAXkqzYGVr"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/um1d3bY1fT",
+            "expanded_url": "https://x.com/Trijicon/status/1937234499152085074/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1937234456948940800",
+            "indices": [
+              237,
+              260
+            ],
+            "media_key": "3_1937234456948940800",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARricHmFFqAACgACGuJwg1iXgFIAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGuJweYUWoAAKAAIa4nCDWJeAUgAA",
+                "media_key": "3_1937234456948940800"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GuJweYUWoAA1ZTf.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 115
+                },
+                {
+                  "h": 720,
+                  "w": 720,
+                  "x": 360,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 632,
+                  "x": 448,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 360,
+                  "x": 603,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 720,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/um1d3bY1fT"
+          },
+          {
+            "display_url": "pic.x.com/um1d3bY1fT",
+            "expanded_url": "https://x.com/Trijicon/status/1937234499152085074/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1937234478222495744",
+            "indices": [
+              237,
+              260
+            ],
+            "media_key": "3_1937234478222495744",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARricH55F1AACgACGuJwg1iXgFIAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGuJwfnkXUAAKAAIa4nCDWJeAUgAA",
+                "media_key": "3_1937234478222495744"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GuJwfnkXUAAsoT2.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 49
+                },
+                {
+                  "h": 720,
+                  "w": 720,
+                  "x": 99,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 632,
+                  "x": 143,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 360,
+                  "x": 279,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 720,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/um1d3bY1fT"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "10126672",
+            "indices": [
+              200,
+              205
+            ],
+            "name": "U.S. Marines",
+            "screen_name": "USMC"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     }
   ]

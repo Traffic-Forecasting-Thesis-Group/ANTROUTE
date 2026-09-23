@@ -5,7 +5,7 @@
     "window_start": "2025-08-31T00:00:00+08:00",
     "window_end": "2025-08-31T02:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 12,
+    "tweet_count": 15,
     "slices": [
       {
         "start": "2025-08-31T00:00:00+08:00",
@@ -31,9 +31,10 @@
       {
         "start": "2025-08-31T00:15:00+08:00",
         "end": "2025-08-31T00:20:00+08:00",
+        "error": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
         "status_code": 200,
-        "returned": 2,
-        "accepted": 2
+        "returned": 3,
+        "accepted": 3
       },
       {
         "start": "2025-08-31T00:20:00+08:00",
@@ -60,8 +61,8 @@
         "start": "2025-08-31T00:35:00+08:00",
         "end": "2025-08-31T00:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-08-31T00:40:00+08:00",
@@ -74,8 +75,8 @@
         "start": "2025-08-31T00:45:00+08:00",
         "end": "2025-08-31T00:50:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-08-31T00:50:00+08:00",
@@ -208,7 +209,7 @@
         "url": "https://x.com/wrong_kawaii",
         "twitterUrl": "https://twitter.com/wrong_kawaii",
         "id": "950561073626664961",
-        "name": "Ramaragasang Hatdog #Fitness",
+        "name": "Ramaragasang Hatdog",
         "isVerified": false,
         "isBlueVerified": false,
         "verifiedType": null,
@@ -216,8 +217,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/950561073626664961/1744923551",
         "description": "",
         "location": "",
-        "followers": 11696,
-        "following": 2633,
+        "followers": 11686,
+        "following": 2636,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -229,11 +230,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 155505,
+        "favouritesCount": 155858,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 4771,
-        "statusesCount": 22116,
+        "mediaCount": 4785,
+        "statusesCount": 22145,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -297,8 +298,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/717588999418695680/1668437278",
         "description": "",
         "location": "upd",
-        "followers": 3957,
-        "following": 464,
+        "followers": 3947,
+        "following": 463,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -310,11 +311,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 106330,
+        "favouritesCount": 106609,
         "hasCustomTimelines": true,
         "isTranslator": false,
         "mediaCount": 2000,
-        "statusesCount": 27683,
+        "statusesCount": 27701,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -391,8 +392,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/434543909/1652798651",
         "description": "",
         "location": "Earth",
-        "followers": 497,
-        "following": 895,
+        "followers": 495,
+        "following": 899,
         "status": "",
         "canDm": false,
         "canMediaTag": false,
@@ -404,11 +405,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 54468,
+        "favouritesCount": 54815,
         "hasCustomTimelines": true,
         "isTranslator": false,
         "mediaCount": 581,
-        "statusesCount": 30362,
+        "statusesCount": 30369,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -433,14 +434,14 @@
         "twitterUrl": "https://twitter.com/inquirerdotnet/status/1961718124631478700",
         "text": "STAY SAFE!\n\nWATCH: Here is the flood situation along Mother Ignacia Avenue in Quezon City at around 3:30 p.m. on Saturday, August 30. | 🎥: Carl Quiruz via @KarenNgINQ \n\nSee the list of flooded roads here: https://t.co/tybWItNroq https://t.co/ujyRUUy0Sb",
         "source": "Twitter for iPhone",
-        "retweetCount": 1041,
+        "retweetCount": 1038,
         "replyCount": 172,
-        "likeCount": 3357,
+        "likeCount": 3356,
         "quoteCount": 793,
-        "viewCount": 1765650,
+        "viewCount": 1766147,
         "createdAt": "Sat Aug 30 09:10:22 +0000 2025",
         "lang": "en",
-        "bookmarkCount": 269,
+        "bookmarkCount": 270,
         "isReply": false,
         "inReplyToId": null,
         "conversationId": "1961718124631478700",
@@ -464,7 +465,7 @@
           "coverPicture": "https://pbs.twimg.com/profile_banners/15448383/1785196160",
           "description": "",
           "location": "Makati City",
-          "followers": 3563269,
+          "followers": 3563786,
           "following": 1759,
           "status": "",
           "canDm": true,
@@ -477,15 +478,17 @@
             "url": {}
           },
           "fastFollowersCount": 0,
-          "favouritesCount": 32469,
+          "favouritesCount": 32468,
           "hasCustomTimelines": true,
           "isTranslator": false,
-          "mediaCount": 206033,
-          "statusesCount": 1481060,
+          "mediaCount": 206832,
+          "statusesCount": 1483888,
           "withheldInCountries": [],
           "affiliatesHighlightedLabel": {},
           "possiblySensitive": false,
-          "pinnedTweetIds": [],
+          "pinnedTweetIds": [
+            "2099649397667885544"
+          ],
           "profile_bio": {
             "description": "Balanced News, Fearless Views. https://t.co/AuYsgsogFf",
             "entities": {
@@ -670,8 +673,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186994,
-        "following": 87,
+        "followers": 187158,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -683,16 +686,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31261,
-        "statusesCount": 146776,
+        "mediaCount": 31374,
+        "statusesCount": 146902,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -873,7 +876,7 @@
       "replyCount": 4,
       "likeCount": 17,
       "quoteCount": 3,
-      "viewCount": 8555,
+      "viewCount": 8556,
       "createdAt": "Sat Aug 30 16:18:08 +0000 2025",
       "lang": "tl",
       "bookmarkCount": 2,
@@ -900,8 +903,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/39453212/1785235955",
         "description": "",
         "location": "Philippines",
-        "followers": 5717007,
-        "following": 672,
+        "followers": 5718243,
+        "following": 674,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -913,15 +916,17 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 14181,
+        "favouritesCount": 14180,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 213163,
-        "statusesCount": 1024974,
+        "mediaCount": 214826,
+        "statusesCount": 1027666,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
-        "pinnedTweetIds": [],
+        "pinnedTweetIds": [
+          "2099687625783136340"
+        ],
         "profile_bio": {
           "description": "Welcome to the official X account of GMA News.",
           "entities": {
@@ -1330,6 +1335,185 @@
     },
     {
       "type": "tweet",
+      "id": "1961825558649843992",
+      "url": "https://x.com/gmanews/status/1961825558649843992",
+      "twitterUrl": "https://twitter.com/gmanews/status/1961825558649843992",
+      "text": "PANOORIN: Hindi nakaligtas sa baha ang mga lugar sa loob at paligid ng University of the Philippines Diliman dulot ng malakas at tuloy-tuloy na pag-ulan ngayong Sabado ng hapon, August 30.\n\nSa Facebook post ng Philippine Collegian, makikita na lubog sa baha ang Academic Oval  pati na rin ang ilang kalsada sa paligid ng unibersidad.\n\nKuha ang mga video ng kanilang mga Collegian staffers bandang 4 PM hanggang 6 PM.\n\nSamantala, para sa mga stranded na estudyante, maaaring pansamantalang tumigil sa Melchor Hall and IE-ME Building hanggang lagpas 9 PM, ayon sa Engineering Student Council.\n\nTatanggap din ng mga stranded na estudyante sa Acacia, Ilang-Ilang, Kamia, Molave at Yakal Residence Halls, kinakailangan lang ipakita ang UP ID, Form 5, o UP Dormers QR Code, ayon sa Facebook post ng Philippine Collegian.\n\nCOURTESY: Philippine Collegian/Facebook",
+      "source": "Twitter for iPhone",
+      "retweetCount": 5,
+      "replyCount": 6,
+      "likeCount": 11,
+      "quoteCount": 1,
+      "viewCount": 7892,
+      "createdAt": "Sat Aug 30 16:17:16 +0000 2025",
+      "lang": "tl",
+      "bookmarkCount": 3,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1961825558649843992",
+      "displayTextRange": [
+        0,
+        275
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "gmanews",
+        "url": "https://x.com/gmanews",
+        "twitterUrl": "https://twitter.com/gmanews",
+        "id": "39453212",
+        "name": "GMA News",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2038588193520709632/gW-kXR9a_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/39453212/1785235955",
+        "description": "",
+        "location": "Philippines",
+        "followers": 5718243,
+        "following": 674,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue May 12 07:14:09 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 14180,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 214826,
+        "statusesCount": 1027666,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099687625783136340"
+        ],
+        "profile_bio": {
+          "description": "Welcome to the official X account of GMA News.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "gmanews.tv",
+                  "expanded_url": "http://www.gmanews.tv",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/pdXg7H0qNa"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/b6qnIfSyYV",
+            "expanded_url": "https://x.com/gmanews/status/1961825558649843992/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "1961823443357429760",
+            "indices": [
+              276,
+              299
+            ],
+            "media_key": "13_1961823443357429760",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARs5zAcNWnAAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABGznMBw1acAAAAA==",
+                "media_key": "13_1961823443357429760"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1961823443357429760/img/2upNxFdyxXDQUcCe.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1920,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1920,
+                "w": 1080
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/b6qnIfSyYV",
+            "video_info": {
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration_millis": 31786,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1961823443357429760/pl/_NbYj2zs5-JJqZik.m3u8?tag=21&v=cfc"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1961823443357429760/vid/avc1/320x568/rps19eZTMSXyMpRY.mp4?tag=21"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1961823443357429760/vid/avc1/480x852/UQAswirROIUL_Fiz.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1961823443357429760/vid/avc1/720x1280/qpXV4RUZRen5Ub3L.mp4?tag=21"
+                },
+                {
+                  "bitrate": 10368000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1961823443357429760/vid/avc1/1080x1920/p7L5_TVpBe4hkbaU.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1961825306404393348",
       "url": "https://x.com/Manueli81309925/status/1961825306404393348",
       "twitterUrl": "https://twitter.com/Manueli81309925/status/1961825306404393348",
@@ -1367,7 +1551,7 @@
         "description": "",
         "location": "",
         "followers": 786,
-        "following": 569,
+        "following": 566,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -1412,9 +1596,9 @@
         "source": "Twitter for iPhone",
         "retweetCount": 216,
         "replyCount": 65,
-        "likeCount": 764,
+        "likeCount": 762,
         "quoteCount": 100,
-        "viewCount": 192658,
+        "viewCount": 192667,
         "createdAt": "Sat Aug 30 08:24:43 +0000 2025",
         "lang": "tl",
         "bookmarkCount": 57,
@@ -1441,7 +1625,7 @@
           "coverPicture": "https://pbs.twimg.com/profile_banners/15872418/1747565518",
           "description": "",
           "location": "Manila, Philippines",
-          "followers": 9238532,
+          "followers": 9238578,
           "following": 1098,
           "status": "",
           "canDm": false,
@@ -1457,8 +1641,8 @@
           "favouritesCount": 1186,
           "hasCustomTimelines": true,
           "isTranslator": true,
-          "mediaCount": 349884,
-          "statusesCount": 1344947,
+          "mediaCount": 351308,
+          "statusesCount": 1346899,
           "withheldInCountries": [],
           "affiliatesHighlightedLabel": {},
           "possiblySensitive": false,
@@ -1627,7 +1811,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197146,
+        "followers": 1197851,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -1643,8 +1827,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219264,
-        "statusesCount": 941830,
+        "mediaCount": 219472,
+        "statusesCount": 942904,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1883,6 +2067,530 @@
     },
     {
       "type": "tweet",
+      "id": "1961831260034327021",
+      "url": "https://x.com/dtptraffic/status/1961831260034327021",
+      "twitterUrl": "https://twitter.com/dtptraffic/status/1961831260034327021",
+      "text": "TRAFFIC ADVISORY\n\nDiversions will be in place tomorrow, 31.08.2025 at 3:00 PM, due to a religious procession on Pusa Road & Patel Road (R/A Bagga to Shadipur Chowk).\n\n📍 Diversion Points: R/A Bagga → Faiz Road, R/A Pusa → Dr. KS Krishan Marg\n📍 Alternate Routes: Panchkuiya Rd → DBG Rd → New Rohtak Rd → Punjabi Bagh; Shankar Rd → Dr. KS Krishan Marg → Goswami Girdhari Lal Marg → Punjabi Bagh\n📍 Avoid these stretches & plan your journey in advance\n\n#DPTrafficAdvisory",
+      "source": "Twitter for iPhone",
+      "retweetCount": 6,
+      "replyCount": 1,
+      "likeCount": 31,
+      "quoteCount": 0,
+      "viewCount": 9207,
+      "createdAt": "Sat Aug 30 16:39:56 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 4,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1961831260034327021",
+      "displayTextRange": [
+        0,
+        278
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "dtptraffic",
+        "url": "https://x.com/dtptraffic",
+        "twitterUrl": "https://twitter.com/dtptraffic",
+        "id": "143766231",
+        "name": "Delhi Traffic Police",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1747140324324225024/rLI5Hyjo_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/143766231/1651490407",
+        "description": "",
+        "location": "India, Delhi",
+        "followers": 1598492,
+        "following": 49,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri May 14 10:06:44 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 6966,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 15206,
+        "statusesCount": 417718,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099728178118041645"
+        ],
+        "profile_bio": {
+          "description": "24x7 Control Room : +91-11-25844444,1095",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "traffic.delhipolice.gov.in",
+                  "expanded_url": "https://traffic.delhipolice.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/U0jWSsRSeL"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/3aXAZR5lGJ",
+            "expanded_url": "https://x.com/dtptraffic/status/1961831260034327021/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1961831212189962241",
+            "indices": [
+              279,
+              302
+            ],
+            "media_key": "3_1961831212189962241",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARs50xff21ABCgACGznTIwOaYe0AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGznTF9/bUAEKAAIbOdMjA5ph7QAA",
+                "media_key": "3_1961831212189962241"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GznTF9_bUAExNId.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 717,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 1123,
+                  "x": 47,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 640,
+                  "x": 288,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1280,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 1280,
+                "w": 1280
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/3aXAZR5lGJ"
+          },
+          {
+            "display_url": "pic.x.com/3aXAZR5lGJ",
+            "expanded_url": "https://x.com/dtptraffic/status/1961831260034327021/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1961831239788486656",
+            "indices": [
+              279,
+              302
+            ],
+            "media_key": "3_1961831239788486656",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARs50x5M22AACgACGznTIwOaYe0AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGznTHkzbYAAKAAIbOdMjA5ph7QAA",
+                "media_key": "3_1961831239788486656"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GznTHkzbYAAtioo.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 717,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 1123,
+                  "x": 47,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 640,
+                  "x": 288,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1280,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 1280,
+                "w": 1280
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/3aXAZR5lGJ"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              448,
+              466
+            ],
+            "text": "DPTrafficAdvisory"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1961833536417374224",
+      "url": "https://x.com/dtptraffic/status/1961833536417374224",
+      "twitterUrl": "https://twitter.com/dtptraffic/status/1961833536417374224",
+      "text": "TRAFFIC ADVISORY\n\nTraffic will be affected in Paharganj area on 31.08.2025, Sunday,09:00 AM – 06:00 PM due to Tazia Procession & Mata Maharani Jyoti Yatra.\n\n📍 Affected Roads: DBG Road, Chelmsford Road, Qutub Road & adjoining areas\n📍 Use alternate routes via Rani Jhansi Road – Panchkuian Road – Mandir Marg – Kali Bari Marg\n📍 Plan journeys in advance & follow the directions of traffic police personnel.\n\n#DPTrafficAdvisory",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 2,
+      "likeCount": 21,
+      "quoteCount": 0,
+      "viewCount": 6801,
+      "createdAt": "Sat Aug 30 16:48:58 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1961833536417374224",
+      "displayTextRange": [
+        0,
+        284
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "dtptraffic",
+        "url": "https://x.com/dtptraffic",
+        "twitterUrl": "https://twitter.com/dtptraffic",
+        "id": "143766231",
+        "name": "Delhi Traffic Police",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1747140324324225024/rLI5Hyjo_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/143766231/1651490407",
+        "description": "",
+        "location": "India, Delhi",
+        "followers": 1598492,
+        "following": 49,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri May 14 10:06:44 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 6966,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 15206,
+        "statusesCount": 417718,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099728178118041645"
+        ],
+        "profile_bio": {
+          "description": "24x7 Control Room : +91-11-25844444,1095",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "traffic.delhipolice.gov.in",
+                  "expanded_url": "https://traffic.delhipolice.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/U0jWSsRSeL"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/21bPEZ8N1K",
+            "expanded_url": "https://x.com/dtptraffic/status/1961833536417374224/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1961832287647211520",
+            "indices": [
+              285,
+              308
+            ],
+            "media_key": "3_1961832287647211520",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARs51BJGGqAACgACGznVNQabIBAAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGznUEkYaoAAKAAIbOdU1BpsgEAAA",
+                "media_key": "3_1961832287647211520"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GznUEkYaoAAnhMB.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 717,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 1123,
+                  "x": 157,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 640,
+                  "x": 480,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1280,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 1280,
+                "w": 1280
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/21bPEZ8N1K"
+          },
+          {
+            "display_url": "pic.x.com/21bPEZ8N1K",
+            "expanded_url": "https://x.com/dtptraffic/status/1961833536417374224/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1961832314159448064",
+            "indices": [
+              285,
+              308
+            ],
+            "media_key": "3_1961832314159448064",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARs51BhyW0AACgACGznVNQabIBAAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABGznUGHJbQAAKAAIbOdU1BpsgEAAA",
+                "media_key": "3_1961832314159448064"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/GznUGHJbQAArmVo.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 717,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 1123,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 640,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1280,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1280,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 1280,
+                "w": 1280
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/21bPEZ8N1K"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              405,
+              423
+            ],
+            "text": "DPTrafficAdvisory"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1961837469646901431",
       "url": "https://x.com/followlastma/status/1961837469646901431",
       "twitterUrl": "https://twitter.com/followlastma/status/1961837469646901431",
@@ -1919,8 +2627,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186994,
-        "following": 87,
+        "followers": 187159,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -1932,16 +2640,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31261,
-        "statusesCount": 146776,
+        "mediaCount": 31375,
+        "statusesCount": 146904,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -2142,7 +2850,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/135488698/1716892937",
         "description": "",
         "location": "",
-        "followers": 251,
+        "followers": 252,
         "following": 681,
         "status": "",
         "canDm": true,
@@ -2155,11 +2863,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 241870,
+        "favouritesCount": 242872,
         "hasCustomTimelines": true,
         "isTranslator": false,
         "mediaCount": 1144,
-        "statusesCount": 145210,
+        "statusesCount": 145879,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2223,8 +2931,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/500825663/1667700730",
         "description": "",
         "location": "",
-        "followers": 106428,
-        "following": 5354,
+        "followers": 106595,
+        "following": 5383,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -2236,11 +2944,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 160274,
+        "favouritesCount": 160453,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 8441,
-        "statusesCount": 113782,
+        "mediaCount": 8498,
+        "statusesCount": 113989,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2739,8 +3447,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186995,
-        "following": 87,
+        "followers": 187159,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -2752,16 +3460,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31261,
-        "statusesCount": 146776,
+        "mediaCount": 31375,
+        "statusesCount": 146904,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -2959,8 +3667,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186995,
-        "following": 87,
+        "followers": 187159,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -2972,16 +3680,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3003,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31261,
-        "statusesCount": 146776,
+        "mediaCount": 31375,
+        "statusesCount": 146904,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",

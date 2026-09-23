@@ -5,14 +5,14 @@
     "window_start": "2026-03-03T10:00:00+08:00",
     "window_end": "2026-03-03T12:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 8,
+    "tweet_count": 10,
     "slices": [
       {
         "start": "2026-03-03T10:00:00+08:00",
         "end": "2026-03-03T10:05:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 0,
+        "accepted": 0
       },
       {
         "start": "2026-03-03T10:05:00+08:00",
@@ -67,8 +67,8 @@
         "start": "2026-03-03T10:40:00+08:00",
         "end": "2026-03-03T10:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-03-03T10:45:00+08:00",
@@ -130,8 +130,8 @@
         "start": "2026-03-03T11:25:00+08:00",
         "end": "2026-03-03T11:30:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-03-03T11:30:00+08:00",
@@ -180,108 +180,6 @@
   "data": [
     {
       "type": "tweet",
-      "id": "2028651729613713780",
-      "url": "https://x.com/MMDA/status/2028651729613713780",
-      "twitterUrl": "https://twitter.com/MMDA/status/2028651729613713780",
-      "text": "MMDA ALERT: Road crash incident at Roxas Blvd. Kalaw SB involving car and elf truck as of 9:36 AM. One lane occupied. MMDA enforcers are on site managing traffic. #mmda",
-      "source": "Twitter for iPhone",
-      "retweetCount": 0,
-      "replyCount": 0,
-      "likeCount": 0,
-      "quoteCount": 0,
-      "viewCount": 752,
-      "createdAt": "Tue Mar 03 02:00:37 +0000 2026",
-      "lang": "en",
-      "bookmarkCount": 0,
-      "isReply": false,
-      "inReplyToId": null,
-      "conversationId": "2028651729613713780",
-      "displayTextRange": [
-        0,
-        168
-      ],
-      "inReplyToUserId": null,
-      "inReplyToUsername": null,
-      "author": {
-        "type": "user",
-        "userName": "MMDA",
-        "url": "https://x.com/MMDA",
-        "twitterUrl": "https://twitter.com/MMDA",
-        "id": "171574926",
-        "name": "Official MMDA",
-        "isVerified": false,
-        "isBlueVerified": true,
-        "verifiedType": "Government",
-        "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
-        "description": "",
-        "location": "Metro Manila",
-        "followers": 3967079,
-        "following": 125,
-        "status": "",
-        "canDm": true,
-        "canMediaTag": true,
-        "createdAt": "Tue Jul 27 17:31:12 +0000 2010",
-        "entities": {
-          "description": {
-            "urls": []
-          },
-          "url": {}
-        },
-        "fastFollowersCount": 0,
-        "favouritesCount": 5284,
-        "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888279,
-        "withheldInCountries": [],
-        "affiliatesHighlightedLabel": {},
-        "possiblySensitive": false,
-        "pinnedTweetIds": [],
-        "profile_bio": {
-          "description": "Official X Account of the Metropolitan Manila Development Authority | Hotline 136 | digitalmedia@mmda.gov.ph | VIBER 0956-6632-221",
-          "entities": {
-            "description": {},
-            "url": {
-              "urls": [
-                {
-                  "display_url": "mmda.gov.ph",
-                  "expanded_url": "http://mmda.gov.ph",
-                  "indices": [
-                    0,
-                    23
-                  ],
-                  "url": "https://t.co/BHm5ofschj"
-                }
-              ]
-            }
-          }
-        },
-        "isAutomated": false,
-        "automatedBy": null
-      },
-      "extendedEntities": {},
-      "card": null,
-      "place": {},
-      "entities": {
-        "hashtags": [
-          {
-            "indices": [
-              163,
-              168
-            ],
-            "text": "mmda"
-          }
-        ]
-      },
-      "quoted_tweet": null,
-      "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
-      "article": null
-    },
-    {
-      "type": "tweet",
       "id": "2028655645201666371",
       "url": "https://x.com/TheManilaTimes/status/2028655645201666371",
       "twitterUrl": "https://twitter.com/TheManilaTimes/status/2028655645201666371",
@@ -318,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
         "description": "",
         "location": "Philippines",
-        "followers": 189492,
+        "followers": 190081,
         "following": 481,
         "status": "",
         "canDm": false,
@@ -331,16 +229,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 20345,
+        "favouritesCount": 20358,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 44352,
-        "statusesCount": 197175,
+        "mediaCount": 45227,
+        "statusesCount": 198763,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2093633872936456280"
+          "2099480545550090734"
         ],
         "profile_bio": {
           "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",
@@ -365,56 +263,7 @@
         "automatedBy": null
       },
       "extendedEntities": {},
-      "card": {
-        "binding_values": [
-          {
-            "key": "description",
-            "value": {
-              "string_value": "RIYADH, Saudi Arabia — An attack by two drones early Tuesday on the US embassy in Riyadh sparked a small fire, a Saudi defence ministry spokesman said in a statement, while Iran pressed on with its..."
-            }
-          },
-          {
-            "key": "domain",
-            "value": {
-              "string_value": "www.manilatimes.net"
-            }
-          },
-          {
-            "key": "vanity_url",
-            "value": {
-              "scribe_key": "vanity_url",
-              "string_value": "manilatimes.net"
-            }
-          },
-          {
-            "key": "title",
-            "value": {
-              "string_value": "Attack by two drones on US embassy in Riyadh sparks 'limited' fire: Saudi defense ministry spokesman"
-            }
-          },
-          {
-            "key": "card_url",
-            "value": {
-              "scribe_key": "card_url",
-              "string_value": "https://t.co/2RuPFS7rLt"
-            }
-          }
-        ],
-        "card_platform": {
-          "platform": {
-            "audience": {
-              "name": "production"
-            },
-            "device": {
-              "name": "iPhone",
-              "version": "13"
-            }
-          }
-        },
-        "name": "summary_large_image",
-        "url": "https://t.co/2RuPFS7rLt",
-        "user_refs_results": []
-      },
+      "card": null,
       "place": {},
       "entities": {
         "urls": [
@@ -431,8 +280,6 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -473,7 +320,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437252,
+        "followers": 1437170,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -489,8 +336,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412016,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -533,8 +380,6 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -575,7 +420,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437251,
+        "followers": 1437170,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -591,8 +436,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412016,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -641,6 +486,199 @@
     },
     {
       "type": "tweet",
+      "id": "2028662578747199926",
+      "url": "https://x.com/VVNews/status/2028662578747199926",
+      "twitterUrl": "https://twitter.com/VVNews/status/2028662578747199926",
+      "text": "Mojave Narrows Trout Derby Set for March 7; Traffic Advisory Issued for Park Entrance https://t.co/5hR6OaRbzq https://t.co/kzl4A39Iff",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 9,
+      "quoteCount": 0,
+      "viewCount": 539,
+      "createdAt": "Tue Mar 03 02:43:44 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2028662578747199926",
+      "displayTextRange": [
+        0,
+        109
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "VVNews",
+        "url": "https://x.com/VVNews",
+        "twitterUrl": "https://twitter.com/VVNews",
+        "id": "59937918",
+        "name": "Victor Valley News Group VVNG.com",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1099455268625076224/Q3ulCV9m_normal.png",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/59937918/1760555013",
+        "description": "",
+        "location": "Victorville, CA, USA",
+        "followers": 12738,
+        "following": 95,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Sat Jul 25 01:02:06 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 273,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 9193,
+        "statusesCount": 18145,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "#VVNG provides breaking news to the High Desert; Victorville, Hesperia, Apple Valley, Adelanto and surrounding communities.",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    0,
+                    5
+                  ],
+                  "text": "VVNG"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "vvng.com",
+                  "expanded_url": "http://www.vvng.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/s2A1d2bw84"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/kzl4A39Iff",
+            "expanded_url": "https://x.com/VVNews/status/2028662578747199926/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2028662489937010688",
+            "indices": [
+              110,
+              133
+            ],
+            "media_key": "3_2028662489937010688",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwnQclJ2uAACgACHCdB3fda0bYAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHCdByUna4AAKAAIcJ0Hd91rRtgAA",
+                "media_key": "3_2028662489937010688"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HCdByUna4AAIiSm.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 860,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 164
+                },
+                {
+                  "h": 1024,
+                  "w": 1024,
+                  "x": 256,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 898,
+                  "x": 319,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 512,
+                  "x": 512,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1024,
+              "width": 1536
+            },
+            "sizes": {
+              "large": {
+                "h": 1024,
+                "w": 1536
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/kzl4A39Iff"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "vvng.com/mojave-narrows…",
+            "expanded_url": "https://www.vvng.com/mojave-narrows-trout-derby-set-for-march-7-traffic-advisory-issued-for-park-entrance/",
+            "indices": [
+              86,
+              109
+            ],
+            "url": "https://t.co/5hR6OaRbzq"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2028662897975402578",
       "url": "https://x.com/MakatiTraffic/status/2028662897975402578",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2028662897975402578",
@@ -677,7 +715,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437252,
+        "followers": 1437170,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -693,8 +731,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412016,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -737,8 +775,6 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -779,7 +815,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967079,
+        "followers": 3966576,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -795,8 +831,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888279,
+        "mediaCount": 61738,
+        "statusesCount": 888713,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -855,7 +891,7 @@
       "source": "Twitter for iPhone",
       "retweetCount": 79,
       "replyCount": 91,
-      "likeCount": 333,
+      "likeCount": 331,
       "quoteCount": 17,
       "viewCount": 21161,
       "createdAt": "Tue Mar 03 03:18:53 +0000 2026",
@@ -884,7 +920,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15872418/1747565518",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 9238506,
+        "followers": 9238558,
         "following": 1098,
         "status": "",
         "canDm": false,
@@ -900,14 +936,12 @@
         "favouritesCount": 1186,
         "hasCustomTimelines": true,
         "isTranslator": true,
-        "mediaCount": 350164,
-        "statusesCount": 1345145,
+        "mediaCount": 351504,
+        "statusesCount": 1347193,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
-        "pinnedTweetIds": [
-          "2096958982250430882"
-        ],
+        "pinnedTweetIds": [],
         "profile_bio": {
           "description": "Stories, video, and multimedia for Filipinos worldwide, from ABS-CBN News and Current Affairs",
           "entities": {
@@ -1007,7 +1041,7 @@
                       "has_no_screen_name": false
                     },
                     "relationship_counts": {
-                      "followers": 603,
+                      "followers": 605,
                       "following": 66
                     },
                     "relationship_perspectives": {
@@ -1025,8 +1059,8 @@
                     "super_followed_by": false,
                     "super_following": false,
                     "tweet_counts": {
-                      "media_tweets": 1243,
-                      "tweets": 3008
+                      "media_tweets": 1280,
+                      "tweets": 3086
                     },
                     "verification": {
                       "is_blue_verified": false,
@@ -1133,6 +1167,486 @@
     },
     {
       "type": "tweet",
+      "id": "2028673577910952358",
+      "url": "https://x.com/halairporttrfps/status/2028673577910952358",
+      "twitterUrl": "https://twitter.com/halairporttrfps/status/2028673577910952358",
+      "text": "\"Traffic Advisory\"\n Slow movement from Marathahalli towards KB Halli due to ongoing Metro station work at MPS. Commuters, we request your patience &amp; cooperation. Thank you!  @blrcitytraffic @DCPTrEastBCP @CPBlr @Jointcptraffic @acpwfieldtrf https://t.co/DvjMiylV2v",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 4,
+      "quoteCount": 0,
+      "viewCount": 586,
+      "createdAt": "Tue Mar 03 03:27:26 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2028673577910952358",
+      "displayTextRange": [
+        0,
+        244
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "halairporttrfps",
+        "url": "https://x.com/halairporttrfps",
+        "twitterUrl": "https://twitter.com/halairporttrfps",
+        "id": "3014057594",
+        "name": "HAL AIRPORT TRAFFIC BTP",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1431940538807111685/NlzIwwo7_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/3014057594/1698666640",
+        "description": "",
+        "location": "Bengaluru, India",
+        "followers": 12343,
+        "following": 64,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Feb 09 06:37:58 +0000 2015",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5828,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 7764,
+        "statusesCount": 20145,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2100145281115492778"
+        ],
+        "profile_bio": {
+          "description": "Official twitter account of HAL Airport Traffic Police Station (080-22943115). Dial Namma-112 in case of emergency. @blrcitytraffic",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    116,
+                    131
+                  ],
+                  "name": "",
+                  "screen_name": "blrcitytraffic"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.gov.in",
+                  "expanded_url": "https://btp.gov.in/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/aoci2eeC5I"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/DvjMiylV2v",
+            "expanded_url": "https://x.com/halairporttrfps/status/2028673577910952358/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 60,
+                    "w": 60,
+                    "x": 687,
+                    "y": 709
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 60,
+                    "w": 60,
+                    "x": 687,
+                    "y": 709
+                  }
+                ]
+              }
+            },
+            "id_str": "2028673566494089216",
+            "indices": [
+              245,
+              268
+            ],
+            "media_key": "3_2028673566494089216",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwnS9xAGuAACgACHCdL3uiaYaYAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHCdL3EAa4AAKAAIcJ0ve6JphpgAA",
+                "media_key": "3_2028673566494089216"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HCdL3EAa4AA7sLP.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 504,
+                  "w": 900,
+                  "x": 0,
+                  "y": 1096
+                },
+                {
+                  "h": 900,
+                  "w": 900,
+                  "x": 0,
+                  "y": 700
+                },
+                {
+                  "h": 1026,
+                  "w": 900,
+                  "x": 0,
+                  "y": 574
+                },
+                {
+                  "h": 1600,
+                  "w": 800,
+                  "x": 100,
+                  "y": 0
+                },
+                {
+                  "h": 1600,
+                  "w": 900,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1600,
+              "width": 900
+            },
+            "sizes": {
+              "large": {
+                "h": 1600,
+                "w": 900
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/DvjMiylV2v"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "1851545900",
+            "indices": [
+              178,
+              193
+            ],
+            "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+            "screen_name": "blrcitytraffic"
+          },
+          {
+            "id_str": "2809049605",
+            "indices": [
+              194,
+              207
+            ],
+            "name": "DCP Traffic East ಉಪ ಪೊಲೀಸ್ ಆಯುಕ್ತರು ಸಂಚಾರ ಪೂರ್ವ",
+            "screen_name": "DCPTrEastBCP"
+          },
+          {
+            "id_str": "2687852605",
+            "indices": [
+              208,
+              214
+            ],
+            "name": "CP Bengaluru ಪೊಲೀಸ್ ಆಯುಕ್ತ ಬೆಂಗಳೂರು",
+            "screen_name": "CPBlr"
+          },
+          {
+            "id_str": "2809164276",
+            "indices": [
+              215,
+              230
+            ],
+            "name": "Joint CP, Traffic, Bengaluru",
+            "screen_name": "Jointcptraffic"
+          },
+          {
+            "id_str": "1361589347032600576",
+            "indices": [
+              231,
+              244
+            ],
+            "name": "ACP Whitefield Traffic ಎಸಿಪಿ ಸಂಚಾರ ವೈಟ್ ಫೀಲ್ಡ್",
+            "screen_name": "acpwfieldtrf"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2028673364353806469",
+      "url": "https://x.com/halairporttrfps/status/2028673364353806469",
+      "twitterUrl": "https://twitter.com/halairporttrfps/status/2028673364353806469",
+      "text": "\"Traffic Advisory\"\n Slow movement from Mahadevapura towards Marathahalli due to ongoing Metro station work at Kartik Nagar. Commuters, we request your patience &amp; cooperation. Thank you! \n@blrcitytraffic @DCPTrEastBCP @CPBlr @Jointcptraffic @acpwfieldtrf https://t.co/XgSxZSwKCa",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 661,
+      "createdAt": "Tue Mar 03 03:26:35 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2028673364353806469",
+      "displayTextRange": [
+        0,
+        257
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "halairporttrfps",
+        "url": "https://x.com/halairporttrfps",
+        "twitterUrl": "https://twitter.com/halairporttrfps",
+        "id": "3014057594",
+        "name": "HAL AIRPORT TRAFFIC BTP",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1431940538807111685/NlzIwwo7_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/3014057594/1698666640",
+        "description": "",
+        "location": "Bengaluru, India",
+        "followers": 12343,
+        "following": 64,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Feb 09 06:37:58 +0000 2015",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5828,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 7764,
+        "statusesCount": 20145,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2100145281115492778"
+        ],
+        "profile_bio": {
+          "description": "Official twitter account of HAL Airport Traffic Police Station (080-22943115). Dial Namma-112 in case of emergency. @blrcitytraffic",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    116,
+                    131
+                  ],
+                  "name": "",
+                  "screen_name": "blrcitytraffic"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.gov.in",
+                  "expanded_url": "https://btp.gov.in/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/aoci2eeC5I"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/XgSxZSwKCa",
+            "expanded_url": "https://x.com/halairporttrfps/status/2028673364353806469/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2028673355986210816",
+            "indices": [
+              258,
+              281
+            ],
+            "media_key": "3_2028673355986210816",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARwnS6s825AACgACHCdLrS+a8IUAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHCdLqzzbkAAKAAIcJ0utL5rwhQAA",
+                "media_key": "3_2028673355986210816"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HCdLqzzbkAA3T7U.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 720,
+                  "w": 1286,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 720,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 632,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 360,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 720,
+              "width": 1600
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1600
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/XgSxZSwKCa"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "1851545900",
+            "indices": [
+              191,
+              206
+            ],
+            "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+            "screen_name": "blrcitytraffic"
+          },
+          {
+            "id_str": "2809049605",
+            "indices": [
+              207,
+              220
+            ],
+            "name": "DCP Traffic East ಉಪ ಪೊಲೀಸ್ ಆಯುಕ್ತರು ಸಂಚಾರ ಪೂರ್ವ",
+            "screen_name": "DCPTrEastBCP"
+          },
+          {
+            "id_str": "2687852605",
+            "indices": [
+              221,
+              227
+            ],
+            "name": "CP Bengaluru ಪೊಲೀಸ್ ಆಯುಕ್ತ ಬೆಂಗಳೂರು",
+            "screen_name": "CPBlr"
+          },
+          {
+            "id_str": "2809164276",
+            "indices": [
+              228,
+              243
+            ],
+            "name": "Joint CP, Traffic, Bengaluru",
+            "screen_name": "Jointcptraffic"
+          },
+          {
+            "id_str": "1361589347032600576",
+            "indices": [
+              244,
+              257
+            ],
+            "name": "ACP Whitefield Traffic ಎಸಿಪಿ ಸಂಚಾರ ವೈಟ್ ಫೀಲ್ಡ್",
+            "screen_name": "acpwfieldtrf"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2028676295257915533",
       "url": "https://x.com/PhilippineStar/status/2028676295257915533",
       "twitterUrl": "https://twitter.com/PhilippineStar/status/2028676295257915533",
@@ -1169,7 +1683,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/472122299/1601895131",
         "description": "",
         "location": "Philippines",
-        "followers": 1818921,
+        "followers": 1819659,
         "following": 867,
         "status": "",
         "canDm": false,
@@ -1185,8 +1699,8 @@
         "favouritesCount": 3252,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 257087,
-        "statusesCount": 802869,
+        "mediaCount": 257756,
+        "statusesCount": 803909,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,

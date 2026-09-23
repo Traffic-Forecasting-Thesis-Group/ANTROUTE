@@ -5,7 +5,7 @@
     "window_start": "2026-04-28T06:00:00+08:00",
     "window_end": "2026-04-28T08:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 4,
+    "tweet_count": 6,
     "slices": [
       {
         "start": "2026-04-28T06:00:00+08:00",
@@ -25,8 +25,8 @@
         "start": "2026-04-28T06:10:00+08:00",
         "end": "2026-04-28T06:15:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-04-28T06:15:00+08:00",
@@ -60,8 +60,8 @@
         "start": "2026-04-28T06:35:00+08:00",
         "end": "2026-04-28T06:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-04-28T06:40:00+08:00",
@@ -180,6 +180,182 @@
   "data": [
     {
       "type": "tweet",
+      "id": "2048887866386944342",
+      "url": "https://x.com/209TimesCA/status/2048887866386944342",
+      "twitterUrl": "https://twitter.com/209TimesCA/status/2048887866386944342",
+      "text": "Traffic Advisory: Car flipped over on tully rd #modesto https://t.co/5jytvNzKiY",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 9,
+      "quoteCount": 0,
+      "viewCount": 929,
+      "createdAt": "Mon Apr 27 22:11:48 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2048887866386944342",
+      "displayTextRange": [
+        0,
+        55
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "209TimesCA",
+        "url": "https://x.com/209TimesCA",
+        "twitterUrl": "https://twitter.com/209TimesCA",
+        "id": "828800194355437573",
+        "name": "209 Times",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1099378975778889729/VUyUpAl0_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/828800194355437573/1486492341",
+        "description": "",
+        "location": "Stockton, CA",
+        "followers": 12482,
+        "following": 106,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Feb 07 02:58:59 +0000 2017",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2762,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2651,
+        "statusesCount": 3946,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "News Government & Politics Politics General News Business & Finance",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "209times.com",
+                  "expanded_url": "http://209times.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/asnVQ0CfIn"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/5jytvNzKiY",
+            "expanded_url": "https://x.com/209TimesCA/status/2048887866386944342/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "2048887814012760064",
+            "indices": [
+              56,
+              79
+            ],
+            "media_key": "13_2048887814012760064",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARxvHJyC23AAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABHG8cnILbcAAAAA==",
+                "media_key": "13_2048887814012760064"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2048887814012760064/img/9j3SFtpSb9pqD0Xq.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1024,
+              "width": 576
+            },
+            "sizes": {
+              "large": {
+                "h": 1024,
+                "w": 576
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/5jytvNzKiY",
+            "video_info": {
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration_millis": 8616,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/2048887814012760064/pl/7DghBR9O-vCor5i7.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2048887814012760064/vid/avc1/320x568/0u12lsIAZgHyt_Xs.mp4?tag=21"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2048887814012760064/vid/avc1/480x852/7irE2KNHy-3dYQCu.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2048887814012760064/vid/avc1/576x1024/B2S2a6X53mvbs4DC.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              47,
+              55
+            ],
+            "text": "modesto"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2048888670644564163",
       "url": "https://x.com/MakatiTraffic/status/2048888670644564163",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2048888670644564163",
@@ -216,7 +392,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437246,
+        "followers": 1437168,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +408,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411429,
+        "mediaCount": 17208,
+        "statusesCount": 412031,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -318,7 +494,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437246,
+        "followers": 1437168,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -334,8 +510,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411429,
+        "mediaCount": 17208,
+        "statusesCount": 412031,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -384,6 +560,305 @@
     },
     {
       "type": "tweet",
+      "id": "2048894624471900344",
+      "url": "https://x.com/ChinaInFocusNTD/status/2048894624471900344",
+      "twitterUrl": "https://twitter.com/ChinaInFocusNTD/status/2048894624471900344",
+      "text": "U.S., Philippines Conduct Military Drills Near South China Sea\n\nAs simulated enemy boats and unmanned craft closed in on the shores of Palawan Island facing the South China Sea, U.S. and Philippine forces conducted counter-landing drills on Monday, repelling a mock assault and intercepting threats by using live fire against designated targets.\n\nhttps://t.co/tQhYTzksBP",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 7,
+      "quoteCount": 0,
+      "viewCount": 423,
+      "createdAt": "Mon Apr 27 22:38:39 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2048894624471900344",
+      "displayTextRange": [
+        0,
+        277
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ChinaInFocusNTD",
+        "url": "https://x.com/ChinaInFocusNTD",
+        "twitterUrl": "https://twitter.com/ChinaInFocusNTD",
+        "id": "1232414456589750272",
+        "name": "China in Focus - NTD",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1608511465211793411/MImojki-_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1232414456589750272/1652407166",
+        "description": "",
+        "location": "New York, NY",
+        "followers": 45627,
+        "following": 14,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Feb 25 21:18:29 +0000 2020",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2027,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 6975,
+        "statusesCount": 13541,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2100036040908251259"
+        ],
+        "profile_bio": {
+          "description": "🇺🇸Support the China news you can't find anywhere else: https://t.co/LeKr2QtN5X",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "ntd.com/ntdplus/china-…",
+                  "expanded_url": "https://www.ntd.com/ntdplus/china-in-focus?utm_medium=ChinaInFocus&utm_source=SocialM&utm_campaign=X",
+                  "indices": [
+                    55,
+                    78
+                  ],
+                  "url": "https://t.co/LeKr2QtN5X"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "ntd.com/ntdplus/china-…",
+                  "expanded_url": "https://www.ntd.com/ntdplus/china-in-focus?utm_medium=ChinaInFocus&utm_source=SocialM&utm_campaign=X",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/LeKr2QtN5X"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "The armed forces test their ability to work together to protect territorial waters."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.ntd.com"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "1060573081935249409",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_alt_text",
+            "value": {
+              "string_value": "US, Philippines Stage Drills Near South China Sea"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "ntd.com"
+            }
+          },
+          {
+            "key": "summary_photo_image_alt_text",
+            "value": {
+              "string_value": "US, Philippines Stage Drills Near South China Sea"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "US, Philippines Stage Drills Near South China Sea"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/tQhYTzksBP"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/tQhYTzksBP",
+        "user_refs_results": [
+          {
+            "rest_id": "1060573081935249409",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 31511
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/2093805964830892032/KjLxpYYj_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/1060573081935249409/1775008052"
+              },
+              "core": {
+                "created_at": "Thu Nov 08 16:41:42 +0000 2018",
+                "name": "NTD News",
+                "screen_name": "NTDNews"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "New York, NY"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2099468675724062751"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Your independent voice in TV news—bringing back reliable, honest news reporting.",
+                "entities": {
+                  "description": {},
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "ntd.com",
+                        "expanded_url": "http://www.ntd.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/ddW7AsCdsO"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Square",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "1DA1F2"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 89159,
+                "following": 30
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "1060573081935249409",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": true,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 26655,
+                "tweets": 163720
+              },
+              "verification": {
+                "is_blue_verified": false,
+                "verified": false,
+                "verified_type": "Business"
+              },
+              "website": {
+                "url": "https://t.co/ddW7AsCdsO"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [
+          {
+            "display_url": "ntd.com/ntdplus/us-phi…",
+            "expanded_url": "https://www.ntd.com/ntdplus/us-philippines-stage-drills-near-south-china-sea_1141418.html?utm_source=X&utm_medium=SocialM&utm_content=NTDNewsToday&utm_term=Drills",
+            "indices": [
+              347,
+              370
+            ],
+            "url": "https://t.co/tQhYTzksBP"
+          }
+        ],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2048911319609606257",
       "url": "https://x.com/MakatiTraffic/status/2048911319609606257",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2048911319609606257",
@@ -420,7 +895,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437246,
+        "followers": 1437168,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -436,8 +911,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411429,
+        "mediaCount": 17208,
+        "statusesCount": 412031,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -522,7 +997,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
         "description": "",
         "location": "Philippines",
-        "followers": 189496,
+        "followers": 190094,
         "following": 481,
         "status": "",
         "canDm": false,
@@ -535,16 +1010,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 20345,
+        "favouritesCount": 20361,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 44381,
-        "statusesCount": 197226,
+        "mediaCount": 45264,
+        "statusesCount": 198811,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2093633872936456280"
+          "2099480545550090734"
         ],
         "profile_bio": {
           "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",

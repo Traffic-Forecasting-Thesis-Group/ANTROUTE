@@ -5,7 +5,7 @@
     "window_start": "2025-09-30T02:00:00+08:00",
     "window_end": "2025-09-30T04:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 2,
+    "tweet_count": 5,
     "slices": [
       {
         "start": "2025-09-30T02:00:00+08:00",
@@ -46,8 +46,8 @@
         "start": "2025-09-30T02:25:00+08:00",
         "end": "2025-09-30T02:30:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-09-30T02:30:00+08:00",
@@ -67,8 +67,8 @@
         "start": "2025-09-30T02:40:00+08:00",
         "end": "2025-09-30T02:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-09-30T02:45:00+08:00",
@@ -172,12 +172,638 @@
         "start": "2025-09-30T03:55:00+08:00",
         "end": "2025-09-30T04:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       }
     ]
   },
   "data": [
+    {
+      "type": "tweet",
+      "id": "1972729691388711336",
+      "url": "https://x.com/CityofTampa/status/1972729691388711336",
+      "twitterUrl": "https://twitter.com/CityofTampa/status/1972729691388711336",
+      "text": "⚠️ I-275 TRAFFIC ADVISORY⚠️\nThis weekend, there will be a temporary closure of the Downtown Tampa Interchange from Saturday AM at 12:01am through Monday AM at 5am. Expect increased traffic in the area. \nhttps://t.co/HEyVZ4OlDW",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 0,
+      "viewCount": 1407,
+      "createdAt": "Mon Sep 29 18:26:24 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1972729691388711336",
+      "displayTextRange": [
+        0,
+        226
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "CityofTampa",
+        "url": "https://x.com/CityofTampa",
+        "twitterUrl": "https://twitter.com/CityofTampa",
+        "id": "16102081",
+        "name": "City of Tampa",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1498765697169735681/PO0keLyT_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/16102081/1667311631",
+        "description": "",
+        "location": "Tampa, FL",
+        "followers": 239829,
+        "following": 532,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Sep 02 20:02:00 +0000 2008",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 39176,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 23517,
+        "statusesCount": 55983,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official account for the City of Tampa. ☀️",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "tampa.gov",
+                  "expanded_url": "http://tampa.gov",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/anwmLEHrwL"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2097575018825666561/Ne5esDZI?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 150,
+                "url": "https://pbs.twimg.com/card_img/2097575018825666561/Ne5esDZI?format=jpg&name=280x150",
+                "width": 267
+              }
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.fox13news.com"
+            }
+          },
+          {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 320,
+                "url": "https://pbs.twimg.com/card_img/2097575018825666561/Ne5esDZI?format=jpg&name=800x320_1",
+                "width": 569
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2097575018825666561/Ne5esDZI?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 720,
+                "url": "https://pbs.twimg.com/card_img/2097575018825666561/Ne5esDZI?format=jpg&name=orig",
+                "width": 1280
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2097575018825666561/Ne5esDZI?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2097575018825666561/Ne5esDZI?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 81,
+                "url": "https://pbs.twimg.com/card_img/2097575018825666561/Ne5esDZI?format=jpg&name=144x144",
+                "width": 144
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 720,
+                "url": "https://pbs.twimg.com/card_img/2097575018825666561/Ne5esDZI?format=png&name=2048x2048_2_exp",
+                "width": 1280
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "height": 720,
+                "url": "https://pbs.twimg.com/card_img/2097575018825666561/Ne5esDZI?format=jpg&name=orig",
+                "width": 1280
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "fox13news.com"
+            }
+          },
+          {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2097575018825666561/Ne5esDZI?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 55.97,
+                    "rgb": {
+                      "blue": 180,
+                      "green": 178,
+                      "red": 167
+                    }
+                  },
+                  {
+                    "percentage": 29.09,
+                    "rgb": {
+                      "blue": 53,
+                      "green": 51,
+                      "red": 47
+                    }
+                  },
+                  {
+                    "percentage": 10.95,
+                    "rgb": {
+                      "blue": 113,
+                      "green": 121,
+                      "red": 123
+                    }
+                  },
+                  {
+                    "percentage": 1.42,
+                    "rgb": {
+                      "blue": 96,
+                      "green": 102,
+                      "red": 47
+                    }
+                  },
+                  {
+                    "percentage": 0.43,
+                    "rgb": {
+                      "blue": 50,
+                      "green": 114,
+                      "red": 141
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "I-275 lane closures expected this weekend in downtown Tampa: Here’s what to know"
+            }
+          },
+          {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 55.97,
+                    "rgb": {
+                      "blue": 180,
+                      "green": 178,
+                      "red": 167
+                    }
+                  },
+                  {
+                    "percentage": 29.09,
+                    "rgb": {
+                      "blue": 53,
+                      "green": 51,
+                      "red": 47
+                    }
+                  },
+                  {
+                    "percentage": 10.95,
+                    "rgb": {
+                      "blue": 113,
+                      "green": 121,
+                      "red": 123
+                    }
+                  },
+                  {
+                    "percentage": 1.42,
+                    "rgb": {
+                      "blue": 96,
+                      "green": 102,
+                      "red": 47
+                    }
+                  },
+                  {
+                    "percentage": 0.43,
+                    "rgb": {
+                      "blue": 50,
+                      "green": 114,
+                      "red": 141
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 720,
+                "url": "https://pbs.twimg.com/card_img/2097575018825666561/Ne5esDZI?format=png&name=2048x2048_2_exp",
+                "width": 1280
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2097575018825666561/Ne5esDZI?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 55.97,
+                    "rgb": {
+                      "blue": 180,
+                      "green": 178,
+                      "red": 167
+                    }
+                  },
+                  {
+                    "percentage": 29.09,
+                    "rgb": {
+                      "blue": 53,
+                      "green": 51,
+                      "red": 47
+                    }
+                  },
+                  {
+                    "percentage": 10.95,
+                    "rgb": {
+                      "blue": 113,
+                      "green": 121,
+                      "red": 123
+                    }
+                  },
+                  {
+                    "percentage": 1.42,
+                    "rgb": {
+                      "blue": 96,
+                      "green": 102,
+                      "red": 47
+                    }
+                  },
+                  {
+                    "percentage": 0.43,
+                    "rgb": {
+                      "blue": 50,
+                      "green": 114,
+                      "red": 141
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "height": 720,
+                "url": "https://pbs.twimg.com/card_img/2097575018825666561/Ne5esDZI?format=png&name=2048x2048_2_exp",
+                "width": 1280
+              }
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/HEyVZ4OlDW"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "height": 720,
+                "url": "https://pbs.twimg.com/card_img/2097575018825666561/Ne5esDZI?format=jpg&name=orig",
+                "width": 1280
+              }
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/HEyVZ4OlDW",
+        "user_refs_results": []
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "fox13news.com/news/i-275-lan…",
+            "expanded_url": "https://www.fox13news.com/news/i-275-lane-closures-expected-downtown-tampa-week-heres-what-know",
+            "indices": [
+              203,
+              226
+            ],
+            "url": "https://t.co/HEyVZ4OlDW"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1972734198982255077",
+      "url": "https://x.com/FCT_DRTS/status/1972734198982255077",
+      "twitterUrl": "https://twitter.com/FCT_DRTS/status/1972734198982255077",
+      "text": "TRAFFIC ADVISORY\nDay 7, 30th September, 2025\n\nConstruction of Access Arterial Road S1 from Ring 2 to FCT Fire Station in Kaura District\n\nMotorists plying Kado-Galadima, Lokogoma, Sun City and other locations within these axis are hereby informed of movement of dignitaries to the venue of the event near the FCT Fire Service station in Kaura.\n\nTraffic along these routes will be slightly affected but traffic control personnel and Security agents will be on ground to ensure seamless movement and conduct of all road users.\n\nYour cooperation again is highly solicited.\n\n— Head Traffic DRTS.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 4,
+      "quoteCount": 0,
+      "viewCount": 411,
+      "createdAt": "Mon Sep 29 18:44:19 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1972734198982255077",
+      "displayTextRange": [
+        0,
+        279
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "FCT_DRTS",
+        "url": "https://x.com/FCT_DRTS",
+        "twitterUrl": "https://twitter.com/FCT_DRTS",
+        "id": "1668202025836789761",
+        "name": "FCT Directorate of Road Traffic Services (FCT VIO)",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1668203644200669184/XnM1CxBq_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1668202025836789761/1686566394",
+        "description": "",
+        "location": "DRTS HQ Mabushi, FCT, Abuja",
+        "followers": 742,
+        "following": 14,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Mon Jun 12 10:22:53 +0000 2023",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 78,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 180,
+        "statusesCount": 272,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1793303719037096120"
+        ],
+        "profile_bio": {
+          "description": "The Directorate of Road Traffic Services as currently constituted performs the Motor Vehicle Administration and Traffic Control Functions in the FCT",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "drts.gov.ng",
+                  "expanded_url": "http://drts.gov.ng",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/krcCu3LMVe"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/8xKtjM6gEG",
+            "expanded_url": "https://x.com/FCT_DRTS/status/1972734198982255077/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1972734187510599680",
+            "indices": [
+              280,
+              303
+            ],
+            "media_key": "3_1972734187510599680",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtgj0qi1pAACgACG2CPTU6aIeUAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG2CPSqLWkAAKAAIbYI9NTpoh5QAA",
+                "media_key": "3_1972734187510599680"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G2CPSqLWkAAn1U4.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 947,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 540,
+                  "x": 81,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1080,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/8xKtjM6gEG"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
     {
       "type": "tweet",
       "id": "1972736141020270737",
@@ -216,7 +842,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
         "description": "",
         "location": "Philippines",
-        "followers": 189305,
+        "followers": 190132,
         "following": 481,
         "status": "",
         "canDm": false,
@@ -229,16 +855,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 20344,
+        "favouritesCount": 20357,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 44221,
-        "statusesCount": 196918,
+        "mediaCount": 45142,
+        "statusesCount": 198602,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2093633872936456280"
+          "2099480545550090734"
         ],
         "profile_bio": {
           "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",
@@ -266,26 +892,6 @@
       "card": {
         "binding_values": [
           {
-            "key": "photo_image_full_size_large",
-            "value": {
-              "image_value": {
-                "height": 419,
-                "url": "https://pbs.twimg.com/card_img/2094898723352649728/mTVyusP1?format=jpg&name=800x419",
-                "width": 800
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image",
-            "value": {
-              "image_value": {
-                "height": 147,
-                "url": "https://pbs.twimg.com/card_img/2094898723352649728/mTVyusP1?format=jpg&name=280x150",
-                "width": 280
-              }
-            }
-          },
-          {
             "key": "description",
             "value": {
               "string_value": "THE United Filipino Consumers and Commuters (UFCC) advocacy group on Monday held a protest rally outside the Department of Trade and Industry office in Makati against an added tariff on local cement."
@@ -298,149 +904,10 @@
             }
           },
           {
-            "key": "thumbnail_image_large",
-            "value": {
-              "image_value": {
-                "height": 315,
-                "url": "https://pbs.twimg.com/card_img/2094898723352649728/mTVyusP1?format=jpg&name=600x600",
-                "width": 600
-              }
-            }
-          },
-          {
-            "key": "summary_photo_image_small",
-            "value": {
-              "image_value": {
-                "height": 202,
-                "url": "https://pbs.twimg.com/card_img/2094898723352649728/mTVyusP1?format=jpg&name=386x202",
-                "width": 386
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image_original",
-            "value": {
-              "image_value": {
-                "height": 630,
-                "url": "https://pbs.twimg.com/card_img/2094898723352649728/mTVyusP1?format=jpg&name=orig",
-                "width": 1200
-              }
-            }
-          },
-          {
-            "key": "photo_image_full_size_small",
-            "value": {
-              "image_value": {
-                "height": 202,
-                "url": "https://pbs.twimg.com/card_img/2094898723352649728/mTVyusP1?format=jpg&name=386x202",
-                "width": 386
-              }
-            }
-          },
-          {
-            "key": "summary_photo_image_large",
-            "value": {
-              "image_value": {
-                "height": 419,
-                "url": "https://pbs.twimg.com/card_img/2094898723352649728/mTVyusP1?format=jpg&name=800x419",
-                "width": 800
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image_small",
-            "value": {
-              "image_value": {
-                "height": 76,
-                "url": "https://pbs.twimg.com/card_img/2094898723352649728/mTVyusP1?format=jpg&name=144x144",
-                "width": 144
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image_x_large",
-            "value": {
-              "image_value": {
-                "height": 630,
-                "url": "https://pbs.twimg.com/card_img/2094898723352649728/mTVyusP1?format=png&name=2048x2048_2_exp",
-                "width": 1200
-              }
-            }
-          },
-          {
-            "key": "photo_image_full_size_original",
-            "value": {
-              "image_value": {
-                "height": 630,
-                "url": "https://pbs.twimg.com/card_img/2094898723352649728/mTVyusP1?format=jpg&name=orig",
-                "width": 1200
-              }
-            }
-          },
-          {
             "key": "vanity_url",
             "value": {
               "scribe_key": "vanity_url",
               "string_value": "manilatimes.net"
-            }
-          },
-          {
-            "key": "photo_image_full_size",
-            "value": {
-              "image_value": {
-                "height": 314,
-                "url": "https://pbs.twimg.com/card_img/2094898723352649728/mTVyusP1?format=jpg&name=600x314",
-                "width": 600
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image_color",
-            "value": {
-              "image_color_value": {
-                "palette": [
-                  {
-                    "percentage": 87.93,
-                    "rgb": {
-                      "blue": 209,
-                      "green": 209,
-                      "red": 209
-                    }
-                  },
-                  {
-                    "percentage": 2.81,
-                    "rgb": {
-                      "blue": 176,
-                      "green": 35,
-                      "red": 18
-                    }
-                  },
-                  {
-                    "percentage": 2.3,
-                    "rgb": {
-                      "blue": 34,
-                      "green": 206,
-                      "red": 238
-                    }
-                  },
-                  {
-                    "percentage": 2.04,
-                    "rgb": {
-                      "blue": 80,
-                      "green": 78,
-                      "red": 193
-                    }
-                  },
-                  {
-                    "percentage": 1.36,
-                    "rgb": {
-                      "blue": 188,
-                      "green": 86,
-                      "red": 73
-                    }
-                  }
-                ]
-              }
             }
           },
           {
@@ -450,148 +917,10 @@
             }
           },
           {
-            "key": "summary_photo_image_color",
-            "value": {
-              "image_color_value": {
-                "palette": [
-                  {
-                    "percentage": 87.93,
-                    "rgb": {
-                      "blue": 209,
-                      "green": 209,
-                      "red": 209
-                    }
-                  },
-                  {
-                    "percentage": 2.81,
-                    "rgb": {
-                      "blue": 176,
-                      "green": 35,
-                      "red": 18
-                    }
-                  },
-                  {
-                    "percentage": 2.3,
-                    "rgb": {
-                      "blue": 34,
-                      "green": 206,
-                      "red": 238
-                    }
-                  },
-                  {
-                    "percentage": 2.04,
-                    "rgb": {
-                      "blue": 80,
-                      "green": 78,
-                      "red": 193
-                    }
-                  },
-                  {
-                    "percentage": 1.36,
-                    "rgb": {
-                      "blue": 188,
-                      "green": 86,
-                      "red": 73
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          {
-            "key": "summary_photo_image_x_large",
-            "value": {
-              "image_value": {
-                "height": 630,
-                "url": "https://pbs.twimg.com/card_img/2094898723352649728/mTVyusP1?format=png&name=2048x2048_2_exp",
-                "width": 1200
-              }
-            }
-          },
-          {
-            "key": "summary_photo_image",
-            "value": {
-              "image_value": {
-                "height": 314,
-                "url": "https://pbs.twimg.com/card_img/2094898723352649728/mTVyusP1?format=jpg&name=600x314",
-                "width": 600
-              }
-            }
-          },
-          {
-            "key": "photo_image_full_size_color",
-            "value": {
-              "image_color_value": {
-                "palette": [
-                  {
-                    "percentage": 87.93,
-                    "rgb": {
-                      "blue": 209,
-                      "green": 209,
-                      "red": 209
-                    }
-                  },
-                  {
-                    "percentage": 2.81,
-                    "rgb": {
-                      "blue": 176,
-                      "green": 35,
-                      "red": 18
-                    }
-                  },
-                  {
-                    "percentage": 2.3,
-                    "rgb": {
-                      "blue": 34,
-                      "green": 206,
-                      "red": 238
-                    }
-                  },
-                  {
-                    "percentage": 2.04,
-                    "rgb": {
-                      "blue": 80,
-                      "green": 78,
-                      "red": 193
-                    }
-                  },
-                  {
-                    "percentage": 1.36,
-                    "rgb": {
-                      "blue": 188,
-                      "green": 86,
-                      "red": 73
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          {
-            "key": "photo_image_full_size_x_large",
-            "value": {
-              "image_value": {
-                "height": 630,
-                "url": "https://pbs.twimg.com/card_img/2094898723352649728/mTVyusP1?format=png&name=2048x2048_2_exp",
-                "width": 1200
-              }
-            }
-          },
-          {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
               "string_value": "https://t.co/95cy6dYgVl"
-            }
-          },
-          {
-            "key": "summary_photo_image_original",
-            "value": {
-              "image_value": {
-                "height": 630,
-                "url": "https://pbs.twimg.com/card_img/2094898723352649728/mTVyusP1?format=jpg&name=orig",
-                "width": 1200
-              }
             }
           }
         ],
@@ -668,7 +997,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197155,
+        "followers": 1197868,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -684,8 +1013,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219265,
-        "statusesCount": 941835,
+        "mediaCount": 219475,
+        "statusesCount": 942952,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -728,26 +1057,6 @@
       "card": {
         "binding_values": [
           {
-            "key": "photo_image_full_size_large",
-            "value": {
-              "image_value": {
-                "height": 419,
-                "url": "https://pbs.twimg.com/card_img/2095062131716808704/FVSXPM45?format=jpg&name=800x419",
-                "width": 800
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image",
-            "value": {
-              "image_value": {
-                "height": 150,
-                "url": "https://pbs.twimg.com/card_img/2095062131716808704/FVSXPM45?format=jpg&name=280x150",
-                "width": 225
-              }
-            }
-          },
-          {
             "key": "description",
             "value": {
               "string_value": "Progressive groups staged a protest rally outside the Philippine National Police (PNP) headquarters in Camp Crame, Quezon City, on Monday, Sept. 29, condemning..."
@@ -757,36 +1066,6 @@
             "key": "domain",
             "value": {
               "string_value": "mb.com.ph"
-            }
-          },
-          {
-            "key": "thumbnail_image_large",
-            "value": {
-              "image_value": {
-                "height": 320,
-                "url": "https://pbs.twimg.com/card_img/2095062131716808704/FVSXPM45?format=jpg&name=800x320_1",
-                "width": 481
-              }
-            }
-          },
-          {
-            "key": "summary_photo_image_small",
-            "value": {
-              "image_value": {
-                "height": 202,
-                "url": "https://pbs.twimg.com/card_img/2095062131716808704/FVSXPM45?format=jpg&name=386x202",
-                "width": 386
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image_original",
-            "value": {
-              "image_value": {
-                "height": 799,
-                "url": "https://pbs.twimg.com/card_img/2095062131716808704/FVSXPM45?format=jpg&name=orig",
-                "width": 1200
-              }
             }
           },
           {
@@ -800,119 +1079,10 @@
             }
           },
           {
-            "key": "photo_image_full_size_small",
-            "value": {
-              "image_value": {
-                "height": 202,
-                "url": "https://pbs.twimg.com/card_img/2095062131716808704/FVSXPM45?format=jpg&name=386x202",
-                "width": 386
-              }
-            }
-          },
-          {
-            "key": "summary_photo_image_large",
-            "value": {
-              "image_value": {
-                "height": 419,
-                "url": "https://pbs.twimg.com/card_img/2095062131716808704/FVSXPM45?format=jpg&name=800x419",
-                "width": 800
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image_small",
-            "value": {
-              "image_value": {
-                "height": 67,
-                "url": "https://pbs.twimg.com/card_img/2095062131716808704/FVSXPM45?format=jpg&name=100x100",
-                "width": 100
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image_x_large",
-            "value": {
-              "image_value": {
-                "height": 799,
-                "url": "https://pbs.twimg.com/card_img/2095062131716808704/FVSXPM45?format=png&name=2048x2048_2_exp",
-                "width": 1200
-              }
-            }
-          },
-          {
-            "key": "photo_image_full_size_original",
-            "value": {
-              "image_value": {
-                "height": 799,
-                "url": "https://pbs.twimg.com/card_img/2095062131716808704/FVSXPM45?format=jpg&name=orig",
-                "width": 1200
-              }
-            }
-          },
-          {
             "key": "vanity_url",
             "value": {
               "scribe_key": "vanity_url",
               "string_value": "mb.com.ph"
-            }
-          },
-          {
-            "key": "photo_image_full_size",
-            "value": {
-              "image_value": {
-                "height": 314,
-                "url": "https://pbs.twimg.com/card_img/2095062131716808704/FVSXPM45?format=jpg&name=600x314",
-                "width": 600
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image_color",
-            "value": {
-              "image_color_value": {
-                "palette": [
-                  {
-                    "percentage": 28.64,
-                    "rgb": {
-                      "blue": 215,
-                      "green": 216,
-                      "red": 216
-                    }
-                  },
-                  {
-                    "percentage": 28.12,
-                    "rgb": {
-                      "blue": 48,
-                      "green": 53,
-                      "red": 55
-                    }
-                  },
-                  {
-                    "percentage": 16.9,
-                    "rgb": {
-                      "blue": 99,
-                      "green": 109,
-                      "red": 106
-                    }
-                  },
-                  {
-                    "percentage": 2.63,
-                    "rgb": {
-                      "blue": 71,
-                      "green": 56,
-                      "red": 45
-                    }
-                  },
-                  {
-                    "percentage": 1.89,
-                    "rgb": {
-                      "blue": 24,
-                      "green": 64,
-                      "red": 50
-                    }
-                  }
-                ]
-              }
             }
           },
           {
@@ -922,148 +1092,10 @@
             }
           },
           {
-            "key": "summary_photo_image_color",
-            "value": {
-              "image_color_value": {
-                "palette": [
-                  {
-                    "percentage": 28.64,
-                    "rgb": {
-                      "blue": 215,
-                      "green": 216,
-                      "red": 216
-                    }
-                  },
-                  {
-                    "percentage": 28.12,
-                    "rgb": {
-                      "blue": 48,
-                      "green": 53,
-                      "red": 55
-                    }
-                  },
-                  {
-                    "percentage": 16.9,
-                    "rgb": {
-                      "blue": 99,
-                      "green": 109,
-                      "red": 106
-                    }
-                  },
-                  {
-                    "percentage": 2.63,
-                    "rgb": {
-                      "blue": 71,
-                      "green": 56,
-                      "red": 45
-                    }
-                  },
-                  {
-                    "percentage": 1.89,
-                    "rgb": {
-                      "blue": 24,
-                      "green": 64,
-                      "red": 50
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          {
-            "key": "summary_photo_image_x_large",
-            "value": {
-              "image_value": {
-                "height": 799,
-                "url": "https://pbs.twimg.com/card_img/2095062131716808704/FVSXPM45?format=png&name=2048x2048_2_exp",
-                "width": 1200
-              }
-            }
-          },
-          {
-            "key": "summary_photo_image",
-            "value": {
-              "image_value": {
-                "height": 314,
-                "url": "https://pbs.twimg.com/card_img/2095062131716808704/FVSXPM45?format=jpg&name=600x314",
-                "width": 600
-              }
-            }
-          },
-          {
-            "key": "photo_image_full_size_color",
-            "value": {
-              "image_color_value": {
-                "palette": [
-                  {
-                    "percentage": 28.64,
-                    "rgb": {
-                      "blue": 215,
-                      "green": 216,
-                      "red": 216
-                    }
-                  },
-                  {
-                    "percentage": 28.12,
-                    "rgb": {
-                      "blue": 48,
-                      "green": 53,
-                      "red": 55
-                    }
-                  },
-                  {
-                    "percentage": 16.9,
-                    "rgb": {
-                      "blue": 99,
-                      "green": 109,
-                      "red": 106
-                    }
-                  },
-                  {
-                    "percentage": 2.63,
-                    "rgb": {
-                      "blue": 71,
-                      "green": 56,
-                      "red": 45
-                    }
-                  },
-                  {
-                    "percentage": 1.89,
-                    "rgb": {
-                      "blue": 24,
-                      "green": 64,
-                      "red": 50
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          {
-            "key": "photo_image_full_size_x_large",
-            "value": {
-              "image_value": {
-                "height": 799,
-                "url": "https://pbs.twimg.com/card_img/2095062131716808704/FVSXPM45?format=png&name=2048x2048_2_exp",
-                "width": 1200
-              }
-            }
-          },
-          {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
               "string_value": "https://t.co/zadFv29sYG"
-            }
-          },
-          {
-            "key": "summary_photo_image_original",
-            "value": {
-              "image_value": {
-                "height": 799,
-                "url": "https://pbs.twimg.com/card_img/2095062131716808704/FVSXPM45?format=jpg&name=orig",
-                "width": 1200
-              }
             }
           }
         ],
@@ -1166,7 +1198,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1197155,
+                "followers": 1197868,
                 "following": 141
               },
               "relationship_perspectives": {
@@ -1184,8 +1216,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 219265,
-                "tweets": 941835
+                "media_tweets": 219475,
+                "tweets": 942952
               },
               "verification": {
                 "is_blue_verified": true,
@@ -1212,6 +1244,181 @@
           }
         ]
       },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1972752419231785074",
+      "url": "https://x.com/DEStatePolice/status/1972752419231785074",
+      "twitterUrl": "https://twitter.com/DEStatePolice/status/1972752419231785074",
+      "text": "⚠️Traffic Advisory - New Castle County⚠️ \n\nThe three left lanes of I-95 southbound at the Churchmans Road overpass are closed due to a serious crash. Please seek alternate routes of travel to avoid delays. https://t.co/CBgUDlZipH",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 3,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 1885,
+      "createdAt": "Mon Sep 29 19:56:43 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1972752419231785074",
+      "displayTextRange": [
+        0,
+        205
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "DEStatePolice",
+        "url": "https://x.com/DEStatePolice",
+        "twitterUrl": "https://twitter.com/DEStatePolice",
+        "id": "230227730",
+        "name": "Delaware State Police",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2017968746602635264/3kaaiByJ_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/230227730/1782940746",
+        "description": "",
+        "location": "Dover, DE",
+        "followers": 28241,
+        "following": 195,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Fri Dec 24 17:28:35 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 122,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1336,
+        "statusesCount": 17056,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The Official Twitter account for the Delaware State Police. This account is not monitored 24/7. To report a crime dial 9-1-1.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "dsp.delaware.gov",
+                  "expanded_url": "http://dsp.delaware.gov",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/Fp4tcSWo2y"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/CBgUDlZipH",
+            "expanded_url": "https://x.com/DEStatePolice/status/1972752419231785074/photo/1",
+            "ext_alt_text": "\"Traffic Advisory\" text with Delaware State Police Tahoe in the background",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1972752232291393536",
+            "indices": [
+              206,
+              229
+            ],
+            "media_key": "3_1972752232291393536",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtgn7QDlmAACgACG2Cf34oaYHIAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG2CftAOWYAAKAAIbYJ/fihpgcgAA",
+                "media_key": "3_1972752232291393536"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G2CftAOWYAA68cZ.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 381,
+                  "w": 680,
+                  "x": 0,
+                  "y": 133
+                },
+                {
+                  "h": 680,
+                  "w": 680,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 680,
+                  "w": 596,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 680,
+                  "w": 340,
+                  "x": 51,
+                  "y": 0
+                },
+                {
+                  "h": 680,
+                  "w": 680,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 680,
+              "width": 680
+            },
+            "sizes": {
+              "large": {
+                "h": 680,
+                "w": 680
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/CBgUDlZipH"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
       "quoted_tweet": null,
       "retweeted_tweet": null,
       "isLimitedReply": false,

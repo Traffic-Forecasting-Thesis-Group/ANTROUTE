@@ -5,14 +5,14 @@
     "window_start": "2026-04-21T08:00:00+08:00",
     "window_end": "2026-04-21T10:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 11,
+    "tweet_count": 4,
     "slices": [
       {
         "start": "2026-04-21T08:00:00+08:00",
         "end": "2026-04-21T08:05:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-04-21T08:05:00+08:00",
@@ -59,125 +59,501 @@
       {
         "start": "2026-04-21T08:35:00+08:00",
         "end": "2026-04-21T08:40:00+08:00",
-        "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "error": "HTTPSConnectionPool(host='api.twitterapi.io', port=443): Max retries exceeded with url: /twitter/tweet/advanced_search?query=%28%28%28traffic+OR+trapik+OR+congestion+OR+gridlock+OR+contraflow+OR+accident+OR+aksidente+OR+banggaan+OR+flooding+OR+baha+OR+landslide+OR+%22road+closure%22+OR+protest+OR+rally+OR+fire+OR+sunog+OR+breakdown%29+%28EDSA+OR+Makati+OR+Pasay+OR+%22Quezon+City%22+OR+Manila+OR+Pasig+OR+%22Metro+Manila%22+OR+Philippines%29%29+OR+%28%23MMDAAlert+OR+%23TrafficUpdate+OR+%23EDSAUpdate+OR+%23EDSATraffic+OR+Metrobase+OR+%40MMDA+OR+%22traffic+advisory%22%29%29+since_time%3A1776731700+until_time%3A1776732000+-is%3Aretweet+-is%3Areply&queryType=Latest (Caused by NameResolutionError(\"HTTPSConnection(host='api.twitterapi.io', port=443): Failed to resolve 'api.twitterapi.io' ([Errno 11001] getaddrinfo failed)\"))"
       },
       {
         "start": "2026-04-21T08:40:00+08:00",
         "end": "2026-04-21T08:45:00+08:00",
-        "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "error": "HTTPSConnectionPool(host='api.twitterapi.io', port=443): Max retries exceeded with url: /twitter/tweet/advanced_search?query=%28%28%28traffic+OR+trapik+OR+congestion+OR+gridlock+OR+contraflow+OR+accident+OR+aksidente+OR+banggaan+OR+flooding+OR+baha+OR+landslide+OR+%22road+closure%22+OR+protest+OR+rally+OR+fire+OR+sunog+OR+breakdown%29+%28EDSA+OR+Makati+OR+Pasay+OR+%22Quezon+City%22+OR+Manila+OR+Pasig+OR+%22Metro+Manila%22+OR+Philippines%29%29+OR+%28%23MMDAAlert+OR+%23TrafficUpdate+OR+%23EDSAUpdate+OR+%23EDSATraffic+OR+Metrobase+OR+%40MMDA+OR+%22traffic+advisory%22%29%29+since_time%3A1776732000+until_time%3A1776732300+-is%3Aretweet+-is%3Areply&queryType=Latest (Caused by NameResolutionError(\"HTTPSConnection(host='api.twitterapi.io', port=443): Failed to resolve 'api.twitterapi.io' ([Errno 11001] getaddrinfo failed)\"))"
       },
       {
         "start": "2026-04-21T08:45:00+08:00",
         "end": "2026-04-21T08:50:00+08:00",
-        "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "error": "HTTPSConnectionPool(host='api.twitterapi.io', port=443): Max retries exceeded with url: /twitter/tweet/advanced_search?query=%28%28%28traffic+OR+trapik+OR+congestion+OR+gridlock+OR+contraflow+OR+accident+OR+aksidente+OR+banggaan+OR+flooding+OR+baha+OR+landslide+OR+%22road+closure%22+OR+protest+OR+rally+OR+fire+OR+sunog+OR+breakdown%29+%28EDSA+OR+Makati+OR+Pasay+OR+%22Quezon+City%22+OR+Manila+OR+Pasig+OR+%22Metro+Manila%22+OR+Philippines%29%29+OR+%28%23MMDAAlert+OR+%23TrafficUpdate+OR+%23EDSAUpdate+OR+%23EDSATraffic+OR+Metrobase+OR+%40MMDA+OR+%22traffic+advisory%22%29%29+since_time%3A1776732300+until_time%3A1776732600+-is%3Aretweet+-is%3Areply&queryType=Latest (Caused by NameResolutionError(\"HTTPSConnection(host='api.twitterapi.io', port=443): Failed to resolve 'api.twitterapi.io' ([Errno 11001] getaddrinfo failed)\"))"
       },
       {
         "start": "2026-04-21T08:50:00+08:00",
         "end": "2026-04-21T08:55:00+08:00",
-        "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "error": "HTTPSConnectionPool(host='api.twitterapi.io', port=443): Max retries exceeded with url: /twitter/tweet/advanced_search?query=%28%28%28traffic+OR+trapik+OR+congestion+OR+gridlock+OR+contraflow+OR+accident+OR+aksidente+OR+banggaan+OR+flooding+OR+baha+OR+landslide+OR+%22road+closure%22+OR+protest+OR+rally+OR+fire+OR+sunog+OR+breakdown%29+%28EDSA+OR+Makati+OR+Pasay+OR+%22Quezon+City%22+OR+Manila+OR+Pasig+OR+%22Metro+Manila%22+OR+Philippines%29%29+OR+%28%23MMDAAlert+OR+%23TrafficUpdate+OR+%23EDSAUpdate+OR+%23EDSATraffic+OR+Metrobase+OR+%40MMDA+OR+%22traffic+advisory%22%29%29+since_time%3A1776732600+until_time%3A1776732900+-is%3Aretweet+-is%3Areply&queryType=Latest (Caused by NameResolutionError(\"HTTPSConnection(host='api.twitterapi.io', port=443): Failed to resolve 'api.twitterapi.io' ([Errno 11001] getaddrinfo failed)\"))"
       },
       {
         "start": "2026-04-21T08:55:00+08:00",
         "end": "2026-04-21T09:00:00+08:00",
-        "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "error": "HTTPSConnectionPool(host='api.twitterapi.io', port=443): Max retries exceeded with url: /twitter/tweet/advanced_search?query=%28%28%28traffic+OR+trapik+OR+congestion+OR+gridlock+OR+contraflow+OR+accident+OR+aksidente+OR+banggaan+OR+flooding+OR+baha+OR+landslide+OR+%22road+closure%22+OR+protest+OR+rally+OR+fire+OR+sunog+OR+breakdown%29+%28EDSA+OR+Makati+OR+Pasay+OR+%22Quezon+City%22+OR+Manila+OR+Pasig+OR+%22Metro+Manila%22+OR+Philippines%29%29+OR+%28%23MMDAAlert+OR+%23TrafficUpdate+OR+%23EDSAUpdate+OR+%23EDSATraffic+OR+Metrobase+OR+%40MMDA+OR+%22traffic+advisory%22%29%29+since_time%3A1776732900+until_time%3A1776733200+-is%3Aretweet+-is%3Areply&queryType=Latest (Caused by NameResolutionError(\"HTTPSConnection(host='api.twitterapi.io', port=443): Failed to resolve 'api.twitterapi.io' ([Errno 11001] getaddrinfo failed)\"))"
       },
       {
         "start": "2026-04-21T09:00:00+08:00",
         "end": "2026-04-21T09:05:00+08:00",
-        "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "error": "HTTPSConnectionPool(host='api.twitterapi.io', port=443): Max retries exceeded with url: /twitter/tweet/advanced_search?query=%28%28%28traffic+OR+trapik+OR+congestion+OR+gridlock+OR+contraflow+OR+accident+OR+aksidente+OR+banggaan+OR+flooding+OR+baha+OR+landslide+OR+%22road+closure%22+OR+protest+OR+rally+OR+fire+OR+sunog+OR+breakdown%29+%28EDSA+OR+Makati+OR+Pasay+OR+%22Quezon+City%22+OR+Manila+OR+Pasig+OR+%22Metro+Manila%22+OR+Philippines%29%29+OR+%28%23MMDAAlert+OR+%23TrafficUpdate+OR+%23EDSAUpdate+OR+%23EDSATraffic+OR+Metrobase+OR+%40MMDA+OR+%22traffic+advisory%22%29%29+since_time%3A1776733200+until_time%3A1776733500+-is%3Aretweet+-is%3Areply&queryType=Latest (Caused by NameResolutionError(\"HTTPSConnection(host='api.twitterapi.io', port=443): Failed to resolve 'api.twitterapi.io' ([Errno 11001] getaddrinfo failed)\"))"
       },
       {
         "start": "2026-04-21T09:05:00+08:00",
         "end": "2026-04-21T09:10:00+08:00",
-        "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "error": "HTTPSConnectionPool(host='api.twitterapi.io', port=443): Max retries exceeded with url: /twitter/tweet/advanced_search?query=%28%28%28traffic+OR+trapik+OR+congestion+OR+gridlock+OR+contraflow+OR+accident+OR+aksidente+OR+banggaan+OR+flooding+OR+baha+OR+landslide+OR+%22road+closure%22+OR+protest+OR+rally+OR+fire+OR+sunog+OR+breakdown%29+%28EDSA+OR+Makati+OR+Pasay+OR+%22Quezon+City%22+OR+Manila+OR+Pasig+OR+%22Metro+Manila%22+OR+Philippines%29%29+OR+%28%23MMDAAlert+OR+%23TrafficUpdate+OR+%23EDSAUpdate+OR+%23EDSATraffic+OR+Metrobase+OR+%40MMDA+OR+%22traffic+advisory%22%29%29+since_time%3A1776733500+until_time%3A1776733800+-is%3Aretweet+-is%3Areply&queryType=Latest (Caused by NameResolutionError(\"HTTPSConnection(host='api.twitterapi.io', port=443): Failed to resolve 'api.twitterapi.io' ([Errno 11001] getaddrinfo failed)\"))"
       },
       {
         "start": "2026-04-21T09:10:00+08:00",
         "end": "2026-04-21T09:15:00+08:00",
-        "status_code": 200,
-        "returned": 2,
-        "accepted": 2
+        "error": "HTTPSConnectionPool(host='api.twitterapi.io', port=443): Max retries exceeded with url: /twitter/tweet/advanced_search?query=%28%28%28traffic+OR+trapik+OR+congestion+OR+gridlock+OR+contraflow+OR+accident+OR+aksidente+OR+banggaan+OR+flooding+OR+baha+OR+landslide+OR+%22road+closure%22+OR+protest+OR+rally+OR+fire+OR+sunog+OR+breakdown%29+%28EDSA+OR+Makati+OR+Pasay+OR+%22Quezon+City%22+OR+Manila+OR+Pasig+OR+%22Metro+Manila%22+OR+Philippines%29%29+OR+%28%23MMDAAlert+OR+%23TrafficUpdate+OR+%23EDSAUpdate+OR+%23EDSATraffic+OR+Metrobase+OR+%40MMDA+OR+%22traffic+advisory%22%29%29+since_time%3A1776733800+until_time%3A1776734100+-is%3Aretweet+-is%3Areply&queryType=Latest (Caused by NameResolutionError(\"HTTPSConnection(host='api.twitterapi.io', port=443): Failed to resolve 'api.twitterapi.io' ([Errno 11001] getaddrinfo failed)\"))"
       },
       {
         "start": "2026-04-21T09:15:00+08:00",
         "end": "2026-04-21T09:20:00+08:00",
-        "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "error": "HTTPSConnectionPool(host='api.twitterapi.io', port=443): Max retries exceeded with url: /twitter/tweet/advanced_search?query=%28%28%28traffic+OR+trapik+OR+congestion+OR+gridlock+OR+contraflow+OR+accident+OR+aksidente+OR+banggaan+OR+flooding+OR+baha+OR+landslide+OR+%22road+closure%22+OR+protest+OR+rally+OR+fire+OR+sunog+OR+breakdown%29+%28EDSA+OR+Makati+OR+Pasay+OR+%22Quezon+City%22+OR+Manila+OR+Pasig+OR+%22Metro+Manila%22+OR+Philippines%29%29+OR+%28%23MMDAAlert+OR+%23TrafficUpdate+OR+%23EDSAUpdate+OR+%23EDSATraffic+OR+Metrobase+OR+%40MMDA+OR+%22traffic+advisory%22%29%29+since_time%3A1776734100+until_time%3A1776734400+-is%3Aretweet+-is%3Areply&queryType=Latest (Caused by NameResolutionError(\"HTTPSConnection(host='api.twitterapi.io', port=443): Failed to resolve 'api.twitterapi.io' ([Errno 11001] getaddrinfo failed)\"))"
       },
       {
         "start": "2026-04-21T09:20:00+08:00",
         "end": "2026-04-21T09:25:00+08:00",
-        "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "error": "HTTPSConnectionPool(host='api.twitterapi.io', port=443): Max retries exceeded with url: /twitter/tweet/advanced_search?query=%28%28%28traffic+OR+trapik+OR+congestion+OR+gridlock+OR+contraflow+OR+accident+OR+aksidente+OR+banggaan+OR+flooding+OR+baha+OR+landslide+OR+%22road+closure%22+OR+protest+OR+rally+OR+fire+OR+sunog+OR+breakdown%29+%28EDSA+OR+Makati+OR+Pasay+OR+%22Quezon+City%22+OR+Manila+OR+Pasig+OR+%22Metro+Manila%22+OR+Philippines%29%29+OR+%28%23MMDAAlert+OR+%23TrafficUpdate+OR+%23EDSAUpdate+OR+%23EDSATraffic+OR+Metrobase+OR+%40MMDA+OR+%22traffic+advisory%22%29%29+since_time%3A1776734400+until_time%3A1776734700+-is%3Aretweet+-is%3Areply&queryType=Latest (Caused by NameResolutionError(\"HTTPSConnection(host='api.twitterapi.io', port=443): Failed to resolve 'api.twitterapi.io' ([Errno 11001] getaddrinfo failed)\"))"
       },
       {
         "start": "2026-04-21T09:25:00+08:00",
         "end": "2026-04-21T09:30:00+08:00",
-        "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "error": "HTTPSConnectionPool(host='api.twitterapi.io', port=443): Max retries exceeded with url: /twitter/tweet/advanced_search?query=%28%28%28traffic+OR+trapik+OR+congestion+OR+gridlock+OR+contraflow+OR+accident+OR+aksidente+OR+banggaan+OR+flooding+OR+baha+OR+landslide+OR+%22road+closure%22+OR+protest+OR+rally+OR+fire+OR+sunog+OR+breakdown%29+%28EDSA+OR+Makati+OR+Pasay+OR+%22Quezon+City%22+OR+Manila+OR+Pasig+OR+%22Metro+Manila%22+OR+Philippines%29%29+OR+%28%23MMDAAlert+OR+%23TrafficUpdate+OR+%23EDSAUpdate+OR+%23EDSATraffic+OR+Metrobase+OR+%40MMDA+OR+%22traffic+advisory%22%29%29+since_time%3A1776734700+until_time%3A1776735000+-is%3Aretweet+-is%3Areply&queryType=Latest (Caused by NameResolutionError(\"HTTPSConnection(host='api.twitterapi.io', port=443): Failed to resolve 'api.twitterapi.io' ([Errno 11001] getaddrinfo failed)\"))"
       },
       {
         "start": "2026-04-21T09:30:00+08:00",
         "end": "2026-04-21T09:35:00+08:00",
-        "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "error": "HTTPSConnectionPool(host='api.twitterapi.io', port=443): Max retries exceeded with url: /twitter/tweet/advanced_search?query=%28%28%28traffic+OR+trapik+OR+congestion+OR+gridlock+OR+contraflow+OR+accident+OR+aksidente+OR+banggaan+OR+flooding+OR+baha+OR+landslide+OR+%22road+closure%22+OR+protest+OR+rally+OR+fire+OR+sunog+OR+breakdown%29+%28EDSA+OR+Makati+OR+Pasay+OR+%22Quezon+City%22+OR+Manila+OR+Pasig+OR+%22Metro+Manila%22+OR+Philippines%29%29+OR+%28%23MMDAAlert+OR+%23TrafficUpdate+OR+%23EDSAUpdate+OR+%23EDSATraffic+OR+Metrobase+OR+%40MMDA+OR+%22traffic+advisory%22%29%29+since_time%3A1776735000+until_time%3A1776735300+-is%3Aretweet+-is%3Areply&queryType=Latest (Caused by NameResolutionError(\"HTTPSConnection(host='api.twitterapi.io', port=443): Failed to resolve 'api.twitterapi.io' ([Errno 11001] getaddrinfo failed)\"))"
       },
       {
         "start": "2026-04-21T09:35:00+08:00",
         "end": "2026-04-21T09:40:00+08:00",
-        "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "error": "HTTPSConnectionPool(host='api.twitterapi.io', port=443): Max retries exceeded with url: /twitter/tweet/advanced_search?query=%28%28%28traffic+OR+trapik+OR+congestion+OR+gridlock+OR+contraflow+OR+accident+OR+aksidente+OR+banggaan+OR+flooding+OR+baha+OR+landslide+OR+%22road+closure%22+OR+protest+OR+rally+OR+fire+OR+sunog+OR+breakdown%29+%28EDSA+OR+Makati+OR+Pasay+OR+%22Quezon+City%22+OR+Manila+OR+Pasig+OR+%22Metro+Manila%22+OR+Philippines%29%29+OR+%28%23MMDAAlert+OR+%23TrafficUpdate+OR+%23EDSAUpdate+OR+%23EDSATraffic+OR+Metrobase+OR+%40MMDA+OR+%22traffic+advisory%22%29%29+since_time%3A1776735300+until_time%3A1776735600+-is%3Aretweet+-is%3Areply&queryType=Latest (Caused by NameResolutionError(\"HTTPSConnection(host='api.twitterapi.io', port=443): Failed to resolve 'api.twitterapi.io' ([Errno 11001] getaddrinfo failed)\"))"
       },
       {
         "start": "2026-04-21T09:40:00+08:00",
         "end": "2026-04-21T09:45:00+08:00",
-        "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "error": "HTTPSConnectionPool(host='api.twitterapi.io', port=443): Max retries exceeded with url: /twitter/tweet/advanced_search?query=%28%28%28traffic+OR+trapik+OR+congestion+OR+gridlock+OR+contraflow+OR+accident+OR+aksidente+OR+banggaan+OR+flooding+OR+baha+OR+landslide+OR+%22road+closure%22+OR+protest+OR+rally+OR+fire+OR+sunog+OR+breakdown%29+%28EDSA+OR+Makati+OR+Pasay+OR+%22Quezon+City%22+OR+Manila+OR+Pasig+OR+%22Metro+Manila%22+OR+Philippines%29%29+OR+%28%23MMDAAlert+OR+%23TrafficUpdate+OR+%23EDSAUpdate+OR+%23EDSATraffic+OR+Metrobase+OR+%40MMDA+OR+%22traffic+advisory%22%29%29+since_time%3A1776735600+until_time%3A1776735900+-is%3Aretweet+-is%3Areply&queryType=Latest (Caused by NameResolutionError(\"HTTPSConnection(host='api.twitterapi.io', port=443): Failed to resolve 'api.twitterapi.io' ([Errno 11001] getaddrinfo failed)\"))"
       },
       {
         "start": "2026-04-21T09:45:00+08:00",
         "end": "2026-04-21T09:50:00+08:00",
-        "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "error": "HTTPSConnectionPool(host='api.twitterapi.io', port=443): Max retries exceeded with url: /twitter/tweet/advanced_search?query=%28%28%28traffic+OR+trapik+OR+congestion+OR+gridlock+OR+contraflow+OR+accident+OR+aksidente+OR+banggaan+OR+flooding+OR+baha+OR+landslide+OR+%22road+closure%22+OR+protest+OR+rally+OR+fire+OR+sunog+OR+breakdown%29+%28EDSA+OR+Makati+OR+Pasay+OR+%22Quezon+City%22+OR+Manila+OR+Pasig+OR+%22Metro+Manila%22+OR+Philippines%29%29+OR+%28%23MMDAAlert+OR+%23TrafficUpdate+OR+%23EDSAUpdate+OR+%23EDSATraffic+OR+Metrobase+OR+%40MMDA+OR+%22traffic+advisory%22%29%29+since_time%3A1776735900+until_time%3A1776736200+-is%3Aretweet+-is%3Areply&queryType=Latest (Caused by NameResolutionError(\"HTTPSConnection(host='api.twitterapi.io', port=443): Failed to resolve 'api.twitterapi.io' ([Errno 11001] getaddrinfo failed)\"))"
       },
       {
         "start": "2026-04-21T09:50:00+08:00",
         "end": "2026-04-21T09:55:00+08:00",
-        "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "error": "HTTPSConnectionPool(host='api.twitterapi.io', port=443): Max retries exceeded with url: /twitter/tweet/advanced_search?query=%28%28%28traffic+OR+trapik+OR+congestion+OR+gridlock+OR+contraflow+OR+accident+OR+aksidente+OR+banggaan+OR+flooding+OR+baha+OR+landslide+OR+%22road+closure%22+OR+protest+OR+rally+OR+fire+OR+sunog+OR+breakdown%29+%28EDSA+OR+Makati+OR+Pasay+OR+%22Quezon+City%22+OR+Manila+OR+Pasig+OR+%22Metro+Manila%22+OR+Philippines%29%29+OR+%28%23MMDAAlert+OR+%23TrafficUpdate+OR+%23EDSAUpdate+OR+%23EDSATraffic+OR+Metrobase+OR+%40MMDA+OR+%22traffic+advisory%22%29%29+since_time%3A1776736200+until_time%3A1776736500+-is%3Aretweet+-is%3Areply&queryType=Latest (Caused by NameResolutionError(\"HTTPSConnection(host='api.twitterapi.io', port=443): Failed to resolve 'api.twitterapi.io' ([Errno 11001] getaddrinfo failed)\"))"
       },
       {
         "start": "2026-04-21T09:55:00+08:00",
         "end": "2026-04-21T10:00:00+08:00",
-        "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "error": "HTTPSConnectionPool(host='api.twitterapi.io', port=443): Max retries exceeded with url: /twitter/tweet/advanced_search?query=%28%28%28traffic+OR+trapik+OR+congestion+OR+gridlock+OR+contraflow+OR+accident+OR+aksidente+OR+banggaan+OR+flooding+OR+baha+OR+landslide+OR+%22road+closure%22+OR+protest+OR+rally+OR+fire+OR+sunog+OR+breakdown%29+%28EDSA+OR+Makati+OR+Pasay+OR+%22Quezon+City%22+OR+Manila+OR+Pasig+OR+%22Metro+Manila%22+OR+Philippines%29%29+OR+%28%23MMDAAlert+OR+%23TrafficUpdate+OR+%23EDSAUpdate+OR+%23EDSATraffic+OR+Metrobase+OR+%40MMDA+OR+%22traffic+advisory%22%29%29+since_time%3A1776736500+until_time%3A1776736800+-is%3Aretweet+-is%3Areply&queryType=Latest (Caused by NameResolutionError(\"HTTPSConnection(host='api.twitterapi.io', port=443): Failed to resolve 'api.twitterapi.io' ([Errno 11001] getaddrinfo failed)\"))"
       }
     ]
   },
   "data": [
+    {
+      "type": "tweet",
+      "id": "2046379389525643721",
+      "url": "https://x.com/BusinessMirror/status/2046379389525643721",
+      "twitterUrl": "https://twitter.com/BusinessMirror/status/2046379389525643721",
+      "text": "WATCH: 𝗛𝗜𝗠𝗔𝗥𝗦 𝗹𝗶𝘃𝗲‑𝗳𝗶𝗿𝗲 𝗶𝗻 𝗡𝘂𝗲𝘃𝗮 𝗘𝗰𝗶𝗷𝗮\n\nFor the first time, the U.S. Army’s 25th Infantry Division rapidly forward‑deployed a full High Mobility Artillery Rocket System (HIMARS) in the Philippines. Brig. Gen. Jonathan Velishka called it remarkable: “The division only fielded this capability last July. From then to today, our artillery integrated new equipment, trained Soldiers, and forward‑deployed here for qualification and certification.”\n\nThe 2nd Battalion, 11th Long Range Fires Battalion moved to Laur, Nueva Ecija on April 15‑16, firing 12 precision rockets before an audience of Philippine Army officers, civilians, and media. Philippine Army support was crucial—securing firing points and impact areas to ensure safety.\n\nMaj. Gen. Michael Logico of the AFP Training and Doctrine Command likened the experience to Olympic training: “You’re not gonna be a world‑class swimmer unless you train with a world‑class partner.”\n\nThis first‑ever HIMARS live‑fire in Laur introduced new doctrine, firing lanes, and impact areas for the Philippine Army, underscoring growing U.S.–PH interoperability and a shared commitment to defense readiness.\n\n📹📷 U.S. Army 25th Infantry Division \n\n#HIMARS \n#Salaknib2026 \n#PHUSAlliance \n#KnowMore \n#BusinessMirror",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 1,
+      "viewCount": 166,
+      "createdAt": "Tue Apr 21 00:04:01 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2046379389525643721",
+      "displayTextRange": [
+        0,
+        253
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "BusinessMirror",
+        "url": "https://x.com/BusinessMirror",
+        "twitterUrl": "https://twitter.com/BusinessMirror",
+        "id": "17644834",
+        "name": "BusinessMirror",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1846487885891194880/H-t31jg0_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/17644834/1783404377",
+        "description": "",
+        "location": "Makati, Philippines",
+        "followers": 46703,
+        "following": 444,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Wed Nov 26 07:21:02 +0000 2008",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3679,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 63966,
+        "statusesCount": 174106,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "A broader look at today’s business",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "businessmirror.com.ph",
+                  "expanded_url": "https://businessmirror.com.ph/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/G99G5wrdrF"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "display_url": "pic.x.com/12UmlmcYn4",
+            "expanded_url": "https://x.com/BusinessMirror/status/2046379389525643721/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "2046379279769104384",
+            "indices": [
+              254,
+              277
+            ],
+            "media_key": "13_2046379279769104384",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARxmMxzeW3AAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABHGYzHN5bcAAAAA==",
+                "media_key": "13_2046379279769104384"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2046379279769104384/img/17JGBDO_yWHj84z8.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1280,
+              "width": 720
+            },
+            "sizes": {
+              "large": {
+                "h": 1280,
+                "w": 720
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/12UmlmcYn4",
+            "video_info": {
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration_millis": 57766,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/2046379279769104384/pl/MLFkDWYJHuJpRFCF.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2046379279769104384/vid/avc1/320x568/8EtaWkaFtviTCIlR.mp4?tag=21"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2046379279769104384/vid/avc1/480x852/uGt4qA_RqZbiXJIT.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2046379279769104384/vid/avc1/720x1280/TSlcBb2tif15S2y8.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              1186,
+              1193
+            ],
+            "text": "HIMARS"
+          },
+          {
+            "indices": [
+              1195,
+              1208
+            ],
+            "text": "Salaknib2026"
+          },
+          {
+            "indices": [
+              1210,
+              1223
+            ],
+            "text": "PHUSAlliance"
+          },
+          {
+            "indices": [
+              1225,
+              1234
+            ],
+            "text": "KnowMore"
+          },
+          {
+            "indices": [
+              1236,
+              1251
+            ],
+            "text": "BusinessMirror"
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2046378462479364145",
+      "url": "https://x.com/Richmond_BC/status/2046378462479364145",
+      "twitterUrl": "https://twitter.com/Richmond_BC/status/2046378462479364145",
+      "text": "🚧 Traffic Advisory: Richmond Night Market (Apr 24–Sept 20, 2026)\n\nThe Richmond Night Market is back at 8351 River Road (west of River Rock Casino), and heavier traffic is expected on No. 3 Road and Garden City Road, especially evenings and weekends.\n\n🚗 Travel Tips:\nYVR ↔️ Vancouver: use Dinsmore Bridge or Russ Baker Way\nCity Centre ↔️ River Rock Casino: use Great Canadian Way\n🚆 Consider taking the Canada Line (Bridgeport Station)\n📹 Live traffic cameras: https://t.co/o9A3UplFiB\n\nMore information: https://t.co/49zZRIqnsC",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 542,
+      "createdAt": "Tue Apr 21 00:00:19 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2046378462479364145",
+      "displayTextRange": [
+        0,
+        272
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "Richmond_BC",
+        "url": "https://x.com/Richmond_BC",
+        "twitterUrl": "https://twitter.com/Richmond_BC",
+        "id": "391018658",
+        "name": "City of Richmond BC",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1765133653980712960/CWxQFp55_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/391018658/1618617930",
+        "description": "",
+        "location": "Richmond, British Columbia",
+        "followers": 10712,
+        "following": 422,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri Oct 14 22:36:23 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2988,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 10018,
+        "statusesCount": 22050,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Welcome to the official City of Richmond, BC government account. Follow us for all things Richmond! \nNot monitored 24/7. #RichmondBC",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    121,
+                    132
+                  ],
+                  "text": "RichmondBC"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "richmond.ca",
+                  "expanded_url": "http://www.richmond.ca",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/bof0l8tOx6"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/2WY8fxfZ57",
+            "expanded_url": "https://x.com/Richmond_BC/status/2046378462479364145/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2046378459413258240",
+            "indices": [
+              273,
+              296
+            ],
+            "media_key": "3_2046378459413258240",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxmMl3dVqAACgACHGYyXpQXsDEAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABHGYyXd1WoAAKAAIcZjJelBewMQAA",
+                "media_key": "3_2046378459413258240"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/HGYyXd1WoAAmNpd.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 747,
+                  "w": 1334,
+                  "x": 0,
+                  "y": 587
+                },
+                {
+                  "h": 1334,
+                  "w": 1334,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1334,
+                  "w": 1170,
+                  "x": 164,
+                  "y": 0
+                },
+                {
+                  "h": 1334,
+                  "w": 667,
+                  "x": 667,
+                  "y": 0
+                },
+                {
+                  "h": 1334,
+                  "w": 1334,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1334,
+              "width": 1334
+            },
+            "sizes": {
+              "large": {
+                "h": 1334,
+                "w": 1334
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/2WY8fxfZ57"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [
+          {
+            "display_url": "richmond.ca/Cameras",
+            "expanded_url": "http://richmond.ca/Cameras",
+            "indices": [
+              458,
+              481
+            ],
+            "url": "https://t.co/o9A3UplFiB"
+          },
+          {
+            "display_url": "richmond.ca/PublicNotices",
+            "expanded_url": "http://richmond.ca/PublicNotices",
+            "indices": [
+              501,
+              524
+            ],
+            "url": "https://t.co/49zZRIqnsC"
+          }
+        ],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
     {
       "type": "tweet",
       "id": "2046381329475080688",
@@ -216,7 +592,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437246,
+        "followers": 1437168,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +608,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412031,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -318,7 +694,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437246,
+        "followers": 1437168,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -334,8 +710,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412031,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -371,1788 +747,6 @@
             "indices": [
               119,
               133
-            ],
-            "text": "MakatiTraffic"
-          }
-        ]
-      },
-      "quoted_tweet": null,
-      "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
-      "article": null
-    },
-    {
-      "type": "tweet",
-      "id": "2046387729207075225",
-      "url": "https://x.com/PhilippineStar/status/2046387729207075225",
-      "twitterUrl": "https://twitter.com/PhilippineStar/status/2046387729207075225",
-      "text": "METRO HEADLINES (Tuesday, April 21, 2026)\nSubscribe to the paper: https://t.co/CroExEonHH\n\nNavotas landfill firefighting continues\nhttps://t.co/lw9ZEvbm56\n\nFirst lady Liza Marcos warns public vs scammers\nhttps://t.co/F9sWzgeqLG\n\nCop sacked over EDSA busway accident\nhttps://t.co/TI7mBnx6Su\n\n48 held in Parañaque scam hub\nhttps://t.co/nBRuD3UyLG\n\nRemoval of unfinished pumping station in Quezon City begins\nhttps://t.co/SHMyE55XNp\n\nDriver flees without paying P1,500 fuel\nhttps://t.co/pqqrwKPkim",
-      "source": "Twitter for iPhone",
-      "retweetCount": 1,
-      "replyCount": 0,
-      "likeCount": 1,
-      "quoteCount": 0,
-      "viewCount": 574,
-      "createdAt": "Tue Apr 21 00:37:09 +0000 2026",
-      "lang": "en",
-      "bookmarkCount": 0,
-      "isReply": false,
-      "inReplyToId": null,
-      "conversationId": "2046387729207075225",
-      "displayTextRange": [
-        0,
-        265
-      ],
-      "inReplyToUserId": null,
-      "inReplyToUsername": null,
-      "author": {
-        "type": "user",
-        "userName": "PhilippineStar",
-        "url": "https://x.com/PhilippineStar",
-        "twitterUrl": "https://twitter.com/PhilippineStar",
-        "id": "472122299",
-        "name": "The Philippine Star",
-        "isVerified": false,
-        "isBlueVerified": true,
-        "verifiedType": null,
-        "profilePicture": "https://pbs.twimg.com/profile_images/1610869121268469761/0JG_WM7k_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/472122299/1601895131",
-        "description": "",
-        "location": "Philippines",
-        "followers": 1818933,
-        "following": 867,
-        "status": "",
-        "canDm": false,
-        "canMediaTag": true,
-        "createdAt": "Mon Jan 23 16:37:30 +0000 2012",
-        "entities": {
-          "description": {
-            "urls": []
-          },
-          "url": {}
-        },
-        "fastFollowersCount": 0,
-        "favouritesCount": 3252,
-        "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 257089,
-        "statusesCount": 802871,
-        "withheldInCountries": [],
-        "affiliatesHighlightedLabel": {},
-        "possiblySensitive": false,
-        "pinnedTweetIds": [],
-        "profile_bio": {
-          "description": "The official Twitter account of The Philippine STAR, flagship title of the country's most successful print media enterprise.",
-          "entities": {
-            "description": {},
-            "url": {
-              "urls": [
-                {
-                  "display_url": "philstarlife.com/star38",
-                  "expanded_url": "https://philstarlife.com/star38",
-                  "indices": [
-                    0,
-                    23
-                  ],
-                  "url": "https://t.co/RYSoAbUwG6"
-                }
-              ]
-            }
-          }
-        },
-        "isAutomated": false,
-        "automatedBy": null
-      },
-      "extendedEntities": {
-        "media": [
-          {
-            "display_url": "pic.x.com/Qgn1JRxLXK",
-            "expanded_url": "https://x.com/PhilippineStar/status/2046387729207075225/photo/1",
-            "ext_master_playlist_only": [],
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "ext_playlists": [],
-            "features": {
-              "large": {
-                "faces": []
-              },
-              "orig": {
-                "faces": []
-              }
-            },
-            "id_str": "2046387718058594304",
-            "indices": [
-              266,
-              289
-            ],
-            "media_key": "3_2046387718058594304",
-            "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxmOsmPmtAACgACHGY6zCgbIZkAAA==",
-              "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABHGY6yY+a0AAKAAIcZjrMKBshmQAA",
-                "media_key": "3_2046387718058594304"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/media/HGY6yY-a0AA7h5M.jpg",
-            "original_info": {
-              "focus_rects": [
-                {
-                  "h": 605,
-                  "w": 1080,
-                  "x": 0,
-                  "y": 373
-                },
-                {
-                  "h": 1080,
-                  "w": 1080,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 1080,
-                  "w": 947,
-                  "x": 40,
-                  "y": 0
-                },
-                {
-                  "h": 1080,
-                  "w": 540,
-                  "x": 243,
-                  "y": 0
-                },
-                {
-                  "h": 1080,
-                  "w": 1080,
-                  "x": 0,
-                  "y": 0
-                }
-              ],
-              "height": 1080,
-              "width": 1080
-            },
-            "sizes": {
-              "large": {
-                "h": 1080,
-                "w": 1080
-              }
-            },
-            "type": "photo",
-            "url": "https://t.co/Qgn1JRxLXK"
-          }
-        ]
-      },
-      "card": null,
-      "place": {},
-      "entities": {
-        "hashtags": [],
-        "symbols": [],
-        "urls": [
-          {
-            "display_url": "philstarsubscribe.com",
-            "expanded_url": "https://philstarsubscribe.com/",
-            "indices": [
-              66,
-              89
-            ],
-            "url": "https://t.co/CroExEonHH"
-          },
-          {
-            "display_url": "tiny.cc/og52101",
-            "expanded_url": "http://tiny.cc/og52101",
-            "indices": [
-              131,
-              154
-            ],
-            "url": "https://t.co/lw9ZEvbm56"
-          },
-          {
-            "display_url": "tiny.cc/qg52101",
-            "expanded_url": "http://tiny.cc/qg52101",
-            "indices": [
-              204,
-              227
-            ],
-            "url": "https://t.co/F9sWzgeqLG"
-          },
-          {
-            "display_url": "tiny.cc/tg52101",
-            "expanded_url": "http://tiny.cc/tg52101",
-            "indices": [
-              266,
-              289
-            ],
-            "url": "https://t.co/TI7mBnx6Su"
-          },
-          {
-            "display_url": "tiny.cc/ug52101",
-            "expanded_url": "http://tiny.cc/ug52101",
-            "indices": [
-              321,
-              344
-            ],
-            "url": "https://t.co/nBRuD3UyLG"
-          },
-          {
-            "display_url": "tiny.cc/vg52101",
-            "expanded_url": "http://tiny.cc/vg52101",
-            "indices": [
-              406,
-              429
-            ],
-            "url": "https://t.co/SHMyE55XNp"
-          },
-          {
-            "display_url": "tiny.cc/xg52101",
-            "expanded_url": "http://tiny.cc/xg52101",
-            "indices": [
-              471,
-              494
-            ],
-            "url": "https://t.co/pqqrwKPkim"
-          }
-        ],
-        "user_mentions": []
-      },
-      "quoted_tweet": null,
-      "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
-      "article": null
-    },
-    {
-      "type": "tweet",
-      "id": "2046389381582483808",
-      "url": "https://x.com/MakatiTraffic/status/2046389381582483808",
-      "twitterUrl": "https://twitter.com/MakatiTraffic/status/2046389381582483808",
-      "text": "TRAFFIC UPDATE: As of 8:30 AM, along Kalayaan Ave. from Makati Ave. to Rockwell Drive (LM), Opposite Direction (M). #MakatiTraffic",
-      "source": "Twitter for iPhone",
-      "retweetCount": 0,
-      "replyCount": 0,
-      "likeCount": 1,
-      "quoteCount": 0,
-      "viewCount": 112,
-      "createdAt": "Tue Apr 21 00:43:43 +0000 2026",
-      "lang": "en",
-      "bookmarkCount": 0,
-      "isReply": false,
-      "inReplyToId": null,
-      "conversationId": "2046389381582483808",
-      "displayTextRange": [
-        0,
-        130
-      ],
-      "inReplyToUserId": null,
-      "inReplyToUsername": null,
-      "author": {
-        "type": "user",
-        "userName": "MakatiTraffic",
-        "url": "https://x.com/MakatiTraffic",
-        "twitterUrl": "https://twitter.com/MakatiTraffic",
-        "id": "357433536",
-        "name": "MakatiTraffic",
-        "isVerified": false,
-        "isBlueVerified": true,
-        "verifiedType": null,
-        "profilePicture": "https://pbs.twimg.com/profile_images/1507416130/logoMakati_normal.png",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
-        "description": "",
-        "location": "City of Makati",
-        "followers": 1437246,
-        "following": 2,
-        "status": "",
-        "canDm": true,
-        "canMediaTag": true,
-        "createdAt": "Thu Aug 18 10:52:33 +0000 2011",
-        "entities": {
-          "description": {
-            "urls": []
-          },
-          "url": {}
-        },
-        "fastFollowersCount": 0,
-        "favouritesCount": 1218,
-        "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
-        "withheldInCountries": [],
-        "affiliatesHighlightedLabel": {},
-        "possiblySensitive": false,
-        "pinnedTweetIds": [],
-        "profile_bio": {
-          "description": "Official Twitter Account of the City Government of Makati | Hotline 168 | makatitraffic@makati.gov.ph",
-          "entities": {
-            "description": {},
-            "url": {
-              "urls": [
-                {
-                  "display_url": "makati.gov.ph",
-                  "expanded_url": "http://www.makati.gov.ph",
-                  "indices": [
-                    0,
-                    23
-                  ],
-                  "url": "https://t.co/DSZjZ3iXcA"
-                }
-              ]
-            }
-          }
-        },
-        "isAutomated": false,
-        "automatedBy": null
-      },
-      "extendedEntities": {},
-      "card": null,
-      "place": {},
-      "entities": {
-        "hashtags": [
-          {
-            "indices": [
-              116,
-              130
-            ],
-            "text": "MakatiTraffic"
-          }
-        ]
-      },
-      "quoted_tweet": null,
-      "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
-      "article": null
-    },
-    {
-      "type": "tweet",
-      "id": "2046391506567852234",
-      "url": "https://x.com/newswatchplusph/status/2046391506567852234",
-      "twitterUrl": "https://twitter.com/newswatchplusph/status/2046391506567852234",
-      "text": "LOOK: Various transport and progressive groups staged a protest at Philcoa, Commonwealth Avenue, Quezon City, on Monday, April 21, calling for measures including the junking of the Oil Deregulation Law, the suspension of VAT and excise tax on fuel, an oil price rollback, and for the United States to end the war in the Middle East.",
-      "source": "Twitter for iPhone",
-      "retweetCount": 1,
-      "replyCount": 0,
-      "likeCount": 1,
-      "quoteCount": 0,
-      "viewCount": 1168,
-      "createdAt": "Tue Apr 21 00:52:09 +0000 2026",
-      "lang": "en",
-      "bookmarkCount": 0,
-      "isReply": false,
-      "inReplyToId": null,
-      "conversationId": "2046391506567852234",
-      "displayTextRange": [
-        0,
-        279
-      ],
-      "inReplyToUserId": null,
-      "inReplyToUsername": null,
-      "author": {
-        "type": "user",
-        "userName": "newswatchplusph",
-        "url": "https://x.com/newswatchplusph",
-        "twitterUrl": "https://twitter.com/newswatchplusph",
-        "id": "2811559122",
-        "name": "NewsWatch Plus PH",
-        "isVerified": false,
-        "isBlueVerified": true,
-        "verifiedType": null,
-        "profilePicture": "https://pbs.twimg.com/profile_images/1886646668541747203/cfuXSCAM_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/2811559122/1753864423",
-        "description": "",
-        "location": "Philippines",
-        "followers": 2009162,
-        "following": 224,
-        "status": "",
-        "canDm": false,
-        "canMediaTag": false,
-        "createdAt": "Mon Sep 15 16:27:24 +0000 2014",
-        "entities": {
-          "description": {
-            "urls": []
-          },
-          "url": {}
-        },
-        "fastFollowersCount": 0,
-        "favouritesCount": 165,
-        "hasCustomTimelines": true,
-        "isTranslator": true,
-        "mediaCount": 272412,
-        "statusesCount": 717592,
-        "withheldInCountries": [],
-        "affiliatesHighlightedLabel": {},
-        "possiblySensitive": false,
-        "pinnedTweetIds": [],
-        "profile_bio": {
-          "description": "News and narratives that matter.",
-          "entities": {
-            "description": {},
-            "url": {
-              "urls": [
-                {
-                  "display_url": "newswatchplus.ph",
-                  "expanded_url": "https://www.newswatchplus.ph/",
-                  "indices": [
-                    0,
-                    23
-                  ],
-                  "url": "https://t.co/ZsWNLKN8wt"
-                }
-              ]
-            }
-          }
-        },
-        "isAutomated": false,
-        "automatedBy": null
-      },
-      "extendedEntities": {
-        "media": [
-          {
-            "display_url": "pic.x.com/iW8UFkIQIo",
-            "expanded_url": "https://x.com/newswatchplusph/status/2046391506567852234/photo/1",
-            "ext_master_playlist_only": [],
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "ext_playlists": [],
-            "features": {
-              "large": {
-                "faces": [
-                  {
-                    "h": 88,
-                    "w": 88,
-                    "x": 220,
-                    "y": 912
-                  }
-                ]
-              },
-              "orig": {
-                "faces": [
-                  {
-                    "h": 88,
-                    "w": 88,
-                    "x": 220,
-                    "y": 912
-                  }
-                ]
-              }
-            },
-            "id_str": "2046391493099929600",
-            "indices": [
-              280,
-              303
-            ],
-            "media_key": "3_2046391493099929600",
-            "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxmPjiBmkAACgACHGY+O6RacMoAAA==",
-              "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABHGY+OIGaQAAKAAIcZj47pFpwygAA",
-                "media_key": "3_2046391493099929600"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/media/HGY-OIGaQAADbne.jpg",
-            "original_info": {
-              "focus_rects": [
-                {
-                  "h": 1147,
-                  "w": 2048,
-                  "x": 0,
-                  "y": 297
-                },
-                {
-                  "h": 1536,
-                  "w": 1536,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 1536,
-                  "w": 1347,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 1536,
-                  "w": 768,
-                  "x": 281,
-                  "y": 0
-                },
-                {
-                  "h": 1536,
-                  "w": 2048,
-                  "x": 0,
-                  "y": 0
-                }
-              ],
-              "height": 1536,
-              "width": 2048
-            },
-            "sizes": {
-              "large": {
-                "h": 1536,
-                "w": 2048
-              }
-            },
-            "type": "photo",
-            "url": "https://t.co/iW8UFkIQIo"
-          },
-          {
-            "display_url": "pic.x.com/iW8UFkIQIo",
-            "expanded_url": "https://x.com/newswatchplusph/status/2046391506567852234/photo/1",
-            "ext_master_playlist_only": [],
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "ext_playlists": [],
-            "features": {
-              "large": {
-                "faces": [
-                  {
-                    "h": 74,
-                    "w": 74,
-                    "x": 1884,
-                    "y": 804
-                  }
-                ]
-              },
-              "orig": {
-                "faces": [
-                  {
-                    "h": 74,
-                    "w": 74,
-                    "x": 1884,
-                    "y": 804
-                  }
-                ]
-              }
-            },
-            "id_str": "2046391493066444800",
-            "indices": [
-              280,
-              303
-            ],
-            "media_key": "3_2046391493066444800",
-            "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxmPjh/m1AACgACHGY+O6RacMoAAA==",
-              "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABHGY+OH+bUAAKAAIcZj47pFpwygAA",
-                "media_key": "3_2046391493066444800"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/media/HGY-OH-bUAAga5b.jpg",
-            "original_info": {
-              "focus_rects": [
-                {
-                  "h": 1147,
-                  "w": 2048,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 1536,
-                  "w": 1536,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 1536,
-                  "w": 1347,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 1536,
-                  "w": 768,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 1536,
-                  "w": 2048,
-                  "x": 0,
-                  "y": 0
-                }
-              ],
-              "height": 1536,
-              "width": 2048
-            },
-            "sizes": {
-              "large": {
-                "h": 1536,
-                "w": 2048
-              }
-            },
-            "type": "photo",
-            "url": "https://t.co/iW8UFkIQIo"
-          },
-          {
-            "display_url": "pic.x.com/iW8UFkIQIo",
-            "expanded_url": "https://x.com/newswatchplusph/status/2046391506567852234/photo/1",
-            "ext_master_playlist_only": [],
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "ext_playlists": [],
-            "features": {
-              "large": {
-                "faces": [
-                  {
-                    "h": 68,
-                    "w": 68,
-                    "x": 44,
-                    "y": 1156
-                  },
-                  {
-                    "h": 122,
-                    "w": 122,
-                    "x": 1100,
-                    "y": 464
-                  }
-                ]
-              },
-              "orig": {
-                "faces": [
-                  {
-                    "h": 68,
-                    "w": 68,
-                    "x": 44,
-                    "y": 1156
-                  },
-                  {
-                    "h": 122,
-                    "w": 122,
-                    "x": 1100,
-                    "y": 464
-                  }
-                ]
-              }
-            },
-            "id_str": "2046391493515182080",
-            "indices": [
-              280,
-              303
-            ],
-            "media_key": "3_2046391493515182080",
-            "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxmPjiaWoAACgACHGY+O6RacMoAAA==",
-              "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABHGY+OJpagAAKAAIcZj47pFpwygAA",
-                "media_key": "3_2046391493515182080"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/media/HGY-OJpagAAUnYQ.jpg",
-            "original_info": {
-              "focus_rects": [
-                {
-                  "h": 1147,
-                  "w": 2048,
-                  "x": 0,
-                  "y": 389
-                },
-                {
-                  "h": 1536,
-                  "w": 1536,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 1536,
-                  "w": 1347,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 1536,
-                  "w": 768,
-                  "x": 76,
-                  "y": 0
-                },
-                {
-                  "h": 1536,
-                  "w": 2048,
-                  "x": 0,
-                  "y": 0
-                }
-              ],
-              "height": 1536,
-              "width": 2048
-            },
-            "sizes": {
-              "large": {
-                "h": 1536,
-                "w": 2048
-              }
-            },
-            "type": "photo",
-            "url": "https://t.co/iW8UFkIQIo"
-          },
-          {
-            "display_url": "pic.x.com/iW8UFkIQIo",
-            "expanded_url": "https://x.com/newswatchplusph/status/2046391506567852234/photo/1",
-            "ext_master_playlist_only": [],
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "ext_playlists": [],
-            "features": {
-              "large": {
-                "faces": []
-              },
-              "orig": {
-                "faces": []
-              }
-            },
-            "id_str": "2046391493058015232",
-            "indices": [
-              280,
-              303
-            ],
-            "media_key": "3_2046391493058015232",
-            "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxmPjh/GrAACgACHGY+O6RacMoAAA==",
-              "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABHGY+OH8asAAKAAIcZj47pFpwygAA",
-                "media_key": "3_2046391493058015232"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/media/HGY-OH8asAAUItw.jpg",
-            "original_info": {
-              "focus_rects": [
-                {
-                  "h": 1147,
-                  "w": 2048,
-                  "x": 0,
-                  "y": 389
-                },
-                {
-                  "h": 1536,
-                  "w": 1536,
-                  "x": 307,
-                  "y": 0
-                },
-                {
-                  "h": 1536,
-                  "w": 1347,
-                  "x": 402,
-                  "y": 0
-                },
-                {
-                  "h": 1536,
-                  "w": 768,
-                  "x": 691,
-                  "y": 0
-                },
-                {
-                  "h": 1536,
-                  "w": 2048,
-                  "x": 0,
-                  "y": 0
-                }
-              ],
-              "height": 1536,
-              "width": 2048
-            },
-            "sizes": {
-              "large": {
-                "h": 1536,
-                "w": 2048
-              }
-            },
-            "type": "photo",
-            "url": "https://t.co/iW8UFkIQIo"
-          }
-        ]
-      },
-      "card": null,
-      "place": {},
-      "entities": {
-        "hashtags": [],
-        "symbols": [],
-        "urls": [],
-        "user_mentions": []
-      },
-      "quoted_tweet": null,
-      "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
-      "article": null
-    },
-    {
-      "type": "tweet",
-      "id": "2046396582682386796",
-      "url": "https://x.com/MMDA/status/2046396582682386796",
-      "twitterUrl": "https://twitter.com/MMDA/status/2046396582682386796",
-      "text": "MMDA ALERT: Road crash incident at EDSA Estrella NB involving truck and SUV as of 8:27 AM. One lane occupied. MMDA enforcers are on site managing traffic. #mmda",
-      "source": "Twitter for iPhone",
-      "retweetCount": 0,
-      "replyCount": 0,
-      "likeCount": 0,
-      "quoteCount": 0,
-      "viewCount": 975,
-      "createdAt": "Tue Apr 21 01:12:20 +0000 2026",
-      "lang": "en",
-      "bookmarkCount": 0,
-      "isReply": false,
-      "inReplyToId": null,
-      "conversationId": "2046396582682386796",
-      "displayTextRange": [
-        0,
-        160
-      ],
-      "inReplyToUserId": null,
-      "inReplyToUsername": null,
-      "author": {
-        "type": "user",
-        "userName": "MMDA",
-        "url": "https://x.com/MMDA",
-        "twitterUrl": "https://twitter.com/MMDA",
-        "id": "171574926",
-        "name": "Official MMDA",
-        "isVerified": false,
-        "isBlueVerified": true,
-        "verifiedType": "Government",
-        "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
-        "description": "",
-        "location": "Metro Manila",
-        "followers": 3967066,
-        "following": 125,
-        "status": "",
-        "canDm": true,
-        "canMediaTag": true,
-        "createdAt": "Tue Jul 27 17:31:12 +0000 2010",
-        "entities": {
-          "description": {
-            "urls": []
-          },
-          "url": {}
-        },
-        "fastFollowersCount": 0,
-        "favouritesCount": 5284,
-        "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 61685,
-        "statusesCount": 888285,
-        "withheldInCountries": [],
-        "affiliatesHighlightedLabel": {},
-        "possiblySensitive": false,
-        "pinnedTweetIds": [],
-        "profile_bio": {
-          "description": "Official X Account of the Metropolitan Manila Development Authority | Hotline 136 | digitalmedia@mmda.gov.ph | VIBER 0956-6632-221",
-          "entities": {
-            "description": {},
-            "url": {
-              "urls": [
-                {
-                  "display_url": "mmda.gov.ph",
-                  "expanded_url": "http://mmda.gov.ph",
-                  "indices": [
-                    0,
-                    23
-                  ],
-                  "url": "https://t.co/BHm5ofschj"
-                }
-              ]
-            }
-          }
-        },
-        "isAutomated": false,
-        "automatedBy": null
-      },
-      "extendedEntities": {},
-      "card": null,
-      "place": {},
-      "entities": {
-        "hashtags": [
-          {
-            "indices": [
-              155,
-              160
-            ],
-            "text": "mmda"
-          }
-        ]
-      },
-      "quoted_tweet": null,
-      "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
-      "article": null
-    },
-    {
-      "type": "tweet",
-      "id": "2046396505024807345",
-      "url": "https://x.com/MMDA/status/2046396505024807345",
-      "twitterUrl": "https://twitter.com/MMDA/status/2046396505024807345",
-      "text": "MMDA ALERT: Road crash incident at EDSA Connecticut SB involving car and taxi as of 8:20 AM. One lane occupied. MMDA enforcers are on site managing traffic. #mmda",
-      "source": "Twitter for iPhone",
-      "retweetCount": 0,
-      "replyCount": 0,
-      "likeCount": 0,
-      "quoteCount": 0,
-      "viewCount": 669,
-      "createdAt": "Tue Apr 21 01:12:01 +0000 2026",
-      "lang": "en",
-      "bookmarkCount": 0,
-      "isReply": false,
-      "inReplyToId": null,
-      "conversationId": "2046396505024807345",
-      "displayTextRange": [
-        0,
-        162
-      ],
-      "inReplyToUserId": null,
-      "inReplyToUsername": null,
-      "author": {
-        "type": "user",
-        "userName": "MMDA",
-        "url": "https://x.com/MMDA",
-        "twitterUrl": "https://twitter.com/MMDA",
-        "id": "171574926",
-        "name": "Official MMDA",
-        "isVerified": false,
-        "isBlueVerified": true,
-        "verifiedType": "Government",
-        "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
-        "description": "",
-        "location": "Metro Manila",
-        "followers": 3967066,
-        "following": 125,
-        "status": "",
-        "canDm": true,
-        "canMediaTag": true,
-        "createdAt": "Tue Jul 27 17:31:12 +0000 2010",
-        "entities": {
-          "description": {
-            "urls": []
-          },
-          "url": {}
-        },
-        "fastFollowersCount": 0,
-        "favouritesCount": 5284,
-        "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 61685,
-        "statusesCount": 888285,
-        "withheldInCountries": [],
-        "affiliatesHighlightedLabel": {},
-        "possiblySensitive": false,
-        "pinnedTweetIds": [],
-        "profile_bio": {
-          "description": "Official X Account of the Metropolitan Manila Development Authority | Hotline 136 | digitalmedia@mmda.gov.ph | VIBER 0956-6632-221",
-          "entities": {
-            "description": {},
-            "url": {
-              "urls": [
-                {
-                  "display_url": "mmda.gov.ph",
-                  "expanded_url": "http://mmda.gov.ph",
-                  "indices": [
-                    0,
-                    23
-                  ],
-                  "url": "https://t.co/BHm5ofschj"
-                }
-              ]
-            }
-          }
-        },
-        "isAutomated": false,
-        "automatedBy": null
-      },
-      "extendedEntities": {},
-      "card": null,
-      "place": {},
-      "entities": {
-        "hashtags": [
-          {
-            "indices": [
-              157,
-              162
-            ],
-            "text": "mmda"
-          }
-        ]
-      },
-      "quoted_tweet": null,
-      "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
-      "article": null
-    },
-    {
-      "type": "tweet",
-      "id": "2046397471103029268",
-      "url": "https://x.com/MakatiTraffic/status/2046397471103029268",
-      "twitterUrl": "https://twitter.com/MakatiTraffic/status/2046397471103029268",
-      "text": "TRAFFIC UPDATE: As of 9:15 AM, along Kalayaan Ave. from Chino Roces Ave. to Makati Ave. (M). #MakatiTraffic",
-      "source": "Twitter for iPhone",
-      "retweetCount": 0,
-      "replyCount": 0,
-      "likeCount": 1,
-      "quoteCount": 0,
-      "viewCount": 114,
-      "createdAt": "Tue Apr 21 01:15:51 +0000 2026",
-      "lang": "en",
-      "bookmarkCount": 0,
-      "isReply": false,
-      "inReplyToId": null,
-      "conversationId": "2046397471103029268",
-      "displayTextRange": [
-        0,
-        107
-      ],
-      "inReplyToUserId": null,
-      "inReplyToUsername": null,
-      "author": {
-        "type": "user",
-        "userName": "MakatiTraffic",
-        "url": "https://x.com/MakatiTraffic",
-        "twitterUrl": "https://twitter.com/MakatiTraffic",
-        "id": "357433536",
-        "name": "MakatiTraffic",
-        "isVerified": false,
-        "isBlueVerified": true,
-        "verifiedType": null,
-        "profilePicture": "https://pbs.twimg.com/profile_images/1507416130/logoMakati_normal.png",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
-        "description": "",
-        "location": "City of Makati",
-        "followers": 1437250,
-        "following": 2,
-        "status": "",
-        "canDm": true,
-        "canMediaTag": true,
-        "createdAt": "Thu Aug 18 10:52:33 +0000 2011",
-        "entities": {
-          "description": {
-            "urls": []
-          },
-          "url": {}
-        },
-        "fastFollowersCount": 0,
-        "favouritesCount": 1218,
-        "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
-        "withheldInCountries": [],
-        "affiliatesHighlightedLabel": {},
-        "possiblySensitive": false,
-        "pinnedTweetIds": [],
-        "profile_bio": {
-          "description": "Official Twitter Account of the City Government of Makati | Hotline 168 | makatitraffic@makati.gov.ph",
-          "entities": {
-            "description": {},
-            "url": {
-              "urls": [
-                {
-                  "display_url": "makati.gov.ph",
-                  "expanded_url": "http://www.makati.gov.ph",
-                  "indices": [
-                    0,
-                    23
-                  ],
-                  "url": "https://t.co/DSZjZ3iXcA"
-                }
-              ]
-            }
-          }
-        },
-        "isAutomated": false,
-        "automatedBy": null
-      },
-      "extendedEntities": {},
-      "card": null,
-      "place": {},
-      "entities": {
-        "hashtags": [
-          {
-            "indices": [
-              93,
-              107
-            ],
-            "text": "MakatiTraffic"
-          }
-        ]
-      },
-      "quoted_tweet": null,
-      "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
-      "article": null
-    },
-    {
-      "type": "tweet",
-      "id": "2046402343395094603",
-      "url": "https://x.com/dzrhnews/status/2046402343395094603",
-      "twitterUrl": "https://twitter.com/dzrhnews/status/2046402343395094603",
-      "text": "Kinondena ng National Police Commission (NAPOLCOM) ang umano’y pag-abuso ng isang pulis na sangkot sa banggaan ng EDSA Carousel bus at PNP coaster, kasunod ng reklamo ng pananakot at pagtatangkang paningilin ang bus driver sa pinsala. \n\nInihayag ng ahensya na magsasagawa ito ng motu proprio investigation at posibleng magsampa ng kaukulang kaso laban sa pulis na si Chief Master Sgt. Jenifer Bredico. Samantala, binigyang-diin niyang hindi lisensya ang pagiging pulis upang makapang-abuso o manakot, at dapat manaig ang pananagutan at tamang pagresolba ng insidente.\n\nhttps://t.co/cop0ucVOPu",
-      "source": "Twitter for iPhone",
-      "retweetCount": 0,
-      "replyCount": 0,
-      "likeCount": 0,
-      "quoteCount": 0,
-      "viewCount": 95,
-      "createdAt": "Tue Apr 21 01:35:13 +0000 2026",
-      "lang": "tl",
-      "bookmarkCount": 0,
-      "isReply": false,
-      "inReplyToId": null,
-      "conversationId": "2046402343395094603",
-      "displayTextRange": [
-        0,
-        278
-      ],
-      "inReplyToUserId": null,
-      "inReplyToUsername": null,
-      "author": {
-        "type": "user",
-        "userName": "dzrhnews",
-        "url": "https://x.com/dzrhnews",
-        "twitterUrl": "https://twitter.com/dzrhnews",
-        "id": "74886399",
-        "name": "DZRH NEWS",
-        "isVerified": false,
-        "isBlueVerified": true,
-        "verifiedType": null,
-        "profilePicture": "https://pbs.twimg.com/profile_images/2077640307458633728/kXNIDvgI_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/74886399/1762132752",
-        "description": "",
-        "location": "Manila, Philippines",
-        "followers": 143732,
-        "following": 1036,
-        "status": "",
-        "canDm": false,
-        "canMediaTag": true,
-        "createdAt": "Thu Sep 17 00:35:08 +0000 2009",
-        "entities": {
-          "description": {
-            "urls": []
-          },
-          "url": {}
-        },
-        "fastFollowersCount": 0,
-        "favouritesCount": 8103,
-        "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 299856,
-        "statusesCount": 861918,
-        "withheldInCountries": [],
-        "affiliatesHighlightedLabel": {},
-        "possiblySensitive": false,
-        "pinnedTweetIds": [],
-        "profile_bio": {
-          "description": "The official X account of MBC Media Group's flagship radio station DZRH 666 kHz: Una sa Pilipinas, Una sa Pilipino",
-          "entities": {
-            "description": {},
-            "url": {
-              "urls": [
-                {
-                  "display_url": "dzrh.com.ph",
-                  "expanded_url": "http://www.dzrh.com.ph",
-                  "indices": [
-                    0,
-                    23
-                  ],
-                  "url": "https://t.co/rKJXaTpAtz"
-                }
-              ]
-            }
-          }
-        },
-        "isAutomated": false,
-        "automatedBy": null
-      },
-      "extendedEntities": {},
-      "card": {
-        "binding_values": [
-          {
-            "key": "description",
-            "value": {
-              "string_value": "*]:pointer-events-auto scroll-mt-[calc(var(--header-height)+min(200px,max(70px,20svh)))]\" dir=\"auto\" data-turn-id=\"request-WEB:ad37115e-589b-43f4-8a78-4a30cec4209d-17\" data-testid=\"conversation-tur..."
-            }
-          },
-          {
-            "key": "domain",
-            "value": {
-              "string_value": "www.dzrh.com.ph"
-            }
-          },
-          {
-            "key": "creator",
-            "value": {
-              "user_value": {
-                "id_str": "74886399",
-                "path": []
-              }
-            }
-          },
-          {
-            "key": "vanity_url",
-            "value": {
-              "scribe_key": "vanity_url",
-              "string_value": "dzrh.com.ph"
-            }
-          },
-          {
-            "key": "title",
-            "value": {
-              "string_value": "NAPOLCOM warns police uniform is not a license for abuse amid EDSA bus collision probe"
-            }
-          },
-          {
-            "key": "card_url",
-            "value": {
-              "scribe_key": "card_url",
-              "string_value": "https://t.co/cop0ucVOPu"
-            }
-          }
-        ],
-        "card_platform": {
-          "platform": {
-            "audience": {
-              "name": "production"
-            },
-            "device": {
-              "name": "iPhone",
-              "version": "13"
-            }
-          }
-        },
-        "name": "summary_large_image",
-        "url": "https://t.co/cop0ucVOPu",
-        "user_refs_results": [
-          {
-            "rest_id": "74886399",
-            "result": {
-              "__typename": "User",
-              "action_counts": {
-                "favorites_count": 8103
-              },
-              "avatar": {
-                "image_url": "https://pbs.twimg.com/profile_images/2077640307458633728/kXNIDvgI_normal.jpg"
-              },
-              "banner": {
-                "image_url": "https://pbs.twimg.com/profile_banners/74886399/1762132752"
-              },
-              "core": {
-                "created_at": "Thu Sep 17 00:35:08 +0000 2009",
-                "name": "DZRH NEWS",
-                "screen_name": "dzrhnews"
-              },
-              "dm_permissions": {
-                "can_dm": false
-              },
-              "exclusive_tweet_following": false,
-              "follow_request_sent": false,
-              "identity_profile_labels_highlighted_label": {},
-              "location": {
-                "location": "Manila, Philippines"
-              },
-              "media_permissions": {
-                "can_media_tag": true
-              },
-              "notifications_settings": {
-                "notifications_enabled": false
-              },
-              "pinned_items": {},
-              "privacy": {
-                "protected": false,
-                "suspended": false
-              },
-              "private_super_following": false,
-              "profile_bio": {
-                "description": "The official X account of MBC Media Group's flagship radio station DZRH 666 kHz: Una sa Pilipinas, Una sa Pilipino",
-                "entities": {
-                  "description": {},
-                  "url": {
-                    "urls": [
-                      {
-                        "display_url": "dzrh.com.ph",
-                        "expanded_url": "http://www.dzrh.com.ph",
-                        "indices": [
-                          0,
-                          23
-                        ],
-                        "url": "https://t.co/rKJXaTpAtz"
-                      }
-                    ]
-                  }
-                }
-              },
-              "profile_image_shape": "Circle",
-              "profile_metadata": {
-                "profile_interstitial_type": "",
-                "profile_link_color": "1B95E0"
-              },
-              "profile_translation": {
-                "translator_type_enum": "None"
-              },
-              "properties": {
-                "has_extended_profile": true,
-                "has_no_screen_name": false
-              },
-              "relationship_counts": {
-                "followers": 143732,
-                "following": 1036
-              },
-              "relationship_perspectives": {
-                "blocked_by": false,
-                "blocking": false,
-                "followed_by": false,
-                "following": false,
-                "live_following": false,
-                "muting": false
-              },
-              "rest_id": "74886399",
-              "smart_blocked_by": false,
-              "smart_blocking": false,
-              "super_follow_eligible": false,
-              "super_followed_by": false,
-              "super_following": false,
-              "tweet_counts": {
-                "media_tweets": 299856,
-                "tweets": 861918
-              },
-              "verification": {
-                "is_blue_verified": true,
-                "verified": false
-              },
-              "website": {
-                "url": "https://t.co/rKJXaTpAtz"
-              }
-            }
-          }
-        ]
-      },
-      "place": {},
-      "entities": {
-        "hashtags": [],
-        "symbols": [],
-        "urls": [
-          {
-            "display_url": "dzrh.com.ph/post/napolcom-…",
-            "expanded_url": "https://www.dzrh.com.ph/post/napolcom-warns-police-uniform-is-not-a-license-for-abuse-amid-edsa-bus-collision-probe",
-            "indices": [
-              569,
-              592
-            ],
-            "url": "https://t.co/cop0ucVOPu"
-          }
-        ],
-        "user_mentions": []
-      },
-      "quoted_tweet": null,
-      "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
-      "article": null
-    },
-    {
-      "type": "tweet",
-      "id": "2046403839994081775",
-      "url": "https://x.com/gmanews/status/2046403839994081775",
-      "twitterUrl": "https://twitter.com/gmanews/status/2046403839994081775",
-      "text": "Transport groups staged another nationwide strike on Tuesday to press the government for action on rising fuel prices.\n\nMembers of MANIBELA and PISTON led the protest activities, with some gathered at the Philcoa area in Quezon City.\n\nREAD: \nhttps://t.co/aa5fgXgYwy https://t.co/9w1TdjqcuT",
-      "source": "Twitter for iPhone",
-      "retweetCount": 1,
-      "replyCount": 0,
-      "likeCount": 2,
-      "quoteCount": 0,
-      "viewCount": 889,
-      "createdAt": "Tue Apr 21 01:41:10 +0000 2026",
-      "lang": "en",
-      "bookmarkCount": 0,
-      "isReply": false,
-      "inReplyToId": null,
-      "conversationId": "2046403839994081775",
-      "displayTextRange": [
-        0,
-        265
-      ],
-      "inReplyToUserId": null,
-      "inReplyToUsername": null,
-      "author": {
-        "type": "user",
-        "userName": "gmanews",
-        "url": "https://x.com/gmanews",
-        "twitterUrl": "https://twitter.com/gmanews",
-        "id": "39453212",
-        "name": "GMA News",
-        "isVerified": false,
-        "isBlueVerified": true,
-        "verifiedType": null,
-        "profilePicture": "https://pbs.twimg.com/profile_images/2038588193520709632/gW-kXR9a_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/39453212/1785235955",
-        "description": "",
-        "location": "Philippines",
-        "followers": 5717161,
-        "following": 672,
-        "status": "",
-        "canDm": true,
-        "canMediaTag": true,
-        "createdAt": "Tue May 12 07:14:09 +0000 2009",
-        "entities": {
-          "description": {
-            "urls": []
-          },
-          "url": {}
-        },
-        "fastFollowersCount": 0,
-        "favouritesCount": 14181,
-        "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 213473,
-        "statusesCount": 1025476,
-        "withheldInCountries": [],
-        "affiliatesHighlightedLabel": {},
-        "possiblySensitive": false,
-        "pinnedTweetIds": [
-          "2096631393191067840"
-        ],
-        "profile_bio": {
-          "description": "Welcome to the official X account of GMA News.",
-          "entities": {
-            "description": {},
-            "url": {
-              "urls": [
-                {
-                  "display_url": "gmanews.tv",
-                  "expanded_url": "http://www.gmanews.tv",
-                  "indices": [
-                    0,
-                    23
-                  ],
-                  "url": "https://t.co/pdXg7H0qNa"
-                }
-              ]
-            }
-          }
-        },
-        "isAutomated": false,
-        "automatedBy": null
-      },
-      "extendedEntities": {
-        "media": [
-          {
-            "display_url": "pic.x.com/9w1TdjqcuT",
-            "expanded_url": "https://x.com/gmanews/status/2046403839994081775/photo/1",
-            "ext_master_playlist_only": [],
-            "ext_media_availability": {
-              "status": "Available"
-            },
-            "ext_playlists": [],
-            "features": {
-              "large": {
-                "faces": [
-                  {
-                    "h": 58,
-                    "w": 58,
-                    "x": 955,
-                    "y": 276
-                  },
-                  {
-                    "h": 46,
-                    "w": 46,
-                    "x": 804,
-                    "y": 309
-                  },
-                  {
-                    "h": 52,
-                    "w": 52,
-                    "x": 843,
-                    "y": 311
-                  },
-                  {
-                    "h": 46,
-                    "w": 46,
-                    "x": 669,
-                    "y": 330
-                  },
-                  {
-                    "h": 51,
-                    "w": 51,
-                    "x": 755,
-                    "y": 329
-                  },
-                  {
-                    "h": 43,
-                    "w": 43,
-                    "x": 566,
-                    "y": 361
-                  },
-                  {
-                    "h": 56,
-                    "w": 56,
-                    "x": 626,
-                    "y": 126
-                  },
-                  {
-                    "h": 59,
-                    "w": 59,
-                    "x": 471,
-                    "y": 152
-                  },
-                  {
-                    "h": 58,
-                    "w": 58,
-                    "x": 760,
-                    "y": 210
-                  },
-                  {
-                    "h": 65,
-                    "w": 65,
-                    "x": 358,
-                    "y": 166
-                  }
-                ]
-              },
-              "orig": {
-                "faces": [
-                  {
-                    "h": 58,
-                    "w": 58,
-                    "x": 955,
-                    "y": 276
-                  },
-                  {
-                    "h": 46,
-                    "w": 46,
-                    "x": 804,
-                    "y": 309
-                  },
-                  {
-                    "h": 52,
-                    "w": 52,
-                    "x": 843,
-                    "y": 311
-                  },
-                  {
-                    "h": 46,
-                    "w": 46,
-                    "x": 669,
-                    "y": 330
-                  },
-                  {
-                    "h": 51,
-                    "w": 51,
-                    "x": 755,
-                    "y": 329
-                  },
-                  {
-                    "h": 43,
-                    "w": 43,
-                    "x": 566,
-                    "y": 361
-                  },
-                  {
-                    "h": 56,
-                    "w": 56,
-                    "x": 626,
-                    "y": 126
-                  },
-                  {
-                    "h": 59,
-                    "w": 59,
-                    "x": 471,
-                    "y": 152
-                  },
-                  {
-                    "h": 58,
-                    "w": 58,
-                    "x": 760,
-                    "y": 210
-                  },
-                  {
-                    "h": 65,
-                    "w": 65,
-                    "x": 358,
-                    "y": 166
-                  }
-                ]
-              }
-            },
-            "id_str": "2046403836735021056",
-            "indices": [
-              266,
-              289
-            ],
-            "media_key": "3_2046403836735021056",
-            "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARxmSXJ7lmAACgACHGZJcz3Xse8AAA==",
-              "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABHGZJcnuWYAAKAAIcZklzPdex7wAA",
-                "media_key": "3_2046403836735021056"
-              }
-            },
-            "media_url_https": "https://pbs.twimg.com/media/HGZJcnuWYAAPTrT.jpg",
-            "original_info": {
-              "focus_rects": [
-                {
-                  "h": 605,
-                  "w": 1080,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 1080,
-                  "w": 1080,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 1231,
-                  "w": 1080,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 1350,
-                  "w": 675,
-                  "x": 0,
-                  "y": 0
-                },
-                {
-                  "h": 1350,
-                  "w": 1080,
-                  "x": 0,
-                  "y": 0
-                }
-              ],
-              "height": 1350,
-              "width": 1080
-            },
-            "sizes": {
-              "large": {
-                "h": 1350,
-                "w": 1080
-              }
-            },
-            "type": "photo",
-            "url": "https://t.co/9w1TdjqcuT"
-          }
-        ]
-      },
-      "card": null,
-      "place": {},
-      "entities": {
-        "urls": [
-          {
-            "display_url": "gmanetwork.com/news/topstorie…",
-            "expanded_url": "https://www.gmanetwork.com/news/topstories/nation/984705/puv-drivers-operators-stage-another-strike-vs-high-fuel-prices/story",
-            "indices": [
-              242,
-              265
-            ],
-            "url": "https://t.co/aa5fgXgYwy"
-          }
-        ]
-      },
-      "quoted_tweet": null,
-      "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
-      "article": null
-    },
-    {
-      "type": "tweet",
-      "id": "2046406227643757045",
-      "url": "https://x.com/MakatiTraffic/status/2046406227643757045",
-      "twitterUrl": "https://twitter.com/MakatiTraffic/status/2046406227643757045",
-      "text": "TRAFFIC UPDATE: As of 9:45 AM, along J.P. Rizal Ave. from Makati Ave. to A.P. Reyes (M). #MakatiTraffic",
-      "source": "Twitter for iPhone",
-      "retweetCount": 0,
-      "replyCount": 0,
-      "likeCount": 1,
-      "quoteCount": 0,
-      "viewCount": 114,
-      "createdAt": "Tue Apr 21 01:50:39 +0000 2026",
-      "lang": "en",
-      "bookmarkCount": 0,
-      "isReply": false,
-      "inReplyToId": null,
-      "conversationId": "2046406227643757045",
-      "displayTextRange": [
-        0,
-        103
-      ],
-      "inReplyToUserId": null,
-      "inReplyToUsername": null,
-      "author": {
-        "type": "user",
-        "userName": "MakatiTraffic",
-        "url": "https://x.com/MakatiTraffic",
-        "twitterUrl": "https://twitter.com/MakatiTraffic",
-        "id": "357433536",
-        "name": "MakatiTraffic",
-        "isVerified": false,
-        "isBlueVerified": true,
-        "verifiedType": null,
-        "profilePicture": "https://pbs.twimg.com/profile_images/1507416130/logoMakati_normal.png",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
-        "description": "",
-        "location": "City of Makati",
-        "followers": 1437250,
-        "following": 2,
-        "status": "",
-        "canDm": true,
-        "canMediaTag": true,
-        "createdAt": "Thu Aug 18 10:52:33 +0000 2011",
-        "entities": {
-          "description": {
-            "urls": []
-          },
-          "url": {}
-        },
-        "fastFollowersCount": 0,
-        "favouritesCount": 1218,
-        "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
-        "withheldInCountries": [],
-        "affiliatesHighlightedLabel": {},
-        "possiblySensitive": false,
-        "pinnedTweetIds": [],
-        "profile_bio": {
-          "description": "Official Twitter Account of the City Government of Makati | Hotline 168 | makatitraffic@makati.gov.ph",
-          "entities": {
-            "description": {},
-            "url": {
-              "urls": [
-                {
-                  "display_url": "makati.gov.ph",
-                  "expanded_url": "http://www.makati.gov.ph",
-                  "indices": [
-                    0,
-                    23
-                  ],
-                  "url": "https://t.co/DSZjZ3iXcA"
-                }
-              ]
-            }
-          }
-        },
-        "isAutomated": false,
-        "automatedBy": null
-      },
-      "extendedEntities": {},
-      "card": null,
-      "place": {},
-      "entities": {
-        "hashtags": [
-          {
-            "indices": [
-              89,
-              103
             ],
             "text": "MakatiTraffic"
           }

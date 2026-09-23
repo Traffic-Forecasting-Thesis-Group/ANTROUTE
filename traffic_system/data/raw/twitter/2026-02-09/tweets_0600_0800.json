@@ -5,7 +5,7 @@
     "window_start": "2026-02-09T06:00:00+08:00",
     "window_end": "2026-02-09T08:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 2,
+    "tweet_count": 4,
     "slices": [
       {
         "start": "2026-02-09T06:00:00+08:00",
@@ -53,8 +53,8 @@
         "start": "2026-02-09T06:30:00+08:00",
         "end": "2026-02-09T06:35:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-02-09T06:35:00+08:00",
@@ -172,12 +172,125 @@
         "start": "2026-02-09T07:55:00+08:00",
         "end": "2026-02-09T08:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       }
     ]
   },
   "data": [
+    {
+      "type": "tweet",
+      "id": "2020626366509859153",
+      "url": "https://x.com/CSTXPolice/status/2020626366509859153",
+      "twitterUrl": "https://twitter.com/CSTXPolice/status/2020626366509859153",
+      "text": "TRAFFIC ADVISORY: @CSTXPolice and @CSTXFire are working a crash in the intersection of Wellborn Rd and George Bush Dr. Traffic is closed in the northbound and southbound lanes of traffic at this time. Please avoid the area if possible.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 2,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 4280,
+      "createdAt": "Sun Feb 08 22:30:41 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2020626366509859153",
+      "displayTextRange": [
+        0,
+        235
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "CSTXPolice",
+        "url": "https://x.com/CSTXPolice",
+        "twitterUrl": "https://twitter.com/CSTXPolice",
+        "id": "2657541955",
+        "name": "College Station Police Department",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1478070409224462340/y9ij3IwQ_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2657541955/1636137063",
+        "description": "",
+        "location": "College Station, TX",
+        "followers": 16771,
+        "following": 1925,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Fri Jul 18 19:26:02 +0000 2014",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2666,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1636,
+        "statusesCount": 4962,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "In partnership with our community: leaders in public safety, excellent customer service, exceptional work quality, constant innovation.  9-1-1 for emergencies.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "cstx.gov/police",
+                  "expanded_url": "http://cstx.gov/police",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/cxvsDifZKm"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "2657541955",
+            "indices": [
+              18,
+              29
+            ],
+            "name": "College Station Police Department",
+            "screen_name": "CSTXPolice"
+          },
+          {
+            "id_str": "951470021309583360",
+            "indices": [
+              34,
+              43
+            ],
+            "name": "College Station Fire Department",
+            "screen_name": "CSTXFire"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
     {
       "type": "tweet",
       "id": "2020628437065732249",
@@ -216,7 +329,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967083,
+        "followers": 3966603,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -232,8 +345,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888278,
+        "mediaCount": 61737,
+        "statusesCount": 888711,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -318,7 +431,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967083,
+        "followers": 3966603,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -334,8 +447,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888278,
+        "mediaCount": 61737,
+        "statusesCount": 888711,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -373,6 +486,97 @@
               147
             ],
             "text": "mmda"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2020648347640680497",
+      "url": "https://x.com/buboymendoza/status/2020648347640680497",
+      "twitterUrl": "https://twitter.com/buboymendoza/status/2020648347640680497",
+      "text": "pakisilip naman po ang mga bus along espana route @MMDA . andaming violation.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 1,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 931,
+      "createdAt": "Sun Feb 08 23:58:02 +0000 2026",
+      "lang": "tl",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2020648347640680497",
+      "displayTextRange": [
+        0,
+        77
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "buboymendoza",
+        "url": "https://x.com/buboymendoza",
+        "twitterUrl": "https://twitter.com/buboymendoza",
+        "id": "173034359",
+        "name": "Sherwin Mendoza",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/378800000483284188/b18e198b07b5c7bc770318c70af7942e_normal.jpeg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/173034359/1525486547",
+        "description": "",
+        "location": "Republic of the Philippines",
+        "followers": 48,
+        "following": 90,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sat Jul 31 06:57:36 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1862,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 153,
+        "statusesCount": 1085,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Catholic / Thomasian / Marilenyo / Bulakenyo / Filipino",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "171574926",
+            "indices": [
+              50,
+              55
+            ],
+            "name": "Official MMDA",
+            "screen_name": "MMDA"
           }
         ]
       },

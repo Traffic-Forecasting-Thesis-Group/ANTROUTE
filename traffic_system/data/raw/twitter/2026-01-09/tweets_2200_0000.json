@@ -5,7 +5,7 @@
     "window_start": "2026-01-09T22:00:00+08:00",
     "window_end": "2026-01-10T00:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 1,
+    "tweet_count": 6,
     "slices": [
       {
         "start": "2026-01-09T22:00:00+08:00",
@@ -18,8 +18,8 @@
         "start": "2026-01-09T22:05:00+08:00",
         "end": "2026-01-09T22:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-09T22:10:00+08:00",
@@ -88,15 +88,15 @@
         "start": "2026-01-09T22:55:00+08:00",
         "end": "2026-01-09T23:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-09T23:00:00+08:00",
         "end": "2026-01-09T23:05:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 3,
+        "accepted": 3
       },
       {
         "start": "2026-01-09T23:05:00+08:00",
@@ -180,6 +180,391 @@
   "data": [
     {
       "type": "tweet",
+      "id": "2009627976166449382",
+      "url": "https://x.com/rapplerdotcom/status/2009627976166449382",
+      "twitterUrl": "https://twitter.com/rapplerdotcom/status/2009627976166449382",
+      "text": "Rescuers continue to search for survivors at the Binaliw landfill in Cebu City a day after a large part of it caved in https://t.co/tYGyR3atEt",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 1149,
+      "createdAt": "Fri Jan 09 14:07:01 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2009627976166449382",
+      "displayTextRange": [
+        0,
+        142
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "rapplerdotcom",
+        "url": "https://x.com/rapplerdotcom",
+        "twitterUrl": "https://twitter.com/rapplerdotcom",
+        "id": "330826792",
+        "name": "Rappler",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1583252893368717313/wUCmGve8_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/330826792/1763601261",
+        "description": "",
+        "location": "Philippines",
+        "followers": 3307616,
+        "following": 412,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Jul 07 06:34:10 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 7585,
+        "hasCustomTimelines": true,
+        "isTranslator": true,
+        "mediaCount": 281938,
+        "statusesCount": 1138999,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2098366108176625685"
+        ],
+        "profile_bio": {
+          "description": "Rappler is the Philippines' leading digital media company that's driven by uncompromising journalism, enabled by technology, & enriched by communities of action",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "rappler.com",
+                  "expanded_url": "http://www.rappler.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/81BJWWQwVf"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "Rescuers continue to search for survivors at the Binaliw landfill in Cebu City a day after a large part of it caved in"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.rappler.com"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "330826792",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "creator",
+            "value": {
+              "user_value": {
+                "id_str": "330826792",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "rappler.com"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "34 still missing a day after Cebu landfill collapse"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/tYGyR3atEt"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/tYGyR3atEt",
+        "user_refs_results": [
+          {
+            "rest_id": "330826792",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 7585
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1583252893368717313/wUCmGve8_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/330826792/1763601261"
+              },
+              "core": {
+                "created_at": "Thu Jul 07 06:34:10 +0000 2011",
+                "name": "Rappler",
+                "screen_name": "rapplerdotcom"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Philippines"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2098366108176625685"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Rappler is the Philippines' leading digital media company that's driven by uncompromising journalism, enabled by technology, & enriched by communities of action",
+                "entities": {
+                  "description": {},
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "rappler.com",
+                        "expanded_url": "http://www.rappler.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/81BJWWQwVf"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "E76229"
+              },
+              "profile_translation": {
+                "translator_type_enum": "Regular"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 3307616,
+                "following": 412
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "330826792",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 281938,
+                "tweets": 1138999
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/81BJWWQwVf"
+              }
+            }
+          },
+          {
+            "rest_id": "330826792",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 7585
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/1583252893368717313/wUCmGve8_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/330826792/1763601261"
+              },
+              "core": {
+                "created_at": "Thu Jul 07 06:34:10 +0000 2011",
+                "name": "Rappler",
+                "screen_name": "rapplerdotcom"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "Philippines"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {
+                "tweet_ids_str": [
+                  "2098366108176625685"
+                ]
+              },
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Rappler is the Philippines' leading digital media company that's driven by uncompromising journalism, enabled by technology, & enriched by communities of action",
+                "entities": {
+                  "description": {},
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "rappler.com",
+                        "expanded_url": "http://www.rappler.com",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/81BJWWQwVf"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "E76229"
+              },
+              "profile_translation": {
+                "translator_type_enum": "Regular"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 3307616,
+                "following": 412
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "330826792",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 281938,
+                "tweets": 1138999
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/81BJWWQwVf"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "rappler.com/philippines/vi…",
+            "expanded_url": "https://www.rappler.com/philippines/visayas/cebu-binaliw-landslide-january-2026/",
+            "indices": [
+              119,
+              142
+            ],
+            "url": "https://t.co/tYGyR3atEt"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2009637494959317360",
       "url": "https://x.com/MMDA/status/2009637494959317360",
       "twitterUrl": "https://twitter.com/MMDA/status/2009637494959317360",
@@ -216,7 +601,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967084,
+        "followers": 3966652,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -232,8 +617,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61683,
-        "statusesCount": 888272,
+        "mediaCount": 61732,
+        "statusesCount": 888705,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -271,6 +656,1065 @@
               146
             ],
             "text": "mmda"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2009641204527616012",
+      "url": "https://x.com/Ladakhism/status/2009641204527616012",
+      "twitterUrl": "https://twitter.com/Ladakhism/status/2009641204527616012",
+      "text": "Traffic Advisory for 10-01-2026\n\nSrinagar ➡️ Kargil\n\n🕰️ 1100 hrs to 1500 hrs.\n\n🚨Traffic movement is subject to fair weather conditions along the ZojiLa axis. https://t.co/rS3MTY7ONC",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 1,
+      "viewCount": 211,
+      "createdAt": "Fri Jan 09 14:59:35 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2009641204527616012",
+      "displayTextRange": [
+        0,
+        157
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "Ladakhism",
+        "url": "https://x.com/Ladakhism",
+        "twitterUrl": "https://twitter.com/Ladakhism",
+        "id": "1354501062",
+        "name": "Ladakh",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1720087519893819393/kQPuV_DF_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1354501062/1751085147",
+        "description": "",
+        "location": "Ladakh, India",
+        "followers": 1818,
+        "following": 1056,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Apr 15 14:38:37 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 23743,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 476,
+        "statusesCount": 5063,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1980294484044001473"
+        ],
+        "profile_bio": {
+          "description": "Julley 🇮🇳 Follow for Updates on Ladakh || Tweets mostly on News, Ecology, Culture, Education, Tourism || Let’s Pledge to #SaveLadakh 🏔️",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    121,
+                    132
+                  ],
+                  "text": "SaveLadakh"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "en.m.wikipedia.org/wiki/Ladakh",
+                  "expanded_url": "https://en.m.wikipedia.org/wiki/Ladakh",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/oNat5ukm3f"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/rS3MTY7ONC",
+            "expanded_url": "https://x.com/Ladakhism/status/2009641204527616012/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "all": {
+                "tags": [
+                  {
+                    "name": "Ladakh Traffic Police",
+                    "screen_name": "trafficpoliceLA",
+                    "type": "user",
+                    "user_id": "1738803919533256704"
+                  },
+                  {
+                    "name": "DIPR Ladakh",
+                    "screen_name": "DIPR_Ladakh",
+                    "type": "user",
+                    "user_id": "1865219760062894080"
+                  },
+                  {
+                    "name": "DGP Ladakh",
+                    "screen_name": "DGP_Ladakh",
+                    "type": "user",
+                    "user_id": "1199279497893142528"
+                  },
+                  {
+                    "name": "DIO Kargil",
+                    "screen_name": "DIPR_Kargil",
+                    "type": "user",
+                    "user_id": "1197127660385603585"
+                  },
+                  {
+                    "name": "Gulistan News Ladakh",
+                    "screen_name": "GulistanLadakh_",
+                    "type": "user",
+                    "user_id": "1237717853098242048"
+                  },
+                  {
+                    "name": "Ladakh News Portal 🇮🇳",
+                    "screen_name": "NorthIndiaTimes",
+                    "type": "user",
+                    "user_id": "1465165992955318272"
+                  },
+                  {
+                    "name": "Reach Ladakh",
+                    "screen_name": "ReachLadakhNews",
+                    "type": "user",
+                    "user_id": "4653070876"
+                  },
+                  {
+                    "name": "LADAKH 🌎TIMES ",
+                    "screen_name": "LadakhTimes",
+                    "type": "user",
+                    "user_id": "944123512272306176"
+                  }
+                ]
+              },
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2009641192292749313",
+            "indices": [
+              158,
+              181
+            ],
+            "media_key": "3_2009641192292749313",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARvjrgRQmhABCgACG+OuBynbUAwAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG+OuBFCaEAEKAAIb464HKdtQDAAA",
+                "media_key": "3_2009641192292749313"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G-OuBFCaEAEP7Ke.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 429,
+                  "w": 766,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 429,
+                  "w": 429,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 429,
+                  "w": 376,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 429,
+                  "w": 215,
+                  "x": 39,
+                  "y": 0
+                },
+                {
+                  "h": 429,
+                  "w": 1170,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 429,
+              "width": 1170
+            },
+            "sizes": {
+              "large": {
+                "h": 429,
+                "w": 1170
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/rS3MTY7ONC"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "2009307623519342641",
+        "url": "https://x.com/Ladakhism/status/2009307623519342641",
+        "twitterUrl": "https://twitter.com/Ladakhism/status/2009307623519342641",
+        "text": "Traffic Advisory for 09-01-2026\n\nKargil ➡️ Srinagar\n\n🕰️ 1100 hrs to 1500 hrs.\n\n🚨Traffic movement is subject to fair weather conditions along the ZojiLa axis. https://t.co/BFrPkRZpqn",
+        "source": "Twitter for iPhone",
+        "retweetCount": 0,
+        "replyCount": 0,
+        "likeCount": 1,
+        "quoteCount": 1,
+        "viewCount": 227,
+        "createdAt": "Thu Jan 08 16:54:03 +0000 2026",
+        "lang": "en",
+        "bookmarkCount": 0,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "2009307623519342641",
+        "displayTextRange": [
+          0,
+          157
+        ],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {
+          "type": "user",
+          "userName": "Ladakhism",
+          "url": "https://x.com/Ladakhism",
+          "twitterUrl": "https://twitter.com/Ladakhism",
+          "id": "1354501062",
+          "name": "Ladakh",
+          "isVerified": false,
+          "isBlueVerified": false,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/1720087519893819393/kQPuV_DF_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/1354501062/1751085147",
+          "description": "",
+          "location": "Ladakh, India",
+          "followers": 1818,
+          "following": 1056,
+          "status": "",
+          "canDm": true,
+          "canMediaTag": true,
+          "createdAt": "Mon Apr 15 14:38:37 +0000 2013",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 23743,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 476,
+          "statusesCount": 5063,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [
+            "1980294484044001473"
+          ],
+          "profile_bio": {
+            "description": "Julley 🇮🇳 Follow for Updates on Ladakh || Tweets mostly on News, Ecology, Culture, Education, Tourism || Let’s Pledge to #SaveLadakh 🏔️",
+            "entities": {
+              "description": {
+                "hashtags": [
+                  {
+                    "indices": [
+                      121,
+                      132
+                    ],
+                    "text": "SaveLadakh"
+                  }
+                ]
+              },
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "en.m.wikipedia.org/wiki/Ladakh",
+                    "expanded_url": "https://en.m.wikipedia.org/wiki/Ladakh",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/oNat5ukm3f"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {
+          "media": [
+            {
+              "allow_download_status": {
+                "allow_download": true
+              },
+              "display_url": "pic.x.com/BFrPkRZpqn",
+              "expanded_url": "https://x.com/Ladakhism/status/2009307623519342641/photo/1",
+              "ext_master_playlist_only": [],
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "ext_playlists": [],
+              "features": {
+                "all": {
+                  "tags": [
+                    {
+                      "name": "Ladakh Traffic Police",
+                      "screen_name": "trafficpoliceLA",
+                      "type": "user",
+                      "user_id": "1738803919533256704"
+                    },
+                    {
+                      "name": "DGP Ladakh",
+                      "screen_name": "DGP_Ladakh",
+                      "type": "user",
+                      "user_id": "1199279497893142528"
+                    },
+                    {
+                      "name": "DIPR Ladakh",
+                      "screen_name": "DIPR_Ladakh",
+                      "type": "user",
+                      "user_id": "1865219760062894080"
+                    },
+                    {
+                      "name": "DIO Kargil",
+                      "screen_name": "DIPR_Kargil",
+                      "type": "user",
+                      "user_id": "1197127660385603585"
+                    },
+                    {
+                      "name": "Gulistan News Ladakh",
+                      "screen_name": "GulistanLadakh_",
+                      "type": "user",
+                      "user_id": "1237717853098242048"
+                    }
+                  ]
+                },
+                "large": {
+                  "faces": []
+                },
+                "orig": {
+                  "faces": []
+                }
+              },
+              "id_str": "2009307613654339584",
+              "indices": [
+                158,
+                181
+              ],
+              "media_key": "3_2009307613654339584",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARvifqD8WtAACgACG+J+o0ha0DEAAA==",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAABCgABG+J+oPxa0AAKAAIb4n6jSFrQMQAA",
+                  "media_key": "3_2009307613654339584"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/media/G-J-oPxa0AAVBiM.jpg",
+              "original_info": {
+                "focus_rects": [
+                  {
+                    "h": 416,
+                    "w": 743,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 416,
+                    "w": 416,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 416,
+                    "w": 365,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 416,
+                    "w": 208,
+                    "x": 41,
+                    "y": 0
+                  },
+                  {
+                    "h": 416,
+                    "w": 1170,
+                    "x": 0,
+                    "y": 0
+                  }
+                ],
+                "height": 416,
+                "width": 1170
+              },
+              "sizes": {
+                "large": {
+                  "h": 416,
+                  "w": 1170
+                }
+              },
+              "type": "photo",
+              "url": "https://t.co/BFrPkRZpqn"
+            }
+          ]
+        },
+        "card": null,
+        "place": {},
+        "entities": {},
+        "quoted_tweet": {
+          "type": "tweet",
+          "id": "2008891169414259108",
+          "url": "",
+          "twitterUrl": "",
+          "text": "",
+          "source": "Twitter for iPhone",
+          "retweetCount": 0,
+          "replyCount": 0,
+          "likeCount": 0,
+          "quoteCount": 0,
+          "viewCount": 0,
+          "createdAt": "",
+          "lang": "",
+          "bookmarkCount": 0,
+          "isReply": false,
+          "inReplyToId": null,
+          "conversationId": "",
+          "displayTextRange": [],
+          "inReplyToUserId": null,
+          "inReplyToUsername": null,
+          "author": {},
+          "extendedEntities": {},
+          "card": null,
+          "place": {},
+          "entities": {},
+          "quoted_tweet": null,
+          "retweeted_tweet": null,
+          "isLimitedReply": false,
+          "communityInfo": null,
+          "article": null
+        },
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
+        "article": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2009642152134123530",
+      "url": "https://x.com/GardaTraffic/status/2009642152134123530",
+      "twitterUrl": "https://twitter.com/GardaTraffic/status/2009642152134123530",
+      "text": "🚨 Traffic Advisory – Athlone | Saturday 10 January 2026 🚨\n\nAn Garda Síochána is aware of plans for a Public Assembly and associated activity to take place in Athlone on Saturday 10th January 2026. https://t.co/XWjdfJ2ksv",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 3,
+      "likeCount": 16,
+      "quoteCount": 0,
+      "viewCount": 10445,
+      "createdAt": "Fri Jan 09 15:03:21 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2009642152134123530",
+      "displayTextRange": [
+        0,
+        196
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "GardaTraffic",
+        "url": "https://x.com/GardaTraffic",
+        "twitterUrl": "https://twitter.com/GardaTraffic",
+        "id": "295705264",
+        "name": "An Garda Síochána",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1995807215601516544/nyhlZuGj_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/295705264/1764672496",
+        "description": "",
+        "location": "Ireland",
+        "followers": 610883,
+        "following": 3,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Mon May 09 14:38:38 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 912,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 19560,
+        "statusesCount": 38274,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "An Garda Síochána account for traffic/road safety updates. Not monitored 24/7 and not suitable to report a crime. In an emergency call 999 or 112.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "garda.ie",
+                  "expanded_url": "http://www.garda.ie",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/5zVQjMqTCG"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/XWjdfJ2ksv",
+            "expanded_url": "https://x.com/GardaTraffic/status/2009642152134123530/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2009642104117403648",
+            "indices": [
+              197,
+              220
+            ],
+            "media_key": "3_2009642104117403648",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARvjrtidliAACgACG+Ou48ubIAoAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG+Ou2J2WIAAKAAIb467jy5sgCgAA",
+                "media_key": "3_2009642104117403648"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G-Ou2J2WIAAxRKz.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 717,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 720,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 632,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 360,
+                  "x": 44,
+                  "y": 0
+                },
+                {
+                  "h": 720,
+                  "w": 1280,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 720,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1280
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/XWjdfJ2ksv"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2009641845878317565",
+      "url": "https://x.com/project4_4/status/2009641845878317565",
+      "twitterUrl": "https://twitter.com/project4_4/status/2009641845878317565",
+      "text": "USS Pennsylvania and battleship of Colorado class followed by three cruisers move in line into Lingayen Gulf preceding the landing on Luzon. Philippines, January 1945.\n\nIn January 1945, U.S. forces launched the invasion of Luzon, the largest and most strategically important island in the Philippines. To pave the way, powerful naval task forces entered Lingayen Gulf under heavy Japanese resistance.\n\nUSS Pennsylvania (BB-38), a veteran battleship of Pearl Harbor, led the way alongside ships of the Colorado-class and several cruisers. Their mission was to bombard Japanese coastal defences, clear mines, and provide covering fire for the landing forces. The approach was hazardous—Japanese aircraft, including kamikazes, repeatedly attacked the fleet, inflicting serious damage on several ships.\n\nDespite these dangers, the naval bombardment was highly effective. It neutralized many Japanese strongpoints and allowed General MacArthur’s forces to land on 9 January 1945 with overwhelming strength. The operation marked a decisive step in the liberation of the Philippines, cutting Japan off from vital resources in Southeast Asia and bringing Allied forces closer to the Japanese homeland.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 25,
+      "quoteCount": 0,
+      "viewCount": 865,
+      "createdAt": "Fri Jan 09 15:02:08 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 4,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2009641845878317565",
+      "displayTextRange": [
+        0,
+        274
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "project4_4",
+        "url": "https://x.com/project4_4",
+        "twitterUrl": "https://twitter.com/project4_4",
+        "id": "1172705303302942720",
+        "name": "Project '44",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1395384103873224706/khMmoGpc_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1172705303302942720/1787312697",
+        "description": "",
+        "location": "",
+        "followers": 25012,
+        "following": 542,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sat Sep 14 02:56:50 +0000 2019",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 6477,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2554,
+        "statusesCount": 5325,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2090052992204456166"
+        ],
+        "profile_bio": {
+          "description": "We map the Second World War. 150,000+ unit positions and 15,000+ war diary pages, every one traced to an original document. Free to explore",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "project44.ca",
+                  "expanded_url": "http://www.project44.ca",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/UsMiqOToGY"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/r6bNYmx05X",
+            "expanded_url": "https://x.com/project4_4/status/2009641845878317565/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2009641715032866817",
+            "indices": [
+              275,
+              298
+            ],
+            "media_key": "3_2009641715032866817",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARvjrn4GV0ABCgACG+OunH1WYf0AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG+OufgZXQAEKAAIb466cfVZh/QAA",
+                "media_key": "3_2009641715032866817"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G-OufgZXQAEd759.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 675,
+                  "w": 1205,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 954,
+                  "w": 954,
+                  "x": 215,
+                  "y": 0
+                },
+                {
+                  "h": 954,
+                  "w": 837,
+                  "x": 274,
+                  "y": 0
+                },
+                {
+                  "h": 954,
+                  "w": 477,
+                  "x": 454,
+                  "y": 0
+                },
+                {
+                  "h": 954,
+                  "w": 1205,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 954,
+              "width": 1205
+            },
+            "sizes": {
+              "large": {
+                "h": 954,
+                "w": 1205
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/r6bNYmx05X"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2009641491061166437",
+      "url": "https://x.com/GovernmentZA/status/2009641491061166437",
+      "twitterUrl": "https://twitter.com/GovernmentZA/status/2009641491061166437",
+      "text": "🚗 #SafetyEveryday | Increased Traffic Advisory\n\nTraffic volumes are expected to rise on major routes as holidaymakers return home.\n\n🛣️ Plan your journey carefully:\n•Avoid traveling at night\n•Adhere to speed limits\n•Stay alert and take breaks\n\n#ArriveAlive #GovZAUpdates #BuckleUp #DontDrinkAndDrive @SAPoliceService",
+      "source": "Twitter for iPhone",
+      "retweetCount": 4,
+      "replyCount": 2,
+      "likeCount": 7,
+      "quoteCount": 0,
+      "viewCount": 1673,
+      "createdAt": "Fri Jan 09 15:00:43 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2009641491061166437",
+      "displayTextRange": [
+        0,
+        269
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "GovernmentZA",
+        "url": "https://x.com/GovernmentZA",
+        "twitterUrl": "https://twitter.com/GovernmentZA",
+        "id": "1536223580",
+        "name": "South African Government",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1813432566675800064/rleZzEni_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1536223580/1788422466",
+        "description": "",
+        "location": "South Africa",
+        "followers": 872752,
+        "following": 806,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": false,
+        "createdAt": "Fri Jun 21 10:25:42 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 9223,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 50615,
+        "statusesCount": 116156,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The official South African Government account managed by GCIS, offering easy access to public information and services. Tel: 012 473 0000",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "gov.za",
+                  "expanded_url": "http://www.gov.za",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/ZnOXnlTgr2"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/gJkbO6iuXF",
+            "expanded_url": "https://x.com/GovernmentZA/status/2009641491061166437/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2009641489102434305",
+            "indices": [
+              270,
+              293
+            ],
+            "media_key": "3_2009641489102434305",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARvjrklr1nABCgACG+OuSeCWUWUAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG+OuSWvWcAEKAAIb465J4JZRZQAA",
+                "media_key": "3_2009641489102434305"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G-OuSWvWcAEJnPK.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 504,
+                  "w": 900,
+                  "x": 0,
+                  "y": 355
+                },
+                {
+                  "h": 900,
+                  "w": 900,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 900,
+                  "w": 789,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 900,
+                  "w": 450,
+                  "x": 22,
+                  "y": 0
+                },
+                {
+                  "h": 900,
+                  "w": 900,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 900,
+              "width": 900
+            },
+            "sizes": {
+              "large": {
+                "h": 900,
+                "w": 900
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/gJkbO6iuXF"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              2,
+              17
+            ],
+            "text": "SafetyEveryday"
+          },
+          {
+            "indices": [
+              243,
+              255
+            ],
+            "text": "ArriveAlive"
+          },
+          {
+            "indices": [
+              256,
+              269
+            ],
+            "text": "GovZAUpdates"
+          },
+          {
+            "indices": [
+              270,
+              279
+            ],
+            "text": "BuckleUp"
+          },
+          {
+            "indices": [
+              280,
+              298
+            ],
+            "text": "DontDrinkAndDrive"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": [
+          {
+            "id_str": "320644276",
+            "indices": [
+              299,
+              315
+            ],
+            "name": "SA Police Service 🇿🇦",
+            "screen_name": "SAPoliceService"
           }
         ]
       },

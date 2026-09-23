@@ -5,7 +5,7 @@
     "window_start": "2026-01-29T18:00:00+08:00",
     "window_end": "2026-01-29T20:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 10,
+    "tweet_count": 15,
     "slices": [
       {
         "start": "2026-01-29T18:00:00+08:00",
@@ -60,8 +60,8 @@
         "start": "2026-01-29T18:35:00+08:00",
         "end": "2026-01-29T18:40:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-01-29T18:40:00+08:00",
@@ -95,8 +95,8 @@
         "start": "2026-01-29T19:00:00+08:00",
         "end": "2026-01-29T19:05:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-29T19:05:00+08:00",
@@ -137,15 +137,15 @@
         "start": "2026-01-29T19:30:00+08:00",
         "end": "2026-01-29T19:35:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-29T19:35:00+08:00",
         "end": "2026-01-29T19:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-29T19:40:00+08:00",
@@ -158,8 +158,8 @@
         "start": "2026-01-29T19:45:00+08:00",
         "end": "2026-01-29T19:50:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-01-29T19:50:00+08:00",
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437258,
+        "followers": 1437179,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +232,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412000,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -276,8 +276,6 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -318,8 +316,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/461853598/1788192343",
         "description": "",
         "location": "Republic of the Philippines",
-        "followers": 262178,
-        "following": 1005,
+        "followers": 262169,
+        "following": 1006,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -334,13 +332,13 @@
         "favouritesCount": 1966,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 363317,
-        "statusesCount": 1006279,
+        "mediaCount": 364564,
+        "statusesCount": 1008170,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2095427727365231027"
+          "2097968439566741980"
         ],
         "profile_bio": {
           "description": "The official X account of Super Radyo DZBB 594 kHz, the flagship AM radio station of GMA Network, Inc.",
@@ -372,13 +370,21 @@
             },
             "display_url": "pic.x.com/UzM0ClQpvi",
             "expanded_url": "https://x.com/dzbb/status/2016813957160542372/photo/1",
-            "ext_master_playlist_only": [],
             "ext_media_availability": {
               "status": "Available"
             },
-            "ext_playlists": [],
             "features": {
               "large": {
+                "faces": [
+                  {
+                    "h": 120,
+                    "w": 120,
+                    "x": 383,
+                    "y": 109
+                  }
+                ]
+              },
+              "medium": {
                 "faces": [
                   {
                     "h": 120,
@@ -397,6 +403,16 @@
                     "y": 109
                   }
                 ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 95,
+                    "w": 95,
+                    "x": 304,
+                    "y": 86
+                  }
+                ]
               }
             },
             "id_str": "2016813716134907907",
@@ -406,10 +422,7 @@
             ],
             "media_key": "3_2016813716134907907",
             "media_results": {
-              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARv9KWOoW1ADCgACG/0pm8aaoKQAAA==",
               "result": {
-                "__typename": "ApiMedia",
-                "id": "QXBpTWVkaWE6DAABCgABG/0pY6hbUAMKAAIb/SmbxpqgpAAA",
                 "media_key": "3_2016813716134907907"
               }
             },
@@ -453,7 +466,23 @@
             "sizes": {
               "large": {
                 "h": 481,
+                "resize": "fit",
                 "w": 854
+              },
+              "medium": {
+                "h": 481,
+                "resize": "fit",
+                "w": 854
+              },
+              "small": {
+                "h": 383,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
               }
             },
             "type": "photo",
@@ -464,6 +493,132 @@
       "card": null,
       "place": {},
       "entities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/UzM0ClQpvi",
+            "expanded_url": "https://x.com/dzbb/status/2016813957160542372/photo/1",
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 120,
+                    "w": 120,
+                    "x": 383,
+                    "y": 109
+                  }
+                ]
+              },
+              "medium": {
+                "faces": [
+                  {
+                    "h": 120,
+                    "w": 120,
+                    "x": 383,
+                    "y": 109
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 120,
+                    "w": 120,
+                    "x": 383,
+                    "y": 109
+                  }
+                ]
+              },
+              "small": {
+                "faces": [
+                  {
+                    "h": 95,
+                    "w": 95,
+                    "x": 304,
+                    "y": 86
+                  }
+                ]
+              }
+            },
+            "id_str": "2016813716134907907",
+            "indices": [
+              210,
+              233
+            ],
+            "media_key": "3_2016813716134907907",
+            "media_results": {
+              "result": {
+                "media_key": "3_2016813716134907907"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G_0pY6hbUAMgP6p.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 478,
+                  "w": 854,
+                  "x": 0,
+                  "y": 3
+                },
+                {
+                  "h": 481,
+                  "w": 481,
+                  "x": 80,
+                  "y": 0
+                },
+                {
+                  "h": 481,
+                  "w": 422,
+                  "x": 109,
+                  "y": 0
+                },
+                {
+                  "h": 481,
+                  "w": 241,
+                  "x": 200,
+                  "y": 0
+                },
+                {
+                  "h": 481,
+                  "w": 854,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 481,
+              "width": 854
+            },
+            "sizes": {
+              "large": {
+                "h": 481,
+                "resize": "fit",
+                "w": 854
+              },
+              "medium": {
+                "h": 481,
+                "resize": "fit",
+                "w": 854
+              },
+              "small": {
+                "h": 383,
+                "resize": "fit",
+                "w": 680
+              },
+              "thumb": {
+                "h": 150,
+                "resize": "crop",
+                "w": 150
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/UzM0ClQpvi"
+          }
+        ],
         "urls": [
           {
             "display_url": "gmanetwork.com/radio/streamin…",
@@ -478,8 +633,6 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -520,7 +673,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437258,
+        "followers": 1437179,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -536,8 +689,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412000,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -622,7 +775,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967082,
+        "followers": 3966602,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -638,8 +791,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888278,
+        "mediaCount": 61732,
+        "statusesCount": 888706,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -688,6 +841,137 @@
     },
     {
       "type": "tweet",
+      "id": "2016823440976597185",
+      "url": "https://x.com/OfficialYuewen/status/2016823440976597185",
+      "twitterUrl": "https://twitter.com/OfficialYuewen/status/2016823440976597185",
+      "text": "https://t.co/SeTuuvPXjr",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 9,
+      "quoteCount": 1,
+      "viewCount": 1027,
+      "createdAt": "Thu Jan 29 10:39:13 +0000 2026",
+      "lang": "zxx",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2016823440976597185",
+      "displayTextRange": [
+        0,
+        23
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "OfficialYuewen",
+        "url": "https://x.com/OfficialYuewen",
+        "twitterUrl": "https://twitter.com/OfficialYuewen",
+        "id": "2003319320269697024",
+        "name": "YUEWEN | 阅文",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": "Business",
+        "profilePicture": "https://pbs.twimg.com/profile_images/2014282716779593729/ojrWe6F-_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2003319320269697024/1787799930",
+        "description": "",
+        "location": "Imagination",
+        "followers": 10024,
+        "following": 205,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Tue Dec 23 04:19:07 +0000 2025",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 4746,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 688,
+        "statusesCount": 2448,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2068948343255138398"
+        ],
+        "profile_bio": {
+          "description": "Web Novel | Comic | Donghua | Animation | Cdrama | Movie | Game\n\nReddit: https://t.co/rtYf5LNw1x\nYouTube: https://t.co/Ix3XhV5Kxz",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "reddit.com/r/Yuewen/",
+                  "expanded_url": "http://www.reddit.com/r/Yuewen/",
+                  "indices": [
+                    73,
+                    96
+                  ],
+                  "url": "https://t.co/rtYf5LNw1x"
+                },
+                {
+                  "display_url": "youtube.com/@OfficialYuewen",
+                  "expanded_url": "http://www.youtube.com/@OfficialYuewen",
+                  "indices": [
+                    106,
+                    129
+                  ],
+                  "url": "https://t.co/Ix3XhV5Kxz"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "yuewen.com/en/",
+                  "expanded_url": "https://www.yuewen.com/en/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/ZIChdvfNM7"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/i/article/2014…",
+            "expanded_url": "http://x.com/i/article/2014609300933750784",
+            "indices": [
+              0,
+              23
+            ],
+            "url": "https://t.co/SeTuuvPXjr"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": {
+        "title": "YUEWEN WONDERLAND Daily Footfall Surpasses 20K+ Visitors as ‘Goods Economy’ Ignites Singapore",
+        "preview_text": "SINGAPORE, Feb. 27, 2025 - The one-month-long ​YUEWEN WONDERLAND​ event at Marina Bay Sands ​culminated successfully, marking a significant milestone in cross-cultural IP activation. Leveraging",
+        "cover_media_img_url": "https://pbs.twimg.com/media/G_0vQ01bUAAskAx.jpg"
+      }
+    },
+    {
+      "type": "tweet",
       "id": "2016822377771127019",
       "url": "https://x.com/MakatiTraffic/status/2016822377771127019",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2016822377771127019",
@@ -724,7 +1008,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437258,
+        "followers": 1437179,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -740,8 +1024,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412000,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -826,7 +1110,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437258,
+        "followers": 1437179,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -842,8 +1126,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412000,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -892,6 +1176,439 @@
     },
     {
       "type": "tweet",
+      "id": "2016828682095022297",
+      "url": "https://x.com/MMDA/status/2016828682095022297",
+      "twitterUrl": "https://twitter.com/MMDA/status/2016828682095022297",
+      "text": "Mga sasakyang nasa center island at iba pang lugar na hindi dapat paradahan ang nahuli sa anti-illegal parking operations ng Swift Traffic Action Group (STAG) ngayong araw.\n\nIn-operate ng grupo Route #11 ng Mabuhay Lane o ang kahabaan ng Aurora Blvd. sa Pasay, Andrews Ave., Airport Rd., Domestic Rd., at Quirino Ave. sa Parañaque.\n\nNasa 103 ang kabuuang natiketan sa pinagsamang physical at non-contact apprehension.\n\n#mmda #STAG",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 1281,
+      "createdAt": "Thu Jan 29 11:00:03 +0000 2026",
+      "lang": "tl",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2016828682095022297",
+      "displayTextRange": [
+        0,
+        274
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "MMDA",
+        "url": "https://x.com/MMDA",
+        "twitterUrl": "https://twitter.com/MMDA",
+        "id": "171574926",
+        "name": "Official MMDA",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
+        "description": "",
+        "location": "Metro Manila",
+        "followers": 3966602,
+        "following": 125,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue Jul 27 17:31:12 +0000 2010",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5284,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 61732,
+        "statusesCount": 888706,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official X Account of the Metropolitan Manila Development Authority | Hotline 136 | digitalmedia@mmda.gov.ph | VIBER 0956-6632-221",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "mmda.gov.ph",
+                  "expanded_url": "http://mmda.gov.ph",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/BHm5ofschj"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/XRk77jyS8M",
+            "expanded_url": "https://x.com/MMDA/status/2016828682095022297/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2016784692218122247",
+            "indices": [
+              275,
+              298
+            ],
+            "media_key": "3_2016784692218122247",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARv9Dv4AG1AHCgACG/03ADEX0NkAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG/0O/gAbUAcKAAIb/TcAMRfQ2QAA",
+                "media_key": "3_2016784692218122247"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G_0O_gAbUAcgWOz.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 808,
+                  "w": 1442,
+                  "x": 0,
+                  "y": 64
+                },
+                {
+                  "h": 961,
+                  "w": 961,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 961,
+                  "w": 843,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 961,
+                  "w": 481,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 961,
+                  "w": 1442,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 961,
+              "width": 1442
+            },
+            "sizes": {
+              "large": {
+                "h": 961,
+                "w": 1442
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/XRk77jyS8M"
+          },
+          {
+            "display_url": "pic.x.com/XRk77jyS8M",
+            "expanded_url": "https://x.com/MMDA/status/2016828682095022297/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2016784692255784960",
+            "indices": [
+              275,
+              298
+            ],
+            "media_key": "3_2016784692255784960",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARv9Dv4CWgAACgACG/03ADEX0NkAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG/0O/gJaAAAKAAIb/TcAMRfQ2QAA",
+                "media_key": "3_2016784692255784960"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G_0O_gJaAAArebI.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 808,
+                  "w": 1442,
+                  "x": 0,
+                  "y": 64
+                },
+                {
+                  "h": 961,
+                  "w": 961,
+                  "x": 421,
+                  "y": 0
+                },
+                {
+                  "h": 961,
+                  "w": 843,
+                  "x": 480,
+                  "y": 0
+                },
+                {
+                  "h": 961,
+                  "w": 481,
+                  "x": 661,
+                  "y": 0
+                },
+                {
+                  "h": 961,
+                  "w": 1442,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 961,
+              "width": 1442
+            },
+            "sizes": {
+              "large": {
+                "h": 961,
+                "w": 1442
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/XRk77jyS8M"
+          },
+          {
+            "display_url": "pic.x.com/XRk77jyS8M",
+            "expanded_url": "https://x.com/MMDA/status/2016828682095022297/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2016784692272578560",
+            "indices": [
+              275,
+              298
+            ],
+            "media_key": "3_2016784692272578560",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARv9Dv4DWkAACgACG/03ADEX0NkAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG/0O/gNaQAAKAAIb/TcAMRfQ2QAA",
+                "media_key": "3_2016784692272578560"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G_0O_gNaQAAPVRQ.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 808,
+                  "w": 1442,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 961,
+                  "w": 961,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 961,
+                  "w": 843,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 961,
+                  "w": 481,
+                  "x": 12,
+                  "y": 0
+                },
+                {
+                  "h": 961,
+                  "w": 1442,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 961,
+              "width": 1442
+            },
+            "sizes": {
+              "large": {
+                "h": 961,
+                "w": 1442
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/XRk77jyS8M"
+          },
+          {
+            "display_url": "pic.x.com/XRk77jyS8M",
+            "expanded_url": "https://x.com/MMDA/status/2016828682095022297/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 80,
+                    "w": 80,
+                    "x": 180,
+                    "y": 73
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 80,
+                    "w": 80,
+                    "x": 180,
+                    "y": 73
+                  }
+                ]
+              }
+            },
+            "id_str": "2016784692243288071",
+            "indices": [
+              275,
+              298
+            ],
+            "media_key": "3_2016784692243288071",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARv9Dv4Bm1AHCgACG/03ADEX0NkAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG/0O/gGbUAcKAAIb/TcAMRfQ2QAA",
+                "media_key": "3_2016784692243288071"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G_0O_gGbUAcMXL3.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 808,
+                  "w": 1442,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 961,
+                  "w": 961,
+                  "x": 481,
+                  "y": 0
+                },
+                {
+                  "h": 961,
+                  "w": 843,
+                  "x": 599,
+                  "y": 0
+                },
+                {
+                  "h": 961,
+                  "w": 481,
+                  "x": 877,
+                  "y": 0
+                },
+                {
+                  "h": 961,
+                  "w": 1442,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 961,
+              "width": 1442
+            },
+            "sizes": {
+              "large": {
+                "h": 961,
+                "w": 1442
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/XRk77jyS8M"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              419,
+              424
+            ],
+            "text": "mmda"
+          },
+          {
+            "indices": [
+              425,
+              430
+            ],
+            "text": "STAG"
+          }
+        ],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2016830158922248628",
       "url": "https://x.com/MMDA/status/2016830158922248628",
       "twitterUrl": "https://twitter.com/MMDA/status/2016830158922248628",
@@ -928,7 +1645,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967082,
+        "followers": 3966602,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -944,8 +1661,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888278,
+        "mediaCount": 61732,
+        "statusesCount": 888706,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1033,7 +1750,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437258,
+        "followers": 1437179,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1049,8 +1766,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412000,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1099,6 +1816,374 @@
     },
     {
       "type": "tweet",
+      "id": "2016836967963775146",
+      "url": "https://x.com/limbertqc/status/2016836967963775146",
+      "twitterUrl": "https://twitter.com/limbertqc/status/2016836967963775146",
+      "text": "Mr. newbie @mmda GM, you are just a manager, not a policymaker. Tama na muna ang epal. Kapag bagong salta, watch &amp; learn muna. Let the MMC handle this. Thanks, SoTr, for speaking up. @DOTrPH @DILGPhilippines https://t.co/0dzuGgUf8G",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 160,
+      "createdAt": "Thu Jan 29 11:32:58 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2016836967963775146",
+      "displayTextRange": [
+        0,
+        211
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "limbertqc",
+        "url": "https://x.com/limbertqc",
+        "twitterUrl": "https://twitter.com/limbertqc",
+        "id": "253398780",
+        "name": "Albert C. Lim 🇵🇭",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1080018916003303424/h-mfcbhQ_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/253398780/1662398277",
+        "description": "",
+        "location": "Quezon City, NCR",
+        "followers": 7147,
+        "following": 7054,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Feb 17 04:41:05 +0000 2011",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 26195,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 6622,
+        "statusesCount": 166278,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2089398648736284719"
+        ],
+        "profile_bio": {
+          "description": "Political animal. Writes & talks politics, public policies, legislation. House Fellow, COS & Consultant. Coffee+Tech lover. Proud La Sallian! NCPAG Kong Mahal!",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/0dzuGgUf8G",
+            "expanded_url": "https://x.com/limbertqc/status/2016836967963775146/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2016836964071456768",
+            "indices": [
+              212,
+              235
+            ],
+            "media_key": "3_2016836964071456768",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARv9Poh9W0AACgACG/0+iWVbUKoAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG/0+iH1bQAAKAAIb/T6JZVtQqgAA",
+                "media_key": "3_2016836964071456768"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G_0-iH1bQAAa6Uo.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 806,
+                  "w": 1440,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1440,
+                  "w": 1440,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1642,
+                  "w": 1440,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2176,
+                  "w": 1088,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2176,
+                  "w": 1440,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2176,
+              "width": 1440
+            },
+            "sizes": {
+              "large": {
+                "h": 2048,
+                "w": 1355
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/0dzuGgUf8G"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "171574926",
+            "indices": [
+              11,
+              16
+            ],
+            "name": "Official MMDA",
+            "screen_name": "MMDA"
+          },
+          {
+            "id_str": "525996653",
+            "indices": [
+              187,
+              194
+            ],
+            "name": "DOTrPH 🇵🇭",
+            "screen_name": "DOTrPH"
+          },
+          {
+            "id_str": "4119317292",
+            "indices": [
+              195,
+              211
+            ],
+            "name": "DILG Philippines",
+            "screen_name": "DILGPhilippines"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2016837583754625389",
+      "url": "https://x.com/QCGov/status/2016837583754625389",
+      "twitterUrl": "https://twitter.com/QCGov/status/2016837583754625389",
+      "text": "Lubos na ikinalulungkot ng Pamahalaang Lungsod Quezon ang sunog na naganap sa Landers Supermarket Fairview noong Enero 28, 2026, na nagdulot ng malawakang pinsala. \n\nSa halos dalawang taon nitong operasyon, ang Landers Supermarket Fairview ay nagbigay sa mga QCitizen ng de-kalidad at maginhawang pamimili at naging mahalagang bahagi ng komunidad.\n\nKasalukuyang nakikipag-ugnayan ang pamahalaang lungsod sa pamunuan ng Landers Supermarket upang tukuyin kung saan ito maaaring makatulong. \n\nAng mga empleyadong naapektuhan o pansamantalang mawawalan ng trabaho dahil sa insidente ay bibigyan ng tulong-pinansyal sa ilalim ng programang Alagang QC.\n\nKaugnay naman ng isyu ng umano’y pagnanakaw o looting, handang tumulong ang lokal na pamahalaan sa isinasagawang imbestigasyon.\n\nAabangan namin ang inyong muling pagbubukas, Landers Supermarket Fairview.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 6,
+      "quoteCount": 0,
+      "viewCount": 2123,
+      "createdAt": "Thu Jan 29 11:35:25 +0000 2026",
+      "lang": "tl",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2016837583754625389",
+      "displayTextRange": [
+        0,
+        270
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "QCGov",
+        "url": "https://x.com/QCGov",
+        "twitterUrl": "https://twitter.com/QCGov",
+        "id": "1224983077937541120",
+        "name": "Quezon City Government",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Government",
+        "profilePicture": "https://pbs.twimg.com/profile_images/1845835583857594368/ensGSkrQ_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1224983077937541120/1775013519",
+        "description": "",
+        "location": "Quezon City, Philippines",
+        "followers": 116431,
+        "following": 39,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Wed Feb 05 09:08:47 +0000 2020",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 910,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 30350,
+        "statusesCount": 42615,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1623876463845056512"
+        ],
+        "profile_bio": {
+          "description": "Welcome to the official X account of the Quezon City Government handled by the QC Public Affairs and Information Services Department",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "quezoncity.gov.ph",
+                  "expanded_url": "https://quezoncity.gov.ph/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/YuT856ZWRH"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/kehJtsj4Ln",
+            "expanded_url": "https://x.com/QCGov/status/2016837583754625389/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2016837550846119936",
+            "indices": [
+              271,
+              294
+            ],
+            "media_key": "3_2016837550846119936",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARv9PxEb2hAACgACG/0/GMVaAW0AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG/0/ERvaEAAKAAIb/T8YxVoBbQAA",
+                "media_key": "3_2016837550846119936"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G_0_ERvaEAAjf_M.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1500,
+                  "w": 750,
+                  "x": 165,
+                  "y": 0
+                },
+                {
+                  "h": 1500,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1500,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1500,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/kehJtsj4Ln"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2016838896102133906",
       "url": "https://x.com/dzbb/status/2016838896102133906",
       "twitterUrl": "https://twitter.com/dzbb/status/2016838896102133906",
@@ -1135,8 +2220,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/461853598/1788192343",
         "description": "",
         "location": "Republic of the Philippines",
-        "followers": 262178,
-        "following": 1005,
+        "followers": 262169,
+        "following": 1006,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -1151,13 +2236,13 @@
         "favouritesCount": 1966,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 363317,
-        "statusesCount": 1006279,
+        "mediaCount": 364564,
+        "statusesCount": 1008170,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2095427727365231027"
+          "2097968439566741980"
         ],
         "profile_bio": {
           "description": "The official X account of Super Radyo DZBB 594 kHz, the flagship AM radio station of GMA Network, Inc.",
@@ -1315,7 +2400,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437258,
+        "followers": 1437179,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1331,8 +2416,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412000,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1372,6 +2457,243 @@
             "text": "MakatiTraffic"
           }
         ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2016840351760470455",
+      "url": "https://x.com/DONATORSPH/status/2016840351760470455",
+      "twitterUrl": "https://twitter.com/DONATORSPH/status/2016840351760470455",
+      "text": "Alarms are blaring and panic is spreading fast. Tonight, chaos erupts, secrets ignite, and there’s no stopping the fire once it starts.\n\n#ROJA Weeknights, 8:45PM sa Kapamilya Channel sa ALLTV2, sa cable at sa iWant. Mapapanood din sa A2Z, Kapamilya Online Live, TFC at Netflix! \n\nROJA PANIC ERUPTS\n\n#ROJAFireAlarm\n#DonnyAsLIAM",
+      "source": "Twitter for iPhone",
+      "retweetCount": 22,
+      "replyCount": 10,
+      "likeCount": 41,
+      "quoteCount": 6,
+      "viewCount": 3846,
+      "createdAt": "Thu Jan 29 11:46:25 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2016840351760470455",
+      "displayTextRange": [
+        0,
+        277
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "DONATORSPH",
+        "url": "https://x.com/DONATORSPH",
+        "twitterUrl": "https://twitter.com/DONATORSPH",
+        "id": "801781391218221057",
+        "name": "DONATORS PHILIPPINES",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2032039079567900673/XXYCAMEK_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/801781391218221057/1773310859",
+        "description": "",
+        "location": "EST. 2016",
+        "followers": 138119,
+        "following": 116,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Thu Nov 24 13:35:54 +0000 2016",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 23105,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 13701,
+        "statusesCount": 36578,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "The Official Fan Group of @donnypangilinan 💙✨ We are bound to protect and support Donny, our first and only priority! 🫶🏻 (💌 Viber: 09991859827)",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    26,
+                    42
+                  ],
+                  "name": "",
+                  "screen_name": "donnypangilinan"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "facebook.com/donatorsphofc",
+                  "expanded_url": "http://facebook.com/donatorsphofc",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/WAFs8ci5Kv"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/iI7i9pO2y0",
+            "expanded_url": "https://x.com/DONATORSPH/status/2016840351760470455/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 96,
+                    "w": 96,
+                    "x": 228,
+                    "y": 632
+                  },
+                  {
+                    "h": 167,
+                    "w": 167,
+                    "x": 112,
+                    "y": 365
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 96,
+                    "w": 96,
+                    "x": 228,
+                    "y": 632
+                  },
+                  {
+                    "h": 167,
+                    "w": 167,
+                    "x": 112,
+                    "y": 365
+                  }
+                ]
+              }
+            },
+            "id_str": "2016840308202541056",
+            "indices": [
+              278,
+              301
+            ],
+            "media_key": "3_2016840308202541056",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARv9QZMbGhAACgACG/1BnT9bUbcAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG/1BkxsaEAAKAAIb/UGdP1tRtwAA",
+                "media_key": "3_2016840308202541056"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G_1BkxsaEAA5WDt.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 896,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 900,
+                  "w": 900,
+                  "x": 230,
+                  "y": 0
+                },
+                {
+                  "h": 900,
+                  "w": 789,
+                  "x": 286,
+                  "y": 0
+                },
+                {
+                  "h": 900,
+                  "w": 450,
+                  "x": 455,
+                  "y": 0
+                },
+                {
+                  "h": 900,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 900,
+              "width": 1600
+            },
+            "sizes": {
+              "large": {
+                "h": 900,
+                "w": 1600
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/iI7i9pO2y0"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              137,
+              142
+            ],
+            "text": "ROJA"
+          },
+          {
+            "indices": [
+              299,
+              313
+            ],
+            "text": "ROJAFireAlarm"
+          },
+          {
+            "indices": [
+              314,
+              326
+            ],
+            "text": "DonnyAsLIAM"
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,

@@ -5,7 +5,7 @@
     "window_start": "2026-01-29T14:00:00+08:00",
     "window_end": "2026-01-29T16:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 9,
+    "tweet_count": 11,
     "slices": [
       {
         "start": "2026-01-29T14:00:00+08:00",
@@ -18,8 +18,8 @@
         "start": "2026-01-29T14:05:00+08:00",
         "end": "2026-01-29T14:10:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-29T14:10:00+08:00",
@@ -46,8 +46,8 @@
         "start": "2026-01-29T14:25:00+08:00",
         "end": "2026-01-29T14:30:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-29T14:30:00+08:00",
@@ -180,6 +180,171 @@
   "data": [
     {
       "type": "tweet",
+      "id": "2016754591346340009",
+      "url": "https://x.com/gmanews/status/2016754591346340009",
+      "twitterUrl": "https://twitter.com/gmanews/status/2016754591346340009",
+      "text": "SUNOG SA BRGY. CENTRAL, QC\n\nSumiklab ang sunog sa paupahang bahay sa Matulungin St. Brgy. Central, Quezon City. | via Isa Umali, DZBB/GMA Integrated News https://t.co/FDSaxmgSSA",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 1500,
+      "createdAt": "Thu Jan 29 06:05:38 +0000 2026",
+      "lang": "tl",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2016754591346340009",
+      "displayTextRange": [
+        0,
+        153
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "gmanews",
+        "url": "https://x.com/gmanews",
+        "twitterUrl": "https://twitter.com/gmanews",
+        "id": "39453212",
+        "name": "GMA News",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2038588193520709632/gW-kXR9a_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/39453212/1785235955",
+        "description": "",
+        "location": "Philippines",
+        "followers": 5718240,
+        "following": 674,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Tue May 12 07:14:09 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 14180,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 215037,
+        "statusesCount": 1027978,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2100074862379229250"
+        ],
+        "profile_bio": {
+          "description": "Welcome to the official X account of GMA News.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "gmanews.tv",
+                  "expanded_url": "http://www.gmanews.tv",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/pdXg7H0qNa"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "display_url": "pic.x.com/FDSaxmgSSA",
+            "expanded_url": "https://x.com/gmanews/status/2016754591346340009/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "2016754505983942657",
+            "indices": [
+              154,
+              177
+            ],
+            "media_key": "7_2016754505983942657",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAwoAARv884m4V2ABCgACG/zznZhWMKkAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAADCgABG/zzibhXYAEKAAIb/POdmFYwqQAA",
+                "media_key": "7_2016754505983942657"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/2016754505983942657/pu/img/ukJWSEb--y1iS_sm.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 720,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1280
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/FDSaxmgSSA",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 46421,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/ext_tw_video/2016754505983942657/pu/pl/jxNxWCk3Y4gm11lt.m3u8?tag=12"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/2016754505983942657/pu/vid/avc1/480x270/QRTWV4-Q5btYrUuG.mp4?tag=12"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/2016754505983942657/pu/vid/avc1/640x360/8oJPrzLossFq0O0O.mp4?tag=12"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/2016754505983942657/pu/vid/avc1/1280x720/WhwUE9I9ffxdrthr.mp4?tag=12"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2016757957363716347",
       "url": "https://x.com/MakatiTraffic/status/2016757957363716347",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2016757957363716347",
@@ -216,7 +381,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437258,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +397,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412000,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -318,7 +483,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967082,
+        "followers": 3966602,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -334,8 +499,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888278,
+        "mediaCount": 61732,
+        "statusesCount": 888706,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -420,7 +585,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967082,
+        "followers": 3966602,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -436,8 +601,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888278,
+        "mediaCount": 61732,
+        "statusesCount": 888706,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -486,6 +651,171 @@
     },
     {
       "type": "tweet",
+      "id": "2016759900609946022",
+      "url": "https://x.com/ddnewsSrinagar/status/2016759900609946022",
+      "twitterUrl": "https://twitter.com/ddnewsSrinagar/status/2016759900609946022",
+      "text": "NH-44 Traffic Advisory (Jan 29):\n Traffic Police J&amp;K has issued a plan due to road damage at Kishtwari Pather. A 40–50 metre single-lane stretch has developed because of road sinking. HMVs will be allowed on alternate days to ease congestion and ensure commuter safety. https://t.co/imJhdhUrDL",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 408,
+      "createdAt": "Thu Jan 29 06:26:44 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2016759900609946022",
+      "displayTextRange": [
+        0,
+        273
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ddnewsSrinagar",
+        "url": "https://x.com/ddnewsSrinagar",
+        "twitterUrl": "https://twitter.com/ddnewsSrinagar",
+        "id": "1266621060",
+        "name": "DD NEWS SRINAGAR",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2055137526432837632/gEHd1fqk_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1266621060/1778906126",
+        "description": "",
+        "location": "Srinagar, India",
+        "followers": 52320,
+        "following": 183,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Thu Mar 14 09:27:31 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 455,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 38703,
+        "statusesCount": 67594,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099332311347249509"
+        ],
+        "profile_bio": {
+          "description": "Official Twitter handle of Regional News Unit, DDK Srinagar, Kashmir.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "ddnews.gov.in",
+                  "expanded_url": "http://ddnews.gov.in",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/8Ctn7PUUuk"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "display_url": "pic.x.com/imJhdhUrDL",
+            "expanded_url": "https://x.com/ddnewsSrinagar/status/2016759900609946022/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "2016759177079902210",
+            "indices": [
+              274,
+              297
+            ],
+            "media_key": "7_2016759177079902210",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAwoAARv898lLW1ACCgACG/z4ccEboaYAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAADCgABG/z3yUtbUAIKAAIb/PhxwRuhpgAA",
+                "media_key": "7_2016759177079902210"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/2016759177079902210/pu/img/sKDitLVsWXAHkbY6.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 720,
+              "width": 1280
+            },
+            "sizes": {
+              "large": {
+                "h": 720,
+                "w": 1280
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/imJhdhUrDL",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 40333,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/ext_tw_video/2016759177079902210/pu/pl/1_dPugRZlUTTeGgg.m3u8?tag=12"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/2016759177079902210/pu/vid/avc1/480x270/xKT1GMs0LyoRHOGQ.mp4?tag=12"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/2016759177079902210/pu/vid/avc1/640x360/8Ql0erenOhwKGYXk.mp4?tag=12"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/ext_tw_video/2016759177079902210/pu/vid/avc1/1280x720/EoH1_Nd3ZU4AQIDu.mp4?tag=12"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2016767104796762420",
       "url": "https://x.com/dzbb/status/2016767104796762420",
       "twitterUrl": "https://twitter.com/dzbb/status/2016767104796762420",
@@ -522,8 +852,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/461853598/1788192343",
         "description": "",
         "location": "Republic of the Philippines",
-        "followers": 262178,
-        "following": 1005,
+        "followers": 262169,
+        "following": 1006,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -538,13 +868,13 @@
         "favouritesCount": 1966,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 363317,
-        "statusesCount": 1006279,
+        "mediaCount": 364564,
+        "statusesCount": 1008170,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2095427727365231027"
+          "2097968439566741980"
         ],
         "profile_bio": {
           "description": "The official X account of Super Radyo DZBB 594 kHz, the flagship AM radio station of GMA Network, Inc.",
@@ -702,7 +1032,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967082,
+        "followers": 3966602,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -718,8 +1048,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888278,
+        "mediaCount": 61732,
+        "statusesCount": 888706,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -777,7 +1107,7 @@
       "replyCount": 0,
       "likeCount": 0,
       "quoteCount": 0,
-      "viewCount": 789,
+      "viewCount": 790,
       "createdAt": "Thu Jan 29 07:12:44 +0000 2026",
       "lang": "ro",
       "bookmarkCount": 0,
@@ -804,7 +1134,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967082,
+        "followers": 3966602,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -820,8 +1150,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888278,
+        "mediaCount": 61732,
+        "statusesCount": 888706,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1334,7 +1664,7 @@
       "replyCount": 0,
       "likeCount": 0,
       "quoteCount": 0,
-      "viewCount": 690,
+      "viewCount": 691,
       "createdAt": "Thu Jan 29 07:12:30 +0000 2026",
       "lang": "en",
       "bookmarkCount": 0,
@@ -1361,7 +1691,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967082,
+        "followers": 3966602,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -1377,8 +1707,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888278,
+        "mediaCount": 61732,
+        "statusesCount": 888706,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1463,7 +1793,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437258,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1479,8 +1809,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411427,
+        "mediaCount": 17208,
+        "statusesCount": 412000,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1565,7 +1895,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15872418/1747565518",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 9238496,
+        "followers": 9238573,
         "following": 1098,
         "status": "",
         "canDm": false,
@@ -1581,14 +1911,12 @@
         "favouritesCount": 1186,
         "hasCustomTimelines": true,
         "isTranslator": true,
-        "mediaCount": 350159,
-        "statusesCount": 1345139,
+        "mediaCount": 351466,
+        "statusesCount": 1347144,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
-        "pinnedTweetIds": [
-          "2096958982250430882"
-        ],
+        "pinnedTweetIds": [],
         "profile_bio": {
           "description": "Stories, video, and multimedia for Filipinos worldwide, from ABS-CBN News and Current Affairs",
           "entities": {

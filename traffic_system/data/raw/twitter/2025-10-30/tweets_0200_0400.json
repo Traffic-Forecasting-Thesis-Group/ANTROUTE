@@ -5,14 +5,14 @@
     "window_start": "2025-10-30T02:00:00+08:00",
     "window_end": "2025-10-30T04:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 3,
+    "tweet_count": 4,
     "slices": [
       {
         "start": "2025-10-30T02:00:00+08:00",
         "end": "2025-10-30T02:05:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 0,
+        "accepted": 0
       },
       {
         "start": "2025-10-30T02:05:00+08:00",
@@ -109,8 +109,8 @@
         "start": "2025-10-30T03:10:00+08:00",
         "end": "2025-10-30T03:15:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-30T03:15:00+08:00",
@@ -165,8 +165,8 @@
         "start": "2025-10-30T03:50:00+08:00",
         "end": "2025-10-30T03:55:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-30T03:55:00+08:00",
@@ -178,412 +178,6 @@
     ]
   },
   "data": [
-    {
-      "type": "tweet",
-      "id": "1983594687085867426",
-      "url": "https://x.com/PhilstarNews/status/1983594687085867426",
-      "twitterUrl": "https://twitter.com/PhilstarNews/status/1983594687085867426",
-      "text": "The Metropolitan Manila Development Authority (MMDA) said that it will lift the number coding scheme on October 31.\n\nhttps://t.co/cuthcz1NH6",
-      "source": "Twitter for iPhone",
-      "retweetCount": 0,
-      "replyCount": 1,
-      "likeCount": 0,
-      "quoteCount": 0,
-      "viewCount": 833,
-      "createdAt": "Wed Oct 29 18:00:01 +0000 2025",
-      "lang": "en",
-      "bookmarkCount": 0,
-      "isReply": false,
-      "inReplyToId": null,
-      "conversationId": "1983594687085867426",
-      "displayTextRange": [
-        0,
-        140
-      ],
-      "inReplyToUserId": null,
-      "inReplyToUsername": null,
-      "author": {
-        "type": "user",
-        "userName": "PhilstarNews",
-        "url": "https://x.com/PhilstarNews",
-        "twitterUrl": "https://twitter.com/PhilstarNews",
-        "id": "55118669",
-        "name": "Philstar.com",
-        "isVerified": false,
-        "isBlueVerified": true,
-        "verifiedType": null,
-        "profilePicture": "https://pbs.twimg.com/profile_images/2029769610594295808/NbrsBCdS_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/55118669/1774942939",
-        "description": "",
-        "location": "Manila, Philippines",
-        "followers": 1136591,
-        "following": 158,
-        "status": "",
-        "canDm": false,
-        "canMediaTag": true,
-        "createdAt": "Thu Jul 09 02:48:17 +0000 2009",
-        "entities": {
-          "description": {
-            "urls": []
-          },
-          "url": {}
-        },
-        "fastFollowersCount": 0,
-        "favouritesCount": 3518,
-        "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 78875,
-        "statusesCount": 411865,
-        "withheldInCountries": [],
-        "affiliatesHighlightedLabel": {},
-        "possiblySensitive": false,
-        "pinnedTweetIds": [
-          "2081969847467221494"
-        ],
-        "profile_bio": {
-          "description": "The official digital arm of the STAR Group of Publications. We provide credible breaking news, in-depth reports, fact-checks, and contextual real-time coverage.",
-          "entities": {
-            "description": {},
-            "url": {
-              "urls": [
-                {
-                  "display_url": "philstar.com",
-                  "expanded_url": "https://www.philstar.com/",
-                  "indices": [
-                    0,
-                    23
-                  ],
-                  "url": "https://t.co/F0D9PGrv7A"
-                }
-              ]
-            }
-          }
-        },
-        "isAutomated": false,
-        "automatedBy": null
-      },
-      "extendedEntities": {},
-      "card": {
-        "binding_values": [
-          {
-            "key": "description",
-            "value": {
-              "string_value": "The Metropolitan Manila Development Authority said that it will lift the number coding scheme on October 31.",
-              "type": "STRING"
-            }
-          },
-          {
-            "key": "domain",
-            "value": {
-              "string_value": "www.philstar.com",
-              "type": "STRING"
-            }
-          },
-          {
-            "key": "site",
-            "value": {
-              "scribe_key": "publisher_id",
-              "type": "USER",
-              "user_value": {
-                "id_str": "55118669",
-                "path": []
-              }
-            }
-          },
-          {
-            "key": "creator",
-            "value": {
-              "type": "USER",
-              "user_value": {
-                "id_str": "55118669",
-                "path": []
-              }
-            }
-          },
-          {
-            "key": "vanity_url",
-            "value": {
-              "scribe_key": "vanity_url",
-              "string_value": "philstar.com",
-              "type": "STRING"
-            }
-          },
-          {
-            "key": "title",
-            "value": {
-              "string_value": "MMDA to suspend number coding on October 31",
-              "type": "STRING"
-            }
-          },
-          {
-            "key": "card_url",
-            "value": {
-              "scribe_key": "card_url",
-              "string_value": "https://t.co/cuthcz1NH6",
-              "type": "STRING"
-            }
-          }
-        ],
-        "card_platform": {
-          "platform": {
-            "audience": {
-              "name": "production"
-            },
-            "device": {
-              "name": "Swift",
-              "version": "12"
-            }
-          }
-        },
-        "name": "summary_large_image",
-        "url": "https://t.co/cuthcz1NH6",
-        "user_refs_results": [
-          {
-            "result": {
-              "__typename": "User",
-              "action_counts": {
-                "favorites_count": 3518
-              },
-              "affiliates_highlighted_label": {},
-              "avatar": {
-                "image_url": "https://pbs.twimg.com/profile_images/2029769610594295808/NbrsBCdS_normal.jpg"
-              },
-              "banner": {
-                "image_url": "https://pbs.twimg.com/profile_banners/55118669/1774942939"
-              },
-              "core": {
-                "created_at": "Thu Jul 09 02:48:17 +0000 2009",
-                "name": "Philstar.com",
-                "screen_name": "PhilstarNews"
-              },
-              "dm_permissions": {
-                "can_dm": false
-              },
-              "follow_request_sent": false,
-              "grok_translated_bio_with_availability": {
-                "is_available": false
-              },
-              "has_graduated_access": true,
-              "id": "VXNlcjo1NTExODY2OQ==",
-              "is_blue_verified": true,
-              "location": {
-                "location": "Manila, Philippines"
-              },
-              "media_permissions": {
-                "can_media_tag": true
-              },
-              "notifications_settings": {
-                "notifications_enabled": false
-              },
-              "parody_commentary_fan_label": "None",
-              "pinned_items": {
-                "tweet_ids_str": [
-                  "2081969847467221494"
-                ]
-              },
-              "possibly_sensitive": false,
-              "privacy": {
-                "protected": false
-              },
-              "professional": {
-                "category": [
-                  {
-                    "icon_name": "IconBriefcaseStroke",
-                    "id": 580,
-                    "name": "Media & News Company"
-                  }
-                ],
-                "professional_type": "Creator",
-                "rest_id": "1519669261404610560"
-              },
-              "profile_bio": {
-                "description": "The official digital arm of the STAR Group of Publications. We provide credible breaking news, in-depth reports, fact-checks, and contextual real-time coverage.",
-                "entities": {
-                  "description": {},
-                  "url": {
-                    "urls": [
-                      {
-                        "display_url": "philstar.com",
-                        "expanded_url": "https://www.philstar.com/",
-                        "indices": [
-                          0,
-                          23
-                        ],
-                        "url": "https://t.co/F0D9PGrv7A"
-                      }
-                    ]
-                  }
-                }
-              },
-              "profile_description_language": "en",
-              "profile_image_shape": "Circle",
-              "profile_metadata": {
-                "profile_interstitial_type": ""
-              },
-              "profile_translation": {
-                "translator_type": "none"
-              },
-              "relationship_counts": {
-                "followers": 1136591,
-                "following": 158
-              },
-              "relationship_perspectives": {
-                "blocked_by": false,
-                "blocking": false,
-                "followed_by": false,
-                "following": false,
-                "live_following": false,
-                "muting": false
-              },
-              "rest_id": "55118669",
-              "super_follow_eligible": false,
-              "super_followed_by": false,
-              "super_following": false,
-              "tweet_counts": {
-                "media_tweets": 78875,
-                "tweets": 411865
-              },
-              "verification": {
-                "verified": false
-              },
-              "website": {
-                "url": "https://t.co/F0D9PGrv7A"
-              }
-            }
-          },
-          {
-            "result": {
-              "__typename": "User",
-              "action_counts": {
-                "favorites_count": 3518
-              },
-              "affiliates_highlighted_label": {},
-              "avatar": {
-                "image_url": "https://pbs.twimg.com/profile_images/2029769610594295808/NbrsBCdS_normal.jpg"
-              },
-              "banner": {
-                "image_url": "https://pbs.twimg.com/profile_banners/55118669/1774942939"
-              },
-              "core": {
-                "created_at": "Thu Jul 09 02:48:17 +0000 2009",
-                "name": "Philstar.com",
-                "screen_name": "PhilstarNews"
-              },
-              "dm_permissions": {
-                "can_dm": false
-              },
-              "follow_request_sent": false,
-              "grok_translated_bio_with_availability": {
-                "is_available": false
-              },
-              "has_graduated_access": true,
-              "id": "VXNlcjo1NTExODY2OQ==",
-              "is_blue_verified": true,
-              "location": {
-                "location": "Manila, Philippines"
-              },
-              "media_permissions": {
-                "can_media_tag": true
-              },
-              "notifications_settings": {
-                "notifications_enabled": false
-              },
-              "parody_commentary_fan_label": "None",
-              "pinned_items": {
-                "tweet_ids_str": [
-                  "2081969847467221494"
-                ]
-              },
-              "possibly_sensitive": false,
-              "privacy": {
-                "protected": false
-              },
-              "professional": {
-                "category": [
-                  {
-                    "icon_name": "IconBriefcaseStroke",
-                    "id": 580,
-                    "name": "Media & News Company"
-                  }
-                ],
-                "professional_type": "Creator",
-                "rest_id": "1519669261404610560"
-              },
-              "profile_bio": {
-                "description": "The official digital arm of the STAR Group of Publications. We provide credible breaking news, in-depth reports, fact-checks, and contextual real-time coverage.",
-                "entities": {
-                  "description": {},
-                  "url": {
-                    "urls": [
-                      {
-                        "display_url": "philstar.com",
-                        "expanded_url": "https://www.philstar.com/",
-                        "indices": [
-                          0,
-                          23
-                        ],
-                        "url": "https://t.co/F0D9PGrv7A"
-                      }
-                    ]
-                  }
-                }
-              },
-              "profile_description_language": "en",
-              "profile_image_shape": "Circle",
-              "profile_metadata": {
-                "profile_interstitial_type": ""
-              },
-              "profile_translation": {
-                "translator_type": "none"
-              },
-              "relationship_counts": {
-                "followers": 1136591,
-                "following": 158
-              },
-              "relationship_perspectives": {
-                "blocked_by": false,
-                "blocking": false,
-                "followed_by": false,
-                "following": false,
-                "live_following": false,
-                "muting": false
-              },
-              "rest_id": "55118669",
-              "super_follow_eligible": false,
-              "super_followed_by": false,
-              "super_following": false,
-              "tweet_counts": {
-                "media_tweets": 78875,
-                "tweets": 411865
-              },
-              "verification": {
-                "verified": false
-              },
-              "website": {
-                "url": "https://t.co/F0D9PGrv7A"
-              }
-            }
-          }
-        ]
-      },
-      "place": {},
-      "entities": {
-        "urls": [
-          {
-            "display_url": "philstar.com/nation/2025/10…",
-            "expanded_url": "https://www.philstar.com/nation/2025/10/29/2483382/mmda-suspend-number-coding-october-31",
-            "indices": [
-              117,
-              140
-            ],
-            "url": "https://t.co/cuthcz1NH6"
-          }
-        ]
-      },
-      "quoted_tweet": null,
-      "retweeted_tweet": null,
-      "article": null
-    },
     {
       "type": "tweet",
       "id": "1983602592837156959",
@@ -622,8 +216,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186994,
-        "following": 87,
+        "followers": 187206,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -635,16 +229,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3015,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31261,
-        "statusesCount": 146776,
+        "mediaCount": 31382,
+        "statusesCount": 146913,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -838,7 +432,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1938584266201567232/1751547546",
         "description": "",
         "location": "",
-        "followers": 1168,
+        "followers": 1181,
         "following": 99,
         "status": "",
         "canDm": false,
@@ -851,11 +445,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3695,
+        "favouritesCount": 3788,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 5213,
-        "statusesCount": 8020,
+        "mediaCount": 5304,
+        "statusesCount": 8185,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -994,6 +588,406 @@
             "text": "RoadSafety"
           }
         ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1983612710873919725",
+      "url": "https://x.com/CreativeScty/status/1983612710873919725",
+      "twitterUrl": "https://twitter.com/CreativeScty/status/1983612710873919725",
+      "text": "Earthquakes of M6 Are Becoming the Norm! Something Terrifying Is Happening to the Planet\n\n🔥 7 emergencies in 7 days: from anomalous hail in Bolivia (snow-like drifts up to 2 meters!) and an IF2 tornado near Paris, to hurricane-force winds of 33.5 m/s in Wellington and a destructive landslide in the Philippines.\n\n⚠️ According to the European Severe Weather Database and an international scientific group (China, Germany, Spain), 2025 continues to break records in the frequency and intensity of extreme climatic and geodynamic events. This week, strong earthquakes were recorded in Indonesia (M6.6), the Philippines (M6.0), and the Drake Passage (M6.3). Meanwhile, scientists have discovered new signs of geodynamic activity: the awakening of the Taftan volcano in Iran, dormant for 700,000 years, and anomalous degassing hotspots on the seafloor of the Ross Sea in Antarctica.\n\n#CreativeSociety",
+      "source": "Twitter for iPhone",
+      "retweetCount": 8,
+      "replyCount": 0,
+      "likeCount": 13,
+      "quoteCount": 1,
+      "viewCount": 283,
+      "createdAt": "Wed Oct 29 19:11:38 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1983612710873919725",
+      "displayTextRange": [
+        0,
+        270
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "CreativeScty",
+        "url": "https://x.com/CreativeScty",
+        "twitterUrl": "https://twitter.com/CreativeScty",
+        "id": "1447138928570421256",
+        "name": "Creative Society",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1447139264265740297/JJnBeSbr_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1447138928570421256/1746309751",
+        "description": "",
+        "location": "Worldwide",
+        "followers": 12734,
+        "following": 474,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Sun Oct 10 09:56:41 +0000 2021",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1553,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 2003,
+        "statusesCount": 2482,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1898786479008092462"
+        ],
+        "profile_bio": {
+          "description": "International project of all humanity.  Let's build a world where human life is the highest value! #CreativeSociety",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    99,
+                    115
+                  ],
+                  "text": "CreativeSociety"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "creativesociety.com",
+                  "expanded_url": "https://creativesociety.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/hm1SQWiL0s"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/V56OmkpJm9",
+            "expanded_url": "https://x.com/CreativeScty/status/1983612710873919725/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "1983601520382742528",
+            "indices": [
+              271,
+              294
+            ],
+            "media_key": "13_1983601520382742528",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARuHKxK+VpAAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG4crEr5WkAAAAA==",
+                "media_key": "13_1983601520382742528"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1983601520382742528/img/aytjUdNtw8jZWCs5.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1080,
+              "width": 1920
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "w": 1920
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/V56OmkpJm9",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 925572,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1983601520382742528/pl/c-FyqqZ1BEJyZkls.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 256000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1983601520382742528/vid/avc1/480x270/Eyrwt0jpwdOzkrMC.mp4?tag=21"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1983601520382742528/vid/avc1/640x360/LTpiUxfYtgdfOvW0.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1983601520382742528/vid/avc1/1280x720/rcTQrbiwqehLJG17.mp4?tag=21"
+                },
+                {
+                  "bitrate": 10368000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1983601520382742528/vid/avc1/1920x1080/gNCY92rK5lKJc6Op.mp4?tag=21"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              880,
+              896
+            ],
+            "text": "CreativeSociety"
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1983622619938349187",
+      "url": "https://x.com/Stat_Cult/status/1983622619938349187",
+      "twitterUrl": "https://twitter.com/Stat_Cult/status/1983622619938349187",
+      "text": "Top countries driving ChatGPT traffic (August 2025)\n\n1.🇺🇸 U.S. — 883M (15%)\n2.🇮🇳 India — 544M (9%)\n3.🇧🇷 Brazil — 310M (5%)\n4.🇬🇧 UK — 251M (4%)\n5.🇮🇩 Indonesia — 216M (4%)\n6.🇯🇵 Japan — 205M (4%)\n7.🇩🇪 Germany — 199M (3%)\n8.🇫🇷 France — 187M (3%)\n9.🇵🇭 Philippines — 175M (3%)\n10.🇨🇦 Canada — 152M (3%)\n\n🌍 Other countries — 2.7B (47%)\n\nNote: Total ChatGPT website visits: 5.8B",
+      "source": "Twitter for iPhone",
+      "retweetCount": 32,
+      "replyCount": 10,
+      "likeCount": 139,
+      "quoteCount": 1,
+      "viewCount": 12295,
+      "createdAt": "Wed Oct 29 19:51:01 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 31,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1983622619938349187",
+      "displayTextRange": [
+        0,
+        276
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "Stat_Cult",
+        "url": "https://x.com/Stat_Cult",
+        "twitterUrl": "https://twitter.com/Stat_Cult",
+        "id": "1675918392442908673",
+        "name": "World of StatHistics",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1872645963824996352/Am0ss8RY_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1675918392442908673/1763535244",
+        "description": "",
+        "location": "SUBSCRIBE →",
+        "followers": 82542,
+        "following": 449,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Mon Jul 03 17:24:33 +0000 2023",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 24457,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 3831,
+        "statusesCount": 11638,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "📊 Where Every Number Tells a Story | Turning Raw Data into Real Stories 📊",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "x.com/Stat_Cult/crea…",
+                  "expanded_url": "https://x.com/Stat_Cult/creator-subscriptions/subscribe",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/0Gj3p144wR"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/8Ls4Cqa6iS",
+            "expanded_url": "https://x.com/Stat_Cult/status/1983622619938349187/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 40,
+                    "w": 40,
+                    "x": 924,
+                    "y": 670
+                  },
+                  {
+                    "h": 131,
+                    "w": 131,
+                    "x": 427,
+                    "y": 282
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 40,
+                    "w": 40,
+                    "x": 924,
+                    "y": 670
+                  },
+                  {
+                    "h": 131,
+                    "w": 131,
+                    "x": 427,
+                    "y": 282
+                  }
+                ]
+              }
+            },
+            "id_str": "1983622606843494400",
+            "indices": [
+              277,
+              300
+            ],
+            "media_key": "3_1983622606843494400",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARuHPkBRV0AACgACG4c+Q13a4IMAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG4c+QFFXQAAKAAIbhz5DXdrggwAA",
+                "media_key": "3_1983622606843494400"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G4c-QFFXQAAKNrK.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 544,
+                  "w": 972,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 969,
+                  "w": 969,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 969,
+                  "w": 850,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 969,
+                  "w": 485,
+                  "x": 122,
+                  "y": 0
+                },
+                {
+                  "h": 969,
+                  "w": 972,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 969,
+              "width": 972
+            },
+            "sizes": {
+              "large": {
+                "h": 969,
+                "w": 972
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/8Ls4Cqa6iS"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,

@@ -5,7 +5,7 @@
     "window_start": "2026-01-05T10:00:00+08:00",
     "window_end": "2026-01-05T12:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 12,
+    "tweet_count": 15,
     "slices": [
       {
         "start": "2026-01-05T10:00:00+08:00",
@@ -18,8 +18,8 @@
         "start": "2026-01-05T10:05:00+08:00",
         "end": "2026-01-05T10:10:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 0,
+        "accepted": 0
       },
       {
         "start": "2026-01-05T10:10:00+08:00",
@@ -39,8 +39,8 @@
         "start": "2026-01-05T10:20:00+08:00",
         "end": "2026-01-05T10:25:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 0,
+        "accepted": 0
       },
       {
         "start": "2026-01-05T10:25:00+08:00",
@@ -67,8 +67,8 @@
         "start": "2026-01-05T10:40:00+08:00",
         "end": "2026-01-05T10:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-05T10:45:00+08:00",
@@ -109,15 +109,15 @@
         "start": "2026-01-05T11:10:00+08:00",
         "end": "2026-01-05T11:15:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-05T11:15:00+08:00",
         "end": "2026-01-05T11:20:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2026-01-05T11:20:00+08:00",
@@ -165,8 +165,8 @@
         "start": "2026-01-05T11:50:00+08:00",
         "end": "2026-01-05T11:55:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-05T11:55:00+08:00",
@@ -180,108 +180,6 @@
   "data": [
     {
       "type": "tweet",
-      "id": "2007997106699792719",
-      "url": "https://x.com/MMDA/status/2007997106699792719",
-      "twitterUrl": "https://twitter.com/MMDA/status/2007997106699792719",
-      "text": "MMDA ALERT: Road crash incident at EDSA SB, Ortigas Ave., Intersection involving van and ambulance as of 9:47 AM. One lane occupied. MMDA enforcers are on site managing traffic. #mmda",
-      "source": "Twitter for iPhone",
-      "retweetCount": 0,
-      "replyCount": 0,
-      "likeCount": 0,
-      "quoteCount": 0,
-      "viewCount": 1146,
-      "createdAt": "Mon Jan 05 02:06:31 +0000 2026",
-      "lang": "en",
-      "bookmarkCount": 0,
-      "isReply": false,
-      "inReplyToId": null,
-      "conversationId": "2007997106699792719",
-      "displayTextRange": [
-        0,
-        183
-      ],
-      "inReplyToUserId": null,
-      "inReplyToUsername": null,
-      "author": {
-        "type": "user",
-        "userName": "MMDA",
-        "url": "https://x.com/MMDA",
-        "twitterUrl": "https://twitter.com/MMDA",
-        "id": "171574926",
-        "name": "Official MMDA",
-        "isVerified": false,
-        "isBlueVerified": true,
-        "verifiedType": "Government",
-        "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
-        "description": "",
-        "location": "Metro Manila",
-        "followers": 3967081,
-        "following": 125,
-        "status": "",
-        "canDm": true,
-        "canMediaTag": true,
-        "createdAt": "Tue Jul 27 17:31:12 +0000 2010",
-        "entities": {
-          "description": {
-            "urls": []
-          },
-          "url": {}
-        },
-        "fastFollowersCount": 0,
-        "favouritesCount": 5284,
-        "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 61683,
-        "statusesCount": 888272,
-        "withheldInCountries": [],
-        "affiliatesHighlightedLabel": {},
-        "possiblySensitive": false,
-        "pinnedTweetIds": [],
-        "profile_bio": {
-          "description": "Official X Account of the Metropolitan Manila Development Authority | Hotline 136 | digitalmedia@mmda.gov.ph | VIBER 0956-6632-221",
-          "entities": {
-            "description": {},
-            "url": {
-              "urls": [
-                {
-                  "display_url": "mmda.gov.ph",
-                  "expanded_url": "http://mmda.gov.ph",
-                  "indices": [
-                    0,
-                    23
-                  ],
-                  "url": "https://t.co/BHm5ofschj"
-                }
-              ]
-            }
-          }
-        },
-        "isAutomated": false,
-        "automatedBy": null
-      },
-      "extendedEntities": {},
-      "card": null,
-      "place": {},
-      "entities": {
-        "hashtags": [
-          {
-            "indices": [
-              178,
-              183
-            ],
-            "text": "mmda"
-          }
-        ]
-      },
-      "quoted_tweet": null,
-      "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
-      "article": null
-    },
-    {
-      "type": "tweet",
       "id": "2007999843210526913",
       "url": "https://x.com/ABSCBNNews/status/2007999843210526913",
       "twitterUrl": "https://twitter.com/ABSCBNNews/status/2007999843210526913",
@@ -291,7 +189,7 @@
       "replyCount": 33,
       "likeCount": 23,
       "quoteCount": 4,
-      "viewCount": 8338,
+      "viewCount": 8339,
       "createdAt": "Mon Jan 05 02:17:24 +0000 2026",
       "lang": "en",
       "bookmarkCount": 6,
@@ -318,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15872418/1747565518",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 9238491,
+        "followers": 9238615,
         "following": 1098,
         "status": "",
         "canDm": false,
@@ -334,8 +232,8 @@
         "favouritesCount": 1186,
         "hasCustomTimelines": true,
         "isTranslator": true,
-        "mediaCount": 350150,
-        "statusesCount": 1345123,
+        "mediaCount": 351416,
+        "statusesCount": 1347071,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -668,7 +566,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437253,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -684,8 +582,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411418,
+        "mediaCount": 17208,
+        "statusesCount": 411986,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -734,108 +632,6 @@
     },
     {
       "type": "tweet",
-      "id": "2008001339100713059",
-      "url": "https://x.com/MMDA/status/2008001339100713059",
-      "twitterUrl": "https://twitter.com/MMDA/status/2008001339100713059",
-      "text": "MMDA ADVISORY: Rallyists are sighted at Kalaw before Roxas Blvd, more or less 150 PAX as of 10:11 AM. PNP personnel and MMDA enforcers are on site managing traffic. #mmda",
-      "source": "Twitter for iPhone",
-      "retweetCount": 0,
-      "replyCount": 0,
-      "likeCount": 0,
-      "quoteCount": 0,
-      "viewCount": 1326,
-      "createdAt": "Mon Jan 05 02:23:20 +0000 2026",
-      "lang": "en",
-      "bookmarkCount": 0,
-      "isReply": false,
-      "inReplyToId": null,
-      "conversationId": "2008001339100713059",
-      "displayTextRange": [
-        0,
-        170
-      ],
-      "inReplyToUserId": null,
-      "inReplyToUsername": null,
-      "author": {
-        "type": "user",
-        "userName": "MMDA",
-        "url": "https://x.com/MMDA",
-        "twitterUrl": "https://twitter.com/MMDA",
-        "id": "171574926",
-        "name": "Official MMDA",
-        "isVerified": false,
-        "isBlueVerified": true,
-        "verifiedType": "Government",
-        "profilePicture": "https://pbs.twimg.com/profile_images/1356114135839170562/nPNm9fXb_normal.jpg",
-        "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
-        "description": "",
-        "location": "Metro Manila",
-        "followers": 3967081,
-        "following": 125,
-        "status": "",
-        "canDm": true,
-        "canMediaTag": true,
-        "createdAt": "Tue Jul 27 17:31:12 +0000 2010",
-        "entities": {
-          "description": {
-            "urls": []
-          },
-          "url": {}
-        },
-        "fastFollowersCount": 0,
-        "favouritesCount": 5284,
-        "hasCustomTimelines": true,
-        "isTranslator": false,
-        "mediaCount": 61683,
-        "statusesCount": 888272,
-        "withheldInCountries": [],
-        "affiliatesHighlightedLabel": {},
-        "possiblySensitive": false,
-        "pinnedTweetIds": [],
-        "profile_bio": {
-          "description": "Official X Account of the Metropolitan Manila Development Authority | Hotline 136 | digitalmedia@mmda.gov.ph | VIBER 0956-6632-221",
-          "entities": {
-            "description": {},
-            "url": {
-              "urls": [
-                {
-                  "display_url": "mmda.gov.ph",
-                  "expanded_url": "http://mmda.gov.ph",
-                  "indices": [
-                    0,
-                    23
-                  ],
-                  "url": "https://t.co/BHm5ofschj"
-                }
-              ]
-            }
-          }
-        },
-        "isAutomated": false,
-        "automatedBy": null
-      },
-      "extendedEntities": {},
-      "card": null,
-      "place": {},
-      "entities": {
-        "hashtags": [
-          {
-            "indices": [
-              165,
-              170
-            ],
-            "text": "mmda"
-          }
-        ]
-      },
-      "quoted_tweet": null,
-      "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
-      "article": null
-    },
-    {
-      "type": "tweet",
       "id": "2008003015538520260",
       "url": "https://x.com/MakatiTraffic/status/2008003015538520260",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2008003015538520260",
@@ -872,7 +668,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437253,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -888,8 +684,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411418,
+        "mediaCount": 17208,
+        "statusesCount": 411986,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -938,6 +734,195 @@
     },
     {
       "type": "tweet",
+      "id": "2008005867745182143",
+      "url": "https://x.com/dzbb/status/2008005867745182143",
+      "twitterUrl": "https://twitter.com/dzbb/status/2008005867745182143",
+      "text": "𝗠𝗠𝗗𝗔 𝗚𝗠 𝗧𝗢𝗥𝗥𝗘 𝗜𝗜𝗜, 𝗠𝗔𝗚𝗦𝗜𝗦𝗜𝗟𝗕𝗜 𝗥𝗜𝗡𝗚 𝗦𝗣𝗢𝗞𝗘𝗦𝗣𝗘𝗥𝗦𝗢𝗡\n\nPGEN Nicolas Torre III, magsisilbi ring tagapagsalita ng Metropolitan Manila Development Authority (@MMDA) maliban sa pagiging general manager. | via Marisol Abdurahman, @gmanews https://t.co/spI89k72Sh",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 5,
+      "quoteCount": 0,
+      "viewCount": 1099,
+      "createdAt": "Mon Jan 05 02:41:20 +0000 2026",
+      "lang": "tl",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2008005867745182143",
+      "displayTextRange": [
+        0,
+        227
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "dzbb",
+        "url": "https://x.com/dzbb",
+        "twitterUrl": "https://twitter.com/dzbb",
+        "id": "461853598",
+        "name": "DZBB Super Radyo",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1752867214339014656/Ali0l1kT_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/461853598/1788192343",
+        "description": "",
+        "location": "Republic of the Philippines",
+        "followers": 262166,
+        "following": 1006,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Thu Jan 12 08:18:11 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1966,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 364535,
+        "statusesCount": 1008134,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2097968439566741980"
+        ],
+        "profile_bio": {
+          "description": "The official X account of Super Radyo DZBB 594 kHz, the flagship AM radio station of GMA Network, Inc.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "gmanetwork.com/radio/streaming",
+                  "expanded_url": "http://www.gmanetwork.com/radio/streaming",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/FpRs3hHTdw"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/spI89k72Sh",
+            "expanded_url": "https://x.com/dzbb/status/2008005867745182143/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "2008004981224583168",
+            "indices": [
+              228,
+              251
+            ],
+            "media_key": "13_2008004981224583168",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARvd3eQ9GzAAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG93d5D0bMAAAAA==",
+                "media_key": "13_2008004981224583168"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/2008004981224583168/img/ewqjI9LJONqWdv2x.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1080,
+              "width": 1920
+            },
+            "sizes": {
+              "large": {
+                "h": 1080,
+                "w": 1920
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/spI89k72Sh",
+            "video_info": {
+              "aspect_ratio": [
+                16,
+                9
+              ],
+              "duration_millis": 82582,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/2008004981224583168/pl/kIJEBg-_-FPrjzvr.m3u8?tag=14"
+                },
+                {
+                  "bitrate": 288000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2008004981224583168/vid/avc1/480x270/UX8OrvvkE8MvUbCk.mp4?tag=14"
+                },
+                {
+                  "bitrate": 832000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2008004981224583168/vid/avc1/640x360/En8mqyx1ri3U59Tp.mp4?tag=14"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/2008004981224583168/vid/avc1/1280x720/mEWswReOGoEZ1C3-.mp4?tag=14"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "171574926",
+            "indices": [
+              149,
+              154
+            ],
+            "name": "Official MMDA",
+            "screen_name": "MMDA"
+          },
+          {
+            "id_str": "39453212",
+            "indices": [
+              219,
+              227
+            ],
+            "name": "GMA News",
+            "screen_name": "gmanews"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2008006789632229832",
       "url": "https://x.com/MakatiTraffic/status/2008006789632229832",
       "twitterUrl": "https://twitter.com/MakatiTraffic/status/2008006789632229832",
@@ -974,7 +959,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437253,
+        "followers": 1437181,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -990,8 +975,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411418,
+        "mediaCount": 17208,
+        "statusesCount": 411986,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1076,7 +1061,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197281,
+        "followers": 1197873,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -1092,8 +1077,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219314,
-        "statusesCount": 942016,
+        "mediaCount": 219482,
+        "statusesCount": 942990,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1277,7 +1262,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1197281,
+                "followers": 1197873,
                 "following": 141
               },
               "relationship_perspectives": {
@@ -1295,8 +1280,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 219314,
-                "tweets": 942016
+                "media_tweets": 219482,
+                "tweets": 942990
               },
               "verification": {
                 "is_blue_verified": true,
@@ -1367,8 +1352,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/461853598/1788192343",
         "description": "",
         "location": "Republic of the Philippines",
-        "followers": 262178,
-        "following": 1005,
+        "followers": 262166,
+        "following": 1006,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -1383,13 +1368,13 @@
         "favouritesCount": 1966,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 363298,
-        "statusesCount": 1006260,
+        "mediaCount": 364535,
+        "statusesCount": 1008134,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2095427727365231027"
+          "2097968439566741980"
         ],
         "profile_bio": {
           "description": "The official X account of Super Radyo DZBB 594 kHz, the flagship AM radio station of GMA Network, Inc.",
@@ -1547,7 +1532,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/927867485612793861/1745895234",
         "description": "",
         "location": "hindi ka ba nilalamig",
-        "followers": 753,
+        "followers": 754,
         "following": 878,
         "status": "",
         "canDm": false,
@@ -1560,11 +1545,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 657615,
+        "favouritesCount": 662188,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 4621,
-        "statusesCount": 155699,
+        "mediaCount": 4630,
+        "statusesCount": 157428,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1616,14 +1601,14 @@
         "twitterUrl": "https://twitter.com/keliprafi/status/2007625486285816221",
         "text": "\"they would roll out tanks if we tried to protest\" you gotta make a choice at some point, buddy. if you don't do anything because you're gonna potentially get hurt that means you actually don't really care about ppl you pay to get bombed, as long as you're comfortable",
         "source": "Twitter for iPhone",
-        "retweetCount": 1442,
+        "retweetCount": 1432,
         "replyCount": 72,
-        "likeCount": 10247,
+        "likeCount": 10219,
         "quoteCount": 104,
-        "viewCount": 403450,
+        "viewCount": 403526,
         "createdAt": "Sun Jan 04 01:29:50 +0000 2026",
         "lang": "en",
-        "bookmarkCount": 324,
+        "bookmarkCount": 323,
         "isReply": false,
         "inReplyToId": null,
         "conversationId": "2007625486285816221",
@@ -1647,7 +1632,7 @@
           "coverPicture": "https://pbs.twimg.com/profile_banners/1348041444255289346/1786236178",
           "description": "",
           "location": "Kyiv mostly",
-          "followers": 415,
+          "followers": 413,
           "following": 245,
           "status": "",
           "canDm": true,
@@ -1660,11 +1645,11 @@
             "url": {}
           },
           "fastFollowersCount": 0,
-          "favouritesCount": 274061,
+          "favouritesCount": 274995,
           "hasCustomTimelines": true,
           "isTranslator": false,
-          "mediaCount": 4008,
-          "statusesCount": 22724,
+          "mediaCount": 4014,
+          "statusesCount": 22753,
           "withheldInCountries": [],
           "affiliatesHighlightedLabel": {},
           "possiblySensitive": false,
@@ -1728,6 +1713,688 @@
     },
     {
       "type": "tweet",
+      "id": "2008013373259329582",
+      "url": "https://x.com/HiddenHistoryYT/status/2008013373259329582",
+      "twitterUrl": "https://twitter.com/HiddenHistoryYT/status/2008013373259329582",
+      "text": "Escort carrier USS Ommaney Bay on fire after being struck by a Japanese special attack aircraft in the Sulu Sea, Philippines, 4 Jan 1945. The destroyer USS Patterson can be seen approaching to help. https://t.co/IAZvEU0B3x",
+      "source": "Twitter for iPhone",
+      "retweetCount": 50,
+      "replyCount": 8,
+      "likeCount": 456,
+      "quoteCount": 1,
+      "viewCount": 14744,
+      "createdAt": "Mon Jan 05 03:11:09 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 30,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2008013373259329582",
+      "displayTextRange": [
+        0,
+        198
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "HiddenHistoryYT",
+        "url": "https://x.com/HiddenHistoryYT",
+        "twitterUrl": "https://twitter.com/HiddenHistoryYT",
+        "id": "1394426210428542981",
+        "name": "Hidden History",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1646994980848939008/jcoyzras_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1394426210428542981/1691863778",
+        "description": "",
+        "location": "",
+        "followers": 37618,
+        "following": 3602,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon May 17 22:55:26 +0000 2021",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 32718,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 21743,
+        "statusesCount": 42740,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2041244789140766802"
+        ],
+        "profile_bio": {
+          "description": "Warships & Submarines",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "youtube.com/@HiddenHistory…",
+                  "expanded_url": "https://youtube.com/@HiddenHistoryYT?si=5tObi7ea5uOUpwcJ",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/K4riDl2O0A"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/IAZvEU0B3x",
+            "expanded_url": "https://x.com/HiddenHistoryYT/status/2008013373259329582/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2008013348659765248",
+            "indices": [
+              199,
+              222
+            ],
+            "media_key": "3_2008013348659765248",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARvd5YBvG6AACgACG93lhilbMC4AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG93lgG8boAAKAAIb3eWGKVswLgAA",
+                "media_key": "3_2008013348659765248"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G93lgG8boAAUuW5.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 860,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 1024,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 898,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 512,
+                  "x": 89,
+                  "y": 0
+                },
+                {
+                  "h": 1024,
+                  "w": 1536,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1024,
+              "width": 1536
+            },
+            "sizes": {
+              "large": {
+                "h": 1024,
+                "w": 1536
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/IAZvEU0B3x"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2008014691004719461",
+      "url": "https://x.com/halairporttrfps/status/2008014691004719461",
+      "twitterUrl": "https://twitter.com/halairporttrfps/status/2008014691004719461",
+      "text": "\"Traffic Advisory\"\n Slow movement from Marathahalli towards KB Halli due to ongoing Metro station work at MPS. Commuters, we request your patience &amp; cooperation. Thank you!  @blrcitytraffic @DCPTrEastBCP @CPBlr @Jointcptraffic @acpwfieldtrf https://t.co/wcfOVgEjlU",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 496,
+      "createdAt": "Mon Jan 05 03:16:24 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2008014691004719461",
+      "displayTextRange": [
+        0,
+        244
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "halairporttrfps",
+        "url": "https://x.com/halairporttrfps",
+        "twitterUrl": "https://twitter.com/halairporttrfps",
+        "id": "3014057594",
+        "name": "HAL AIRPORT TRAFFIC BTP",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1431940538807111685/NlzIwwo7_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/3014057594/1698666640",
+        "description": "",
+        "location": "Bengaluru, India",
+        "followers": 12341,
+        "following": 64,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Feb 09 06:37:58 +0000 2015",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5826,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 7761,
+        "statusesCount": 20136,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2098702782719197542"
+        ],
+        "profile_bio": {
+          "description": "Official twitter account of HAL Airport Traffic Police Station (080-22943115). Dial Namma-112 in case of emergency. @blrcitytraffic",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    116,
+                    131
+                  ],
+                  "name": "",
+                  "screen_name": "blrcitytraffic"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.gov.in",
+                  "expanded_url": "https://btp.gov.in/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/aoci2eeC5I"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/wcfOVgEjlU",
+            "expanded_url": "https://x.com/halairporttrfps/status/2008014691004719461/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 86,
+                    "w": 86,
+                    "x": 773,
+                    "y": 238
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 86,
+                    "w": 86,
+                    "x": 773,
+                    "y": 238
+                  }
+                ]
+              }
+            },
+            "id_str": "2008014669940948992",
+            "indices": [
+              245,
+              268
+            ],
+            "media_key": "3_2008014669940948992",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARvd5rQRmoAACgACG93muPkaIWUAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG93mtBGagAAKAAIb3ea4+RohZQAA",
+                "media_key": "3_2008014669940948992"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G93mtBGagAA7JFY.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 846
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 608
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 533
+                },
+                {
+                  "h": 1838,
+                  "w": 919,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1838,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1838,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1838,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/wcfOVgEjlU"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "1851545900",
+            "indices": [
+              178,
+              193
+            ],
+            "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+            "screen_name": "blrcitytraffic"
+          },
+          {
+            "id_str": "2809049605",
+            "indices": [
+              194,
+              207
+            ],
+            "name": "DCP Traffic East ಉಪ ಪೊಲೀಸ್ ಆಯುಕ್ತರು ಸಂಚಾರ ಪೂರ್ವ",
+            "screen_name": "DCPTrEastBCP"
+          },
+          {
+            "id_str": "2687852605",
+            "indices": [
+              208,
+              214
+            ],
+            "name": "CP Bengaluru ಪೊಲೀಸ್ ಆಯುಕ್ತ ಬೆಂಗಳೂರು",
+            "screen_name": "CPBlr"
+          },
+          {
+            "id_str": "2809164276",
+            "indices": [
+              215,
+              230
+            ],
+            "name": "Joint CP, Traffic, Bengaluru",
+            "screen_name": "Jointcptraffic"
+          },
+          {
+            "id_str": "1361589347032600576",
+            "indices": [
+              231,
+              244
+            ],
+            "name": "ACP Whitefield Traffic ಎಸಿಪಿ ಸಂಚಾರ ವೈಟ್ ಫೀಲ್ಡ್",
+            "screen_name": "acpwfieldtrf"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2008014442718810443",
+      "url": "https://x.com/halairporttrfps/status/2008014442718810443",
+      "twitterUrl": "https://twitter.com/halairporttrfps/status/2008014442718810443",
+      "text": "\"Traffic Advisory\"\n Slow movement from Mahadevapura towards Marathahalli due to ongoing Metro station work at Kartik Nagar. Commuters, we request your patience &amp; cooperation. Thank you! \n@blrcitytraffic @DCPTrEastBCP @CPBlr @Jointcptraffic @acpwfieldtrf https://t.co/UmNYfMt2Tw",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 0,
+      "likeCount": 4,
+      "quoteCount": 0,
+      "viewCount": 1298,
+      "createdAt": "Mon Jan 05 03:15:24 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2008014442718810443",
+      "displayTextRange": [
+        0,
+        257
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "halairporttrfps",
+        "url": "https://x.com/halairporttrfps",
+        "twitterUrl": "https://twitter.com/halairporttrfps",
+        "id": "3014057594",
+        "name": "HAL AIRPORT TRAFFIC BTP",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1431940538807111685/NlzIwwo7_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/3014057594/1698666640",
+        "description": "",
+        "location": "Bengaluru, India",
+        "followers": 12341,
+        "following": 64,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Feb 09 06:37:58 +0000 2015",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 5826,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 7761,
+        "statusesCount": 20136,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2098702782719197542"
+        ],
+        "profile_bio": {
+          "description": "Official twitter account of HAL Airport Traffic Police Station (080-22943115). Dial Namma-112 in case of emergency. @blrcitytraffic",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    116,
+                    131
+                  ],
+                  "name": "",
+                  "screen_name": "blrcitytraffic"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "btp.gov.in",
+                  "expanded_url": "https://btp.gov.in/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/aoci2eeC5I"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/UmNYfMt2Tw",
+            "expanded_url": "https://x.com/halairporttrfps/status/2008014442718810443/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 106,
+                    "w": 106,
+                    "x": 1248,
+                    "y": 353
+                  },
+                  {
+                    "h": 146,
+                    "w": 146,
+                    "x": 593,
+                    "y": 485
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 106,
+                    "w": 106,
+                    "x": 1248,
+                    "y": 353
+                  },
+                  {
+                    "h": 146,
+                    "w": 146,
+                    "x": 593,
+                    "y": 485
+                  }
+                ]
+              }
+            },
+            "id_str": "2008014429561163776",
+            "indices": [
+              258,
+              281
+            ],
+            "media_key": "3_2008014429561163776",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARvd5nwZ2hAACgACG93mfyob0UsAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG93mfBnaEAAKAAIb3eZ/KhvRSwAA",
+                "media_key": "3_2008014429561163776"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G93mfBnaEAAI7KX.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 896,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 304
+                },
+                {
+                  "h": 1200,
+                  "w": 1200,
+                  "x": 400,
+                  "y": 0
+                },
+                {
+                  "h": 1200,
+                  "w": 1053,
+                  "x": 547,
+                  "y": 0
+                },
+                {
+                  "h": 1200,
+                  "w": 600,
+                  "x": 860,
+                  "y": 0
+                },
+                {
+                  "h": 1200,
+                  "w": 1600,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1200,
+              "width": 1600
+            },
+            "sizes": {
+              "large": {
+                "h": 1200,
+                "w": 1600
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/UmNYfMt2Tw"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "user_mentions": [
+          {
+            "id_str": "1851545900",
+            "indices": [
+              191,
+              206
+            ],
+            "name": "ಬೆಂಗಳೂರು ಸಂಚಾರ ಪೊಲೀಸ್ BengaluruTrafficPolice",
+            "screen_name": "blrcitytraffic"
+          },
+          {
+            "id_str": "2809049605",
+            "indices": [
+              207,
+              220
+            ],
+            "name": "DCP Traffic East ಉಪ ಪೊಲೀಸ್ ಆಯುಕ್ತರು ಸಂಚಾರ ಪೂರ್ವ",
+            "screen_name": "DCPTrEastBCP"
+          },
+          {
+            "id_str": "2687852605",
+            "indices": [
+              221,
+              227
+            ],
+            "name": "CP Bengaluru ಪೊಲೀಸ್ ಆಯುಕ್ತ ಬೆಂಗಳೂರು",
+            "screen_name": "CPBlr"
+          },
+          {
+            "id_str": "2809164276",
+            "indices": [
+              228,
+              243
+            ],
+            "name": "Joint CP, Traffic, Bengaluru",
+            "screen_name": "Jointcptraffic"
+          },
+          {
+            "id_str": "1361589347032600576",
+            "indices": [
+              244,
+              257
+            ],
+            "name": "ACP Whitefield Traffic ಎಸಿಪಿ ಸಂಚಾರ ವೈಟ್ ಫೀಲ್ಡ್",
+            "screen_name": "acpwfieldtrf"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2008017818403701212",
       "url": "https://x.com/manilabulletin/status/2008017818403701212",
       "twitterUrl": "https://twitter.com/manilabulletin/status/2008017818403701212",
@@ -1764,7 +2431,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197281,
+        "followers": 1197873,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -1780,8 +2447,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219314,
-        "statusesCount": 942016,
+        "mediaCount": 219482,
+        "statusesCount": 942990,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2012,7 +2679,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/34945813/1771014072",
         "description": "",
         "location": "Stockton, CA",
-        "followers": 20023,
+        "followers": 20017,
         "following": 326,
         "status": "",
         "canDm": false,
@@ -2028,8 +2695,8 @@
         "favouritesCount": 2713,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 11230,
-        "statusesCount": 28634,
+        "mediaCount": 11235,
+        "statusesCount": 28645,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2408,7 +3075,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/876684632325988352/1788351953",
         "description": "",
         "location": "Cyberabad",
-        "followers": 226786,
+        "followers": 226840,
         "following": 131,
         "status": "",
         "canDm": true,
@@ -2421,11 +3088,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3845,
+        "favouritesCount": 3865,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 11463,
-        "statusesCount": 42202,
+        "mediaCount": 11494,
+        "statusesCount": 42437,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2580,6 +3247,283 @@
           }
         ]
       },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2008023996080750986",
+      "url": "https://x.com/SCMPhilippines/status/2008023996080750986",
+      "twitterUrl": "https://twitter.com/SCMPhilippines/status/2008023996080750986",
+      "text": "SCMP stand with the National City United Church - UCCP amidst the fire that struck their church. We hope for the quickest and best recovery possible\n\nThrough the leadership of Kalipunan ng Kabataang Kristiyano sa Pilipinas Metro, we participated in the Week of Prayer of Christian https://t.co/8JCN89laoa",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 1,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 155,
+      "createdAt": "Mon Jan 05 03:53:22 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2008023996080750986",
+      "displayTextRange": [
+        0,
+        280
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "SCMPhilippines",
+        "url": "https://x.com/SCMPhilippines",
+        "twitterUrl": "https://twitter.com/SCMPhilippines",
+        "id": "1115213444578402304",
+        "name": "Student Christian Movement of the Philippines",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1607628139676721152/ryid8bVd_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1115213444578402304/1554723342",
+        "description": "",
+        "location": "",
+        "followers": 4963,
+        "following": 578,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Apr 08 11:22:59 +0000 2019",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1783,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 4558,
+        "statusesCount": 14184,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1364537402769825792"
+        ],
+        "profile_bio": {
+          "description": "Est 27 Dec 1960. Follow Christ, (Rom 3:22) Love thy neighbor, (1 Jn 4:21) Serve the people! (1 Jn 3:16) ✝️ #JoinSCMP: https://t.co/0TjBxC12Ie scmphilippines60@gmail.com",
+          "entities": {
+            "description": {
+              "hashtags": [
+                {
+                  "indices": [
+                    107,
+                    116
+                  ],
+                  "text": "JoinSCMP"
+                }
+              ],
+              "urls": [
+                {
+                  "display_url": "bit.ly/JoinSCMP",
+                  "expanded_url": "http://bit.ly/JoinSCMP",
+                  "indices": [
+                    118,
+                    141
+                  ],
+                  "url": "https://t.co/0TjBxC12Ie"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/8JCN89laoa",
+            "expanded_url": "https://x.com/PilipinasScm/status/2008023996080750986/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2008023940359421952",
+            "indices": [
+              281,
+              304
+            ],
+            "media_key": "3_2008023940359421952",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARvd7yKBmoAACgACG93vL3ragYoAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG93vIoGagAAKAAIb3e8vetqBigAA",
+                "media_key": "3_2008023940359421952"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G93vIoGagAA38tl.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 1147,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 389
+                },
+                {
+                  "h": 1536,
+                  "w": 1536,
+                  "x": 512,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 1347,
+                  "x": 701,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 768,
+                  "x": 1100,
+                  "y": 0
+                },
+                {
+                  "h": 1536,
+                  "w": 2048,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1536,
+              "width": 2048
+            },
+            "sizes": {
+              "large": {
+                "h": 1536,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/8JCN89laoa"
+          },
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/8JCN89laoa",
+            "expanded_url": "https://x.com/PilipinasScm/status/2008023996080750986/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": [
+                  {
+                    "h": 130,
+                    "w": 130,
+                    "x": 173,
+                    "y": 88
+                  }
+                ]
+              },
+              "orig": {
+                "faces": [
+                  {
+                    "h": 130,
+                    "w": 130,
+                    "x": 173,
+                    "y": 88
+                  }
+                ]
+              }
+            },
+            "id_str": "2008023940355264512",
+            "indices": [
+              281,
+              304
+            ],
+            "media_key": "3_2008023940355264512",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARvd7yKBWxAACgACG93vL3ragYoAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG93vIoFbEAAKAAIb3e8vetqBigAA",
+                "media_key": "3_2008023940355264512"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G93vIoFbEAAfgA3.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 504,
+                  "w": 900,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 554,
+                  "w": 554,
+                  "x": 195,
+                  "y": 0
+                },
+                {
+                  "h": 554,
+                  "w": 486,
+                  "x": 229,
+                  "y": 0
+                },
+                {
+                  "h": 554,
+                  "w": 277,
+                  "x": 334,
+                  "y": 0
+                },
+                {
+                  "h": 554,
+                  "w": 900,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 554,
+              "width": 900
+            },
+            "sizes": {
+              "large": {
+                "h": 554,
+                "w": 900
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/8JCN89laoa"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
       "quoted_tweet": null,
       "retweeted_tweet": null,
       "isLimitedReply": false,

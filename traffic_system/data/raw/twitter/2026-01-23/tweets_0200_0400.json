@@ -5,14 +5,14 @@
     "window_start": "2026-01-23T02:00:00+08:00",
     "window_end": "2026-01-23T04:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 3,
+    "tweet_count": 10,
     "slices": [
       {
         "start": "2026-01-23T02:00:00+08:00",
         "end": "2026-01-23T02:05:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-23T02:05:00+08:00",
@@ -67,15 +67,15 @@
         "start": "2026-01-23T02:40:00+08:00",
         "end": "2026-01-23T02:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 4,
+        "accepted": 4
       },
       {
         "start": "2026-01-23T02:45:00+08:00",
         "end": "2026-01-23T02:50:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-23T02:50:00+08:00",
@@ -151,8 +151,8 @@
         "start": "2026-01-23T03:40:00+08:00",
         "end": "2026-01-23T03:45:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2026-01-23T03:45:00+08:00",
@@ -178,6 +178,568 @@
     ]
   },
   "data": [
+    {
+      "type": "tweet",
+      "id": "2014398082910507158",
+      "url": "https://x.com/dzbb/status/2014398082910507158",
+      "twitterUrl": "https://twitter.com/dzbb/status/2014398082910507158",
+      "text": "Sunog, sumiklab sa isang residential building sa Makati City kagabi. | via @olanbola \n\nhttps://t.co/wDI0h6v1M9",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 359,
+      "createdAt": "Thu Jan 22 18:01:43 +0000 2026",
+      "lang": "tl",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2014398082910507158",
+      "displayTextRange": [
+        0,
+        110
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "dzbb",
+        "url": "https://x.com/dzbb",
+        "twitterUrl": "https://twitter.com/dzbb",
+        "id": "461853598",
+        "name": "DZBB Super Radyo",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1752867214339014656/Ali0l1kT_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/461853598/1788192343",
+        "description": "",
+        "location": "Republic of the Philippines",
+        "followers": 262165,
+        "following": 1006,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Thu Jan 12 08:18:11 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 1966,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 364553,
+        "statusesCount": 1008159,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2097968439566741980"
+        ],
+        "profile_bio": {
+          "description": "The official X account of Super Radyo DZBB 594 kHz, the flagship AM radio station of GMA Network, Inc.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "gmanetwork.com/radio/streaming",
+                  "expanded_url": "http://www.gmanetwork.com/radio/streaming",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/FpRs3hHTdw"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2095765036191133696/gYtUql8U?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 148,
+                "url": "https://pbs.twimg.com/card_img/2095765036191133696/gYtUql8U?format=jpg&name=280x150",
+                "width": 280
+              }
+            }
+          },
+          {
+            "key": "description",
+            "value": {
+              "string_value": "GMA Network.com - Radio is the official website of Radio GMA, the wholly-owned operating network of 21 radio stations and one minority-owned radio station of GMA-7. Listen to DZBB, its anchor radio..."
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.gmanetwork.com"
+            }
+          },
+          {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 317,
+                "url": "https://pbs.twimg.com/card_img/2095765036191133696/gYtUql8U?format=jpg&name=600x600",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2095765036191133696/gYtUql8U?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 630,
+                "url": "https://pbs.twimg.com/card_img/2095765036191133696/gYtUql8U?format=jpg&name=orig",
+                "width": 1191
+              }
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "39455426",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2095765036191133696/gYtUql8U?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2095765036191133696/gYtUql8U?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 76,
+                "url": "https://pbs.twimg.com/card_img/2095765036191133696/gYtUql8U?format=jpg&name=144x144",
+                "width": 144
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 630,
+                "url": "https://pbs.twimg.com/card_img/2095765036191133696/gYtUql8U?format=png&name=2048x2048_2_exp",
+                "width": 1191
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "height": 630,
+                "url": "https://pbs.twimg.com/card_img/2095765036191133696/gYtUql8U?format=jpg&name=orig",
+                "width": 1191
+              }
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "gmanetwork.com"
+            }
+          },
+          {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2095765036191133696/gYtUql8U?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 35.44,
+                    "rgb": {
+                      "blue": 7,
+                      "green": 7,
+                      "red": 238
+                    }
+                  },
+                  {
+                    "percentage": 26.63,
+                    "rgb": {
+                      "blue": 238,
+                      "green": 237,
+                      "red": 254
+                    }
+                  },
+                  {
+                    "percentage": 14.02,
+                    "rgb": {
+                      "blue": 76,
+                      "green": 68,
+                      "red": 242
+                    }
+                  },
+                  {
+                    "percentage": 10.64,
+                    "rgb": {
+                      "blue": 169,
+                      "green": 158,
+                      "red": 251
+                    }
+                  },
+                  {
+                    "percentage": 4.55,
+                    "rgb": {
+                      "blue": 127,
+                      "green": 114,
+                      "red": 251
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Listen to DZBB Live Audio Streaming"
+            }
+          },
+          {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 35.44,
+                    "rgb": {
+                      "blue": 7,
+                      "green": 7,
+                      "red": 238
+                    }
+                  },
+                  {
+                    "percentage": 26.63,
+                    "rgb": {
+                      "blue": 238,
+                      "green": 237,
+                      "red": 254
+                    }
+                  },
+                  {
+                    "percentage": 14.02,
+                    "rgb": {
+                      "blue": 76,
+                      "green": 68,
+                      "red": 242
+                    }
+                  },
+                  {
+                    "percentage": 10.64,
+                    "rgb": {
+                      "blue": 169,
+                      "green": 158,
+                      "red": 251
+                    }
+                  },
+                  {
+                    "percentage": 4.55,
+                    "rgb": {
+                      "blue": 127,
+                      "green": 114,
+                      "red": 251
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 630,
+                "url": "https://pbs.twimg.com/card_img/2095765036191133696/gYtUql8U?format=png&name=2048x2048_2_exp",
+                "width": 1191
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2095765036191133696/gYtUql8U?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 35.44,
+                    "rgb": {
+                      "blue": 7,
+                      "green": 7,
+                      "red": 238
+                    }
+                  },
+                  {
+                    "percentage": 26.63,
+                    "rgb": {
+                      "blue": 238,
+                      "green": 237,
+                      "red": 254
+                    }
+                  },
+                  {
+                    "percentage": 14.02,
+                    "rgb": {
+                      "blue": 76,
+                      "green": 68,
+                      "red": 242
+                    }
+                  },
+                  {
+                    "percentage": 10.64,
+                    "rgb": {
+                      "blue": 169,
+                      "green": 158,
+                      "red": 251
+                    }
+                  },
+                  {
+                    "percentage": 4.55,
+                    "rgb": {
+                      "blue": 127,
+                      "green": 114,
+                      "red": 251
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "height": 630,
+                "url": "https://pbs.twimg.com/card_img/2095765036191133696/gYtUql8U?format=png&name=2048x2048_2_exp",
+                "width": 1191
+              }
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/wDI0h6v1M9"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "height": 630,
+                "url": "https://pbs.twimg.com/card_img/2095765036191133696/gYtUql8U?format=jpg&name=orig",
+                "width": 1191
+              }
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/wDI0h6v1M9",
+        "user_refs_results": [
+          {
+            "rest_id": "39455426",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 10195
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/2008477302825631745/vWIXAoJX_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/39455426/1788749130"
+              },
+              "core": {
+                "created_at": "Tue May 12 07:37:25 +0000 2009",
+                "name": "GMA Network",
+                "screen_name": "gmanetwork"
+              },
+              "dm_permissions": {
+                "can_dm": false
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": ""
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {},
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "This is the official Twitter account of GMA Network.",
+                "entities": {
+                  "description": {}
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "0084B4"
+              },
+              "profile_translation": {
+                "translator_type_enum": "Regular"
+              },
+              "properties": {
+                "has_extended_profile": false,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 1700490,
+                "following": 633
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "39455426",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 199929,
+                "tweets": 502023
+              },
+              "verification": {
+                "is_blue_verified": true,
+                "verified": false
+              },
+              "website": {
+                "url": ""
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "gmanetwork.com/radio/streaming",
+            "expanded_url": "http://gmanetwork.com/radio/streaming",
+            "indices": [
+              87,
+              110
+            ],
+            "url": "https://t.co/wDI0h6v1M9"
+          }
+        ],
+        "user_mentions": [
+          {
+            "id_str": "513084323",
+            "indices": [
+              75,
+              84
+            ],
+            "name": "olanbola",
+            "screen_name": "olanbola"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
     {
       "type": "tweet",
       "id": "2014403045417996688",
@@ -216,7 +778,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/185159449/1767930402",
         "description": "",
         "location": "Islamabad",
-        "followers": 928644,
+        "followers": 928491,
         "following": 8,
         "status": "",
         "canDm": false,
@@ -229,11 +791,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 4430,
+        "favouritesCount": 4585,
         "hasCustomTimelines": true,
         "isTranslator": true,
-        "mediaCount": 140937,
-        "statusesCount": 401966,
+        "mediaCount": 141198,
+        "statusesCount": 402291,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -264,26 +826,6 @@
       "card": {
         "binding_values": [
           {
-            "key": "photo_image_full_size_large",
-            "value": {
-              "image_value": {
-                "height": 419,
-                "url": "https://pbs.twimg.com/card_img/2094616220272394240/wFN1ooMP?format=jpg&name=800x419",
-                "width": 800
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image",
-            "value": {
-              "image_value": {
-                "height": 150,
-                "url": "https://pbs.twimg.com/card_img/2094616220272394240/wFN1ooMP?format=jpg&name=280x150",
-                "width": 269
-              }
-            }
-          },
-          {
             "key": "description",
             "value": {
               "string_value": "As tourists continue to flock to the popular hill station, DPO has personally taken to the field to boost the morale of police personnel and supervise traffic management and rescue operations."
@@ -293,36 +835,6 @@
             "key": "domain",
             "value": {
               "string_value": "radio.gov.pk"
-            }
-          },
-          {
-            "key": "thumbnail_image_large",
-            "value": {
-              "image_value": {
-                "height": 320,
-                "url": "https://pbs.twimg.com/card_img/2094616220272394240/wFN1ooMP?format=jpg&name=800x320_1",
-                "width": 573
-              }
-            }
-          },
-          {
-            "key": "summary_photo_image_small",
-            "value": {
-              "image_value": {
-                "height": 202,
-                "url": "https://pbs.twimg.com/card_img/2094616220272394240/wFN1ooMP?format=jpg&name=386x202",
-                "width": 386
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image_original",
-            "value": {
-              "image_value": {
-                "height": 478,
-                "url": "https://pbs.twimg.com/card_img/2094616220272394240/wFN1ooMP?format=jpg&name=orig",
-                "width": 856
-              }
             }
           },
           {
@@ -336,61 +848,11 @@
             }
           },
           {
-            "key": "photo_image_full_size_small",
-            "value": {
-              "image_value": {
-                "height": 202,
-                "url": "https://pbs.twimg.com/card_img/2094616220272394240/wFN1ooMP?format=jpg&name=386x202",
-                "width": 386
-              }
-            }
-          },
-          {
-            "key": "summary_photo_image_large",
-            "value": {
-              "image_value": {
-                "height": 419,
-                "url": "https://pbs.twimg.com/card_img/2094616220272394240/wFN1ooMP?format=jpg&name=800x419",
-                "width": 800
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image_small",
-            "value": {
-              "image_value": {
-                "height": 80,
-                "url": "https://pbs.twimg.com/card_img/2094616220272394240/wFN1ooMP?format=jpg&name=144x144",
-                "width": 144
-              }
-            }
-          },
-          {
             "key": "creator",
             "value": {
               "user_value": {
                 "id_str": "185159449",
                 "path": []
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image_x_large",
-            "value": {
-              "image_value": {
-                "height": 478,
-                "url": "https://pbs.twimg.com/card_img/2094616220272394240/wFN1ooMP?format=png&name=2048x2048_2_exp",
-                "width": 856
-              }
-            }
-          },
-          {
-            "key": "photo_image_full_size_original",
-            "value": {
-              "image_value": {
-                "height": 478,
-                "url": "https://pbs.twimg.com/card_img/2094616220272394240/wFN1ooMP?format=jpg&name=orig",
-                "width": 856
               }
             }
           },
@@ -402,196 +864,9 @@
             }
           },
           {
-            "key": "photo_image_full_size",
-            "value": {
-              "image_value": {
-                "height": 314,
-                "url": "https://pbs.twimg.com/card_img/2094616220272394240/wFN1ooMP?format=jpg&name=600x314",
-                "width": 600
-              }
-            }
-          },
-          {
-            "key": "thumbnail_image_color",
-            "value": {
-              "image_color_value": {
-                "palette": [
-                  {
-                    "percentage": 48.87,
-                    "rgb": {
-                      "blue": 216,
-                      "green": 220,
-                      "red": 225
-                    }
-                  },
-                  {
-                    "percentage": 26.77,
-                    "rgb": {
-                      "blue": 39,
-                      "green": 40,
-                      "red": 39
-                    }
-                  },
-                  {
-                    "percentage": 13.03,
-                    "rgb": {
-                      "blue": 107,
-                      "green": 113,
-                      "red": 119
-                    }
-                  },
-                  {
-                    "percentage": 10.4,
-                    "rgb": {
-                      "blue": 146,
-                      "green": 134,
-                      "red": 112
-                    }
-                  },
-                  {
-                    "percentage": 0.8,
-                    "rgb": {
-                      "blue": 152,
-                      "green": 192,
-                      "red": 102
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          {
             "key": "title",
             "value": {
               "string_value": "Fresh snowfall in Murree; rescue teams on high alert"
-            }
-          },
-          {
-            "key": "summary_photo_image_color",
-            "value": {
-              "image_color_value": {
-                "palette": [
-                  {
-                    "percentage": 48.87,
-                    "rgb": {
-                      "blue": 216,
-                      "green": 220,
-                      "red": 225
-                    }
-                  },
-                  {
-                    "percentage": 26.77,
-                    "rgb": {
-                      "blue": 39,
-                      "green": 40,
-                      "red": 39
-                    }
-                  },
-                  {
-                    "percentage": 13.03,
-                    "rgb": {
-                      "blue": 107,
-                      "green": 113,
-                      "red": 119
-                    }
-                  },
-                  {
-                    "percentage": 10.4,
-                    "rgb": {
-                      "blue": 146,
-                      "green": 134,
-                      "red": 112
-                    }
-                  },
-                  {
-                    "percentage": 0.8,
-                    "rgb": {
-                      "blue": 152,
-                      "green": 192,
-                      "red": 102
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          {
-            "key": "summary_photo_image_x_large",
-            "value": {
-              "image_value": {
-                "height": 478,
-                "url": "https://pbs.twimg.com/card_img/2094616220272394240/wFN1ooMP?format=png&name=2048x2048_2_exp",
-                "width": 856
-              }
-            }
-          },
-          {
-            "key": "summary_photo_image",
-            "value": {
-              "image_value": {
-                "height": 314,
-                "url": "https://pbs.twimg.com/card_img/2094616220272394240/wFN1ooMP?format=jpg&name=600x314",
-                "width": 600
-              }
-            }
-          },
-          {
-            "key": "photo_image_full_size_color",
-            "value": {
-              "image_color_value": {
-                "palette": [
-                  {
-                    "percentage": 48.87,
-                    "rgb": {
-                      "blue": 216,
-                      "green": 220,
-                      "red": 225
-                    }
-                  },
-                  {
-                    "percentage": 26.77,
-                    "rgb": {
-                      "blue": 39,
-                      "green": 40,
-                      "red": 39
-                    }
-                  },
-                  {
-                    "percentage": 13.03,
-                    "rgb": {
-                      "blue": 107,
-                      "green": 113,
-                      "red": 119
-                    }
-                  },
-                  {
-                    "percentage": 10.4,
-                    "rgb": {
-                      "blue": 146,
-                      "green": 134,
-                      "red": 112
-                    }
-                  },
-                  {
-                    "percentage": 0.8,
-                    "rgb": {
-                      "blue": 152,
-                      "green": 192,
-                      "red": 102
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          {
-            "key": "photo_image_full_size_x_large",
-            "value": {
-              "image_value": {
-                "height": 478,
-                "url": "https://pbs.twimg.com/card_img/2094616220272394240/wFN1ooMP?format=png&name=2048x2048_2_exp",
-                "width": 856
-              }
             }
           },
           {
@@ -599,16 +874,6 @@
             "value": {
               "scribe_key": "card_url",
               "string_value": "https://t.co/Z0mdNXBSKk"
-            }
-          },
-          {
-            "key": "summary_photo_image_original",
-            "value": {
-              "image_value": {
-                "height": 478,
-                "url": "https://pbs.twimg.com/card_img/2094616220272394240/wFN1ooMP?format=jpg&name=orig",
-                "width": 856
-              }
             }
           }
         ],
@@ -631,7 +896,7 @@
             "result": {
               "__typename": "User",
               "action_counts": {
-                "favorites_count": 4430
+                "favorites_count": 4585
               },
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/2085070480307113984/L1htb_qY_normal.jpg"
@@ -697,7 +962,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 928644,
+                "followers": 928491,
                 "following": 8
               },
               "relationship_perspectives": {
@@ -715,8 +980,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 140937,
-                "tweets": 401966
+                "media_tweets": 141198,
+                "tweets": 402291
               },
               "verification": {
                 "is_blue_verified": true,
@@ -732,7 +997,7 @@
             "result": {
               "__typename": "User",
               "action_counts": {
-                "favorites_count": 4430
+                "favorites_count": 4585
               },
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/2085070480307113984/L1htb_qY_normal.jpg"
@@ -798,7 +1063,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 928644,
+                "followers": 928491,
                 "following": 8
               },
               "relationship_perspectives": {
@@ -816,8 +1081,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 140937,
-                "tweets": 401966
+                "media_tweets": 141198,
+                "tweets": 402291
               },
               "verification": {
                 "is_blue_verified": true,
@@ -932,6 +1197,885 @@
     },
     {
       "type": "tweet",
+      "id": "2014408613536596060",
+      "url": "https://x.com/ChpSolano/status/2014408613536596060",
+      "twitterUrl": "https://twitter.com/ChpSolano/status/2014408613536596060",
+      "text": "!!TRAFFIC ADVISORY!!\n\nLONG TERM FREEWAY CLOSURE W/B I-80, AT HIGHWAY 4 IN HERCULES.\n\nW/B TRAFFIC ADVISED TO TAKE ALTERNATE ROUTES: \n\n- S/B I-680, TO W/B SR-24\n\n- E/B I-780, TO S/B I-680, TO W/B SR-24 \n\n⛔AVOID W/B HIGHWAY 4⛔ https://t.co/1WaCkF2ZC1",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 1,
+      "likeCount": 4,
+      "quoteCount": 2,
+      "viewCount": 2336,
+      "createdAt": "Thu Jan 22 18:43:34 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2014408613536596060",
+      "displayTextRange": [
+        0,
+        223
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ChpSolano",
+        "url": "https://x.com/ChpSolano",
+        "twitterUrl": "https://twitter.com/ChpSolano",
+        "id": "3137816484",
+        "name": "CHP SOLANO",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2056441988225126400/CJgXUzac_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/3137816484/1728143489",
+        "description": "",
+        "location": "Fairfield, CA",
+        "followers": 4324,
+        "following": 155,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Fri Apr 03 21:02:18 +0000 2015",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 31,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 478,
+        "statusesCount": 1073,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "This is the official X account of the CHP Solano Area. For emergencies, call 911.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "chp.ca.gov",
+                  "expanded_url": "http://www.chp.ca.gov",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/asRLhR8NVe"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/1WaCkF2ZC1",
+            "expanded_url": "https://x.com/ChpSolano/status/2014408613536596060/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2014408592657395712",
+            "indices": [
+              224,
+              247
+            ],
+            "media_key": "3_2014408592657395712",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARv0nfE11rAACgACG/Sd9hJWAFwAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG/Sd8TXWsAAKAAIb9J32ElYAXAAA",
+                "media_key": "3_2014408592657395712"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G_Sd8TXWsAA8zNV.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 339
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 101
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 26
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/1WaCkF2ZC1"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2014408444950782364",
+      "url": "https://x.com/CHPoakland/status/2014408444950782364",
+      "twitterUrl": "https://twitter.com/CHPoakland/status/2014408444950782364",
+      "text": "!!TRAFFIC ADVISORY!!\n\nLONG TERM FREEWAY CLOSURE W/B I-80, AT HIGHWAY 4 IN HERCULES.\n\nW/B TRAFFIC ADVISED TO TAKE ALTERNATE ROUTES: \n\n- S/B I-680, TO W/B SR-24\n\n- E/B I-780, TO S/B I-680, TO W/B SR-24 \n\n⛔AVOID W/B HIGHWAY 4⛔ https://t.co/iJASMzFlFl",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 0,
+      "likeCount": 3,
+      "quoteCount": 2,
+      "viewCount": 3616,
+      "createdAt": "Thu Jan 22 18:42:53 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2014408444950782364",
+      "displayTextRange": [
+        0,
+        223
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "CHPoakland",
+        "url": "https://x.com/CHPoakland",
+        "twitterUrl": "https://twitter.com/CHPoakland",
+        "id": "1358142446",
+        "name": "CHP Oakland",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2049951385022865408/P-a6V0ot_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1358142446/1767126779",
+        "description": "",
+        "location": "Oakland, CA",
+        "followers": 23722,
+        "following": 1975,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Apr 16 23:59:11 +0000 2013",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 3655,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1650,
+        "statusesCount": 6388,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official Twitter of the CHP Oakland Area Office 510-457-2875 also at https://t.co/MGGmHqHr79 Not monitored 24/7, use 911 to report emergencies!",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "Facebook.com/OaklandCHP370",
+                  "expanded_url": "http://Facebook.com/OaklandCHP370",
+                  "indices": [
+                    69,
+                    92
+                  ],
+                  "url": "https://t.co/MGGmHqHr79"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "chp.ca.gov/Find-an-Office…",
+                  "expanded_url": "https://www.chp.ca.gov/Find-an-Office/Golden-Gate-Division/Offices/(370)-Oakland",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/xNk1gVBB1x"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/iJASMzFlFl",
+            "expanded_url": "https://x.com/CHPoakland/status/2014408444950782364/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2014408423937384448",
+            "indices": [
+              224,
+              247
+            ],
+            "media_key": "3_2014408423937384448",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARv0ncntV6AACgACG/SdztHWoZwAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG/Sdye1XoAAKAAIb9J3O0dahnAAA",
+                "media_key": "3_2014408423937384448"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G_Sdye1XoAAVHqe.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 339
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 101
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 26
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/iJASMzFlFl"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2014408310133342604",
+      "url": "https://x.com/CHP_GoldenGate/status/2014408310133342604",
+      "twitterUrl": "https://twitter.com/CHP_GoldenGate/status/2014408310133342604",
+      "text": "!!TRAFFIC ADVISORY!!\n\nLONG TERM FREEWAY CLOSURE W/B I-80, AT HIGHWAY 4 IN HERCULES.\n\nW/B TRAFFIC ADVISED TO TAKE ALTERNATE ROUTES: \n\n- S/B I-680, TO W/B SR-24\n\n- E/B I-780, TO S/B I-680, TO W/B SR-24 \n\n⛔AVOID W/B HIGHWAY 4⛔ https://t.co/7dn4dftV13",
+      "source": "Twitter for iPhone",
+      "retweetCount": 1,
+      "replyCount": 2,
+      "likeCount": 3,
+      "quoteCount": 0,
+      "viewCount": 1410,
+      "createdAt": "Thu Jan 22 18:42:21 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2014408310133342604",
+      "displayTextRange": [
+        0,
+        223
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "CHP_GoldenGate",
+        "url": "https://x.com/CHP_GoldenGate",
+        "twitterUrl": "https://twitter.com/CHP_GoldenGate",
+        "id": "59042052",
+        "name": "CHP Golden Gate",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2057271510579183616/RGZgKQV4_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/59042052/1523600245",
+        "description": "",
+        "location": "San Francisco Bay Area",
+        "followers": 29888,
+        "following": 1275,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Jul 22 05:01:55 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 2892,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 3174,
+        "statusesCount": 11688,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official CHP account of Golden Gate Division, CHP Command Center for the 9 counties that make up the SF Bay Area. (Not monitored 24/7, Call 911 in emergencies)",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "chp.ca.gov/Find-an-Office…",
+                  "expanded_url": "https://www.chp.ca.gov/Find-an-Office/Golden-Gate-Division",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/vdOtVQf0rm"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/7dn4dftV13",
+            "expanded_url": "https://x.com/CHP_GoldenGate/status/2014408310133342604/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2014408289124057088",
+            "indices": [
+              224,
+              247
+            ],
+            "media_key": "3_2014408289124057088",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARv0naqJ14AACgACG/Sdr24XwYwAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG/SdqonXgAAKAAIb9J2vbhfBjAAA",
+                "media_key": "3_2014408289124057088"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G_SdqonXgAAcJwJ.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 339
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 101
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 26
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/7dn4dftV13"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2014408163588542973",
+      "url": "https://x.com/CHP_ContraCosta/status/2014408163588542973",
+      "twitterUrl": "https://twitter.com/CHP_ContraCosta/status/2014408163588542973",
+      "text": "!!TRAFFIC ADVISORY!!\n\nLONG TERM FREEWAY CLOSURE W/B I-80, AT HIGHWAY 4 IN HERCULES.\n\nW/B TRAFFIC ADVISED TO TAKE ALTERNATE ROUTES: \n\n- S/B I-680, TO W/B SR-24\n\n- E/B I-780, TO S/B I-680, TO W/B SR-24 \n\n⛔AVOID W/B HIGHWAY 4⛔ https://t.co/UzfQDYbPPK",
+      "source": "Twitter for iPhone",
+      "retweetCount": 4,
+      "replyCount": 0,
+      "likeCount": 7,
+      "quoteCount": 1,
+      "viewCount": 1631,
+      "createdAt": "Thu Jan 22 18:41:46 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2014408163588542973",
+      "displayTextRange": [
+        0,
+        223
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "CHP_ContraCosta",
+        "url": "https://x.com/CHP_ContraCosta",
+        "twitterUrl": "https://twitter.com/CHP_ContraCosta",
+        "id": "488337196",
+        "name": "CHP Contra Costa",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2056443592328261632/Tvr8rqUn_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/488337196/1469051831",
+        "description": "",
+        "location": "925.646.4980",
+        "followers": 18034,
+        "following": 479,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Fri Feb 10 10:34:11 +0000 2012",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 4612,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1575,
+        "statusesCount": 7122,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official Twitter of CHP-Contra Costa, by PIO Ofc Daniel Gilmore. INSTAGRAM https://t.co/w3yYD1LvpN 911 for emergencies",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "instagram.com/chp_contracost…",
+                  "expanded_url": "https://www.instagram.com/chp_contracosta/",
+                  "indices": [
+                    75,
+                    98
+                  ],
+                  "url": "https://t.co/w3yYD1LvpN"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "chp.ca.gov/contracosta",
+                  "expanded_url": "http://www.chp.ca.gov/contracosta",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/7Y0n9AVrN0"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/UzfQDYbPPK",
+            "expanded_url": "https://x.com/CHP_ContraCosta/status/2014408163588542973/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2014408142667341824",
+            "indices": [
+              224,
+              247
+            ],
+            "media_key": "3_2014408142667341824",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARv0nYhwV2AACgACG/SdjU9Xkf0AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG/SdiHBXYAAKAAIb9J2NT1eR/QAA",
+                "media_key": "3_2014408142667341824"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G_SdiHBXYAAyO-z.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 339
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 101
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 26
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/UzfQDYbPPK"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2014409015707488330",
+      "url": "https://x.com/CHP_Napa/status/2014409015707488330",
+      "twitterUrl": "https://twitter.com/CHP_Napa/status/2014409015707488330",
+      "text": "!!TRAFFIC ADVISORY!!\n\nLONG TERM FREEWAY CLOSURE W/B I-80, AT HIGHWAY 4 IN HERCULES.\n\nW/B TRAFFIC ADVISED TO TAKE ALTERNATE ROUTES: \n\n- S/B I-680, TO W/B SR-24\n\n- E/B I-780, TO S/B I-680, TO W/B SR-24 \n\n⛔AVOID W/B HIGHWAY 4⛔ https://t.co/MnMMdahQ91",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 1,
+      "likeCount": 2,
+      "quoteCount": 1,
+      "viewCount": 1294,
+      "createdAt": "Thu Jan 22 18:45:09 +0000 2026",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2014409015707488330",
+      "displayTextRange": [
+        0,
+        223
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "CHP_Napa",
+        "url": "https://x.com/CHP_Napa",
+        "twitterUrl": "https://twitter.com/CHP_Napa",
+        "id": "2951113182",
+        "name": "CHP Napa Area",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2056496929203486720/FYBip8gJ_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2951113182/1598329690",
+        "description": "",
+        "location": "Napa, CA",
+        "followers": 5876,
+        "following": 504,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Dec 30 00:17:46 +0000 2014",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 342,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 751,
+        "statusesCount": 2908,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Official CHP Account of the Napa Area Office, serving the greater Napa and Sonoma County regions. Not monitored 24/7, call 911 in emergencies. 707-699-6300",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "chp.ca.gov/offices/ggoffi…",
+                  "expanded_url": "http://www.chp.ca.gov/offices/ggoffices/index.html",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/8sGfh7lopp"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/MnMMdahQ91",
+            "expanded_url": "https://x.com/CHP_Napa/status/2014409015707488330/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "2014408994681413632",
+            "indices": [
+              224,
+              247
+            ],
+            "media_key": "3_2014408994681413632",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARv0nk7QVmAACgACG/SeU7WW0EoAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG/SeTtBWYAAKAAIb9J5TtZbQSgAA",
+                "media_key": "3_2014408994681413632"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G_SeTtBWYAA30A0.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 339
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 101
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 26
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/MnMMdahQ91"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "2014420944409006172",
       "url": "https://x.com/MMDA/status/2014420944409006172",
       "twitterUrl": "https://twitter.com/MMDA/status/2014420944409006172",
@@ -968,7 +2112,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967083,
+        "followers": 3966626,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -984,8 +2128,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61684,
-        "statusesCount": 888277,
+        "mediaCount": 61732,
+        "statusesCount": 888705,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1043,7 +2187,7 @@
       "replyCount": 0,
       "likeCount": 4,
       "quoteCount": 1,
-      "viewCount": 796,
+      "viewCount": 797,
       "createdAt": "Thu Jan 22 19:39:42 +0000 2026",
       "lang": "en",
       "bookmarkCount": 0,
@@ -1070,8 +2214,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 187007,
-        "following": 87,
+        "followers": 187267,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -1083,16 +2227,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3016,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31274,
-        "statusesCount": 146793,
+        "mediaCount": 31385,
+        "statusesCount": 146916,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -1705,6 +2849,388 @@
         ]
       },
       "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "2014422847259816364",
+      "url": "https://x.com/jooin1004thread/status/2014422847259816364",
+      "twitterUrl": "https://twitter.com/jooin1004thread/status/2014422847259816364",
+      "text": "#수익금분배\n친구한테 퍼온것 \n\n[엑스 길라잡이 2편: 수익금은 어떻게 분배될까?]\n\n지난 번 포스팅에서 수익자격 충족하는 법에 대해 알려드렸습니다. https://t.co/mB5Tk3wdl2… \n오늘은 수익금이 어떤 방식으로 분배되는지 말씀드리려고 합니다. 우선 엑스에서 공식적으로 발표한 수익금 분배방식을 참조하시기 바랍니다. 엑스에서 발표한 원문: https://t.co/MkqZjYIkyc…\n위 원문을 요약해 보면\n1. 이제부터 댓글에 붙는 광고 노출과 상관 없이 누구나 다 수익금을 받을 수 있도록 하겠음\n2. 유저들이 지불한 파딱 구독료 총액의 75%를 엑스가 취하고 25%를 수익금으로 나누어 주겠음\n3. 각 유저들의 댓글, 좋아요, 북마크, 콘텐츠시청시간 등의 소통내용을 분석하여 지분을 계산할 것이며 오직 이것만이 수익분배의 기준이 될 것임.\n4. 계정의 차등화: 소통을 할 때 일반계정보다는 프리미엄 계정, 프리미엄 보다는 프리미엄플러스 계정과의 소통에 가중치를 부여하겠음.\n5. 엑친도 고려함: 내가 팔로우하는 사람과 나를 팔로우 하는 사람이 어떤 유저인도 고려하겠음. 좋은 컨텐츠를 올리는 엑친들이 많을수록 좋고, 엑친들이 규정을 위반하여 문제를 일으키면 연대책임 물어서 수익금도 감소될 것임.\n6. 의미없는 포스팅으로 도배하는 스팸포스팅이나 억지로 댓글을 유도하는 파밍 Farming 유저들에겐 벌점을 부과해서 수익금을 줄이겠음\n\n[세줄요약 TL;DR]\n1. 많이, 열심히 파딱 구독해라.\n2. 트친들은 골라서 사귀어라.\n3. 좋은 컨텐츠를 많이 생산해라.\n\n제가 지난 글에서 아직 한국은 엑스 유저가 많지 않아서 블루오션이라고 했죠? 아래 표는 2024년 국가별 엑스 유저 통계입니다. 한국은 필리핀보다 낮은 세계 16위입니다. 지금 시작하셔도 초기 투자자입니다.\n(출처: https://t.co/TIk7QSL31H… )\n\n---\n\n[X Guide Part 2: How Are Revenue Payouts Distributed?]\n\nIn the previous post, I explained how to meet the eligibility requirements for monetization. https://t.co/mB5Tk3wdl2…  \nToday, I’ll explain how revenue is actually distributed. First, please refer to the official revenue distribution policy announced by X. Original announcement from X: https://t.co/MkqZjYIkyc…\n\nTo summarize the announcement:\n1. From now on, everyone will be eligible to receive revenue regardless of whether ads appear in the replies.\n2. Of the total Premium (Blue check) subscription fees paid by users, X will take 75%, and the remaining 25% will be distributed as creator revenue.\n3. Revenue shares will be calculated by analyzing engagement such as replies, likes, bookmarks, and content watch time. This engagement data will be the sole basis for revenue distribution.\n4. Account weighting: Interactions with Premium accounts will carry more weight than with regular accounts, and interactions with Premium Plus accounts will carry even more weight.\n5. Your network matters: The users you follow and who follow you will also be taken into account. The more high-quality mutuals (“X-friends”) you have, the better. However, if your mutuals violate policies and cause issues, collective responsibility may apply and your revenue could be reduced.\n6. Spam posting, meaningless content flooding, or farming users who forcibly induce replies will receive penalties, reducing their revenue.\n\n[TL;DR in Three Lines]\n1. Subscribe to Premium a lot, and consistently.\n2. Choose your mutuals carefully.\n3. Produce lots of high-quality content.\n\nAs I mentioned in my previous post, Korea is still a blue ocean because the number of X users is relatively small. The table below shows X user statistics by country in 2024. Korea ranks 16th globally, below the Philippines. Even if you start now, you’re still an early investor.\n(Source: https://t.co/TIk7QSL31H… )\n\n@jooin1004thread\n\n...\n\n...\n\n...FLLOW ME",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 85,
+      "createdAt": "Thu Jan 22 19:40:07 +0000 2026",
+      "lang": "ko",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "2014422847259816364",
+      "displayTextRange": [
+        0,
+        172
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "jooin1004thread",
+        "url": "https://x.com/jooin1004thread",
+        "twitterUrl": "https://twitter.com/jooin1004thread",
+        "id": "2007797227104976896",
+        "name": "jooin1004",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2037566289225678848/8AY66S1e_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/2007797227104976896/1775510275",
+        "description": "",
+        "location": "",
+        "followers": 1683,
+        "following": 1709,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Sun Jan 04 12:52:31 +0000 2026",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 23079,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1459,
+        "statusesCount": 18303,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2049089144551612913"
+        ],
+        "profile_bio": {
+          "description": "비디오전시, 비디오게시, Grok, 세계. . Wellcome!!Fllow to Fllow❤️🩵 메일:Jooin1004thread@gmail.com",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              0,
+              6
+            ],
+            "text": "수익금분배"
+          }
+        ],
+        "symbols": [],
+        "urls": [
+          {
+            "display_url": "x.com/hangul/status/",
+            "expanded_url": "http://x.com/hangul/status/",
+            "indices": [
+              84,
+              107
+            ],
+            "url": "https://t.co/mB5Tk3wdl2"
+          },
+          {
+            "display_url": "x.com/premium/status",
+            "expanded_url": "http://x.com/premium/status",
+            "indices": [
+              198,
+              221
+            ],
+            "url": "https://t.co/MkqZjYIkyc"
+          },
+          {
+            "display_url": "statista.com/statistics/242",
+            "expanded_url": "http://statista.com/statistics/242",
+            "indices": [
+              895,
+              918
+            ],
+            "url": "https://t.co/TIk7QSL31H"
+          },
+          {
+            "display_url": "x.com/hangul/status/",
+            "expanded_url": "http://x.com/hangul/status/",
+            "indices": [
+              1077,
+              1100
+            ],
+            "url": "https://t.co/mB5Tk3wdl2"
+          },
+          {
+            "display_url": "x.com/premium/status",
+            "expanded_url": "http://x.com/premium/status",
+            "indices": [
+              1271,
+              1294
+            ],
+            "url": "https://t.co/MkqZjYIkyc"
+          },
+          {
+            "display_url": "statista.com/statistics/242",
+            "expanded_url": "http://statista.com/statistics/242",
+            "indices": [
+              2831,
+              2854
+            ],
+            "url": "https://t.co/TIk7QSL31H"
+          }
+        ],
+        "user_mentions": [
+          {
+            "id_str": "2007797227104976896",
+            "indices": [
+              2859,
+              2875
+            ],
+            "name": "jooin1004",
+            "screen_name": "jooin1004thread"
+          }
+        ]
+      },
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "2011536881167843602",
+        "url": "https://x.com/hangul/status/2011536881167843602",
+        "twitterUrl": "https://twitter.com/hangul/status/2011536881167843602",
+        "text": "[엑스 길라잡이 2편: 수익금은 어떻게 분배될까?]\n\n지난 번 포스팅에서 수익자격 충족하는 법에 대해 알려드렸습니다. https://t.co/ESgXy1OuMv \n오늘은 수익금이 어떤 방식으로 분배되는지 말씀드리려고 합니다. 우선 엑스에서 공식적으로 발표한 수익금 분배방식을 참조하시기 바랍니다. 엑스에서 발표한 원문: https://t.co/WZ13H9ADZm\n위 원문을 요약해 보면\n1. 이제부터 댓글에 붙는 광고 노출과 상관 없이 누구나 다 수익금을 받을 수 있도록 하겠음\n2. 유저들이 지불한 파딱 구독료 총액의 75%를 엑스가 취하고 25%를 수익금으로 나누어 주겠음\n3. 각 유저들의 댓글, 좋아요, 북마크, 콘텐츠시청시간 등의 소통내용을 분석하여 지분을 계산할 것이며 오직 이것만이 수익분배의 기준이 될 것임.\n4. 계정의 차등화: 소통을 할 때 일반계정보다는 프리미엄 계정, 프리미엄 보다는 프리미엄플러스 계정과의 소통에 가중치를 부여하겠음.\n5. 엑친도 고려함: 내가 팔로우하는 사람과 나를 팔로우 하는 사람이 어떤 유저인도 고려하겠음. 좋은 컨텐츠를 올리는 엑친들이 많을수록 좋고, 엑친들이 규정을 위반하여 문제를 일으키면 연대책임 물어서 수익금도 감소될 것임.\n6. 의미없는 포스팅으로 도배하는 스팸포스팅이나 억지로 댓글을 유도하는 파밍 Farming 유저들에겐 벌점을 부과해서 수익금을 줄이겠음\n\n[세줄요약 TL;DR]\n1. 많이, 열심히 파딱 구독해라.\n2. 트친들은 골라서 사귀어라.\n3. 좋은 컨텐츠를 많이 생산해라.\n\n제가 지난 글에서 아직 한국은 엑스 유저가 많지 않아서 블루오션이라고 했죠? 아래 표는 2024년 국가별 엑스 유저 통계입니다. 한국은 필리핀보다 낮은 세계 16위입니다. 지금 시작하셔도 초기 투자자입니다.\n(출처: https://t.co/EvJhFYHT94 )\n\n다음에 3편으로 찾아뵙겠습니다.",
+        "source": "Twitter for iPhone",
+        "retweetCount": 10,
+        "replyCount": 29,
+        "likeCount": 72,
+        "quoteCount": 4,
+        "viewCount": 4266,
+        "createdAt": "Wed Jan 14 20:32:19 +0000 2026",
+        "lang": "ko",
+        "bookmarkCount": 17,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "2011536881167843602",
+        "displayTextRange": [
+          0,
+          170
+        ],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {
+          "type": "user",
+          "userName": "hangul",
+          "url": "https://x.com/hangul",
+          "twitterUrl": "https://twitter.com/hangul",
+          "id": "26790132",
+          "name": "𝑱.𝑪𝒓𝒆𝒘",
+          "isVerified": false,
+          "isBlueVerified": false,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/2066611379541610496/y2p4EFxV_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/26790132/1765572494",
+          "description": "",
+          "location": "CA, USA",
+          "followers": 20772,
+          "following": 11476,
+          "status": "",
+          "canDm": true,
+          "canMediaTag": false,
+          "createdAt": "Thu Mar 26 16:48:09 +0000 2009",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 251173,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 7394,
+          "statusesCount": 63169,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [
+            "2078006025492504696"
+          ],
+          "profile_bio": {
+            "description": "트위터 18년차 고인물",
+            "entities": {
+              "description": {}
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {
+          "media": [
+            {
+              "display_url": "pic.x.com/4QkHo1elOl",
+              "expanded_url": "https://x.com/hangul/status/2011536881167843602/photo/1",
+              "ext_master_playlist_only": [],
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "ext_playlists": [],
+              "features": {
+                "large": {
+                  "faces": []
+                },
+                "orig": {
+                  "faces": []
+                }
+              },
+              "id_str": "2011536843339415552",
+              "indices": [
+                171,
+                194
+              ],
+              "media_key": "3_2011536843339415552",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARvqahn320AACgACG+pqIsabQRIAAA==",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAABCgABG+pqGffbQAAKAAIb6moixptBEgAA",
+                  "media_key": "3_2011536843339415552"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/media/G-pqGffbQAArZvW.jpg",
+              "original_info": {
+                "focus_rects": [
+                  {
+                    "h": 860,
+                    "w": 1536,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 1382,
+                    "w": 1382,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 1382,
+                    "w": 1212,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 1382,
+                    "w": 691,
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "h": 1382,
+                    "w": 1536,
+                    "x": 0,
+                    "y": 0
+                  }
+                ],
+                "height": 1382,
+                "width": 1536
+              },
+              "sizes": {
+                "large": {
+                  "h": 1382,
+                  "w": 1536
+                }
+              },
+              "type": "photo",
+              "url": "https://t.co/4QkHo1elOl"
+            }
+          ]
+        },
+        "card": null,
+        "place": {},
+        "entities": {
+          "hashtags": [],
+          "symbols": [],
+          "urls": [
+            {
+              "display_url": "x.com/hangul/status/…",
+              "expanded_url": "https://x.com/hangul/status/2011531319160029246?s=20",
+              "indices": [
+                66,
+                89
+              ],
+              "url": "https://t.co/ESgXy1OuMv"
+            },
+            {
+              "display_url": "x.com/premium/status…",
+              "expanded_url": "https://x.com/premium/status/1844083837103755410",
+              "indices": [
+                179,
+                202
+              ],
+              "url": "https://t.co/WZ13H9ADZm"
+            },
+            {
+              "display_url": "statista.com/statistics/242…",
+              "expanded_url": "https://statista.com/statistics/242606/number-of-active-twitter-users-in-selected-countries/",
+              "indices": [
+                875,
+                898
+              ],
+              "url": "https://t.co/EvJhFYHT94"
+            }
+          ],
+          "user_mentions": []
+        },
+        "quoted_tweet": {
+          "type": "tweet",
+          "id": "2011531319160029246",
+          "url": "",
+          "twitterUrl": "",
+          "text": "",
+          "source": "Twitter for iPhone",
+          "retweetCount": 0,
+          "replyCount": 0,
+          "likeCount": 0,
+          "quoteCount": 0,
+          "viewCount": 0,
+          "createdAt": "",
+          "lang": "",
+          "bookmarkCount": 0,
+          "isReply": false,
+          "inReplyToId": null,
+          "conversationId": "",
+          "displayTextRange": [],
+          "inReplyToUserId": null,
+          "inReplyToUsername": null,
+          "author": {},
+          "extendedEntities": {},
+          "card": null,
+          "place": {},
+          "entities": {},
+          "quoted_tweet": null,
+          "retweeted_tweet": null,
+          "isLimitedReply": false,
+          "communityInfo": null,
+          "article": null
+        },
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
+        "article": null
+      },
       "retweeted_tweet": null,
       "isLimitedReply": false,
       "communityInfo": null,

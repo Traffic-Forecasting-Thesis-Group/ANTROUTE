@@ -5,7 +5,7 @@
     "window_start": "2025-09-23T12:00:00+08:00",
     "window_end": "2025-09-23T14:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 15,
+    "tweet_count": 21,
     "slices": [
       {
         "start": "2025-09-23T12:00:00+08:00",
@@ -53,15 +53,15 @@
         "start": "2025-09-23T12:30:00+08:00",
         "end": "2025-09-23T12:35:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-09-23T12:35:00+08:00",
         "end": "2025-09-23T12:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-09-23T12:40:00+08:00",
@@ -74,8 +74,8 @@
         "start": "2025-09-23T12:45:00+08:00",
         "end": "2025-09-23T12:50:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-09-23T12:50:00+08:00",
@@ -88,15 +88,15 @@
         "start": "2025-09-23T12:55:00+08:00",
         "end": "2025-09-23T13:00:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-09-23T13:00:00+08:00",
         "end": "2025-09-23T13:05:00+08:00",
         "status_code": 200,
-        "returned": 2,
-        "accepted": 2
+        "returned": 3,
+        "accepted": 3
       },
       {
         "start": "2025-09-23T13:05:00+08:00",
@@ -165,8 +165,8 @@
         "start": "2025-09-23T13:50:00+08:00",
         "end": "2025-09-23T13:55:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-09-23T13:55:00+08:00",
@@ -189,7 +189,7 @@
       "replyCount": 0,
       "likeCount": 0,
       "quoteCount": 1,
-      "viewCount": 1154,
+      "viewCount": 1156,
       "createdAt": "Tue Sep 23 04:04:21 +0000 2025",
       "lang": "en",
       "bookmarkCount": 0,
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/55118669/1774942939",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1136565,
+        "followers": 1137260,
         "following": 158,
         "status": "",
         "canDm": false,
@@ -232,8 +232,8 @@
         "favouritesCount": 3518,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 78865,
-        "statusesCount": 411836,
+        "mediaCount": 79211,
+        "statusesCount": 412945,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -266,6 +266,26 @@
       "card": {
         "binding_values": [
           {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2097999674967998464/7_vaH_nh?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 150,
+                "url": "https://pbs.twimg.com/card_img/2097999674967998464/7_vaH_nh?format=jpg&name=280x150",
+                "width": 220
+              }
+            }
+          },
+          {
             "key": "description",
             "value": {
               "string_value": "Thirteen people were injured after a fire razed a condominium building in Barangay Talipapa, Quezon City yesterday."
@@ -275,6 +295,36 @@
             "key": "domain",
             "value": {
               "string_value": "www.philstar.com"
+            }
+          },
+          {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 320,
+                "url": "https://pbs.twimg.com/card_img/2097999674967998464/7_vaH_nh?format=jpg&name=800x320_1",
+                "width": 470
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2097999674967998464/7_vaH_nh?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 545,
+                "url": "https://pbs.twimg.com/card_img/2097999674967998464/7_vaH_nh?format=jpg&name=orig",
+                "width": 800
+              }
             }
           },
           {
@@ -288,11 +338,61 @@
             }
           },
           {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2097999674967998464/7_vaH_nh?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2097999674967998464/7_vaH_nh?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 68,
+                "url": "https://pbs.twimg.com/card_img/2097999674967998464/7_vaH_nh?format=jpg&name=100x100",
+                "width": 100
+              }
+            }
+          },
+          {
             "key": "creator",
             "value": {
               "user_value": {
                 "id_str": "55118669",
                 "path": []
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 545,
+                "url": "https://pbs.twimg.com/card_img/2097999674967998464/7_vaH_nh?format=png&name=2048x2048_2_exp",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "height": 545,
+                "url": "https://pbs.twimg.com/card_img/2097999674967998464/7_vaH_nh?format=jpg&name=orig",
+                "width": 800
               }
             }
           },
@@ -304,9 +404,196 @@
             }
           },
           {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2097999674967998464/7_vaH_nh?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 55.28,
+                    "rgb": {
+                      "blue": 97,
+                      "green": 67,
+                      "red": 55
+                    }
+                  },
+                  {
+                    "percentage": 22.38,
+                    "rgb": {
+                      "blue": 177,
+                      "green": 74,
+                      "red": 6
+                    }
+                  },
+                  {
+                    "percentage": 7.25,
+                    "rgb": {
+                      "blue": 108,
+                      "green": 94,
+                      "red": 97
+                    }
+                  },
+                  {
+                    "percentage": 6.19,
+                    "rgb": {
+                      "blue": 46,
+                      "green": 43,
+                      "red": 50
+                    }
+                  },
+                  {
+                    "percentage": 2.97,
+                    "rgb": {
+                      "blue": 251,
+                      "green": 252,
+                      "red": 252
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
             "key": "title",
             "value": {
               "string_value": "13 hurt as fire hits Quezon City condo"
+            }
+          },
+          {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 55.28,
+                    "rgb": {
+                      "blue": 97,
+                      "green": 67,
+                      "red": 55
+                    }
+                  },
+                  {
+                    "percentage": 22.38,
+                    "rgb": {
+                      "blue": 177,
+                      "green": 74,
+                      "red": 6
+                    }
+                  },
+                  {
+                    "percentage": 7.25,
+                    "rgb": {
+                      "blue": 108,
+                      "green": 94,
+                      "red": 97
+                    }
+                  },
+                  {
+                    "percentage": 6.19,
+                    "rgb": {
+                      "blue": 46,
+                      "green": 43,
+                      "red": 50
+                    }
+                  },
+                  {
+                    "percentage": 2.97,
+                    "rgb": {
+                      "blue": 251,
+                      "green": 252,
+                      "red": 252
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 545,
+                "url": "https://pbs.twimg.com/card_img/2097999674967998464/7_vaH_nh?format=png&name=2048x2048_2_exp",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2097999674967998464/7_vaH_nh?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 55.28,
+                    "rgb": {
+                      "blue": 97,
+                      "green": 67,
+                      "red": 55
+                    }
+                  },
+                  {
+                    "percentage": 22.38,
+                    "rgb": {
+                      "blue": 177,
+                      "green": 74,
+                      "red": 6
+                    }
+                  },
+                  {
+                    "percentage": 7.25,
+                    "rgb": {
+                      "blue": 108,
+                      "green": 94,
+                      "red": 97
+                    }
+                  },
+                  {
+                    "percentage": 6.19,
+                    "rgb": {
+                      "blue": 46,
+                      "green": 43,
+                      "red": 50
+                    }
+                  },
+                  {
+                    "percentage": 2.97,
+                    "rgb": {
+                      "blue": 251,
+                      "green": 252,
+                      "red": 252
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "height": 545,
+                "url": "https://pbs.twimg.com/card_img/2097999674967998464/7_vaH_nh?format=png&name=2048x2048_2_exp",
+                "width": 800
+              }
             }
           },
           {
@@ -314,6 +601,16 @@
             "value": {
               "scribe_key": "card_url",
               "string_value": "https://t.co/Vx7PtC79JW"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "height": 545,
+                "url": "https://pbs.twimg.com/card_img/2097999674967998464/7_vaH_nh?format=jpg&name=orig",
+                "width": 800
+              }
             }
           }
         ],
@@ -406,7 +703,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1136565,
+                "followers": 1137260,
                 "following": 158
               },
               "relationship_perspectives": {
@@ -424,8 +721,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 78865,
-                "tweets": 411836
+                "media_tweets": 79211,
+                "tweets": 412945
               },
               "verification": {
                 "is_blue_verified": true,
@@ -511,7 +808,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1136565,
+                "followers": 1137260,
                 "following": 158
               },
               "relationship_perspectives": {
@@ -529,8 +826,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 78865,
-                "tweets": 411836
+                "media_tweets": 79211,
+                "tweets": 412945
               },
               "verification": {
                 "is_blue_verified": true,
@@ -574,7 +871,7 @@
       "replyCount": 2,
       "likeCount": 15,
       "quoteCount": 0,
-      "viewCount": 293,
+      "viewCount": 294,
       "createdAt": "Tue Sep 23 04:08:51 +0000 2025",
       "lang": "en",
       "bookmarkCount": 0,
@@ -597,12 +894,12 @@
         "isVerified": false,
         "isBlueVerified": false,
         "verifiedType": null,
-        "profilePicture": "https://pbs.twimg.com/profile_images/2079121976069853184/YTIDJEpG_normal.jpg",
+        "profilePicture": "https://pbs.twimg.com/profile_images/2099847603328626689/zlVWU4rI_normal.jpg",
         "coverPicture": "https://pbs.twimg.com/profile_banners/1440612613251944457/1737430228",
         "description": "",
         "location": "Republic of the Philippines ",
-        "followers": 8570,
-        "following": 5610,
+        "followers": 8589,
+        "following": 5583,
         "status": "",
         "canDm": false,
         "canMediaTag": false,
@@ -614,11 +911,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 102160,
+        "favouritesCount": 102422,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 2047,
-        "statusesCount": 58272,
+        "mediaCount": 2055,
+        "statusesCount": 58434,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -682,7 +979,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967172,
+        "followers": 3966716,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -698,8 +995,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61677,
-        "statusesCount": 888214,
+        "mediaCount": 61731,
+        "statusesCount": 888686,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -748,6 +1045,374 @@
     },
     {
       "type": "tweet",
+      "id": "1970345405683769835",
+      "url": "https://x.com/ringsizepls/status/1970345405683769835",
+      "twitterUrl": "https://twitter.com/ringsizepls/status/1970345405683769835",
+      "text": "nakakapanggigil na something evil that you thought we would only see in movies are actually happening in the philippines for so many years behind our back, tapos ngayon lang lumantad kung kailan ang dami ng baha ang nagdulot ng kapahamakan sa maraming pilipino! PUNYETAA",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 11,
+      "quoteCount": 0,
+      "viewCount": 296,
+      "createdAt": "Tue Sep 23 04:32:06 +0000 2025",
+      "lang": "tl",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1970345405683769835",
+      "displayTextRange": [
+        0,
+        270
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ringsizepls",
+        "url": "https://x.com/ringsizepls",
+        "twitterUrl": "https://twitter.com/ringsizepls",
+        "id": "1704403955474665472",
+        "name": "megara",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2049296306045427712/wgmAS4S3_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1704403955474665472/1777425288",
+        "description": "",
+        "location": "ᯓ★ she/her",
+        "followers": 424,
+        "following": 59,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Wed Sep 20 07:55:55 +0000 2023",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 30960,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1321,
+        "statusesCount": 11034,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "fan account",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "1970307835625119752",
+        "url": "https://x.com/News5PH/status/1970307835625119752",
+        "twitterUrl": "https://twitter.com/News5PH/status/1970307835625119752",
+        "text": "KUMANTA NA SI ALCANTARA\n\nMaluha-luha si dating Bulacan district engineer Henry Alcantara habang ikinukuwento ang sistema nila ni dating DPWH Usec. Roberto Bernardo at kung paano nila minamanipula ang flood control budget na ibinibigay nila sa ilang politiko. https://t.co/NdiyBjNDEJ",
+        "source": "Twitter for iPhone",
+        "retweetCount": 1661,
+        "replyCount": 127,
+        "likeCount": 5165,
+        "quoteCount": 241,
+        "viewCount": 242292,
+        "createdAt": "Tue Sep 23 02:02:49 +0000 2025",
+        "lang": "tl",
+        "bookmarkCount": 873,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "1970307835625119752",
+        "displayTextRange": [
+          0,
+          258
+        ],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {
+          "type": "user",
+          "userName": "News5PH",
+          "url": "https://x.com/News5PH",
+          "twitterUrl": "https://twitter.com/News5PH",
+          "id": "133152120",
+          "name": "News5",
+          "isVerified": false,
+          "isBlueVerified": true,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/1395577754511237121/LMCpXJaq_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/133152120/1785766152",
+          "description": "",
+          "location": "Philippines",
+          "followers": 867292,
+          "following": 2278,
+          "status": "",
+          "canDm": false,
+          "canMediaTag": true,
+          "createdAt": "Thu Apr 15 04:08:32 +0000 2010",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 2720,
+          "hasCustomTimelines": true,
+          "isTranslator": true,
+          "mediaCount": 294853,
+          "statusesCount": 668399,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [],
+          "profile_bio": {
+            "description": "The Official Twitter account of News5 📲FB/IG/YT/TikTok: @News5Everywhere 📧: News5Aksyon@news5.com.ph",
+            "entities": {
+              "description": {
+                "user_mentions": [
+                  {
+                    "id_str": "",
+                    "indices": [
+                      56,
+                      72
+                    ],
+                    "name": "",
+                    "screen_name": "News5Everywhere"
+                  }
+                ]
+              },
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "news5.com.ph",
+                    "expanded_url": "http://www.news5.com.ph",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/skLJlFc2uO"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {
+          "media": [
+            {
+              "additional_media_info": {
+                "description": "",
+                "monetizable": false,
+                "title": ""
+              },
+              "display_url": "pic.x.com/NdiyBjNDEJ",
+              "expanded_url": "https://x.com/News5PH/status/1970307835625119752/video/1",
+              "ext_master_playlist_only": [],
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "ext_playlists": [],
+              "id_str": "1970306594085941248",
+              "indices": [
+                259,
+                282
+              ],
+              "media_key": "13_1970306594085941248",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARtX72h/GjAAAAA=",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAAECgABG1fvaH8aMAAAAA==",
+                  "media_key": "13_1970306594085941248"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1970306594085941248/img/c3NPO-LjAZC4EVJa.jpg",
+              "original_info": {
+                "focus_rects": [],
+                "height": 1080,
+                "width": 1920
+              },
+              "sizes": {
+                "large": {
+                  "h": 1080,
+                  "w": 1920
+                }
+              },
+              "type": "video",
+              "url": "https://t.co/NdiyBjNDEJ",
+              "video_info": {
+                "aspect_ratio": [
+                  16,
+                  9
+                ],
+                "duration_millis": 1617100,
+                "variants": [
+                  {
+                    "content_type": "application/x-mpegURL",
+                    "url": "https://video.twimg.com/amplify_video/1970306594085941248/pl/QKxYwpj-eGdtwGva.m3u8?tag=21"
+                  },
+                  {
+                    "bitrate": 256000,
+                    "content_type": "video/mp4",
+                    "url": "https://video.twimg.com/amplify_video/1970306594085941248/vid/avc1/480x270/2e9TtxBiyvZUL4G6.mp4?tag=21"
+                  },
+                  {
+                    "bitrate": 832000,
+                    "content_type": "video/mp4",
+                    "url": "https://video.twimg.com/amplify_video/1970306594085941248/vid/avc1/640x360/O4KO_E3e698yG9wa.mp4?tag=21"
+                  },
+                  {
+                    "bitrate": 2176000,
+                    "content_type": "video/mp4",
+                    "url": "https://video.twimg.com/amplify_video/1970306594085941248/vid/avc1/1280x720/MG3z_a-oT9SrhEXe.mp4?tag=21"
+                  },
+                  {
+                    "bitrate": 10368000,
+                    "content_type": "video/mp4",
+                    "url": "https://video.twimg.com/amplify_video/1970306594085941248/vid/avc1/1920x1080/QlphLe8AWpUq4TMI.mp4?tag=21"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "card": null,
+        "place": {},
+        "entities": {},
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
+        "article": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1970346415575445660",
+      "url": "https://x.com/CredenceResearc/status/1970346415575445660",
+      "twitterUrl": "https://twitter.com/CredenceResearc/status/1970346415575445660",
+      "text": "https://t.co/7rLRC5AeF9",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 6,
+      "quoteCount": 0,
+      "viewCount": 407,
+      "createdAt": "Tue Sep 23 04:36:07 +0000 2025",
+      "lang": "zxx",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1970346415575445660",
+      "displayTextRange": [
+        0,
+        23
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "CredenceResearc",
+        "url": "https://x.com/CredenceResearc",
+        "twitterUrl": "https://twitter.com/CredenceResearc",
+        "id": "711534057813909504",
+        "name": "Credence Research Inc",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1636383880109514757/p40f33sy_normal.jpg",
+        "coverPicture": "",
+        "description": "",
+        "location": "London, UNITED KINGDOM",
+        "followers": 186,
+        "following": 161,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sun Mar 20 12:45:13 +0000 2016",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 266,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 1661,
+        "statusesCount": 3215,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Leading global market research & consulting firm. Empowering businesses with data-driven insights & strategic solutions to stay ahead.",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "credenceresearch.com",
+                  "expanded_url": "https://www.credenceresearch.com/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/Y9GRMXgHyu"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/i/article/1970…",
+            "expanded_url": "http://x.com/i/article/1970345704397697024",
+            "indices": [
+              0,
+              23
+            ],
+            "url": "https://t.co/7rLRC5AeF9"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": {
+        "title": "Edge Security Market Dynamics: Drivers, Challenges, and Future Outlook",
+        "preview_text": "Market Overview\nThe Global Edge Security Market size was valued at USD 8,594.27 million in 2018, expanding to USD 20,003.00 million in 2024, and is forecasted to reach USD 72,620.10 million by 2032,",
+        "cover_media_img_url": "https://pbs.twimg.com/media/G1gTndoXEAAk4Wi.jpg"
+      }
+    },
+    {
+      "type": "tweet",
       "id": "1970347772605055145",
       "url": "https://x.com/Thenationth/status/1970347772605055145",
       "twitterUrl": "https://twitter.com/Thenationth/status/1970347772605055145",
@@ -784,7 +1449,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/18921618/1783059891",
         "description": "",
         "location": "Bangkok Thailand",
-        "followers": 455343,
+        "followers": 455385,
         "following": 109,
         "status": "",
         "canDm": false,
@@ -797,16 +1462,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 21,
+        "favouritesCount": 22,
         "hasCustomTimelines": true,
         "isTranslator": true,
-        "mediaCount": 21414,
-        "statusesCount": 185110,
+        "mediaCount": 21459,
+        "statusesCount": 185475,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094651182220554271"
+          "2097670375585009829"
         ],
         "profile_bio": {
           "description": "Breaking news alerts from Thailand and ASEAN, plus political, business, travel and lifestyle for 24 hours.",
@@ -992,7 +1657,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/133152120/1785766152",
         "description": "",
         "location": "Philippines",
-        "followers": 865968,
+        "followers": 867292,
         "following": 2278,
         "status": "",
         "canDm": false,
@@ -1005,11 +1670,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 2622,
+        "favouritesCount": 2720,
         "hasCustomTimelines": true,
         "isTranslator": true,
-        "mediaCount": 293571,
-        "statusesCount": 666883,
+        "mediaCount": 294853,
+        "statusesCount": 668399,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1148,6 +1813,193 @@
     },
     {
       "type": "tweet",
+      "id": "1970349264439058793",
+      "url": "https://x.com/rukigafm/status/1970349264439058793",
+      "twitterUrl": "https://twitter.com/rukigafm/status/1970349264439058793",
+      "text": "Super typhoon heads to Taiwan, Hong Kong, China after lashing Philippines.\n\nHong Kong is bracing for hurricane force winds from Super Typhoon Ragasa as southern China prepares for heavy flooding.\n\nA super typhoon that caused thousands of people to evacuate from northern Philippine villages is now making its way towards Hong Kong, the southern parts of mainland China, and Taiwan, where people are preparing for more extreme weather.\n\nIn Hong Kong, officials warned of a “serious threat” from Super Typhoon Ragasa, comparing the risk with some of the most destructive storms in the city’s recent history. #RUKIGAFMUpdates",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 4,
+      "quoteCount": 0,
+      "viewCount": 308,
+      "createdAt": "Tue Sep 23 04:47:26 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1970349264439058793",
+      "displayTextRange": [
+        0,
+        270
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "rukigafm",
+        "url": "https://x.com/rukigafm",
+        "twitterUrl": "https://twitter.com/rukigafm",
+        "id": "1269708848694206464",
+        "name": "Rukiga F.M",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1269709411515277314/-0gj_I5u_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1269708848694206464/1658241400",
+        "description": "",
+        "location": "Muhanga, Rukiga District",
+        "followers": 10870,
+        "following": 8,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Sun Jun 07 19:12:44 +0000 2020",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 973,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 29449,
+        "statusesCount": 30160,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1939933174143807554"
+        ],
+        "profile_bio": {
+          "description": "Rukiga F.M is one of the best radio station in Uganda for latest news, entertainment, music. Contact the Reception on 0393243287 for Inquiries",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "rukigafm.com",
+                  "expanded_url": "https://rukigafm.com/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/QAXGm3QRqw"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "display_url": "pic.x.com/Yc4PXVaNLc",
+            "expanded_url": "https://x.com/rukigafm/status/1970349264439058793/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1970349261368750080",
+            "indices": [
+              271,
+              294
+            ],
+            "media_key": "3_1970349261368750080",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtYFja/VnAACgACG1gWN3ZXoWkAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG1gWNr9WcAAKAAIbWBY3dlehaQAA",
+                "media_key": "3_1970349261368750080"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G1gWNr9WcAAH8bJ.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 431,
+                  "w": 770,
+                  "x": 0,
+                  "y": 73
+                },
+                {
+                  "h": 513,
+                  "w": 513,
+                  "x": 186,
+                  "y": 0
+                },
+                {
+                  "h": 513,
+                  "w": 450,
+                  "x": 217,
+                  "y": 0
+                },
+                {
+                  "h": 513,
+                  "w": 257,
+                  "x": 314,
+                  "y": 0
+                },
+                {
+                  "h": 513,
+                  "w": 770,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 513,
+              "width": 770
+            },
+            "sizes": {
+              "large": {
+                "h": 513,
+                "w": 770
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/Yc4PXVaNLc"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              606,
+              622
+            ],
+            "text": "RUKIGAFMUpdates"
+          }
+        ],
+        "symbols": [],
+        "timestamps": [],
+        "urls": [],
+        "user_mentions": []
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1970350527000322050",
       "url": "https://x.com/manilabulletin/status/1970350527000322050",
       "twitterUrl": "https://twitter.com/manilabulletin/status/1970350527000322050",
@@ -1157,7 +2009,7 @@
       "replyCount": 5,
       "likeCount": 24,
       "quoteCount": 14,
-      "viewCount": 111252,
+      "viewCount": 111260,
       "createdAt": "Tue Sep 23 04:52:27 +0000 2025",
       "lang": "en",
       "bookmarkCount": 4,
@@ -1184,7 +2036,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15375209/1770000605",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1197152,
+        "followers": 1197867,
         "following": 141,
         "status": "",
         "canDm": false,
@@ -1200,8 +2052,8 @@
         "favouritesCount": 2416,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 219265,
-        "statusesCount": 941834,
+        "mediaCount": 219475,
+        "statusesCount": 942945,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1357,6 +2209,687 @@
     },
     {
       "type": "tweet",
+      "id": "1970351468214657077",
+      "url": "https://x.com/ferozwala/status/1970351468214657077",
+      "twitterUrl": "https://twitter.com/ferozwala/status/1970351468214657077",
+      "text": "#HongKong shuts schools and cancels flights as Super #Typhoon_Ragasa approaches with a force officials warn will be among the most destructive in the city's recent history\n\n#Typhoon #NandoPH \nhttps://t.co/ib51y2M1ns \n📌The powerful storm posed a wide threat to lives and homes, prompting authorities in mainland China to order businesses and schools to shut down in at least 10 cities across the nation's south.\n\n📌Ragasa had already toppled trees, torn the roofs off buildings and killed at least one person in a landslide while lashing the northern Philippines, where thousands sought shelter in schools and evacuation centres.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 2,
+      "replyCount": 0,
+      "likeCount": 1,
+      "quoteCount": 1,
+      "viewCount": 760,
+      "createdAt": "Tue Sep 23 04:56:12 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1970351468214657077",
+      "displayTextRange": [
+        0,
+        276
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "ferozwala",
+        "url": "https://x.com/ferozwala",
+        "twitterUrl": "https://twitter.com/ferozwala",
+        "id": "52571677",
+        "name": "⚡️🌎 World News 🌐⚡️",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1706955801418727424/pS8EXXjS_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/52571677/1695602240",
+        "description": "",
+        "location": " Aotearoa ",
+        "followers": 15006,
+        "following": 1940,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Wed Jul 01 00:18:11 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 140429,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 234755,
+        "statusesCount": 403804,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2036693976179462488"
+        ],
+        "profile_bio": {
+          "description": "Breaking News - Geopolitics   -Covering news from around the 🌎 World \n📌Palestine 🇵🇸 Lebanon 🇱🇧",
+          "entities": {
+            "description": {}
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "additional_media_info": {
+              "monetizable": false
+            },
+            "display_url": "pic.x.com/pHTD2ro9Mt",
+            "expanded_url": "https://x.com/ferozwala/status/1970351468214657077/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "id_str": "1970350969667121152",
+            "indices": [
+              277,
+              300
+            ],
+            "media_key": "13_1970350969667121152",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARtYF8R92vAAAAA=",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAAECgABG1gXxH3a8AAAAA==",
+                "media_key": "13_1970350969667121152"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1970350969667121152/img/qoqxPj4iU2zqtPEF.jpg",
+            "original_info": {
+              "focus_rects": [],
+              "height": 1280,
+              "width": 720
+            },
+            "sizes": {
+              "large": {
+                "h": 1280,
+                "w": 720
+              }
+            },
+            "type": "video",
+            "url": "https://t.co/pHTD2ro9Mt",
+            "video_info": {
+              "aspect_ratio": [
+                9,
+                16
+              ],
+              "duration_millis": 57536,
+              "variants": [
+                {
+                  "content_type": "application/x-mpegURL",
+                  "url": "https://video.twimg.com/amplify_video/1970350969667121152/pl/IBjWPxvzovP0Yjhc.m3u8?tag=21"
+                },
+                {
+                  "bitrate": 632000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1970350969667121152/vid/avc1/320x568/W-6BG0-T9QXgxqsy.mp4?tag=21"
+                },
+                {
+                  "bitrate": 950000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1970350969667121152/vid/avc1/480x852/MB1c9Lkk9sDc-y7t.mp4?tag=21"
+                },
+                {
+                  "bitrate": 2176000,
+                  "content_type": "video/mp4",
+                  "url": "https://video.twimg.com/amplify_video/1970350969667121152/vid/avc1/720x1280/1fFxd6KdmVyUY6GN.mp4?tag=21"
+                }
+              ]
+            }
+          },
+          {
+            "display_url": "pic.x.com/pHTD2ro9Mt",
+            "expanded_url": "https://x.com/ferozwala/status/1970351468214657077/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1970351044128571392",
+            "indices": [
+              277,
+              300
+            ],
+            "media_key": "3_1970351044128571392",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtYF9XUGoAACgACG1gYOJGaoDUAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG1gX1dQagAAKAAIbWBg4kZqgNQAA",
+                "media_key": "3_1970351044128571392"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G1gX1dQagAADyd0.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 202,
+                  "w": 360,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 227,
+                  "w": 227,
+                  "x": 93,
+                  "y": 0
+                },
+                {
+                  "h": 227,
+                  "w": 199,
+                  "x": 107,
+                  "y": 0
+                },
+                {
+                  "h": 227,
+                  "w": 114,
+                  "x": 149,
+                  "y": 0
+                },
+                {
+                  "h": 227,
+                  "w": 360,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 227,
+              "width": 360
+            },
+            "sizes": {
+              "large": {
+                "h": 227,
+                "w": 360
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/pHTD2ro9Mt"
+          },
+          {
+            "display_url": "pic.x.com/pHTD2ro9Mt",
+            "expanded_url": "https://x.com/ferozwala/status/1970351468214657077/video/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1970351084196823040",
+            "indices": [
+              277,
+              300
+            ],
+            "media_key": "3_1970351084196823040",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtYF98oW4AACgACG1gYOJGaoDUAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG1gX3yhbgAAKAAIbWBg4kZqgNQAA",
+                "media_key": "3_1970351084196823040"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G1gX3yhbgAAig4R.png",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 202,
+                  "w": 360,
+                  "x": 0,
+                  "y": 25
+                },
+                {
+                  "h": 227,
+                  "w": 227,
+                  "x": 21,
+                  "y": 0
+                },
+                {
+                  "h": 227,
+                  "w": 199,
+                  "x": 35,
+                  "y": 0
+                },
+                {
+                  "h": 227,
+                  "w": 114,
+                  "x": 77,
+                  "y": 0
+                },
+                {
+                  "h": 227,
+                  "w": 360,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 227,
+              "width": 360
+            },
+            "sizes": {
+              "large": {
+                "h": 227,
+                "w": 360
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/pHTD2ro9Mt"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              0,
+              9
+            ],
+            "text": "HongKong"
+          },
+          {
+            "indices": [
+              53,
+              68
+            ],
+            "text": "Typhoon_Ragasa"
+          },
+          {
+            "indices": [
+              173,
+              181
+            ],
+            "text": "Typhoon"
+          },
+          {
+            "indices": [
+              182,
+              190
+            ],
+            "text": "NandoPH"
+          }
+        ],
+        "symbols": [],
+        "urls": [
+          {
+            "display_url": "x.com/ferozwala/stat…",
+            "expanded_url": "https://x.com/ferozwala/status/1970349817919610894",
+            "indices": [
+              192,
+              215
+            ],
+            "url": "https://t.co/ib51y2M1ns"
+          }
+        ],
+        "user_mentions": []
+      },
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "1970349817919610894",
+        "url": "https://x.com/ferozwala/status/1970349817919610894",
+        "twitterUrl": "https://twitter.com/ferozwala/status/1970349817919610894",
+        "text": "Supermarket shelves empty as #China braces for Super #Typhoon_Ragasa.  \n\nShoppers in #Shenzhen clear supermarket shelves of fresh fruit, vegetables and meat as Super Typhoon Ragasa approaches southern China\nhttps://t.co/KYMKeyd2B3 \n#NandoPH \nhttps://t.co/Vg5oJKHcRK",
+        "source": "Twitter for iPhone",
+        "retweetCount": 1,
+        "replyCount": 0,
+        "likeCount": 2,
+        "quoteCount": 1,
+        "viewCount": 782,
+        "createdAt": "Tue Sep 23 04:49:38 +0000 2025",
+        "lang": "en",
+        "bookmarkCount": 1,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "1970349817919610894",
+        "displayTextRange": [
+          0,
+          265
+        ],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {
+          "type": "user",
+          "userName": "ferozwala",
+          "url": "https://x.com/ferozwala",
+          "twitterUrl": "https://twitter.com/ferozwala",
+          "id": "52571677",
+          "name": "⚡️🌎 World News 🌐⚡️",
+          "isVerified": false,
+          "isBlueVerified": true,
+          "verifiedType": null,
+          "profilePicture": "https://pbs.twimg.com/profile_images/1706955801418727424/pS8EXXjS_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/52571677/1695602240",
+          "description": "",
+          "location": " Aotearoa ",
+          "followers": 15006,
+          "following": 1940,
+          "status": "",
+          "canDm": false,
+          "canMediaTag": true,
+          "createdAt": "Wed Jul 01 00:18:11 +0000 2009",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 140429,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 234755,
+          "statusesCount": 403804,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [
+            "2036693976179462488"
+          ],
+          "profile_bio": {
+            "description": "Breaking News - Geopolitics   -Covering news from around the 🌎 World \n📌Palestine 🇵🇸 Lebanon 🇱🇧",
+            "entities": {
+              "description": {}
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {
+          "media": [
+            {
+              "additional_media_info": {
+                "monetizable": false,
+                "source_user": {
+                  "user_results": {
+                    "rest_id": "380648579",
+                    "result": {
+                      "__typename": "User",
+                      "action_counts": {
+                        "favorites_count": 2766
+                      },
+                      "avatar": {
+                        "image_url": "https://pbs.twimg.com/profile_images/1665744339467640833/I0K_6tIf_normal.png"
+                      },
+                      "banner": {
+                        "image_url": "https://pbs.twimg.com/profile_banners/380648579/1782370412"
+                      },
+                      "core": {
+                        "created_at": "Tue Sep 27 00:35:10 +0000 2011",
+                        "name": "AFP News Agency",
+                        "screen_name": "AFP"
+                      },
+                      "dm_permissions": {
+                        "can_dm": true
+                      },
+                      "exclusive_tweet_following": false,
+                      "follow_request_sent": false,
+                      "identity_profile_labels_highlighted_label": {},
+                      "location": {
+                        "location": "Around The World"
+                      },
+                      "media_permissions": {
+                        "can_media_tag": true
+                      },
+                      "notifications_settings": {
+                        "notifications_enabled": false
+                      },
+                      "pinned_items": {},
+                      "privacy": {
+                        "protected": false,
+                        "suspended": false
+                      },
+                      "private_super_following": false,
+                      "profile_bio": {
+                        "description": "Top news and features from AFP's reporters around the world. \nOfficial account.",
+                        "entities": {
+                          "description": {},
+                          "url": {
+                            "urls": [
+                              {
+                                "display_url": "u.afp.com/socials",
+                                "expanded_url": "http://u.afp.com/socials",
+                                "indices": [
+                                  0,
+                                  23
+                                ],
+                                "url": "https://t.co/OkVtPTsK9x"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "profile_image_shape": "Circle",
+                      "profile_metadata": {
+                        "profile_interstitial_type": "",
+                        "profile_link_color": "0084B4"
+                      },
+                      "profile_translation": {
+                        "translator_type_enum": "None"
+                      },
+                      "properties": {
+                        "has_extended_profile": false,
+                        "has_no_screen_name": false
+                      },
+                      "relationship_counts": {
+                        "followers": 2428474,
+                        "following": 642
+                      },
+                      "relationship_perspectives": {
+                        "blocked_by": false,
+                        "blocking": false,
+                        "followed_by": false,
+                        "following": false,
+                        "live_following": false,
+                        "muting": false
+                      },
+                      "rest_id": "380648579",
+                      "smart_blocked_by": false,
+                      "smart_blocking": false,
+                      "super_follow_eligible": false,
+                      "super_followed_by": false,
+                      "super_following": false,
+                      "tweet_counts": {
+                        "media_tweets": 228382,
+                        "tweets": 412369
+                      },
+                      "verification": {
+                        "is_blue_verified": true,
+                        "verified": false
+                      },
+                      "website": {
+                        "url": "https://t.co/OkVtPTsK9x"
+                      }
+                    }
+                  }
+                }
+              },
+              "display_url": "pic.x.com/KYMKeyd2B3",
+              "expanded_url": "https://x.com/AFP/status/1970348067917574471/video/1",
+              "ext_master_playlist_only": [],
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "ext_playlists": [],
+              "id_str": "1970344750319636480",
+              "indices": [
+                207,
+                230
+              ],
+              "media_key": "13_1970344750319636480",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARtYEhxv25AAAAA=",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAAECgABG1gSHG/bkAAAAA==",
+                  "media_key": "13_1970344750319636480"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1970344750319636480/img/zcXtUs_O4MzLXG-9.jpg",
+              "original_info": {
+                "focus_rects": [],
+                "height": 360,
+                "width": 640
+              },
+              "sizes": {
+                "large": {
+                  "h": 360,
+                  "w": 640
+                }
+              },
+              "source_status_id_str": "1970348067917574471",
+              "source_user_id_str": "380648579",
+              "type": "video",
+              "url": "https://t.co/KYMKeyd2B3",
+              "video_info": {
+                "aspect_ratio": [
+                  16,
+                  9
+                ],
+                "duration_millis": 52080,
+                "variants": [
+                  {
+                    "content_type": "application/x-mpegURL",
+                    "url": "https://video.twimg.com/amplify_video/1970344750319636480/pl/C-wR4xGukxWrVoqh.m3u8?tag=21&v=cfc"
+                  },
+                  {
+                    "bitrate": 256000,
+                    "content_type": "video/mp4",
+                    "url": "https://video.twimg.com/amplify_video/1970344750319636480/vid/avc1/480x270/CFxVszRcnsYPXltB.mp4?tag=21"
+                  },
+                  {
+                    "bitrate": 832000,
+                    "content_type": "video/mp4",
+                    "url": "https://video.twimg.com/amplify_video/1970344750319636480/vid/avc1/640x360/LxkLRd80bIH9Bc-D.mp4?tag=21"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "card": null,
+        "place": {},
+        "entities": {
+          "hashtags": [
+            {
+              "indices": [
+                29,
+                35
+              ],
+              "text": "China"
+            },
+            {
+              "indices": [
+                53,
+                68
+              ],
+              "text": "Typhoon_Ragasa"
+            },
+            {
+              "indices": [
+                85,
+                94
+              ],
+              "text": "Shenzhen"
+            },
+            {
+              "indices": [
+                232,
+                240
+              ],
+              "text": "NandoPH"
+            }
+          ],
+          "urls": [
+            {
+              "display_url": "x.com/AFP/status/197…",
+              "expanded_url": "https://x.com/AFP/status/1970348067917574471/video/1",
+              "indices": [
+                207,
+                230
+              ],
+              "url": "https://t.co/KYMKeyd2B3"
+            },
+            {
+              "display_url": "x.com/ferozwala/stat…",
+              "expanded_url": "https://x.com/ferozwala/status/1970349349394862217",
+              "indices": [
+                242,
+                265
+              ],
+              "url": "https://t.co/Vg5oJKHcRK"
+            }
+          ]
+        },
+        "quoted_tweet": {
+          "type": "tweet",
+          "id": "1970349349394862217",
+          "url": "",
+          "twitterUrl": "",
+          "text": "",
+          "source": "Twitter for iPhone",
+          "retweetCount": 0,
+          "replyCount": 0,
+          "likeCount": 0,
+          "quoteCount": 0,
+          "viewCount": 0,
+          "createdAt": "",
+          "lang": "",
+          "bookmarkCount": 0,
+          "isReply": false,
+          "inReplyToId": null,
+          "conversationId": "",
+          "displayTextRange": [],
+          "inReplyToUserId": null,
+          "inReplyToUsername": null,
+          "author": {},
+          "extendedEntities": {},
+          "card": null,
+          "place": {},
+          "entities": {},
+          "quoted_tweet": null,
+          "retweeted_tweet": null,
+          "isLimitedReply": false,
+          "communityInfo": null,
+          "article": null
+        },
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
+        "article": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1970353564955587013",
       "url": "https://x.com/PhilstarNews/status/1970353564955587013",
       "twitterUrl": "https://twitter.com/PhilstarNews/status/1970353564955587013",
@@ -1393,7 +2926,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/55118669/1774942939",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1136565,
+        "followers": 1137260,
         "following": 158,
         "status": "",
         "canDm": false,
@@ -1409,8 +2942,8 @@
         "favouritesCount": 3518,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 78865,
-        "statusesCount": 411836,
+        "mediaCount": 79211,
+        "statusesCount": 412945,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1447,7 +2980,7 @@
             "value": {
               "image_value": {
                 "height": 419,
-                "url": "https://pbs.twimg.com/card_img/2095564506004865028/sjLm8b5e?format=jpg&name=800x419",
+                "url": "https://pbs.twimg.com/card_img/2099176554274471936/AiqDTSBO?format=jpg&name=800x419",
                 "width": 800
               }
             }
@@ -1457,7 +2990,7 @@
             "value": {
               "image_value": {
                 "height": 150,
-                "url": "https://pbs.twimg.com/card_img/2095564506004865028/sjLm8b5e?format=jpg&name=280x150",
+                "url": "https://pbs.twimg.com/card_img/2099176554274471936/AiqDTSBO?format=jpg&name=280x150",
                 "width": 240
               }
             }
@@ -1479,7 +3012,7 @@
             "value": {
               "image_value": {
                 "height": 320,
-                "url": "https://pbs.twimg.com/card_img/2095564506004865028/sjLm8b5e?format=jpg&name=800x320_1",
+                "url": "https://pbs.twimg.com/card_img/2099176554274471936/AiqDTSBO?format=jpg&name=800x320_1",
                 "width": 512
               }
             }
@@ -1489,7 +3022,7 @@
             "value": {
               "image_value": {
                 "height": 202,
-                "url": "https://pbs.twimg.com/card_img/2095564506004865028/sjLm8b5e?format=jpg&name=386x202",
+                "url": "https://pbs.twimg.com/card_img/2099176554274471936/AiqDTSBO?format=jpg&name=386x202",
                 "width": 386
               }
             }
@@ -1499,7 +3032,7 @@
             "value": {
               "image_value": {
                 "height": 500,
-                "url": "https://pbs.twimg.com/card_img/2095564506004865028/sjLm8b5e?format=jpg&name=orig",
+                "url": "https://pbs.twimg.com/card_img/2099176554274471936/AiqDTSBO?format=jpg&name=orig",
                 "width": 800
               }
             }
@@ -1519,7 +3052,7 @@
             "value": {
               "image_value": {
                 "height": 202,
-                "url": "https://pbs.twimg.com/card_img/2095564506004865028/sjLm8b5e?format=jpg&name=386x202",
+                "url": "https://pbs.twimg.com/card_img/2099176554274471936/AiqDTSBO?format=jpg&name=386x202",
                 "width": 386
               }
             }
@@ -1529,7 +3062,7 @@
             "value": {
               "image_value": {
                 "height": 419,
-                "url": "https://pbs.twimg.com/card_img/2095564506004865028/sjLm8b5e?format=jpg&name=800x419",
+                "url": "https://pbs.twimg.com/card_img/2099176554274471936/AiqDTSBO?format=jpg&name=800x419",
                 "width": 800
               }
             }
@@ -1539,7 +3072,7 @@
             "value": {
               "image_value": {
                 "height": 63,
-                "url": "https://pbs.twimg.com/card_img/2095564506004865028/sjLm8b5e?format=jpg&name=100x100",
+                "url": "https://pbs.twimg.com/card_img/2099176554274471936/AiqDTSBO?format=jpg&name=100x100",
                 "width": 100
               }
             }
@@ -1558,7 +3091,7 @@
             "value": {
               "image_value": {
                 "height": 500,
-                "url": "https://pbs.twimg.com/card_img/2095564506004865028/sjLm8b5e?format=png&name=2048x2048_2_exp",
+                "url": "https://pbs.twimg.com/card_img/2099176554274471936/AiqDTSBO?format=png&name=2048x2048_2_exp",
                 "width": 800
               }
             }
@@ -1568,7 +3101,7 @@
             "value": {
               "image_value": {
                 "height": 500,
-                "url": "https://pbs.twimg.com/card_img/2095564506004865028/sjLm8b5e?format=jpg&name=orig",
+                "url": "https://pbs.twimg.com/card_img/2099176554274471936/AiqDTSBO?format=jpg&name=orig",
                 "width": 800
               }
             }
@@ -1585,7 +3118,7 @@
             "value": {
               "image_value": {
                 "height": 314,
-                "url": "https://pbs.twimg.com/card_img/2095564506004865028/sjLm8b5e?format=jpg&name=600x314",
+                "url": "https://pbs.twimg.com/card_img/2099176554274471936/AiqDTSBO?format=jpg&name=600x314",
                 "width": 600
               }
             }
@@ -1699,7 +3232,7 @@
             "value": {
               "image_value": {
                 "height": 500,
-                "url": "https://pbs.twimg.com/card_img/2095564506004865028/sjLm8b5e?format=png&name=2048x2048_2_exp",
+                "url": "https://pbs.twimg.com/card_img/2099176554274471936/AiqDTSBO?format=png&name=2048x2048_2_exp",
                 "width": 800
               }
             }
@@ -1709,7 +3242,7 @@
             "value": {
               "image_value": {
                 "height": 314,
-                "url": "https://pbs.twimg.com/card_img/2095564506004865028/sjLm8b5e?format=jpg&name=600x314",
+                "url": "https://pbs.twimg.com/card_img/2099176554274471936/AiqDTSBO?format=jpg&name=600x314",
                 "width": 600
               }
             }
@@ -1768,7 +3301,7 @@
             "value": {
               "image_value": {
                 "height": 500,
-                "url": "https://pbs.twimg.com/card_img/2095564506004865028/sjLm8b5e?format=png&name=2048x2048_2_exp",
+                "url": "https://pbs.twimg.com/card_img/2099176554274471936/AiqDTSBO?format=png&name=2048x2048_2_exp",
                 "width": 800
               }
             }
@@ -1785,7 +3318,7 @@
             "value": {
               "image_value": {
                 "height": 500,
-                "url": "https://pbs.twimg.com/card_img/2095564506004865028/sjLm8b5e?format=jpg&name=orig",
+                "url": "https://pbs.twimg.com/card_img/2099176554274471936/AiqDTSBO?format=jpg&name=orig",
                 "width": 800
               }
             }
@@ -1880,7 +3413,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1136565,
+                "followers": 1137260,
                 "following": 158
               },
               "relationship_perspectives": {
@@ -1898,8 +3431,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 78865,
-                "tweets": 411836
+                "media_tweets": 79211,
+                "tweets": 412945
               },
               "verification": {
                 "is_blue_verified": true,
@@ -1985,7 +3518,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1136565,
+                "followers": 1137260,
                 "following": 158
               },
               "relationship_perspectives": {
@@ -2003,8 +3536,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 78865,
-                "tweets": 411836
+                "media_tweets": 79211,
+                "tweets": 412945
               },
               "verification": {
                 "is_blue_verified": true,
@@ -2031,6 +3564,100 @@
           }
         ]
       },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1970352780562116666",
+      "url": "https://x.com/goldenbsieun/status/1970352780562116666",
+      "twitterUrl": "https://twitter.com/goldenbsieun/status/1970352780562116666",
+      "text": "Only in the Philippines 😀 arresting 91 children during the protest against corruption. While the criminals are free and protected.",
+      "source": "Twitter for iPhone",
+      "retweetCount": 3,
+      "replyCount": 0,
+      "likeCount": 15,
+      "quoteCount": 0,
+      "viewCount": 624,
+      "createdAt": "Tue Sep 23 05:01:24 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1970352780562116666",
+      "displayTextRange": [
+        0,
+        130
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "goldenbsieun",
+        "url": "https://x.com/goldenbsieun",
+        "twitterUrl": "https://twitter.com/goldenbsieun",
+        "id": "1938209658499706880",
+        "name": "bey ❀ ꫂৎ 🍋",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2067042471478267904/6d3SHJcS_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1938209658499706880/1774834112",
+        "description": "",
+        "location": "23",
+        "followers": 2165,
+        "following": 987,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Thu Jun 26 12:16:52 +0000 2025",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 44752,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 3627,
+        "statusesCount": 31440,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1981011235949924754"
+        ],
+        "profile_bio": {
+          "description": "i write about shse & hwjh ⋆𐙚₊˚⊹♡",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "archiveofourown.org/users/onlytheb…",
+                  "expanded_url": "https://archiveofourown.org/users/onlythebravesieun",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/hqNwxBCRQL"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {},
       "quoted_tweet": null,
       "retweeted_tweet": null,
       "isLimitedReply": false,
@@ -2075,7 +3702,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437300,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -2091,8 +3718,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411302,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2177,7 +3804,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/15495018/1653196667",
         "description": "",
         "location": "Jerusalem | Washington D.C.",
-        "followers": 2841,
+        "followers": 2842,
         "following": 241,
         "status": "",
         "canDm": false,
@@ -2193,8 +3820,8 @@
         "favouritesCount": 163,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 28908,
-        "statusesCount": 47974,
+        "mediaCount": 28986,
+        "statusesCount": 48130,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2371,7 +3998,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
         "description": "",
         "location": "Philippines",
-        "followers": 189305,
+        "followers": 190129,
         "following": 481,
         "status": "",
         "canDm": false,
@@ -2384,16 +4011,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 20344,
+        "favouritesCount": 20357,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 44221,
-        "statusesCount": 196915,
+        "mediaCount": 45142,
+        "statusesCount": 198602,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2093633872936456280"
+          "2099480545550090734"
         ],
         "profile_bio": {
           "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",
@@ -2421,6 +4048,26 @@
       "card": {
         "binding_values": [
           {
+            "key": "photo_image_full_size_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image",
+            "value": {
+              "image_value": {
+                "height": 147,
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=280x150",
+                "width": 280
+              }
+            }
+          },
+          {
             "key": "description",
             "value": {
               "string_value": "LEGAZPI CITY — Clad in black shirts and seeking accountability, thousands of Bicolanos from all walks of life braved the scorching heat of the sun and the intermittent rain in a protest rally on..."
@@ -2433,10 +4080,149 @@
             }
           },
           {
+            "key": "thumbnail_image_large",
+            "value": {
+              "image_value": {
+                "height": 315,
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=600x600",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_original",
+            "value": {
+              "image_value": {
+                "height": 630,
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=orig",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_small",
+            "value": {
+              "image_value": {
+                "height": 202,
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=386x202",
+                "width": 386
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_large",
+            "value": {
+              "image_value": {
+                "height": 419,
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=800x419",
+                "width": 800
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_small",
+            "value": {
+              "image_value": {
+                "height": 76,
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=144x144",
+                "width": 144
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 630,
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_original",
+            "value": {
+              "image_value": {
+                "height": 630,
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=orig",
+                "width": 1200
+              }
+            }
+          },
+          {
             "key": "vanity_url",
             "value": {
               "scribe_key": "vanity_url",
               "string_value": "manilatimes.net"
+            }
+          },
+          {
+            "key": "photo_image_full_size",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "thumbnail_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 90.04,
+                    "rgb": {
+                      "blue": 238,
+                      "green": 237,
+                      "red": 233
+                    }
+                  },
+                  {
+                    "percentage": 3.09,
+                    "rgb": {
+                      "blue": 83,
+                      "green": 82,
+                      "red": 83
+                    }
+                  },
+                  {
+                    "percentage": 2.99,
+                    "rgb": {
+                      "blue": 62,
+                      "green": 71,
+                      "red": 199
+                    }
+                  },
+                  {
+                    "percentage": 1.49,
+                    "rgb": {
+                      "blue": 190,
+                      "green": 140,
+                      "red": 89
+                    }
+                  },
+                  {
+                    "percentage": 1.49,
+                    "rgb": {
+                      "blue": 163,
+                      "green": 83,
+                      "red": 2
+                    }
+                  }
+                ]
+              }
             }
           },
           {
@@ -2446,10 +4232,148 @@
             }
           },
           {
+            "key": "summary_photo_image_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 90.04,
+                    "rgb": {
+                      "blue": 238,
+                      "green": 237,
+                      "red": 233
+                    }
+                  },
+                  {
+                    "percentage": 3.09,
+                    "rgb": {
+                      "blue": 83,
+                      "green": 82,
+                      "red": 83
+                    }
+                  },
+                  {
+                    "percentage": 2.99,
+                    "rgb": {
+                      "blue": 62,
+                      "green": 71,
+                      "red": 199
+                    }
+                  },
+                  {
+                    "percentage": 1.49,
+                    "rgb": {
+                      "blue": 190,
+                      "green": 140,
+                      "red": 89
+                    }
+                  },
+                  {
+                    "percentage": 1.49,
+                    "rgb": {
+                      "blue": 163,
+                      "green": 83,
+                      "red": 2
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image_x_large",
+            "value": {
+              "image_value": {
+                "height": 630,
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
+            "key": "summary_photo_image",
+            "value": {
+              "image_value": {
+                "height": 314,
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=600x314",
+                "width": 600
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_color",
+            "value": {
+              "image_color_value": {
+                "palette": [
+                  {
+                    "percentage": 90.04,
+                    "rgb": {
+                      "blue": 238,
+                      "green": 237,
+                      "red": 233
+                    }
+                  },
+                  {
+                    "percentage": 3.09,
+                    "rgb": {
+                      "blue": 83,
+                      "green": 82,
+                      "red": 83
+                    }
+                  },
+                  {
+                    "percentage": 2.99,
+                    "rgb": {
+                      "blue": 62,
+                      "green": 71,
+                      "red": 199
+                    }
+                  },
+                  {
+                    "percentage": 1.49,
+                    "rgb": {
+                      "blue": 190,
+                      "green": 140,
+                      "red": 89
+                    }
+                  },
+                  {
+                    "percentage": 1.49,
+                    "rgb": {
+                      "blue": 163,
+                      "green": 83,
+                      "red": 2
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_x_large",
+            "value": {
+              "image_value": {
+                "height": 630,
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=png&name=2048x2048_2_exp",
+                "width": 1200
+              }
+            }
+          },
+          {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
               "string_value": "https://t.co/kIlCkiZWqq"
+            }
+          },
+          {
+            "key": "summary_photo_image_original",
+            "value": {
+              "image_value": {
+                "height": 630,
+                "url": "https://pbs.twimg.com/card_img/2094921389081825280/kT7UKCWz?format=jpg&name=orig",
+                "width": 1200
+              }
             }
           }
         ],
@@ -2526,7 +4450,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437300,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -2542,8 +4466,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411302,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2628,8 +4552,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/1167268481529593857/1742772437",
         "description": "",
         "location": "",
-        "followers": 2837,
-        "following": 2339,
+        "followers": 2843,
+        "following": 2340,
         "status": "",
         "canDm": false,
         "canMediaTag": false,
@@ -2641,11 +4565,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 192972,
+        "favouritesCount": 194157,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 6878,
-        "statusesCount": 43455,
+        "mediaCount": 6888,
+        "statusesCount": 43484,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -2761,7 +4685,7 @@
       "replyCount": 0,
       "likeCount": 1,
       "quoteCount": 0,
-      "viewCount": 429,
+      "viewCount": 431,
       "createdAt": "Tue Sep 23 05:43:29 +0000 2025",
       "lang": "en",
       "bookmarkCount": 0,
@@ -2788,8 +4712,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/2202421710/1759482424",
         "description": "",
         "location": "",
-        "followers": 186995,
-        "following": 87,
+        "followers": 187174,
+        "following": 89,
         "status": "",
         "canDm": true,
         "canMediaTag": false,
@@ -2801,16 +4725,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3015,
+        "favouritesCount": 3020,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 31261,
-        "statusesCount": 146776,
+        "mediaCount": 31381,
+        "statusesCount": 146910,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2094079280439243146"
+          "2099385380600533278"
         ],
         "profile_bio": {
           "description": "LASTMA is responsible for managing traffic in Lagos State. \nIG: @ekolastma_ | FB: https://t.co/yzaGG1F9TK | YouTube: https://t.co/GBJZ6NWejV",
@@ -3008,7 +4932,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437298,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -3024,8 +4948,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411302,
+        "mediaCount": 17208,
+        "statusesCount": 411965,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -3083,7 +5007,7 @@
       "replyCount": 3,
       "likeCount": 24,
       "quoteCount": 0,
-      "viewCount": 3813,
+      "viewCount": 3814,
       "createdAt": "Tue Sep 23 05:53:30 +0000 2025",
       "lang": "en",
       "bookmarkCount": 1,
@@ -3110,7 +5034,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/399923595/1753094677",
         "description": "",
         "location": "Hyderabad",
-        "followers": 293231,
+        "followers": 293326,
         "following": 57,
         "status": "",
         "canDm": true,
@@ -3123,11 +5047,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 15228,
+        "favouritesCount": 15248,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 14486,
-        "statusesCount": 87985,
+        "mediaCount": 14557,
+        "statusesCount": 88131,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -3357,6 +5281,192 @@
               238
             ],
             "text": "DriveSafe"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1970365112470184014",
+      "url": "https://x.com/news24tvchannel/status/1970365112470184014",
+      "twitterUrl": "https://twitter.com/news24tvchannel/status/1970365112470184014",
+      "text": "फिलीपींस में भ्रष्टाचार के खिलाफ फूटा लोगों का गुस्सा, 50 हजार लोग सड़क पर उतरे \n\n◆ प्रदर्शनकारियों ने जगह-जगह गाड़ियों के शीशे तोड़े, फायर बम फेंके\n\n◆ पुलिस ने अब तक 200 लोग गिरफ्तार किए और 70 पुलिसकर्मी घायल हुए \n\n#Philippines | Philippines Protest https://t.co/kLn0leSJwI",
+      "source": "Twitter for iPhone",
+      "retweetCount": 4,
+      "replyCount": 3,
+      "likeCount": 22,
+      "quoteCount": 1,
+      "viewCount": 2263,
+      "createdAt": "Tue Sep 23 05:50:25 +0000 2025",
+      "lang": "hi",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1970365112470184014",
+      "displayTextRange": [
+        0,
+        250
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "news24tvchannel",
+        "url": "https://x.com/news24tvchannel",
+        "twitterUrl": "https://twitter.com/news24tvchannel",
+        "id": "34206701",
+        "name": "News24",
+        "isVerified": false,
+        "isBlueVerified": true,
+        "verifiedType": "Business",
+        "profilePicture": "https://pbs.twimg.com/profile_images/960865956829392898/E8b911Ol_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/34206701/1786784358",
+        "description": "",
+        "location": "Noida",
+        "followers": 2032968,
+        "following": 212,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": false,
+        "createdAt": "Wed Apr 22 06:29:23 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 551,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 521024,
+        "statusesCount": 691414,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099852521124798738"
+        ],
+        "profile_bio": {
+          "description": "News24 is India’s leading hindi news channel. Follow us for all the breaking news and latest alerts.\n\nOwned and Operated by B.A.G Convergence Limited",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "hindi.news24online.com",
+                  "expanded_url": "https://hindi.news24online.com",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/o7c51Eb63G"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/kLn0leSJwI",
+            "expanded_url": "https://x.com/news24tvchannel/status/1970365112470184014/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1970364524461998080",
+            "indices": [
+              251,
+              274
+            ],
+            "media_key": "3_1970364524461998080",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARtYJBh2lsAACgACG1gkoV6boE4AAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG1gkGHaWwAAKAAIbWCShXpugTgAA",
+                "media_key": "3_1970364524461998080"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G1gkGHaWwAAKLDb.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 605,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 745
+                },
+                {
+                  "h": 1080,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 270
+                },
+                {
+                  "h": 1231,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 119
+                },
+                {
+                  "h": 1350,
+                  "w": 675,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 1350,
+                  "w": 1080,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 1350,
+              "width": 1080
+            },
+            "sizes": {
+              "large": {
+                "h": 1350,
+                "w": 1080
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/kLn0leSJwI"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              216,
+              228
+            ],
+            "text": "Philippines"
           }
         ]
       },

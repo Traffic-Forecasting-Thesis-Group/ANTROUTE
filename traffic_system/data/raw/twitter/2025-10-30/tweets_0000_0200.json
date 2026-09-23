@@ -5,7 +5,7 @@
     "window_start": "2025-10-30T00:00:00+08:00",
     "window_end": "2025-10-30T02:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 2,
+    "tweet_count": 4,
     "slices": [
       {
         "start": "2025-10-30T00:00:00+08:00",
@@ -60,8 +60,8 @@
         "start": "2025-10-30T00:35:00+08:00",
         "end": "2025-10-30T00:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-10-30T00:40:00+08:00",
@@ -81,8 +81,8 @@
         "start": "2025-10-30T00:50:00+08:00",
         "end": "2025-10-30T00:55:00+08:00",
         "status_code": 200,
-        "returned": 1,
-        "accepted": 1
+        "returned": 2,
+        "accepted": 2
       },
       {
         "start": "2025-10-30T00:55:00+08:00",
@@ -180,6 +180,128 @@
   "data": [
     {
       "type": "tweet",
+      "id": "1983573989747519909",
+      "url": "https://x.com/DeFi_Perryy/status/1983573989747519909",
+      "twitterUrl": "https://twitter.com/DeFi_Perryy/status/1983573989747519909",
+      "text": "https://t.co/RM4Q91PfrF",
+      "source": "Twitter for iPhone",
+      "retweetCount": 5,
+      "replyCount": 6,
+      "likeCount": 34,
+      "quoteCount": 4,
+      "viewCount": 2652,
+      "createdAt": "Wed Oct 29 16:37:46 +0000 2025",
+      "lang": "zxx",
+      "bookmarkCount": 11,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1983573989747519909",
+      "displayTextRange": [
+        0,
+        23
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "DeFi_Perryy",
+        "url": "https://x.com/DeFi_Perryy",
+        "twitterUrl": "https://twitter.com/DeFi_Perryy",
+        "id": "1853168271895465984",
+        "name": "Perry The Platypus",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/1861312851522265089/PC4U5CNd_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1853168271895465984/1732606381",
+        "description": "",
+        "location": "Blockchain",
+        "followers": 2028,
+        "following": 1672,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Sun Nov 03 20:12:15 +0000 2024",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 6744,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 832,
+        "statusesCount": 4908,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "1955883194504433836"
+        ],
+        "profile_bio": {
+          "description": "DeFi Insights - Discussion Space - cooked by @pendle_fi",
+          "entities": {
+            "description": {
+              "user_mentions": [
+                {
+                  "id_str": "",
+                  "indices": [
+                    45,
+                    55
+                  ],
+                  "name": "",
+                  "screen_name": "pendle_fi"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "defiperryy.substack.com",
+                  "expanded_url": "https://defiperryy.substack.com/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/thIB3FGlCG"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": null,
+      "place": {},
+      "entities": {
+        "urls": [
+          {
+            "display_url": "x.com/i/article/1983…",
+            "expanded_url": "http://x.com/i/article/1983569692355883008",
+            "indices": [
+              0,
+              23
+            ],
+            "url": "https://t.co/RM4Q91PfrF"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": {
+        "title": "How stablecoins change our life?",
+        "preview_text": "The story of stablecoins is the story of crypto’s maturity. This article isn’t a prediction; it’s a map. It explains how stablecoins quietly became the foundation of digital money, the pipes",
+        "cover_media_img_url": "https://pbs.twimg.com/media/G4cOQZ8awAA7niA.jpg"
+      }
+    },
+    {
+      "type": "tweet",
       "id": "1983578259150532815",
       "url": "https://x.com/DubaiPoliceHQ/status/1983578259150532815",
       "twitterUrl": "https://twitter.com/DubaiPoliceHQ/status/1983578259150532815",
@@ -216,8 +338,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/193194851/1770901919",
         "description": "",
         "location": "Dubai UAE",
-        "followers": 1999683,
-        "following": 198,
+        "followers": 1999690,
+        "following": 197,
         "status": "",
         "canDm": false,
         "canMediaTag": true,
@@ -229,11 +351,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3278,
+        "favouritesCount": 3275,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 53279,
-        "statusesCount": 162631,
+        "mediaCount": 53391,
+        "statusesCount": 162808,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -365,6 +487,365 @@
     },
     {
       "type": "tweet",
+      "id": "1983577088591589442",
+      "url": "https://x.com/lofi_lover0930/status/1983577088591589442",
+      "twitterUrl": "https://twitter.com/lofi_lover0930/status/1983577088591589442",
+      "text": "HOLY THIS THAT'S THE PHILIPPINES?!\n\nTHIS NBA STREET-ESQUE GAME LOOKS FIRE? https://t.co/3rt0h6oYQd",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 1,
+      "likeCount": 2,
+      "quoteCount": 0,
+      "viewCount": 351,
+      "createdAt": "Wed Oct 29 16:50:05 +0000 2025",
+      "lang": "en",
+      "bookmarkCount": 1,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1983577088591589442",
+      "displayTextRange": [
+        0,
+        74
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "lofi_lover0930",
+        "url": "https://x.com/lofi_lover0930",
+        "twitterUrl": "https://twitter.com/lofi_lover0930",
+        "id": "1554369498412896256",
+        "name": "GamesLover with a Preference",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2099900936756027392/EW_pV0n2_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/1554369498412896256/1778139725",
+        "description": "",
+        "location": "",
+        "followers": 7070,
+        "following": 7797,
+        "status": "",
+        "canDm": false,
+        "canMediaTag": true,
+        "createdAt": "Tue Aug 02 07:32:46 +0000 2022",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 142732,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 4883,
+        "statusesCount": 82501,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [
+          "2099915999579685250"
+        ],
+        "profile_bio": {
+          "description": "Video Games that I prefer",
+          "entities": {
+            "description": {},
+            "url": {
+              "urls": [
+                {
+                  "display_url": "tiktok.com/@gamesloverwit…",
+                  "expanded_url": "https://www.tiktok.com/@gamesloverwithpreference",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/6QsMQgTsIw"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {
+        "media": [
+          {
+            "allow_download_status": {
+              "allow_download": true
+            },
+            "display_url": "pic.x.com/3rt0h6oYQd",
+            "expanded_url": "https://x.com/lofi_lover0930/status/1983577088591589442/photo/1",
+            "ext_master_playlist_only": [],
+            "ext_media_availability": {
+              "status": "Available"
+            },
+            "ext_playlists": [],
+            "features": {
+              "large": {
+                "faces": []
+              },
+              "orig": {
+                "faces": []
+              }
+            },
+            "id_str": "1983576941312843776",
+            "indices": [
+              75,
+              98
+            ],
+            "media_key": "3_1983576941312843776",
+            "media_results": {
+              "id": "QXBpTWVkaWFSZXN1bHRzOgwAAQoAARuHFLf7m6AACgACG4cU2kYa8EIAAA==",
+              "result": {
+                "__typename": "ApiMedia",
+                "id": "QXBpTWVkaWE6DAABCgABG4cUt/uboAAKAAIbhxTaRhrwQgAA",
+                "media_key": "3_1983576941312843776"
+              }
+            },
+            "media_url_https": "https://pbs.twimg.com/media/G4cUt_uboAAQ2-U.jpg",
+            "original_info": {
+              "focus_rects": [
+                {
+                  "h": 2294,
+                  "w": 4096,
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "h": 2521,
+                  "w": 2521,
+                  "x": 275,
+                  "y": 0
+                },
+                {
+                  "h": 2521,
+                  "w": 2211,
+                  "x": 430,
+                  "y": 0
+                },
+                {
+                  "h": 2521,
+                  "w": 1261,
+                  "x": 905,
+                  "y": 0
+                },
+                {
+                  "h": 2521,
+                  "w": 4096,
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "height": 2521,
+              "width": 4096
+            },
+            "sizes": {
+              "large": {
+                "h": 1261,
+                "w": 2048
+              }
+            },
+            "type": "photo",
+            "url": "https://t.co/3rt0h6oYQd"
+          }
+        ]
+      },
+      "card": null,
+      "place": {},
+      "entities": {},
+      "quoted_tweet": {
+        "type": "tweet",
+        "id": "1983549616965800255",
+        "url": "https://x.com/PlayStation/status/1983549616965800255",
+        "twitterUrl": "https://twitter.com/PlayStation/status/1983549616965800255",
+        "text": "NBA The Run combines streetball with classic arcade basketball action.\n\nFirst details: https://t.co/PYHi3lv1qS https://t.co/hNdkEi7uBl",
+        "source": "Twitter for iPhone",
+        "retweetCount": 356,
+        "replyCount": 217,
+        "likeCount": 2939,
+        "quoteCount": 292,
+        "viewCount": 587226,
+        "createdAt": "Wed Oct 29 15:00:55 +0000 2025",
+        "lang": "en",
+        "bookmarkCount": 359,
+        "isReply": false,
+        "inReplyToId": null,
+        "conversationId": "1983549616965800255",
+        "displayTextRange": [
+          0,
+          110
+        ],
+        "inReplyToUserId": null,
+        "inReplyToUsername": null,
+        "author": {
+          "type": "user",
+          "userName": "PlayStation",
+          "url": "https://x.com/PlayStation",
+          "twitterUrl": "https://twitter.com/PlayStation",
+          "id": "10671602",
+          "name": "PlayStation",
+          "isVerified": false,
+          "isBlueVerified": true,
+          "verifiedType": "Business",
+          "profilePicture": "https://pbs.twimg.com/profile_images/1833447364138299392/AXIZsQe4_normal.jpg",
+          "coverPicture": "https://pbs.twimg.com/profile_banners/10671602/1789456504",
+          "description": "",
+          "location": "California",
+          "followers": 44606063,
+          "following": 740,
+          "status": "",
+          "canDm": false,
+          "canMediaTag": false,
+          "createdAt": "Tue Nov 27 22:37:20 +0000 2007",
+          "entities": {
+            "description": {
+              "urls": []
+            },
+            "url": {}
+          },
+          "fastFollowersCount": 0,
+          "favouritesCount": 1492,
+          "hasCustomTimelines": true,
+          "isTranslator": false,
+          "mediaCount": 29027,
+          "statusesCount": 49579,
+          "withheldInCountries": [],
+          "affiliatesHighlightedLabel": {},
+          "possiblySensitive": false,
+          "pinnedTweetIds": [
+            "2097339300643770862"
+          ],
+          "profile_bio": {
+            "description": "Official Sony Interactive Entertainment account. Updates on PS5, PlayStation VR2, PlayStation Plus, PS4 and more.",
+            "entities": {
+              "description": {},
+              "url": {
+                "urls": [
+                  {
+                    "display_url": "playstation.com",
+                    "expanded_url": "https://www.playstation.com",
+                    "indices": [
+                      0,
+                      23
+                    ],
+                    "url": "https://t.co/OrydDMkek8"
+                  }
+                ]
+              }
+            }
+          },
+          "isAutomated": false,
+          "automatedBy": null
+        },
+        "extendedEntities": {
+          "media": [
+            {
+              "additional_media_info": {
+                "description": "",
+                "monetizable": false,
+                "title": ""
+              },
+              "display_url": "pic.x.com/hNdkEi7uBl",
+              "expanded_url": "https://x.com/PlayStation/status/1983549616965800255/video/1",
+              "ext_master_playlist_only": [],
+              "ext_media_availability": {
+                "status": "Available"
+              },
+              "ext_playlists": [],
+              "id_str": "1983548074736689153",
+              "indices": [
+                111,
+                134
+              ],
+              "media_key": "13_1983548074736689153",
+              "media_results": {
+                "id": "QXBpTWVkaWFSZXN1bHRzOgwABAoAARuG+nb1lyABAAA=",
+                "result": {
+                  "__typename": "ApiMedia",
+                  "id": "QXBpTWVkaWE6DAAECgABG4b6dvWXIAEAAA==",
+                  "media_key": "13_1983548074736689153"
+                }
+              },
+              "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1983548074736689153/img/crP8H6jKOPaSViDC.jpg",
+              "original_info": {
+                "focus_rects": [],
+                "height": 1080,
+                "width": 1920
+              },
+              "sizes": {
+                "large": {
+                  "h": 1080,
+                  "w": 1920
+                }
+              },
+              "type": "video",
+              "url": "https://t.co/hNdkEi7uBl",
+              "video_info": {
+                "aspect_ratio": [
+                  16,
+                  9
+                ],
+                "duration_millis": 9466,
+                "variants": [
+                  {
+                    "content_type": "application/x-mpegURL",
+                    "url": "https://video.twimg.com/amplify_video/1983548074736689153/pl/TTruwq8v29X6H4mw.m3u8?tag=21"
+                  },
+                  {
+                    "bitrate": 256000,
+                    "content_type": "video/mp4",
+                    "url": "https://video.twimg.com/amplify_video/1983548074736689153/vid/avc1/480x270/4syqGRY5c-ApImUH.mp4?tag=21"
+                  },
+                  {
+                    "bitrate": 832000,
+                    "content_type": "video/mp4",
+                    "url": "https://video.twimg.com/amplify_video/1983548074736689153/vid/avc1/640x360/u0qjgMDDCxnzDrEm.mp4?tag=21"
+                  },
+                  {
+                    "bitrate": 2176000,
+                    "content_type": "video/mp4",
+                    "url": "https://video.twimg.com/amplify_video/1983548074736689153/vid/avc1/1280x720/0B0d3nhwfhQyXy0M.mp4?tag=21"
+                  },
+                  {
+                    "bitrate": 10368000,
+                    "content_type": "video/mp4",
+                    "url": "https://video.twimg.com/amplify_video/1983548074736689153/vid/avc1/1920x1080/ueBVQrQfn1gCEg7z.mp4?tag=21"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "card": null,
+        "place": {},
+        "entities": {
+          "urls": [
+            {
+              "display_url": "play.st/430lljh",
+              "expanded_url": "http://play.st/430lljh",
+              "indices": [
+                87,
+                110
+              ],
+              "url": "https://t.co/PYHi3lv1qS"
+            }
+          ]
+        },
+        "quoted_tweet": null,
+        "retweeted_tweet": null,
+        "isLimitedReply": false,
+        "communityInfo": null,
+        "article": null
+      },
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
       "id": "1983585456609468611",
       "url": "https://x.com/TheManilaTimes/status/1983585456609468611",
       "twitterUrl": "https://twitter.com/TheManilaTimes/status/1983585456609468611",
@@ -401,7 +882,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/63411616/1570705359",
         "description": "",
         "location": "Philippines",
-        "followers": 189329,
+        "followers": 190144,
         "following": 481,
         "status": "",
         "canDm": false,
@@ -414,16 +895,16 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 20344,
+        "favouritesCount": 20357,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 44236,
-        "statusesCount": 196961,
+        "mediaCount": 45167,
+        "statusesCount": 198633,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
         "pinnedTweetIds": [
-          "2093633872936456280"
+          "2099480545550090734"
         ],
         "profile_bio": {
           "description": "The Manila Times is one of the leading national daily broadsheets in the Philippines. It is one of the longest running having been founded in 1898.",

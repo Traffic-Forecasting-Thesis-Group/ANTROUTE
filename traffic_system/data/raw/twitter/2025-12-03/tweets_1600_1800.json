@@ -5,7 +5,7 @@
     "window_start": "2025-12-03T16:00:00+08:00",
     "window_end": "2025-12-03T18:00:00+08:00",
     "slice_minutes": 5,
-    "tweet_count": 10,
+    "tweet_count": 11,
     "slices": [
       {
         "start": "2025-12-03T16:00:00+08:00",
@@ -144,8 +144,8 @@
         "start": "2025-12-03T17:35:00+08:00",
         "end": "2025-12-03T17:40:00+08:00",
         "status_code": 200,
-        "returned": 0,
-        "accepted": 0
+        "returned": 1,
+        "accepted": 1
       },
       {
         "start": "2025-12-03T17:40:00+08:00",
@@ -216,7 +216,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437266,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -232,8 +232,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411404,
+        "mediaCount": 17208,
+        "statusesCount": 411971,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -318,7 +318,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/38492736/1742461465",
         "description": "",
         "location": "Cebu, Philippines",
-        "followers": 287262,
+        "followers": 287240,
         "following": 363,
         "status": "",
         "canDm": false,
@@ -368,22 +368,19 @@
           {
             "key": "description",
             "value": {
-              "string_value": "ALL Filipinos affected by the deadly fire in the Tai Po district in Hong Kong are now accounted for, the Philippine Consulate General in Hong Kong said.In a sta",
-              "type": "STRING"
+              "string_value": "ALL Filipinos affected by the deadly fire in the Tai Po district in Hong Kong are now accounted for, the Philippine Consulate General in Hong Kong said.In a sta"
             }
           },
           {
             "key": "domain",
             "value": {
-              "string_value": "www.sunstar.com.ph",
-              "type": "STRING"
+              "string_value": "www.sunstar.com.ph"
             }
           },
           {
             "key": "site",
             "value": {
               "scribe_key": "publisher_id",
-              "type": "USER",
               "user_value": {
                 "id_str": "38492736",
                 "path": []
@@ -393,38 +390,33 @@
           {
             "key": "photo_image_full_size_alt_text",
             "value": {
-              "string_value": "(Xinhua)",
-              "type": "STRING"
+              "string_value": "(Xinhua)"
             }
           },
           {
             "key": "vanity_url",
             "value": {
               "scribe_key": "vanity_url",
-              "string_value": "sunstar.com.ph",
-              "type": "STRING"
+              "string_value": "sunstar.com.ph"
             }
           },
           {
             "key": "summary_photo_image_alt_text",
             "value": {
-              "string_value": "(Xinhua)",
-              "type": "STRING"
+              "string_value": "(Xinhua)"
             }
           },
           {
             "key": "title",
             "value": {
-              "string_value": "Filipinos in massive Hong Kong fire all accounted for",
-              "type": "STRING"
+              "string_value": "Filipinos in massive Hong Kong fire all accounted for"
             }
           },
           {
             "key": "card_url",
             "value": {
               "scribe_key": "card_url",
-              "string_value": "https://t.co/qzieKJ7S7B",
-              "type": "STRING"
+              "string_value": "https://t.co/qzieKJ7S7B"
             }
           }
         ],
@@ -434,8 +426,8 @@
               "name": "production"
             },
             "device": {
-              "name": "Swift",
-              "version": "12"
+              "name": "iPhone",
+              "version": "13"
             }
           }
         },
@@ -443,12 +435,12 @@
         "url": "https://t.co/qzieKJ7S7B",
         "user_refs_results": [
           {
+            "rest_id": "38492736",
             "result": {
               "__typename": "User",
               "action_counts": {
                 "favorites_count": 1023
               },
-              "affiliates_highlighted_label": {},
               "avatar": {
                 "image_url": "https://pbs.twimg.com/profile_images/1134658466054729728/cOwLWCKB_normal.png"
               },
@@ -463,13 +455,9 @@
               "dm_permissions": {
                 "can_dm": false
               },
+              "exclusive_tweet_following": false,
               "follow_request_sent": false,
-              "grok_translated_bio_with_availability": {
-                "is_available": false
-              },
-              "has_graduated_access": true,
-              "id": "VXNlcjozODQ5MjczNg==",
-              "is_blue_verified": false,
+              "identity_profile_labels_highlighted_label": {},
               "location": {
                 "location": "Cebu, Philippines"
               },
@@ -479,12 +467,12 @@
               "notifications_settings": {
                 "notifications_enabled": false
               },
-              "parody_commentary_fan_label": "None",
               "pinned_items": {},
-              "possibly_sensitive": false,
               "privacy": {
-                "protected": false
+                "protected": false,
+                "suspended": false
               },
+              "private_super_following": false,
               "profile_bio": {
                 "description": "All you need to know. The number one newspaper in Cebu.",
                 "entities": {
@@ -504,16 +492,20 @@
                   }
                 }
               },
-              "profile_description_language": "en",
               "profile_image_shape": "Circle",
               "profile_metadata": {
-                "profile_interstitial_type": ""
+                "profile_interstitial_type": "",
+                "profile_link_color": "FECE00"
               },
               "profile_translation": {
-                "translator_type": "none"
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 287262,
+                "followers": 287240,
                 "following": 363
               },
               "relationship_perspectives": {
@@ -525,6 +517,8 @@
                 "muting": false
               },
               "rest_id": "38492736",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
               "super_follow_eligible": false,
               "super_followed_by": false,
               "super_following": false,
@@ -533,6 +527,7 @@
                 "tweets": 121570
               },
               "verification": {
+                "is_blue_verified": false,
                 "verified": false
               },
               "website": {
@@ -558,6 +553,8 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
       "article": null
     },
     {
@@ -598,7 +595,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437266,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -614,8 +611,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411404,
+        "mediaCount": 17208,
+        "statusesCount": 411971,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -700,7 +697,7 @@
         "coverPicture": "",
         "description": "",
         "location": "",
-        "followers": 800,
+        "followers": 807,
         "following": 14,
         "status": "",
         "canDm": false,
@@ -716,8 +713,8 @@
         "favouritesCount": 3,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 5638,
-        "statusesCount": 5651,
+        "mediaCount": 5805,
+        "statusesCount": 5818,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -941,7 +938,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437266,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -957,8 +954,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411404,
+        "mediaCount": 17208,
+        "statusesCount": 411971,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1043,7 +1040,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967089,
+        "followers": 3966702,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -1059,8 +1056,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61681,
-        "statusesCount": 888258,
+        "mediaCount": 61731,
+        "statusesCount": 888695,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1145,7 +1142,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/357433536/1474530576",
         "description": "",
         "location": "City of Makati",
-        "followers": 1437266,
+        "followers": 1437182,
         "following": 2,
         "status": "",
         "canDm": true,
@@ -1161,8 +1158,8 @@
         "favouritesCount": 1218,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 17207,
-        "statusesCount": 411404,
+        "mediaCount": 17208,
+        "statusesCount": 411971,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1205,8 +1202,6 @@
       },
       "quoted_tweet": null,
       "retweeted_tweet": null,
-      "isLimitedReply": false,
-      "communityInfo": null,
       "article": null
     },
     {
@@ -1247,7 +1242,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/55118669/1774942939",
         "description": "",
         "location": "Manila, Philippines",
-        "followers": 1136689,
+        "followers": 1137278,
         "following": 158,
         "status": "",
         "canDm": false,
@@ -1263,8 +1258,8 @@
         "favouritesCount": 3518,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 78911,
-        "statusesCount": 411994,
+        "mediaCount": 79212,
+        "statusesCount": 412954,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1437,7 +1432,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1136689,
+                "followers": 1137278,
                 "following": 158
               },
               "relationship_perspectives": {
@@ -1455,8 +1450,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 78911,
-                "tweets": 411994
+                "media_tweets": 79212,
+                "tweets": 412954
               },
               "verification": {
                 "is_blue_verified": true,
@@ -1542,7 +1537,7 @@
                 "has_no_screen_name": false
               },
               "relationship_counts": {
-                "followers": 1136689,
+                "followers": 1137278,
                 "following": 158
               },
               "relationship_perspectives": {
@@ -1560,8 +1555,8 @@
               "super_followed_by": false,
               "super_following": false,
               "tweet_counts": {
-                "media_tweets": 78911,
-                "tweets": 411994
+                "media_tweets": 79212,
+                "tweets": 412954
               },
               "verification": {
                 "is_blue_verified": true,
@@ -1585,6 +1580,351 @@
               135
             ],
             "url": "https://t.co/ckcKzW8MWi"
+          }
+        ]
+      },
+      "quoted_tweet": null,
+      "retweeted_tweet": null,
+      "isLimitedReply": false,
+      "communityInfo": null,
+      "article": null
+    },
+    {
+      "type": "tweet",
+      "id": "1996151333687304643",
+      "url": "https://x.com/SakalMediaNews/status/1996151333687304643",
+      "twitterUrl": "https://twitter.com/SakalMediaNews/status/1996151333687304643",
+      "text": "मुंबईत ४ दिवस वाहतुकीत बदल! 'या' मार्गावर प्रवेश बंद; काय असतील पर्यायी मार्ग?\n\n #MumbaiTraffic #TrafficUpdate #MahaparinirvanaDay #MumbaiRoadClosure #MumbaiAlternateRoutes #MumbaiNews\n\nhttps://t.co/seJ2uOMzXQ",
+      "source": "Twitter for iPhone",
+      "retweetCount": 0,
+      "replyCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "viewCount": 74,
+      "createdAt": "Wed Dec 03 09:35:39 +0000 2025",
+      "lang": "mr",
+      "bookmarkCount": 0,
+      "isReply": false,
+      "inReplyToId": null,
+      "conversationId": "1996151333687304643",
+      "displayTextRange": [
+        0,
+        209
+      ],
+      "inReplyToUserId": null,
+      "inReplyToUsername": null,
+      "author": {
+        "type": "user",
+        "userName": "SakalMediaNews",
+        "url": "https://x.com/SakalMediaNews",
+        "twitterUrl": "https://twitter.com/SakalMediaNews",
+        "id": "85306437",
+        "name": "SakalMedia",
+        "isVerified": false,
+        "isBlueVerified": false,
+        "verifiedType": null,
+        "profilePicture": "https://pbs.twimg.com/profile_images/2032686361686454272/Wq19RZYz_normal.jpg",
+        "coverPicture": "https://pbs.twimg.com/profile_banners/85306437/1738846661",
+        "description": "",
+        "location": "595, Budhwar Peth, Pune",
+        "followers": 288718,
+        "following": 38,
+        "status": "",
+        "canDm": true,
+        "canMediaTag": true,
+        "createdAt": "Mon Oct 26 12:47:27 +0000 2009",
+        "entities": {
+          "description": {
+            "urls": []
+          },
+          "url": {}
+        },
+        "fastFollowersCount": 0,
+        "favouritesCount": 833,
+        "hasCustomTimelines": true,
+        "isTranslator": false,
+        "mediaCount": 66792,
+        "statusesCount": 318320,
+        "withheldInCountries": [],
+        "affiliatesHighlightedLabel": {},
+        "possiblySensitive": false,
+        "pinnedTweetIds": [],
+        "profile_bio": {
+          "description": "Since 1932.\nमहाराष्ट्रातील नं. १ वृत्तपत्र \nNews from Maharashtra & around the world 🌏\nYoutube Channel: https://t.co/1WWyWupZt6",
+          "entities": {
+            "description": {
+              "urls": [
+                {
+                  "display_url": "shorturl.at/hjzGI",
+                  "expanded_url": "http://shorturl.at/hjzGI",
+                  "indices": [
+                    104,
+                    127
+                  ],
+                  "url": "https://t.co/1WWyWupZt6"
+                }
+              ]
+            },
+            "url": {
+              "urls": [
+                {
+                  "display_url": "esakal.com",
+                  "expanded_url": "https://www.esakal.com/",
+                  "indices": [
+                    0,
+                    23
+                  ],
+                  "url": "https://t.co/nWGe9XJjS4"
+                }
+              ]
+            }
+          }
+        },
+        "isAutomated": false,
+        "automatedBy": null
+      },
+      "extendedEntities": {},
+      "card": {
+        "binding_values": [
+          {
+            "key": "description",
+            "value": {
+              "string_value": "मुंबई : डॉ. बाबासाहेब आंबेडकर यांच्या ६९ व्या महापरिनिर्वाणदिनानिमित्त अनुयायी ४ डिसेंबरपासून चैत्यभूमी, दादर परिसरात येणार असून, मोठ्या प्रमाणात गर्दी होणार आह"
+            }
+          },
+          {
+            "key": "domain",
+            "value": {
+              "string_value": "www.esakal.com"
+            }
+          },
+          {
+            "key": "site",
+            "value": {
+              "scribe_key": "publisher_id",
+              "user_value": {
+                "id_str": "85306437",
+                "path": []
+              }
+            }
+          },
+          {
+            "key": "photo_image_full_size_alt_text",
+            "value": {
+              "string_value": "Mumbai Traffic Route Change for Mahaparinirvan Din"
+            }
+          },
+          {
+            "key": "vanity_url",
+            "value": {
+              "scribe_key": "vanity_url",
+              "string_value": "esakal.com"
+            }
+          },
+          {
+            "key": "summary_photo_image_alt_text",
+            "value": {
+              "string_value": "Mumbai Traffic Route Change for Mahaparinirvan Din"
+            }
+          },
+          {
+            "key": "title",
+            "value": {
+              "string_value": "Mumbai Traffic: मुंबईत ४ दिवस वाहतुकीत बदल! 'या' मार्गावर प्रवेश बंद; काय असतील पर्यायी मार्ग?"
+            }
+          },
+          {
+            "key": "card_url",
+            "value": {
+              "scribe_key": "card_url",
+              "string_value": "https://t.co/seJ2uOMzXQ"
+            }
+          }
+        ],
+        "card_platform": {
+          "platform": {
+            "audience": {
+              "name": "production"
+            },
+            "device": {
+              "name": "iPhone",
+              "version": "13"
+            }
+          }
+        },
+        "name": "summary_large_image",
+        "url": "https://t.co/seJ2uOMzXQ",
+        "user_refs_results": [
+          {
+            "rest_id": "85306437",
+            "result": {
+              "__typename": "User",
+              "action_counts": {
+                "favorites_count": 833
+              },
+              "avatar": {
+                "image_url": "https://pbs.twimg.com/profile_images/2032686361686454272/Wq19RZYz_normal.jpg"
+              },
+              "banner": {
+                "image_url": "https://pbs.twimg.com/profile_banners/85306437/1738846661"
+              },
+              "core": {
+                "created_at": "Mon Oct 26 12:47:27 +0000 2009",
+                "name": "SakalMedia",
+                "screen_name": "SakalMediaNews"
+              },
+              "dm_permissions": {
+                "can_dm": true
+              },
+              "exclusive_tweet_following": false,
+              "follow_request_sent": false,
+              "identity_profile_labels_highlighted_label": {},
+              "location": {
+                "location": "595, Budhwar Peth, Pune"
+              },
+              "media_permissions": {
+                "can_media_tag": true
+              },
+              "notifications_settings": {
+                "notifications_enabled": false
+              },
+              "pinned_items": {},
+              "privacy": {
+                "protected": false,
+                "suspended": false
+              },
+              "private_super_following": false,
+              "profile_bio": {
+                "description": "Since 1932.\nमहाराष्ट्रातील नं. १ वृत्तपत्र \nNews from Maharashtra & around the world 🌏\nYoutube Channel: https://t.co/1WWyWupZt6",
+                "entities": {
+                  "description": {
+                    "urls": [
+                      {
+                        "display_url": "shorturl.at/hjzGI",
+                        "expanded_url": "http://shorturl.at/hjzGI",
+                        "indices": [
+                          104,
+                          127
+                        ],
+                        "url": "https://t.co/1WWyWupZt6"
+                      }
+                    ]
+                  },
+                  "url": {
+                    "urls": [
+                      {
+                        "display_url": "esakal.com",
+                        "expanded_url": "https://www.esakal.com/",
+                        "indices": [
+                          0,
+                          23
+                        ],
+                        "url": "https://t.co/nWGe9XJjS4"
+                      }
+                    ]
+                  }
+                }
+              },
+              "profile_image_shape": "Circle",
+              "profile_metadata": {
+                "profile_interstitial_type": "",
+                "profile_link_color": "0084B4"
+              },
+              "profile_translation": {
+                "translator_type_enum": "None"
+              },
+              "properties": {
+                "has_extended_profile": true,
+                "has_no_screen_name": false
+              },
+              "relationship_counts": {
+                "followers": 288718,
+                "following": 38
+              },
+              "relationship_perspectives": {
+                "blocked_by": false,
+                "blocking": false,
+                "followed_by": false,
+                "following": false,
+                "live_following": false,
+                "muting": false
+              },
+              "rest_id": "85306437",
+              "smart_blocked_by": false,
+              "smart_blocking": false,
+              "super_follow_eligible": false,
+              "super_followed_by": false,
+              "super_following": false,
+              "tweet_counts": {
+                "media_tweets": 66792,
+                "tweets": 318320
+              },
+              "verification": {
+                "is_blue_verified": false,
+                "verified": false
+              },
+              "website": {
+                "url": "https://t.co/nWGe9XJjS4"
+              }
+            }
+          }
+        ]
+      },
+      "place": {},
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              81,
+              95
+            ],
+            "text": "MumbaiTraffic"
+          },
+          {
+            "indices": [
+              96,
+              110
+            ],
+            "text": "TrafficUpdate"
+          },
+          {
+            "indices": [
+              111,
+              130
+            ],
+            "text": "MahaparinirvanaDay"
+          },
+          {
+            "indices": [
+              131,
+              149
+            ],
+            "text": "MumbaiRoadClosure"
+          },
+          {
+            "indices": [
+              150,
+              172
+            ],
+            "text": "MumbaiAlternateRoutes"
+          },
+          {
+            "indices": [
+              173,
+              184
+            ],
+            "text": "MumbaiNews"
+          }
+        ],
+        "urls": [
+          {
+            "display_url": "esakal.com/mumbai/mumbai-…",
+            "expanded_url": "https://www.esakal.com/mumbai/mumbai-traffic-changes-from-4-to-7-december-on-occasion-of-mahaparinirvana-day-many-routes-have-been-closed-know-what-is-alternative-routes-mvk02",
+            "indices": [
+              186,
+              209
+            ],
+            "url": "https://t.co/seJ2uOMzXQ"
           }
         ]
       },
@@ -1632,7 +1972,7 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/171574926/1785532823",
         "description": "",
         "location": "Metro Manila",
-        "followers": 3967089,
+        "followers": 3966702,
         "following": 125,
         "status": "",
         "canDm": true,
@@ -1648,8 +1988,8 @@
         "favouritesCount": 5284,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 61681,
-        "statusesCount": 888258,
+        "mediaCount": 61731,
+        "statusesCount": 888695,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
@@ -1734,8 +2074,8 @@
         "coverPicture": "https://pbs.twimg.com/profile_banners/874112786002886656/1603532065",
         "description": "",
         "location": "Chennai, India",
-        "followers": 122916,
-        "following": 198,
+        "followers": 123051,
+        "following": 197,
         "status": "",
         "canDm": true,
         "canMediaTag": true,
@@ -1747,11 +2087,11 @@
           "url": {}
         },
         "fastFollowersCount": 0,
-        "favouritesCount": 3104,
+        "favouritesCount": 3105,
         "hasCustomTimelines": true,
         "isTranslator": false,
-        "mediaCount": 20198,
-        "statusesCount": 57125,
+        "mediaCount": 20352,
+        "statusesCount": 57587,
         "withheldInCountries": [],
         "affiliatesHighlightedLabel": {},
         "possiblySensitive": false,
