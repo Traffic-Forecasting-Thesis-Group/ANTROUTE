@@ -118,3 +118,40 @@ def test_seek_and_sequential_sampling_agree(tmp_path):
     assert abs(seek_dur - seq_dur) < 0.5
     for (_, a), (_, b) in zip(seek_frames, seq_frames):   # same moment of video, not just same count
         assert abs(float(a.mean()) - float(b.mean())) < 8
+
+
+def test_first_sps_offset_handles_mid_stream_chunks(tmp_path):
+    from src.vision.frame_extractor import first_sps_offset
+
+    clean = tmp_path / "clean.dar"
+    clean.write_bytes(b"\x00\x00\x01\x67\x4d\x00\x00\x00\x01\x68")
+    midstream = tmp_path / "mid.dar"
+    midstream.write_bytes(b"\x00\x00\x01\x41" + b"\x9b" * 20 + b"\x00\x00\x00\x01\x67\x4d")
+    nokeyframe = tmp_path / "none.dar"
+    nokeyframe.write_bytes(b"\x00\x00\x01\x41" + b"\x9b" * 20)
+
+    assert first_sps_offset(clean) == 0
+    assert first_sps_offset(midstream) == 4 + 20          # start of the 4-byte start code
+    assert first_sps_offset(nokeyframe) is None
+
+
+def test_mid_stream_chunk_is_trimmed_before_trying_mp4box(tmp_path, monkeypatch):
+    import src.vision.frame_extractor as fx
+
+    calls = []
+
+    def fake_run(cmd, stdin_path=None, stdin_offset=0):
+        calls.append((cmd[0], stdin_offset))
+        return False
+
+    monkeypatch.setattr(fx, "_run", fake_run)
+    mid = tmp_path / "mid.dar"
+    mid.write_bytes(b"\x00\x00\x01\x41" + b"\x9b" * 20 + b"\x00\x00\x00\x01\x67\x4d")
+    clean = tmp_path / "clean.dar"
+    clean.write_bytes(b"\x00\x00\x01\x67\x4d")
+
+    list(fx._attempts(mid, tmp_path))
+    assert calls[0] == ("ffmpeg", 24) and ("MP4Box", 0) in calls
+    calls.clear()
+    list(fx._attempts(clean, tmp_path))
+    assert calls[0] == ("MP4Box", 0)          # clean chunks keep the fast path

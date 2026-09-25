@@ -34,6 +34,7 @@ JPEG_QUALITY = 95
 SUPPORTED_EXTS = (".dar", ".mp4", ".avi", ".mkv")
 CONVERT_TIMEOUT_SEC = 300   # a converter stuck on one file must not stall the whole run
 ALLOW_REENCODE = False      # libx264 re-encode is very slow; enable only to rescue stubborn files
+SPS_SCAN_BYTES = 64 * 1024 * 1024  # how far into a chunk to look for the first H.264 parameter set
 
 MANIFEST_FIELDS = [
     "camera_id", "timestamp", "frame_path", "source_video", "segment",
@@ -97,35 +98,65 @@ def discover_segments(root: Path, exts=SUPPORTED_EXTS) -> Dict[Path, List[Segmen
 # ---------------------------------------------------------------------------
 # Reading video: several fallbacks, first one that yields frames wins
 # ---------------------------------------------------------------------------
-def _run(cmd: List[str]) -> bool:
+def first_sps_offset(path: Path, scan_bytes: int = SPS_SCAN_BYTES) -> Optional[int]:
+    """Byte offset of the first H.264 SPS start code, or None if not found.
+
+    MMDA .dar files are ~1 GB chunks of one continuous H.264 stream. A chunk cut mid-GOP
+    begins with P-frames, so MP4Box/ffmpeg cannot identify the codec; the stream is fully
+    decodable from its first SPS/keyframe onward.
+    """
+    with path.open("rb") as f:
+        data = f.read(scan_bytes)
+    i = data.find(b"\x00\x00\x01\x67")
+    if i < 0:
+        return None
+    return i - 1 if i > 0 and data[i - 1] == 0 else i  # 4-byte start code
+
+
+def _run(cmd: List[str], stdin_path: Optional[Path] = None, stdin_offset: int = 0) -> bool:
     if shutil.which(cmd[0]) is None:
         return False
+    stdin = stdin_path.open("rb") if stdin_path else None
     try:
-        subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True,
-                       timeout=CONVERT_TIMEOUT_SEC)
+        if stdin:
+            stdin.seek(stdin_offset)
+        subprocess.run(cmd, stdin=stdin or subprocess.DEVNULL, stdout=subprocess.DEVNULL,
+                       stderr=subprocess.DEVNULL, check=True, timeout=CONVERT_TIMEOUT_SEC)
         return True
     except (subprocess.CalledProcessError, subprocess.TimeoutExpired, OSError):
         return False
+    finally:
+        if stdin:
+            stdin.close()
 
 
 def _attempts(src: Path, tmp_dir: Path) -> Iterator[Tuple[str, Path]]:
     """Lazily yield (method, readable path); conversions only run if earlier ones failed."""
-    if src.suffix.lower() == ".mp4":
+    is_mp4 = src.suffix.lower() == ".mp4"
+    if is_mp4:
         yield "direct", src
     out = tmp_dir / "converted.mp4"
+
+    # (method, command, byte offset to stream from, or None to let the tool open the file itself)
     commands = [
-        ("mp4box", ["MP4Box", "-add", str(src), str(out)]),
-        ("ffmpeg_copy", ["ffmpeg", "-y", "-i", str(src), "-c", "copy", str(out)]),
+        ("mp4box", ["MP4Box", "-add", str(src), str(out)], None),
+        ("ffmpeg_copy", ["ffmpeg", "-y", "-i", str(src), "-c", "copy", str(out)], None),
     ]
+    offset = None if is_mp4 else first_sps_offset(src)
+    if offset:  # chunk starts mid-stream: skip to the first keyframe and remux without re-encoding
+        commands.insert(0, ("trim_remux",
+                            ["ffmpeg", "-y", "-f", "h264", "-i", "pipe:0", "-c", "copy", str(out)], offset))
     if ALLOW_REENCODE:
         commands.append(("ffmpeg_reencode", ["ffmpeg", "-y", "-i", str(src), "-an", "-c:v", "libx264",
-                                             "-preset", "ultrafast", "-crf", "28", str(out)]))
-    for method, cmd in commands:
+                                             "-preset", "ultrafast", "-crf", "28", str(out)], None))
+
+    for method, cmd, stream_from in commands:
         if out.exists():
             out.unlink()
-        if _run(cmd) and out.exists():
+        ran = _run(cmd, src, stream_from) if stream_from is not None else _run(cmd)
+        if ran and out.exists():
             yield method, out
-    if src.suffix.lower() != ".mp4":
+    if not is_mp4:
         yield "direct", src
 
 
