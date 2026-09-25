@@ -34,6 +34,7 @@ JPEG_QUALITY = 95
 SUPPORTED_EXTS = (".dar", ".mp4", ".avi", ".mkv")
 CONVERT_TIMEOUT_SEC = 300   # a converter stuck on one file must not stall the whole run
 ALLOW_REENCODE = False      # libx264 re-encode is very slow; enable only to rescue stubborn files
+MAX_BYTES_PER_SEC = 4_000_000  # ~32 Mbps: a chunk whose output is shorter than size/this was truncated
 SPS_SCAN_BYTES = 64 * 1024 * 1024  # how far into a chunk to look for the first H.264 parameter set
 
 MANIFEST_FIELDS = [
@@ -204,17 +205,24 @@ def _sample_sequentially(cap, fps: float, interval_sec: int):
     return frames, idx / fps
 
 
-def sample_frames(video_path: Path, interval_sec: int = SAMPLE_INTERVAL_SEC):
+def plausible_duration(duration_sec: float, size_bytes: int) -> bool:
+    """False when the decoded duration is far too short for the source size. MP4Box can exit
+    successfully after importing a single frame of a 1 GB chunk; that must not count as success."""
+    return duration_sec * MAX_BYTES_PER_SEC >= size_bytes
+
+
+def sample_frames(video_path: Path, interval_sec: int = SAMPLE_INTERVAL_SEC,
+                  force_sequential: bool = False):
     """Keep one frame per `interval_sec` of video time -> ([(k, bgr_frame)], duration_sec).
 
     Seeks to each sample point (seconds per video); falls back to decoding the whole stream
-    when seeking is unreliable for that file.
+    when seeking is unreliable for that file or when force_sequential is set.
     """
     cap = cv2.VideoCapture(str(video_path))
     if not cap.isOpened():
         return [], 0.0
     fps = _valid_fps(cap)
-    result = _sample_by_seeking(cap, fps, interval_sec)
+    result = None if force_sequential else _sample_by_seeking(cap, fps, interval_sec)
     if result is None:
         cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
         result = _sample_sequentially(cap, fps, interval_sec)
@@ -225,11 +233,34 @@ def sample_frames(video_path: Path, interval_sec: int = SAMPLE_INTERVAL_SEC):
 # ---------------------------------------------------------------------------
 # Extraction driver
 # ---------------------------------------------------------------------------
+def _sample_attempt(readable: Path, interval_sec: int, source_size: int):
+    frames, duration = sample_frames(readable, interval_sec)
+    if frames and not plausible_duration(duration, source_size):
+        # container timing may just be wrong: count the frames that actually decode
+        frames, duration = sample_frames(readable, interval_sec, force_sequential=True)
+    if frames and not plausible_duration(duration, source_size):
+        return [], 0.0
+    return frames, duration
+
+
 def _read_ok_segments(segments_csv: Path) -> Dict[str, dict]:
+    """Latest attempt per video, keeping only those that succeeded."""
     if not segments_csv.exists():
         return {}
     with segments_csv.open(encoding="utf-8", newline="") as f:
-        return {r["source_video"]: r for r in csv.DictReader(f) if r["status"] == "ok"}
+        latest = {r["source_video"]: r for r in csv.DictReader(f)}
+    return {k: r for k, r in latest.items() if r["status"] == "ok"}
+
+
+def _drop_manifest_rows(manifest_csv: Path, source_videos: set) -> None:
+    if not source_videos or not manifest_csv.exists():
+        return
+    with manifest_csv.open(encoding="utf-8", newline="") as f:
+        rows = [r for r in csv.DictReader(f) if r["source_video"] not in source_videos]
+    with manifest_csv.open("w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=MANIFEST_FIELDS)
+        writer.writeheader()
+        writer.writerows(rows)
 
 
 def _append(path: Path, fields: List[str], rows: List[dict]) -> None:
@@ -249,6 +280,12 @@ def extract_all(root: Path, out_root: Path, interval_sec: int = SAMPLE_INTERVAL_
     done = _read_ok_segments(segments_csv)
 
     groups = discover_segments(root)
+    # earlier runs (and the old notebook) accepted truncated conversions; redo those
+    stale = {k for k, r in done.items()
+             if Path(k).exists() and not plausible_duration(float(r["duration_sec"]), Path(k).stat().st_size)}
+    for k in stale:
+        del done[k]
+    _drop_manifest_rows(manifest_csv, stale)
     stats = {"folders": len(groups), "ok": 0, "skipped": 0, "failed": 0, "frames": 0}
 
     for folder, segments in progress(list(groups.items()), desc="camera folders"):
@@ -264,12 +301,13 @@ def extract_all(root: Path, out_root: Path, interval_sec: int = SAMPLE_INTERVAL_
 
             start = seg.window_start + timedelta(seconds=offset)
             frames, duration, method, error = [], 0.0, "", ""
+            size = seg.path.stat().st_size
             with tempfile.TemporaryDirectory() as tmp:
                 for method, readable in _attempts(seg.path, Path(tmp)):
-                    frames, duration = sample_frames(readable, interval_sec)
+                    frames, duration = _sample_attempt(readable, interval_sec, size)
                     if frames:
                         break
-                    error = f"{method}: no frames decoded"
+                    error = f"{method}: no usable frames (none decoded, or far shorter than the file)"
                 else:
                     method = ""
                     error = error or "no converter or reader could open this file"
@@ -313,20 +351,23 @@ def extract_all(root: Path, out_root: Path, interval_sec: int = SAMPLE_INTERVAL_
 
 
 def session_coverage(segments_csv: Path, tolerance_min: float = 10.0) -> List[dict]:
-    """Camera folders whose decoded duration is far from the nominal session length."""
+    """Camera folders whose real-time duration is far from the nominal session length."""
     import collections
-    totals, windows = collections.defaultdict(float), {}
+    from src.vision.timeline import folder_time_scale
+
     with segments_csv.open(encoding="utf-8", newline="") as f:
-        for r in csv.DictReader(f):
-            if r["status"] == "ok":
-                folder = str(Path(r["source_video"]).parent)
-                totals[folder] += float(r["duration_sec"])
-                windows[folder] = parse_session_window(Path(r["source_video"]))
+        latest = {r["source_video"]: r for r in csv.DictReader(f)}
+    folders = collections.defaultdict(list)
+    for video, r in latest.items():
+        if r["status"] == "ok":
+            folders[str(Path(video).parent)].append(float(r["duration_sec"]))
+
     flagged = []
-    for folder, total in totals.items():
-        w = windows[folder]
-        nominal = (w[1] - w[0]).total_seconds() if w else math.nan
-        if w and abs(total - nominal) > tolerance_min * 60:
+    for folder, durations in folders.items():
+        window = parse_session_window(Path(folder))
+        total = sum(durations) * folder_time_scale(durations)
+        nominal = (window[1] - window[0]).total_seconds() if window else math.nan
+        if window and abs(total - nominal) > tolerance_min * 60:
             flagged.append({"folder": folder, "total_min": round(total / 60, 1),
                             "nominal_min": round(nominal / 60, 1)})
     return flagged

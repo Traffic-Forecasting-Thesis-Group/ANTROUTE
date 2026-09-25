@@ -83,8 +83,8 @@ def run_autolabel(frames_root: Path, weights: str = "yolov8n.pt", conf: float = 
     detections_csv = frames_root / "detections.csv"
     auto_csv = frames_root / "auto_labels.csv"
 
-    with manifest_csv.open(encoding="utf-8", newline="") as f:
-        manifest = list(csv.DictReader(f))
+    from src.vision.timeline import corrected_manifest  # real-time timestamps for the viewer
+    manifest = corrected_manifest(frames_root).astype(str).to_dict("records")
 
     done = {}
     if detections_csv.exists():

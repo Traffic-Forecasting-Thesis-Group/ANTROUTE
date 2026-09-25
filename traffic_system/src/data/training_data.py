@@ -26,6 +26,7 @@ from src.data.alignment import (
 )
 from src.data.dataset import ANTROUTEWindowDataset
 from src.vision.label_store import load_frames
+from src.vision.timeline import corrected_manifest
 
 WEATHER_COLUMNS = ["ws_temp_c", "ws_precip_mm", "ws_humidity_pct"]
 CLASS_TO_IDX = {"Light": 0, "Medium": 1, "Heavy": 2}
@@ -42,7 +43,7 @@ def load_frames_table(frames_root: Path, allow_estimated: bool = False) -> pd.Da
     Frames whose segment start is only a lower bound (an earlier segment failed) are
     dropped by default because their timestamps can be wrong.
     """
-    df = pd.read_csv(Path(frames_root) / "manifest.csv")
+    df = corrected_manifest(Path(frames_root))
     if not allow_estimated and "start_estimated" in df:
         df = df[~df["start_estimated"].astype(str).eq("True")]
     df = df[["camera_id", "timestamp", "frame_path"]].copy()
