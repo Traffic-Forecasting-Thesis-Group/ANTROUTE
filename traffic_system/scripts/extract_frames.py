@@ -49,6 +49,7 @@ def main():
     print(f"Segments extracted:   {stats['ok']}")
     print(f"Segments skipped:     {stats['skipped']} (already done)")
     print(f"Segments failed:      {stats['failed']} (see segments.csv, status=failed)")
+    print(f"Segments empty:       {stats['empty']} (tail fragments under ~30 s, nothing to extract)")
     print(f"Frames written:       {stats['frames']}")
 
     flagged = session_coverage(output / "segments.csv")

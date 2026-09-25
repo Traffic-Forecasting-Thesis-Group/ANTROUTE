@@ -51,6 +51,8 @@ def corrected_manifest(frames_root: Path) -> pd.DataFrame:
             continue
         offset, uncertain = 0.0, False
         for _, seg in group.iterrows():
+            if seg["status"] == "empty":
+                continue                  # a fragment with no frames: nothing is missing
             if seg["status"] != "ok":
                 uncertain = True          # unknown length: later start times are lower bounds
                 continue

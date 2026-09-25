@@ -89,7 +89,7 @@ def test_failed_segment_is_recorded_and_marks_later_starts_estimated(footage):
     source, out = footage
     dados = next(source.rglob("Dados"))
     (dados / "20260504_2.mp4").unlink()
-    (dados / "20260504_2.dar").write_bytes(b"not a video")
+    (dados / "20260504_2.dar").write_bytes(b"not a video" * 20)
     write_video(dados / "20260504_3.mp4", 70)
 
     stats = extract_all(source, out)
@@ -223,7 +223,47 @@ def test_failed_rows_keep_the_attempt_log(footage):
     source, out = footage
     dados = next(source.rglob("Dados"))
     (dados / "20260504_2.mp4").unlink()
-    (dados / "20260504_2.dar").write_bytes(b"not a video")
+    (dados / "20260504_2.dar").write_bytes(b"not a video" * 20)
     extract_all(source, out)
     failed = [r for r in read_csv(out / "segments.csv") if r["status"] == "failed"]
     assert failed and "copy:" in failed[0]["error"] and "->0frames" in failed[0]["error"]
+
+
+class FakeCap:
+    """Minimal stand-in for cv2.VideoCapture: `good` reads succeed, then every read fails."""
+
+    def __init__(self, n_frames, good):
+        self.n_frames, self.good, self.reads = n_frames, good, 0
+
+    def get(self, prop):
+        return self.n_frames if prop == cv2.CAP_PROP_FRAME_COUNT else 0
+
+    def set(self, prop, value):
+        pass
+
+    def read(self):
+        self.reads += 1
+        if self.reads <= self.good:
+            return True, np.zeros((8, 8, 3), np.uint8)
+        return False, None
+
+
+def test_undecodable_stream_fails_fast_instead_of_decoding_everything():
+    from src.vision.frame_extractor import _sample_by_seeking
+
+    assert _sample_by_seeking(FakeCap(n_frames=54000, good=0), 30.0, 60) == ([], 0.0)   # not even frame 0
+    assert _sample_by_seeking(FakeCap(n_frames=54000, good=3), 30.0, 60) is None         # seeking unreliable
+    frames, duration = _sample_by_seeking(FakeCap(n_frames=3600, good=99), 30.0, 60)
+    assert [k for k, _ in frames] == [0, 1] and duration == 120.0
+
+
+def test_tiny_tail_fragments_are_logged_as_empty_not_failed(footage):
+    source, out = footage
+    dados = next(source.rglob("Dados"))
+    (dados / "20260504_3.dar").write_bytes(b"tiny fragment")
+    stats = extract_all(source, out)
+    assert stats["empty"] == 1 and stats["failed"] == 0 and stats["ok"] == 2
+    assert stats["skipped"] == 0
+    assert extract_all(source, out)["empty"] == 1
+    empty = [r for r in read_csv(out / "segments.csv") if r["status"] == "empty"]
+    assert len(empty) == 1                                    # logged once, not on every run

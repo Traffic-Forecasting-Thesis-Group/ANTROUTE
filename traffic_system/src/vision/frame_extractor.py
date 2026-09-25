@@ -38,6 +38,7 @@ SUPPORTED_EXTS = (".dar", ".mp4", ".avi", ".mkv")
 CONVERT_TIMEOUT_SEC = 300   # a converter stuck on one file must not stall the whole run
 ALLOW_REENCODE = False      # libx264 re-encode is very slow; enable only to rescue stubborn files
 MAX_BYTES_PER_SEC = 4_000_000  # ~32 Mbps: a chunk whose output is shorter than size/this was truncated
+MIN_CHUNK_BYTES = 20_000_000   # under ~30 s of video: the tail fragment of a session, no frame worth keeping
 SPS_SCAN_BYTES = 64 * 1024 * 1024  # how far into a chunk to look for the first H.264 parameter set
 
 MANIFEST_FIELDS = [
@@ -227,8 +228,12 @@ def _valid_fps(cap) -> float:
 
 
 def _sample_by_seeking(cap, fps: float, interval_sec: int):
-    """Jump straight to each sampling time. Returns None if the container's frame count or
-    seeking cannot be trusted, so the caller can fall back to sequential decoding."""
+    """Jump straight to each sampling time.
+
+    Returns None if the container's frame count or seeking cannot be trusted, so the caller
+    can fall back to sequential decoding. Returns ([], 0.0) if not even the first frame decodes:
+    the stream itself is undecodable (e.g. missing PPS), and decoding all of it would only
+    burn minutes to find nothing."""
     n_frames = cap.get(cv2.CAP_PROP_FRAME_COUNT)
     if not n_frames or n_frames != n_frames or n_frames <= 0:
         return None
@@ -238,7 +243,7 @@ def _sample_by_seeking(cap, fps: float, interval_sec: int):
         cap.set(cv2.CAP_PROP_POS_MSEC, k * interval_sec * 1000)
         ok, frame = cap.read()
         if not ok:
-            return None
+            return ([], 0.0) if k == 0 else None
         frames.append((k, resize_max_side(frame)))
     return frames, duration
 
@@ -304,6 +309,14 @@ def _read_ok_segments(segments_csv: Path) -> Dict[str, dict]:
     return {k: r for k, r in latest.items() if r["status"] == "ok"}
 
 
+def _read_empty_segments(segments_csv: Path) -> set:
+    if not segments_csv.exists():
+        return set()
+    with segments_csv.open(encoding="utf-8", newline="") as f:
+        latest = {r["source_video"]: r for r in csv.DictReader(f)}
+    return {k for k, r in latest.items() if r["status"] == "empty"}
+
+
 def _drop_manifest_rows(manifest_csv: Path, source_videos: set) -> None:
     if not source_videos or not manifest_csv.exists():
         return
@@ -338,7 +351,8 @@ def extract_all(root: Path, out_root: Path, interval_sec: int = SAMPLE_INTERVAL_
     for k in stale:
         del done[k]
     _drop_manifest_rows(manifest_csv, stale)
-    stats = {"folders": len(groups), "ok": 0, "skipped": 0, "failed": 0, "frames": 0}
+    logged_empty = _read_empty_segments(segments_csv)
+    stats = {"folders": len(groups), "ok": 0, "skipped": 0, "failed": 0, "empty": 0, "frames": 0}
 
     for folder, segments in progress(list(groups.items()), desc="camera folders"):
         offset = 0.0
@@ -353,11 +367,23 @@ def extract_all(root: Path, out_root: Path, interval_sec: int = SAMPLE_INTERVAL_
                 continue
 
             start = seg.window_start + timedelta(seconds=offset)
+            size = seg.path.stat().st_size
+            if size < MIN_CHUNK_BYTES:
+                if key not in logged_empty:
+                    _append(segments_csv, SEGMENT_FIELDS, [{
+                        "camera_id": seg.camera_id, "source_video": key, "segment": seg.number,
+                        "status": "empty", "method": "", "n_frames": 0, "duration_sec": 0,
+                        "segment_start": start.isoformat(), "start_estimated": uncertain,
+                        "error": f"{size} bytes: too short to hold a sampled frame",
+                    }])
+                    logged_empty.add(key)
+                stats["empty"] += 1
+                continue
+
             frames, duration, method, error = [], 0.0, "", ""
             if not header_ready:  # parameter sets from a clean chunk of this camera, if any
                 header = next((h for h in (stream_header(s.path) for s in segments) if h), None)
                 header_ready = True
-            size = seg.path.stat().st_size
             notes: List[str] = []
             with tempfile.TemporaryDirectory() as tmp:
                 # Read the slow Drive file once; every conversion attempt then uses the local copy.
