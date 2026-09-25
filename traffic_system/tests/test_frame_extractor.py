@@ -140,7 +140,7 @@ def test_mid_stream_chunk_is_trimmed_before_trying_mp4box(tmp_path, monkeypatch)
 
     calls = []
 
-    def fake_run(cmd, stdin_path=None, stdin_offset=0):
+    def fake_run(cmd, stdin_path=None, stdin_offset=0, prefix=b""):
         calls.append((cmd[0], stdin_offset))
         return False
 
@@ -155,3 +155,58 @@ def test_mid_stream_chunk_is_trimmed_before_trying_mp4box(tmp_path, monkeypatch)
     calls.clear()
     list(fx._attempts(clean, tmp_path))
     assert calls[0] == ("MP4Box", 0)          # clean chunks keep the fast path
+
+
+SPS, PPS, IDR, P = b"\x00\x00\x01\x67", b"\x00\x00\x01\x68", b"\x00\x00\x01\x65", b"\x00\x00\x01\x41"
+
+
+def test_stream_header_comes_only_from_clean_chunks_that_carry_a_pps(tmp_path):
+    from src.vision.frame_extractor import stream_header
+
+    good = tmp_path / "good.dar"
+    good.write_bytes(SPS + b"\x4d\x00" + PPS + b"\xee\x3c" + IDR + b"frame-data")
+    no_pps = tmp_path / "no_pps.dar"
+    no_pps.write_bytes(SPS + b"\x4d\x00" + IDR + b"frame-data")
+    midstream = tmp_path / "mid.dar"
+    midstream.write_bytes(P + b"\x9b" * 8 + SPS + b"\x4d" + PPS + b"\xee" + IDR)
+
+    assert stream_header(good) == SPS + b"\x4d\x00" + PPS + b"\xee\x3c"
+    assert stream_header(no_pps) is None
+    assert stream_header(midstream) is None
+
+
+def test_chunks_without_own_pps_get_the_header_prepended(tmp_path, monkeypatch):
+    import src.vision.frame_extractor as fx
+
+    calls = []
+
+    def fake_run(cmd, stdin_path=None, stdin_offset=0, prefix=b""):
+        calls.append((cmd[0], stdin_offset, prefix))
+        return False
+
+    monkeypatch.setattr(fx, "_run", fake_run)
+    header = SPS + b"\x4d" + PPS + b"\xee"
+    mid = tmp_path / "mid.dar"
+    mid.write_bytes(P + b"\x9b" * 8 + SPS + b"\x4d" + IDR)         # mid-stream and no PPS of its own
+    list(fx._attempts(mid, tmp_path, header))
+    assert calls[0] == ("ffmpeg", 12, header)                       # trimmed to the SPS, header first
+
+    calls.clear()
+    clean = tmp_path / "clean.dar"
+    clean.write_bytes(SPS + b"\x4d" + IDR)                          # clean start: MP4Box first, then remux
+    list(fx._attempts(clean, tmp_path, header))
+    assert calls[0][0] == "MP4Box" and calls[-1] == ("ffmpeg", 0, header)
+
+
+def test_stream_to_ffmpeg_sends_prefix_then_the_file_from_offset(tmp_path):
+    import sys
+    import src.vision.frame_extractor as fx
+
+    src = tmp_path / "chunk.dar"
+    src.write_bytes(b"JUNK" + b"PAYLOAD")
+    out = tmp_path / "received.bin"
+    cmd = [sys.executable, "-c", "import sys; open(sys.argv[1], 'wb').write(sys.stdin.buffer.read())", str(out)]
+
+    assert fx._stream_to_ffmpeg(cmd, src, 4, b"HDR-")
+    assert out.read_bytes() == b"HDR-PAYLOAD"
+    assert not fx._stream_to_ffmpeg([sys.executable, "-c", "import sys; sys.exit(3)"], src, 0, b"")

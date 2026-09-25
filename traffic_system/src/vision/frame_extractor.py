@@ -17,16 +17,19 @@ Outputs (under out_root):
 
 import csv
 import math
+import os
 import re
 import shutil
 import subprocess
 import tempfile
+import time
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, Iterator, List, Optional, Tuple
 
-import cv2
+os.environ.setdefault("OPENCV_FFMPEG_LOGLEVEL", "-8")  # silence per-packet decoder errors on broken streams
+import cv2  # noqa: E402
 
 SAMPLE_INTERVAL_SEC = 60
 FRAME_MAX_SIDE = 640      # aspect ratio kept; the dataset resizes to 224 at load time
@@ -114,24 +117,62 @@ def first_sps_offset(path: Path, scan_bytes: int = SPS_SCAN_BYTES) -> Optional[i
     return i - 1 if i > 0 and data[i - 1] == 0 else i  # 4-byte start code
 
 
-def _run(cmd: List[str], stdin_path: Optional[Path] = None, stdin_offset: int = 0) -> bool:
+def stream_header(path: Path, scan_bytes: int = 1 << 20) -> Optional[bytes]:
+    """SPS + PPS taken from a chunk that starts cleanly (parameter sets, then a keyframe).
+
+    Some chunks carry no PPS of their own and cannot be decoded alone ("non-existing PPS 0
+    referenced"). The parameter sets are the same for a whole recording, so prepending these
+    bytes from a good chunk of the same camera makes them decodable.
+    """
+    if first_sps_offset(path, scan_bytes) != 0:
+        return None
+    with path.open("rb") as f:
+        data = f.read(scan_bytes)
+    idr = data.find(b"\x00\x00\x01\x65")
+    header = data[:idr] if idr > 0 else b""
+    return header if b"\x00\x00\x01\x68" in header else None
+
+
+def _stream_to_ffmpeg(cmd: List[str], src: Path, offset: int, prefix: bytes) -> bool:
+    """Feed `prefix`, then src[offset:], to the command's stdin."""
     if shutil.which(cmd[0]) is None:
         return False
-    stdin = stdin_path.open("rb") if stdin_path else None
+    deadline = time.monotonic() + CONVERT_TIMEOUT_SEC
+    proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.DEVNULL,
+                            stderr=subprocess.DEVNULL)
     try:
-        if stdin:
-            stdin.seek(stdin_offset)
-        subprocess.run(cmd, stdin=stdin or subprocess.DEVNULL, stdout=subprocess.DEVNULL,
+        with src.open("rb") as f:
+            f.seek(offset)
+            proc.stdin.write(prefix)
+            while chunk := f.read(1 << 20):
+                if time.monotonic() > deadline:
+                    proc.kill()
+                    return False
+                proc.stdin.write(chunk)
+        proc.stdin.close()
+        return proc.wait(timeout=max(1.0, deadline - time.monotonic())) == 0
+    except (BrokenPipeError, OSError, subprocess.TimeoutExpired):
+        proc.kill()
+        return False
+    finally:
+        proc.wait()
+
+
+def _run(cmd: List[str], stdin_path: Optional[Path] = None, stdin_offset: int = 0,
+         prefix: bytes = b"") -> bool:
+    if stdin_path is not None:
+        return _stream_to_ffmpeg(cmd, stdin_path, stdin_offset, prefix)
+    if shutil.which(cmd[0]) is None:
+        return False
+    try:
+        subprocess.run(cmd, stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL,
                        stderr=subprocess.DEVNULL, check=True, timeout=CONVERT_TIMEOUT_SEC)
         return True
     except (subprocess.CalledProcessError, subprocess.TimeoutExpired, OSError):
         return False
-    finally:
-        if stdin:
-            stdin.close()
 
 
-def _attempts(src: Path, tmp_dir: Path) -> Iterator[Tuple[str, Path]]:
+def _attempts(src: Path, tmp_dir: Path, header: Optional[bytes] = None) -> Iterator[Tuple[str, Path]]:
     """Lazily yield (method, readable path); conversions only run if earlier ones failed."""
     is_mp4 = src.suffix.lower() == ".mp4"
     if is_mp4:
@@ -143,10 +184,13 @@ def _attempts(src: Path, tmp_dir: Path) -> Iterator[Tuple[str, Path]]:
         ("mp4box", ["MP4Box", "-add", str(src), str(out)], None),
         ("ffmpeg_copy", ["ffmpeg", "-y", "-i", str(src), "-c", "copy", str(out)], None),
     ]
-    offset = None if is_mp4 else first_sps_offset(src)
-    if offset:  # chunk starts mid-stream: skip to the first keyframe and remux without re-encoding
-        commands.insert(0, ("trim_remux",
-                            ["ffmpeg", "-y", "-f", "h264", "-i", "pipe:0", "-c", "copy", str(out)], offset))
+    if not is_mp4:
+        remux = ["ffmpeg", "-y", "-f", "h264", "-i", "pipe:0", "-c", "copy", str(out)]
+        offset = first_sps_offset(src)
+        if offset:      # starts mid-stream: skip to the first keyframe, remux without re-encoding
+            commands.insert(0, ("trim_remux", remux, offset))
+        elif header:    # starts cleanly but may lack a PPS: prepend one from a good chunk
+            commands.append(("header_remux", remux, 0))
     if ALLOW_REENCODE:
         commands.append(("ffmpeg_reencode", ["ffmpeg", "-y", "-i", str(src), "-an", "-c:v", "libx264",
                                              "-preset", "ultrafast", "-crf", "28", str(out)], None))
@@ -154,7 +198,7 @@ def _attempts(src: Path, tmp_dir: Path) -> Iterator[Tuple[str, Path]]:
     for method, cmd, stream_from in commands:
         if out.exists():
             out.unlink()
-        ran = _run(cmd, src, stream_from) if stream_from is not None else _run(cmd)
+        ran = _run(cmd, src, stream_from, header or b"") if stream_from is not None else _run(cmd)
         if ran and out.exists():
             yield method, out
     if not is_mp4:
@@ -291,6 +335,7 @@ def extract_all(root: Path, out_root: Path, interval_sec: int = SAMPLE_INTERVAL_
     for folder, segments in progress(list(groups.items()), desc="camera folders"):
         offset = 0.0
         uncertain = False  # an earlier segment failed, so later start times are lower bounds
+        header, header_ready = None, False
         for seg in segments:
             key = str(seg.path)
             if key in done:
@@ -301,9 +346,12 @@ def extract_all(root: Path, out_root: Path, interval_sec: int = SAMPLE_INTERVAL_
 
             start = seg.window_start + timedelta(seconds=offset)
             frames, duration, method, error = [], 0.0, "", ""
+            if not header_ready:  # parameter sets from a clean chunk of this camera, if any
+                header = next((h for h in (stream_header(s.path) for s in segments) if h), None)
+                header_ready = True
             size = seg.path.stat().st_size
             with tempfile.TemporaryDirectory() as tmp:
-                for method, readable in _attempts(seg.path, Path(tmp)):
+                for method, readable in _attempts(seg.path, Path(tmp), header):
                     frames, duration = _sample_attempt(readable, interval_sec, size)
                     if frames:
                         break
