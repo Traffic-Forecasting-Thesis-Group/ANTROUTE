@@ -12,6 +12,7 @@ Local (Drive for Desktop):
     python scripts/extract_frames.py "G:/My Drive/MMDA CCTV FOOTAGE" "G:/My Drive/MMDA_FRAMES"
 
 Pass a single camera folder as the first argument to pilot on a small subset.
+Optional third argument: number of camera folders to process in parallel (default 1).
 Safe to re-run: segments already extracted are skipped, failed ones are retried.
 """
 
@@ -27,10 +28,10 @@ DEFAULT_SOURCE = "/content/drive/MyDrive/MMDA CCTV FOOTAGE"
 DEFAULT_OUTPUT = "/content/drive/MyDrive/MMDA_FRAMES"
 
 
-def _progress(iterable, desc=""):
+def _progress(iterable, desc="", total=None):
     try:
         from tqdm.auto import tqdm
-        return tqdm(iterable, desc=desc)
+        return tqdm(iterable, desc=desc, total=total)
     except ImportError:
         return iterable
 
@@ -38,11 +39,12 @@ def _progress(iterable, desc=""):
 def main():
     source = Path(sys.argv[1] if len(sys.argv) > 1 else DEFAULT_SOURCE)
     output = Path(sys.argv[2] if len(sys.argv) > 2 else DEFAULT_OUTPUT)
+    workers = int(sys.argv[3]) if len(sys.argv) > 3 else 1   # camera folders processed at the same time
     if not source.exists():
         raise SystemExit(f"Source folder not found: {source}")
 
-    print(f"Source: {source}\nOutput: {output}")
-    stats = extract_all(source, output, progress=_progress)
+    print(f"Source: {source}\nOutput: {output}\nWorkers: {workers}")
+    stats = extract_all(source, output, progress=_progress, workers=workers)
 
     print("\n=== Extraction summary ===")
     print(f"Camera folders:       {stats['folders']}")
@@ -51,6 +53,8 @@ def main():
     print(f"Segments failed:      {stats['failed']} (see segments.csv, status=failed)")
     print(f"Segments empty:       {stats['empty']} (tail fragments under ~30 s, nothing to extract)")
     print(f"Frames written:       {stats['frames']}")
+    if stats["errors"]:
+        print(f"Folders that crashed: {stats['errors']} (see messages above; re-run to retry)")
 
     flagged = session_coverage(output / "segments.csv")
     if flagged:

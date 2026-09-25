@@ -267,3 +267,22 @@ def test_tiny_tail_fragments_are_logged_as_empty_not_failed(footage):
     assert extract_all(source, out)["empty"] == 1
     empty = [r for r in read_csv(out / "segments.csv") if r["status"] == "empty"]
     assert len(empty) == 1                                    # logged once, not on every run
+
+
+def test_parallel_workers_produce_the_same_frames_as_serial(tmp_path):
+    src = tmp_path / "src" / "MAY 4" / "5-7 PM" / WINDOW / "Media 1"
+    for cam in ("CAM_A", "CAM_B", "CAM_C"):
+        write_video(src / cam / "Dados" / "20260504_1.mp4", 130)
+        write_video(src / cam / "Dados" / "20260504_2.mp4", 70)
+
+    serial, parallel = tmp_path / "serial", tmp_path / "parallel"
+    a = extract_all(tmp_path / "src", serial, workers=1)
+    b = extract_all(tmp_path / "src", parallel, workers=2)
+    assert a["ok"] == b["ok"] == 6 and a["frames"] == b["frames"] == 15 and b["errors"] == 0
+
+    def keys(root):
+        return sorted((r["camera_id"], r["segment"], r["frame_index"], r["timestamp"])
+                      for r in read_csv(root / "manifest.csv"))
+
+    assert keys(serial) == keys(parallel)
+    assert extract_all(tmp_path / "src", parallel, workers=2)["skipped"] == 6     # resumes the same way

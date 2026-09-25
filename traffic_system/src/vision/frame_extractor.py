@@ -23,6 +23,7 @@ import shutil
 import subprocess
 import tempfile
 import time
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -337,9 +338,110 @@ def _append(path: Path, fields: List[str], rows: List[dict]) -> None:
         writer.writerows(rows)
 
 
+def _process_folder(segments: List[Segment], done: Dict[str, dict], logged_empty: set,
+                    out_root: Path, interval_sec: int, min_chunk_bytes: int):
+    """Extract one camera folder -> (manifest_rows, segment_rows, stats).
+
+    Does not touch the CSVs: the caller writes them, so several folders can run in worker
+    processes at once without racing on the same files."""
+    manifest_rows: List[dict] = []
+    segment_rows: List[dict] = []
+    stats = {"ok": 0, "skipped": 0, "failed": 0, "empty": 0, "frames": 0}
+    offset = 0.0
+    uncertain = False  # an earlier segment failed, so later start times are lower bounds
+    header, header_ready = None, False
+
+    for seg in segments:
+        key = str(seg.path)
+        if key in done:
+            offset += float(done[key]["duration_sec"])
+            uncertain = uncertain or done[key]["start_estimated"] == "True"
+            stats["skipped"] += 1
+            continue
+
+        start = seg.window_start + timedelta(seconds=offset)
+        size = seg.path.stat().st_size
+        if size < min_chunk_bytes:
+            if key not in logged_empty:
+                segment_rows.append({
+                    "camera_id": seg.camera_id, "source_video": key, "segment": seg.number,
+                    "status": "empty", "method": "", "n_frames": 0, "duration_sec": 0,
+                    "segment_start": start.isoformat(), "start_estimated": uncertain,
+                    "error": f"{size} bytes: too short to hold a sampled frame",
+                })
+            stats["empty"] += 1
+            continue
+
+        frames, duration, method, error = [], 0.0, "", ""
+        if not header_ready:  # parameter sets from a clean chunk of this camera, if any
+            header = next((h for h in (stream_header(s.path) for s in segments) if h), None)
+            header_ready = True
+        notes: List[str] = []
+        with tempfile.TemporaryDirectory() as tmp:
+            # Read the slow Drive file once; every conversion attempt then uses the local copy.
+            source = seg.path
+            started = time.monotonic()
+            try:
+                local = Path(tmp) / seg.path.name
+                shutil.copyfile(seg.path, local)
+                source = local
+            except OSError as exc:  # e.g. no local disk space: fall back to reading Drive directly
+                notes.append(f"copy failed: {exc}")
+            notes.append(f"copy:{time.monotonic() - started:.0f}s")
+
+            for method, readable in _attempts(source, Path(tmp), header, notes):
+                started = time.monotonic()
+                frames, duration = _sample_attempt(readable, interval_sec, size)
+                notes.append(f"{method}->{len(frames)}frames:{time.monotonic() - started:.0f}s")
+                if frames:
+                    break
+                error = f"{method}: no usable frames (none decoded, or far shorter than the file)"
+            else:
+                method = ""
+                error = error or "no converter or reader could open this file"
+
+        if not frames:
+            segment_rows.append({
+                "camera_id": seg.camera_id, "source_video": key, "segment": seg.number,
+                "status": "failed", "method": method, "n_frames": 0, "duration_sec": 0,
+                "segment_start": start.isoformat(), "start_estimated": True,
+                "error": error + " [" + "; ".join(notes) + "]",
+            })
+            uncertain = True
+            stats["failed"] += 1
+            continue
+
+        day_dir = out_root / seg.window_start.strftime("%Y-%m-%d") / seg.camera_id
+        day_dir.mkdir(parents=True, exist_ok=True)
+        for k, frame in frames:
+            file = day_dir / f"{seg.path.stem}_{k:03d}.jpg"
+            cv2.imwrite(str(file), frame, [cv2.IMWRITE_JPEG_QUALITY, JPEG_QUALITY])
+            manifest_rows.append({
+                "camera_id": seg.camera_id,
+                "timestamp": (start + timedelta(seconds=k * interval_sec)).isoformat(),
+                "frame_path": file.relative_to(out_root).as_posix(),
+                "source_video": key, "segment": seg.number, "frame_index": k,
+                "segment_start": start.isoformat(),
+                "segment_duration_sec": round(duration, 2),
+                "start_estimated": uncertain,
+            })
+        segment_rows.append({
+            "camera_id": seg.camera_id, "source_video": key, "segment": seg.number,
+            "status": "ok", "method": method, "n_frames": len(frames),
+            "duration_sec": round(duration, 2), "segment_start": start.isoformat(),
+            "start_estimated": uncertain, "error": "; ".join(notes),
+        })
+        offset += duration
+        stats["ok"] += 1
+        stats["frames"] += len(frames)
+    return manifest_rows, segment_rows, stats
+
+
 def extract_all(root: Path, out_root: Path, interval_sec: int = SAMPLE_INTERVAL_SEC,
-                progress=lambda it, **kw: it) -> Dict[str, int]:
-    """Extract frames for every segment under root. Resumable: segments already 'ok' are skipped."""
+                progress=lambda it, **kw: it, workers: int = 1) -> Dict[str, int]:
+    """Extract frames for every segment under root. Resumable: segments already 'ok' are skipped.
+
+    workers > 1 processes that many camera folders at the same time (separate processes)."""
     out_root.mkdir(parents=True, exist_ok=True)
     manifest_csv, segments_csv = out_root / "manifest.csv", out_root / "segments.csv"
     done = _read_ok_segments(segments_csv)
@@ -352,99 +454,37 @@ def extract_all(root: Path, out_root: Path, interval_sec: int = SAMPLE_INTERVAL_
         del done[k]
     _drop_manifest_rows(manifest_csv, stale)
     logged_empty = _read_empty_segments(segments_csv)
-    stats = {"folders": len(groups), "ok": 0, "skipped": 0, "failed": 0, "empty": 0, "frames": 0}
 
-    for folder, segments in progress(list(groups.items()), desc="camera folders"):
-        offset = 0.0
-        uncertain = False  # an earlier segment failed, so later start times are lower bounds
-        header, header_ready = None, False
-        for seg in segments:
-            key = str(seg.path)
-            if key in done:
-                offset += float(done[key]["duration_sec"])
-                uncertain = uncertain or done[key]["start_estimated"] == "True"
-                stats["skipped"] += 1
-                continue
+    jobs = []
+    for segments in groups.values():
+        keys = {str(s.path) for s in segments}
+        jobs.append((segments, {k: v for k, v in done.items() if k in keys}, logged_empty & keys,
+                     out_root, interval_sec, MIN_CHUNK_BYTES))
+    totals = {"folders": len(groups), "ok": 0, "skipped": 0, "failed": 0, "empty": 0,
+              "frames": 0, "errors": 0}
 
-            start = seg.window_start + timedelta(seconds=offset)
-            size = seg.path.stat().st_size
-            if size < MIN_CHUNK_BYTES:
-                if key not in logged_empty:
-                    _append(segments_csv, SEGMENT_FIELDS, [{
-                        "camera_id": seg.camera_id, "source_video": key, "segment": seg.number,
-                        "status": "empty", "method": "", "n_frames": 0, "duration_sec": 0,
-                        "segment_start": start.isoformat(), "start_estimated": uncertain,
-                        "error": f"{size} bytes: too short to hold a sampled frame",
-                    }])
-                    logged_empty.add(key)
-                stats["empty"] += 1
-                continue
+    def collect(result):
+        manifest_rows, segment_rows, stats = result
+        if manifest_rows:
+            _append(manifest_csv, MANIFEST_FIELDS, manifest_rows)
+        if segment_rows:
+            _append(segments_csv, SEGMENT_FIELDS, segment_rows)
+        for name, value in stats.items():
+            totals[name] += value
 
-            frames, duration, method, error = [], 0.0, "", ""
-            if not header_ready:  # parameter sets from a clean chunk of this camera, if any
-                header = next((h for h in (stream_header(s.path) for s in segments) if h), None)
-                header_ready = True
-            notes: List[str] = []
-            with tempfile.TemporaryDirectory() as tmp:
-                # Read the slow Drive file once; every conversion attempt then uses the local copy.
-                source = seg.path
-                started = time.monotonic()
+    if workers <= 1:
+        for job in progress(jobs, desc="camera folders", total=len(jobs)):
+            collect(_process_folder(*job))
+    else:
+        with ProcessPoolExecutor(max_workers=workers) as pool:
+            futures = [pool.submit(_process_folder, *job) for job in jobs]
+            for future in progress(as_completed(futures), desc="camera folders", total=len(futures)):
                 try:
-                    local = Path(tmp) / seg.path.name
-                    shutil.copyfile(seg.path, local)
-                    source = local
-                except OSError as exc:  # e.g. no local disk space: fall back to reading Drive directly
-                    notes.append(f"copy failed: {exc}")
-                notes.append(f"copy:{time.monotonic() - started:.0f}s")
-
-                for method, readable in _attempts(source, Path(tmp), header, notes):
-                    started = time.monotonic()
-                    frames, duration = _sample_attempt(readable, interval_sec, size)
-                    notes.append(f"{method}->{len(frames)}frames:{time.monotonic() - started:.0f}s")
-                    if frames:
-                        break
-                    error = f"{method}: no usable frames (none decoded, or far shorter than the file)"
-                else:
-                    method = ""
-                    error = error or "no converter or reader could open this file"
-
-            if not frames:
-                _append(segments_csv, SEGMENT_FIELDS, [{
-                    "camera_id": seg.camera_id, "source_video": key, "segment": seg.number,
-                    "status": "failed", "method": method, "n_frames": 0, "duration_sec": 0,
-                    "segment_start": start.isoformat(), "start_estimated": True,
-                    "error": f"{error} [{'; '.join(notes)}]",
-                }])
-                uncertain = True
-                stats["failed"] += 1
-                continue
-
-            day_dir = out_root / seg.window_start.strftime("%Y-%m-%d") / seg.camera_id
-            day_dir.mkdir(parents=True, exist_ok=True)
-            rows = []
-            for k, frame in frames:
-                file = day_dir / f"{seg.path.stem}_{k:03d}.jpg"
-                cv2.imwrite(str(file), frame, [cv2.IMWRITE_JPEG_QUALITY, JPEG_QUALITY])
-                rows.append({
-                    "camera_id": seg.camera_id,
-                    "timestamp": (start + timedelta(seconds=k * interval_sec)).isoformat(),
-                    "frame_path": file.relative_to(out_root).as_posix(),
-                    "source_video": key, "segment": seg.number, "frame_index": k,
-                    "segment_start": start.isoformat(),
-                    "segment_duration_sec": round(duration, 2),
-                    "start_estimated": uncertain,
-                })
-            _append(manifest_csv, MANIFEST_FIELDS, rows)
-            _append(segments_csv, SEGMENT_FIELDS, [{
-                "camera_id": seg.camera_id, "source_video": key, "segment": seg.number,
-                "status": "ok", "method": method, "n_frames": len(rows),
-                "duration_sec": round(duration, 2), "segment_start": start.isoformat(),
-                "start_estimated": uncertain, "error": "; ".join(notes),
-            }])
-            offset += duration
-            stats["ok"] += 1
-            stats["frames"] += len(rows)
-    return stats
+                    collect(future.result())
+                except Exception as exc:  # one broken folder must not stop the whole run
+                    print(f"folder failed: {exc!r}")
+                    totals["errors"] += 1
+    return totals
 
 
 def session_coverage(segments_csv: Path, tolerance_min: float = 10.0) -> List[dict]:
