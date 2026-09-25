@@ -32,6 +32,8 @@ SAMPLE_INTERVAL_SEC = 60
 FRAME_MAX_SIDE = 640      # aspect ratio kept; the dataset resizes to 224 at load time
 JPEG_QUALITY = 95
 SUPPORTED_EXTS = (".dar", ".mp4", ".avi", ".mkv")
+CONVERT_TIMEOUT_SEC = 300   # a converter stuck on one file must not stall the whole run
+ALLOW_REENCODE = False      # libx264 re-encode is very slow; enable only to rescue stubborn files
 
 MANIFEST_FIELDS = [
     "camera_id", "timestamp", "frame_path", "source_video", "segment",
@@ -99,9 +101,10 @@ def _run(cmd: List[str]) -> bool:
     if shutil.which(cmd[0]) is None:
         return False
     try:
-        subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+        subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True,
+                       timeout=CONVERT_TIMEOUT_SEC)
         return True
-    except (subprocess.CalledProcessError, OSError):
+    except (subprocess.CalledProcessError, subprocess.TimeoutExpired, OSError):
         return False
 
 
@@ -110,12 +113,14 @@ def _attempts(src: Path, tmp_dir: Path) -> Iterator[Tuple[str, Path]]:
     if src.suffix.lower() == ".mp4":
         yield "direct", src
     out = tmp_dir / "converted.mp4"
-    for method, cmd in (
+    commands = [
         ("mp4box", ["MP4Box", "-add", str(src), str(out)]),
         ("ffmpeg_copy", ["ffmpeg", "-y", "-i", str(src), "-c", "copy", str(out)]),
-        ("ffmpeg_reencode", ["ffmpeg", "-y", "-i", str(src), "-an", "-c:v", "libx264",
-                             "-preset", "ultrafast", "-crf", "28", str(out)]),
-    ):
+    ]
+    if ALLOW_REENCODE:
+        commands.append(("ffmpeg_reencode", ["ffmpeg", "-y", "-i", str(src), "-an", "-c:v", "libx264",
+                                             "-preset", "ultrafast", "-crf", "28", str(out)]))
+    for method, cmd in commands:
         if out.exists():
             out.unlink()
         if _run(cmd) and out.exists():
@@ -132,21 +137,32 @@ def resize_max_side(frame, max_side: int = FRAME_MAX_SIDE):
     return cv2.resize(frame, (round(w * scale), round(h * scale)), interpolation=cv2.INTER_AREA)
 
 
-def sample_frames(video_path: Path, interval_sec: int = SAMPLE_INTERVAL_SEC):
-    """Sequentially decode and keep one frame per `interval_sec` of video time.
-
-    Returns ([(k, bgr_frame)], duration_sec). Sequential decoding is used instead of
-    seeking because seeking in remuxed CCTV streams is unreliable; duration comes from
-    the frames actually decoded, not container metadata.
-    """
-    cap = cv2.VideoCapture(str(video_path))
-    if not cap.isOpened():
-        return [], 0.0
+def _valid_fps(cap) -> float:
     fps = cap.get(cv2.CAP_PROP_FPS)
-    if not fps or fps != fps or fps <= 0:
-        fps = 30.0
-    step = max(1, int(round(fps * interval_sec)))
+    return fps if fps and fps == fps and fps > 0 else 30.0
 
+
+def _sample_by_seeking(cap, fps: float, interval_sec: int):
+    """Jump straight to each sampling time. Returns None if the container's frame count or
+    seeking cannot be trusted, so the caller can fall back to sequential decoding."""
+    n_frames = cap.get(cv2.CAP_PROP_FRAME_COUNT)
+    if not n_frames or n_frames != n_frames or n_frames <= 0:
+        return None
+    duration = n_frames / fps
+    frames = []
+    for k in range(math.ceil(duration / interval_sec)):
+        cap.set(cv2.CAP_PROP_POS_MSEC, k * interval_sec * 1000)
+        ok, frame = cap.read()
+        if not ok:
+            return None
+        frames.append((k, resize_max_side(frame)))
+    return frames, duration
+
+
+def _sample_sequentially(cap, fps: float, interval_sec: int):
+    """Decode every frame and keep one per interval. Slow but works on any readable stream;
+    duration comes from the frames actually decoded, not container metadata."""
+    step = max(1, int(round(fps * interval_sec)))
     frames, idx = [], 0
     while cap.grab():
         if idx % step == 0:
@@ -154,8 +170,25 @@ def sample_frames(video_path: Path, interval_sec: int = SAMPLE_INTERVAL_SEC):
             if ok:
                 frames.append((idx // step, resize_max_side(frame)))
         idx += 1
-    cap.release()
     return frames, idx / fps
+
+
+def sample_frames(video_path: Path, interval_sec: int = SAMPLE_INTERVAL_SEC):
+    """Keep one frame per `interval_sec` of video time -> ([(k, bgr_frame)], duration_sec).
+
+    Seeks to each sample point (seconds per video); falls back to decoding the whole stream
+    when seeking is unreliable for that file.
+    """
+    cap = cv2.VideoCapture(str(video_path))
+    if not cap.isOpened():
+        return [], 0.0
+    fps = _valid_fps(cap)
+    result = _sample_by_seeking(cap, fps, interval_sec)
+    if result is None:
+        cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+        result = _sample_sequentially(cap, fps, interval_sec)
+    cap.release()
+    return result
 
 
 # ---------------------------------------------------------------------------

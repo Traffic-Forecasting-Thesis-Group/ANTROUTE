@@ -99,3 +99,22 @@ def test_failed_segment_is_recorded_and_marks_later_starts_estimated(footage):
     assert segments["2"]["status"] == "failed" and segments["2"]["error"]
     later = [r for r in read_csv(out / "manifest.csv") if r["segment"] == "3"]
     assert later and all(r["start_estimated"] == "True" for r in later)
+
+
+def test_seek_and_sequential_sampling_agree(tmp_path):
+    from src.vision.frame_extractor import _sample_by_seeking, _sample_sequentially, _valid_fps
+
+    video = tmp_path / "v.mp4"
+    write_video(video, 130)
+
+    def run(sampler):
+        cap = cv2.VideoCapture(str(video))
+        out = sampler(cap, _valid_fps(cap), 60)
+        cap.release()
+        return out
+
+    (seek_frames, seek_dur), (seq_frames, seq_dur) = run(_sample_by_seeking), run(_sample_sequentially)
+    assert [k for k, _ in seek_frames] == [k for k, _ in seq_frames] == [0, 1, 2]
+    assert abs(seek_dur - seq_dur) < 0.5
+    for (_, a), (_, b) in zip(seek_frames, seq_frames):   # same moment of video, not just same count
+        assert abs(float(a.mean()) - float(b.mean())) < 8
