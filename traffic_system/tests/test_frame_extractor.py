@@ -210,3 +210,20 @@ def test_stream_to_ffmpeg_sends_prefix_then_the_file_from_offset(tmp_path):
     assert fx._stream_to_ffmpeg(cmd, src, 4, b"HDR-")
     assert out.read_bytes() == b"HDR-PAYLOAD"
     assert not fx._stream_to_ffmpeg([sys.executable, "-c", "import sys; sys.exit(3)"], src, 0, b"")
+
+
+def test_segments_csv_records_where_the_time_went(footage):
+    source, out = footage
+    extract_all(source, out)
+    notes = [r["error"] for r in read_csv(out / "segments.csv")]
+    assert all(n.startswith("copy:") and "direct->" in n for n in notes)   # copy time, then the sampling result
+
+
+def test_failed_rows_keep_the_attempt_log(footage):
+    source, out = footage
+    dados = next(source.rglob("Dados"))
+    (dados / "20260504_2.mp4").unlink()
+    (dados / "20260504_2.dar").write_bytes(b"not a video")
+    extract_all(source, out)
+    failed = [r for r in read_csv(out / "segments.csv") if r["status"] == "failed"]
+    assert failed and "copy:" in failed[0]["error"] and "->0frames" in failed[0]["error"]

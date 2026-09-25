@@ -172,8 +172,12 @@ def _run(cmd: List[str], stdin_path: Optional[Path] = None, stdin_offset: int = 
         return False
 
 
-def _attempts(src: Path, tmp_dir: Path, header: Optional[bytes] = None) -> Iterator[Tuple[str, Path]]:
-    """Lazily yield (method, readable path); conversions only run if earlier ones failed."""
+def _attempts(src: Path, tmp_dir: Path, header: Optional[bytes] = None,
+              notes: Optional[List[str]] = None) -> Iterator[Tuple[str, Path]]:
+    """Lazily yield (method, readable path); conversions only run if earlier ones failed.
+
+    `notes` collects "method:ok|failed:seconds" for every conversion tried, so a slow or
+    failing file can be diagnosed from segments.csv."""
     is_mp4 = src.suffix.lower() == ".mp4"
     if is_mp4:
         yield "direct", src
@@ -198,8 +202,12 @@ def _attempts(src: Path, tmp_dir: Path, header: Optional[bytes] = None) -> Itera
     for method, cmd, stream_from in commands:
         if out.exists():
             out.unlink()
+        started = time.monotonic()
         ran = _run(cmd, src, stream_from, header or b"") if stream_from is not None else _run(cmd)
-        if ran and out.exists():
+        made = bool(ran and out.exists())
+        if notes is not None:
+            notes.append(f"{method}:{'ok' if made else 'failed'}:{time.monotonic() - started:.0f}s")
+        if made:
             yield method, out
     if not is_mp4:
         yield "direct", src
@@ -350,9 +358,23 @@ def extract_all(root: Path, out_root: Path, interval_sec: int = SAMPLE_INTERVAL_
                 header = next((h for h in (stream_header(s.path) for s in segments) if h), None)
                 header_ready = True
             size = seg.path.stat().st_size
+            notes: List[str] = []
             with tempfile.TemporaryDirectory() as tmp:
-                for method, readable in _attempts(seg.path, Path(tmp), header):
+                # Read the slow Drive file once; every conversion attempt then uses the local copy.
+                source = seg.path
+                started = time.monotonic()
+                try:
+                    local = Path(tmp) / seg.path.name
+                    shutil.copyfile(seg.path, local)
+                    source = local
+                except OSError as exc:  # e.g. no local disk space: fall back to reading Drive directly
+                    notes.append(f"copy failed: {exc}")
+                notes.append(f"copy:{time.monotonic() - started:.0f}s")
+
+                for method, readable in _attempts(source, Path(tmp), header, notes):
+                    started = time.monotonic()
                     frames, duration = _sample_attempt(readable, interval_sec, size)
+                    notes.append(f"{method}->{len(frames)}frames:{time.monotonic() - started:.0f}s")
                     if frames:
                         break
                     error = f"{method}: no usable frames (none decoded, or far shorter than the file)"
@@ -364,7 +386,8 @@ def extract_all(root: Path, out_root: Path, interval_sec: int = SAMPLE_INTERVAL_
                 _append(segments_csv, SEGMENT_FIELDS, [{
                     "camera_id": seg.camera_id, "source_video": key, "segment": seg.number,
                     "status": "failed", "method": method, "n_frames": 0, "duration_sec": 0,
-                    "segment_start": start.isoformat(), "start_estimated": True, "error": error,
+                    "segment_start": start.isoformat(), "start_estimated": True,
+                    "error": f"{error} [{'; '.join(notes)}]",
                 }])
                 uncertain = True
                 stats["failed"] += 1
@@ -390,7 +413,7 @@ def extract_all(root: Path, out_root: Path, interval_sec: int = SAMPLE_INTERVAL_
                 "camera_id": seg.camera_id, "source_video": key, "segment": seg.number,
                 "status": "ok", "method": method, "n_frames": len(rows),
                 "duration_sec": round(duration, 2), "segment_start": start.isoformat(),
-                "start_estimated": uncertain, "error": "",
+                "start_estimated": uncertain, "error": "; ".join(notes),
             }])
             offset += duration
             stats["ok"] += 1
