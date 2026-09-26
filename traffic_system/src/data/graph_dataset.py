@@ -28,9 +28,9 @@ def last_labelled_step(target: torch.Tensor) -> int:
 class GraphWindowDataset(Dataset):
     def __init__(self, records: Sequence[SessionRecord], split: str, lookup: Dict[str, int],
                  node_labels: Sequence[str], camera_to_label: Dict[str, str], image_size: int = 224,
-                 sample_cameras: bool = False, time_features: bool = False):
+                 sample_cameras: bool = False, time_features: bool = False, base=None):
         self.sample_cameras = sample_cameras
-        self.base = LabeledWindowDataset(records, split, lookup, image_size, time_features)
+        self.base = base if base is not None else LabeledWindowDataset(records, split, lookup, image_size, time_features)
         self.node_labels = list(node_labels)
         self.image_size = image_size
         self.weather_dim = self.base.temporal_dim
@@ -44,9 +44,10 @@ class GraphWindowDataset(Dataset):
             frames = sum(p is not None for p in record.frame_paths[start:start + WINDOW_STEPS])
             groups.setdefault((record.day, record.session, start), {}).setdefault(label, []).append((frames, i))
         # per window and node: base-window indices of its candidate cameras, fullest first
+        self.keys = sorted(groups)                    # (day, session, start step) of each window
         self.index: List[Dict[str, List[int]]] = [
             {label: [i for _, i in sorted(cands, reverse=True)] for label, cands in groups[key].items()}
-            for key in sorted(groups)
+            for key in self.keys
         ]
 
     def __len__(self) -> int:
@@ -69,7 +70,8 @@ class GraphWindowDataset(Dataset):
             item = self.base[chosen]
             images[slot], text[slot], temporal[slot] = item["images"], item["text"], item["temporal"]
             visual_mask[slot], text_mask[slot] = item["visual_mask"], item["text_mask"]
-            target[slot] = last_labelled_step(item["target"])
+            if "target" in item:
+                target[slot] = last_labelled_step(item["target"])
 
         return {"images": images, "text": text, "temporal": temporal,
                 "visual_mask": visual_mask, "text_mask": text_mask, "target": target}

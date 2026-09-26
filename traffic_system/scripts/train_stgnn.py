@@ -27,10 +27,14 @@ from torch.utils.data import DataLoader
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
+from src.data.alignment import VISUAL_SPLIT  # noqa: E402
 from src.data.graph_data import DEFAULT_K, GraphData, build_subgraph, graph_sizes, resolve_camera_map  # noqa: E402
 from src.data.graph_dataset import GraphWindowDataset  # noqa: E402
 from src.data.metrics import macro_f1, ordinal_mae  # noqa: E402
-from src.data.training_data import WEATHER_COLUMNS, build_training_records, load_label_lookup  # noqa: E402
+from src.data.training_data import (  # noqa: E402
+    WEATHER_COLUMNS, assign_session_splits, build_training_records, describe_split, labelled_sessions,
+    load_label_lookup,
+)
 from src.models.cnn_lstm_fusion import CNNLSTMFusion  # noqa: E402
 from src.models.radr_stgnn import RADRSTGNN  # noqa: E402
 from src.models.traffic_risk_model import IGNORE_INDEX, TrafficRiskModel, camera_node_loss  # noqa: E402
@@ -96,6 +100,8 @@ def train(
     seed: int = 0,
     graph: Optional[GraphData] = None,
     human_only: bool = False,
+    split: str = "official",
+    min_session_labels: int = 100,
     time_features: bool = True,
     node_embedding: bool = True,
 ) -> dict:
@@ -104,8 +110,13 @@ def train(
     device = torch.device(device or ("cuda" if torch.cuda.is_available() else "cpu"))
 
     graph = graph or build_subgraph(spatial_dir, k)
-    records, scaler, skipped = build_training_records(frames_root, weather_csv, raw_twitter_root, embeddings_path)
     lookup = load_label_lookup(frames_root, human_only)
+    visual_split = None
+    if split == "auto":
+        visual_split = assign_session_splits(labelled_sessions(frames_root, lookup, min_session_labels))
+        print("70/15/15 split over the labelled sessions:\n" + describe_split(visual_split))
+    records, scaler, skipped = build_training_records(
+        frames_root, weather_csv, raw_twitter_root, embeddings_path, visual_split)
     if not lookup:
         raise ValueError("No labelled frames (with human_only, review frames in the viewer first).")
 
@@ -163,6 +174,8 @@ def train(
     config = {"k": k, "image_size": image_size, "patch_size": patch_size, "patch_embed_dim": patch_embed_dim,
               "text_dim": 768, "temporal_dim": temporal_dim, "n_classes": N_CLASSES,
               "time_features": time_features, "node_embedding": node_embedding,
+              "use_text": raw_twitter_root is not None,
+              "visual_split": {f"{d.isoformat()}|{s}": v for (d, s), v in (visual_split or VISUAL_SPLIT).items()},
               "weather_columns": WEATHER_COLUMNS, "node_labels": node_labels, "camera_map": camera_map,
               "graph_node_ids": graph.node_ids}
     start_epoch, best = 0, float("-inf")
@@ -244,6 +257,10 @@ def main():
     p.add_argument("--max-train-windows", type=int, default=None)
     p.add_argument("--device", default=None)
     p.add_argument("--seed", type=int, default=0)
+    p.add_argument("--split", choices=["official", "auto"], default="official",
+                   help="official = the day split in alignment.py; auto = 70/15/15 by whole sessions over the labelled ones")
+    p.add_argument("--min-session-labels", type=int, default=100,
+                   help="with --split auto, a session needs this many labelled frames to be used")
     p.add_argument("--human-only", action="store_true", help="train only on frames reviewed by a person")
     p.add_argument("--no-time-features", action="store_true", help="do not give the model the time within the session")
     p.add_argument("--no-node-embedding", action="store_true", help="no learned per-intersection bias")
@@ -261,7 +278,7 @@ def main():
           None if a.no_text else a.embeddings, a.out, a.spatial_dir, a.camera_csv, a.k, a.epochs,
           a.batch_size, a.lr_fusion, a.lr_graph, image_size=a.image_size, init_fusion=a.init_fusion,
           resume=a.resume, use_class_weights=a.class_weights, num_workers=a.num_workers,
-          max_train_windows=a.max_train_windows, device=a.device, seed=a.seed, human_only=a.human_only,
+          max_train_windows=a.max_train_windows, device=a.device, seed=a.seed, human_only=a.human_only, split=a.split, min_session_labels=a.min_session_labels,
           time_features=not a.no_time_features, node_embedding=not a.no_node_embedding)
 
 

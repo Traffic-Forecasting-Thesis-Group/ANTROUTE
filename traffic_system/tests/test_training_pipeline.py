@@ -209,3 +209,71 @@ def test_training_with_worker_processes_runs(data, tmp_path):
         data["frames"], data["weather"], None, None, tmp_path / "workers.pt", epochs=1, batch_size=4,
         image_size=32, patch_size=16, patch_embed_dim=8, device="cpu", num_workers=2)
     assert math.isfinite(result["history"][0]["train_loss"])
+
+
+def test_auto_split_is_70_15_15_by_whole_sessions_in_date_order():
+    from datetime import date
+    from src.data.alignment import VISUAL_SPLIT
+    from src.data.training_data import assign_session_splits
+
+    days = [date(2026, 5, d) for d in (4, 6, 8, 11, 13, 15, 18, 20, 22, 25)]
+    everything = [(d, s) for d in days for s in ("AM", "PM")]
+    split = assign_session_splits(everything)
+    assert split == VISUAL_SPLIT                                   # 14 / 3 / 3: the project's official split, reproduced
+
+    seven = assign_session_splits(everything[:7])
+    assert [list(seven.values()).count(k) for k in ("train", "val", "test")] == [5, 1, 1]
+    ordered = [seven[s] for s in sorted(seven)]
+    assert ordered == ["train"] * 5 + ["val", "test"]              # chronological, later sessions held out
+
+
+def test_auto_split_handles_small_numbers_of_sessions():
+    from datetime import date
+    from src.data.training_data import assign_session_splits
+
+    s = [(date(2026, 5, d), "PM") for d in (4, 6, 8, 11, 13, 15, 18, 20, 22, 25)]
+    assert list(assign_session_splits(s[:1]).values()) == ["train"]
+    assert list(assign_session_splits(s[:2]).values()) == ["train", "val"]
+    assert list(assign_session_splits(s[:3]).values()) == ["train", "val", "test"]
+    ten = list(assign_session_splits(s).values())
+    assert len(ten) == 10 and all(ten.count(k) >= 1 for k in ("train", "val", "test")) and ten.count("train") >= 6
+    assert assign_session_splits([]) == {}
+
+
+def test_session_of_uses_the_two_daily_sessions():
+    from datetime import date
+    from src.data.training_data import session_of
+
+    assert session_of("2026-05-04T07:30:00") == (date(2026, 5, 4), "AM")
+    assert session_of("2026-05-04T18:59:00") == (date(2026, 5, 4), "PM")
+
+
+def test_custom_splits_reach_the_session_records_and_training(data, tmp_path):
+    from datetime import date
+    from src.data.training_data import labelled_sessions
+
+    records, _, _ = build_training_records(
+        data["frames"], data["weather"], visual_split={(date(2026, 5, 4), "PM"): "test", (date(2026, 5, 20), "PM"): "train"})
+    assert {(r.day.isoformat(), r.split) for r in records} == {(TRAIN_DAY, "test"), (VAL_DAY, "train")}
+
+    lookup = load_label_lookup(data["frames"])
+    assert labelled_sessions(data["frames"], lookup) == [(date(2026, 5, 4), "PM"), (date(2026, 5, 20), "PM")]
+    result = train_cnn_lstm.train(data["frames"], data["weather"], None, None, tmp_path / "auto.pt", epochs=1,
+                                  batch_size=4, image_size=32, patch_size=16, patch_embed_dim=8, device="cpu", split="auto",
+                                  min_session_labels=10)
+    assert result["history"][0]["val"]["n_steps"] > 0              # two sessions: the later one became validation
+
+
+def test_sessions_with_too_few_labels_are_not_used_for_the_auto_split(data):
+    from datetime import date
+    from src.data.training_data import labelled_sessions
+    from src.vision.label_store import save_human_label
+
+    frames = data["frames"]
+    for m in range(40):
+        save_human_label(frames, f"{TRAIN_DAY}/CAM1/f_{m:03d}.jpg", "Heavy")
+    for m in range(3):
+        save_human_label(frames, f"{VAL_DAY}/CAM1/f_{m:03d}.jpg", "Light")
+    lookup = load_label_lookup(frames, human_only=True)
+    assert labelled_sessions(frames, lookup, min_labels=1) == [(date(2026, 5, 4), "PM"), (date(2026, 5, 20), "PM")]
+    assert labelled_sessions(frames, lookup, min_labels=10) == [(date(2026, 5, 4), "PM")]

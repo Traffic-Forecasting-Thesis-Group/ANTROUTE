@@ -10,6 +10,7 @@ and hands them to alignment.build_sessions. Only the visual regime is built
 (sessions that have CCTV frames), since the congestion labels come from frames.
 """
 
+import collections
 import json
 from pathlib import Path
 from typing import Callable, Dict, List, Optional, Sequence
@@ -20,6 +21,7 @@ import torch
 from src.data.alignment import (
     BUFFER_START,
     SESSION_STEPS,
+    window_starts,
     WINDOW_STEPS,
     LOCAL_TZ,
     SessionRecord,
@@ -118,11 +120,52 @@ def empty_tweets() -> pd.DataFrame:
                          "embedding": pd.Series(dtype=object)})
 
 
+def session_of(timestamp) -> tuple:
+    """(date, 'AM' | 'PM') of a frame time: sessions start at 07:00 and 17:00."""
+    ts = pd.Timestamp(timestamp)
+    return ts.date(), ("AM" if ts.hour < 12 else "PM")
+
+
+def labelled_sessions(frames_roots, lookup: Dict[str, int], min_labels: int = 1) -> List[tuple]:
+    """Sessions (date, AM/PM) with at least `min_labels` labelled frames, in chronological order.
+    A session with only a handful of labels would make a meaningless validation or test set."""
+    frames = load_frames_table(frames_roots)
+    times = pd.to_datetime(frames.loc[frames["frame_path"].isin(lookup), "timestamp"], format="ISO8601")
+    counts = collections.Counter(session_of(t) for t in times)
+    return sorted(s for s, n in counts.items() if n >= min_labels)
+
+
+def assign_session_splits(sessions: Sequence[tuple], ratios=(0.70, 0.15, 0.15)) -> Dict[tuple, str]:
+    """Chronological train / val / test split by WHOLE sessions (never inside one, so a test frame is
+    never a minute away from a training frame). Fewer than 3 sessions cannot fill all three sets:
+    1 session -> train, 2 -> train + val."""
+    ordered = sorted(set(sessions))
+    n = len(ordered)
+    if n < 3:
+        n_val, n_test = (1 if n == 2 else 0), 0
+    else:
+        n_val, n_test = max(1, round(n * ratios[1])), max(1, round(n * ratios[2]))
+        while n - n_val - n_test < 1:
+            n_val, n_test = max(1, n_val - 1), max(1, n_test - 1)
+    n_train = n - n_val - n_test
+    return {s: ("train" if i < n_train else "val" if i < n_train + n_val else "test")
+            for i, s in enumerate(ordered)}
+
+
+def describe_split(split: Dict[tuple, str]) -> str:
+    lines = []
+    for name in ("train", "val", "test"):
+        members = ", ".join(f"{d:%b %d} {ses}" for (d, ses), s in sorted(split.items()) if s == name)
+        lines.append(f"  {name:5} ({sum(s == name for s in split.values())}): {members or '-'}")
+    return "\n".join(lines)
+
+
 def build_training_records(
     frames_root,
     weather_csv: Path,
     raw_twitter_root: Optional[Path] = None,
     embeddings_path: Optional[Path] = None,
+    visual_split: Optional[Dict[tuple, str]] = None,
 ):
     """Sessions for every camera on the visual-regime days. Text is skipped if no paths are given."""
     frames = load_frames_table(frames_root)
@@ -139,7 +182,7 @@ def build_training_records(
     # nonvisual_start == buffer_start makes the non-visual regime empty
     return build_sessions(
         frames, tweets, load_weather_daily(weather_csv), camera_ids, WEATHER_COLUMNS,
-        nonvisual_start=BUFFER_START, buffer_start=BUFFER_START,
+        nonvisual_start=BUFFER_START, buffer_start=BUFFER_START, visual_split=visual_split,
     )
 
 
@@ -181,6 +224,14 @@ def make_target_fn(lookup: Dict[str, int]) -> Callable[[SessionRecord, int], tor
 TIME_FEATURES = 2   # position within the 2-hour session (0..1) and PM-session flag
 
 
+def append_time_features(item: dict, record: SessionRecord, start: int) -> dict:
+    """Add how far into the session each step is, and the PM flag, as two columns of `temporal`."""
+    steps = (start + torch.arange(WINDOW_STEPS, dtype=torch.float32)) / (SESSION_STEPS - 1)
+    pm = torch.full_like(steps, 1.0 if record.session == "PM" else 0.0)
+    item["temporal"] = torch.cat([item["temporal"], torch.stack([steps, pm], dim=1)], dim=1)
+    return item
+
+
 class LabeledWindowDataset(ANTROUTEWindowDataset):
     """ANTROUTEWindowDataset restricted to visual windows containing at least one labelled frame.
 
@@ -203,7 +254,28 @@ class LabeledWindowDataset(ANTROUTEWindowDataset):
         item = super().__getitem__(i)
         if self.time_features:
             record_index, start = self.index[i]
-            steps = (start + torch.arange(WINDOW_STEPS, dtype=torch.float32)) / (SESSION_STEPS - 1)
-            pm = torch.full_like(steps, 1.0 if self.records[record_index].session == "PM" else 0.0)
-            item["temporal"] = torch.cat([item["temporal"], torch.stack([steps, pm], dim=1)], dim=1)
+            append_time_features(item, self.records[record_index], start)
+        return item
+
+
+class InferenceWindowDataset(ANTROUTEWindowDataset):
+    """Every 30-step window that has at least one frame, from every session (labels are not needed).
+    With a `lookup`, each item also carries the human target so predictions can be scored."""
+
+    def __init__(self, records: Sequence[SessionRecord], image_size: int = 224, time_features: bool = False,
+                 lookup: Optional[Dict[str, int]] = None):
+        super().__init__(records, "__none__", regime="visual", image_size=image_size,
+                         target_fn=make_target_fn(lookup) if lookup else None)
+        self.index = [
+            (i, s) for i, r in enumerate(records) if r.regime == "visual" for s in window_starts()
+            if any(p is not None for p in r.frame_paths[s:s + WINDOW_STEPS])
+        ]
+        self.time_features = time_features
+        self.temporal_dim = (len(records[0].weather) if len(records) else 0) + (TIME_FEATURES if time_features else 0)
+
+    def __getitem__(self, i: int) -> dict:
+        item = super().__getitem__(i)
+        if self.time_features:
+            record_index, start = self.index[i]
+            append_time_features(item, self.records[record_index], start)
         return item
