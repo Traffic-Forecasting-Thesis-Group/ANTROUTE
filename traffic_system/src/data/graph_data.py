@@ -115,6 +115,18 @@ def cctv_labels(spatial_dir: Path) -> List[str]:
         return [r["cctv_label"] for r in csv.DictReader(f) if r["is_cctv_node"] == "True"]
 
 
+def expected_camera_counts(path: Path) -> Dict[str, int]:
+    """Cameras expected per graph intersection, from configs/cctv_locations.csv (location, intersection)."""
+    path = Path(path)
+    if not path.exists():
+        return {}
+    counts: Dict[str, int] = {}
+    with path.open(encoding="utf-8", newline="") as f:
+        for row in csv.DictReader(f):
+            counts[row["intersection"]] = counts.get(row["intersection"], 0) + 1
+    return counts
+
+
 def save_camera_map(path: Path, mapping: Dict[str, str]) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)

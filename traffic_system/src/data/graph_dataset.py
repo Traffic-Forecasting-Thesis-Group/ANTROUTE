@@ -2,10 +2,13 @@
 Windows for the graph model: one 30-step window per (day, session, start) holding, for each
 camera node of the road subgraph, the CNN+LSTM inputs of the camera assigned to it.
 
-Several cameras may map to one intersection; the one with the most frames in the window is used.
+Several cameras may map to one intersection (Ortigas-Shaw has five). By default the one with the
+most frames in the window is used; with sample_cameras=True (training) one of that node's cameras
+is drawn at random each time, so every camera is seen over the epochs.
 Nodes with no camera in a window get zero inputs and fully masked timesteps.
 """
 
+import random
 from typing import Dict, List, Sequence
 
 import numpy as np
@@ -24,24 +27,26 @@ def last_labelled_step(target: torch.Tensor) -> int:
 
 class GraphWindowDataset(Dataset):
     def __init__(self, records: Sequence[SessionRecord], split: str, lookup: Dict[str, int],
-                 node_labels: Sequence[str], camera_to_label: Dict[str, str], image_size: int = 224):
+                 node_labels: Sequence[str], camera_to_label: Dict[str, str], image_size: int = 224,
+                 sample_cameras: bool = False):
+        self.sample_cameras = sample_cameras
         self.base = LabeledWindowDataset(records, split, lookup, image_size)
         self.node_labels = list(node_labels)
         self.image_size = image_size
         self.weather_dim = len(records[0].weather) if len(records) else 0
 
-        groups: Dict[tuple, Dict[str, tuple]] = {}
+        groups: Dict[tuple, Dict[str, list]] = {}
         for i, (record_index, start) in enumerate(self.base.index):
             record = records[record_index]
             label = camera_to_label.get(record.camera_id)
             if label not in self.node_labels:
                 continue
             frames = sum(p is not None for p in record.frame_paths[start:start + WINDOW_STEPS])
-            best = groups.setdefault((record.day, record.session, start), {})
-            if label not in best or frames > best[label][1]:
-                best[label] = (i, frames)
-        self.index: List[Dict[str, int]] = [
-            {label: i for label, (i, _) in groups[key].items()} for key in sorted(groups)
+            groups.setdefault((record.day, record.session, start), {}).setdefault(label, []).append((frames, i))
+        # per window and node: base-window indices of its candidate cameras, fullest first
+        self.index: List[Dict[str, List[int]]] = [
+            {label: [i for _, i in sorted(cands, reverse=True)] for label, cands in groups[key].items()}
+            for key in sorted(groups)
         ]
 
     def __len__(self) -> int:
@@ -59,7 +64,9 @@ class GraphWindowDataset(Dataset):
         for slot, label in enumerate(self.node_labels):
             if label not in self.index[i]:
                 continue
-            item = self.base[self.index[i][label]]
+            candidates = self.index[i][label]
+            chosen = random.choice(candidates) if self.sample_cameras else candidates[0]
+            item = self.base[chosen]
             images[slot], text[slot], temporal[slot] = item["images"], item["text"], item["temporal"]
             visual_mask[slot], text_mask[slot] = item["visual_mask"], item["text_mask"]
             target[slot] = last_labelled_step(item["target"])

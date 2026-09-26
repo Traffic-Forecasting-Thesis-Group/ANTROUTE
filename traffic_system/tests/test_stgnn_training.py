@@ -2,6 +2,7 @@ import csv
 import importlib.util
 import json
 import math
+import random
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -229,3 +230,41 @@ def test_training_refuses_to_run_when_no_camera_maps_to_a_node(data, tmp_path):
         train_stgnn.train(data["frames"], data["weather"], None, None, tmp_path / "o.pt", camera_csv=empty_csv,
                           epochs=1, image_size=32, patch_size=16, patch_embed_dim=8, device="cpu",
                           graph=data["graph"])
+
+
+def test_nodes_with_several_cameras_use_every_camera_over_training_but_the_fullest_for_evaluation(data, tmp_path):
+    root = data["frames"]
+    for name in ("manifest.csv", "auto_labels.csv"):                         # add a second, shorter camera at NODE_A
+        lines = (root / name).read_text(encoding="utf-8").splitlines()
+        extra = [l.replace("CAM_A", "CAM_A2") for l in lines[1:] if "CAM_A" in l and TRAIN_DAY in l][:40]
+        (root / name).write_text("\n".join(lines + extra) + "\n", encoding="utf-8")
+    for l in (root / "manifest.csv").read_text(encoding="utf-8").splitlines()[1:]:
+        if "CAM_A2" in l:
+            src = root / l.split(",")[2].replace("CAM_A2", "CAM_A")
+            dst = root / l.split(",")[2]
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            dst.write_bytes(src.read_bytes())
+
+    records, _, _ = build_training_records(root, data["weather"])
+    lookup = load_label_lookup(root)
+    mapping = {"CAM_A": "NODE_A", "CAM_A2": "NODE_A", "CAM_B": "NODE_B"}
+    fixed = GraphWindowDataset(records, "train", lookup, ["NODE_A", "NODE_B"], mapping, 32)
+    varied = GraphWindowDataset(records, "train", lookup, ["NODE_A", "NODE_B"], mapping, 32, sample_cameras=True)
+
+    assert any(len(cands) == 2 for w in fixed.index for label, cands in w.items() if label == "NODE_A")
+    def frames_in(base_i):
+        record_index, start = fixed.base.index[base_i]
+        return sum(p is not None for p in records[record_index].frame_paths[start:start + 30])
+
+    two_camera_windows = [w["NODE_A"] for w in fixed.index if len(w.get("NODE_A", [])) == 2]
+    assert two_camera_windows and all(frames_in(c[0]) >= frames_in(c[1]) for c in two_camera_windows)
+    assert any(frames_in(c[0]) > frames_in(c[1]) for c in two_camera_windows)   # evaluation: fullest camera first
+
+    used = set()
+    for _ in range(12):
+        for j, w in enumerate(varied.index):
+            if len(w.get("NODE_A", [])) == 2:
+                random.seed(j * 31 + _)
+                item = varied[j]
+                used.add(int(item["visual_mask"][0].sum()))                # frames present differ between the two cameras
+    assert len(used) >= 2                                                    # training saw both cameras of the node

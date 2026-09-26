@@ -4,18 +4,22 @@ Extract 1 frame / 60 s from every MMDA CCTV segment and write frames + manifest.
 Colab:
     from google.colab import drive; drive.mount("/content/drive")
     !apt-get install -y gpac ffmpeg > /dev/null
-    !git clone https://github.com/Traffic-Forecasting-Thesis-Group/ANTROUTE.git
+    !git clone -b dev https://github.com/Traffic-Forecasting-Thesis-Group/ANTROUTE.git
     !pip install -q opencv-python
-    !python ANTROUTE/traffic_system/scripts/extract_frames.py
+    !python ANTROUTE/traffic_system/scripts/extract_frames.py SRC OUT 2
 
-Local (Drive for Desktop):
-    python scripts/extract_frames.py "G:/My Drive/MMDA CCTV FOOTAGE" "G:/My Drive/MMDA_FRAMES"
+    SRC   footage folder            OUT   frames folder (created, resumable)
+    2     camera folders processed in parallel (default 1)
 
-Pass a single camera folder as the first argument to pilot on a small subset.
-Optional third argument: number of camera folders to process in parallel (default 1).
-Safe to re-run: segments already extracted are skipped, failed ones are retried.
+Extract only part of the data, e.g. to start training early or to split work between notebooks:
+    --only "MAY 6" "MAY 8"      folders whose path contains any of these texts
+    --cameras 3050 3055 8337    camera ids containing any of these texts
+
+Videos that appear again under another path (e.g. MAY 11/MAY 4/...) are extracted once.
+Safe to re-run: segments already extracted are skipped, failed ones retried.
 """
 
+import argparse
 import sys
 from pathlib import Path
 
@@ -24,7 +28,7 @@ sys.path.insert(0, str(REPO_ROOT))
 
 from src.vision.frame_extractor import extract_all, session_coverage  # noqa: E402
 
-DEFAULT_SOURCE = "/content/drive/MyDrive/MMDA CCTV FOOTAGE"
+DEFAULT_SOURCE = "/content/drive/MyDrive/MMDA CCTV FOOTAGE/REQ. PUP STUDENT"
 DEFAULT_OUTPUT = "/content/drive/MyDrive/MMDA_FRAMES"
 
 
@@ -37,17 +41,26 @@ def _progress(iterable, desc="", total=None):
 
 
 def main():
-    source = Path(sys.argv[1] if len(sys.argv) > 1 else DEFAULT_SOURCE)
-    output = Path(sys.argv[2] if len(sys.argv) > 2 else DEFAULT_OUTPUT)
-    workers = int(sys.argv[3]) if len(sys.argv) > 3 else 1   # camera folders processed at the same time
+    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument("source", nargs="?", default=DEFAULT_SOURCE)
+    p.add_argument("output", nargs="?", default=DEFAULT_OUTPUT)
+    p.add_argument("workers", nargs="?", type=int, default=1)
+    p.add_argument("--only", nargs="+", default=[], metavar="TEXT")
+    p.add_argument("--cameras", nargs="+", default=[], metavar="TEXT")
+    a = p.parse_args()
+
+    source, output = Path(a.source), Path(a.output)
     if not source.exists():
         raise SystemExit(f"Source folder not found: {source}")
 
-    print(f"Source: {source}\nOutput: {output}\nWorkers: {workers}")
-    stats = extract_all(source, output, progress=_progress, workers=workers)
+    print(f"Source: {source}\nOutput: {output}\nWorkers: {a.workers}")
+    if a.only or a.cameras:
+        print(f"Only folders matching {a.only or 'anything'}, cameras matching {a.cameras or 'anything'}")
+    stats = extract_all(source, output, progress=_progress, workers=a.workers, only=a.only, cameras=a.cameras)
 
     print("\n=== Extraction summary ===")
     print(f"Camera folders:       {stats['folders']}")
+    print(f"Duplicate videos:     {stats['duplicates']} (same video under another path, not repeated)")
     print(f"Segments extracted:   {stats['ok']}")
     print(f"Segments skipped:     {stats['skipped']} (already done)")
     print(f"Segments failed:      {stats['failed']} (see segments.csv, status=failed)")

@@ -9,6 +9,7 @@ camera over its session, and lets you correct the Light / Medium / Heavy label.
 Corrections are saved to <frames root>/labels.csv and override the auto label.
 """
 
+import collections
 import sys
 from pathlib import Path
 
@@ -18,7 +19,9 @@ from PIL import Image, ImageDraw
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-from src.data.graph_data import cctv_labels, derive_camera_map, load_camera_map, save_camera_map  # noqa: E402
+from src.data.graph_data import (  # noqa: E402
+    cctv_labels, derive_camera_map, expected_camera_counts, load_camera_map, save_camera_map,
+)
 from src.vision.label_store import LABELS, load_frames, parse_boxes, save_human_label  # noqa: E402
 
 COLORS = {"Light": "#2e8b57", "Medium": "#d98e04", "Heavy": "#c0392b"}
@@ -57,6 +60,12 @@ if mode == "Map cameras":
                                         index=([unset] + intersections).index(current) if current in intersections else 0)
     mapped = {c: v for c, v in choices.items() if v != unset}
     st.write(f"{len(mapped)} of {len(cameras)} cameras mapped to {len(set(mapped.values()))} of {len(intersections)} intersections")
+    expected = expected_camera_counts(REPO_ROOT / "configs" / "cctv_locations.csv")
+    if expected:
+        assigned = collections.Counter(mapped.values())
+        st.table({"Intersection": intersections,
+                  "Cameras expected": [expected.get(i, 0) for i in intersections],
+                  "Cameras assigned": [assigned.get(i, 0) for i in intersections]})
     if st.button("Save mapping"):
         save_camera_map(camera_csv, mapped)
         st.success(f"Saved {len(mapped)} cameras to {camera_csv}")

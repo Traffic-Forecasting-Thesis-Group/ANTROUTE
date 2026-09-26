@@ -27,10 +27,11 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Dict, Iterator, List, Optional, Tuple
+from typing import Dict, Iterator, List, Optional, Sequence, Tuple
 
 os.environ.setdefault("OPENCV_FFMPEG_LOGLEVEL", "-8")  # silence per-packet decoder errors on broken streams
 import cv2  # noqa: E402
+import numpy as np  # noqa: E402
 
 SAMPLE_INTERVAL_SEC = 60
 FRAME_MAX_SIDE = 640      # aspect ratio kept; the dataset resizes to 224 at load time
@@ -87,7 +88,8 @@ def discover_segments(root: Path, exts=SUPPORTED_EXTS) -> Dict[Path, List[Segmen
     groups: Dict[Path, List[Segment]] = {}
     # os.walk lists files and folders in one call per directory; rglob + is_file() costs a
     # network round trip per entry on a Drive mount, which takes hours over a large tree.
-    for dirpath, _, filenames in os.walk(root):
+    for dirpath, dirnames, filenames in os.walk(root):
+        dirnames.sort()  # deterministic order, so duplicate copies always resolve the same way
         folder = Path(dirpath)
         window = parse_session_window(folder)
         if window is None:
@@ -103,6 +105,39 @@ def discover_segments(root: Path, exts=SUPPORTED_EXTS) -> Dict[Path, List[Segmen
     for segments in groups.values():
         segments.sort(key=lambda s: (s.number, s.path.name))
     return groups
+
+
+def dedupe_segments(groups: Dict[Path, List[Segment]], prefer: set = frozenset()):
+    """Drop videos that appear again under another path (e.g. 'MAY 11/MAY 4/...' holding a copy of
+    'MAY 4/...'). The copy is identified by camera + session window + file name; the path already
+    in `prefer` (finished in an earlier run) is kept, otherwise the first in sorted order.
+    Returns (groups without duplicates, number of duplicates dropped)."""
+    chosen: Dict[tuple, Segment] = {}
+    for folder in sorted(groups):
+        for seg in groups[folder]:
+            key = (seg.camera_id, seg.window_start, seg.path.name)
+            if key not in chosen or (str(seg.path) in prefer and str(chosen[key].path) not in prefer):
+                chosen[key] = seg
+    keep = {str(seg.path) for seg in chosen.values()}
+    deduped = {}
+    for folder, segments in groups.items():
+        kept = [s for s in segments if str(s.path) in keep]
+        if kept:
+            deduped[folder] = kept
+    return deduped, sum(len(s) for s in groups.values()) - len(keep)
+
+
+def filter_segments(groups: Dict[Path, List[Segment]], only: Sequence[str] = (),
+                    cameras: Sequence[str] = ()) -> Dict[Path, List[Segment]]:
+    """Keep folders whose path contains any `only` text (e.g. 'MAY 6', '7AM') and whose camera id
+    contains any `cameras` text (e.g. '3050', '_8337'). Empty filters keep everything."""
+    def wanted(folder: Path, camera_id: str) -> bool:
+        path_ok = not only or any(t.lower() in str(folder).lower() for t in only)
+        camera_ok = not cameras or any(t.lower() in camera_id.lower() for t in cameras)
+        return path_ok and camera_ok
+
+    return {folder: segments for folder, segments in groups.items()
+            if segments and wanted(folder, segments[0].camera_id)}
 
 
 # ---------------------------------------------------------------------------
@@ -295,7 +330,46 @@ def sample_frames(video_path: Path, interval_sec: int = SAMPLE_INTERVAL_SEC,
 # ---------------------------------------------------------------------------
 # Extraction driver
 # ---------------------------------------------------------------------------
+def _ffmpeg_frame_at(path: Path, seconds: float):
+    """One BGR frame at `seconds`, taken from the nearest earlier keyframe (no decoding of the
+    frames in between), scaled to FRAME_MAX_SIDE wide. None on any failure."""
+    cmd = ["ffmpeg", "-v", "error", "-ss", f"{seconds:.3f}", "-noaccurate_seek", "-i", str(path),
+           "-frames:v", "1", "-vf", f"scale={FRAME_MAX_SIDE}:-2", "-f", "image2pipe", "-c:v", "png",
+           "-compression_level", "1", "pipe:1"]
+    try:
+        out = subprocess.run(cmd, stdin=subprocess.DEVNULL, capture_output=True, timeout=120, check=True).stdout
+    except (subprocess.CalledProcessError, subprocess.TimeoutExpired, OSError):
+        return None
+    return cv2.imdecode(np.frombuffer(out, np.uint8), cv2.IMREAD_COLOR) if out else None
+
+
+def sample_frames_ffmpeg(video_path: Path, interval_sec: int = SAMPLE_INTERVAL_SEC):
+    """Like sample_frames, but seeks with ffmpeg: about a tenth of the time, at the cost of frames
+    up to one keyframe interval (~2 s) before the exact minute. Returns None when ffmpeg is missing,
+    the container has no usable duration, or any frame fails, so the caller falls back."""
+    if shutil.which("ffmpeg") is None:
+        return None
+    cap = cv2.VideoCapture(str(video_path))
+    if not cap.isOpened():
+        return None
+    fps, n_frames = _valid_fps(cap), cap.get(cv2.CAP_PROP_FRAME_COUNT)
+    cap.release()
+    if not n_frames or n_frames != n_frames or n_frames <= 0:
+        return None
+    duration = n_frames / fps
+    frames = []
+    for k in range(math.ceil(duration / interval_sec)):
+        frame = _ffmpeg_frame_at(video_path, k * interval_sec)
+        if frame is None:
+            return None
+        frames.append((k, frame))
+    return frames, duration
+
+
 def _sample_attempt(readable: Path, interval_sec: int, source_size: int):
+    fast = sample_frames_ffmpeg(readable, interval_sec)
+    if fast and fast[0] and plausible_duration(fast[1], source_size):
+        return fast
     frames, duration = sample_frames(readable, interval_sec)
     if frames and not plausible_duration(duration, source_size):
         # container timing may just be wrong: count the frames that actually decode
@@ -442,15 +516,18 @@ def _process_folder(segments: List[Segment], done: Dict[str, dict], logged_empty
 
 
 def extract_all(root: Path, out_root: Path, interval_sec: int = SAMPLE_INTERVAL_SEC,
-                progress=lambda it, **kw: it, workers: int = 1) -> Dict[str, int]:
+                progress=lambda it, **kw: it, workers: int = 1, only: Sequence[str] = (),
+                cameras: Sequence[str] = ()) -> Dict[str, int]:
     """Extract frames for every segment under root. Resumable: segments already 'ok' are skipped.
 
-    workers > 1 processes that many camera folders at the same time (separate processes)."""
+    workers > 1 processes that many camera folders at the same time (separate processes).
+    only / cameras restrict the run to matching folders / camera ids (see filter_segments)."""
     out_root.mkdir(parents=True, exist_ok=True)
     manifest_csv, segments_csv = out_root / "manifest.csv", out_root / "segments.csv"
     done = _read_ok_segments(segments_csv)
 
-    groups = discover_segments(root)
+    groups, duplicates = dedupe_segments(discover_segments(root), prefer=set(done))
+    groups = filter_segments(groups, only, cameras)
     # earlier runs (and the old notebook) accepted truncated conversions; redo those
     stale = {k for k, r in done.items()
              if Path(k).exists() and not plausible_duration(float(r["duration_sec"]), Path(k).stat().st_size)}
@@ -465,7 +542,7 @@ def extract_all(root: Path, out_root: Path, interval_sec: int = SAMPLE_INTERVAL_
         jobs.append((segments, {k: v for k, v in done.items() if k in keys}, logged_empty & keys,
                      out_root, interval_sec, MIN_CHUNK_BYTES))
     totals = {"folders": len(groups), "ok": 0, "skipped": 0, "failed": 0, "empty": 0,
-              "frames": 0, "errors": 0}
+              "frames": 0, "errors": 0, "duplicates": duplicates}
 
     def collect(result):
         manifest_rows, segment_rows, stats = result

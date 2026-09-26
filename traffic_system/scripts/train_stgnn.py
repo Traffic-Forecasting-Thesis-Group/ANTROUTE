@@ -117,7 +117,8 @@ def train(
     camera_index = torch.tensor([graph.camera_nodes[label] for label in node_labels], dtype=torch.long, device=device)
     a_hat = graph.a_hat.to(device)
 
-    datasets = {s: GraphWindowDataset(records, s, lookup, node_labels, camera_map, image_size)
+    datasets = {s: GraphWindowDataset(records, s, lookup, node_labels, camera_map, image_size,
+                                     sample_cameras=(s == "train"))
                 for s in ("train", "val", "test")}
     for name, ds in datasets.items():
         print(f"  {name}: {len(ds)} windows over {len(node_labels)} intersections")

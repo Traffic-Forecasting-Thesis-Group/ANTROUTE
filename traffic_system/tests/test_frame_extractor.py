@@ -286,3 +286,102 @@ def test_parallel_workers_produce_the_same_frames_as_serial(tmp_path):
 
     assert keys(serial) == keys(parallel)
     assert extract_all(tmp_path / "src", parallel, workers=2)["skipped"] == 6     # resumes the same way
+
+
+def make_session(root, camera, numbers, folder_parts=("MAY 4", "5-7 PM"), window=WINDOW, day="20260504"):
+    dados = root.joinpath(*folder_parts, window, "Media 1", camera, "Dados")
+    for n in numbers:
+        write_video(dados / f"{day}_{n}.mp4", 130)
+    return dados
+
+
+def test_duplicate_copies_of_a_session_are_extracted_once(tmp_path):
+    from src.vision.frame_extractor import dedupe_segments
+
+    src = tmp_path / "src"
+    make_session(src, "CAM_A", [1, 2])
+    make_session(src, "CAM_A", [1, 2], folder_parts=("MAY 11", "MAY 4", "5-7 PM"))    # copy inside another day
+    make_session(src, "CAM_B", [1])
+    groups = discover_segments(src)
+    assert sum(len(v) for v in groups.values()) == 5
+
+    deduped, dropped = dedupe_segments(groups)
+    assert dropped == 2 and sum(len(v) for v in deduped.values()) == 3
+
+    stats = extract_all(src, tmp_path / "out")
+    assert stats["duplicates"] == 2 and stats["ok"] == 3
+    rows = read_csv(tmp_path / "out" / "manifest.csv")
+    assert len(rows) == len({(r["camera_id"], r["source_video"].split("/")[-1].split("\\")[-1], r["frame_index"]) for r in rows})
+
+
+def test_a_finished_copy_is_preferred_over_a_new_one(tmp_path):
+    from src.vision.frame_extractor import dedupe_segments
+
+    src = tmp_path / "src"
+    make_session(src, "CAM_A", [1])
+    copy = make_session(src, "CAM_A", [1], folder_parts=("MAY 11", "MAY 4", "5-7 PM"))
+    deduped, _ = dedupe_segments(discover_segments(src), prefer={str(copy / "20260504_1.mp4")})
+    assert [str(s.path) for v in deduped.values() for s in v] == [str(copy / "20260504_1.mp4")]
+
+
+def test_date_and_camera_filters_select_only_what_was_asked(tmp_path):
+    src = tmp_path / "src"
+    make_session(src, "HASH_3050", [1])
+    make_session(src, "HASH_3055", [1])
+    make_session(src, "HASH_3050", [1], folder_parts=("MAY 6", "7AM-9AM"),
+                 window="2026.05.06.07.00.00 - 2026.05.06.09.00.00", day="20260506")
+    out = tmp_path / "out"
+    assert extract_all(src, out, cameras=["_3050"])["folders"] == 2
+    assert extract_all(src, tmp_path / "out2", only=["MAY 6"])["folders"] == 1
+    assert extract_all(src, tmp_path / "out3", only=["may 4"], cameras=["3055"])["folders"] == 1
+    assert extract_all(src, tmp_path / "out4", cameras=["nope"])["folders"] == 0
+
+
+def test_ffmpeg_seek_sampling_uses_one_seek_per_interval_and_falls_back_when_it_fails(tmp_path, monkeypatch):
+    import src.vision.frame_extractor as fx
+
+    video = tmp_path / "v.mp4"
+    write_video(video, 130)
+    seeks = []
+
+    def fake_frame(path, seconds):
+        seeks.append(seconds)
+        return np.zeros((36, 64, 3), np.uint8)
+
+    monkeypatch.setattr(fx.shutil, "which", lambda name: "ffmpeg")
+    monkeypatch.setattr(fx, "_ffmpeg_frame_at", fake_frame)
+    frames, duration = fx.sample_frames_ffmpeg(video, 60)
+    assert seeks == [0, 60, 120] and [k for k, _ in frames] == [0, 1, 2] and abs(duration - 130) < 1
+
+    monkeypatch.setattr(fx, "_ffmpeg_frame_at", lambda path, seconds: None)        # ffmpeg failing -> old path
+    assert fx.sample_frames_ffmpeg(video, 60) is None
+    frames, _ = fx._sample_attempt(video, 60, video.stat().st_size)
+    assert [k for k, _ in frames] == [0, 1, 2]
+
+
+def test_two_notebooks_output_can_be_merged_and_the_merge_is_repeatable(tmp_path):
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "merge_frames", Path(__file__).resolve().parents[1] / "scripts" / "merge_frames.py")
+    merge_frames = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(merge_frames)
+
+    src = tmp_path / "src"
+    make_session(src, "HASH_3050", [1, 2])
+    make_session(src, "HASH_3055", [1], folder_parts=("MAY 6", "7AM-9AM"),
+                 window="2026.05.06.07.00.00 - 2026.05.06.09.00.00", day="20260506")
+    a, b, merged = tmp_path / "a", tmp_path / "b", tmp_path / "merged"
+    extract_all(src, a, only=["MAY 4"])
+    extract_all(src, b, only=["MAY 6"])
+    frames_a, frames_b = len(read_csv(a / "manifest.csv")), len(read_csv(b / "manifest.csv"))
+
+    totals = merge_frames.merge(merged, [a, b])
+    assert totals["frames_moved"] == frames_a + frames_b and totals["manifest_rows"] == frames_a + frames_b
+    rows = read_csv(merged / "manifest.csv")
+    assert len(rows) == frames_a + frames_b and all((merged / r["frame_path"]).exists() for r in rows)
+    assert len(read_csv(merged / "segments.csv")) == 3
+
+    again = merge_frames.merge(merged, [a, b])                       # nothing left to move or add
+    assert again["frames_moved"] == 0 and again["manifest_rows"] == 0 and again["segment_rows"] == 0
+    assert len(read_csv(merged / "manifest.csv")) == frames_a + frames_b
