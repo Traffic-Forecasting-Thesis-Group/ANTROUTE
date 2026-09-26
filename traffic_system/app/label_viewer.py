@@ -92,6 +92,16 @@ for col, name in zip(cols[1:], LABELS):
     col.metric(name, int(counts.get(name, 0)))
 st.caption(f"{int((view['source'] == 'human').sum())} of {len(view)} frames human-labeled")
 
+reviewed = df[df["source"] == "human"]
+if len(reviewed):
+    agree_all = float((reviewed["label"] == reviewed["auto_label"]).mean())
+    this_cam = reviewed[reviewed["camera_id"] == camera]
+    agree_cam = f"{(this_cam['label'] == this_cam['auto_label']).mean():.0%} on this camera ({len(this_cam)})" if len(this_cam) else "no frames from this camera yet"
+    st.caption(f"Your labels match the automatic ones {agree_all:.0%} of the time across {len(reviewed)} reviewed frames; {agree_cam}. "
+               "Above ~85% the automatic labels are good enough to train on.")
+else:
+    st.caption("Review some frames to see how often your labels agree with the automatic ones.")
+
 st.subheader("Congestion over the session")
 chart = view.assign(label_color=view["label"])
 st.scatter_chart(chart, x="timestamp", y="occupancy", color="label_color", size=40)
