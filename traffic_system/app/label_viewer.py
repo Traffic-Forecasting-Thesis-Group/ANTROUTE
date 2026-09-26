@@ -18,6 +18,7 @@ from PIL import Image, ImageDraw
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
+from src.data.graph_data import cctv_labels, derive_camera_map, load_camera_map, save_camera_map  # noqa: E402
 from src.vision.label_store import LABELS, load_frames, parse_boxes, save_human_label  # noqa: E402
 
 COLORS = {"Light": "#2e8b57", "Medium": "#d98e04", "Heavy": "#c0392b"}
@@ -32,6 +33,34 @@ if not (root / "auto_labels.csv").exists():
     st.stop()
 
 df = load_frames(root)
+
+mode = st.sidebar.radio("Mode", ["Label frames", "Map cameras"])
+if mode == "Map cameras":
+    camera_csv = Path(st.sidebar.text_input("Camera map CSV", str(REPO_ROOT / "configs" / "camera_nodes.csv")))
+    intersections = cctv_labels(REPO_ROOT / "data" / "processed" / "spatial")
+    cameras = sorted(df["camera_id"].unique())
+    saved = load_camera_map(camera_csv)
+    guessed = derive_camera_map(cameras, intersections)
+    unset = "(not mapped)"
+
+    st.subheader("Which intersection does each camera view?")
+    st.caption("One frame per camera. Guesses come from the footage folder name; your saved choices win. "
+               "Several cameras may share an intersection. Cameras left unmapped are skipped in STGNN training.")
+    choices = {}
+    columns = st.columns(3)
+    for i, cam in enumerate(cameras):
+        frames = df[df["camera_id"] == cam]
+        current = saved.get(cam) or guessed.get(cam) or unset
+        with columns[i % 3]:
+            st.image(str(root / frames.iloc[len(frames) // 2]["frame_path"]), caption=f"{cam[-14:]}  ({len(frames)} frames)")
+            choices[cam] = st.selectbox("Intersection", [unset] + intersections, key=f"map_{cam}",
+                                        index=([unset] + intersections).index(current) if current in intersections else 0)
+    mapped = {c: v for c, v in choices.items() if v != unset}
+    st.write(f"{len(mapped)} of {len(cameras)} cameras mapped to {len(set(mapped.values()))} of {len(intersections)} intersections")
+    if st.button("Save mapping"):
+        save_camera_map(camera_csv, mapped)
+        st.success(f"Saved {len(mapped)} cameras to {camera_csv}")
+    st.stop()
 
 date = st.sidebar.selectbox("Date", sorted(df["date"].unique()))
 day = df[df["date"] == date]

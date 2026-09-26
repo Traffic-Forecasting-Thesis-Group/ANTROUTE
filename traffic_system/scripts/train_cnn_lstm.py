@@ -29,6 +29,7 @@ sys.path.insert(0, str(REPO_ROOT))
 from src.data.training_data import (  # noqa: E402
     IGNORE_INDEX, WEATHER_COLUMNS, LabeledWindowDataset, build_training_records, load_label_lookup,
 )
+from src.data.metrics import macro_f1  # noqa: E402
 from src.models.cnn_lstm_fusion import CNNLSTMFusion  # noqa: E402
 
 N_CLASSES = 3
@@ -52,16 +53,6 @@ class CongestionModel(nn.Module):
 
 def to_device(batch: dict, device) -> dict:
     return {k: v.to(device) if torch.is_tensor(v) else v for k, v in batch.items()}
-
-
-def macro_f1(y_true: np.ndarray, y_pred: np.ndarray, n_classes: int = N_CLASSES) -> float:
-    scores = []
-    for c in range(n_classes):
-        tp = np.sum((y_pred == c) & (y_true == c))
-        fp = np.sum((y_pred == c) & (y_true != c))
-        fn = np.sum((y_pred != c) & (y_true == c))
-        scores.append(2 * tp / (2 * tp + fp + fn) if (2 * tp + fp + fn) else 0.0)
-    return float(np.mean(scores))
 
 
 @torch.no_grad()
@@ -136,7 +127,7 @@ def train(
     config = {"image_size": image_size, "patch_size": patch_size, "patch_embed_dim": patch_embed_dim,
               "text_dim": 768, "temporal_dim": len(WEATHER_COLUMNS), "n_classes": N_CLASSES,
               "weather_columns": WEATHER_COLUMNS}
-    history, best = [], -1.0
+    history, best = [], float("-inf")
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
     for epoch in range(1, epochs + 1):

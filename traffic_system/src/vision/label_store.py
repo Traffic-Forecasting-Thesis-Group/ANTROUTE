@@ -20,7 +20,8 @@ HUMAN_FIELDS = ["frame_path", "label", "labeled_at"]
 
 def load_frames(root: Path) -> pd.DataFrame:
     """auto_labels.csv joined with human labels, with the effective 'label' and its 'source'."""
-    auto = pd.read_csv(root / "auto_labels.csv", parse_dates=["timestamp"])
+    auto = pd.read_csv(root / "auto_labels.csv")
+    auto["timestamp"] = pd.to_datetime(auto["timestamp"], format="ISO8601")
     human = load_human_labels(root)
     df = auto.merge(human[["frame_path", "label"]], on="frame_path", how="left")
     df["source"] = df["label"].notna().map({True: "human", False: "auto"})

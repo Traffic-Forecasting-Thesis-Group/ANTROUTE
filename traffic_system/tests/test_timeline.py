@@ -8,7 +8,7 @@ from src.vision.frame_extractor import (
     MANIFEST_FIELDS, SEGMENT_FIELDS, extract_all, plausible_duration,
 )
 from src.vision.timeline import corrected_manifest, folder_time_scale
-from tests.test_frame_extractor import WINDOW, write_video
+from test_frame_extractor import WINDOW, write_video
 
 VIDEO = "/content/drive/x/" + WINDOW + "/Media 1/CAM/Dados/20260504_{n}.dar"
 
@@ -101,3 +101,21 @@ def test_stale_single_frame_segment_is_redone_without_duplicate_rows(tmp_path):
     assert stats["ok"] == 1 and stats["skipped"] == 0
     rows = list(csv.DictReader((out / "manifest.csv").open(encoding="utf-8")))
     assert len(rows) == 3 and "old.jpg" not in {r["frame_path"] for r in rows}
+
+
+def test_timestamps_with_and_without_fractions_are_all_parseable(tmp_path):
+    from src.vision.label_store import load_frames
+
+    root = write_root(tmp_path / "out", [(35, "ok", 1634.13), (36, "ok", 1800)])     # fractional start of chunk 36
+    df = corrected_manifest(root)
+    assert pd.to_datetime(df["timestamp"]).notna().all()                            # no format clash
+    assert not df["timestamp"].str.contains(r"\.").any()                            # whole seconds
+
+    fields = ["frame_path", "camera_id", "timestamp", "n_vehicles", "occupancy", "boxes", "auto_label"]
+    with (root / "auto_labels.csv").open("w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=fields)
+        w.writeheader()
+        for i, ts in enumerate(["2026-05-04T17:00:00", "2026-05-04T17:27:14.910000"]):    # files written before the fix
+            w.writerow({"frame_path": f"a{i}.jpg", "camera_id": "CAM", "timestamp": ts, "n_vehicles": 1,
+                        "occupancy": 0.1, "boxes": "[]", "auto_label": "Light"})
+    assert len(load_frames(root)) == 2

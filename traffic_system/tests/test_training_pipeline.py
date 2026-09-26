@@ -113,3 +113,19 @@ def test_training_without_text(data, tmp_path):
         data["frames"], data["weather"], None, None, out,
         epochs=1, batch_size=4, image_size=32, patch_size=16, patch_embed_dim=8, device="cpu")
     assert out.exists() and math.isfinite(result["history"][0]["train_loss"])
+
+
+def _drop_validation_day(frames: Path):
+    for name in ("manifest.csv", "auto_labels.csv"):
+        path = frames / name
+        lines = path.read_text(encoding="utf-8").splitlines(keepends=True)
+        path.write_text("".join(l for i, l in enumerate(lines) if i == 0 or VAL_DAY not in l), encoding="utf-8")
+
+
+def test_a_checkpoint_is_saved_even_without_validation_data(data, tmp_path):
+    _drop_validation_day(data["frames"])                    # train-only data: the score is -loss, which is below -1
+    out = tmp_path / "no_val.pt"
+    result = train_cnn_lstm.train(
+        data["frames"], data["weather"], None, None, out, epochs=2, batch_size=4, image_size=32,
+        patch_size=16, patch_embed_dim=8, device="cpu")
+    assert result["history"][0]["val"] is None and out.exists()

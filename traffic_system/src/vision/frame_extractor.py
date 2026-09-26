@@ -85,17 +85,21 @@ def segment_number(path: Path) -> int:
 def discover_segments(root: Path, exts=SUPPORTED_EXTS) -> Dict[Path, List[Segment]]:
     """Group videos by their containing folder, ordered by segment number."""
     groups: Dict[Path, List[Segment]] = {}
-    for path in root.rglob("*"):
-        if not path.is_file() or path.name.startswith(".") or path.suffix.lower() not in exts:
-            continue
-        window = parse_session_window(path)
+    # os.walk lists files and folders in one call per directory; rglob + is_file() costs a
+    # network round trip per entry on a Drive mount, which takes hours over a large tree.
+    for dirpath, _, filenames in os.walk(root):
+        folder = Path(dirpath)
+        window = parse_session_window(folder)
         if window is None:
             continue
-        folder = path.parent
-        camera_id = folder.parent.name if folder.name.lower() == "dados" else folder.name
-        groups.setdefault(folder, []).append(
-            Segment(path, camera_id, segment_number(path), window[0], window[1])
-        )
+        for name in filenames:
+            if name.startswith(".") or Path(name).suffix.lower() not in exts:
+                continue
+            path = folder / name
+            camera_id = folder.parent.name if folder.name.lower() == "dados" else folder.name
+            groups.setdefault(folder, []).append(
+                Segment(path, camera_id, segment_number(path), window[0], window[1])
+            )
     for segments in groups.values():
         segments.sort(key=lambda s: (s.number, s.path.name))
     return groups

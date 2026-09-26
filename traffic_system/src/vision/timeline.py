@@ -36,6 +36,7 @@ def corrected_manifest(frames_root: Path) -> pd.DataFrame:
     manifest = pd.read_csv(frames_root / "manifest.csv")
     segments_path = frames_root / "segments.csv"
     if not segments_path.exists():
+        manifest["timestamp"] = pd.to_datetime(manifest["timestamp"], format="ISO8601").dt.strftime("%Y-%m-%dT%H:%M:%S")
         return manifest
 
     segments = pd.read_csv(segments_path).drop_duplicates("source_video", keep="last")
@@ -64,7 +65,7 @@ def corrected_manifest(frames_root: Path) -> pd.DataFrame:
     start = manifest["source_video"].map(lambda v: info[v][0])
     scale = manifest["source_video"].map(lambda v: info[v][2])
     manifest["timestamp"] = [
-        (s + timedelta(seconds=float(k) * SAMPLE_INTERVAL_SEC * c)).isoformat()
+        (s + timedelta(seconds=float(k) * SAMPLE_INTERVAL_SEC * c)).isoformat(timespec="seconds")
         for s, k, c in zip(start, manifest["frame_index"], scale)
     ]
     manifest["start_estimated"] = manifest["source_video"].map(lambda v: info[v][1])

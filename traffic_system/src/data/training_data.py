@@ -116,7 +116,7 @@ def build_training_records(
     if frames.empty:
         raise ValueError("No usable frames in manifest.csv (all missing or start_estimated).")
     camera_ids = sorted(frames["camera_id"].unique())
-    days = sorted(pd.to_datetime(frames["timestamp"]).dt.date.unique())
+    days = sorted(pd.to_datetime(frames["timestamp"], format="ISO8601").dt.date.unique())
 
     if raw_twitter_root is not None and embeddings_path is not None:
         tweets = load_tweets_table(raw_twitter_root, embeddings_path, camera_ids, days)
