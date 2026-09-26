@@ -189,8 +189,51 @@ def test_training_runs_end_to_end_and_checkpoint_round_trips(data, tmp_path):
 
     ckpt = torch.load(out, map_location="cpu", weights_only=False)
     assert ckpt["config"]["node_labels"] == ["NODE_A", "NODE_B"] and ckpt["config"]["camera_map"]["CAM_A"] == "NODE_A"
-    model, _ = tiny_model()
+    cfg = ckpt["config"]
+    assert cfg["temporal_dim"] == 3 + 2 and cfg["time_features"] and cfg["node_embedding"]   # weather + time in session
+    fusion = CNNLSTMFusion(text_dim=768, temporal_dim=cfg["temporal_dim"], image_size=32, patch_size=16, patch_embed_dim=8)
+    model = TrafficRiskModel(fusion, RADRSTGNN(in_features=fusion.lstm.hidden_size),
+                             n_camera_nodes=len(cfg["node_labels"]))
     model.load_state_dict(ckpt["model"])
+
+
+def test_time_in_session_features_are_appended_and_can_be_switched_off(data):
+    from src.data.training_data import LabeledWindowDataset
+
+    records, _, _ = build_training_records(data["frames"], data["weather"])
+    lookup = load_label_lookup(data["frames"])
+    plain = LabeledWindowDataset(records, "train", lookup, image_size=32)
+    timed = LabeledWindowDataset(records, "train", lookup, image_size=32, time_features=True)
+    assert plain.temporal_dim == 3 and timed.temporal_dim == 5
+    a, b = plain[0], timed[0]
+    assert a["temporal"].shape == (30, 3) and b["temporal"].shape == (30, 5)
+    assert torch.equal(b["temporal"][:, :3], a["temporal"])                  # weather columns untouched
+    position, pm = b["temporal"][:, 3], b["temporal"][:, 4]
+    assert (position[1:] > position[:-1]).all() and 0 <= position.min() and position.max() <= 1
+    assert torch.allclose(position[1] - position[0], torch.tensor(1 / 119))  # one minute of a 120-minute session
+    assert (pm == 1.0).all()                                                 # the fixture frames are the 17:00 session
+
+
+def test_the_node_embedding_starts_neutral_and_learns_a_per_intersection_bias():
+    torch.manual_seed(0)
+    fusion = CNNLSTMFusion(text_dim=768, temporal_dim=3, image_size=32, patch_size=16, patch_embed_dim=8)
+    plain = TrafficRiskModel(fusion, RADRSTGNN(in_features=fusion.lstm.hidden_size), n_camera_nodes=0)
+    biased = TrafficRiskModel(fusion, RADRSTGNN(in_features=fusion.lstm.hidden_size), n_camera_nodes=2)
+    biased.load_state_dict(plain.state_dict(), strict=False)
+    graph = subgraph_from_arrays(path_graph(10), np.arange(10), {"A": 2, "B": 7}, k=1)
+    camera_index = torch.tensor([graph.camera_nodes["A"], graph.camera_nodes["B"]])
+    batch = fake_batch()
+    plain.eval(), biased.eval()
+    assert torch.allclose(plain(batch, graph.a_hat, camera_index), biased(batch, graph.a_hat, camera_index), atol=1e-6)
+
+    with torch.no_grad():
+        biased.node_embedding.weight[0] += 1.0                               # only intersection A gets a bias
+    diff = (biased(batch, graph.a_hat, camera_index) - plain(batch, graph.a_hat, camera_index)).abs().sum(-1)
+    assert diff[:, graph.camera_nodes["A"]].min() > 0 and diff[:, graph.camera_nodes["B"]].max() < 1e-6
+
+    biased.train()
+    camera_node_loss(biased(batch, graph.a_hat, camera_index), torch.tensor([[0, 2], [1, 2]]), camera_index).backward()
+    assert biased.node_embedding.weight.grad.abs().sum() > 0
 
 
 def test_resume_continues_from_the_saved_epoch(data, tmp_path):

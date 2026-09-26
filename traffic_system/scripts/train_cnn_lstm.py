@@ -76,7 +76,7 @@ def evaluate(model: CongestionModel, loader: DataLoader, device) -> Optional[dic
 
 
 def train(
-    frames_root: Path,
+    frames_root,
     weather_csv: Path,
     raw_twitter_root: Optional[Path],
     embeddings_path: Optional[Path],
@@ -166,7 +166,8 @@ def train(
 
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--frames-root", required=True, type=Path)
+    p.add_argument("--frames-root", required=True, type=Path, nargs="+",
+                   help="one or more frames folders; the first wins when a frame is in several")
     p.add_argument("--weather-csv", type=Path,
                    default=REPO_ROOT / "data/processed/temporal/weatherstack_historical.csv")
     p.add_argument("--raw-twitter", type=Path, default=REPO_ROOT / "data/raw/twitter")

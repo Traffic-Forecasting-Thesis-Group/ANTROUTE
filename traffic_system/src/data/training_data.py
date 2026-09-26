@@ -19,6 +19,7 @@ import torch
 
 from src.data.alignment import (
     BUFFER_START,
+    SESSION_STEPS,
     WINDOW_STEPS,
     LOCAL_TZ,
     SessionRecord,
@@ -37,18 +38,30 @@ def frame_key(frames_root: Path, relative_path: str) -> str:
     return str(Path(frames_root) / relative_path)
 
 
-def load_frames_table(frames_root: Path, allow_estimated: bool = False) -> pd.DataFrame:
-    """manifest.csv -> camera_id, timestamp, frame_path (absolute).
+def as_roots(frames_roots) -> List[Path]:
+    """One frames folder or several (e.g. notebook A's, notebook B's and the pilot's)."""
+    if isinstance(frames_roots, (str, Path)):
+        return [Path(frames_roots)]
+    return [Path(r) for r in frames_roots]
+
+
+def load_frames_table(frames_roots, allow_estimated: bool = False) -> pd.DataFrame:
+    """manifest.csv of each folder -> camera_id, timestamp, frame_path (absolute).
 
     Frames whose segment start is only a lower bound (an earlier segment failed) are
-    dropped by default because their timestamps can be wrong.
+    dropped by default because their timestamps can be wrong. The same frame in two folders
+    (same camera and time) is kept once, from the folder listed first.
     """
-    df = corrected_manifest(Path(frames_root))
-    if not allow_estimated and "start_estimated" in df:
-        df = df[~df["start_estimated"].astype(str).eq("True")]
-    df = df[["camera_id", "timestamp", "frame_path"]].copy()
-    df["frame_path"] = [frame_key(frames_root, p) for p in df["frame_path"]]
-    return df.reset_index(drop=True)
+    tables = []
+    for root in as_roots(frames_roots):
+        df = corrected_manifest(root)
+        if not allow_estimated and "start_estimated" in df:
+            df = df[~df["start_estimated"].astype(str).eq("True")]
+        df = df[["camera_id", "timestamp", "frame_path"]].copy()
+        df["frame_path"] = [frame_key(root, p) for p in df["frame_path"]]
+        tables.append(df)
+    merged = pd.concat(tables, ignore_index=True) if tables else pd.DataFrame(columns=["camera_id", "timestamp", "frame_path"])
+    return merged.drop_duplicates(["camera_id", "timestamp"], keep="first").reset_index(drop=True)
 
 
 def load_weather_daily(csv_path: Path) -> pd.DataFrame:
@@ -106,7 +119,7 @@ def empty_tweets() -> pd.DataFrame:
 
 
 def build_training_records(
-    frames_root: Path,
+    frames_root,
     weather_csv: Path,
     raw_twitter_root: Optional[Path] = None,
     embeddings_path: Optional[Path] = None,
@@ -130,38 +143,67 @@ def build_training_records(
     )
 
 
-def load_label_lookup(frames_root: Path, human_only: bool = False) -> Dict[str, int]:
+def load_label_lookup(frames_roots, human_only: bool = False) -> Dict[str, int]:
     """absolute frame path -> class index (human label wins over auto label).
 
     human_only keeps just the frames a person reviewed: the automatic labels are relative to each
     camera and agree with human judgement far less often than they look like they should."""
-    df = load_frames(Path(frames_root))
-    if human_only:
-        df = df[df["source"] == "human"]
-    return {frame_key(frames_root, p): CLASS_TO_IDX[l] for p, l in zip(df["frame_path"], df["label"])}
+    lookup: Dict[str, int] = {}
+    for root in as_roots(frames_roots):
+        df = load_frames(root)
+        if human_only:
+            df = df[df["source"] == "human"]
+        for p, label in zip(df["frame_path"], df["label"]):
+            lookup.setdefault(frame_key(root, p), CLASS_TO_IDX[label])
+    return lookup
 
 
-def make_target_fn(lookup: Dict[str, int]) -> Callable[[SessionRecord, int], torch.Tensor]:
-    """Per-step class index for a window; IGNORE_INDEX where the step has no labelled frame."""
-    def target_fn(record: SessionRecord, start: int) -> torch.Tensor:
+class TargetFn:
+    """Per-step class index for a window; IGNORE_INDEX where the step has no labelled frame.
+    A class rather than a closure so datasets can be sent to DataLoader worker processes (Windows)."""
+
+    def __init__(self, lookup: Dict[str, int]):
+        self.lookup = lookup
+
+    def __call__(self, record: SessionRecord, start: int) -> torch.Tensor:
         target = torch.full((WINDOW_STEPS,), IGNORE_INDEX, dtype=torch.long)
         for j in range(WINDOW_STEPS):
             path = record.frame_paths[start + j]
-            if path is not None and path in lookup:
-                target[j] = lookup[path]
+            if path is not None and path in self.lookup:
+                target[j] = self.lookup[path]
         return target
-    return target_fn
+
+
+def make_target_fn(lookup: Dict[str, int]) -> Callable[[SessionRecord, int], torch.Tensor]:
+    return TargetFn(lookup)
+
+
+TIME_FEATURES = 2   # position within the 2-hour session (0..1) and PM-session flag
 
 
 class LabeledWindowDataset(ANTROUTEWindowDataset):
-    """ANTROUTEWindowDataset restricted to visual windows containing at least one labelled frame."""
+    """ANTROUTEWindowDataset restricted to visual windows containing at least one labelled frame.
+
+    time_features=True appends two columns to `temporal`: how far into the session each step is
+    (congestion builds through the peak) and whether it is the PM session (AM peaks are lighter)."""
 
     def __init__(self, records: Sequence[SessionRecord], split: str, lookup: Dict[str, int],
-                 image_size: int = 224):
+                 image_size: int = 224, time_features: bool = False):
         super().__init__(records, split, regime="visual", image_size=image_size,
                          target_fn=make_target_fn(lookup))
+        self.time_features = time_features
+        self.temporal_dim = (len(records[0].weather) if len(records) else 0) + (TIME_FEATURES if time_features else 0)
         self.index = [
             (i, s) for i, s in self.index
             if any(records[i].frame_paths[s + j] in lookup for j in range(WINDOW_STEPS)
                    if records[i].frame_paths[s + j] is not None)
         ]
+
+    def __getitem__(self, i: int) -> dict:
+        item = super().__getitem__(i)
+        if self.time_features:
+            record_index, start = self.index[i]
+            steps = (start + torch.arange(WINDOW_STEPS, dtype=torch.float32)) / (SESSION_STEPS - 1)
+            pm = torch.full_like(steps, 1.0 if self.records[record_index].session == "PM" else 0.0)
+            item["temporal"] = torch.cat([item["temporal"], torch.stack([steps, pm], dim=1)], dim=1)
+        return item

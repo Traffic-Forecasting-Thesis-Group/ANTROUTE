@@ -77,8 +77,11 @@ def detect_batch(model, image_paths: Sequence[Path], conf: float = 0.25) -> List
 
 
 def run_autolabel(frames_root: Path, weights: str = "yolov8n.pt", conf: float = 0.25,
-                  batch_size: int = 16, progress=lambda it, **kw: it) -> int:
-    """Detect vehicles on every frame in manifest.csv (resumable) and write auto_labels.csv."""
+                  batch_size: int = 16, progress=lambda it, **kw: it, dates: Sequence[str] = ()) -> int:
+    """Detect vehicles on frames in manifest.csv (resumable) and write auto_labels.csv.
+
+    dates (e.g. '2026-05-20') limits which frames get NEW detections; auto_labels.csv always lists
+    every frame that has detections, so earlier dates are kept."""
     manifest_csv = frames_root / "manifest.csv"
     detections_csv = frames_root / "detections.csv"
     auto_csv = frames_root / "auto_labels.csv"
@@ -91,7 +94,8 @@ def run_autolabel(frames_root: Path, weights: str = "yolov8n.pt", conf: float = 
         with detections_csv.open(encoding="utf-8", newline="") as f:
             done = {r["frame_path"]: r for r in csv.DictReader(f)}
 
-    todo = [r for r in manifest if r["frame_path"] not in done]
+    todo = [r for r in manifest if r["frame_path"] not in done
+            and (not dates or any(d in r["frame_path"] for d in dates))]
     if todo:
         model = _load_model(weights)
         new = not detections_csv.exists()

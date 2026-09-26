@@ -29,12 +29,17 @@ def scatter_camera_features(camera_features: torch.Tensor, camera_index: torch.T
 
 
 class TrafficRiskModel(nn.Module):
-    def __init__(self, fusion: nn.Module, stgnn: RADRSTGNN, n_classes: int = 3):
+    def __init__(self, fusion: nn.Module, stgnn: RADRSTGNN, n_classes: int = 3, n_camera_nodes: int = 0):
         super().__init__()
         self.fusion = fusion
         self.stgnn = stgnn
         self.placeholder = nn.Parameter(torch.zeros(fusion.lstm.hidden_size))
         self.head = nn.Linear(stgnn.output_dim, n_classes)
+        # One learned vector per camera intersection, added to its STGNN output. It starts at zero
+        # and lets the model learn that some intersections run heavier than others.
+        self.node_embedding = nn.Embedding(n_camera_nodes, stgnn.output_dim) if n_camera_nodes else None
+        if self.node_embedding is not None:
+            nn.init.zeros_(self.node_embedding.weight)
 
     def forward(self, batch: Dict[str, torch.Tensor], a_hat: torch.Tensor,
                 camera_index: torch.Tensor) -> torch.Tensor:
@@ -44,7 +49,11 @@ class TrafficRiskModel(nn.Module):
             visual_mask=batch["visual_mask"], text_mask=batch["text_mask"],
         )                                                    # [B, T, K, 128]
         x = scatter_camera_features(features, camera_index, a_hat.shape[0], self.placeholder)
-        return self.head(self.stgnn(x, a_hat))               # [B, N, n_classes]
+        nodes = self.stgnn(x, a_hat)                         # [B, N, 64]
+        if self.node_embedding is not None:
+            nodes = nodes.clone()
+            nodes[:, camera_index] = nodes[:, camera_index] + self.node_embedding.weight
+        return self.head(nodes)                              # [B, N, n_classes]
 
 
 def camera_node_loss(logits: torch.Tensor, targets: torch.Tensor, camera_index: torch.Tensor,

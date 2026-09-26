@@ -71,7 +71,7 @@ def evaluate(model, loader, a_hat, camera_index, device, class_weights=None) -> 
 
 
 def train(
-    frames_root: Path,
+    frames_root,
     weather_csv: Path,
     raw_twitter_root: Optional[Path],
     embeddings_path: Optional[Path],
@@ -96,6 +96,8 @@ def train(
     seed: int = 0,
     graph: Optional[GraphData] = None,
     human_only: bool = False,
+    time_features: bool = True,
+    node_embedding: bool = True,
 ) -> dict:
     torch.manual_seed(seed)
     np.random.seed(seed)
@@ -121,7 +123,7 @@ def train(
     a_hat = graph.a_hat.to(device)
 
     datasets = {s: GraphWindowDataset(records, s, lookup, node_labels, camera_map, image_size,
-                                     sample_cameras=(s == "train"))
+                                     sample_cameras=(s == "train"), time_features=time_features)
                 for s in ("train", "val", "test")}
     for name, ds in datasets.items():
         print(f"  {name}: {len(ds)} windows over {len(node_labels)} intersections")
@@ -133,17 +135,22 @@ def train(
     loaders = {s: DataLoader(ds, batch_size=batch_size, shuffle=(s == "train"), num_workers=num_workers)
                for s, ds in datasets.items()}
 
-    fusion = CNNLSTMFusion(text_dim=768, temporal_dim=len(WEATHER_COLUMNS), image_size=image_size,
+    temporal_dim = datasets["train"].weather_dim
+    fusion = CNNLSTMFusion(text_dim=768, temporal_dim=temporal_dim, image_size=image_size,
                            patch_size=patch_size, patch_embed_dim=patch_embed_dim)
     if init_fusion and Path(init_fusion).exists():
         stage1 = torch.load(init_fusion, map_location="cpu", weights_only=False)
         cfg = stage1["config"]
         if (cfg["image_size"], cfg["patch_size"], cfg["patch_embed_dim"]) != (image_size, patch_size, patch_embed_dim):
             raise ValueError(f"{init_fusion} was trained with {cfg}; image/patch settings must match.")
-        fusion.load_state_dict({k_[len("fusion."):]: v for k_, v in stage1["model"].items() if k_.startswith("fusion.")})
-        print(f"fusion initialised from {init_fusion}")
+        own = fusion.state_dict()
+        state = {k_[len("fusion."):]: v for k_, v in stage1["model"].items()
+                 if k_.startswith("fusion.") and k_[len("fusion."):] in own and own[k_[len("fusion."):]].shape == v.shape}
+        fusion.load_state_dict(state, strict=False)      # layers whose size changed (temporal input) start fresh
+        print(f"fusion initialised from {init_fusion} ({len(state)} of {len(own)} tensors)")
 
-    model = TrafficRiskModel(fusion, RADRSTGNN(in_features=fusion.lstm.hidden_size), N_CLASSES).to(device)
+    model = TrafficRiskModel(fusion, RADRSTGNN(in_features=fusion.lstm.hidden_size), N_CLASSES,
+                             n_camera_nodes=len(node_labels) if node_embedding else 0).to(device)
     fusion_params = set(id(p) for p in model.fusion.parameters())
     optimizer = torch.optim.AdamW([
         {"params": [p for p in model.parameters() if id(p) in fusion_params], "lr": lr_fusion},
@@ -154,7 +161,8 @@ def train(
     grad_scaler = torch.amp.GradScaler("cuda", enabled=amp)
 
     config = {"k": k, "image_size": image_size, "patch_size": patch_size, "patch_embed_dim": patch_embed_dim,
-              "text_dim": 768, "temporal_dim": len(WEATHER_COLUMNS), "n_classes": N_CLASSES,
+              "text_dim": 768, "temporal_dim": temporal_dim, "n_classes": N_CLASSES,
+              "time_features": time_features, "node_embedding": node_embedding,
               "weather_columns": WEATHER_COLUMNS, "node_labels": node_labels, "camera_map": camera_map,
               "graph_node_ids": graph.node_ids}
     start_epoch, best = 0, float("-inf")
@@ -213,7 +221,8 @@ def train(
 
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--frames-root", type=Path)
+    p.add_argument("--frames-root", type=Path, nargs="+",
+                   help="one or more frames folders; the first wins when a frame is in several")
     p.add_argument("--spatial-dir", type=Path, default=REPO_ROOT / "data/processed/spatial")
     p.add_argument("--camera-csv", type=Path, default=REPO_ROOT / "configs/camera_nodes.csv")
     p.add_argument("--weather-csv", type=Path,
@@ -236,6 +245,8 @@ def main():
     p.add_argument("--device", default=None)
     p.add_argument("--seed", type=int, default=0)
     p.add_argument("--human-only", action="store_true", help="train only on frames reviewed by a person")
+    p.add_argument("--no-time-features", action="store_true", help="do not give the model the time within the session")
+    p.add_argument("--no-node-embedding", action="store_true", help="no learned per-intersection bias")
     p.add_argument("--graph-sizes", action="store_true", help="print subgraph sizes for k=1..10 and exit")
     a = p.parse_args()
 
@@ -250,7 +261,8 @@ def main():
           None if a.no_text else a.embeddings, a.out, a.spatial_dir, a.camera_csv, a.k, a.epochs,
           a.batch_size, a.lr_fusion, a.lr_graph, image_size=a.image_size, init_fusion=a.init_fusion,
           resume=a.resume, use_class_weights=a.class_weights, num_workers=a.num_workers,
-          max_train_windows=a.max_train_windows, device=a.device, seed=a.seed, human_only=a.human_only)
+          max_train_windows=a.max_train_windows, device=a.device, seed=a.seed, human_only=a.human_only,
+          time_features=not a.no_time_features, node_embedding=not a.no_node_embedding)
 
 
 if __name__ == "__main__":

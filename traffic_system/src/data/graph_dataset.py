@@ -28,12 +28,12 @@ def last_labelled_step(target: torch.Tensor) -> int:
 class GraphWindowDataset(Dataset):
     def __init__(self, records: Sequence[SessionRecord], split: str, lookup: Dict[str, int],
                  node_labels: Sequence[str], camera_to_label: Dict[str, str], image_size: int = 224,
-                 sample_cameras: bool = False):
+                 sample_cameras: bool = False, time_features: bool = False):
         self.sample_cameras = sample_cameras
-        self.base = LabeledWindowDataset(records, split, lookup, image_size)
+        self.base = LabeledWindowDataset(records, split, lookup, image_size, time_features)
         self.node_labels = list(node_labels)
         self.image_size = image_size
-        self.weather_dim = len(records[0].weather) if len(records) else 0
+        self.weather_dim = self.base.temporal_dim
 
         groups: Dict[tuple, Dict[str, list]] = {}
         for i, (record_index, start) in enumerate(self.base.index):

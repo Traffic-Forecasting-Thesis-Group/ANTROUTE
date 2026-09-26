@@ -20,7 +20,13 @@ HUMAN_FIELDS = ["frame_path", "label", "labeled_at"]
 
 def load_frames(root: Path) -> pd.DataFrame:
     """auto_labels.csv joined with human labels, with the effective 'label' and its 'source'."""
-    auto = pd.read_csv(root / "auto_labels.csv")
+    if (root / "auto_labels.csv").exists():
+        auto = pd.read_csv(root / "auto_labels.csv")
+        auto["has_auto"] = True
+    else:  # frames only: no detections yet, so nothing but the frames and your own labels
+        from src.vision.timeline import corrected_manifest
+        auto = corrected_manifest(root)[["frame_path", "camera_id", "timestamp"]].assign(
+            n_vehicles=0, occupancy=0.0, boxes="[]", auto_label="Medium", has_auto=False)
     auto["timestamp"] = pd.to_datetime(auto["timestamp"], format="ISO8601")
     human = load_human_labels(root)
     df = auto.merge(human[["frame_path", "label"]], on="frame_path", how="left")

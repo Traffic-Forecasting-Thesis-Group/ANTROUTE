@@ -31,11 +31,15 @@ st.set_page_config(page_title="Congestion labeling", layout="wide")
 
 root_arg = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_ROOT
 root = Path(st.sidebar.text_input("Frames folder", root_arg))
-if not (root / "auto_labels.csv").exists():
-    st.error(f"auto_labels.csv not found in {root}. Run extract_frames.py and autolabel_frames.py first.")
+if not (root / "auto_labels.csv").exists() and not (root / "manifest.csv").exists():
+    st.error(f"Neither auto_labels.csv nor manifest.csv found in {root}. Run extract_frames.py first.")
     st.stop()
 
 df = load_frames(root)
+has_auto = bool(df["has_auto"].all())
+if not has_auto:
+    st.info("No vehicle detections for this folder yet (autolabel_frames.py has not finished). You can still "
+            "label frames: only the labels you set count, and 'Medium' shown for untouched frames is a placeholder.")
 
 mode = st.sidebar.radio("Mode", ["Label frames", "Map cameras"])
 if mode == "Map cameras":
@@ -93,7 +97,9 @@ for col, name in zip(cols[1:], LABELS):
 st.caption(f"{int((view['source'] == 'human').sum())} of {len(view)} frames human-labeled")
 
 reviewed = df[df["source"] == "human"]
-if len(reviewed):
+if not has_auto:
+    st.caption(f"{len(reviewed)} frames labeled by you so far in this folder.")
+elif len(reviewed):
     agree_all = float((reviewed["label"] == reviewed["auto_label"]).mean())
     this_cam = reviewed[reviewed["camera_id"] == camera]
     agree_cam = f"{(this_cam['label'] == this_cam['auto_label']).mean():.0%} on this camera ({len(this_cam)})" if len(this_cam) else "no frames from this camera yet"
@@ -102,9 +108,10 @@ if len(reviewed):
 else:
     st.caption("Review some frames to see how often your labels agree with the automatic ones.")
 
-st.subheader("Congestion over the session")
-chart = view.assign(label_color=view["label"])
-st.scatter_chart(chart, x="timestamp", y="occupancy", color="label_color", size=40)
+if has_auto:
+    st.subheader("Congestion over the session")
+    chart = view.assign(label_color=view["label"])
+    st.scatter_chart(chart, x="timestamp", y="occupancy", color="label_color", size=40)
 
 st.subheader("Frame")
 key = f"pos_{camera}_{date}"
@@ -126,9 +133,13 @@ for x1, y1, x2, y2, *_ in parse_boxes(row["boxes"]):
 
 left, right = st.columns([3, 1])
 left.image(image, caption=f"{row['timestamp']}  |  {row['frame_path']}", width="stretch")
-right.markdown(f"**Current label:** {row['label']} ({row['source']})")
-right.markdown(f"Auto label: {row['auto_label']}")
-right.markdown(f"Vehicles: {int(row['n_vehicles'])}  \nOccupancy: {row['occupancy']:.3f}")
+if not has_auto:
+    right.markdown(f"**Your label:** {row['label'] if row['source'] == 'human' else 'not labeled yet'}")
+else:
+    right.markdown(f"**Current label:** {row['label']} ({row['source']})")
+if has_auto:
+    right.markdown(f"Auto label: {row['auto_label']}")
+    right.markdown(f"Vehicles: {int(row['n_vehicles'])}  \nOccupancy: {row['occupancy']:.3f}")
 for name in LABELS:
     if right.button(name, key=f"set_{name}", width="stretch"):
         save_human_label(root, row["frame_path"], name)

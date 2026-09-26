@@ -154,3 +154,58 @@ def test_training_on_human_labels_only_still_runs_and_refuses_when_there_are_non
         save_human_label(data["frames"], f"{TRAIN_DAY}/CAM1/f_{m:03d}.jpg", LABELS[(m // 3) % 3])
     result = train_cnn_lstm.train(data["frames"], data["weather"], None, None, tmp_path / "human.pt", **common)
     assert math.isfinite(result["history"][0]["train_loss"]) and (tmp_path / "human.pt").exists()
+
+
+def test_train_and_validation_days_can_live_in_different_folders(data, tmp_path):
+    import shutil
+    from src.vision.label_store import save_human_label
+
+    train_root, val_root = tmp_path / "train_root", tmp_path / "val_root"
+    for root, day in ((train_root, TRAIN_DAY), (val_root, VAL_DAY)):
+        shutil.copytree(data["frames"] / day, root / day)
+        for name in ("manifest.csv", "auto_labels.csv"):
+            lines = (data["frames"] / name).read_text(encoding="utf-8").splitlines(keepends=True)
+            (root / name).write_text("".join(l for i, l in enumerate(lines) if i == 0 or day in l), encoding="utf-8")
+        for m in range(0, 60, 2):
+            save_human_label(root, f"{day}/CAM1/f_{m:03d}.jpg", LABELS[(m // 4) % 3])
+
+    roots = [train_root, val_root]
+    records, _, _ = build_training_records(roots, data["weather"])
+    assert {r.day.isoformat() for r in records} >= {TRAIN_DAY, VAL_DAY}
+    lookup = load_label_lookup(roots, human_only=True)
+    assert len(lookup) == 60 and all(str(train_root) in k or str(val_root) in k for k in lookup)
+
+    result = train_cnn_lstm.train(roots, data["weather"], None, None, tmp_path / "multi.pt", epochs=1, batch_size=4,
+                                  image_size=32, patch_size=16, patch_embed_dim=8, device="cpu", human_only=True)
+    assert result["history"][0]["val"]["n_steps"] > 0          # validated on the frames of the second folder
+
+
+def test_a_frame_present_in_two_folders_is_used_once_from_the_first(data, tmp_path):
+    import shutil
+    from src.data.training_data import load_frames_table
+
+    copy = tmp_path / "copy"
+    shutil.copytree(data["frames"], copy)
+    table = load_frames_table([data["frames"], copy])
+    assert len(table) == 120 and table["frame_path"].str.startswith(str(data["frames"])).all()
+
+
+def test_datasets_can_be_pickled_for_dataloader_workers(data):
+    import pickle
+    from src.data.graph_dataset import GraphWindowDataset
+
+    records, _, _ = build_training_records(data["frames"], data["weather"])
+    lookup = load_label_lookup(data["frames"])
+    plain = LabeledWindowDataset(records, "train", lookup, image_size=32)
+    graph = GraphWindowDataset(records, "train", lookup, ["N"], {"CAM1": "N"}, 32)
+    for ds in (plain, graph):
+        clone = pickle.loads(pickle.dumps(ds))
+        assert len(clone) == len(ds)
+    assert torch.equal(pickle.loads(pickle.dumps(plain))[0]["target"], plain[0]["target"])
+
+
+def test_training_with_worker_processes_runs(data, tmp_path):
+    result = train_cnn_lstm.train(
+        data["frames"], data["weather"], None, None, tmp_path / "workers.pt", epochs=1, batch_size=4,
+        image_size=32, patch_size=16, patch_embed_dim=8, device="cpu", num_workers=2)
+    assert math.isfinite(result["history"][0]["train_loss"])

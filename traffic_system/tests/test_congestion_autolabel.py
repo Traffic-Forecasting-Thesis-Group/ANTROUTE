@@ -107,3 +107,55 @@ def test_camera_mapping_page_saves_the_chosen_intersections(tmp_path, restore_ma
     at.selectbox[0].set_value("EDSA-Quezon Ave").run()
     at.button[0].click().run()
     assert out.read_text(encoding="utf-8").splitlines() == ["camera_id,intersection", "CAM_A,EDSA-Quezon Ave"]
+
+
+def test_autolabel_can_be_limited_to_some_dates_without_dropping_the_others(tmp_path, monkeypatch):
+    import src.vision.congestion_autolabel as ca
+
+    seen = []
+
+    class FakeModel:
+        pass
+
+    monkeypatch.setattr(ca, "_load_model", lambda weights: FakeModel())
+    monkeypatch.setattr(ca, "detect_batch", lambda model, paths, conf=0.25: (
+        seen.extend(p.parts[-3] for p in paths) or [{"n_vehicles": 2, "occupancy": 0.1, "boxes": "[]"} for _ in paths]))
+
+    root = tmp_path / "frames"
+    with (root := tmp_path / "frames").mkdir() or (root / "manifest.csv").open("w", encoding="utf-8", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["camera_id", "timestamp", "frame_path", "start_estimated"])
+        for day in ("2026-05-04", "2026-05-20"):
+            for i in range(3):
+                w.writerow(["CAM", f"{day}T17:0{i}:00", f"{day}/CAM/f_{i}.jpg", False])
+
+    assert ca.run_autolabel(root, dates=["2026-05-20"]) == 3
+    assert set(seen) == {"2026-05-20"}
+    assert ca.run_autolabel(root, dates=["2026-05-04"]) == 6                # both dates now listed
+    assert set(seen) == {"2026-05-20", "2026-05-04"} and len(seen) == 6
+
+
+def test_viewer_works_on_a_folder_with_frames_but_no_detections_yet(tmp_path, restore_main_module):
+    import cv2
+    import numpy as np
+    from streamlit.testing.v1 import AppTest
+    from src.vision.label_store import load_frames, load_human_labels
+
+    root = tmp_path / "frames"
+    (root / "2026-05-20" / "CAM_A").mkdir(parents=True)
+    with (root / "manifest.csv").open("w", encoding="utf-8", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["camera_id", "timestamp", "frame_path", "start_estimated"])
+        for i in range(4):
+            p = f"2026-05-20/CAM_A/f_{i}.jpg"
+            cv2.imwrite(str(root / p), np.full((36, 64, 3), 40 * i, np.uint8))
+            w.writerow(["CAM_A", f"2026-05-20T17:0{i}:00", p, False])
+
+    df = load_frames(root)
+    assert len(df) == 4 and not df["has_auto"].any() and (df["source"] == "auto").all()
+
+    at = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "app" / "label_viewer.py"), default_timeout=60).run()
+    at.sidebar.text_input[0].set_value(str(root)).run()
+    assert not at.exception and any("No vehicle detections" in i.value for i in at.info)
+    next(b for b in at.button if b.label == "Heavy").click().run()
+    assert not at.exception and load_human_labels(root)["label"].tolist() == ["Heavy"]
