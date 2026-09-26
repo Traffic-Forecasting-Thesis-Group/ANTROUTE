@@ -95,6 +95,7 @@ def train(
     device: Optional[str] = None,
     seed: int = 0,
     graph: Optional[GraphData] = None,
+    human_only: bool = False,
 ) -> dict:
     torch.manual_seed(seed)
     np.random.seed(seed)
@@ -102,7 +103,9 @@ def train(
 
     graph = graph or build_subgraph(spatial_dir, k)
     records, scaler, skipped = build_training_records(frames_root, weather_csv, raw_twitter_root, embeddings_path)
-    lookup = load_label_lookup(frames_root)
+    lookup = load_label_lookup(frames_root, human_only)
+    if not lookup:
+        raise ValueError("No labelled frames (with human_only, review frames in the viewer first).")
 
     camera_ids = sorted({r.camera_id for r in records})
     camera_map, unmapped = resolve_camera_map(camera_ids, list(graph.camera_nodes), camera_csv)
@@ -232,6 +235,7 @@ def main():
     p.add_argument("--max-train-windows", type=int, default=None)
     p.add_argument("--device", default=None)
     p.add_argument("--seed", type=int, default=0)
+    p.add_argument("--human-only", action="store_true", help="train only on frames reviewed by a person")
     p.add_argument("--graph-sizes", action="store_true", help="print subgraph sizes for k=1..10 and exit")
     a = p.parse_args()
 
@@ -246,7 +250,7 @@ def main():
           None if a.no_text else a.embeddings, a.out, a.spatial_dir, a.camera_csv, a.k, a.epochs,
           a.batch_size, a.lr_fusion, a.lr_graph, image_size=a.image_size, init_fusion=a.init_fusion,
           resume=a.resume, use_class_weights=a.class_weights, num_workers=a.num_workers,
-          max_train_windows=a.max_train_windows, device=a.device, seed=a.seed)
+          max_train_windows=a.max_train_windows, device=a.device, seed=a.seed, human_only=a.human_only)
 
 
 if __name__ == "__main__":

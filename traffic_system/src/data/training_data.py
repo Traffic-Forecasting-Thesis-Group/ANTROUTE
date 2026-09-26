@@ -130,9 +130,14 @@ def build_training_records(
     )
 
 
-def load_label_lookup(frames_root: Path) -> Dict[str, int]:
-    """absolute frame path -> class index (human label wins over auto label)."""
+def load_label_lookup(frames_root: Path, human_only: bool = False) -> Dict[str, int]:
+    """absolute frame path -> class index (human label wins over auto label).
+
+    human_only keeps just the frames a person reviewed: the automatic labels are relative to each
+    camera and agree with human judgement far less often than they look like they should."""
     df = load_frames(Path(frames_root))
+    if human_only:
+        df = df[df["source"] == "human"]
     return {frame_key(frames_root, p): CLASS_TO_IDX[l] for p, l in zip(df["frame_path"], df["label"])}
 
 

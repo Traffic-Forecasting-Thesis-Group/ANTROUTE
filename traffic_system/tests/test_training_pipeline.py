@@ -129,3 +129,28 @@ def test_a_checkpoint_is_saved_even_without_validation_data(data, tmp_path):
         data["frames"], data["weather"], None, None, out, epochs=2, batch_size=4, image_size=32,
         patch_size=16, patch_embed_dim=8, device="cpu")
     assert result["history"][0]["val"] is None and out.exists()
+
+
+def test_human_only_keeps_just_the_frames_a_person_reviewed(data):
+    from src.vision.label_store import save_human_label
+
+    frames = data["frames"]
+    everything = load_label_lookup(frames)
+    assert load_label_lookup(frames, human_only=True) == {}
+    save_human_label(frames, f"{TRAIN_DAY}/CAM1/f_003.jpg", "Heavy")
+    save_human_label(frames, f"{TRAIN_DAY}/CAM1/f_004.jpg", "Light")
+    only = load_label_lookup(frames, human_only=True)
+    assert sorted(only.values()) == [0, 2] and len(only) == 2 and len(everything) == 120
+    assert all(k in everything for k in only)
+
+
+def test_training_on_human_labels_only_still_runs_and_refuses_when_there_are_none(data, tmp_path):
+    from src.vision.label_store import save_human_label
+
+    common = dict(epochs=1, batch_size=4, image_size=32, patch_size=16, patch_embed_dim=8, device="cpu", human_only=True)
+    with pytest.raises(ValueError, match="human_only"):
+        train_cnn_lstm.train(data["frames"], data["weather"], None, None, tmp_path / "none.pt", **common)
+    for m in range(0, 30, 3):
+        save_human_label(data["frames"], f"{TRAIN_DAY}/CAM1/f_{m:03d}.jpg", LABELS[(m // 3) % 3])
+    result = train_cnn_lstm.train(data["frames"], data["weather"], None, None, tmp_path / "human.pt", **common)
+    assert math.isfinite(result["history"][0]["train_loss"]) and (tmp_path / "human.pt").exists()

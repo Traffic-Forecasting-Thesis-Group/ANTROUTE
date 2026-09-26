@@ -91,6 +91,7 @@ def train(
     max_train_windows: Optional[int] = None,
     device: Optional[str] = None,
     seed: int = 0,
+    human_only: bool = False,
 ) -> dict:
     torch.manual_seed(seed)
     np.random.seed(seed)
@@ -98,7 +99,9 @@ def train(
 
     records, scaler, skipped = build_training_records(
         frames_root, weather_csv, raw_twitter_root, embeddings_path)
-    lookup = load_label_lookup(frames_root)
+    lookup = load_label_lookup(frames_root, human_only)
+    if not lookup:
+        raise ValueError("No labelled frames (with human_only, review frames in the viewer first).")
     print(f"{len(records)} sessions built ({skipped} skipped for missing weather), "
           f"{len(lookup)} labelled frames")
 
@@ -178,12 +181,13 @@ def main():
     p.add_argument("--max-train-windows", type=int, default=None, help="subsample for a quick run")
     p.add_argument("--device", default=None)
     p.add_argument("--seed", type=int, default=0)
+    p.add_argument("--human-only", action="store_true", help="train only on frames reviewed by a person")
     a = p.parse_args()
 
     train(a.frames_root, a.weather_csv,
           None if a.no_text else a.raw_twitter, None if a.no_text else a.embeddings,
           a.out, a.epochs, a.batch_size, a.lr, a.image_size, num_workers=a.num_workers,
-          max_train_windows=a.max_train_windows, device=a.device, seed=a.seed)
+          max_train_windows=a.max_train_windows, device=a.device, seed=a.seed, human_only=a.human_only)
 
 
 if __name__ == "__main__":
