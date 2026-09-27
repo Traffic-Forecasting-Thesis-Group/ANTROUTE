@@ -31,6 +31,12 @@ st.set_page_config(page_title="Congestion labeling", layout="wide")
 
 root_arg = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_ROOT
 root = Path(st.sidebar.text_input("Frames folder", root_arg))
+labeler = st.sidebar.text_input("Your name (for saving labels)", help=(
+    "Saved to labels_<name>.csv in this folder. Each person's own file means several people can "
+    "label the same folder at the same time without overwriting each other's work."))
+if not labeler.strip():
+    st.sidebar.warning("Enter your name so your labels are saved separately from anyone else labeling this folder.")
+    st.stop()
 if not (root / "auto_labels.csv").exists() and not (root / "manifest.csv").exists():
     st.error(f"Neither auto_labels.csv nor manifest.csv found in {root}. Run extract_frames.py first.")
     st.stop()
@@ -142,8 +148,8 @@ if has_auto:
     right.markdown(f"Vehicles: {int(row['n_vehicles'])}  \nOccupancy: {row['occupancy']:.3f}")
 for name in LABELS:
     if right.button(name, key=f"set_{name}", width="stretch"):
-        save_human_label(root, row["frame_path"], name)
+        save_human_label(root, row["frame_path"], name, labeler)
         st.rerun()
 if right.button("Clear human label", key="clear", width="stretch"):
-    save_human_label(root, row["frame_path"], None)
+    save_human_label(root, row["frame_path"], None, labeler)
     st.rerun()

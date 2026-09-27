@@ -36,22 +36,42 @@ def load_frames(root: Path) -> pd.DataFrame:
     return df.sort_values(["camera_id", "timestamp"]).reset_index(drop=True)
 
 
+def label_files(root: Path) -> List[Path]:
+    """Every labels*.csv in the folder: the shared legacy labels.csv, plus one per labeler
+    (labels_<name>.csv). Splitting by labeler means two people labeling at once each write only
+    their own file, so one person's save can never overwrite another's (a single shared labels.csv,
+    read-modify-written in full on every save, would race when two people save around the same time)."""
+    return sorted(root.glob("labels*.csv"))
+
+
 def load_human_labels(root: Path) -> pd.DataFrame:
-    path = root / "labels.csv"
-    if not path.exists():
+    frames = [pd.read_csv(p).assign(source_file=p.name) for p in label_files(root) if p.stat().st_size > 0]
+    if not frames:
         return pd.DataFrame(columns=HUMAN_FIELDS)
-    return pd.read_csv(path)
+    all_labels = pd.concat(frames, ignore_index=True)
+    # If the same frame was labeled in more than one file (e.g. re-labeled by a different person),
+    # the most recent labeled_at wins.
+    return (all_labels.sort_values("labeled_at").drop_duplicates("frame_path", keep="last")
+            [HUMAN_FIELDS].reset_index(drop=True))
 
 
-def save_human_label(root: Path, frame_path: str, label: str) -> None:
-    """Set (or, with label=None, clear) the human label for one frame."""
+def _label_path(root: Path, labeler: str) -> Path:
+    import re
+    safe = re.sub(r"[^A-Za-z0-9_-]+", "_", labeler.strip()) if labeler and labeler.strip() else ""
+    return root / (f"labels_{safe}.csv" if safe else "labels.csv")
+
+
+def save_human_label(root: Path, frame_path: str, label: str, labeler: str = "") -> None:
+    """Set (or, with label=None, clear) the human label for one frame, in this labeler's own file
+    (labels_<labeler>.csv), so concurrent labelers never write the same file."""
     if label is not None and label not in LABELS:
         raise ValueError(f"label must be one of {LABELS}")
-    human = load_human_labels(root)
-    human = human[human["frame_path"] != frame_path]
+    path = _label_path(root, labeler)
+    own = pd.read_csv(path) if path.exists() and path.stat().st_size > 0 else pd.DataFrame(columns=HUMAN_FIELDS)
+    own = own[own["frame_path"] != frame_path]
     if label is not None:
-        human.loc[len(human)] = [frame_path, label, datetime.now().isoformat(timespec="seconds")]
-    human.to_csv(root / "labels.csv", index=False)
+        own.loc[len(own)] = [frame_path, label, datetime.now().isoformat(timespec="seconds")]
+    own.to_csv(path, index=False)
 
 
 def parse_boxes(boxes_json: str) -> List[list]:

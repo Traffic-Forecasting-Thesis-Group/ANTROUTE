@@ -100,8 +100,9 @@ def test_camera_mapping_page_saves_the_chosen_intersections(tmp_path, restore_ma
 
     at = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "app" / "label_viewer.py"), default_timeout=60).run()
     at.sidebar.text_input[0].set_value(str(root)).run()
+    at.sidebar.text_input[1].set_value("Tester").run()
     at.sidebar.radio[0].set_value("Map cameras").run()
-    at.sidebar.text_input[1].set_value(str(out)).run()
+    at.sidebar.text_input[2].set_value(str(out)).run()
     assert not at.exception and len(at.selectbox) == 2
 
     at.selectbox[0].set_value("EDSA-Quezon Ave").run()
@@ -156,6 +157,73 @@ def test_viewer_works_on_a_folder_with_frames_but_no_detections_yet(tmp_path, re
 
     at = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "app" / "label_viewer.py"), default_timeout=60).run()
     at.sidebar.text_input[0].set_value(str(root)).run()
+    at.sidebar.text_input[1].set_value("Tester").run()
     assert not at.exception and any("No vehicle detections" in i.value for i in at.info)
     next(b for b in at.button if b.label == "Heavy").click().run()
     assert not at.exception and load_human_labels(root)["label"].tolist() == ["Heavy"]
+
+
+def test_two_labelers_saving_at_the_same_time_do_not_clobber_each_other(tmp_path):
+    root = make_root(tmp_path)
+    from src.vision.label_store import load_human_labels
+
+    save_human_label(root, "d/c/0.jpg", "Heavy", labeler="Alice")
+    save_human_label(root, "d/c/1.jpg", "Light", labeler="Bob")
+    assert set(root.glob("labels*.csv")) == {root / "labels_Alice.csv", root / "labels_Bob.csv"}
+
+    merged = load_human_labels(root)
+    both = dict(zip(merged["frame_path"], merged["label"]))
+    assert both == {"d/c/0.jpg": "Heavy", "d/c/1.jpg": "Light"}
+
+
+def test_a_labelers_name_with_spaces_or_symbols_becomes_a_safe_filename(tmp_path):
+    root = make_root(tmp_path)
+    save_human_label(root, "d/c/0.jpg", "Medium", labeler="Juan Dela Cruz!")
+    assert (root / "labels_Juan_Dela_Cruz_.csv").exists() or list(root.glob("labels_Juan*.csv"))
+
+
+def test_no_labeler_name_falls_back_to_the_shared_labels_csv_for_backward_compatibility(tmp_path):
+    root = make_root(tmp_path)
+    save_human_label(root, "d/c/0.jpg", "Heavy")
+    assert (root / "labels.csv").exists()
+
+
+def test_relabeling_the_same_frame_by_two_people_keeps_the_most_recent(tmp_path, monkeypatch):
+    import src.vision.label_store as ls
+
+    root = make_root(tmp_path)
+    times = iter(["2026-01-01T10:00:00", "2026-01-01T10:05:00"])
+
+    class FakeDatetime(ls.datetime):
+        @classmethod
+        def now(cls):
+            return ls.datetime.fromisoformat(next(times))
+
+    monkeypatch.setattr(ls, "datetime", FakeDatetime)
+    save_human_label(root, "d/c/0.jpg", "Light", labeler="Alice")
+    save_human_label(root, "d/c/0.jpg", "Heavy", labeler="Bob")
+    from src.vision.label_store import load_human_labels
+    merged = load_human_labels(root)
+    assert merged.set_index("frame_path").loc["d/c/0.jpg", "label"] == "Heavy"
+
+
+def test_viewer_requires_a_labeler_name_before_showing_frames(tmp_path):
+    from streamlit.testing.v1 import AppTest
+
+    root = tmp_path / "frames"
+    (root / "2026-05-04" / "CAM_A").mkdir(parents=True)
+    fields = ["frame_path", "camera_id", "timestamp", "n_vehicles", "occupancy", "boxes", "auto_label"]
+    import cv2, numpy as np
+    with (root / "auto_labels.csv").open("w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=fields)
+        w.writeheader()
+        p = "2026-05-04/CAM_A/f_0.jpg"
+        cv2.imwrite(str(root / p), np.zeros((36, 64, 3), np.uint8))
+        w.writerow({"frame_path": p, "camera_id": "CAM_A", "timestamp": "2026-05-04T17:00:00",
+                    "n_vehicles": 1, "occupancy": 0.1, "boxes": "[]", "auto_label": "Light"})
+
+    at = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "app" / "label_viewer.py"), default_timeout=60).run()
+    at.sidebar.text_input[0].set_value(str(root)).run()
+    assert not at.exception and len(at.warning) == 1 and len(at.button) == 0   # stopped before showing frames
+    at.sidebar.text_input[1].set_value("Alice").run()
+    assert not at.exception and len(at.button) > 0
