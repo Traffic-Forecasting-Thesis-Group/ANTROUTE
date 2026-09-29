@@ -252,7 +252,9 @@ class CNNLSTMFusion(nn.Module):
         )
         if flat_mask.any():
             frames = images.reshape(B * T, *images.shape[2:])[flat_mask]
-            visual[flat_mask] = self.visual_encoder.encode_frames(frames)
+            # Under autocast the encoder computes in float16; boolean-mask index_put_ (unlike a
+            # plain assignment) requires an exact dtype match, so cast back to the buffer's dtype.
+            visual[flat_mask] = self.visual_encoder.encode_frames(frames).to(visual.dtype)
         if (~flat_mask).any():
             visual[~flat_mask] = self.missing_visual.to(images.dtype)
         visual = self.visual_dropout(visual.reshape(B, T, -1))
