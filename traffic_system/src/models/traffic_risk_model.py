@@ -24,7 +24,9 @@ def scatter_camera_features(camera_features: torch.Tensor, camera_index: torch.T
     """[B, T, K, F] -> [B, T, N, F]: camera nodes get their features, all others `fill` [F]."""
     b, t, _, f = camera_features.shape
     out = fill.view(1, 1, 1, f).expand(b, t, n_nodes, f).clone()
-    out[:, :, camera_index, :] = camera_features
+    # Under autocast camera_features comes back float16 while `out` (built from the plain fp32
+    # placeholder parameter) is float32; fancy-index assignment needs an exact dtype match.
+    out[:, :, camera_index, :] = camera_features.to(out.dtype)
     return out
 
 
@@ -52,7 +54,9 @@ class TrafficRiskModel(nn.Module):
         nodes = self.stgnn(x, a_hat)                         # [B, N, 64]
         if self.node_embedding is not None:
             nodes = nodes.clone()
-            nodes[:, camera_index] = nodes[:, camera_index] + self.node_embedding.weight
+            # Same autocast dtype trap as scatter_camera_features above: the sum promotes to
+            # float32 (embedding is fp32), but fancy-index assignment needs to match `nodes`.
+            nodes[:, camera_index] = (nodes[:, camera_index] + self.node_embedding.weight).to(nodes.dtype)
         return self.head(nodes)                              # [B, N, n_classes]
 
 

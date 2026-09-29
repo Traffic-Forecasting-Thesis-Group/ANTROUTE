@@ -15,7 +15,9 @@ def scatter_camera_features(
 ) -> torch.Tensor:
     b, t, _, f = camera_features.shape
     out = fill.view(1, 1, 1, f).expand(b, t, n_nodes, f).clone()
-    out[:, :, camera_index, :] = camera_features
+    # Under autocast camera_features comes back float16 while `out` (built from the plain fp32
+    # placeholder parameter) is float32; fancy-index assignment needs an exact dtype match.
+    out[:, :, camera_index, :] = camera_features.to(out.dtype)
     return out
 
 
