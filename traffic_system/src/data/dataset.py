@@ -1,3 +1,4 @@
+import warnings
 from typing import Callable, Optional, Sequence
 
 import numpy as np
@@ -65,8 +66,15 @@ class ANTROUTEWindowDataset(Dataset):
         for j in range(T):
             path = record.frame_paths[start + j]
             if path is not None:
-                images[j] = self._load_frame(path)
-                visual_mask[j] = True
+                try:
+                    images[j] = self._load_frame(path)
+                    visual_mask[j] = True
+                except (FileNotFoundError, OSError) as e:
+                    # manifest.csv lists every extracted frame, but a partial/interrupted sync
+                    # (e.g. Drive rsync stopped early) can leave some referenced files missing
+                    # locally. Treat that step as if no frame was recorded, same as a genuine
+                    # gap, instead of crashing the whole DataLoader over one file.
+                    warnings.warn(f"Frame listed in manifest but unreadable, skipping: {path} ({e})")
 
         # Text
         text = torch.zeros(T, self.text_dim)
