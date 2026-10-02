@@ -1,4 +1,5 @@
 import apiClient from './client';
+import type { Coordinates } from './routeService';
 
 export interface PlaceSuggestion {
   id: string;
@@ -7,6 +8,7 @@ export interface PlaceSuggestion {
   name: string;
   address: string;
   formattedAddress: string;
+  distanceKm?: number | null;
 }
 
 interface SearchResponse {
@@ -17,6 +19,7 @@ interface SearchResponse {
     name: string;
     address: string;
     formatted_address: string;
+    distance_km?: number | null;
   }[];
 }
 
@@ -24,13 +27,16 @@ interface ReverseResponse {
   label: string | null;
 }
 
-export async function searchPlaces(query: string): Promise<PlaceSuggestion[]> {
+export async function searchPlaces(query: string, near?: Coordinates | null): Promise<PlaceSuggestion[]> {
   const trimmed = query.trim();
   if (trimmed.length < 2) return [];
 
   try {
     const { data } = await apiClient.get<SearchResponse>('/places/search', {
-      params: { query: trimmed },
+      params: {
+        query: trimmed,
+        ...(near ? { lat: near.latitude, lng: near.longitude } : {}),
+      },
     });
     return data.results.map((item) => ({
       id: item.id,
@@ -39,6 +45,7 @@ export async function searchPlaces(query: string): Promise<PlaceSuggestion[]> {
       name: item.name,
       address: item.address,
       formattedAddress: item.formatted_address,
+      distanceKm: item.distance_km ?? null,
     }));
   } catch (error: any) {
     console.warn('searchPlaces failed:', error?.message || error);

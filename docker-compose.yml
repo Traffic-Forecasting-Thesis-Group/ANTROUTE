@@ -33,14 +33,13 @@ services:
 
   backend:
     build:
-      context: ./backend
+      context: ./traffic_system
       dockerfile: Dockerfile
-    container_name: traffic-backend
+    container_name: traffic-system
     restart: unless-stopped
     environment:
       DATABASE_URL: postgresql+asyncpg://traffic:traffic@db:5432/traffic
       REDIS_URL: redis://redis:6379/0
-      GOOGLE_PLACES_API_KEY: ${GOOGLE_PLACES_API_KEY}
     ports:
       - "8000:8000"
     depends_on:
@@ -49,7 +48,7 @@ services:
       redis:
         condition: service_healthy
     volumes:
-      - ./backend:/app
+      - ./traffic_system:/app
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
 volumes:

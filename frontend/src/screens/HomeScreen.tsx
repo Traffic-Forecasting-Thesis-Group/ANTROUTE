@@ -7,15 +7,15 @@ import {
   Text,
   KeyboardAvoidingView,
   Platform,
-  TouchableWithoutFeedback,
   Keyboard,
   StatusBar,
   ScrollView,
   ActivityIndicator,
   Dimensions,
+  Alert,
 } from 'react-native';
 
-import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE, Marker, Polyline } from 'react-native-maps';
 import { useIsFocused } from '@react-navigation/native';
 
 import {
@@ -31,7 +31,15 @@ import {
 
 import * as Location from 'expo-location';
 
-import { planRoute, RouteOption, CongestionLevel, Coordinates, DestinationInput } from '../api/routeService';
+import {
+  planRoute,
+  getComparisonMetrics,
+  ComparisonMetrics,
+  RouteOption,
+  CongestionLevel,
+  Coordinates,
+  DestinationInput,
+} from '../api/routeService';
 import { searchPlaces, reverseGeocode, PlaceSuggestion } from '../api/placesService';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -57,28 +65,6 @@ interface DestinationEntry {
 
 type ModelTab = 'antroute' | 'baseline' | 'comparison';
 
-interface ComparisonMetricRow {
-  metric: string;
-  antroute: number;
-  baseline: number;
-  improvementPct: number;
-}
-
-interface ComparisonMetrics {
-  routeOptimalityPct: { antroute: number; baseline: number };
-  etaAccuracy: ComparisonMetricRow[];
-}
-
-const SAMPLE_COMPARISON_METRICS: ComparisonMetrics = {
-  routeOptimalityPct: { antroute: 92, baseline: 78 },
-  etaAccuracy: [
-    { metric: 'MAE', antroute: 2.1, baseline: 4.6, improvementPct: -54 },
-    { metric: 'RMSE', antroute: 3, baseline: 6.2, improvementPct: -52 },
-    { metric: 'MSE', antroute: 9, baseline: 38.4, improvementPct: -77 },
-    { metric: 'R²', antroute: 0.91, baseline: 0.74, improvementPct: 23 },
-  ],
-};
-
 function getArrivalTime(durationMin: number): string {
   const now = new Date();
   now.setMinutes(now.getMinutes() + durationMin);
@@ -87,6 +73,20 @@ function getArrivalTime(durationMin: number): string {
   const ampm = hours >= 12 ? 'PM' : 'AM';
   hours = hours % 12 || 12;
   return `${hours}:${minutes} ${ampm}`;
+}
+
+// Colour behind the status bar (the map). Change this if you use a dark map style.
+const STATUS_BAR_BACKGROUND = '#f5f5f5';
+
+// Light background -> dark icons, dark background -> light icons
+function getStatusBarStyle(bgHex: string): 'dark-content' | 'light-content' {
+  const hex = bgHex.replace('#', '');
+  const full = hex.length === 3 ? hex.split('').map((c) => c + c).join('') : hex;
+  const r = parseInt(full.slice(0, 2), 16);
+  const g = parseInt(full.slice(2, 4), 16);
+  const b = parseInt(full.slice(4, 6), 16);
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.5 ? 'dark-content' : 'light-content';
 }
 
 export default function HomeScreen({ navigation }: any) {
@@ -113,12 +113,31 @@ export default function HomeScreen({ navigation }: any) {
     }
   };
 
-
   const [normalRoute, setNormalRoute] = useState<RouteOption | null>(null);
   const [antRouteOptions, setAntRouteOptions] = useState<RouteOption[]>([]);
   const [baselineModelOptions, setBaselineModelOptions] = useState<RouteOption[]>([]);
 
-  const comparisonMetrics = SAMPLE_COMPARISON_METRICS;
+  const [comparisonMetrics, setComparisonMetrics] = useState<ComparisonMetrics | null>(null);
+  const [metricsLoading, setMetricsLoading] = useState(false);
+  const [metricsError, setMetricsError] = useState('');
+
+  const loadComparisonMetrics = async () => {
+    setMetricsLoading(true);
+    setMetricsError('');
+    try {
+      setComparisonMetrics(await getComparisonMetrics());
+    } catch (e: any) {
+      setMetricsError(e?.message || 'Could not load comparison metrics.');
+    } finally {
+      setMetricsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (activeTab === 'comparison' && !comparisonMetrics && !metricsLoading) {
+      loadComparisonMetrics();
+    }
+  }, [activeTab]);
 
   const [isNavigating, setIsNavigating] = useState(false);
   const [isAddingStop, setIsAddingStop] = useState(false);
@@ -128,8 +147,82 @@ export default function HomeScreen({ navigation }: any) {
   const [suggestions, setSuggestions] = useState<PlaceSuggestion[]>([]);
   const [isSearchingPlaces, setIsSearchingPlaces] = useState(false);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const searchRequestRef = useRef(0);
 
   const isFocused = useIsFocused();
+
+  const gpsRef = useRef<Coordinates | null>(null);
+
+  const getAccuratePosition = async (): Promise<Location.LocationObject> => {
+    const TARGET_ACCURACY_M = 30;
+    const accuracyOf = (p: Location.LocationObject) => p.coords.accuracy ?? Infinity;
+
+    let best = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High });
+    if (accuracyOf(best) <= TARGET_ACCURACY_M) return best;
+
+    return new Promise((resolve) => {
+      let sub: Location.LocationSubscription | null = null;
+      let done = false;
+      const finish = () => {
+        if (done) return;
+        done = true;
+        clearTimeout(timer);
+        sub?.remove();
+        resolve(best);
+      };
+      const timer = setTimeout(finish, 8000);
+
+      Location.watchPositionAsync(
+        { accuracy: Location.Accuracy.BestForNavigation, timeInterval: 1000, distanceInterval: 0 },
+        (pos) => {
+          if (accuracyOf(pos) < accuracyOf(best)) best = pos;
+          if (accuracyOf(best) <= TARGET_ACCURACY_M) finish();
+        }
+      )
+        .then((subscription) => {
+          sub = subscription;
+          if (done) subscription.remove();
+        })
+        .catch(finish);
+    });
+  };
+
+  const [hasLocationPermission, setHasLocationPermission] = useState(false);
+  const [isCentering, setIsCentering] = useState(false);
+
+  useEffect(() => {
+    Location.getForegroundPermissionsAsync()
+      .then(({ status }) => setHasLocationPermission(status === 'granted'))
+      .catch(() => {});
+  }, []);
+
+  const centerOnMyLocation = async () => {
+    setIsCentering(true);
+    try {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        Alert.alert('Location permission needed', 'Allow location access to see where you are on the map.');
+        return;
+      }
+      setHasLocationPermission(true);
+
+      const position = await getAccuratePosition();
+      gpsRef.current = { latitude: position.coords.latitude, longitude: position.coords.longitude };
+      mapRef.current?.animateToRegion(
+        {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01,
+        },
+        800
+      );
+    } catch {
+      Alert.alert('Could not get your location', 'Please check that location services are on and try again.');
+    } finally {
+      setIsCentering(false);
+    }
+  };
 
   const fetchCurrentLocation = async () => {
     setIsLocating(true);
@@ -143,13 +236,14 @@ export default function HomeScreen({ navigation }: any) {
         return;
       }
 
-      const position = await Location.getCurrentPositionAsync({
-        accuracy: Location.Accuracy.Balanced,
-      });
+      setHasLocationPermission(true);
+
+      const position = await getAccuratePosition();
       const coords: Coordinates = {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
       };
+      gpsRef.current = coords;
       setOriginCoords(coords);
 
       mapRef.current?.animateToRegion(
@@ -180,15 +274,19 @@ export default function HomeScreen({ navigation }: any) {
     setActiveField(field);
 
     if (debounceRef.current) clearTimeout(debounceRef.current);
+    const requestId = ++searchRequestRef.current;
 
     if (text.trim().length < 2) {
       setSuggestions([]);
+      setIsSearchingPlaces(false);
       return;
     }
 
     debounceRef.current = setTimeout(async () => {
       setIsSearchingPlaces(true);
-      const results = await searchPlaces(text);
+      const near = field === 'origin' ? gpsRef.current : originCoords ?? gpsRef.current;
+      const results = await searchPlaces(text, near);
+      if (requestId !== searchRequestRef.current) return;
       setSuggestions(results);
       setIsSearchingPlaces(false);
     }, 300);
@@ -209,7 +307,7 @@ export default function HomeScreen({ navigation }: any) {
 
   const updateDestination = (index: number, value: string) => {
     setDestinations((prev) => prev.map((d, i) => (i === index ? { name: value, coords: null } : d)));
-    
+
     if (!isNavigating) {
       clearRouteResults();
     }
@@ -223,6 +321,7 @@ export default function HomeScreen({ navigation }: any) {
 
   const selectSuggestion = (suggestion: PlaceSuggestion) => {
     const coords: Coordinates = { latitude: suggestion.lat, longitude: suggestion.lng };
+    searchRequestRef.current++;
 
     if (activeField === 'origin') {
       setOrigin(suggestion.formattedAddress);
@@ -285,12 +384,12 @@ export default function HomeScreen({ navigation }: any) {
       const [normalResults, antResults, baselineResults] = await Promise.all([
         planRoute(originToUse.trim(), cleanedDestinations, false, originCoordsToUse),
         planRoute(originToUse.trim(), cleanedDestinations, true, originCoordsToUse),
-        (planRoute as any)(originToUse.trim(), cleanedDestinations, true, originCoordsToUse, 'baseline'),
+        planRoute(originToUse.trim(), cleanedDestinations, true, originCoordsToUse, 'baseline'),
       ]);
 
       setNormalRoute(normalResults[0] ?? null);
       setAntRouteOptions(antResults);
-      setBaselineModelOptions(baselineResults ?? antResults);
+      setBaselineModelOptions(baselineResults);
       setSelectedIndex(0);
     } catch (error: any) {
       setRouteError(error?.message || 'Something went wrong. Please try again.');
@@ -371,7 +470,14 @@ export default function HomeScreen({ navigation }: any) {
       <View style={styles.suggestionsBox}>
         {suggestions.map((item) => (
           <TouchableOpacity key={item.id} style={styles.suggestionRow} onPress={() => selectSuggestion(item)}>
-            <Text style={styles.suggestionText} numberOfLines={1}>{item.formattedAddress}</Text>
+            <Text style={styles.suggestionName} numberOfLines={1}>{item.name}</Text>
+            {item.address || item.distanceKm != null ? (
+              <Text style={styles.suggestionAddress} numberOfLines={1}>
+                {[item.address, item.distanceKm != null ? `${item.distanceKm} km` : null]
+                  .filter(Boolean)
+                  .join(' · ')}
+              </Text>
+            ) : null}
           </TouchableOpacity>
         ))}
       </View>
@@ -380,21 +486,45 @@ export default function HomeScreen({ navigation }: any) {
 
   const currentModelOptions = selectedModelTab === 'baseline' ? baselineModelOptions : antRouteOptions;
   const selectedRoute = currentModelOptions[selectedIndex];
+  const antTop = antRouteOptions[0];
+  const baselineTop = baselineModelOptions[0];
   const hasAnyResults = normalRoute !== null || antRouteOptions.length > 0;
   const showStopsList = !isNavigating || stopsRevealedDuringNav;
 
+  const lastPlacedIndex = destinations.reduce((last, d, i) => (d.coords ? i : last), -1);
+
+  const ANT_COLOR = '#3B6BE6';
+  const BASELINE_COLOR = '#F7C441';
+
+  useEffect(() => {
+    const path =
+      activeTab === 'comparison' && !isNavigating
+        ? [...(antTop?.path ?? []), ...(baselineTop?.path ?? [])]
+        : selectedRoute?.path ?? [];
+    if (path.length > 1) {
+      mapRef.current?.fitToCoordinates(path, {
+        edgePadding: { top: 80, right: 40, bottom: SCREEN_HEIGHT * 0.55, left: 40 },
+        animated: true,
+      });
+    }
+  }, [antRouteOptions, baselineModelOptions, selectedIndex, activeTab, selectedModelTab]);
+
   return (
     <View style={styles.container}>
-      <StatusBar
-        barStyle="dark-content"
-        backgroundColor="transparent"
-        translucent={true}
-      />
+      {isFocused && (
+        <StatusBar
+          barStyle={getStatusBarStyle(STATUS_BAR_BACKGROUND)}
+          backgroundColor="transparent"
+          translucent={true}
+        />
+      )}
 
       <MapView
         ref={mapRef}
         provider={Platform.OS === 'android' ? PROVIDER_GOOGLE : undefined}
         style={styles.map}
+        showsUserLocation={hasLocationPermission}
+        showsMyLocationButton={false}
         initialRegion={{
           latitude: 14.5995,
           longitude: 120.9842,
@@ -415,13 +545,62 @@ export default function HomeScreen({ navigation }: any) {
             </View>
           </Marker>
         )}
-        {destinations.map((dest, index) =>
-          dest.coords ? (
-            <Marker key={index} coordinate={dest.coords} title={dest.name} pinColor="#f59e0b" />
-          ) : null
-        )}
+        {destinations.map((dest, index) => {
+          if (!dest.coords) return null;
+
+          const isLast = index === lastPlacedIndex;
+          const showNumber = destinations.length > 1;
+          return (
+            <Marker
+              key={`stop-${index}-${isLast}-${showNumber}`}
+              coordinate={dest.coords}
+              title={showNumber ? `Stop ${index + 1}: ${dest.name}` : dest.name}
+              anchor={{ x: 0.5, y: 0.5 }}
+            >
+              <View style={[styles.stopMarker, isLast && styles.stopMarkerFinal]}>
+                {showNumber ? (
+                  <Text style={styles.stopMarkerText}>{index + 1}</Text>
+                ) : (
+                  <MapPin size={14} color="#fff" />
+                )}
+              </View>
+            </Marker>
+          );
+        })}
+
+        {activeTab === 'comparison' && !isNavigating ? (
+          <>
+            {baselineTop?.path?.length ? (
+              <Polyline
+                coordinates={baselineTop.path}
+                strokeColor={BASELINE_COLOR}
+                strokeWidth={6}
+                lineJoin="round"
+                lineCap="round"
+              />
+            ) : null}
+            {antTop?.path?.length ? (
+              <Polyline
+                coordinates={antTop.path}
+                strokeColor={ANT_COLOR}
+                strokeWidth={6}
+                lineJoin="round"
+                lineCap="round"
+              />
+            ) : null}
+          </>
+        ) : selectedRoute?.path?.length ? (
+          <Polyline
+            coordinates={selectedRoute.path}
+            strokeColor={selectedModelTab === 'baseline' ? BASELINE_COLOR : ANT_COLOR}
+            strokeWidth={6}
+            lineJoin="round"
+            lineCap="round"
+          />
+        ) : null}
       </MapView>
 
+      {/* Legends / locate button: sit above the map but BEHIND the scrollable panel */}
       <View style={styles.legendCard}>
         <View style={styles.legendItem}>
           <View style={[styles.dot, { backgroundColor: '#ef4444' }]} />
@@ -437,386 +616,424 @@ export default function HomeScreen({ navigation }: any) {
         </View>
       </View>
 
+      <TouchableOpacity
+        style={styles.myLocationButton}
+        onPress={centerOnMyLocation}
+        disabled={isCentering}
+        activeOpacity={0.8}
+      >
+        {isCentering ? (
+          <ActivityIndicator size="small" color="#3b82f6" />
+        ) : (
+          <LocateFixed size={22} color="#3b82f6" />
+        )}
+      </TouchableOpacity>
+
+      {!isNavigating && activeTab === 'comparison' && hasAnyResults && (
+        <View style={styles.routeLegendCard}>
+          <View style={styles.legendItem}>
+            <View style={[styles.pathSwatch, { backgroundColor: ANT_COLOR }]} />
+            <Text style={styles.legendText}>ANTRoute</Text>
+          </View>
+          <View style={styles.legendItem}>
+            <View style={[styles.pathSwatch, { backgroundColor: BASELINE_COLOR }]} />
+            <Text style={styles.legendText}>Baseline</Text>
+          </View>
+        </View>
+      )}
+
       <KeyboardAvoidingView
         style={styles.flexContainer}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -40}
         pointerEvents="box-none"
       >
-        <TouchableWithoutFeedback
-          onPress={() => {
-            Keyboard.dismiss();
-            setSuggestions([]);
-            if (isNavigating && stopsRevealedDuringNav) handleCollapseNavStops();
-          }}
-        >
-          <View style={styles.innerContainer} pointerEvents="box-none">
-            <View
-              style={[
-                styles.overlayWrapper,
-                isExpanded && !isNavigating && styles.expandedWrapper,
-                isExpanded && isNavigating && styles.navigatingWrapper,
-              ]}
-            >
-              {!isExpanded ? (
-                <TouchableOpacity
-                  style={styles.searchBar}
-                  onPress={handleExpand}
-                >
-                  <Search size={20} color="#6b7280" style={styles.searchIcon} />
-                  <Text style={styles.placeholderText}>Plan Your Route!</Text>
-                </TouchableOpacity>
-              ) : (
-                <ScrollView
-                  showsVerticalScrollIndicator={false}
-                  style={styles.routeBox}
-                  contentContainerStyle={styles.routeBoxContent}
-                  keyboardShouldPersistTaps="handled"
-                >
-                  {!isNavigating && <View style={styles.dragHandle} />}
+        <View style={styles.innerContainer} pointerEvents="box-none">
+          <View
+            style={[
+              styles.overlayWrapper,
+              isExpanded && !isNavigating && styles.expandedWrapper,
+              isExpanded && isNavigating && styles.navigatingWrapper,
+            ]}
+          >
+            {!isExpanded ? (
+              <TouchableOpacity
+                style={styles.searchBar}
+                onPress={handleExpand}
+              >
+                <Search size={20} color="#6b7280" style={styles.searchIcon} />
+                <Text style={styles.placeholderText}>Plan Your Route!</Text>
+              </TouchableOpacity>
+            ) : (
+              <ScrollView
+                showsVerticalScrollIndicator={false}
+                style={isNavigating ? styles.routeBox : styles.routeBoxFill}
+                contentContainerStyle={styles.routeBoxContent}
+                keyboardShouldPersistTaps="handled"
+                nestedScrollEnabled
+                bounces={false}
+              >
+                {!isNavigating && <View style={styles.dragHandle} />}
 
-                  {!isNavigating && (
-                    <View style={styles.tabBarRow}>
-                      {(['antroute', 'baseline', 'comparison'] as ModelTab[]).map((tab) => (
-                        <TouchableOpacity
-                          key={tab}
-                          onPress={() => handleTabChange(tab)}
-                          style={[styles.tabPill, activeTab === tab && styles.tabPillActive]}
-                        >
-                          <Text style={[styles.tabPillText, activeTab === tab && styles.tabPillTextActive]}>
-                            {tab === 'antroute' ? 'ANTRoute' : tab === 'baseline' ? 'Baseline' : 'Comparison'}
+                {!isNavigating && (
+                  <View style={styles.tabBarRow}>
+                    {(['antroute', 'baseline', 'comparison'] as ModelTab[]).map((tab) => (
+                      <TouchableOpacity
+                        key={tab}
+                        onPress={() => handleTabChange(tab)}
+                        style={[styles.tabPill, activeTab === tab && styles.tabPillActive]}
+                      >
+                        <Text style={[styles.tabPillText, activeTab === tab && styles.tabPillTextActive]}>
+                          {tab === 'antroute' ? 'ANTRoute' : tab === 'baseline' ? 'Baseline' : 'Comparison'}
+                        </Text>
+                      </TouchableOpacity>
+                    ))}
+                  </View>
+                )}
+
+                {showStopsList && (
+                  <>
+                    {/* Origin */}
+                    <View style={styles.inputRow}>
+                      <View style={[styles.pillInputContainer, styles.currentLocationInput]}>
+                        {isLocating ? (
+                          <ActivityIndicator size="small" color="#3b82f6" style={styles.originIcon} />
+                        ) : (
+                          <LocateFixed size={16} color="#3b82f6" style={styles.originIcon} />
+                        )}
+                        {!isNavigating ? (
+                          <TextInput
+                            value={origin}
+                            onChangeText={handleOriginChange}
+                            onFocus={() => runPlacesSearch('origin', origin)}
+                            style={[styles.actualInput, styles.originInputText]}
+                            placeholder="Add start location"
+                            placeholderTextColor="#9ca3af"
+                            editable={!isLocating}
+                            autoFocus={isExpanded && origin.length === 0}
+                          />
+                        ) : (
+                          <Text style={[styles.actualInput, styles.originInputText]} numberOfLines={1}>
+                            {origin || 'Current location'}
                           </Text>
-                        </TouchableOpacity>
-                      ))}
-                    </View>
-                  )}
-
-                  {showStopsList && (
-                    <>
-                      {/* Origin */}
-                      <View style={styles.inputRow}>
-                        <View style={[styles.pillInputContainer, styles.currentLocationInput]}>
-                          {isLocating ? (
-                            <ActivityIndicator size="small" color="#3b82f6" style={styles.originIcon} />
+                        )}
+                        {!isNavigating && (
+                          origin.length > 0 ? (
+                            <TouchableOpacity
+                              onPress={() => {
+                                setOrigin('');
+                                setOriginCoords(null);
+                                setSuggestions([]);
+                              }}
+                            >
+                              <X size={18} color="#9ca3af" />
+                            </TouchableOpacity>
                           ) : (
-                            <LocateFixed size={16} color="#3b82f6" style={styles.originIcon} />
-                          )}
-                          {!isNavigating ? (
-                            <TextInput
-                              value={origin}
-                              onChangeText={handleOriginChange}
-                              onFocus={() => runPlacesSearch('origin', origin)}
-                              style={[styles.actualInput, styles.originInputText]}
-                              placeholder="Add start location"
-                              placeholderTextColor="#9ca3af"
-                              editable={!isLocating}
-                              autoFocus={isExpanded && origin.length === 0}
-                            />
-                          ) : (
-                            <Text style={[styles.actualInput, styles.originInputText]} numberOfLines={1}>
-                              {origin || 'Current location'}
-                            </Text>
-                          )}
-                          {!isNavigating && (
-                            origin.length > 0 ? (
-                              <TouchableOpacity
-                                onPress={() => {
-                                  setOrigin('');
-                                  setOriginCoords(null);
-                                  setSuggestions([]);
-                                }}
-                              >
-                                <X size={18} color="#9ca3af" />
-                              </TouchableOpacity>
-                            ) : (
-                              <TouchableOpacity onPress={fetchCurrentLocation} disabled={isLocating}>
-                                <Text style={styles.useGpsLink}>Use GPS</Text>
-                              </TouchableOpacity>
-                            )
-                          )}
-                        </View>
+                            <TouchableOpacity onPress={fetchCurrentLocation} disabled={isLocating}>
+                              <Text style={styles.useGpsLink}>Use GPS</Text>
+                            </TouchableOpacity>
+                          )
+                        )}
                       </View>
-                      {locationError ? <Text style={styles.errorText}>{locationError}</Text> : null}
-                      {!isNavigating && renderSuggestions('origin')}
+                    </View>
+                    {locationError ? <Text style={styles.errorText}>{locationError}</Text> : null}
+                    {!isNavigating && renderSuggestions('origin')}
 
-                      {/* Destinations */}
-                      {destinations.map((dest, index) => {
-                        const editable = isRowEditable(index);
-                        return (
-                          <React.Fragment key={index}>
-                            <View style={styles.inputRow}>
-                              <View style={[styles.pillInputContainer, styles.activePillInput]}>
-                                <View style={styles.stopBadge}>
-                                  {destinations.length > 1 && (
-                                    <Text style={styles.stopBadgeText}>{index + 1}</Text>
-                                  )}
-                                </View>
-                                {editable ? (
-                                  <TextInput
-                                    value={dest.name}
-                                    onChangeText={(text) => updateDestination(index, text)}
-                                    onFocus={() => runPlacesSearch(index, dest.name)}
-                                    style={styles.actualInput}
-                                    placeholder="Add a destination"
-                                    autoFocus={
-                                      (isAddingStop && index === destinations.length - 1) ||
-                                      (!isNavigating && index === destinations.length - 1 && dest.name === '' && origin.trim().length > 0)
-                                    }
-                                  />
-                                ) : (
-                                  <Text style={styles.actualInput} numberOfLines={1}>{dest.name}</Text>
-                                )}
-                                {!isNavigating && destinations.length > 1 && (
-                                  <TouchableOpacity
-                                    onPress={() => reorderDestination(index)}
-                                    style={styles.reorderHandle}
-                                  >
-                                    <ArrowUpDown size={16} color="#9ca3af" />
-                                  </TouchableOpacity>
-                                )}
-                                {editable && (dest.name.length > 0 || destinations.length > 1) && (
-                                  <TouchableOpacity
-                                    onPress={() => {
-                                      if (dest.name.length > 0) {
-                                        updateDestination(index, '');
-                                      } else {
-                                        removeDestination(index);
-                                        if (isNavigating) setIsAddingStop(false);
-                                      }
-                                    }}
-                                  >
-                                    <X size={18} color="#9ca3af" />
-                                  </TouchableOpacity>
+                    {/* Destinations */}
+                    {destinations.map((dest, index) => {
+                      const editable = isRowEditable(index);
+                      return (
+                        <React.Fragment key={index}>
+                          <View style={styles.inputRow}>
+                            <View style={[styles.pillInputContainer, styles.activePillInput]}>
+                              <View style={styles.stopBadge}>
+                                {destinations.length > 1 && (
+                                  <Text style={styles.stopBadgeText}>{index + 1}</Text>
                                 )}
                               </View>
+                              {editable ? (
+                                <TextInput
+                                  value={dest.name}
+                                  onChangeText={(text) => updateDestination(index, text)}
+                                  onFocus={() => runPlacesSearch(index, dest.name)}
+                                  style={styles.actualInput}
+                                  placeholder="Add a destination"
+                                  autoFocus={
+                                    (isAddingStop && index === destinations.length - 1) ||
+                                    (!isNavigating && index === destinations.length - 1 && dest.name === '' && origin.trim().length > 0)
+                                  }
+                                />
+                              ) : (
+                                <Text style={styles.actualInput} numberOfLines={1}>{dest.name}</Text>
+                              )}
+                              {!isNavigating && destinations.length > 1 && (
+                                <TouchableOpacity
+                                  onPress={() => reorderDestination(index)}
+                                  style={styles.reorderHandle}
+                                >
+                                  <ArrowUpDown size={16} color="#9ca3af" />
+                                </TouchableOpacity>
+                              )}
+                              {editable && (dest.name.length > 0 || destinations.length > 1) && (
+                                <TouchableOpacity
+                                  onPress={() => {
+                                    if (dest.name.length > 0) {
+                                      updateDestination(index, '');
+                                    } else {
+                                      removeDestination(index);
+                                      if (isNavigating) setIsAddingStop(false);
+                                    }
+                                  }}
+                                >
+                                  <X size={18} color="#9ca3af" />
+                                </TouchableOpacity>
+                              )}
                             </View>
-                            {editable && renderSuggestions(index)}
-                          </React.Fragment>
-                        );
-                      })}
+                          </View>
+                          {editable && renderSuggestions(index)}
+                        </React.Fragment>
+                      );
+                    })}
 
-                      {(!isNavigating || !isAddingStop) && (
+                    {(!isNavigating || !isAddingStop) && (
+                      <TouchableOpacity
+                        style={styles.addDestinationButton}
+                        onPress={isNavigating ? handleAddStopWhileNavigating : addDestination}
+                      >
+                        <Plus size={16} color="#4475F2" />
+                        <Text style={styles.addDestinationText}>Add Destination</Text>
+                      </TouchableOpacity>
+                    )}
+
+                  </>
+                )}
+
+                {routeError ? <Text style={styles.errorText}>{routeError}</Text> : null}
+
+                {!isNavigating && !hasAnyResults && (
+                  <>
+                    <View style={styles.vehicleNoteRow}>
+                      <CarFront size={14} color="#9ca3af" />
+                      <Text style={styles.vehicleNoteText}>Routes optimized for 4-wheel vehicles.</Text>
+                    </View>
+                    <TouchableOpacity
+                      style={[styles.findButton, isLoading && styles.findButtonDisabled]}
+                      onPress={handleFindRoutesPress}
+                      disabled={isLoading}
+                    >
+                      {isLoading ? (
+                        <ActivityIndicator color="#fff" />
+                      ) : (
+                        <Text style={styles.findButtonText}>Find Optimal Route</Text>
+                      )}
+                    </TouchableOpacity>
+                  </>
+                )}
+
+                {isLoading && hasAnyResults && (
+                  <View style={styles.loadingRow}>
+                    <ActivityIndicator size="small" color="#4475F2" />
+                    <Text style={styles.loadingText}>Updating route…</Text>
+                  </View>
+                )}
+
+                {!isNavigating && activeTab === 'comparison' ? null : selectedRoute && (
+                  <TouchableOpacity
+                    style={styles.summaryBar}
+                    activeOpacity={isNavigating && !stopsRevealedDuringNav ? 0.7 : 1}
+                    onPress={() => {
+                      if (isNavigating && !stopsRevealedDuringNav) handleExpandNavStops();
+                    }}
+                  >
+                    {isNavigating && destinations[0]?.name ? (
+                      <View style={styles.summaryDestinationRow}>
+                        <MapPin size={14} color="#4475F2" />
+                        <Text style={styles.summaryDestinationText} numberOfLines={1}>
+                          {destinations[0].name}
+                        </Text>
+                      </View>
+                    ) : null}
+                    <View style={styles.summaryMainRow}>
+                      <CarFront size={20} color="#111827" />
+                      <View style={styles.summaryTextWrap}>
+                        <Text style={styles.summaryDuration}>
+                          <Text style={styles.summaryDurationNumber}>{selectedRoute.duration_min}</Text> min
+                        </Text>
+                        <Text style={styles.summarySubtext}>
+                          Arrive By {getArrivalTime(selectedRoute.duration_min)} · {selectedRoute.distance_km} km
+                        </Text>
+                      </View>
+                      {isNavigating ? (
                         <TouchableOpacity
-                          style={styles.addDestinationButton}
-                          onPress={isNavigating ? handleAddStopWhileNavigating : addDestination}
+                          style={[styles.summaryButton, styles.summaryButtonEnd]}
+                          onPress={handleEndNavigation}
                         >
-                          <Plus size={16} color="#4475F2" />
-                          <Text style={styles.addDestinationText}>Add Destination</Text>
+                          <Text style={styles.summaryButtonText}>End</Text>
+                        </TouchableOpacity>
+                      ) : (
+                        <TouchableOpacity style={styles.summaryButton} onPress={handleStartNavigation}>
+                          <Text style={styles.summaryButtonText}>Start</Text>
                         </TouchableOpacity>
                       )}
-
-                    </>
-                  )}
-
-                  {routeError ? <Text style={styles.errorText}>{routeError}</Text> : null}
-
-                  {!isNavigating && !hasAnyResults && (
-                    <>
-                      <View style={styles.vehicleNoteRow}>
-                        <CarFront size={14} color="#9ca3af" />
-                        <Text style={styles.vehicleNoteText}>Routes optimized for 4-wheel vehicles.</Text>
-                      </View>
-                      <TouchableOpacity
-                        style={[styles.findButton, isLoading && styles.findButtonDisabled]}
-                        onPress={handleFindRoutesPress}
-                        disabled={isLoading}
-                      >
-                        {isLoading ? (
-                          <ActivityIndicator color="#fff" />
-                        ) : (
-                          <Text style={styles.findButtonText}>Find Optimal Route</Text>
-                        )}
-                      </TouchableOpacity>
-                    </>
-                  )}
-
-                  {isLoading && hasAnyResults && (
-                    <View style={styles.loadingRow}>
-                      <ActivityIndicator size="small" color="#4475F2" />
-                      <Text style={styles.loadingText}>Updating route…</Text>
                     </View>
-                  )}
+                  </TouchableOpacity>
+                )}
 
-                  {!isNavigating && activeTab === 'comparison' ? null : selectedRoute && (
-                    <TouchableOpacity
-                      style={styles.summaryBar}
-                      activeOpacity={isNavigating && !stopsRevealedDuringNav ? 0.7 : 1}
-                      onPress={() => {
-                        if (isNavigating && !stopsRevealedDuringNav) handleExpandNavStops();
-                      }}
-                    >
-                      {isNavigating && destinations[0]?.name ? (
-                        <View style={styles.summaryDestinationRow}>
-                          <MapPin size={14} color="#4475F2" />
-                          <Text style={styles.summaryDestinationText} numberOfLines={1}>
-                            {destinations[0].name}
-                          </Text>
-                        </View>
-                      ) : null}
-                      <View style={styles.summaryMainRow}>
-                        <CarFront size={20} color="#111827" />
-                        <View style={styles.summaryTextWrap}>
-                          <Text style={styles.summaryDuration}>
-                            <Text style={styles.summaryDurationNumber}>{selectedRoute.duration_min}</Text> min
-                          </Text>
-                          <Text style={styles.summarySubtext}>
-                            Arrive By {getArrivalTime(selectedRoute.duration_min)} · {selectedRoute.distance_km} km
-                          </Text>
-                        </View>
-                        {isNavigating ? (
-                          <TouchableOpacity
-                            style={[styles.summaryButton, styles.summaryButtonEnd]}
-                            onPress={handleEndNavigation}
-                          >
-                            <Text style={styles.summaryButtonText}>End</Text>
-                          </TouchableOpacity>
-                        ) : (
-                          <TouchableOpacity style={styles.summaryButton} onPress={handleStartNavigation}>
-                            <Text style={styles.summaryButtonText}>Start</Text>
-                          </TouchableOpacity>
-                        )}
-                      </View>
+                {!isNavigating && hasAnyResults && activeTab !== 'comparison' && normalRoute && (
+                  <View style={styles.normalRouteCard}>
+                    <View style={styles.normalRouteTopRow}>
+                      <Text style={styles.normalRouteTime}>{normalRoute.duration_min} min</Text>
+                      <Text style={styles.normalRouteDistance}>{normalRoute.distance_km} km</Text>
+                    </View>
+                    <Text style={styles.normalRouteVia}>Via {normalRoute.via}</Text>
+                    <Text style={styles.normalRouteLabel}>Normal route (no traffic optimization)</Text>
+                  </View>
+                )}
+
+                {!isNavigating && activeTab !== 'comparison' && currentModelOptions.length > 0 && (
+                  <>
+                    <Text style={styles.sectionHeaderBlue}>
+                      Alternative Route by {selectedModelTab === 'baseline' ? 'Baseline' : 'ANTRoute'} Model
+                    </Text>
+                    {currentModelOptions.map((route, index) => {
+                      const isSelected = index === selectedIndex;
+                      return (
+                        <TouchableOpacity
+                          key={index}
+                          style={[styles.routeListItem, isSelected && styles.routeListItemSelected]}
+                          onPress={() => setSelectedIndex(index)}
+                          activeOpacity={0.85}
+                        >
+                          <View style={styles.routeListTopRow}>
+                            <View style={styles.routeListTimeRow}>
+                              <Text style={styles.routeListTime}>{route.duration_min} min</Text>
+                              {index === 0 && (
+                                <View style={styles.recommendedBadge}>
+                                  <Text style={styles.recommendedBadgeText}>Recommended</Text>
+                                </View>
+                              )}
+                            </View>
+                          </View>
+                          <Text style={styles.routeListDistance}>{route.distance_km} km</Text>
+                          <Text style={styles.routeListVia}>Via {route.via}</Text>
+
+                          <View style={styles.metricsRow}>
+                            <Text style={styles.metricLabel}>Congestion</Text>
+                            <View style={styles.progressBar}>
+                              <View
+                                style={[
+                                  styles.progress,
+                                  {
+                                    width: CONGESTION_WIDTH[route.congestion_level],
+                                    backgroundColor: CONGESTION_COLORS[route.congestion_level],
+                                  },
+                                ]}
+                              />
+                            </View>
+                            <Text style={styles.metricValue}>
+                              {route.congestion_level.charAt(0).toUpperCase() + route.congestion_level.slice(1)}
+                            </Text>
+                          </View>
+
+                          {route.event_note ? (
+                            <View style={styles.infoBox}>
+                              <Info size={14} color="#3b82f6" />
+                              <Text style={styles.infoText}>{route.event_note}</Text>
+                            </View>
+                          ) : null}
+                        </TouchableOpacity>
+                      );
+                    })}
+                  </>
+                )}
+
+                {!isNavigating && activeTab === 'comparison' && !hasAnyResults && (
+                  <View style={styles.comparisonEmptyState}>
+                    <Info size={18} color="#9ca3af" />
+                    <Text style={styles.comparisonEmptyText}>
+                      Add an origin and destination and find a route to see the ANTRoute vs. Baseline comparison.
+                    </Text>
+                  </View>
+                )}
+
+                {!isNavigating && activeTab === 'comparison' && hasAnyResults && metricsLoading && (
+                  <ActivityIndicator style={{ marginVertical: 30 }} color="#4475F2" />
+                )}
+
+                {!isNavigating && activeTab === 'comparison' && hasAnyResults && !metricsLoading && metricsError ? (
+                  <View style={styles.comparisonEmptyState}>
+                    <Text style={styles.comparisonEmptyText}>{metricsError}</Text>
+                    <TouchableOpacity style={styles.retryButton} onPress={loadComparisonMetrics}>
+                      <Text style={styles.retryButtonText}>Retry</Text>
                     </TouchableOpacity>
-                  )}
+                  </View>
+                ) : null}
 
-                  {!isNavigating && hasAnyResults && activeTab !== 'comparison' && normalRoute && (
-                    <View style={styles.normalRouteCard}>
-                      <View style={styles.normalRouteTopRow}>
-                        <Text style={styles.normalRouteTime}>{normalRoute.duration_min} min</Text>
-                        <Text style={styles.normalRouteDistance}>{normalRoute.distance_km} km</Text>
-                      </View>
-                      <Text style={styles.normalRouteVia}>Via {normalRoute.via}</Text>
-                      <Text style={styles.normalRouteLabel}>Normal route (no traffic optimization)</Text>
+                {!isNavigating && activeTab === 'comparison' && hasAnyResults && !metricsLoading && comparisonMetrics && (
+                  <View>
+                    <Text style={styles.comparisonResultLabel}>Comparison Result</Text>
+
+                    <View style={styles.comparisonCardsRow}>
+                      {[
+                        { name: 'ANTRoute', route: antTop, opt: comparisonMetrics.routeOptimalityPct.antroute },
+                        { name: 'Baseline', route: baselineTop, opt: comparisonMetrics.routeOptimalityPct.baseline },
+                      ].map((item) => (
+                        <View key={item.name} style={styles.comparisonCard}>
+                          <View style={styles.comparisonCardHeader}>
+                            <Text style={styles.comparisonCardModel}>{item.name}</Text>
+                            <Text style={styles.comparisonCardDistance}>{item.route?.distance_km} km</Text>
+                          </View>
+                          <Text style={styles.comparisonCardLabel}>ETA</Text>
+                          <Text style={styles.comparisonCardEta}>{item.route?.duration_min} min</Text>
+                          <Text style={[styles.comparisonCardLabel, { marginTop: 10 }]}>Route Optimality</Text>
+                          <Text style={styles.comparisonCardOpt}>{item.opt}%</Text>
+                        </View>
+                      ))}
                     </View>
-                  )}
 
-                  {!isNavigating && activeTab !== 'comparison' && currentModelOptions.length > 0 && (
-                    <>
-                      <Text style={styles.sectionHeaderBlue}>
-                        Alternative Route by {selectedModelTab === 'baseline' ? 'Baseline' : 'ANTRoute'} Model
-                      </Text>
-                      {currentModelOptions.map((route, index) => {
-                        const isSelected = index === selectedIndex;
+                    <View style={styles.comparisonDivider} />
+
+                    <Text style={styles.evaluationTitle}>Evaluation Metrics</Text>
+                    <View style={styles.metricsTable}>
+                      <View style={styles.metricsTableHeaderRow}>
+                        <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText, { flex: 1.5 }]}>
+                          Metric
+                        </Text>
+                        <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>ANTRoute</Text>
+                        <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>Baseline</Text>
+                        <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>Improvement</Text>
+                      </View>
+                      {comparisonMetrics.metrics.map((row) => {
+                        const isGood = row.higherIsBetter ? row.improvementPct > 0 : row.improvementPct < 0;
                         return (
-                          <TouchableOpacity
-                            key={index}
-                            style={[styles.routeListItem, isSelected && styles.routeListItemSelected]}
-                            onPress={() => setSelectedIndex(index)}
-                            activeOpacity={0.85}
-                          >
-                            <View style={styles.routeListTopRow}>
-                              <View style={styles.routeListTimeRow}>
-                                <Text style={styles.routeListTime}>{route.duration_min} min</Text>
-                                {index === 0 && (
-                                  <View style={styles.recommendedBadge}>
-                                    <Text style={styles.recommendedBadgeText}>Recommended</Text>
-                                  </View>
-                                )}
-                              </View>
-                            </View>
-                            <Text style={styles.routeListDistance}>{route.distance_km} km</Text>
-                            <Text style={styles.routeListVia}>Via {route.via}</Text>
-
-                            <View style={styles.metricsRow}>
-                              <Text style={styles.metricLabel}>Congestion</Text>
-                              <View style={styles.progressBar}>
-                                <View
-                                  style={[
-                                    styles.progress,
-                                    {
-                                      width: CONGESTION_WIDTH[route.congestion_level],
-                                      backgroundColor: CONGESTION_COLORS[route.congestion_level],
-                                    },
-                                  ]}
-                                />
-                              </View>
-                              <Text style={styles.metricValue}>
-                                {route.congestion_level.charAt(0).toUpperCase() + route.congestion_level.slice(1)}
-                              </Text>
-                            </View>
-
-                            {route.event_note ? (
-                              <View style={styles.infoBox}>
-                                <Info size={14} color="#3b82f6" />
-                                <Text style={styles.infoText}>{route.event_note}</Text>
-                              </View>
-                            ) : null}
-                          </TouchableOpacity>
-                        );
-                      })}
-                    </>
-                  )}
-
-                  {!isNavigating && activeTab === 'comparison' && !hasAnyResults && (
-                    <View style={styles.comparisonEmptyState}>
-                      <Info size={18} color="#9ca3af" />
-                      <Text style={styles.comparisonEmptyText}>
-                        Add a destination and find a route to see the ANTRoute vs. Baseline comparison.
-                      </Text>
-                    </View>
-                  )}
-
-                  {!isNavigating && activeTab === 'comparison' && hasAnyResults && (
-                    <View>
-                      <Text style={styles.comparisonResultLabel}>Comparison Result</Text>
-
-                      <Text style={styles.comparisonSubheading}>Route Optimality</Text>
-                      <View style={styles.optimalityRow}>
-                        <View style={styles.optimalityCard}>
-                          <Text style={styles.optimalityCardLabel}>ANTRoute</Text>
-                          <Text style={styles.optimalityCardValue}>
-                            {comparisonMetrics.routeOptimalityPct.antroute}%
-                          </Text>
-                        </View>
-                        <View style={styles.optimalityCard}>
-                          <Text style={styles.optimalityCardLabel}>Baseline</Text>
-                          <Text style={styles.optimalityCardValue}>
-                            {comparisonMetrics.routeOptimalityPct.baseline}%
-                          </Text>
-                        </View>
-                      </View>
-
-                      <Text style={styles.comparisonSubheading}>ETA Accuracy</Text>
-                      <View style={styles.metricsTable}>
-                        <View style={styles.metricsTableHeaderRow}>
-                          <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText, { flex: 1.3 }]}>
-                            Metric
-                          </Text>
-                          <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>ANTRoute</Text>
-                          <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>Baseline</Text>
-                          <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>Improvement</Text>
-                        </View>
-                        {comparisonMetrics.etaAccuracy.map((row) => (
                           <View key={row.metric} style={styles.metricsTableRow}>
-                            <Text style={[styles.metricsTableCell, { flex: 1.3 }]}>{row.metric}</Text>
+                            <Text style={[styles.metricsTableCell, { flex: 1.5 }]}>{row.metric}</Text>
                             <Text style={styles.metricsTableCell}>{row.antroute}</Text>
                             <Text style={styles.metricsTableCell}>{row.baseline}</Text>
                             <Text
                               style={[
                                 styles.metricsTableCell,
                                 styles.metricsTableImprovement,
-                                row.metric === 'R²'
-                                  ? row.improvementPct > 0 && styles.improvementGood
-                                  : row.improvementPct < 0 && styles.improvementGood,
+                                isGood && styles.improvementGood,
                               ]}
                             >
                               {row.improvementPct > 0 ? '+' : ''}
                               {row.improvementPct}%
                             </Text>
                           </View>
-                        ))}
-                      </View>
-                      <Text style={styles.comparisonFootnote}>
-                        Lower is better for MAE, RMSE, MSE. Higher is better for R².
-                      </Text>
+                        );
+                      })}
                     </View>
-                  )}
+                    <Text style={styles.comparisonFootnote}>
+                      Lower is better for MAE, RMSE, MSE, MAPE. Higher is better for R².
+                    </Text>
+                  </View>
+                )}
 
-                </ScrollView>
-              )}
-            </View>
+              </ScrollView>
+            )}
           </View>
-        </TouchableWithoutFeedback>
+        </View>
       </KeyboardAvoidingView>
     </View>
   );
@@ -827,8 +1044,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  // Panel layer: above legends (zIndex 1) so the scrollable covers them
   flexContainer: {
     flex: 1,
+    zIndex: 20,
   },
   innerContainer: {
     flex: 1,
@@ -857,7 +1076,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 60,
     left: 20,
-    zIndex: 10,
+    zIndex: 1,
   },
   legendItem: {
     flexDirection: 'row',
@@ -874,6 +1093,53 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '400',
     color: '#111827',
+  },
+  stopMarker: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: '#f59e0b',
+    borderWidth: 2,
+    borderColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  stopMarkerFinal: {
+    backgroundColor: '#FEA106',
+  },
+  stopMarkerText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#fff',
+  },
+  myLocationButton: {
+    position: 'absolute',
+    top: (StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 60) + 96,
+    left: 20,
+    zIndex: 30,
+    width: 46,
+    height: 46,
+    borderRadius: 23,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 25,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    shadowOffset: { width: 0, height: 2 },
+  },
+  routeLegendCard: {
+    position: 'absolute',
+    top: (StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 60) + 156,
+    left: 20,
+    zIndex: 1,
+  },
+  pathSwatch: {
+    width: 16,
+    height: 4,
+    borderRadius: 2,
+    marginRight: 10,
   },
   liveMapLabel: {
     position: 'absolute',
@@ -942,12 +1208,18 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#9ca3af',
   },
+  // Navigation mode: wrapper has no fixed height, so cap the ScrollView
   routeBox: {
     width: '100%',
     maxHeight: SCREEN_HEIGHT * 0.7,
   },
+  // Planning mode: fill the fixed-height panel so it scrolls fully
+  routeBoxFill: {
+    width: '100%',
+    flex: 1,
+  },
   routeBoxContent: {
-    paddingBottom: 24,
+    paddingBottom: 60,
   },
   dragHandle: {
     alignSelf: 'center',
@@ -1033,9 +1305,15 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#f3f4f6',
   },
-  suggestionText: {
+  suggestionName: {
     fontSize: 13,
+    fontWeight: '600',
     color: '#1f2937',
+  },
+  suggestionAddress: {
+    fontSize: 11,
+    color: '#9ca3af',
+    marginTop: 2,
   },
   addDestinationButton: {
     flexDirection: 'row',
@@ -1229,64 +1507,100 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 18,
   },
-  comparisonResultLabel: {
-    fontSize: 13,
+  retryButton: {
+    paddingVertical: 8,
+    paddingHorizontal: 20,
+    borderRadius: 16,
+    backgroundColor: '#eff6ff',
+  },
+  retryButtonText: {
+    fontSize: 12,
     fontWeight: '700',
     color: '#4475F2',
+  },
+  comparisonResultLabel: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: 'black',
     marginBottom: 14,
   },
-  comparisonSubheading: {
-    fontSize: 13,
-    fontWeight: '700',
-    color: '#111827',
+  comparisonCardsRow: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  comparisonCard: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: '#a5b4fc',
+    borderRadius: 16,
+    padding: 14,
+    backgroundColor: '#fff',
+  },
+  comparisonCardHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginBottom: 8,
   },
-  optimalityRow: {
-    flexDirection: 'row',
-    gap: 10,
-    marginBottom: 18,
-  },
-  optimalityCard: {
-    flex: 1,
-    backgroundColor: '#f9fafb',
-    borderRadius: 14,
-    paddingVertical: 14,
-    alignItems: 'center',
-  },
-  optimalityCardLabel: {
-    fontSize: 12,
-    color: '#6b7280',
-    marginBottom: 4,
-  },
-  optimalityCardValue: {
-    fontSize: 20,
+  comparisonCardModel: {
+    fontSize: 11,
     fontWeight: '700',
-    color: '#111827',
+    color: '#6b7280',
+  },
+  comparisonCardDistance: {
+    fontSize: 11,
+    color: '#9ca3af',
+  },
+  comparisonCardLabel: {
+    fontSize: 12,
+    color: '#374151',
+  },
+  comparisonCardEta: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#4475F2',
+  },
+  comparisonCardOpt: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#65a30d',
+  },
+  comparisonDivider: {
+    height: 1,
+    backgroundColor: '#f3f4f6',
+    marginVertical: 18,
+  },
+  evaluationTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: 'black',
+    marginBottom: 12,
   },
   metricsTable: {
     borderWidth: 1,
-    borderColor: '#f3f4f6',
-    borderRadius: 12,
+    borderColor: '#a5b4fc',
+    borderRadius: 20,
     overflow: 'hidden',
-    marginBottom: 8,
+    marginBottom: 10,
   },
   metricsTableHeaderRow: {
     flexDirection: 'row',
-    backgroundColor: '#f9fafb',
-    paddingVertical: 8,
-    paddingHorizontal: 10,
+    backgroundColor: '#fff',
+    paddingVertical: 12,
+    paddingHorizontal: 12,
   },
   metricsTableHeaderText: {
-    fontSize: 10,
+    fontSize: 11,
     fontWeight: '700',
-    color: '#9ca3af',
+    color: '#4475F2',
   },
   metricsTableRow: {
     flexDirection: 'row',
-    paddingVertical: 8,
-    paddingHorizontal: 10,
+    alignItems: 'center',
+    paddingVertical: 14,
+    paddingHorizontal: 12,
     borderTopWidth: 1,
-    borderTopColor: '#f3f4f6',
+    borderTopColor: '#e5e7eb',
   },
   metricsTableCell: {
     flex: 1,
@@ -1294,11 +1608,11 @@ const styles = StyleSheet.create({
     color: '#1f2937',
   },
   metricsTableImprovement: {
-    fontWeight: '700',
+    fontWeight: '600',
     color: '#ef4444',
   },
   improvementGood: {
-    color: '#10b981',
+    color: '#65a30d',
   },
   comparisonFootnote: {
     fontSize: 10,
