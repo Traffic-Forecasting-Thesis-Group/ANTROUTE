@@ -10,6 +10,7 @@ from src.models.traffic_risk_model_edge import (
     camera_edge_ids,
     camera_edge_targets,
     edge_risk_loss,
+    sample_weights_from_targets,
 )
 
 
@@ -102,6 +103,38 @@ def test_edge_risk_loss_with_no_labels_returns_zero_count():
     loss, count = edge_risk_loss(logits, ids, torch.full((2, 2), float("nan")))
     assert count == 0
     assert float(loss) == 0.0
+
+
+def test_sample_weights_from_targets_maps_each_bucket_and_ignores_nan():
+    weights = torch.tensor([2.0, 1.0, 0.5])  # Light, Medium, Heavy
+    targets = torch.tensor([0.0, 0.5, 1.0, float("nan")])
+    out = sample_weights_from_targets(targets, weights)
+    assert out[0] == pytest.approx(2.0)
+    assert out[1] == pytest.approx(1.0)
+    assert out[2] == pytest.approx(0.5)
+    # the nan row is masked out by edge_risk_loss before this is read, so its weight is
+    # irrelevant -- only check it didn't crash or silently pick an out-of-range class.
+    assert torch.isfinite(out[3])
+
+
+def test_sample_weights_from_targets_is_none_when_class_weights_is_none():
+    targets = torch.tensor([0.0, 0.5, 1.0])
+    assert sample_weights_from_targets(targets, None) is None
+
+
+def test_edge_risk_loss_with_class_weights_upweights_the_minority_class():
+    """A Light-class error should cost more than an equally-wrong Heavy-class error when
+    class_weights says Light is rarer, since that's the whole point of weighting: stop the
+    loss from being dominated by whichever class has the most edges."""
+    logits = torch.zeros(1, 2)  # sigmoid(0) = 0.5 for both edges: both wrong by the same margin
+    ids = torch.tensor([0, 1])
+    light_wrong = torch.tensor([[0.0, float("nan")]])
+    heavy_wrong = torch.tensor([[float("nan"), 1.0]])
+    class_weights = torch.tensor([3.0, 1.0, 1.0])  # Light weighted 3x Medium/Heavy
+
+    light_loss, _ = edge_risk_loss(logits, ids, light_wrong, class_weights)
+    heavy_loss, _ = edge_risk_loss(logits, ids, heavy_wrong, class_weights)
+    assert float(light_loss) == pytest.approx(3.0 * float(heavy_loss))
 
 
 def test_joint_training_reduces_loss_on_a_learnable_signal():

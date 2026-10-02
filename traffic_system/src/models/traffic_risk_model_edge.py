@@ -8,6 +8,7 @@ from src.models.stgnn_input_builder import build_stgnn_input
 
 IGNORE_INDEX = -100
 CLASS_RISK = torch.tensor([0.0, 0.5, 1.0])
+N_CLASSES = 3
 
 
 def scatter_camera_features(
@@ -78,13 +79,34 @@ def camera_edge_targets(
     return torch.nanmean(pair, dim=-1)
 
 
+def sample_weights_from_targets(
+    targets: torch.Tensor, class_weights: Optional[torch.Tensor]
+) -> Optional[torch.Tensor]:
+    """Per-edge BCE weight from its Light/Medium/Heavy bucket (targets are only ever
+    0.0, 0.5, 1.0 or nan, since they come from CLASS_RISK). None if class_weights is None."""
+    if class_weights is None:
+        return None
+    # round(target * 2) maps 0.0/0.5/1.0 -> 0/1/2; nan rows are excluded by the loss's own
+    # mask before this is indexed, so the clamp here only has to avoid an out-of-range read.
+    class_idx = torch.nan_to_num(targets * 2, nan=0.0).round().long().clamp(0, N_CLASSES - 1)
+    return class_weights.to(targets.device)[class_idx]
+
+
 def edge_risk_loss(
-    logits: torch.Tensor, edge_ids: torch.Tensor, targets: torch.Tensor
+    logits: torch.Tensor,
+    edge_ids: torch.Tensor,
+    targets: torch.Tensor,
+    class_weights: Optional[torch.Tensor] = None,
 ) -> Tuple[torch.Tensor, int]:
     at_camera_edges = logits[:, edge_ids]
     mask = ~torch.isnan(targets)
     count = int(mask.sum())
     if count == 0:
         return (at_camera_edges.sum() * 0.0, 0)
-    loss = F.binary_cross_entropy_with_logits(at_camera_edges[mask], targets[mask], reduction="sum")
+    weight = sample_weights_from_targets(targets, class_weights)
+    loss = F.binary_cross_entropy_with_logits(
+        at_camera_edges[mask], targets[mask],
+        weight=weight[mask] if weight is not None else None,
+        reduction="sum",
+    )
     return (loss / count, count)

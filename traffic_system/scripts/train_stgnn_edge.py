@@ -24,6 +24,7 @@ from src.models.cnn_lstm_fusion import CNNLSTMFusion  # noqa: E402
 from src.models.mlp_decoder import MLPDecoder  # noqa: E402
 from src.models.radr_stgnn import RADRSTGNN  # noqa: E402
 from src.models.traffic_risk_model_edge import (
+    N_CLASSES,
     TrafficRiskModel,
     camera_edge_ids,
     camera_edge_targets,
@@ -35,8 +36,20 @@ def to_device(batch: dict, device) -> dict:
     return {k: v.to(device) for k, v in batch.items()}
 
 
+def class_weights_from_lookup(lookup: Dict[str, int]) -> torch.Tensor:
+    """Balanced weight per Light/Medium/Heavy class (sklearn 'balanced' convention):
+    n_samples / (n_classes * n_class). Counters a label mix skewed toward Heavy, which
+    otherwise pulls BCE's optimum toward predicting close to the dataset's mean label
+    everywhere instead of learning real per-edge differences."""
+    counts = np.bincount(list(lookup.values()), minlength=N_CLASSES).astype(float)
+    return torch.tensor(
+        np.where(counts > 0, counts.sum() / (N_CLASSES * np.maximum(counts, 1)), 1.0),
+        dtype=torch.float32,
+    )
+
+
 @torch.no_grad()
-def evaluate(model, loader, a_hat, camera_index, edge_index, edge_ids, n_nodes, device) -> Optional[dict]:
+def evaluate(model, loader, a_hat, camera_index, edge_index, edge_ids, n_nodes, device, class_weights=None) -> Optional[dict]:
     if len(loader.dataset) == 0:
         return None
     model.eval()
@@ -45,7 +58,7 @@ def evaluate(model, loader, a_hat, camera_index, edge_index, edge_ids, n_nodes, 
         batch = to_device(batch, device)
         logits = model(batch, a_hat, camera_index, edge_index)
         targets = camera_edge_targets(batch["target"], camera_index, n_nodes, edge_index, edge_ids)
-        loss, count = edge_risk_loss(logits, edge_ids, targets)
+        loss, count = edge_risk_loss(logits, edge_ids, targets, class_weights)
         if count == 0:
             continue
         mask = ~torch.isnan(targets)
@@ -83,12 +96,16 @@ def train(
     split: str = "official",
     min_session_labels: int = 100,
     time_features: bool = True,
+    use_class_weights: bool = False,
 ) -> dict:
     torch.manual_seed(seed)
     np.random.seed(seed)
     device = torch.device(device or ("cuda" if torch.cuda.is_available() else "cpu"))
     graph = graph or build_subgraph(spatial_dir, k)
     lookup = load_label_lookup(frames_root, human_only)
+    class_weights = class_weights_from_lookup(lookup).to(device) if use_class_weights else None
+    if class_weights is not None:
+        print(f"class weights (Light/Medium/Heavy): {class_weights.tolist()}")
     visual_split = None
     if split == "auto":
         visual_split = assign_session_splits(labelled_sessions(frames_root, lookup, min_session_labels))
@@ -171,6 +188,7 @@ def train(
         "text_dim": 768,
         "temporal_dim": temporal_dim,
         "time_features": time_features,
+        "use_class_weights": use_class_weights,
         "use_text": raw_twitter_root is not None,
         "visual_split": {f"{d.isoformat()}|{s}": v for (d, s), v in (visual_split or VISUAL_SPLIT).items()},
         "weather_columns": WEATHER_COLUMNS,
@@ -191,7 +209,7 @@ def train(
                 targets = camera_edge_targets(
                     batch["target"], camera_index, graph.n_nodes, edge_index, edge_ids
                 )
-                loss, count = edge_risk_loss(logits.float(), edge_ids, targets)
+                loss, count = edge_risk_loss(logits.float(), edge_ids, targets, class_weights)
             if count == 0:
                 continue
             optimizer.zero_grad()
@@ -202,7 +220,7 @@ def train(
             grad_scaler.update()
             running.append(float(loss.detach()))
         val = evaluate(
-            model, loaders["val"], a_hat, camera_index, edge_index, edge_ids, graph.n_nodes, device
+            model, loaders["val"], a_hat, camera_index, edge_index, edge_ids, graph.n_nodes, device, class_weights
         )
         row = {"epoch": epoch, "train_loss": float(np.mean(running)) if running else float("nan"), "val": val}
         history.append(row)
@@ -234,7 +252,7 @@ def train(
         raise RuntimeError("No checkpoint was written (no epochs were run).")
     checkpoint = torch.load(out_path, map_location=device, weights_only=False)
     model.load_state_dict(checkpoint["model"])
-    test = evaluate(model, loaders["test"], a_hat, camera_index, edge_index, edge_ids, graph.n_nodes, device)
+    test = evaluate(model, loaders["test"], a_hat, camera_index, edge_index, edge_ids, graph.n_nodes, device, class_weights)
     print(f"best epoch {checkpoint['epoch']}, test={test}")
     return {"history": history, "test": test, "best_epoch": checkpoint["epoch"]}
 
@@ -270,6 +288,11 @@ def main():
     p.add_argument("--min-session-labels", type=int, default=100)
     p.add_argument("--human-only", action="store_true")
     p.add_argument("--no-time-features", action="store_true")
+    p.add_argument(
+        "--class-weights", action="store_true",
+        help="balance the BCE loss against the Light/Medium/Heavy label skew (57%% Heavy by default), "
+             "instead of letting the model learn to predict close to the mean label everywhere",
+    )
     p.add_argument("--graph-sizes", action="store_true")
     a = p.parse_args()
     if a.graph_sizes:
@@ -302,6 +325,7 @@ def main():
         split=a.split,
         min_session_labels=a.min_session_labels,
         time_features=not a.no_time_features,
+        use_class_weights=a.class_weights,
     )
 
 
