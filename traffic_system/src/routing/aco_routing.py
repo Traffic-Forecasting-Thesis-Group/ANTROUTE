@@ -1,3 +1,4 @@
+
 from __future__ import annotations
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Sequence, Tuple
@@ -24,24 +25,13 @@ class RouteResult:
     alternatives: List[PathMetrics]
 
 
-def _distance_to_destination(wg: WeightedGraph, destination_idx: int) -> np.ndarray:
-    import networkx as nx
-
-    g = wg.to_networkx().reverse(copy=False)
-    destination_road_id = int(wg.node_ids[destination_idx])
-    lengths = nx.single_source_dijkstra_path_length(g, destination_road_id, weight="weight")
-    potential = np.full(wg.n_nodes, np.inf)
-    for road_id, length in lengths.items():
-        potential[wg.index_of(road_id)] = length
-    return potential
-
-
-def _candidate_edges(wg: WeightedGraph, current: int, visited: set, potential: np.ndarray) -> np.ndarray:
+def _candidate_edges(wg: WeightedGraph, current: int, visited: set) -> np.ndarray:
     out = wg.out_edges(current)
     if out.size == 0:
         return out
     mask = np.array(
-        [int(wg.dst[e]) not in visited and potential[int(wg.dst[e])] < potential[current] for e in out]
+        [int(wg.dst[e]) not in visited for e in out],
+        dtype=bool,
     )
     return out[mask]
 
@@ -54,12 +44,36 @@ def _choose_edge(
     beta: float,
     rng: np.random.Generator,
 ) -> int:
-    desirability = pheromone[candidates] ** alpha * (1.0 / wg.weight[candidates]) ** beta
+    weights = wg.weight[candidates]
+    if (
+        np.any(~np.isfinite(weights))
+        or np.any(weights <= 0)
+        or np.any(~np.isfinite(pheromone[candidates]))
+        or np.any(pheromone[candidates] < 0)
+    ):
+        raise ValueError(
+            "Candidate edge weights must be finite and positive, "
+            "and pheromone values must be finite and non-negative."
+        )
+
+    with np.errstate(over="ignore", under="ignore", invalid="ignore"):
+        desirability = pheromone[candidates] ** alpha * (1.0 / weights) ** beta
+
     total = desirability.sum()
-    if total <= 0 or not np.isfinite(total):
-        probabilities = np.full(len(candidates), 1.0 / len(candidates))
+    if (
+        not np.all(np.isfinite(desirability))
+        or not np.isfinite(total)
+        or total <= 0
+    ):
+        inverse_weights = 1.0 / weights
+        inverse_total = inverse_weights.sum()
+        if np.isfinite(inverse_total) and inverse_total > 0:
+            probabilities = inverse_weights / inverse_total
+        else:
+            probabilities = np.full(len(candidates), 1.0 / len(candidates))
     else:
         probabilities = desirability / total
+
     return int(rng.choice(candidates, p=probabilities))
 
 
@@ -70,7 +84,6 @@ def _build_tour(
     pheromone: np.ndarray,
     config: AntColonyConfig,
     max_steps: int,
-    potential: np.ndarray,
     rng: np.random.Generator,
 ) -> Optional[Tuple[List[int], List[int]]]:
     current = origin_idx
@@ -80,7 +93,7 @@ def _build_tour(
     for _ in range(max_steps):
         if current == destination_idx:
             return (path_indices, edge_ids)
-        candidates = _candidate_edges(wg, current, visited, potential)
+        candidates = _candidate_edges(wg, current, visited)
         if candidates.size == 0:
             return None
         chosen = _choose_edge(wg, candidates, pheromone, config.alpha, config.beta, rng)
@@ -89,6 +102,8 @@ def _build_tour(
         edge_ids.append(chosen)
         visited.add(next_node)
         current = next_node
+    if current == destination_idx:
+        return (path_indices, edge_ids)
     return None
 
 
@@ -99,10 +114,22 @@ def ant_colony_shortest_path(
     destination_idx = wg.index_of(destination)
     if origin_idx == destination_idx:
         raise ValueError(f"origin {origin} and destination {destination} are the same node")
-    potential = _distance_to_destination(wg, destination_idx)
-    if not np.isfinite(potential[origin_idx]):
-        raise ValueError(f"destination {destination} is not reachable from origin {origin}")
-    max_steps = config.max_steps or wg.n_nodes
+    if config.n_ants <= 0:
+        raise ValueError("n_ants must be greater than zero")
+    if config.n_iterations <= 0:
+        raise ValueError("n_iterations must be greater than zero")
+    if config.alpha < 0 or config.beta < 0:
+        raise ValueError("alpha and beta must be non-negative")
+    if not 0.0 <= config.evaporation <= 1.0:
+        raise ValueError("evaporation must be between 0 and 1")
+    if not np.isfinite(config.initial_pheromone) or config.initial_pheromone <= 0:
+        raise ValueError("initial_pheromone must be finite and positive")
+    if config.max_steps is not None and config.max_steps <= 0:
+        raise ValueError("max_steps must be greater than zero")
+    if config.n_alternatives < 0:
+        raise ValueError("n_alternatives must be non-negative")
+
+    max_steps = config.max_steps if config.max_steps is not None else wg.n_nodes - 1
     rng = np.random.default_rng(config.seed)
     pheromone = np.full(wg.n_edges, config.initial_pheromone, dtype=np.float64)
     found: Dict[Tuple[int, ...], PathMetrics] = {}
@@ -110,23 +137,32 @@ def ant_colony_shortest_path(
         tours: List[Tuple[PathMetrics, List[int]]] = []
         for _ in range(config.n_ants):
             result = _build_tour(
-                wg, origin_idx, destination_idx, pheromone, config, max_steps, potential, rng
+                wg, origin_idx, destination_idx, pheromone, config, max_steps, rng
             )
             if result is None:
                 continue
             path_indices, edge_ids = result
             road_ids = [int(wg.node_ids[i]) for i in path_indices]
             metrics = wg.evaluate_path(road_ids)
+            if not np.isfinite(metrics.dynamic_cost) or metrics.dynamic_cost <= 0:
+                raise ValueError(
+                    "Route dynamic_cost must be finite and positive "
+                    "for pheromone updates."
+                )
             tours.append((metrics, edge_ids))
             key = tuple(metrics.nodes)
             if key not in found or metrics.dynamic_cost < found[key].dynamic_cost:
                 found[key] = metrics
         pheromone *= 1.0 - config.evaporation
         for metrics, edge_ids in tours:
-            pheromone[edge_ids] += 1.0 / metrics.dynamic_cost
+            if edge_ids:
+                pheromone[edge_ids] += 1.0 / metrics.dynamic_cost
     if not found:
         raise ValueError(
-            f"no route from {origin} to {destination} was found within {config.n_iterations} iterations x {config.n_ants} ants (max {max_steps} steps per tour)"
+            f"No route from {origin} to {destination} was found "
+            f"after {config.n_iterations} iterations with "
+            f"{config.n_ants} ants and a maximum of "
+            f"{max_steps} steps per tour."
         )
     ranked = sorted(found.values(), key=lambda m: m.dynamic_cost)
     best = ranked[0]
