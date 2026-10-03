@@ -8,22 +8,25 @@ routes against the most recent scored window in risk_edges.csv -- the newest dec
 run stands in for "right now". Picking a specific recorded day/time instead is a
 --window flag away in the underlying scripts for anyone building that into a demo.
 
-Routing is only possible between locations within the k-hop subgraph around the 8
-CCTV intersections (the architecture's documented scope), so an origin or destination
-far from every subgraph node raises RouteOutsideNetworkError rather than silently
-inventing a route; route_engine.plan_routes() catches this and falls back to the
-distance-only placeholder.
+Routing covers the whole Metro Manila road network (build_full_graph), not just the
+k-hop subgraph the STGNN trains on -- that subgraph exists only because the model
+needs a dense adjacency, a constraint routing does not share. Congestion-risk
+awareness still only applies where a camera informs it; elsewhere an edge is assumed
+typical (see missing_risk below) rather than risk-free or risk-laden. An origin or
+destination further than MAX_SNAP_KM from every road in the network raises
+RouteOutsideNetworkError rather than silently inventing a route; route_engine.
+plan_routes() catches this and falls back to the distance-only placeholder.
 """
 
 from __future__ import annotations
 
 import csv
 import math
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 from functools import lru_cache
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Sequence, Tuple
 from zoneinfo import ZoneInfo
 
 import numpy as np
@@ -31,7 +34,7 @@ import numpy as np
 LOCAL_TZ = "Asia/Manila"
 
 from app.config import settings
-from src.data.graph_data import DEFAULT_K, GraphData, build_subgraph
+from src.data.graph_data import GraphData, build_full_graph
 from src.routing.aco_routing import AntColonyConfig, ant_colony_shortest_path, multi_stop_route
 from src.routing.dynamic_weight import DEFAULT_LAMBDA, PathMetrics, WeightedGraph, weighted_graph_from_risk_file
 from src.routing.eta_engine import load_free_flow_seconds, path_eta_seconds
@@ -65,6 +68,20 @@ class _Network:
     risk_low: float  # tercile cutoffs over this window's risk, for labelling
     risk_high: float  # routes clear / moderate / heavy
     events: List[TrafficEvent]  # parsed MMDA incidents, placed on the graph
+    event_intersections: Dict[str, int]  # incident label -> graph index (camera_nodes + non-camera landmarks)
+    coord_ids: np.ndarray = field(default_factory=lambda: np.empty(0, dtype=np.int64))
+    coord_lat: np.ndarray = field(default_factory=lambda: np.empty(0))
+    coord_lon: np.ndarray = field(default_factory=lambda: np.empty(0))
+
+    def __post_init__(self) -> None:
+        # Snapping a searched place scans every node, and the routable graph is now the
+        # whole city (59,521 nodes), so keep the coordinates as arrays and let numpy do
+        # it rather than looping in Python on every request.
+        if self.coord_ids.size == 0 and self.node_coords:
+            items = list(self.node_coords.items())
+            self.coord_ids = np.fromiter((n for n, _ in items), dtype=np.int64, count=len(items))
+            self.coord_lat = np.fromiter((c[0] for _, c in items), dtype=np.float64, count=len(items))
+            self.coord_lon = np.fromiter((c[1] for _, c in items), dtype=np.float64, count=len(items))
 
 
 def _load_node_coords(spatial_dir: Path, node_ids: np.ndarray) -> Dict[int, Tuple[float, float]]:
@@ -77,19 +94,35 @@ def _load_node_coords(spatial_dir: Path, node_ids: np.ndarray) -> Dict[int, Tupl
                 coords[node_id] = (float(row["lat"]), float(row["lon"]))
     missing = wanted - coords.keys()
     if missing:
-        raise ValueError(f"{len(missing)} subgraph node(s) missing from full_network_static_features.csv")
+        raise ValueError(f"{len(missing)} graph node(s) missing from full_network_static_features.csv")
     return coords
 
 
 @lru_cache(maxsize=1)
 def _network() -> _Network:
-    graph = build_subgraph(SPATIAL_DIR, DEFAULT_K)
+    # The whole city, not the k-hop training subgraph: the subgraph exists because the
+    # STGNN needs a dense adjacency, a constraint routing does not share. Risk is still
+    # only known on the camera-covered edges -- the rest fall back to `missing_risk`.
+    graph = build_full_graph(SPATIAL_DIR)
     risk_edges_path = Path(settings.risk_edges_path)
     if not risk_edges_path.is_absolute():
         risk_edges_path = REPO_ROOT / risk_edges_path
     if not risk_edges_path.exists():
         raise FileNotFoundError(risk_edges_path)
-    wg_antroute = weighted_graph_from_risk_file(graph, risk_edges_path, lam=DEFAULT_LAMBDA)
+
+    # What to assume for an edge no camera informs. 0 would be actively wrong here: a
+    # scored edge at the observed mean risk costs ~2.1x its length at lambda=2, so an
+    # unscored edge assumed risk-free would look less than half the price, and the
+    # router would systematically abandon the monitored corridor for roads it knows
+    # nothing about. Assuming the observed mean instead makes "unknown" cost the same
+    # as "typical", so coverage gaps neither attract nor repel a route.
+    scored = weighted_graph_from_risk_file(graph, risk_edges_path, lam=DEFAULT_LAMBDA, missing_risk=0.0)
+    observed = scored.risk[scored.risk > 0]
+    missing_risk = float(observed.mean()) if observed.size else 0.5
+
+    wg_antroute = weighted_graph_from_risk_file(
+        graph, risk_edges_path, lam=DEFAULT_LAMBDA, missing_risk=missing_risk
+    )
     wg_baseline = wg_antroute.with_lambda(0.0)
 
     free_flow_seconds = None
@@ -97,7 +130,10 @@ def _network() -> _Network:
         free_flow_seconds = load_free_flow_seconds(SPATIAL_DIR, graph)
 
     node_coords = _load_node_coords(SPATIAL_DIR, graph.node_ids)
-    risk_low, risk_high = np.percentile(wg_antroute.risk, [33, 66])
+    # Terciles over the edges a camera actually informs. Taken over every edge they
+    # would mostly measure the imputed constant, and every route would come back the
+    # same colour.
+    risk_low, risk_high = np.percentile(observed if observed.size else wg_antroute.risk, [33, 66])
 
     # Event layer. Parsing the whole tweet corpus takes a few seconds, so it happens
     # once here rather than per request. An absent corpus is not fatal -- the system
@@ -108,8 +144,30 @@ def _network() -> _Network:
     if raw_twitter.exists() and landmarks:
         events = parse_alerts(raw_twitter, landmarks)
 
+    # Where an incident label places on the graph. Starts from the 8 camera
+    # intersections (already graph indices) and adds the non-camera EDSA landmarks
+    # the MMDA feed also names often -- Guadalupe, Magallanes, Balintawak, etc. --
+    # geocoded once and snapped to the nearest real node (configs/event_intersections.csv
+    # records the source coordinates and the snap, so a bad match is auditable).
+    event_intersections: Dict[str, int] = dict(graph.camera_nodes)
+    node_index = {int(n): i for i, n in enumerate(graph.node_ids)}
+    extra_path = REPO_ROOT / "configs/event_intersections.csv"
+    if extra_path.exists():
+        with extra_path.open(encoding="utf-8", newline="") as f:
+            for row in csv.DictReader(f):
+                label = row["intersection"].strip()
+                if label in event_intersections:
+                    continue
+                point = (float(row["lat"]), float(row["lon"]))
+                try:
+                    node_id = _nearest_node_id(node_coords, point)
+                except RouteOutsideNetworkError:
+                    continue
+                event_intersections[label] = node_index[node_id]
+
     return _Network(
-        graph, wg_antroute, wg_baseline, free_flow_seconds, node_coords, float(risk_low), float(risk_high), events
+        graph, wg_antroute, wg_baseline, free_flow_seconds, node_coords, float(risk_low), float(risk_high),
+        events, event_intersections,
     )
 
 
@@ -163,19 +221,40 @@ def _haversine_km(a: Tuple[float, float], b: Tuple[float, float]) -> float:
     return 2 * r * math.asin(math.sqrt(h))
 
 
-def nearest_node(net: _Network, point: Tuple[float, float]) -> int:
-    """Closest subgraph node id to (lat, lng); raises if nothing is within MAX_SNAP_KM."""
-    best_node, best_km = None, float("inf")
-    for node_id, coord in net.node_coords.items():
+def _nearest_node_id(node_coords: Dict[int, Tuple[float, float]], point: Tuple[float, float]) -> int:
+    """
+    Closest node id to (lat, lng) by plain dict scan; raises if nothing is within
+    MAX_SNAP_KM. Used while building the network, before the vectorised coordinate
+    arrays nearest_node() uses exist -- not the hot path, so the O(n) scan is fine for
+    the handful of landmarks configs/event_intersections.csv snaps at startup.
+    """
+    best_id, best_km = None, float("inf")
+    for node_id, coord in node_coords.items():
         km = _haversine_km(point, coord)
         if km < best_km:
-            best_node, best_km = node_id, km
+            best_id, best_km = node_id, km
     if best_km > MAX_SNAP_KM:
         raise RouteOutsideNetworkError(
-            f"({point[0]:.4f}, {point[1]:.4f}) is {best_km:.1f} km from the nearest monitored "
-            f"intersection -- outside the routable network"
+            f"({point[0]:.4f}, {point[1]:.4f}) is {best_km:.1f} km from the nearest road in the "
+            f"network -- outside the routable area"
         )
-    return best_node
+    return best_id
+
+
+def nearest_node(net: _Network, point: Tuple[float, float]) -> int:
+    """Closest graph node id to (lat, lng); raises if nothing is within MAX_SNAP_KM."""
+    lat, lon = math.radians(point[0]), math.radians(point[1])
+    lat2, lon2 = np.radians(net.coord_lat), np.radians(net.coord_lon)
+    h = np.sin((lat2 - lat) / 2) ** 2 + math.cos(lat) * np.cos(lat2) * np.sin((lon2 - lon) / 2) ** 2
+    km = 2 * 6371.0 * np.arcsin(np.sqrt(h))
+
+    best = int(np.argmin(km))
+    if km[best] > MAX_SNAP_KM:
+        raise RouteOutsideNetworkError(
+            f"({point[0]:.4f}, {point[1]:.4f}) is {km[best]:.1f} km from the nearest road in the "
+            f"network -- outside the routable area"
+        )
+    return int(net.coord_ids[best])
 
 
 def _congestion_label(net: _Network, mean_risk: float) -> str:
@@ -211,6 +290,43 @@ def _metrics_to_option(net: _Network, wg: WeightedGraph, label: str, m: PathMetr
     }
 
 
+def _event_note(
+    net: _Network,
+    wg: WeightedGraph,
+    impact: Optional[np.ndarray],
+    live: Sequence[tuple],
+    stops: Sequence[int],
+    config: AntColonyConfig,
+) -> Optional[str]:
+    """
+    A note naming the incidents that actually bear on *this* route, or None.
+
+    Saying "routing around N incidents" on a trip nowhere near any of them would be
+    false, and the incidents the router successfully avoids are by definition absent
+    from the route it returns -- so neither the returned path nor the raw incident
+    count answers the question on its own. What does: route the same trip with the
+    event penalty switched off and see whether that path would have run into one.
+    """
+    if impact is None or not live or len(stops) != 2:
+        return None
+    try:
+        without = ant_colony_shortest_path(net.wg_antroute, stops[0], stops[1], config).best
+    except (ValueError, KeyError):
+        return None
+
+    indices = [net.wg_antroute.index_of(n) for n in without.nodes]
+    edges = [net.wg_antroute.edge_id(u, v) for u, v in zip(indices, indices[1:])]
+    hit = [e for e in edges if impact[e] > 0]
+    if not hit:
+        return None
+
+    worst = max(live, key=lambda pair: pair[1])[0]
+    return (
+        f"{worst.kind.capitalize()} reported at {worst.location_text} "
+        f"({worst.lanes_occupied} lane(s) occupied) - route adjusted to avoid it"
+    )
+
+
 def plan_real_routes(
     origin_coords: Tuple[float, float],
     destination_coords: List[Tuple[float, float]],
@@ -234,20 +350,23 @@ def plan_real_routes(
     # Event-awareness is what ANTROUTE adds over the baseline: the baseline routes on
     # distance alone, with neither predicted congestion nor reported incidents, so it
     # stays the honest "no model at all" comparison.
-    note = None
+    impact = None
+    live: List[tuple] = []
     if model == "antroute":
         live = live_events(net)
         if live:
-            wg = apply_events(wg, event_impact(net.graph, live), mu=settings.event_mu)
-            worst = max(live, key=lambda pair: pair[1])[0]
-            note = (
-                f"{worst.kind.capitalize()} reported at {worst.location_text} "
-                f"({worst.lanes_occupied} lane(s) occupied) - routing around {len(live)} active incident(s)"
-            )
+            impact = event_impact(net.graph, live, net.event_intersections)
+            wg = apply_events(wg, impact, mu=settings.event_mu)
 
     stops = [nearest_node(net, origin_coords)] + [nearest_node(net, c) for c in destination_coords]
 
-    config = AntColonyConfig(seed=0)
+    # Lighter than the library default (20 ants x 60 iterations) because the colony now
+    # searches the whole city. With the goal-directed heuristic the ants converge on the
+    # optimum almost immediately -- measured on a 165-hop cross-city route, 8x15 returns
+    # the identical path as 20x60 in 0.9s instead of 8.7s -- so the extra tours buy
+    # response time, not route quality. They do still buy alternatives, which is why
+    # this is not cut further.
+    config = AntColonyConfig(n_ants=8, n_iterations=15, seed=0)
     if len(stops) == 2:
         result = ant_colony_shortest_path(wg, stops[0], stops[1], config)
     else:
@@ -262,6 +381,7 @@ def plan_real_routes(
         _metrics_to_option(net, wg, "Least traffic", by_risk[0]),
         _metrics_to_option(net, wg, "Shortest distance", by_distance[0]),
     ]
+    note = _event_note(net, wg, impact, live, stops, config)
     if note:
         options[0]["event_note"] = note
     # De-duplicate: a 2-stop trip with no meaningfully different alternative (or any

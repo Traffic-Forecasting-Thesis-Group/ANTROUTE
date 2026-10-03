@@ -46,16 +46,21 @@ def remaining_cost_to(wg: WeightedGraph, destination_idx: int) -> np.ndarray:
 
 
 def _candidate_edges(
-    wg: WeightedGraph, current: int, visited: set, remaining: np.ndarray
+    wg: WeightedGraph, current: int, visited: np.ndarray, remaining: np.ndarray
 ) -> np.ndarray:
+    """
+    Edges out of `current` that lead somewhere this ant has not been and that can still
+    reach the destination.
+
+    `visited` is a boolean array over nodes rather than a set: on the full city graph an
+    ant walks hundreds of steps per tour and this runs at every one of them, so the
+    per-element Python indexing this used to do dominated routing time.
+    """
     out = wg.out_edges(current)
     if out.size == 0:
         return out
-    mask = np.array(
-        [int(wg.dst[e]) not in visited and np.isfinite(remaining[wg.dst[e]]) for e in out],
-        dtype=bool,
-    )
-    return out[mask]
+    dst = wg.dst[out]
+    return out[~visited[dst] & np.isfinite(remaining[dst])]
 
 
 def _choose_edge(
@@ -122,7 +127,8 @@ def _build_tour(
     rng: np.random.Generator,
 ) -> Optional[Tuple[List[int], List[int]]]:
     current = origin_idx
-    visited = {origin_idx}
+    visited = np.zeros(wg.n_nodes, dtype=bool)
+    visited[origin_idx] = True
     path_indices = [origin_idx]
     edge_ids: List[int] = []
     for _ in range(max_steps):
@@ -137,7 +143,7 @@ def _build_tour(
         next_node = int(wg.dst[chosen])
         path_indices.append(next_node)
         edge_ids.append(chosen)
-        visited.add(next_node)
+        visited[next_node] = True
         current = next_node
     if current == destination_idx:
         return (path_indices, edge_ids)
