@@ -8,11 +8,14 @@ routes against the most recent scored window in risk_edges.csv -- the newest dec
 run stands in for "right now". Picking a specific recorded day/time instead is a
 --window flag away in the underlying scripts for anyone building that into a demo.
 
-Routing is only possible between locations within the k-hop subgraph around the 8
-CCTV intersections (the architecture's documented scope), so an origin or destination
-far from every subgraph node raises RouteOutsideNetworkError rather than silently
-inventing a route; route_engine.plan_routes() catches this and falls back to the
-distance-only placeholder.
+Routing covers the whole Metro Manila road network (build_full_graph), not just the
+k-hop subgraph the STGNN trains on -- that subgraph exists only because the model
+needs a dense adjacency, a constraint routing does not share. Congestion-risk
+awareness still only applies where a camera informs it; elsewhere an edge is assumed
+typical (see missing_risk below) rather than risk-free or risk-laden. An origin or
+destination further than MAX_SNAP_KM from every road in the network raises
+RouteOutsideNetworkError rather than silently inventing a route; route_engine.
+plan_routes() catches this and falls back to the distance-only placeholder.
 """
 
 from __future__ import annotations
@@ -65,6 +68,7 @@ class _Network:
     risk_low: float  # tercile cutoffs over this window's risk, for labelling
     risk_high: float  # routes clear / moderate / heavy
     events: List[TrafficEvent]  # parsed MMDA incidents, placed on the graph
+    event_intersections: Dict[str, int]  # incident label -> graph index (camera_nodes + non-camera landmarks)
     coord_ids: np.ndarray = field(default_factory=lambda: np.empty(0, dtype=np.int64))
     coord_lat: np.ndarray = field(default_factory=lambda: np.empty(0))
     coord_lon: np.ndarray = field(default_factory=lambda: np.empty(0))
@@ -140,8 +144,30 @@ def _network() -> _Network:
     if raw_twitter.exists() and landmarks:
         events = parse_alerts(raw_twitter, landmarks)
 
+    # Where an incident label places on the graph. Starts from the 8 camera
+    # intersections (already graph indices) and adds the non-camera EDSA landmarks
+    # the MMDA feed also names often -- Guadalupe, Magallanes, Balintawak, etc. --
+    # geocoded once and snapped to the nearest real node (configs/event_intersections.csv
+    # records the source coordinates and the snap, so a bad match is auditable).
+    event_intersections: Dict[str, int] = dict(graph.camera_nodes)
+    node_index = {int(n): i for i, n in enumerate(graph.node_ids)}
+    extra_path = REPO_ROOT / "configs/event_intersections.csv"
+    if extra_path.exists():
+        with extra_path.open(encoding="utf-8", newline="") as f:
+            for row in csv.DictReader(f):
+                label = row["intersection"].strip()
+                if label in event_intersections:
+                    continue
+                point = (float(row["lat"]), float(row["lon"]))
+                try:
+                    node_id = _nearest_node_id(node_coords, point)
+                except RouteOutsideNetworkError:
+                    continue
+                event_intersections[label] = node_index[node_id]
+
     return _Network(
-        graph, wg_antroute, wg_baseline, free_flow_seconds, node_coords, float(risk_low), float(risk_high), events
+        graph, wg_antroute, wg_baseline, free_flow_seconds, node_coords, float(risk_low), float(risk_high),
+        events, event_intersections,
     )
 
 
@@ -193,6 +219,26 @@ def _haversine_km(a: Tuple[float, float], b: Tuple[float, float]) -> float:
     dlambda = math.radians(lon2 - lon1)
     h = math.sin(dphi / 2) ** 2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlambda / 2) ** 2
     return 2 * r * math.asin(math.sqrt(h))
+
+
+def _nearest_node_id(node_coords: Dict[int, Tuple[float, float]], point: Tuple[float, float]) -> int:
+    """
+    Closest node id to (lat, lng) by plain dict scan; raises if nothing is within
+    MAX_SNAP_KM. Used while building the network, before the vectorised coordinate
+    arrays nearest_node() uses exist -- not the hot path, so the O(n) scan is fine for
+    the handful of landmarks configs/event_intersections.csv snaps at startup.
+    """
+    best_id, best_km = None, float("inf")
+    for node_id, coord in node_coords.items():
+        km = _haversine_km(point, coord)
+        if km < best_km:
+            best_id, best_km = node_id, km
+    if best_km > MAX_SNAP_KM:
+        raise RouteOutsideNetworkError(
+            f"({point[0]:.4f}, {point[1]:.4f}) is {best_km:.1f} km from the nearest road in the "
+            f"network -- outside the routable area"
+        )
+    return best_id
 
 
 def nearest_node(net: _Network, point: Tuple[float, float]) -> int:
@@ -309,7 +355,7 @@ def plan_real_routes(
     if model == "antroute":
         live = live_events(net)
         if live:
-            impact = event_impact(net.graph, live)
+            impact = event_impact(net.graph, live, net.event_intersections)
             wg = apply_events(wg, impact, mu=settings.event_mu)
 
     stops = [nearest_node(net, origin_coords)] + [nearest_node(net, c) for c in destination_coords]
