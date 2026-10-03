@@ -20,17 +20,30 @@ from __future__ import annotations
 import csv
 import math
 from dataclasses import dataclass
+from datetime import datetime
 from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
+from zoneinfo import ZoneInfo
 
 import numpy as np
+
+LOCAL_TZ = "Asia/Manila"
 
 from app.config import settings
 from src.data.graph_data import DEFAULT_K, GraphData, build_subgraph
 from src.routing.aco_routing import AntColonyConfig, ant_colony_shortest_path, multi_stop_route
 from src.routing.dynamic_weight import DEFAULT_LAMBDA, PathMetrics, WeightedGraph, weighted_graph_from_risk_file
 from src.routing.eta_engine import load_free_flow_seconds, path_eta_seconds
+from src.routing.event_layer import (
+    DEFAULT_MU,
+    TrafficEvent,
+    active_at,
+    apply_events,
+    event_impact,
+    load_landmarks,
+    parse_alerts,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SPATIAL_DIR = REPO_ROOT / "data/processed/spatial"
@@ -51,6 +64,7 @@ class _Network:
     node_coords: Dict[int, Tuple[float, float]]  # node_id -> (lat, lon)
     risk_low: float  # tercile cutoffs over this window's risk, for labelling
     risk_high: float  # routes clear / moderate / heavy
+    events: List[TrafficEvent]  # parsed MMDA incidents, placed on the graph
 
 
 def _load_node_coords(spatial_dir: Path, node_ids: np.ndarray) -> Dict[int, Tuple[float, float]]:
@@ -85,7 +99,46 @@ def _network() -> _Network:
     node_coords = _load_node_coords(SPATIAL_DIR, graph.node_ids)
     risk_low, risk_high = np.percentile(wg_antroute.risk, [33, 66])
 
-    return _Network(graph, wg_antroute, wg_baseline, free_flow_seconds, node_coords, float(risk_low), float(risk_high))
+    # Event layer. Parsing the whole tweet corpus takes a few seconds, so it happens
+    # once here rather than per request. An absent corpus is not fatal -- the system
+    # just falls back to risk-only routing.
+    events: List[TrafficEvent] = []
+    raw_twitter = REPO_ROOT / "data/raw/twitter"
+    landmarks = load_landmarks(REPO_ROOT / "configs/event_landmarks.csv")
+    if raw_twitter.exists() and landmarks:
+        events = parse_alerts(raw_twitter, landmarks)
+
+    return _Network(
+        graph, wg_antroute, wg_baseline, free_flow_seconds, node_coords, float(risk_low), float(risk_high), events
+    )
+
+
+def _as_of(net: _Network) -> Optional[datetime]:
+    """
+    The moment the system is routing "as of".
+
+    There is no live feed, so this is the timestamp of the risk snapshot being served
+    (the window predict_congestion_risk.py scored), which keeps the predicted-congestion
+    and incident signals on the same clock. EVENT_AS_OF overrides it, which is what a
+    demo uses to sit at a recorded moment that has incidents on the board.
+    """
+    override = (settings.event_as_of or "").strip()
+    raw = override or (net.wg_antroute.window or "")
+    if not raw:
+        return None
+    try:
+        when = datetime.fromisoformat(raw)
+    except ValueError:
+        return None
+    return when if when.tzinfo else when.replace(tzinfo=ZoneInfo(LOCAL_TZ))
+
+
+def live_events(net: _Network) -> List[tuple]:
+    """(event, strength) pairs in effect at the moment this snapshot represents."""
+    when = _as_of(net)
+    if when is None or not net.events:
+        return []
+    return active_at(net.events, when)
 
 
 def available() -> bool:
@@ -178,6 +231,20 @@ def plan_real_routes(
     net = _network()
     wg = net.wg_antroute if model == "antroute" else net.wg_baseline
 
+    # Event-awareness is what ANTROUTE adds over the baseline: the baseline routes on
+    # distance alone, with neither predicted congestion nor reported incidents, so it
+    # stays the honest "no model at all" comparison.
+    note = None
+    if model == "antroute":
+        live = live_events(net)
+        if live:
+            wg = apply_events(wg, event_impact(net.graph, live), mu=settings.event_mu)
+            worst = max(live, key=lambda pair: pair[1])[0]
+            note = (
+                f"{worst.kind.capitalize()} reported at {worst.location_text} "
+                f"({worst.lanes_occupied} lane(s) occupied) - routing around {len(live)} active incident(s)"
+            )
+
     stops = [nearest_node(net, origin_coords)] + [nearest_node(net, c) for c in destination_coords]
 
     config = AntColonyConfig(seed=0)
@@ -195,6 +262,8 @@ def plan_real_routes(
         _metrics_to_option(net, wg, "Least traffic", by_risk[0]),
         _metrics_to_option(net, wg, "Shortest distance", by_distance[0]),
     ]
+    if note:
+        options[0]["event_note"] = note
     # De-duplicate: a 2-stop trip with no meaningfully different alternative (or any
     # multi-stop trip, which never has alternatives) would otherwise repeat one route
     # under all three labels.
