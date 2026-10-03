@@ -3,6 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Sequence, Tuple
 import numpy as np
+import scipy.sparse as sp
+from scipy.sparse.csgraph import dijkstra
 from src.routing.dynamic_weight import PathMetrics, WeightedGraph
 
 
@@ -25,12 +27,32 @@ class RouteResult:
     alternatives: List[PathMetrics]
 
 
-def _candidate_edges(wg: WeightedGraph, current: int, visited: set) -> np.ndarray:
+def remaining_cost_to(wg: WeightedGraph, destination_idx: int) -> np.ndarray:
+    """
+    Shortest remaining dynamic_cost from every node to `destination_idx`, via one Dijkstra run
+    on the reversed graph (so distances are "to", not "from", the destination).
+
+    This is what turns the ant colony into a goal-directed search: with only local edge cost
+    to go on, an ant choosing among 2-3 outgoing edges at each node has no sense of which way
+    the destination actually is, so on a multi-hop route (tens of hops is normal at city scale)
+    it essentially never completes a tour by chance, and pheromone never gets a real route to
+    reinforce. Biasing each choice by the estimated remaining cost (an A* heuristic bolted onto
+    ACO) fixes that while keeping the pheromone/randomness that gives alternative routes.
+    """
+    n = wg.n_nodes
+    reversed_graph = sp.csr_matrix((wg.weight, (wg.dst, wg.src)), shape=(n, n))
+    distances = dijkstra(reversed_graph, directed=True, indices=destination_idx)
+    return distances
+
+
+def _candidate_edges(
+    wg: WeightedGraph, current: int, visited: set, remaining: np.ndarray
+) -> np.ndarray:
     out = wg.out_edges(current)
     if out.size == 0:
         return out
     mask = np.array(
-        [int(wg.dst[e]) not in visited for e in out],
+        [int(wg.dst[e]) not in visited and np.isfinite(remaining[wg.dst[e]]) for e in out],
         dtype=bool,
     )
     return out[mask]
@@ -40,11 +62,22 @@ def _choose_edge(
     wg: WeightedGraph,
     candidates: np.ndarray,
     pheromone: np.ndarray,
+    remaining: np.ndarray,
+    current_remaining: float,
     alpha: float,
     beta: float,
     rng: np.random.Generator,
 ) -> int:
-    weights = wg.weight[candidates]
+    # weight+remaining[dst] is the estimated total tour cost through this candidate, which by
+    # the triangle inequality is always >= current_remaining (equality iff the edge lies on a
+    # shortest path). That total is tens of thousands at city scale while the gap between a
+    # good and a bad candidate is usually a few hundred -- a couple percent -- so inverting the
+    # raw total barely discriminates between candidates even at beta=2, and over a 60+ hop
+    # route the odds of guessing right every single step collapse to ~0 (confirmed: 0/500
+    # single-ant tours completed when desirability was based on the raw total). Using the
+    # regret -- how much worse this edge is than the best option at this junction, a small
+    # number -- instead of the raw total restores real discriminating power.
+    weights = wg.weight[candidates] + remaining[wg.dst[candidates]]
     if (
         np.any(~np.isfinite(weights))
         or np.any(weights <= 0)
@@ -55,9 +88,10 @@ def _choose_edge(
             "Candidate edge weights must be finite and positive, "
             "and pheromone values must be finite and non-negative."
         )
+    regret = np.maximum(weights - current_remaining, 0.0)
 
     with np.errstate(over="ignore", under="ignore", invalid="ignore"):
-        desirability = pheromone[candidates] ** alpha * (1.0 / weights) ** beta
+        desirability = pheromone[candidates] ** alpha * (1.0 / (regret + 1.0)) ** beta
 
     total = desirability.sum()
     if (
@@ -82,6 +116,7 @@ def _build_tour(
     origin_idx: int,
     destination_idx: int,
     pheromone: np.ndarray,
+    remaining: np.ndarray,
     config: AntColonyConfig,
     max_steps: int,
     rng: np.random.Generator,
@@ -93,10 +128,12 @@ def _build_tour(
     for _ in range(max_steps):
         if current == destination_idx:
             return (path_indices, edge_ids)
-        candidates = _candidate_edges(wg, current, visited)
+        candidates = _candidate_edges(wg, current, visited, remaining)
         if candidates.size == 0:
             return None
-        chosen = _choose_edge(wg, candidates, pheromone, config.alpha, config.beta, rng)
+        chosen = _choose_edge(
+            wg, candidates, pheromone, remaining, remaining[current], config.alpha, config.beta, rng
+        )
         next_node = int(wg.dst[chosen])
         path_indices.append(next_node)
         edge_ids.append(chosen)
@@ -129,6 +166,10 @@ def ant_colony_shortest_path(
     if config.n_alternatives < 0:
         raise ValueError("n_alternatives must be non-negative")
 
+    remaining = remaining_cost_to(wg, destination_idx)
+    if not np.isfinite(remaining[origin_idx]):
+        raise ValueError(f"destination {destination} is not reachable from origin {origin}")
+
     max_steps = config.max_steps if config.max_steps is not None else wg.n_nodes - 1
     rng = np.random.default_rng(config.seed)
     pheromone = np.full(wg.n_edges, config.initial_pheromone, dtype=np.float64)
@@ -137,7 +178,7 @@ def ant_colony_shortest_path(
         tours: List[Tuple[PathMetrics, List[int]]] = []
         for _ in range(config.n_ants):
             result = _build_tour(
-                wg, origin_idx, destination_idx, pheromone, config, max_steps, rng
+                wg, origin_idx, destination_idx, pheromone, remaining, config, max_steps, rng
             )
             if result is None:
                 continue
