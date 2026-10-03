@@ -12,3 +12,7 @@ __pycache__/
 *.err
 *.pt
 *.pth
+
+# Scored risk data (~100MB, same reasoning as the *.pt checkpoints -- copy locally
+# from wherever your scoring run wrote it, see app/config.py risk_edges_path)
+data/processed/risk_scores/

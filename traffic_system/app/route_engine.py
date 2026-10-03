@@ -1,5 +1,10 @@
+import logging
 import math
 from typing import List, Optional, Tuple
+
+from app import risk_routing
+
+logger = logging.getLogger("uvicorn.error")
 
 # TODO: replace with PostGIS-backed places table if you want fully
 # offline fallback. This dictionary is only used now when a destination has
@@ -75,6 +80,23 @@ def resolve_points(
     return points
 
 
+def plan_real_routes_or_none(points: List[Tuple[float, float]], model: str) -> Optional[List[dict]]:
+    """
+    The real CNN+LSTM -> RADR STGNN -> MLP Decoder -> Dynamic Weight Engine -> ACO
+    pipeline, when every stop falls inside the monitored k-hop subgraph and a scored
+    risk_edges.csv is available locally. None otherwise, so the caller can fall back
+    to the distance-only placeholder instead of failing the request -- most searched
+    places in Metro Manila are outside the 8-camera network's current coverage.
+    """
+    if not risk_routing.available():
+        return None
+    try:
+        return risk_routing.plan_real_routes(points[0], points[1:], model)
+    except risk_routing.RouteOutsideNetworkError as exc:
+        logger.info("Falling back to the placeholder: %s", exc)
+        return None
+
+
 def plan_routes(
     origin_name: str,
     destinations: List[dict],
@@ -82,13 +104,19 @@ def plan_routes(
     model: str = "antroute",
 ) -> List[dict]:
     """
-    TODO: this is a placeholder computation (haversine distance + fixed
-    variant multipliers), NOT the real CNN-LSTM + STGFormer + ACO/Dijkstra/
-    A*/Q-learning pipeline. Swap this function's internals for the real
-    model call once it's ready. `model` selects ANTRoute or the baseline.
+    Routes from the real model pipeline when every stop is inside the monitored
+    CCTV network; otherwise a distance-only placeholder (haversine + fixed
+    multipliers) so the app still responds for the many Metro Manila searches
+    outside that network's current 8-intersection coverage. `model` selects
+    ANTRoute (risk-aware) or the baseline (same search, lambda=0).
     """
 
     points = resolve_points(origin_name, destinations, origin_coords_override)
+
+    real_routes = plan_real_routes_or_none(points, model)
+    if real_routes is not None:
+        return real_routes
+
     destination_names = [d["name"] for d in destinations]
     total_km = sum(haversine_km(points[i], points[i + 1]) for i in range(len(points) - 1))
 

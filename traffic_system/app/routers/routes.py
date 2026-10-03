@@ -18,16 +18,19 @@ async def plan(payload: RoutePlanRequest):
 
     routes = plan_routes(payload.origin, destinations, origin_coords_override, payload.model)
 
-    # Real road geometry for the map. ANTRoute and the baseline pick
-    # different roads when OSRM returns alternatives.
-    # TODO: replace with the paths your real models produce.
-    points = resolve_points(payload.origin, destinations, origin_coords_override)
-    paths = await fetch_paths(points)
-    offset = 1 if payload.model == "baseline" else 0
-
-    for i, route in enumerate(routes):
-        path = paths[(i + offset) % len(paths)] if paths else points
-        route["path"] = [{"lat": lat, "lng": lng} for lat, lng in path]
+    # Routes already carrying a real path came from the actual graph pipeline (the
+    # nodes it computed cost over) -- drawing a different, independently-computed
+    # OSRM line for those would mean the map doesn't match what was scored. OSRM is
+    # only a stand-in for the placeholder routes, which never had real geometry.
+    if not all(route.get("path") for route in routes):
+        points = resolve_points(payload.origin, destinations, origin_coords_override)
+        paths = await fetch_paths(points)
+        offset = 1 if payload.model == "baseline" else 0
+        for i, route in enumerate(routes):
+            if route.get("path"):
+                continue
+            path = paths[(i + offset) % len(paths)] if paths else points
+            route["path"] = [{"lat": lat, "lng": lng} for lat, lng in path]
 
     return RoutePlanResponse(routes=routes)
 
