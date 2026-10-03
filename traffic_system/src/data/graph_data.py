@@ -26,7 +26,7 @@ DEFAULT_K = 8   # ~1.4k nodes; links most EDSA intersections (nearest pairs are 
 class GraphData:
     node_ids: np.ndarray                 # road-network node id per subgraph index
     adjacency: sp.csr_matrix             # subgraph adjacency
-    a_hat: torch.Tensor                  # dense D^-1/2 (A+I) D^-1/2, [N, N]
+    a_hat: Optional[torch.Tensor]        # dense D^-1/2 (A+I) D^-1/2, [N, N]; None when routing
     edge_index: torch.Tensor             # [2, E]
     camera_nodes: Dict[str, int]         # intersection label -> subgraph index
 
@@ -77,6 +77,32 @@ def build_subgraph(spatial_dir: Path, k: int = DEFAULT_K) -> GraphData:
     adjacency = sp.load_npz(spatial_dir / "metro_manila_adjacency.npz").tocsr()
     node_order = np.load(spatial_dir / "metro_manila_node_order.npy")
     return subgraph_from_arrays(adjacency, node_order, load_camera_full_index(spatial_dir, node_order), k)
+
+
+def build_full_graph(spatial_dir: Path) -> GraphData:
+    """
+    The whole Metro Manila road network, for routing rather than training.
+
+    The k-hop subgraph exists because the STGNN needs a *dense* normalised adjacency,
+    which is O(N^2) and would be ~14 GB over all 59,521 nodes. Routing needs no such
+    thing -- Dijkstra and the ant colony walk the sparse adjacency and edge list, which
+    at 147,197 edges is small. So `a_hat` is left as None here: asking for it on this
+    graph is a bug (it means model code is being handed a routing graph), and failing
+    loudly on None is better than silently allocating 14 GB.
+
+    Edges outside the camera subgraph simply have no predicted risk; the caller decides
+    what to assume for them (see risk_vector's missing_risk).
+    """
+    spatial_dir = Path(spatial_dir)
+    adjacency = sp.load_npz(spatial_dir / "metro_manila_adjacency.npz").tocsr()
+    node_order = np.load(spatial_dir / "metro_manila_node_order.npy")
+    return GraphData(
+        node_ids=np.asarray(node_order),
+        adjacency=adjacency,
+        a_hat=None,
+        edge_index=edge_index_from_adjacency(adjacency),
+        camera_nodes=load_camera_full_index(spatial_dir, node_order),
+    )
 
 
 def graph_sizes(spatial_dir: Path, ks: Sequence[int]) -> List[Tuple[int, int, int]]:
