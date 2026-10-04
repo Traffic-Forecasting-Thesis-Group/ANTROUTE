@@ -17,6 +17,7 @@ import {
 
 import MapView, { PROVIDER_GOOGLE, Marker, Polyline } from 'react-native-maps';
 import { useIsFocused } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import {
   X,
@@ -25,6 +26,7 @@ import {
   CarFront,
   Search,
   LocateFixed,
+  Navigation,
   Plus,
   MapPin,
 } from 'lucide-react-native';
@@ -78,6 +80,10 @@ function getArrivalTime(durationMin: number): string {
 // Colour behind the status bar (the map). Change this if you use a dark map style.
 const STATUS_BAR_BACKGROUND = '#f5f5f5';
 
+// Locate button: distance below the safe area top, and its square size.
+const MAP_BUTTON_TOP = 8;
+const MAP_BUTTON_SIZE = 44;
+
 // Light background -> dark icons, dark background -> light icons
 function getStatusBarStyle(bgHex: string): 'dark-content' | 'light-content' {
   const hex = bgHex.replace('#', '');
@@ -91,6 +97,7 @@ function getStatusBarStyle(bgHex: string): 'dark-content' | 'light-content' {
 
 export default function HomeScreen({ navigation }: any) {
   const mapRef = useRef<MapView | null>(null);
+  const insets = useSafeAreaInsets();
 
   const [isExpanded, setIsExpanded] = useState(false);
   const [origin, setOrigin] = useState('');
@@ -525,6 +532,14 @@ export default function HomeScreen({ navigation }: any) {
         style={styles.map}
         showsUserLocation={hasLocationPermission}
         showsMyLocationButton={false}
+        // iOS places its compass inside the map's layout margins; a taller top margin
+        // drops the compass just below the locate button. (On Android, padding would
+        // also shift the map centre, and Google's compass sits top-left anyway.)
+        mapPadding={
+          Platform.OS === 'ios'
+            ? { top: MAP_BUTTON_TOP + MAP_BUTTON_SIZE + 10, right: 8, bottom: 8, left: 8 }
+            : undefined
+        }
         initialRegion={{
           latitude: 14.5995,
           longitude: 120.9842,
@@ -617,15 +632,15 @@ export default function HomeScreen({ navigation }: any) {
       </View>
 
       <TouchableOpacity
-        style={styles.myLocationButton}
+        style={[styles.myLocationButton, { top: insets.top + MAP_BUTTON_TOP }]}
         onPress={centerOnMyLocation}
         disabled={isCentering}
         activeOpacity={0.8}
       >
         {isCentering ? (
-          <ActivityIndicator size="small" color="#3b82f6" />
+          <ActivityIndicator size="small" color="#374151" />
         ) : (
-          <LocateFixed size={22} color="#3b82f6" />
+          <Navigation size={20} color="#374151" />
         )}
       </TouchableOpacity>
 
@@ -1081,7 +1096,7 @@ const styles = StyleSheet.create({
   legendItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 6,
+    marginVertical: 3,
   },
   dot: {
     width: 12,
@@ -1114,12 +1129,13 @@ const styles = StyleSheet.create({
   },
   myLocationButton: {
     position: 'absolute',
-    top: (StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 60) + 96,
-    left: 20,
+    // Top-right, above the map's compass (see mapPadding); centred on the
+    // compass's column, whose centre sits ~35pt from the right edge.
+    right: 13,
     zIndex: 30,
-    width: 46,
-    height: 46,
-    borderRadius: 23,
+    width: MAP_BUTTON_SIZE,
+    height: MAP_BUTTON_SIZE,
+    borderRadius: 10,
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
@@ -1131,7 +1147,8 @@ const styles = StyleSheet.create({
   },
   routeLegendCard: {
     position: 'absolute',
-    top: (StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 60) + 156,
+    // Just under the traffic legend, with a small gap between the two groups
+    top: (StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 60) + 74,
     left: 20,
     zIndex: 1,
   },
