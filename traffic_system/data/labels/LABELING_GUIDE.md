@@ -46,7 +46,10 @@ One of: `crash`, `stalled`, `flood`, `roadwork`, `closure`, `rally`, `heavy_traf
 - `rally` — a rally, protest, motorcade, or procession actually occupying a road.
 - `heavy_traffic` — a congestion report with no incident named
   (most `@MakatiTraffic` "TRAFFIC UPDATE ... (L)/(M)/(H)" posts).
-- `other` — relevant but none of the above.
+- `other` — relevant but none of the above. **Fire (`sunog`) goes here** — it is common
+  in this corpus, and a fire counts only when it is *on or beside a named road*
+  (e.g. "sunog sa ilalim ng EDSA-Ortigas Flyover"). A fire at a building or barangay
+  with no road named is `label_relevant = 0`.
 
 Pick the **cause**, not the effect. A crash that causes heavy traffic is `crash`.
 
@@ -84,6 +87,10 @@ with notes are the ones we adjudicate together.
 | Multiple incidents in one tweet (MMDA roundups) | `1`, location = the first one, note "multi" |
 | Tagalog or mixed Taglish | Label normally — language is not relevance |
 | Tweet is an image with no useful text | `0`, note "image only" |
+| "Closure" of a **business, office or school** | `0` — only road closures count |
+| Rally/protest at a **park or campus**, no road named | `0` — a crowd is not a road condition |
+| News or radio item that still names a real incident on a real road | `1` — the source does not matter, the content does |
+| Ferry, rail or MRT disruption | `0` — the router only knows roads |
 
 ## The overlap block
 
