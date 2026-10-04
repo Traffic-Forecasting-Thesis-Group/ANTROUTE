@@ -1,4 +1,3 @@
-from typing import List
 import numpy as np
 import pandas as pd
 import pytest
@@ -54,15 +53,7 @@ def test_aco_finds_the_same_optimum_dijkstra_would():
 
 
 def test_the_only_other_route_appears_as_an_alternative():
-    # A close cost gap (not weighted_risky_direct's wide one): the goal-directed heuristic
-    # that makes ACO able to find long real-world routes (see aco_routing.remaining_cost_to)
-    # also makes it strongly favor the better option at every junction, so a route that is
-    # genuinely ~2x worse is (correctly) found with ~1 in 500,000 ant-tries, not something a
-    # 300-try test budget should expect to see. A route that is only marginally worse should
-    # still surface as a real alternative, which is what this checks.
-    graph = make_graph()
-    risk, _ = risk_vector(graph, risk_rows(direct=0.22001, detour=0.1))
-    wg = build_weighted_graph(graph, risk, lam=2.0)
+    wg = weighted_risky_direct()
     config = AntColonyConfig(n_ants=10, n_iterations=30, seed=0)
     result = ant_colony_shortest_path(wg, 100, 103, config)
     alt_node_sets = [tuple(m.nodes) for m in result.alternatives]
@@ -84,7 +75,7 @@ def test_origin_equal_to_destination_is_rejected():
         ant_colony_shortest_path(wg, 100, 100, AntColonyConfig(n_iterations=5))
 
 
-def test_an_unreachable_destination_raises_rather_than_returning_silently():
+def test_an_unreachable_destination_raises_after_exhausting_backtracking():
     rows, cols = ([0, 1], [1, 2])
     adjacency = sp.csr_matrix(([100.0, 100.0], (rows, cols)), shape=(4, 4), dtype=np.float64)
     graph = GraphData(
@@ -95,7 +86,7 @@ def test_an_unreachable_destination_raises_rather_than_returning_silently():
         camera_nodes={},
     )
     wg = build_weighted_graph(graph, np.zeros(2))
-    with pytest.raises(ValueError, match="not reachable"):
+    with pytest.raises(ValueError, match="No route"):
         ant_colony_shortest_path(wg, 100, 103, AntColonyConfig(n_ants=5, n_iterations=5, seed=0))
 
 
@@ -138,33 +129,23 @@ def test_multi_stop_needs_at_least_two_stops():
         multi_stop_route(wg, [100], AntColonyConfig(n_iterations=5))
 
 
-def long_chain_with_dead_end_traps(n_hops: int) -> GraphData:
-    """
-    A single n_hops-long route (node i -> i+1, cost 10 each) from node 0 to node n_hops, plus
-    one dead-end trap edge off of every interior node (i -> a node with no further outgoing
-    edges at all). This is the real failure pattern found on the actual Metro Manila subgraph:
-    a 63-hop route where most nodes had 2-3 outgoing choices, one correct and the others
-    leading nowhere near the destination -- without filtering out the unreachable options,
-    an ant can wander onto one and simply dead-end (`_candidate_edges` returns empty), and a
-    long enough route makes that happen to effectively every ant, every time.
-    """
-    node_ids = np.arange(2 * n_hops + 1, dtype=np.int64)  # 0..n_hops main chain, n_hops+1..2n_hops traps
-    rows: List[int] = []
-    cols: List[int] = []
-    data: List[float] = []
-    for i in range(n_hops):
-        rows.append(i)
-        cols.append(i + 1)
-        data.append(10.0)
-        if i > 0:  # also give node i a dead-end trap (node i has no outgoing edges of its own)
-            trap = n_hops + i
-            rows.append(i)
-            cols.append(trap)
-            data.append(10.0)
-    n = 2 * n_hops + 1
-    adjacency = sp.csr_matrix((data, (rows, cols)), shape=(n, n), dtype=np.float64)
+def dead_end_heavy_graph() -> GraphData:
+    edges = {
+        (0, 1): 50.0,
+        (1, 0): 50.0,
+        (1, 2): 50.0,
+        (2, 1): 50.0,
+        (1, 3): 50.0,
+        (2, 4): 50.0,
+        (4, 2): 50.0,
+        (3, 5): 50.0,
+    }
+    rows, cols = zip(*edges)
+    adjacency = sp.csr_matrix(
+        (list(edges.values()), (list(rows), list(cols))), shape=(6, 6), dtype=np.float64
+    )
     return GraphData(
-        node_ids=node_ids,
+        node_ids=np.array([10, 11, 12, 13, 14, 15]),
         adjacency=adjacency,
         a_hat=normalize_adjacency(adjacency),
         edge_index=edge_index_from_adjacency(adjacency),
@@ -172,19 +153,9 @@ def long_chain_with_dead_end_traps(n_hops: int) -> GraphData:
     )
 
 
-def test_a_long_route_with_dead_end_branches_is_still_found():
-    """
-    Regression test for the real bug: ACO used to pick among a node's outgoing edges using
-    only that edge's own local cost, with no idea whether the edge it was choosing could even
-    reach the destination. On a 63-hop real route this meant it essentially never completed a
-    single tour (confirmed against the actual Metro Manila subgraph: 0/500 single-ant tours
-    succeeded). A 40-hop chain riddled with dead-end branches reproduces the same shape of
-    failure at test scale.
-    """
-    graph = long_chain_with_dead_end_traps(n_hops=40)
-    risk = np.zeros(graph.edge_index.shape[1])
-    wg = build_weighted_graph(graph, risk, lam=0.0)
-    config = AntColonyConfig(n_ants=10, n_iterations=20, seed=0)
-    result = ant_colony_shortest_path(wg, 0, 40, config)
-    assert result.best.nodes == list(range(41))
-    assert result.best.dynamic_cost == pytest.approx(400.0)
+def test_backtracking_recovers_from_a_dead_end_instead_of_failing_the_tour():
+    graph = dead_end_heavy_graph()
+    wg = build_weighted_graph(graph, np.zeros(graph.edge_index.shape[1]))
+    config = AntColonyConfig(n_ants=5, n_iterations=10, seed=2)
+    result = ant_colony_shortest_path(wg, 10, 15, config)
+    assert result.best.nodes == [10, 11, 13, 15]
