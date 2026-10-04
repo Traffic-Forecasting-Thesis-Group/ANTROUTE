@@ -11,13 +11,12 @@ import {
   StatusBar,
   KeyboardAvoidingView,
   Platform,
-  Image,
   ActivityIndicator,
 } from 'react-native';
-import { Ionicons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { signUp } from '../api/authService';
 
-const { height, width } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 
 export default function SignUpScreen({ navigation }: any) {
   const [name, setName] = useState('');
@@ -213,25 +212,6 @@ export default function SignUpScreen({ navigation }: any) {
                     )}
                   </TouchableOpacity>
 
-                  <View style={styles.orContainer}>
-                    <View style={styles.line} />
-                    <Text style={styles.orText}>or continue with</Text>
-                    <View style={styles.line} />
-                  </View>
-
-                  <View style={styles.socialRow}>
-                    <TouchableOpacity style={[styles.socialBox, styles.shadow]} disabled={isLoading}>
-                      <FontAwesome name="facebook" size={28} color="#1877F2" />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={[styles.socialBox, styles.shadow]} disabled={isLoading}>
-                      <Image
-                        source={require('../../assets/google-logo-icon.png')}
-                        style={{ width: 28, height: 28 }}
-                        resizeMode="contain"
-                      />
-                    </TouchableOpacity>
-                  </View>
-
                   <TouchableOpacity
                     style={styles.footerContainer}
                     onPress={() => navigation.navigate('SignInScreen')}
@@ -377,46 +357,6 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 18,
     fontWeight: 'bold'
-  },
-  orContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20,
-    width: '100%'
-  },
-  line: {
-    flex: 1,
-    height: 1,
-    backgroundColor: '#E5E7EB'
-  },
-  orText: {
-    marginHorizontal: 15,
-    fontSize: 14,
-    color: '#9ca3af',
-    fontWeight: '500'
-  },
-  socialRow: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 20,
-    marginBottom: 20
-  },
-  socialBox: {
-    width: width * 0.22,
-    height: 55,
-    borderWidth: 1,
-    borderColor: '#F3F4F6',
-    borderRadius: 18,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff'
-  },
-  shadow: {
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 3,
   },
   footerContainer: { marginTop: 10 },
   footerText: {
