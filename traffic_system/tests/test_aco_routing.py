@@ -188,3 +188,34 @@ def test_a_long_route_with_dead_end_branches_is_still_found():
     result = ant_colony_shortest_path(wg, 0, 40, config)
     assert result.best.nodes == list(range(41))
     assert result.best.dynamic_cost == pytest.approx(400.0)
+
+def dead_end_heavy_graph() -> GraphData:
+    edges = {
+        (0, 1): 50.0,
+        (1, 0): 50.0,
+        (1, 2): 50.0,
+        (2, 1): 50.0,
+        (1, 3): 50.0,
+        (2, 4): 50.0,
+        (4, 2): 50.0,
+        (3, 5): 50.0,
+    }
+    rows, cols = zip(*edges)
+    adjacency = sp.csr_matrix(
+        (list(edges.values()), (list(rows), list(cols))), shape=(6, 6), dtype=np.float64
+    )
+    return GraphData(
+        node_ids=np.array([10, 11, 12, 13, 14, 15]),
+        adjacency=adjacency,
+        a_hat=normalize_adjacency(adjacency),
+        edge_index=edge_index_from_adjacency(adjacency),
+        camera_nodes={},
+    )
+
+
+def test_backtracking_recovers_from_a_dead_end_instead_of_failing_the_tour():
+    graph = dead_end_heavy_graph()
+    wg = build_weighted_graph(graph, np.zeros(graph.edge_index.shape[1]))
+    config = AntColonyConfig(n_ants=5, n_iterations=10, seed=2)
+    result = ant_colony_shortest_path(wg, 10, 15, config)
+    assert result.best.nodes == [10, 11, 13, 15]

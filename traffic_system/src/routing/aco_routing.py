@@ -46,7 +46,11 @@ def remaining_cost_to(wg: WeightedGraph, destination_idx: int) -> np.ndarray:
 
 
 def _candidate_edges(
-    wg: WeightedGraph, current: int, visited: np.ndarray, remaining: np.ndarray
+    wg: WeightedGraph,
+    current: int,
+    visited: np.ndarray,
+    remaining: np.ndarray,
+    blocked: Optional[set] = None,
 ) -> np.ndarray:
     """
     Edges out of `current` that lead somewhere this ant has not been and that can still
@@ -60,7 +64,10 @@ def _candidate_edges(
     if out.size == 0:
         return out
     dst = wg.dst[out]
-    return out[~visited[dst] & np.isfinite(remaining[dst])]
+    keep = ~visited[dst] & np.isfinite(remaining[dst])
+    if blocked:
+        keep &= np.array([int(e) not in blocked for e in out], dtype=bool)
+    return out[keep]
 
 
 def _choose_edge(
@@ -126,17 +133,30 @@ def _build_tour(
     max_steps: int,
     rng: np.random.Generator,
 ) -> Optional[Tuple[List[int], List[int]]]:
-    current = origin_idx
     visited = np.zeros(wg.n_nodes, dtype=bool)
     visited[origin_idx] = True
     path_indices = [origin_idx]
     edge_ids: List[int] = []
-    for _ in range(max_steps):
+    blocked_from: Dict[int, set] = {}
+    steps = 0
+    while steps < max_steps:
+        current = path_indices[-1]
         if current == destination_idx:
             return (path_indices, edge_ids)
-        candidates = _candidate_edges(wg, current, visited, remaining)
+        candidates = _candidate_edges(
+            wg, current, visited, remaining, blocked_from.get(current)
+        )
         if candidates.size == 0:
-            return None
+            # Dead end (e.g. every onward node already visited by this ant): back up one
+            # step and forbid the edge that led here, rather than discarding the whole tour.
+            if len(path_indices) == 1:
+                return None
+            dead_end_node = path_indices.pop()
+            dead_end_edge = edge_ids.pop()
+            visited[dead_end_node] = False
+            blocked_from.setdefault(path_indices[-1], set()).add(int(dead_end_edge))
+            steps += 1
+            continue
         chosen = _choose_edge(
             wg, candidates, pheromone, remaining, remaining[current], config.alpha, config.beta, rng
         )
@@ -144,8 +164,8 @@ def _build_tour(
         path_indices.append(next_node)
         edge_ids.append(chosen)
         visited[next_node] = True
-        current = next_node
-    if current == destination_idx:
+        steps += 1
+    if path_indices[-1] == destination_idx:
         return (path_indices, edge_ids)
     return None
 
