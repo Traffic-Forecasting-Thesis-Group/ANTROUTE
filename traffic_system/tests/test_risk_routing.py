@@ -16,6 +16,8 @@ def make_network(node_coords, risk_low=0.3, risk_high=0.6):
         node_coords=node_coords,
         risk_low=risk_low,
         risk_high=risk_high,
+        events=[],
+        event_intersections={},
     )
 
 

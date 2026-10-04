@@ -15,6 +15,14 @@ class Settings(BaseSettings):
     # RISK_EDGES_PATH in .env.
     risk_edges_path: str = "data/processed/risk_scores/risk_edges.csv"
 
+    # Event-Aware layer. event_mu scales how hard routing avoids reported incidents
+    # (0 disables it, leaving risk-only routing). event_as_of pins the moment incidents
+    # are evaluated at; empty means "use the risk snapshot's own window", which keeps
+    # both signals on one clock. Set it (e.g. 2026-05-25T17:30:00) to demo a recorded
+    # moment that has incidents on the board.
+    event_mu: float = 1.0
+    event_as_of: str = ""
+
     class Config:
         env_file = ".env"
         # This .env is shared with the data-ingestion side of the project (API keys
