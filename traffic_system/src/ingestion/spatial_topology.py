@@ -117,6 +117,23 @@ HWY_SPEEDS_KPH = {
     "service": 15,
 }
 FALLBACK_SPEED_KPH = 30
+HWY_LANES_FALLBACK = {
+    "motorway": 3,
+    "motorway_link": 1,
+    "trunk": 2,
+    "trunk_link": 1,
+    "primary": 2,
+    "primary_link": 1,
+    "secondary": 2,
+    "secondary_link": 1,
+    "tertiary": 1,
+    "tertiary_link": 1,
+    "residential": 1,
+    "living_street": 1,
+    "unclassified": 1,
+    "service": 1,
+}
+FALLBACK_LANES = 1
 
 
 def add_free_flow_travel_times(G: nx.MultiDiGraph) -> nx.MultiDiGraph:
@@ -125,9 +142,75 @@ def add_free_flow_travel_times(G: nx.MultiDiGraph) -> nx.MultiDiGraph:
     return G
 
 
+def _first_value(value):
+    if isinstance(value, list):
+        return value[0] if value else None
+    return value
+
+
+def _road_type(data: dict) -> str:
+    value = _first_value(data.get("highway"))
+    return str(value) if value is not None else "unclassified"
+
+
+def _lane_count(data: dict) -> int:
+    raw = _first_value(data.get("lanes"))
+    if raw is not None:
+        try:
+            parsed = int(float(raw))
+            if parsed > 0:
+                return parsed
+        except (TypeError, ValueError):
+            pass
+    road_type = _road_type(data)
+    return HWY_LANES_FALLBACK.get(road_type, FALLBACK_LANES)
+
+
+def add_lane_counts(G: nx.MultiDiGraph) -> nx.MultiDiGraph:
+    imputed = 0
+    for _, _, data in G.edges(data=True):
+        raw = _first_value(data.get("lanes"))
+        count = _lane_count(data)
+        data["lanes"] = count
+        if raw is None:
+            imputed += 1
+    log.info(
+        f"Lane counts: {imputed:,} of {G.number_of_edges():,} edges had no OSM 'lanes' tag and were filled in by road type (fallback {FALLBACK_LANES})."
+    )
+    return G
+
+
 def build_travel_time_matrix(G: nx.MultiDiGraph, node_order):
     G_simple = nx.DiGraph(G)
     return nx.adjacency_matrix(G_simple, nodelist=node_order, weight="travel_time")
+
+
+def build_speed_matrix(G: nx.MultiDiGraph, node_order):
+    G_simple = nx.DiGraph(G)
+    return nx.adjacency_matrix(G_simple, nodelist=node_order, weight="speed_kph")
+
+
+def build_lane_matrix(G: nx.MultiDiGraph, node_order):
+    G_simple = nx.DiGraph(G)
+    return nx.adjacency_matrix(G_simple, nodelist=node_order, weight="lanes")
+
+
+def build_edge_features_table(G: nx.MultiDiGraph, node_order) -> pd.DataFrame:
+    G_simple = nx.DiGraph(G)
+    rows = []
+    for u, v, data in G_simple.edges(data=True):
+        rows.append(
+            {
+                "source_node_id": u,
+                "target_node_id": v,
+                "length_m": data.get("length"),
+                "road_type": _road_type(data),
+                "lanes": data.get("lanes"),
+                "speed_kph": data.get("speed_kph"),
+                "travel_time_s": data.get("travel_time"),
+            }
+        )
+    return pd.DataFrame(rows)
 
 
 def build_adjacency(G: nx.MultiDiGraph):
@@ -247,10 +330,21 @@ def run(data_dir: Path, force_rebuild: bool = False, make_plot: bool = True) -> 
     sp.save_npz(proc_dir / "metro_manila_adjacency.npz", adj_matrix.tocsr())
     np.save(proc_dir / "metro_manila_node_order.npy", np.array(node_order))
     G = add_free_flow_travel_times(G)
+    G = add_lane_counts(G)
     travel_time_matrix = build_travel_time_matrix(G, node_order)
     sp.save_npz(proc_dir / "metro_manila_travel_time.npz", travel_time_matrix.tocsr())
     log.info(
         f"Saved free-flow travel times: {travel_time_matrix.nnz:,} edges, median {np.median(travel_time_matrix.tocoo().data):.1f}s"
+    )
+    speed_matrix = build_speed_matrix(G, node_order)
+    sp.save_npz(proc_dir / "metro_manila_speed_kph.npz", speed_matrix.tocsr())
+    lane_matrix = build_lane_matrix(G, node_order)
+    sp.save_npz(proc_dir / "metro_manila_lanes.npz", lane_matrix.tocsr())
+    log.info(f"Saved speed limits (kph) and lane counts for {lane_matrix.nnz:,} edges")
+    edge_features_df = build_edge_features_table(G, node_order)
+    edge_features_df.to_csv(proc_dir / "full_network_edge_features.csv", index=False)
+    log.info(
+        f"Saved full_network_edge_features.csv: {len(edge_features_df):,} edges with road_type, lanes, speed_kph, travel_time_s, length_m"
     )
     ox.save_graphml(G, filepath=graph_path)
     key_node_ids = list(key_nodes.values())
