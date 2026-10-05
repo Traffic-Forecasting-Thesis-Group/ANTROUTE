@@ -1970,7 +1970,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   routeListItemSelected: {
-    borderColor: '#4475F2',
+    borderColor: '#89A6F0',
     borderWidth: 2,
   },
   routeListTopRow: {
