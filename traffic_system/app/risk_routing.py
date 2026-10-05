@@ -53,7 +53,7 @@ from src.routing.dynamic_weight import (
     risk_vector,
     window_key,
 )
-from src.routing.eta_engine import TYPICAL_CONGESTION_MULTIPLIER, load_free_flow_seconds, path_eta_seconds
+from src.routing.eta_engine import load_free_flow_seconds, path_eta_seconds
 from src.routing.event_layer import (
     DEFAULT_MU,
     TrafficEvent,
@@ -71,7 +71,7 @@ SPATIAL_DIR = REPO_ROOT / "data/processed/spatial"
 MAX_SNAP_KM = 2.0  # how far a searched place may be from the nearest road node
 FALLBACK_SPEED_KMH = 25.0  # used only if metro_manila_travel_time.npz is missing
 
-NO_RISK_NOTE = "Congestion data is not loaded on the server - ETA assumes average Metro Manila traffic"
+NO_RISK_NOTE = "Congestion data is not loaded on the server - ETA uses road speed limits only"
 
 
 class RouteOutsideNetworkError(Exception):
@@ -398,10 +398,6 @@ def _metrics_to_option(net: _Network, wg: WeightedGraph, label: str, m: PathMetr
     eta_seconds = (
         path_eta_seconds(wg, net.free_flow_seconds, m.nodes) if net.free_flow_seconds is not None else None
     )
-    if eta_seconds is not None and not net.risk_by_window:
-        # No congestion risk loaded: every edge is at zero risk, which alone would be
-        # an empty-road ETA. Use the city's typical congestion instead.
-        eta_seconds *= TYPICAL_CONGESTION_MULTIPLIER
     duration_min = (
         max(1, round(eta_seconds / 60))
         if eta_seconds is not None
