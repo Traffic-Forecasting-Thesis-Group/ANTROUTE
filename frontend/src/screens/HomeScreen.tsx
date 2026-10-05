@@ -69,6 +69,29 @@ const CONGESTION_WIDTH: Record<CongestionLevel, `${number}%`> = {
   heavy: '85%',
 };
 
+/** Names the algorithm that actually produced a baseline route, which is not always IACO. */
+function baselineMethodLabel(route?: RouteOption): string {
+  switch (route?.algorithm) {
+    case 'shortest_distance':
+      return 'Shortest distance (IACO found no route)';
+    case 'mixed':
+      return 'IACO + shortest distance';
+    default:
+      return 'Improved ACO (Cheng 2023)';
+  }
+}
+
+/** True when two routes follow the same road, so the map draws one line over the other. */
+function samePath(a?: RouteOption, b?: RouteOption): boolean {
+  const pa = a?.path ?? [];
+  const pb = b?.path ?? [];
+  return (
+    pa.length > 1 &&
+    pa.length === pb.length &&
+    pa.every((p, i) => p.latitude === pb[i].latitude && p.longitude === pb[i].longitude)
+  );
+}
+
 type ActiveField = 'origin' | number | null;
 
 interface DestinationEntry {
@@ -134,6 +157,8 @@ export default function HomeScreen({ navigation }: any) {
   const [normalRoute, setNormalRoute] = useState<RouteOption | null>(null);
   const [antRouteOptions, setAntRouteOptions] = useState<RouteOption[]>([]);
   const [baselineModelOptions, setBaselineModelOptions] = useState<RouteOption[]>([]);
+  // Why the baseline has no route for this trip, when it has none (a result, not an error).
+  const [baselineNotice, setBaselineNotice] = useState<string | null>(null);
 
   const [comparisonMetrics, setComparisonMetrics] = useState<ComparisonMetrics | null>(null);
   const [metricsLoading, setMetricsLoading] = useState(false);
@@ -369,6 +394,7 @@ export default function HomeScreen({ navigation }: any) {
     setNormalRoute(null);
     setAntRouteOptions([]);
     setBaselineModelOptions([]);
+    setBaselineNotice(null);
   };
 
   const handleOriginChange = (text: string) => {
@@ -460,9 +486,10 @@ export default function HomeScreen({ navigation }: any) {
         planRoute(originToUse.trim(), cleanedDestinations, true, originCoordsToUse, 'baseline'),
       ]);
 
-      setNormalRoute(normalResults[0] ?? null);
-      setAntRouteOptions(antResults);
-      setBaselineModelOptions(baselineResults);
+      setNormalRoute(normalResults.routes[0] ?? null);
+      setAntRouteOptions(antResults.routes);
+      setBaselineModelOptions(baselineResults.routes);
+      setBaselineNotice(baselineResults.notice);
       setSelectedIndex(0);
     } catch (error: any) {
       setRouteError(error?.message || 'Something went wrong. Please try again.');
@@ -1034,11 +1061,30 @@ export default function HomeScreen({ navigation }: any) {
                               <Text style={styles.infoText}>{route.event_note}</Text>
                             </View>
                           ) : null}
+
+                          {route.fallback_reason ? (
+                            <View style={styles.infoBox}>
+                              <Info size={14} color="#3b82f6" />
+                              <Text style={styles.infoText}>{route.fallback_reason}</Text>
+                            </View>
+                          ) : null}
                         </TouchableOpacity>
                       );
                     })}
                   </>
                 )}
+
+                {!isNavigating &&
+                  activeTab === 'baseline' &&
+                  hasAnyResults &&
+                  baselineModelOptions.length === 0 && (
+                    <View style={styles.comparisonEmptyState}>
+                      <Info size={18} color="#9ca3af" />
+                      <Text style={styles.comparisonEmptyText}>
+                        {baselineNotice ?? 'The baseline has no route for this trip.'}
+                      </Text>
+                    </View>
+                  )}
 
                 {!isNavigating && activeTab === 'comparison' && !hasAnyResults && (
                   <View style={styles.comparisonEmptyState}>
@@ -1049,77 +1095,120 @@ export default function HomeScreen({ navigation }: any) {
                   </View>
                 )}
 
-                {!isNavigating && activeTab === 'comparison' && hasAnyResults && metricsLoading && (
-                  <ActivityIndicator style={{ marginVertical: 30 }} color="#4475F2" />
-                )}
-
-                {!isNavigating && activeTab === 'comparison' && hasAnyResults && !metricsLoading && metricsError ? (
-                  <View style={styles.comparisonEmptyState}>
-                    <Text style={styles.comparisonEmptyText}>{metricsError}</Text>
-                    <TouchableOpacity style={styles.retryButton} onPress={loadComparisonMetrics}>
-                      <Text style={styles.retryButtonText}>Retry</Text>
-                    </TouchableOpacity>
-                  </View>
-                ) : null}
-
-                {!isNavigating && activeTab === 'comparison' && hasAnyResults && !metricsLoading && comparisonMetrics && (
+                {/* Route comparison for this trip. It needs only the two route responses, so it
+                    does not wait on the forecast metrics below. Both cards are measured the same
+                    way (distance, ETA engine, risk), so a difference is a difference in the route. */}
+                {!isNavigating && activeTab === 'comparison' && hasAnyResults && (
                   <View>
                     <Text style={styles.comparisonResultLabel}>Comparison Result</Text>
 
                     <View style={styles.comparisonCardsRow}>
                       {[
-                        { name: 'ANTRoute', route: antTop, opt: comparisonMetrics.routeOptimalityPct.antroute },
-                        { name: 'Baseline', route: baselineTop, opt: comparisonMetrics.routeOptimalityPct.baseline },
+                        { name: 'ANTRoute', method: 'Risk- and event-aware ACO', route: antTop, notice: null },
+                        {
+                          name: 'Baseline',
+                          method: baselineMethodLabel(baselineTop),
+                          route: baselineTop,
+                          notice: baselineNotice,
+                        },
                       ].map((item) => (
                         <View key={item.name} style={styles.comparisonCard}>
                           <View style={styles.comparisonCardHeader}>
                             <Text style={styles.comparisonCardModel}>{item.name}</Text>
-                            <Text style={styles.comparisonCardDistance}>{item.route?.distance_km} km</Text>
+                            {item.route ? (
+                              <Text style={styles.comparisonCardDistance}>{item.route.distance_km} km</Text>
+                            ) : null}
                           </View>
-                          <Text style={styles.comparisonCardLabel}>ETA</Text>
-                          <Text style={styles.comparisonCardEta}>{item.route?.duration_min} min</Text>
-                          <Text style={[styles.comparisonCardLabel, { marginTop: 10 }]}>Route Optimality</Text>
-                          <Text style={styles.comparisonCardOpt}>{item.opt}%</Text>
+                          <Text style={styles.comparisonCardMethod}>{item.method}</Text>
+                          {item.route ? (
+                            <>
+                              <Text style={styles.comparisonCardLabel}>ETA</Text>
+                              <Text style={styles.comparisonCardEta}>{item.route.duration_min} min</Text>
+                              <Text style={[styles.comparisonCardLabel, { marginTop: 10 }]}>Avg. congestion risk</Text>
+                              <Text style={styles.comparisonCardOpt}>
+                                {item.route.mean_risk != null ? `${Math.round(item.route.mean_risk * 100)}%` : '–'}
+                              </Text>
+                            </>
+                          ) : (
+                            <Text style={styles.comparisonCardNoRoute}>
+                              {item.notice ?? 'No route for this trip.'}
+                            </Text>
+                          )}
                         </View>
                       ))}
                     </View>
 
+                    {samePath(antTop, baselineTop) ? (
+                      <View style={styles.infoBox}>
+                        <Info size={14} color="#3b82f6" />
+                        <Text style={styles.infoText}>
+                          Both models chose the same road for this trip, so the map shows one line.
+                        </Text>
+                      </View>
+                    ) : null}
+                    {baselineTop?.fallback_reason ? (
+                      <View style={styles.infoBox}>
+                        <Info size={14} color="#3b82f6" />
+                        <Text style={styles.infoText}>{baselineTop.fallback_reason}</Text>
+                      </View>
+                    ) : null}
+
                     <View style={styles.comparisonDivider} />
 
-                    <Text style={styles.evaluationTitle}>Evaluation Metrics</Text>
-                    <View style={styles.metricsTable}>
-                      <View style={styles.metricsTableHeaderRow}>
-                        <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText, { flex: 1.5 }]}>
-                          Metric
-                        </Text>
-                        <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>ANTRoute</Text>
-                        <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>Baseline</Text>
-                        <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>Improvement</Text>
+                    <Text style={styles.evaluationTitle}>Congestion Forecast Accuracy</Text>
+                    {metricsLoading ? (
+                      <ActivityIndicator style={{ marginVertical: 30 }} color="#4475F2" />
+                    ) : metricsError ? (
+                      <View style={styles.comparisonEmptyState}>
+                        <Text style={styles.comparisonEmptyText}>{metricsError}</Text>
+                        <TouchableOpacity style={styles.retryButton} onPress={loadComparisonMetrics}>
+                          <Text style={styles.retryButtonText}>Retry</Text>
+                        </TouchableOpacity>
                       </View>
-                      {comparisonMetrics.metrics.map((row) => {
-                        const isGood = row.higherIsBetter ? row.improvementPct > 0 : row.improvementPct < 0;
-                        return (
-                          <View key={row.metric} style={styles.metricsTableRow}>
-                            <Text style={[styles.metricsTableCell, { flex: 1.5 }]}>{row.metric}</Text>
-                            <Text style={styles.metricsTableCell}>{row.antroute}</Text>
-                            <Text style={styles.metricsTableCell}>{row.baseline}</Text>
-                            <Text
-                              style={[
-                                styles.metricsTableCell,
-                                styles.metricsTableImprovement,
-                                isGood && styles.improvementGood,
-                              ]}
-                            >
-                              {row.improvementPct > 0 ? '+' : ''}
-                              {row.improvementPct}%
+                    ) : comparisonMetrics ? (
+                      <>
+                        <Text style={styles.evaluationSubtitle}>
+                          How well ANTRoute's model predicts congestion on held-out test data, against a
+                          forecaster that always predicts {comparisonMetrics.baselineName}. This scores the
+                          model, not the route above.
+                        </Text>
+                        <View style={styles.metricsTable}>
+                          <View style={styles.metricsTableHeaderRow}>
+                            <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText, { flex: 1.5 }]}>
+                              Metric
                             </Text>
+                            <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>ANTRoute</Text>
+                            <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>
+                              {comparisonMetrics.baselineName}
+                            </Text>
+                            <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>Improvement</Text>
                           </View>
-                        );
-                      })}
-                    </View>
-                    <Text style={styles.comparisonFootnote}>
-                      Lower is better for MAE, RMSE, MSE, MAPE. Higher is better for R².
-                    </Text>
+                          {comparisonMetrics.metrics.map((row) => {
+                            const isGood = row.higherIsBetter ? row.improvementPct > 0 : row.improvementPct < 0;
+                            return (
+                              <View key={row.metric} style={styles.metricsTableRow}>
+                                <Text style={[styles.metricsTableCell, { flex: 1.5 }]}>{row.metric}</Text>
+                                <Text style={styles.metricsTableCell}>{row.antroute}</Text>
+                                <Text style={styles.metricsTableCell}>{row.baseline}</Text>
+                                <Text
+                                  style={[
+                                    styles.metricsTableCell,
+                                    styles.metricsTableImprovement,
+                                    isGood && styles.improvementGood,
+                                  ]}
+                                >
+                                  {row.improvementPct > 0 ? '+' : ''}
+                                  {row.improvementPct}%
+                                </Text>
+                              </View>
+                            );
+                          })}
+                        </View>
+                        <Text style={styles.comparisonFootnote}>
+                          Lower is better for MAE and RMSE. Higher is better for accuracy and R².
+                        </Text>
+                      </>
+                    ) : null}
                   </View>
                 )}
 
@@ -1654,6 +1743,17 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: '#9ca3af',
   },
+  // Which algorithm made this card's route; the baseline's is not always IACO
+  comparisonCardMethod: {
+    fontSize: 10,
+    color: '#6b7280',
+    marginBottom: 8,
+  },
+  comparisonCardNoRoute: {
+    fontSize: 11,
+    color: '#6b7280',
+    lineHeight: 15,
+  },
   comparisonCardLabel: {
     fontSize: 12,
     color: '#374151',
@@ -1677,6 +1777,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '700',
     color: 'black',
+    marginBottom: 12,
+  },
+  evaluationSubtitle: {
+    fontSize: 11,
+    color: '#6b7280',
+    lineHeight: 15,
+    marginTop: -6,
     marginBottom: 12,
   },
   metricsTable: {

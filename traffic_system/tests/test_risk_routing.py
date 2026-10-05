@@ -11,7 +11,7 @@ def make_network(node_coords, risk_low=0.3, risk_high=0.6):
     return _Network(
         graph=None,
         wg_antroute=None,
-        wg_baseline=None,
+        risk_edges_path=None,
         free_flow_seconds=None,
         node_coords=node_coords,
         risk_low=risk_low,

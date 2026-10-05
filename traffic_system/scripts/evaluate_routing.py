@@ -2,6 +2,15 @@
 Evaluate ANTROUTE against the baseline with Apple Maps as ground truth, as the thesis specifies
 (Sections 3.8-3.9, Appendices 1-3).
 
+The baseline is Improved ACO (Cheng 2023, doi:10.1155/2023/7651100), the algorithm the thesis
+names, implemented as published in src/routing/baseline_iaco.py and adapted to this graph in
+src/routing/baseline_router.py. See the Baseline class below for what the paper defines per
+scenario and what is an adaptation.
+
+Each system plans on its own signal -- ANTROUTE on predicted risk, the baseline on observed
+camera congestion -- and both are then scored against Apple Maps, which neither plans on, so
+neither system is optimising the measure it is judged by.
+
     # 1. route the test trips with both systems and write the Apple Maps lookup sheet
     python scripts/evaluate_routing.py --risk-edges data/processed/risk_scores/risk_edges.csv \
         --template apple_maps.csv
@@ -33,8 +42,13 @@ Scoring (stored routes are re-scored as-is, ACO is not re-run):
 
     Route Optimality      = sum(apple_eta_seconds) / sum(<system>_apple_eta_seconds) * 100
     MAE/RMSE/MSE/MAPE/R^2 = <system>'s own per-leg ETA vs <system>_apple_eta_seconds
+                            (ANTROUTE's risk-aware ETA engine; for the baseline, the observed
+                            travel times Cheng's cost function is built from)
     significance          Shapiro-Wilk, Wilcoxon signed-rank, paired t-test (if normal),
                           d = baseline - proposed, Δ% (Equation 15)
+
+A trip the baseline cannot route is reported in the run's summary and left out of the paired
+comparison rather than dropped silently, so the baseline's route-found rate stays visible.
 
 Outputs (in --out-dir):
     trials.csv                           one row per (system, trip)
@@ -47,6 +61,7 @@ Outputs (in --out-dir):
 """
 
 import argparse
+import collections
 import json
 import math
 import sys
@@ -63,9 +78,18 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 from src.data.graph_data import DEFAULT_K, build_subgraph  # noqa: E402
 from src.routing.aco_routing import AntColonyConfig, ant_colony_shortest_path, remaining_cost_to  # noqa: E402
+from src.routing.baseline_iaco import IacoConfig, IacoGraph  # noqa: E402
+from src.routing.baseline_router import (  # noqa: E402
+    IACO,
+    BaselineInputs,
+    build_inputs,
+    camera_observations,
+    plan_baseline,
+)
 from src.routing.dynamic_weight import (  # noqa: E402
     DEFAULT_LAMBDA,
     DEFAULT_MISSING_RISK,
+    edge_distances,
     load_risk_edges,
     window_key,
     weighted_graph_from_risk_file,
@@ -87,6 +111,111 @@ from src.routing.significance import compare_paired, relative_difference  # noqa
 
 ETA_METRICS = ("mae", "rmse", "mse", "mape", "r_squared")
 TRIP_PREFIX = {RECOMMENDED: "R", ALTERNATIVE: "A", MULTI_DESTINATION: "M"}
+
+
+# ---------------------------------------------------------------- the baseline
+
+class Baseline:
+    """
+    The thesis baseline for this evaluation: Improved ACO (Cheng 2023), run as published on
+    the same subgraph and window as ANTROUTE. The algorithm itself is baseline_iaco.py,
+    untouched; src/routing/baseline_router.py holds the adaptation to our data.
+
+    What the paper does and does not define matters here, scenario by scenario:
+
+      recommended        the paper's one optimal path -- a direct comparison.
+      alternative        not defined. Section 4.2.3 Step 7 outputs "the current optimal
+                         path", one route, so the baseline has no second route to pair
+                         against ANTROUTE's alternative. Those trips are reported for
+                         ANTROUTE alone rather than invented for the baseline.
+      multi_destination  not defined either: both of the paper's experiments are a single
+                         origin to a single destination. --baseline-multi-destination
+                         (default on) routes it leg by leg, the same way ANTROUTE's own
+                         multi-stop routing chains single-leg routes, and the reports
+                         record it as an adaptation. Off, it is left unpaired like
+                         'alternative'.
+
+    IACO plans on observed camera traffic, never on ANTROUTE's predicted risk. Both systems
+    are then scored against Apple Maps, which neither plans on, so neither optimises the
+    measure it is judged by.
+    """
+
+    def __init__(self, graph, spatial_dir: Path, risk_edges: Path, config: IacoConfig, fallback: bool):
+        coords = pd.read_csv(spatial_dir / "full_network_static_features.csv",
+                             usecols=["node_id", "lat", "lon"]).set_index("node_id").reindex(graph.node_ids)
+        if coords.isna().any().any():
+            raise SystemExit("some subgraph nodes have no coordinates in full_network_static_features.csv")
+        self.graph = IacoGraph(
+            node_ids=np.asarray(graph.node_ids),
+            src=graph.edge_index[0].numpy(),
+            dst=graph.edge_index[1].numpy(),
+            distance=edge_distances(graph),
+            lat=coords["lat"].to_numpy(dtype=float),
+            lon=coords["lon"].to_numpy(dtype=float),
+        )
+        self.free_flow = load_free_flow_seconds(spatial_dir, graph)
+        self.cameras = list(graph.camera_nodes.values())
+        self.node_ids = np.asarray(graph.node_ids)
+        self.config = config
+        self.fallback = fallback
+        self._observations = self._load_observations(risk_edges)
+        self._inputs: Dict[str, BaselineInputs] = {}
+
+    @staticmethod
+    def _load_observations(risk_edges: Path) -> Dict[str, pd.DataFrame]:
+        """Camera observations (weak_target) per window, read once."""
+        header = pd.read_csv(risk_edges, nrows=0).columns
+        if "weak_target" not in header:
+            raise SystemExit(
+                f"{risk_edges} has no weak_target column; the baseline plans on observed traffic "
+                "and cannot run without it"
+            )
+        key = "window_start" if "window_start" in header else "window_end"
+        frame = pd.read_csv(risk_edges, usecols=[key, "source_node_id", "target_node_id", "weak_target"])
+        frame = frame[frame["weak_target"].notna()]
+        return {str(w): rows for w, rows in frame.groupby(frame[key].astype(str))}
+
+    def inputs_for(self, window: str) -> BaselineInputs:
+        if window not in self._inputs:
+            rows = self._observations.get(window)
+            observed = (
+                camera_observations(rows, self.node_ids, self.cameras) if rows is not None else {}
+            )
+            # No vehicle counts here (they live with the YOLO detections), so the flow term of
+            # Cheng's cost is zero; BaselineInputs.flow_observed records that.
+            self._inputs[window] = build_inputs(self.graph, self.free_flow, observed, camera_flow=None)
+        return self._inputs[window]
+
+    def route(self, window: str, stops: Sequence[int]) -> Tuple[Optional[List[List[int]]], str]:
+        """
+        (route per leg, algorithm) for this trip, or (None, reason) when it has none.
+
+        Routed one leg at a time because Apple Maps times are recorded per leg, so each leg
+        needs its own node list. The algorithm is reported over the whole trip: 'iaco' only
+        when IACO itself found every leg.
+        """
+        inputs = self.inputs_for(window)
+        legs: List[List[int]] = []
+        algorithms: List[str] = []
+        for origin, destination in zip(stops, stops[1:]):
+            try:
+                leg = plan_baseline(inputs, [origin, destination], self.config, fallback=self.fallback)
+            except (ValueError, KeyError) as err:
+                return None, f"no route: {err}"
+            legs.append(leg.nodes)
+            algorithms.append(leg.algorithm)
+        unique = set(algorithms)
+        return legs, unique.pop() if len(unique) == 1 else "mixed"
+
+    def eta_seconds(self, window: str, legs: Sequence[Sequence[int]]) -> List[float]:
+        """IACO's own travel-time estimate per leg: the observed t_ij it planned with."""
+        inputs = self.inputs_for(window)
+        g = self.graph
+        out = []
+        for leg in legs:
+            edges = g.edges_of([g.index_of(v) for v in leg])
+            out.append(float(inputs.travel_time[edges].sum()))
+        return out
 
 
 # ---------------------------------------------------------------- template
@@ -154,46 +283,52 @@ def sample_trips(cameras, connected, windows, a, rng) -> Dict[str, List[Tuple[st
     return {RECOMMENDED: single, ALTERNATIVE: single, MULTI_DESTINATION: draw(sequences)}
 
 
-def write_template(a, graph, config: AntColonyConfig) -> None:
+def write_template(a, graph, baseline: "Baseline", config: AntColonyConfig) -> None:
     windows = evaluation_windows(a)
     coords = load_coordinates(a.spatial_dir)
     labels = camera_labels(graph)
     cameras = sorted(labels)
     rng = np.random.default_rng(a.seed)
 
-    graphs: Dict[str, Dict[str, object]] = {}
+    graphs: Dict[str, object] = {}
 
     def graphs_for(window):
         if window not in graphs:
-            wg = weighted_graph_from_risk_file(
+            graphs[window] = weighted_graph_from_risk_file(
                 graph, a.risk_edges, window=window, lam=a.lam, missing_risk=a.missing_risk
             )
-            graphs[window] = {ANTROUTE: wg, BASELINE: wg.with_lambda(a.baseline_lambda)}
         return graphs[window]
 
-    connected = reachability(graphs_for(windows[0])[ANTROUTE], cameras)
+    connected = reachability(graphs_for(windows[0]), cameras)
     trips = sample_trips(cameras, connected, windows, a, rng)
 
     rows = []
-    routed: Dict[Tuple[str, Tuple[int, ...]], Dict[str, object]] = {}   # one ACO run per system, trip
+    routed: Dict[Tuple[str, Tuple[int, ...]], List] = {}       # one ACO run per trip
+    baselines: Dict[Tuple[str, Tuple[int, ...]], Tuple] = {}   # one IACO run per trip
+    algorithms: Dict[str, str] = {}                            # trip_id -> which algorithm routed the baseline
     for scenario in SCENARIOS:
         for number, (window, stops) in enumerate(trips[scenario], start=1):
-            g = graphs_for(window)
+            wg = graphs_for(window)
             key = (window, tuple(stops))
             if key not in routed:
-                routed[key] = {
-                    s: [ant_colony_shortest_path(g[s], o, d, config) for o, d in zip(stops, stops[1:])]
-                    for s in SYSTEMS
-                }
-            # per system, per leg: the leg's route for this scenario, or None if ACO had no alternative
-            legs = {
-                s: [
-                    (r.alternatives[0].nodes if r.alternatives else None) if scenario == ALTERNATIVE else r.best.nodes
-                    for r in routed[key][s]
-                ]
-                for s in SYSTEMS
-            }
+                routed[key] = [ant_colony_shortest_path(wg, o, d, config) for o, d in zip(stops, stops[1:])]
+                baselines[key] = baseline.route(window, stops)
+            # per leg: the leg's route for this scenario, or None if ACO had no alternative
+            antroute_legs = [
+                (r.alternatives[0].nodes if r.alternatives else None) if scenario == ALTERNATIVE else r.best.nodes
+                for r in routed[key]
+            ]
+            # The paper outputs one optimal path, so it has no 'alternative'; multi-destination
+            # is likewise undefined and is an opt-in adaptation. See the Baseline docstring.
+            baseline_legs, baseline_algorithm = baselines[key]
+            if scenario == ALTERNATIVE:
+                baseline_legs, baseline_algorithm = None, "not defined by Cheng (2023)"
+            elif scenario == MULTI_DESTINATION and not a.baseline_multi_destination:
+                baseline_legs, baseline_algorithm = None, "not defined by Cheng (2023)"
+            legs = {ANTROUTE: antroute_legs, BASELINE: baseline_legs or [None] * len(antroute_legs)}
+
             trip_id = f"{TRIP_PREFIX[scenario]}{number:02d}"
+            algorithms[trip_id] = baseline_algorithm
             for leg_no, (o, d) in enumerate(zip(stops, stops[1:]), start=1):
                 routes = {s: legs[s][leg_no - 1] for s in SYSTEMS}
                 row = {
@@ -209,8 +344,9 @@ def write_template(a, graph, config: AntColonyConfig) -> None:
                     "same_route": routes[ANTROUTE] is not None and routes[ANTROUTE] == routes[BASELINE],
                     "apple_eta_seconds": "",
                 }
+                row["baseline_algorithm"] = baseline_algorithm
                 for s in SYSTEMS:
-                    stops_on_route = pick_waypoints(g[ANTROUTE], routes[s], a.n_waypoints) if routes[s] else []
+                    stops_on_route = pick_waypoints(wg, routes[s], a.n_waypoints) if routes[s] else []
                     row[f"{s}_waypoints"] = (
                         " | ".join(latlon(coords, v) for v in stops_on_route) if routes[s] else "NO ROUTE"
                     )
@@ -218,18 +354,26 @@ def write_template(a, graph, config: AntColonyConfig) -> None:
                 for s in SYSTEMS:
                     row[f"{s}_route"] = " ".join(str(v) for v in routes[s]) if routes[s] else ""
                 rows.append(row)
-            print(f"{trip_id} {window} {' -> '.join(labels[v] for v in stops)}")
+            print(f"{trip_id} {window} {' -> '.join(labels[v] for v in stops)}  baseline: {baseline_algorithm}")
 
-    missing = sum(1 for r in rows if not (r["antroute_route"] and r["baseline_route"]))
     a.template.parent.mkdir(parents=True, exist_ok=True)
     pd.DataFrame(rows).to_csv(a.template, index=False)
     print(f"\nwrote {len(rows)} Apple Maps lookups for {sum(len(t) for t in trips.values())} trips to {a.template}")
-    if missing:
+
+    # How the baseline fared is a result in its own right, so report it rather than burying it:
+    # on a real road network IACO frequently finds no route at all (its ants have no way out of
+    # a dead end), and that rate is what ANTROUTE's search is built to fix.
+    counts = collections.Counter(algorithms.values())
+    print("\nBaseline (Improved ACO, Cheng 2023) over " f"{len(algorithms)} trips:")
+    for name, n in counts.most_common():
+        print(f"  {n:4d}  {name}")
+    no_antroute = sum(1 for r in rows if not r["antroute_route"])
+    if no_antroute:
         print(
-            f"NOTE: {missing} alternative leg(s) have NO ROUTE: ACO found no second route for that system. "
-            "Those trips cannot be paired; raise --n-iterations / --n-ants or accept fewer alternative trials."
+            f"\nNOTE: {no_antroute} alternative leg(s) have NO ROUTE for ANTROUTE: its colony found no "
+            "second route. Those trips cannot be paired; raise --n-iterations / --n-ants or accept fewer."
         )
-    print("Fill in the *_apple_eta_seconds columns from Apple Maps, then re-run with --apple-maps.")
+    print("\nFill in the *_apple_eta_seconds columns from Apple Maps, then re-run with --apple-maps.")
 
 
 # ---------------------------------------------------------------- scoring
@@ -262,7 +406,7 @@ def mean_sd(values: Sequence[float]) -> Dict[str, float]:
     }
 
 
-def score_sheet(a, graph, free_flow_seconds) -> Tuple[List[dict], List[str]]:
+def score_sheet(a, graph, baseline: "Baseline", free_flow_seconds) -> Tuple[List[dict], List[str]]:
     sheet = pd.read_csv(a.apple_maps, dtype=str, keep_default_na=False)
     needed = {"trip_id", "scenario_type", "leg", "window", "apple_eta_seconds"} | {
         f"{s}_{c}" for s in SYSTEMS for c in ("route", "apple_eta_seconds")
@@ -276,7 +420,6 @@ def score_sheet(a, graph, free_flow_seconds) -> Tuple[List[dict], List[str]]:
         for _, r in sheet.iterrows()
         if r["apple_eta_seconds"].strip()
     }
-    gammas = {ANTROUTE: a.gamma, BASELINE: a.baseline_gamma}
     graphs: Dict[str, object] = {}
     trials: List[dict] = []
     notes: List[str] = []
@@ -306,15 +449,25 @@ def score_sheet(a, graph, free_flow_seconds) -> Tuple[List[dict], List[str]]:
                     measured[s][i] = shared
 
         routes = {s: [nodes(r[f"{s}_route"]) for _, r in rows.iterrows()] for s in SYSTEMS}
-        if any(leg is None for s in SYSTEMS for leg in routes[s]):
-            notes.append(f"{trip_id}: a system has no route for some leg; trip left out of the paired comparison")
+        if any(leg is None for leg in routes[ANTROUTE]):
+            notes.append(f"{trip_id}: ANTROUTE has no route for some leg; trip left out")
+            continue
+        if any(leg is None for leg in routes[BASELINE]):
+            why = rows["baseline_algorithm"].iloc[0] if "baseline_algorithm" in rows else "no route"
+            notes.append(f"{trip_id}: baseline has no route ({why}); trip left out of the paired comparison")
             continue
         if not all(np.isfinite(v) for v in optimal + measured[ANTROUTE] + measured[BASELINE]):
             notes.append(f"{trip_id}: Apple Maps times not all filled in; skipped")
             continue
         for s in SYSTEMS:
+            # Each system's own predicted travel time for its own route: ANTROUTE's risk-aware
+            # ETA engine, and for the baseline the observed t_ij Cheng's cost is built from.
+            predicted = (
+                baseline.eta_seconds(window, routes[s]) if s == BASELINE else None
+            )
             trial = score_trip(
-                wg, routes[s], free_flow_seconds, gammas[s], s, scenario, optimal, measured[s], trip_id
+                wg, routes[s], free_flow_seconds, a.gamma, s, scenario, optimal, measured[s], trip_id,
+                predicted_eta=predicted,
             )
             trial["route_optimality"] = float(route_optimality([trial["c_optimal"]], [trial["c_predicted"]])[0])
             trial.update(trial_eta_metrics(trial["actual_eta"], trial["predicted_eta"]))
@@ -403,8 +556,20 @@ def write_reports(a, graph, trials: List[dict]) -> dict:
     report = {
         "risk_edges": str(a.risk_edges),
         "apple_maps": str(a.apple_maps),
-        ANTROUTE: {"gamma": a.gamma},
-        BASELINE: {"gamma": a.baseline_gamma},
+        ANTROUTE: {"algorithm": "ACO on the risk-weighted graph", "lambda": a.lam, "gamma": a.gamma},
+        BASELINE: {
+            "algorithm": "Improved ACO (Cheng 2023), doi:10.1155/2023/7651100",
+            "alpha": a.baseline_alpha,
+            "beta": a.baseline_beta,
+            "rho": a.baseline_rho,
+            "q0": a.baseline_q0,
+            "n_ants": a.n_ants,
+            "n_iterations": a.n_iterations,
+            "shortest_distance_fallback": a.baseline_fallback,
+            "multi_destination_adapted": a.baseline_multi_destination,
+            "plans_on": "observed camera congestion (weak_target), not ANTROUTE's predicted risk",
+            "flow_term": "zero -- no vehicle counts supplied, so Cheng's w3 criterion is unused",
+        },
         "per_trial_mean_sd": summary,
         "pooled": {s: {k: asdict(m) for k, m in r.items()} for s, r in pooled.items()},
         "significance": significance,
@@ -413,11 +578,11 @@ def write_reports(a, graph, trials: List[dict]) -> dict:
     return report
 
 
-def score(a, graph) -> None:
+def score(a, graph, baseline: "Baseline") -> None:
     if not (a.spatial_dir / "metro_manila_travel_time.npz").exists():
         raise SystemExit("metro_manila_travel_time.npz not found; the systems' own ETAs need it")
     free_flow_seconds = load_free_flow_seconds(a.spatial_dir, graph)
-    trials, notes = score_sheet(a, graph, free_flow_seconds)
+    trials, notes = score_sheet(a, graph, baseline, free_flow_seconds)
     for note in notes:
         print(f"NOTE: {note}")
     if not trials:
@@ -454,8 +619,23 @@ def main() -> None:
     p.add_argument("--missing-risk", type=float, default=DEFAULT_MISSING_RISK)
     p.add_argument("--lambda", dest="lam", type=float, default=DEFAULT_LAMBDA, help="ANTROUTE risk penalty")
     p.add_argument("--gamma", type=float, default=DEFAULT_GAMMA, help="ANTROUTE ETA risk sensitivity")
-    p.add_argument("--baseline-lambda", type=float, default=0.0)
-    p.add_argument("--baseline-gamma", type=float, default=0.0)
+    # The baseline is Improved ACO (Cheng 2023). Defaults are the paper's own (sec. 5.1.2);
+    # q0 = 0.7 is its "large network" setting, and the global volatility xi it never states
+    # follows baseline_iaco's default.
+    p.add_argument("--baseline-alpha", type=float, default=1.0)
+    p.add_argument("--baseline-beta", type=float, default=5.0)
+    p.add_argument("--baseline-rho", type=float, default=0.3)
+    p.add_argument("--baseline-q0", type=float, default=0.7)
+    p.add_argument(
+        "--no-baseline-fallback", dest="baseline_fallback", action="store_false",
+        help="leave a trip unpaired when IACO finds no route, instead of using the spatial "
+             "shortest-distance route the paper also reports (Table 9)",
+    )
+    p.add_argument(
+        "--no-baseline-multi-destination", dest="baseline_multi_destination", action="store_false",
+        help="Cheng (2023) routes a single origin to a single destination. By default the "
+             "baseline is adapted to multi-stop trips leg by leg; this leaves them unpaired instead",
+    )
     p.add_argument("--split", default="test", help='--template: risk-file split to draw windows from, or "all"')
     p.add_argument("--n-trials", type=int, default=10, help="--template: trials per scenario")
     p.add_argument("--n-stops", type=int, default=3, help="--template: stops per multi-destination trip")
@@ -472,6 +652,21 @@ def main() -> None:
         p.error("--n-stops must be at least 3 (origin, one intermediate stop, destination)")
 
     graph = build_subgraph(a.spatial_dir, a.k)
+    baseline = Baseline(
+        graph,
+        a.spatial_dir,
+        a.risk_edges,
+        IacoConfig(
+            n_ants=a.n_ants,
+            n_iterations=a.n_iterations,
+            alpha=a.baseline_alpha,
+            beta=a.baseline_beta,
+            rho=a.baseline_rho,
+            q0=a.baseline_q0,
+            seed=a.seed,
+        ),
+        fallback=a.baseline_fallback,
+    )
     if a.template:
         config = AntColonyConfig(
             n_ants=a.n_ants,
@@ -482,9 +677,9 @@ def main() -> None:
             n_alternatives=1,
             seed=a.seed,
         )
-        write_template(a, graph, config)
+        write_template(a, graph, baseline, config)
     else:
-        score(a, graph)
+        score(a, graph, baseline)
 
 
 if __name__ == "__main__":

@@ -31,10 +31,20 @@ class RouteOption(BaseModel):
     congestion_level: str
     event_note: Optional[str] = None
     path: List[PathPoint] = []
+    # Which algorithm produced this route: "antroute", or for the baseline "iaco",
+    # "shortest_distance" (IACO found no route) or "mixed" (multi-stop, some legs each).
+    # None only on the placeholder routes, which no algorithm produced.
+    algorithm: Optional[str] = None
+    # Why a baseline route is not IACO's own, when it is not.
+    fallback_reason: Optional[str] = None
+    # Mean predicted congestion risk along the route, on one yardstick for both systems.
+    mean_risk: Optional[float] = None
 
 
 class RoutePlanResponse(BaseModel):
     routes: List[RouteOption]
+    # Set when `routes` is empty for a reason the user should see, e.g. no baseline route.
+    notice: Optional[str] = None
 
 
 class ComparisonMetricRow(BaseModel):
@@ -53,3 +63,7 @@ class OptimalityPct(BaseModel):
 class ComparisonMetricsResponse(BaseModel):
     route_optimality_pct: OptimalityPct
     metrics: List[ComparisonMetricRow]
+    # What these numbers compare ANTROUTE's congestion forecast against. This is a forecasting
+    # reference, not the routing baseline (Improved ACO), and the app must not present one as
+    # the other.
+    baseline_name: str = "Always 'Medium'"

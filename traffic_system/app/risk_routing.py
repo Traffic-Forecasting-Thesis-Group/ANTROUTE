@@ -30,12 +30,22 @@ from typing import Dict, List, Optional, Sequence, Tuple
 from zoneinfo import ZoneInfo
 
 import numpy as np
+import pandas as pd
 
 LOCAL_TZ = "Asia/Manila"
 
 from app.config import settings
 from src.data.graph_data import GraphData, build_full_graph
 from src.routing.aco_routing import AntColonyConfig, ant_colony_shortest_path, multi_stop_route
+from src.routing.baseline_iaco import IacoConfig, IacoGraph
+from src.routing.baseline_router import (
+    IACO,
+    SHORTEST_DISTANCE,
+    BaselineInputs,
+    build_inputs,
+    camera_observations,
+    plan_baseline,
+)
 from src.routing.dynamic_weight import DEFAULT_LAMBDA, PathMetrics, WeightedGraph, weighted_graph_from_risk_file
 from src.routing.eta_engine import load_free_flow_seconds, path_eta_seconds
 from src.routing.event_layer import (
@@ -53,6 +63,12 @@ SPATIAL_DIR = REPO_ROOT / "data/processed/spatial"
 MAX_SNAP_KM = 2.0  # how far a searched place may be from the nearest subgraph node
 FALLBACK_SPEED_KMH = 25.0  # used only if metro_manila_travel_time.npz is missing
 
+# The baseline colony: Cheng's parameters (alpha 1, beta 5, rho 0.3, q0 0.7 for a large
+# network) at baseline_iaco's 20 ants x 60 iterations. The paper's own 1.5 ants per node
+# would be ~89,000 ants per iteration on this graph. This is more search than ANTROUTE gets
+# below (8 x 15), which errs in the baseline's favour.
+BASELINE_CONFIG = IacoConfig(seed=0)
+
 
 class RouteOutsideNetworkError(Exception):
     """Origin or destination is too far from any node in the monitored subgraph."""
@@ -62,7 +78,7 @@ class RouteOutsideNetworkError(Exception):
 class _Network:
     graph: GraphData
     wg_antroute: WeightedGraph  # lambda = DEFAULT_LAMBDA, the real risk-aware engine
-    wg_baseline: WeightedGraph  # lambda = 0, distance-only, same ACO search otherwise
+    risk_edges_path: Path       # the scored file, re-read once for the baseline's observations
     free_flow_seconds: Optional[np.ndarray]
     node_coords: Dict[int, Tuple[float, float]]  # node_id -> (lat, lon)
     risk_low: float  # tercile cutoffs over this window's risk, for labelling
@@ -123,7 +139,6 @@ def _network() -> _Network:
     wg_antroute = weighted_graph_from_risk_file(
         graph, risk_edges_path, lam=DEFAULT_LAMBDA, missing_risk=missing_risk
     )
-    wg_baseline = wg_antroute.with_lambda(0.0)
 
     free_flow_seconds = None
     if (SPATIAL_DIR / "metro_manila_travel_time.npz").exists():
@@ -166,9 +181,55 @@ def _network() -> _Network:
                 event_intersections[label] = node_index[node_id]
 
     return _Network(
-        graph, wg_antroute, wg_baseline, free_flow_seconds, node_coords, float(risk_low), float(risk_high),
+        graph, wg_antroute, risk_edges_path, free_flow_seconds, node_coords, float(risk_low), float(risk_high),
         events, event_intersections,
     )
+
+
+def _observed_rows(path: Path, window: Optional[str]) -> pd.DataFrame:
+    """
+    The camera observations (weak_target) recorded for one window, read with only the four
+    columns they need -- the full file is ~100MB and _network() has already parsed it.
+    """
+    empty = pd.DataFrame(columns=["source_node_id", "target_node_id", "weak_target"])
+    header = pd.read_csv(path, nrows=0).columns
+    if window is None or "weak_target" not in header:
+        return empty
+    key = "window_start" if "window_start" in header else "window_end"
+    frame = pd.read_csv(path, usecols=[key, "source_node_id", "target_node_id", "weak_target"])
+    return frame[frame[key].astype(str) == window]
+
+
+@lru_cache(maxsize=1)
+def _baseline_inputs() -> BaselineInputs:
+    """
+    What the baseline plans with: Cheng's cost on the same city graph ANTROUTE routes on, at
+    the same window, from what the cameras observed then (see src/routing/baseline_router.py).
+    Built once, like _network().
+    """
+    net = _network()
+    wg = net.wg_antroute
+    g = IacoGraph(
+        node_ids=np.asarray(net.graph.node_ids),
+        src=wg.src,
+        dst=wg.dst,
+        distance=wg.distance,
+        lat=np.array([net.node_coords[int(n)][0] for n in net.graph.node_ids]),
+        lon=np.array([net.node_coords[int(n)][1] for n in net.graph.node_ids]),
+    )
+    free_flow = (
+        net.free_flow_seconds
+        if net.free_flow_seconds is not None
+        else wg.distance / (FALLBACK_SPEED_KMH / 3.6)
+    )
+    observed = camera_observations(
+        _observed_rows(net.risk_edges_path, wg.window),
+        np.asarray(net.graph.node_ids),
+        list(net.graph.camera_nodes.values()),
+    )
+    # No vehicle counts ship with the app (they live with the YOLO detections), so the flow
+    # term of Cheng's cost is zero here; build_inputs records that in flow_observed.
+    return build_inputs(g, free_flow, observed, camera_flow=None)
 
 
 def _as_of(net: _Network) -> Optional[datetime]:
@@ -269,24 +330,62 @@ def _path_points(net: _Network, node_ids: List[int]) -> List[dict]:
     return [{"lat": net.node_coords[n][0], "lng": net.node_coords[n][1]} for n in node_ids]
 
 
+def _duration_min(net: _Network, m: PathMetrics) -> int:
+    """
+    Travel time of a route by the app's one ETA engine, whichever system chose the route.
+
+    Both systems' cards are timed with this, so two systems that pick the same road always
+    show the same time, and a difference on the map is a difference in the route. Each
+    system's own ETA prediction is a separate question, scored offline against Apple Maps
+    by scripts/evaluate_routing.py.
+    """
+    if net.free_flow_seconds is None:
+        return max(1, round(m.distance_m / 1000 / FALLBACK_SPEED_KMH * 60))
+    return max(1, round(path_eta_seconds(net.wg_antroute, net.free_flow_seconds, m.nodes) / 60))
+
+
 def _metrics_to_option(net: _Network, wg: WeightedGraph, label: str, m: PathMetrics) -> dict:
-    eta_seconds = (
-        path_eta_seconds(wg, net.free_flow_seconds, m.nodes) if net.free_flow_seconds is not None else None
-    )
-    duration_min = (
-        max(1, round(eta_seconds / 60))
-        if eta_seconds is not None
-        else max(1, round(m.distance_m / 1000 / FALLBACK_SPEED_KMH * 60))
-    )
-    method = "Risk-aware route (ACO)" if wg.lam > 0 else "Shortest-distance baseline"
     return {
         "label": label,
-        "via": f"{method} -- {m.n_edges} segments, {m.mean_risk:.0%} avg. risk",
-        "duration_min": duration_min,
+        "via": f"Risk-aware route (ACO) -- {m.n_edges} segments, {m.mean_risk:.0%} avg. risk",
+        "duration_min": _duration_min(net, m),
         "distance_km": round(m.distance_m / 1000, 2),
         "congestion_level": _congestion_label(net, m.mean_risk),
+        "mean_risk": round(m.mean_risk, 4),
+        "algorithm": "antroute",
+        "fallback_reason": None,
         "event_note": None,
         "path": _path_points(net, m.nodes),
+    }
+
+
+def _baseline_option(net: _Network, stops: List[int]) -> dict:
+    """
+    The baseline's single route (IACO returns one optimal path), in the same dict shape as
+    ANTROUTE's options.
+
+    Distance, risk and duration are all measured the same way as ANTROUTE's (on its graph,
+    by _duration_min), so the two cards compare routes, not measuring methods.
+    """
+    route = plan_baseline(_baseline_inputs(), stops, BASELINE_CONFIG, fallback=settings.baseline_fallback)
+    m = net.wg_antroute.evaluate_path(route.nodes)
+    if route.algorithm == IACO:
+        method = "Improved ACO (Cheng 2023)"
+    elif route.algorithm == SHORTEST_DISTANCE:
+        method = "Spatial shortest distance (IACO found no route)"
+    else:
+        method = f"IACO for {route.legs_by_iaco} of {route.legs} legs, shortest distance for the rest"
+    return {
+        "label": "Baseline route",
+        "via": f"{method} -- {m.n_edges} segments, {m.mean_risk:.0%} avg. risk",
+        "duration_min": _duration_min(net, m),
+        "distance_km": round(m.distance_m / 1000, 2),
+        "congestion_level": _congestion_label(net, m.mean_risk),
+        "mean_risk": round(m.mean_risk, 4),
+        "algorithm": route.algorithm,
+        "fallback_reason": route.fallback_reason,
+        "event_note": None,
+        "path": _path_points(net, route.nodes),
     }
 
 
@@ -333,32 +432,33 @@ def plan_real_routes(
     model: str = "antroute",
 ) -> List[dict]:
     """
-    Real risk-aware (or distance-only baseline) routes for the given stops, in the
-    same dict shape route_engine.plan_routes() returns.
+    Routes for the given stops, in the same dict shape route_engine.plan_routes() returns.
 
-    Raises RouteOutsideNetworkError if any stop is too far from the monitored k-hop
-    subgraph -- the caller should fall back to the placeholder in that case, not
-    fail the request outright.
+    model="antroute" is the risk- and event-aware ACO, with up to three options.
+    model="baseline" is the thesis baseline, Improved ACO (Cheng 2023), with one option.
+    See _baseline_option() and src/routing/baseline_router.py.
+
+    Raises RouteOutsideNetworkError if any stop is too far from the road network, and
+    BaselineNoRouteError when the baseline finds nothing and its fallback is switched off.
 
     For 3+ stops (one or more waypoints), the underlying multi_stop_route() does not
     produce alternatives (it chains the single best leg-by-leg route), so only one
     option is returned rather than three.
     """
     net = _network()
-    wg = net.wg_antroute if model == "antroute" else net.wg_baseline
-
-    # Event-awareness is what ANTROUTE adds over the baseline: the baseline routes on
-    # distance alone, with neither predicted congestion nor reported incidents, so it
-    # stays the honest "no model at all" comparison.
-    impact = None
-    live: List[tuple] = []
-    if model == "antroute":
-        live = live_events(net)
-        if live:
-            impact = event_impact(net.graph, live, net.event_intersections)
-            wg = apply_events(wg, impact, mu=settings.event_mu)
-
     stops = [nearest_node(net, origin_coords)] + [nearest_node(net, c) for c in destination_coords]
+
+    # The baseline plans on observed traffic with Cheng's own cost and colony. It sees neither
+    # ANTROUTE's predicted risk nor the reported incidents: those are what ANTROUTE adds.
+    if model == "baseline":
+        return [_baseline_option(net, stops)]
+
+    wg = net.wg_antroute
+    impact = None
+    live = live_events(net)
+    if live:
+        impact = event_impact(net.graph, live, net.event_intersections)
+        wg = apply_events(wg, impact, mu=settings.event_mu)
 
     # Lighter than the library default (20 ants x 60 iterations) because the colony now
     # searches the whole city. With the goal-directed heuristic the ants converge on the

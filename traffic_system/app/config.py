@@ -23,6 +23,12 @@ class Settings(BaseSettings):
     event_mu: float = 1.0
     event_as_of: str = ""
 
+    # The baseline is Improved ACO (Cheng 2023), run as published, so on this network it
+    # usually finds no route. With the fallback on, such a trip gets the spatial
+    # shortest-distance route instead, the paper's own comparator, labelled as such, so
+    # route optimality stays computable. Off: the baseline returns no route at all.
+    baseline_fallback: bool = True
+
     class Config:
         env_file = ".env"
         # This .env is shared with the data-ingestion side of the project (API keys

@@ -27,19 +27,21 @@ ACTIVE_EVENTS = [
     {"keyword": "moa", "note": "Event detour applied: concert near MOA reroutes via Macapagal Blvd"},
 ]
 
-# Placeholder variants per model. The baseline is not event-aware and is a
-# bit slower/longer, so the comparison tab shows two different results.
-# TODO: replace both with the real model calls.
+# Placeholder variants for ANTROUTE when the real pipeline cannot run.
+# TODO: replace with the real model call.
+#
+# There is deliberately no baseline placeholder. The baseline exists to be compared against,
+# and an invented baseline route would make that comparison meaningless, so when the real
+# baseline cannot run the request says so instead (BaselineUnavailableError).
 ANTROUTE_VARIANTS = [
     {"label": "Best route", "km_mult": 1.0, "speed_kmh": 32, "congestion": "moderate"},
     {"label": "Least traffic", "km_mult": 0.92, "speed_kmh": 22, "congestion": "clear"},
     {"label": "Shortest distance", "km_mult": 0.83, "speed_kmh": 18, "congestion": "heavy"},
 ]
-BASELINE_VARIANTS = [
-    {"label": "Best route", "km_mult": 1.09, "speed_kmh": 26, "congestion": "moderate"},
-    {"label": "Least traffic", "km_mult": 1.0, "speed_kmh": 19, "congestion": "moderate"},
-    {"label": "Shortest distance", "km_mult": 0.88, "speed_kmh": 15, "congestion": "heavy"},
-]
+
+
+class BaselineUnavailableError(Exception):
+    """The baseline cannot produce a route for this request; the message says why."""
 
 
 def geocode(place_name: str) -> Tuple[float, float]:
@@ -93,8 +95,16 @@ def plan_real_routes_or_none(points: List[Tuple[float, float]], model: str) -> O
     try:
         return risk_routing.plan_real_routes(points[0], points[1:], model)
     except risk_routing.RouteOutsideNetworkError as exc:
+        if model == "baseline":
+            raise BaselineUnavailableError(f"No baseline route: {exc}") from exc
         logger.info("Falling back to the placeholder: %s", exc)
         return None
+    except ValueError as exc:
+        # The baseline's own failures: no route with the fallback off, or an unreachable
+        # destination. ANTROUTE's ValueErrors propagate as before.
+        if model == "baseline":
+            raise BaselineUnavailableError(str(exc)) from exc
+        raise
 
 
 def plan_routes(
@@ -104,11 +114,12 @@ def plan_routes(
     model: str = "antroute",
 ) -> List[dict]:
     """
-    Routes from the real model pipeline when every stop is inside the monitored
-    CCTV network; otherwise a distance-only placeholder (haversine + fixed
-    multipliers) so the app still responds for the many Metro Manila searches
-    outside that network's current 8-intersection coverage. `model` selects
-    ANTRoute (risk-aware) or the baseline (same search, lambda=0).
+    Routes from the real model pipeline when every stop is inside the road network.
+
+    `model` selects ANTROUTE (risk- and event-aware ACO) or the baseline (Improved ACO,
+    Cheng 2023). When the real pipeline cannot run, ANTROUTE falls back to a distance-only
+    placeholder (haversine + fixed multipliers) so the app still responds; the baseline
+    raises BaselineUnavailableError instead of inventing a route.
     """
 
     points = resolve_points(origin_name, destinations, origin_coords_override)
@@ -116,24 +127,25 @@ def plan_routes(
     real_routes = plan_real_routes_or_none(points, model)
     if real_routes is not None:
         return real_routes
+    if model == "baseline":
+        raise BaselineUnavailableError(
+            "No baseline route: the scored road network (risk_edges.csv) is not available on "
+            "this server, so the baseline cannot run."
+        )
 
     destination_names = [d["name"] for d in destinations]
     total_km = sum(haversine_km(points[i], points[i + 1]) for i in range(len(points) - 1))
 
     base_km = round(total_km * 1.35, 1) if total_km > 0 else 1.0
-
-    is_baseline = model == "baseline"
-    variants = BASELINE_VARIANTS if is_baseline else ANTROUTE_VARIANTS
-    event_note = None if is_baseline else find_event_note(destination_names)
-    via_offset = 1 if is_baseline else 0
+    event_note = find_event_note(destination_names)
 
     routes = []
-    for i, v in enumerate(variants):
+    for i, v in enumerate(ANTROUTE_VARIANTS):
         distance_km = round(base_km * v["km_mult"], 1)
         duration_min = max(5, round((distance_km / v["speed_kmh"]) * 60))
         routes.append({
             "label": v["label"],
-            "via": VIA_ROADS[(i + via_offset) % len(VIA_ROADS)],
+            "via": VIA_ROADS[i % len(VIA_ROADS)],
             "duration_min": duration_min,
             "distance_km": distance_km,
             "congestion_level": v["congestion"],

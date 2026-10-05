@@ -74,6 +74,7 @@ def score_trip(
     apple_eta_optimal: Sequence[float],
     apple_eta_route: Sequence[float],
     trip_id: Optional[str] = None,
+    predicted_eta: Optional[Sequence[float]] = None,
 ) -> dict:
     """
     One system's route for one trip, as a compute_metrics_by_scenario trial.
@@ -81,6 +82,12 @@ def score_trip(
     `legs` holds the route's node ids per leg (one leg unless multi-destination);
     `apple_eta_optimal` / `apple_eta_route` are Apple's per-leg times for its own route and
     for this one. `gamma` is the system's ETA risk sensitivity.
+
+    `predicted_eta` supplies the system's own per-leg travel-time estimate when it does not
+    come from ANTROUTE's ETA engine -- the baseline (Improved ACO) predicts with the observed
+    travel times its own cost function is built from. Left out, the estimate is computed from
+    `wg` and `gamma` as before. Note that `wg` still measures distance and risk for every
+    system, so those stay on one yardstick.
     """
     if not legs or any(len(leg) < 2 for leg in legs):
         raise ValueError("every leg needs at least two nodes")
@@ -96,7 +103,12 @@ def score_trip(
 
     path = [int(v) for v in legs[0]] + [int(v) for leg in legs[1:] for v in leg[1:]]
     metrics = wg.evaluate_path(path)
-    predicted = [path_eta_seconds(wg, free_flow_seconds, leg, gamma) for leg in legs]
+    if predicted_eta is None:
+        predicted = [path_eta_seconds(wg, free_flow_seconds, leg, gamma) for leg in legs]
+    else:
+        predicted = _positive("predicted_eta", predicted_eta)
+        if len(predicted) != len(legs):
+            raise ValueError(f"{len(legs)} leg(s) but {len(predicted)} predicted travel time(s)")
     return {
         "trip_id": trip_id,
         "system": system,

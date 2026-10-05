@@ -15,8 +15,12 @@ import json
 from pathlib import Path
 from typing import Callable, Dict, List, Optional, Sequence
 
+import numpy as np
 import pandas as pd
 import torch
+
+from src.data.tweet_geocode import cameras_by_intersection, load_camera_map, place
+from src.routing.event_layer import load_landmarks
 
 from src.data.alignment import (
     BUFFER_START,
@@ -30,6 +34,9 @@ from src.data.alignment import (
 from src.data.dataset import ANTROUTEWindowDataset
 from src.vision.label_store import load_frames
 from src.vision.timeline import corrected_manifest
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+LANDMARKS_CSV = REPO_ROOT / "configs" / "event_landmarks.csv"
 
 WEATHER_COLUMNS = ["ws_temp_c", "ws_precip_mm", "ws_humidity_pct"]
 CLASS_TO_IDX = {"Light": 0, "Medium": 1, "Heavy": 2}
@@ -77,18 +84,36 @@ def load_tweets_table(
     embeddings_path: Path,
     camera_ids: Sequence[str],
     days: Optional[Sequence] = None,
+    camera_map: Optional[Dict[str, str]] = None,
+    landmarks: Optional[Dict[str, str]] = None,
+    locations: Optional[Dict[str, str]] = None,
 ) -> pd.DataFrame:
-    """created_at + embedding per tweet, shared by every camera (tweets are not geocoded).
+    """
+    created_at + embedding per tweet, at the camera the tweet is about.
 
     Row i of embeddings.pt is the i-th tweet in sorted(rglob('tweets_*.json')) order, exactly
     as TwitterTrafficDataset enumerated them, so createdAt is recovered by replaying that walk.
+    That order is load-bearing: the walk must not be deduplicated or filtered, or every
+    embedding after the first dropped tweet belongs to the wrong post.
+
+    Placement is src/data/tweet_geocode.py. A tweet that names no camera's intersection is
+    dropped: the cameras are the only places with visual ground truth, so text elsewhere has
+    nothing to inform. This previously assigned every tweet to every camera, which made the
+    text feature identical across cameras and so useless to the model.
+
+    `locations` maps tweet id -> a hand-read location phrase (from
+    data/labels/tweet_training_window.csv) for the posts no rule can place.
     """
-    created = []
+    created, texts, ids = [], [], []
     for path in sorted(Path(raw_twitter_root).rglob("tweets_*.json")):
         with path.open(encoding="utf-8") as f:
             content = json.load(f)
         tweets = content.get("data", content) if isinstance(content, dict) else content
-        created.extend(t.get("createdAt") if isinstance(t, dict) else None for t in tweets)
+        for tweet in tweets:
+            is_dict = isinstance(tweet, dict)
+            created.append(tweet.get("createdAt") if is_dict else None)
+            texts.append((tweet.get("text") or tweet.get("full_text") or "") if is_dict else "")
+            ids.append(str(tweet.get("id") or "") if is_dict else "")
 
     payload = torch.load(embeddings_path, map_location="cpu")
     embeddings = (payload["embeddings"] if isinstance(payload, dict) else payload).float().numpy()
@@ -104,14 +129,36 @@ def load_tweets_table(
     if days is not None:
         local_dates = stamps.dt.tz_convert(LOCAL_TZ).dt.date
         keep &= local_dates.isin(set(days)).to_numpy()
-
-    base = pd.DataFrame({
-        "created_at": stamps[keep].reset_index(drop=True),
-        "embedding": list(embeddings[keep]),
-    })
-    if base.empty or not len(camera_ids):
+    if not keep.any() or not len(camera_ids):
         return empty_tweets()
-    return pd.concat([base.assign(camera_id=c) for c in camera_ids], ignore_index=True)
+
+    kept = np.flatnonzero(keep)
+    kept_texts = [texts[i] for i in kept]
+    overrides = [locations.get(ids[i]) if locations else None for i in kept]
+
+    by_intersection = cameras_by_intersection(
+        camera_ids, load_camera_map() if camera_map is None else camera_map
+    )
+    cameras_per_tweet = place(
+        kept_texts,
+        load_landmarks(LANDMARKS_CSV) if landmarks is None else landmarks,
+        by_intersection,
+        locations=overrides,
+    )
+
+    rows_created, rows_embedding, rows_camera = [], [], []
+    for position, cameras in zip(kept, cameras_per_tweet):
+        for camera_id in cameras:
+            rows_created.append(stamps.iloc[position])
+            rows_embedding.append(embeddings[position])
+            rows_camera.append(camera_id)
+    if not rows_camera:
+        return empty_tweets()
+    return pd.DataFrame({
+        "camera_id": rows_camera,
+        "created_at": pd.to_datetime(pd.Series(rows_created), utc=True),
+        "embedding": rows_embedding,
+    })
 
 
 def empty_tweets() -> pd.DataFrame:
@@ -166,8 +213,16 @@ def build_training_records(
     raw_twitter_root: Optional[Path] = None,
     embeddings_path: Optional[Path] = None,
     visual_split: Optional[Dict[tuple, str]] = None,
+    camera_map: Optional[Dict[str, str]] = None,
+    locations: Optional[Dict[str, str]] = None,
 ):
-    """Sessions for every camera on the visual-regime days. Text is skipped if no paths are given."""
+    """
+    Sessions for every camera on the visual-regime days. Text is skipped if no paths are given.
+
+    `camera_map` (camera id -> intersection) and `locations` (tweet id -> hand-read location)
+    steer where a tweet lands; both default to the project's own configs. See
+    src/data/tweet_geocode.py.
+    """
     frames = load_frames_table(frames_root)
     if frames.empty:
         raise ValueError("No usable frames in manifest.csv (all missing or start_estimated).")
@@ -175,7 +230,8 @@ def build_training_records(
     days = sorted(pd.to_datetime(frames["timestamp"], format="ISO8601").dt.date.unique())
 
     if raw_twitter_root is not None and embeddings_path is not None:
-        tweets = load_tweets_table(raw_twitter_root, embeddings_path, camera_ids, days)
+        tweets = load_tweets_table(raw_twitter_root, embeddings_path, camera_ids, days,
+                                   camera_map=camera_map, locations=locations)
     else:
         tweets = empty_tweets()
 

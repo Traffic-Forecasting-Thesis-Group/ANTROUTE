@@ -60,17 +60,68 @@ def data(tmp_path):
 
     twitter = tmp_path / "twitter" / TRAIN_DAY
     twitter.mkdir(parents=True)
-    tweets = [{"createdAt": f"Mon May 04 09:{m}:00 +0000 2026", "text": "x"} for m in (10, 20, 30)]
+    # Real location text: tweets are now placed at the camera whose intersection they name
+    # (src/data/tweet_geocode.py), so a tweet saying nothing placeable reaches no camera.
+    tweets = [
+        {"createdAt": f"Mon May 04 09:{m}:00 +0000 2026",
+         "id": f"t{m}",
+         "text": "MMDA ALERT: Stalled truck at EDSA Ortigas NB as of 5:05 PM. One lane occupied."}
+        for m in (10, 20, 30)
+    ]
     (twitter / "tweets_1700_1900.json").write_text(json.dumps({"data": tweets}), encoding="utf-8")
     embeddings = tmp_path / "embeddings.pt"
     torch.save({"embeddings": torch.randn(3, 768)}, embeddings)
     return {"frames": frames, "weather": weather, "twitter": tmp_path / "twitter", "embeddings": embeddings}
 
 
+CAMERA_MAP = {"CAM1": "EDSA-Ortigas-Shaw", "CAM2": "Roxas Blvd-Kalaw"}
+
+
 def test_tweet_times_are_recovered_in_manila_time(data):
-    df = load_tweets_table(data["twitter"], data["embeddings"], ["CAM1"], days=[datetime(2026, 5, 4).date()])
+    df = load_tweets_table(data["twitter"], data["embeddings"], ["CAM1"],
+                           days=[datetime(2026, 5, 4).date()], camera_map=CAMERA_MAP)
     assert len(df) == 3 and set(df["camera_id"]) == {"CAM1"}
     assert df["created_at"].dt.tz_convert("Asia/Manila").dt.hour.tolist() == [17, 17, 17]
+
+
+def test_a_tweet_reaches_only_the_camera_whose_intersection_it_names(data):
+    # The bug this replaced: every tweet was assigned to every camera, so the text feature was
+    # identical everywhere and carried no location at all.
+    df = load_tweets_table(data["twitter"], data["embeddings"], ["CAM1", "CAM2"],
+                           days=[datetime(2026, 5, 4).date()], camera_map=CAMERA_MAP)
+    assert set(df["camera_id"]) == {"CAM1"}          # not CAM2, which watches Roxas Blvd
+    assert len(df) == 3
+
+
+def test_a_tweet_naming_no_known_place_reaches_no_camera(data, tmp_path):
+    twitter = tmp_path / "nowhere" / TRAIN_DAY
+    twitter.mkdir(parents=True)
+    twitter.joinpath("tweets_1700_1900.json").write_text(
+        json.dumps({"data": [{"createdAt": "Mon May 04 09:10:00 +0000 2026", "id": "n1",
+                              "text": "heavy traffic somewhere unnamed"}]}),
+        encoding="utf-8",
+    )
+    embeddings = tmp_path / "one.pt"
+    torch.save({"embeddings": torch.randn(1, 768)}, embeddings)
+    df = load_tweets_table(tmp_path / "nowhere", embeddings, ["CAM1"], camera_map=CAMERA_MAP)
+    assert df.empty
+
+
+def test_a_hand_read_location_places_a_tweet_no_rule_could(data, tmp_path):
+    twitter = tmp_path / "prose" / TRAIN_DAY
+    twitter.mkdir(parents=True)
+    twitter.joinpath("tweets_1700_1900.json").write_text(
+        json.dumps({"data": [{"createdAt": "Mon May 04 09:10:00 +0000 2026", "id": "p1",
+                              "text": "Commuters stranded for hours after an incident this evening"}]}),
+        encoding="utf-8",
+    )
+    embeddings = tmp_path / "one.pt"
+    torch.save({"embeddings": torch.randn(1, 768)}, embeddings)
+    unplaced = load_tweets_table(tmp_path / "prose", embeddings, ["CAM1"], camera_map=CAMERA_MAP)
+    assert unplaced.empty
+    placed = load_tweets_table(tmp_path / "prose", embeddings, ["CAM1"], camera_map=CAMERA_MAP,
+                               locations={"p1": "EDSA Ortigas"})
+    assert set(placed["camera_id"]) == {"CAM1"}
 
 
 def test_stale_embeddings_are_rejected(data):
@@ -81,7 +132,7 @@ def test_stale_embeddings_are_rejected(data):
 
 def test_sessions_windows_and_targets(data):
     records, _, skipped = build_training_records(
-        data["frames"], data["weather"], data["twitter"], data["embeddings"])
+        data["frames"], data["weather"], data["twitter"], data["embeddings"], camera_map=CAMERA_MAP)
     assert skipped == 0
     lookup = load_label_lookup(data["frames"])
     train = LabeledWindowDataset(records, "train", lookup, image_size=32)

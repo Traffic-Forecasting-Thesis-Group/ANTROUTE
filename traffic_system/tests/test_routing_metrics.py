@@ -16,7 +16,7 @@ from src.routing.route_trials import (
     score_trip,
 )
 from src.routing.significance import compare_paired, relative_difference
-from tests.test_aco_routing import weighted_risky_direct
+from test_aco_routing import weighted_risky_direct
 
 
 def trial(scenario, c_opt, c_pred, actual, predicted):

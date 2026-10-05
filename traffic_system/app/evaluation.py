@@ -70,4 +70,5 @@ def get_comparison_metrics() -> ComparisonMetricsResponse:
     return ComparisonMetricsResponse(
         route_optimality_pct=OptimalityPct(antroute=opt_a, baseline=opt_b),
         metrics=rows,
+        baseline_name="Always 'Medium'",
     )
