@@ -13,6 +13,8 @@ import {
   ActivityIndicator,
   Dimensions,
   Alert,
+  Animated,
+  PanResponder,
 } from 'react-native';
 
 import MapView, { PROVIDER_GOOGLE, Marker, Polyline } from 'react-native-maps';
@@ -45,6 +47,15 @@ import {
 import { searchPlaces, reverseGeocode, PlaceSuggestion } from '../api/placesService';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
+
+// Route panel heights the drag handle settles at (low, default, full), and the height
+// below which letting go closes the panel back to the search bar. Fractions of the space
+// above the keyboard, not of the screen: when the keyboard opens that space shrinks, and
+// the panel has to shrink with it or it fills everything up to the status bar.
+const SHEET_SNAPS = [0.4, 0.7, 0.92];
+const SHEET_DEFAULT = SHEET_SNAPS[1];
+const SHEET_FULL = SHEET_SNAPS[SHEET_SNAPS.length - 1];
+const SHEET_CLOSE_BELOW = 0.25;
 
 const CONGESTION_COLORS: Record<CongestionLevel, string> = {
   clear: '#10b981',
@@ -274,8 +285,63 @@ export default function HomeScreen({ navigation }: any) {
     }
   };
 
-  const handleExpand = () => setIsExpanded(true);
+  const sheetHeight = useRef(new Animated.Value(SHEET_DEFAULT)).current; // fraction of the space
+  const sheetHeightPct = sheetHeight.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] });
+  const sheetRestRef = useRef(SHEET_DEFAULT); // height the panel last settled at
+  const dragStartRef = useRef(SHEET_DEFAULT); // height when the current drag began
+  const sheetSpaceRef = useRef(SCREEN_HEIGHT); // px the panel can use, to turn drags into fractions
+  const dragSpaceRef = useRef(SCREEN_HEIGHT); // that space when the current drag began
+
+  const snapSheet = (to: number) => {
+    sheetRestRef.current = to;
+    Animated.spring(sheetHeight, { toValue: to, useNativeDriver: false, bounciness: 0 }).start();
+  };
+
+  const handleExpand = () => {
+    sheetHeight.setValue(SHEET_DEFAULT);
+    sheetRestRef.current = SHEET_DEFAULT;
+    setIsExpanded(true);
+  };
   const handleCollapse = () => setIsExpanded(false);
+
+  // Created once, so it only touches refs and state setters (both stable).
+  const sheetPanResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder: (_, g) => Math.abs(g.dy) > 4,
+      // Not dismissing the keyboard here: the panel's space would grow mid-drag and the
+      // panel would jump up under the finger that is trying to pull it down.
+      onPanResponderGrant: () => {
+        dragSpaceRef.current = sheetSpaceRef.current;
+        sheetHeight.stopAnimation((value) => {
+          dragStartRef.current = value;
+        });
+      },
+      onPanResponderMove: (_, g) => {
+        const next = dragStartRef.current - g.dy / dragSpaceRef.current;
+        sheetHeight.setValue(Math.min(Math.max(next, 0), SHEET_FULL));
+      },
+      onPanResponderRelease: (_, g) => {
+        // A tap or a tiny wiggle leaves the panel where it was.
+        if (Math.abs(g.dy) < 8 && Math.abs(g.vy) < 0.3) {
+          snapSheet(sheetRestRef.current);
+          return;
+        }
+        // Where the panel would end up with the flick's momentum (vy > 0 = downward).
+        const projected = dragStartRef.current - (g.dy + g.vy * 200) / dragSpaceRef.current;
+        if (projected < SHEET_CLOSE_BELOW) {
+          Keyboard.dismiss();
+          setIsExpanded(false);
+          return;
+        }
+        const nearest = SHEET_SNAPS.reduce((best, h) =>
+          Math.abs(h - projected) < Math.abs(best - projected) ? h : best
+        );
+        snapSheet(nearest);
+      },
+      onPanResponderTerminate: () => snapSheet(sheetRestRef.current),
+    })
+  ).current;
 
   const runPlacesSearch = (field: ActiveField, text: string) => {
     setActiveField(field);
@@ -663,11 +729,17 @@ export default function HomeScreen({ navigation }: any) {
         keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -40}
         pointerEvents="box-none"
       >
-        <View style={styles.innerContainer} pointerEvents="box-none">
-          <View
+        <View
+          style={styles.innerContainer}
+          pointerEvents="box-none"
+          onLayout={(e) => {
+            sheetSpaceRef.current = e.nativeEvent.layout.height;
+          }}
+        >
+          <Animated.View
             style={[
               styles.overlayWrapper,
-              isExpanded && !isNavigating && styles.expandedWrapper,
+              isExpanded && !isNavigating && [styles.expandedWrapper, { height: sheetHeightPct }],
               isExpanded && isNavigating && styles.navigatingWrapper,
             ]}
           >
@@ -680,6 +752,13 @@ export default function HomeScreen({ navigation }: any) {
                 <Text style={styles.placeholderText}>Plan Your Route!</Text>
               </TouchableOpacity>
             ) : (
+              <>
+              {/* Drag handle: outside the ScrollView so it stays put and owns the gesture */}
+              {!isNavigating && (
+                <View style={styles.dragHandleZone} {...sheetPanResponder.panHandlers}>
+                  <View style={styles.dragHandle} />
+                </View>
+              )}
               <ScrollView
                 showsVerticalScrollIndicator={false}
                 style={isNavigating ? styles.routeBox : styles.routeBoxFill}
@@ -688,7 +767,6 @@ export default function HomeScreen({ navigation }: any) {
                 nestedScrollEnabled
                 bounces={false}
               >
-                {!isNavigating && <View style={styles.dragHandle} />}
 
                 {!isNavigating && (
                   <View style={styles.tabBarRow}>
@@ -1046,8 +1124,9 @@ export default function HomeScreen({ navigation }: any) {
                 )}
 
               </ScrollView>
+              </>
             )}
-          </View>
+          </Animated.View>
         </View>
       </KeyboardAvoidingView>
     </View>
@@ -1181,8 +1260,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 20,
   },
+  // Height comes from the drag handle (sheetHeight)
   expandedWrapper: {
-    height: '70%',
     backgroundColor: '#fff',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
@@ -1238,13 +1317,20 @@ const styles = StyleSheet.create({
   routeBoxContent: {
     paddingBottom: 60,
   },
+  // Full-width touch target, much taller than the visible bar so it's easy to grab
+  dragHandleZone: {
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    marginTop: -10,
+    marginHorizontal: -25,
+    paddingTop: 12,
+    paddingBottom: 15,
+  },
   dragHandle: {
-    alignSelf: 'center',
     width: 40,
-    height: 4,
-    marginBottom: 15,
-    backgroundColor: '#e5e7eb',
-    borderRadius: 2,
+    height: 5,
+    backgroundColor: '#d1d5db',
+    borderRadius: 3,
   },
   inputRow: {
     width: '100%',
