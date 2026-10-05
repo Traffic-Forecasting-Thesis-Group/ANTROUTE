@@ -6,7 +6,7 @@ import scipy.sparse as sp
 from src.data.graph_data import GraphData
 from src.models.congestion_risk_score import edge_index_from_adjacency
 from src.models.radr_stgnn import normalize_adjacency
-from src.routing.aco_routing import AntColonyConfig, ant_colony_shortest_path, multi_stop_route
+from src.routing.aco_routing import AntColonyConfig, ant_colony_shortest_path, diverse_routes, multi_stop_route
 from src.routing.dynamic_weight import build_weighted_graph, risk_vector
 
 NODE_IDS = np.array([100, 101, 102, 103])
@@ -136,6 +136,54 @@ def test_multi_stop_needs_at_least_two_stops():
     wg = weighted_risky_direct()
     with pytest.raises(ValueError):
         multi_stop_route(wg, [100], AntColonyConfig(n_iterations=5))
+
+
+def graph_from_edges(node_ids, edges) -> GraphData:
+    rows, cols = zip(*edges)
+    adjacency = sp.csr_matrix(
+        (list(edges.values()), (list(rows), list(cols))), shape=(len(node_ids), len(node_ids)), dtype=np.float64
+    )
+    return GraphData(
+        node_ids=np.array(node_ids),
+        adjacency=adjacency,
+        a_hat=normalize_adjacency(adjacency),
+        edge_index=edge_index_from_adjacency(adjacency),
+        camera_nodes={},
+    )
+
+
+def test_diverse_routes_returns_three_separate_roads_shortest_first():
+    # Three disjoint roads from 0 to 4: via 1 (200 m), via 2 (260 m), via 3 (320 m).
+    graph = graph_from_edges(
+        [0, 1, 2, 3, 4],
+        {(0, 1): 100.0, (1, 4): 100.0, (0, 2): 130.0, (2, 4): 130.0, (0, 3): 160.0, (3, 4): 160.0},
+    )
+    wg = build_weighted_graph(graph, np.zeros(6), lam=2.0)
+    routes = diverse_routes(wg, [0, 4], k=3, config=AntColonyConfig(n_ants=8, n_iterations=15, seed=0))
+    assert [r.nodes for r in routes] == [[0, 1, 4], [0, 2, 4], [0, 3, 4]]
+    assert [r.distance_m for r in routes] == [200.0, 260.0, 320.0]
+
+
+def test_diverse_routes_skips_a_detour_that_is_mostly_the_same_road():
+    # 0-1-2-9 (1100 m) and 0-1-3-9 (1110 m) share the 1000 m first leg: one route, not
+    # two. 0-4-9 (1200 m) is the real alternative.
+    graph = graph_from_edges(
+        [0, 1, 2, 3, 4, 9],
+        {(0, 1): 1000.0, (1, 2): 50.0, (2, 5): 50.0, (1, 3): 55.0, (3, 5): 55.0, (0, 4): 600.0, (4, 5): 600.0},
+    )
+    wg = build_weighted_graph(graph, np.zeros(7), lam=2.0)
+    routes = diverse_routes(wg, [0, 9], k=3, config=AntColonyConfig(n_ants=8, n_iterations=15, seed=0))
+    assert [r.nodes for r in routes] == [[0, 1, 2, 9], [0, 4, 9]]
+
+
+def test_diverse_routes_ranks_by_the_risk_weighted_cost_not_distance():
+    # The direct edge is shorter (500 m vs 600 m) but risky, so ANTRoute ranks the
+    # detour first; the baseline (lambda = 0) ranks by distance.
+    wg = weighted_risky_direct()
+    config = AntColonyConfig(n_ants=8, n_iterations=15, seed=0)
+    assert [r.nodes for r in diverse_routes(wg, [100, 103], config=config)] == [[100, 101, 102, 103], [100, 103]]
+    baseline = diverse_routes(wg.with_lambda(0.0), [100, 103], config=config)
+    assert [r.nodes for r in baseline] == [[100, 103], [100, 101, 102, 103]]
 
 
 def long_chain_with_dead_end_traps(n_hops: int) -> GraphData:

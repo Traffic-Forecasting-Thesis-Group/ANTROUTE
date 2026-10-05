@@ -9,8 +9,8 @@ class Settings(BaseSettings):
     google_places_api_key: str = ""
 
     # Scored risk_edges.csv from scripts/predict_congestion_risk.py. No live feed
-    # exists, so this is always the newest available scored window standing in for
-    # "right now". Not committed to git (same reasoning as embeddings.pt -- ~100MB) --
+    # exists, so a trip is routed on the recorded window matching its departure time
+    # of day (see risk_routing.py). Not committed to git (same reasoning as embeddings.pt -- ~100MB) --
     # copy it here locally from wherever your scoring run wrote it, or override via
     # RISK_EDGES_PATH in .env.
     risk_edges_path: str = "data/processed/risk_scores/risk_edges.csv"

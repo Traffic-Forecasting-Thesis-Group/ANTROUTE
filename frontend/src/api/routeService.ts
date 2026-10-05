@@ -1,6 +1,7 @@
 import apiClient from './client';
 
-export type CongestionLevel = 'clear' | 'moderate' | 'heavy';
+// 'unknown' when the server has no congestion data loaded.
+export type CongestionLevel = 'clear' | 'moderate' | 'heavy' | 'unknown';
 export type RouteModel = 'antroute' | 'baseline';
 
 export interface RouteOption {
@@ -37,8 +38,16 @@ export interface ComparisonMetrics {
   metrics: ComparisonMetricRow[];
 }
 
+export interface RoutePlan {
+  routes: RouteOption[];
+  /** Which recorded traffic the routes were planned on, or that none is loaded. */
+  trafficNote: string;
+}
+
 interface PlanRouteResult {
   routes: (Omit<RouteOption, 'path'> & { path?: { lat: number; lng: number }[] })[];
+  departure_time: string;
+  traffic_note: string;
 }
 
 interface ComparisonMetricsResponse {
@@ -53,21 +62,23 @@ interface ComparisonMetricsResponse {
 }
 
 /**
- * POST /routes/plan — returns the top 3 route options (best / least traffic /
- * shortest) for an origin and one or more destinations. Pass real coordinates
- * (GPS for origin, search results for destinations) whenever available —
- * they take priority over text on the backend, which otherwise falls back to
- * a placeholder KNOWN_PLACES dictionary.
+ * POST /routes/plan — returns up to 3 route options (best / least traffic /
+ * shortest) for an origin and one or more destinations, in the order given.
+ * Pass real coordinates (GPS for origin, search results for destinations)
+ * whenever available; text without them is geocoded on the backend, and a
+ * place it can't find comes back as an error rather than a guessed route.
  *
  * `model` picks which model computes the routes (ANTRoute or the baseline).
+ * `departAt` is when the driver leaves; null means leaving now. The backend
+ * routes on the congestion recorded at that time of day.
  */
 export async function planRoute(
   origin: string,
   destinations: DestinationInput[],
-  optimizeStopOrder: boolean = true,
   originCoords?: Coordinates | null,
-  model: RouteModel = 'antroute'
-): Promise<RouteOption[]> {
+  model: RouteModel = 'antroute',
+  departAt: Date | null = null
+): Promise<RoutePlan> {
   try {
     const { data } = await apiClient.post<PlanRouteResult>('/routes/plan', {
       origin,
@@ -78,13 +89,16 @@ export async function planRoute(
         lat: d.lat ?? null,
         lng: d.lng ?? null,
       })),
-      optimize_stop_order: optimizeStopOrder,
       model,
+      depart_at: departAt ? departAt.toISOString() : null,
     });
-    return data.routes.map((r) => ({
-      ...r,
-      path: (r.path ?? []).map((p) => ({ latitude: p.lat, longitude: p.lng })),
-    }));
+    return {
+      routes: data.routes.map((r) => ({
+        ...r,
+        path: (r.path ?? []).map((p) => ({ latitude: p.lat, longitude: p.lng })),
+      })),
+      trafficNote: data.traffic_note,
+    };
   } catch (error: any) {
     if (error.response) {
       throw new Error(

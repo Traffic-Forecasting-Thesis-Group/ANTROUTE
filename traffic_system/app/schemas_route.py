@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import List, Literal, Optional
 
 from pydantic import BaseModel
@@ -14,8 +15,10 @@ class RoutePlanRequest(BaseModel):
     origin_lat: Optional[float] = None
     origin_lng: Optional[float] = None
     destinations: List[DestinationInput]
-    optimize_stop_order: bool = True
     model: Literal["antroute", "baseline"] = "antroute"
+    # When the driver leaves, ISO 8601 (an offset is expected; without one it is read as
+    # Manila time). Omitted means leaving now.
+    depart_at: Optional[datetime] = None
 
 
 class PathPoint(BaseModel):
@@ -35,6 +38,9 @@ class RouteOption(BaseModel):
 
 class RoutePlanResponse(BaseModel):
     routes: List[RouteOption]
+    departure_time: str  # the departure planned for, Manila time with offset
+    # Which recorded traffic the routes were planned on, or that none is loaded.
+    traffic_note: str
 
 
 class ComparisonMetricRow(BaseModel):

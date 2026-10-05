@@ -111,8 +111,24 @@ def test_path_eta_sums_congested_time_over_the_route():
             for e in range(wg.n_edges)
         ]
     )
-    eta = path_eta_seconds(wg, free_flow, [100, 101, 102, 103], gamma=1.0)
+    eta = path_eta_seconds(wg, free_flow, [100, 101, 102, 103], gamma=1.0, intersection_delay_s=0.0)
     assert eta == pytest.approx(3 * 20.0 * 1.1)
+
+
+def test_each_junction_adds_a_delay_that_grows_with_congestion():
+    graph = make_graph()
+    wg = build_weighted_graph(graph, np.full(graph.edge_index.shape[1], 0.5), lam=2.0)
+    free_flow = np.full(wg.n_edges, 20.0)
+    eta = path_eta_seconds(wg, free_flow, [100, 101, 102, 103], gamma=2.0, intersection_delay_s=6.0)
+    # three edges, each (20 s + 6 s junction) at 1 + 2 * 0.5 = 2x
+    assert eta == pytest.approx(3 * (20.0 + 6.0) * 2.0)
+
+
+def test_negative_intersection_delay_is_rejected():
+    graph = make_graph()
+    wg = build_weighted_graph(graph, np.zeros(graph.edge_index.shape[1]))
+    with pytest.raises(ValueError):
+        path_eta_seconds(wg, np.ones(wg.n_edges), [100, 101], intersection_delay_s=-1.0)
 
 
 def test_path_eta_needs_at_least_two_nodes():

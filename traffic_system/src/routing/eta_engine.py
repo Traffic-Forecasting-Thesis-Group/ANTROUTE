@@ -1,3 +1,30 @@
+"""
+ETA engine: travel time of a route from free-flow time and congestion risk.
+
+    t(edge) = (free_flow(edge) + INTERSECTION_DELAY) * (1 + gamma * Risk(edge))
+
+free_flow is OSM length / speed_kph -- the posted (or road-type default) limit, as if
+driving every road at its limit without stopping. On real Metro Manila routes that
+averages ~50 km/h, far above the city's measured free-flow speed (~30 km/h), because
+signals and turns are missing. INTERSECTION_DELAY adds them back per junction passed,
+so an expressway with few junctions stays fast while a route through many small
+streets does not.
+
+Both constants are calibrated against the TomTom Traffic Index 2025 for Metro Manila
+(10 km in 31 min 45 s on average, congestion level 57.3% -> free-flow ~20.2 min per
+10 km = ~29.7 km/h; evening rush hour 10 km in 43 min 29 s = ~2.15x free flow):
+
+  INTERSECTION_DELAY  6.4 s: on 60 sampled cross-city fastest routes (mean 13.4 km,
+                      103 junctions) this brings the posted-speed 49.8 km/h down to
+                      29.7 km/h.
+  DEFAULT_GAMMA       2.0: at the decoder's typical peak-window risk (~0.54 mean over
+                      routed corridors) a route takes ~2.1x free flow, matching
+                      evening rush hour; a fully congested edge takes 3x.
+
+Both are first-pass, city-wide calibrations. Refit them once the team's Apple Maps /
+Google Maps ETAs for the test trips are in (scripts/evaluate_routing.py collects them).
+"""
+
 from __future__ import annotations
 from pathlib import Path
 from typing import Sequence
@@ -6,7 +33,13 @@ import scipy.sparse as sp
 from src.data.graph_data import GraphData
 from src.routing.dynamic_weight import WeightedGraph
 
-DEFAULT_GAMMA = 1.0
+DEFAULT_GAMMA = 2.0
+DEFAULT_INTERSECTION_DELAY_S = 6.4
+
+# TomTom Traffic Index 2025, Metro Manila average congestion level: travel takes 57.3%
+# longer than free flow over the whole day. The multiplier to use when no congestion
+# risk is known at all, instead of pretending the roads are empty.
+TYPICAL_CONGESTION_MULTIPLIER = 1.573
 
 
 def congested_eta(
@@ -50,11 +83,22 @@ def load_free_flow_seconds(spatial_dir: Path, graph: GraphData) -> np.ndarray:
 
 
 def path_eta_seconds(
-    wg: WeightedGraph, free_flow_seconds: np.ndarray, path: Sequence[int], gamma: float = DEFAULT_GAMMA
+    wg: WeightedGraph,
+    free_flow_seconds: np.ndarray,
+    path: Sequence[int],
+    gamma: float = DEFAULT_GAMMA,
+    intersection_delay_s: float = DEFAULT_INTERSECTION_DELAY_S,
 ) -> float:
+    """
+    Congested travel time of `path`. Each edge is charged the delay of the junction it
+    ends at, and that delay grows with congestion like the driving time does (queues at
+    a signal lengthen in traffic).
+    """
     if len(path) < 2:
         raise ValueError("a path needs at least two nodes")
+    if not np.isfinite(intersection_delay_s) or intersection_delay_s < 0:
+        raise ValueError(f"intersection_delay_s must be finite and >= 0, received {intersection_delay_s}")
     indices = [wg.index_of(n) for n in path]
     edges = [wg.edge_id(u, v) for u, v in zip(indices, indices[1:])]
-    eta = congested_eta(free_flow_seconds[edges], wg.risk[edges], gamma)
+    eta = congested_eta(free_flow_seconds[edges] + intersection_delay_s, wg.risk[edges], gamma)
     return float(eta.sum())

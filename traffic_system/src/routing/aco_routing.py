@@ -1,6 +1,6 @@
 
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Dict, List, Optional, Sequence, Tuple
 import numpy as np
 import scipy.sparse as sp
@@ -248,3 +248,66 @@ def multi_stop_route(
         full_path.extend(leg.best.nodes[1:])
     best = wg.evaluate_path(full_path)
     return RouteResult(best=best, alternatives=[])
+
+
+# Two routes sharing more than this fraction of the shorter one's length are the same
+# route with a small detour, not an alternative worth offering.
+MAX_SHARED_FRACTION = 0.7
+
+# Each round, edges already used by a found route cost this much more, compounding, so
+# the colony is pushed onto different roads until it finds a genuinely separate route.
+REUSE_PENALTY = 1.5
+
+
+def _path_edges(wg: WeightedGraph, nodes: Sequence[int]) -> List[int]:
+    indices = [wg.index_of(n) for n in nodes]
+    return [wg.edge_id(u, v) for u, v in zip(indices, indices[1:])]
+
+
+def shared_fraction(wg: WeightedGraph, a: PathMetrics, b: PathMetrics) -> float:
+    """Length the two routes have in common, as a fraction of the shorter one."""
+    edges_a, edges_b = set(_path_edges(wg, a.nodes)), set(_path_edges(wg, b.nodes))
+    shared = float(wg.distance[list(edges_a & edges_b)].sum()) if edges_a & edges_b else 0.0
+    return shared / min(a.distance_m, b.distance_m)
+
+
+def diverse_routes(
+    wg: WeightedGraph,
+    stops: Sequence[int],
+    k: int = 3,
+    config: AntColonyConfig = AntColonyConfig(),
+    max_rounds: int = 4,
+) -> List[PathMetrics]:
+    """
+    Up to `k` genuinely different routes through `stops`, cheapest first under `wg`'s
+    dynamic cost (the k shortest routes, in the model's own sense of "short").
+
+    The colony's own alternatives are the other tours its ants happened to walk, and
+    once pheromone converges those are the best route with a one-node detour -- not
+    something to offer a driver. So this uses the penalty method: run the colony, make
+    every edge of the routes found so far REUSE_PENALTY times more expensive, run it
+    again, and keep a route only if it shares at most MAX_SHARED_FRACTION of its length
+    with each route already kept. Every route is scored on the real, unpenalised `wg`.
+    Fewer than `k` come back when the network offers no more separate roads.
+    """
+    if k <= 0:
+        raise ValueError("k must be greater than zero")
+    kept: List[PathMetrics] = []
+    searched = wg
+    for _ in range(max_rounds):
+        if len(stops) == 2:
+            result = ant_colony_shortest_path(searched, stops[0], stops[1], config)
+            candidates = [result.best] + result.alternatives
+        else:
+            candidates = [multi_stop_route(searched, stops, config).best]
+        for candidate in candidates:
+            route = wg.evaluate_path(candidate.nodes)
+            if all(shared_fraction(wg, route, other) <= MAX_SHARED_FRACTION for other in kept):
+                kept.append(route)
+            if len(kept) == k:
+                return sorted(kept, key=lambda m: m.dynamic_cost)
+        weight = searched.weight.copy()
+        for route in kept:
+            weight[_path_edges(wg, route.nodes)] *= REUSE_PENALTY
+        searched = replace(searched, weight=weight)
+    return sorted(kept, key=lambda m: m.dynamic_cost)
