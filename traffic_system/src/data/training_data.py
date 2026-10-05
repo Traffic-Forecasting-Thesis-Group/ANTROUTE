@@ -15,6 +15,7 @@ import json
 from pathlib import Path
 from typing import Callable, Dict, List, Optional, Sequence
 
+import numpy as np
 import pandas as pd
 import torch
 
@@ -232,18 +233,86 @@ def append_time_features(item: dict, record: SessionRecord, start: int) -> dict:
     return item
 
 
+FLOW_FEATURES = 3   # scaled log vehicle count, YOLO lane occupancy, has-detection flag
+
+
+def load_flow_lookup(frames_roots) -> Dict[str, tuple]:
+    """absolute frame path -> (n_vehicles, occupancy), the YOLO detections in each auto_labels.csv.
+
+    This is the "CCTV-derived traffic flow" temporal sequence of the methodology (Section 3.3,
+    Table 1). It is an input, not a label: train with human labels only (human_only=True), since
+    the automatic labels are themselves a per-camera tercile of these same counts."""
+    lookup: Dict[str, tuple] = {}
+    for root in as_roots(frames_roots):
+        path = root / "auto_labels.csv"
+        if not path.exists():
+            continue
+        df = pd.read_csv(path, usecols=["frame_path", "n_vehicles", "occupancy"])
+        for p, n, occ in zip(df["frame_path"], df["n_vehicles"], df["occupancy"]):
+            lookup.setdefault(frame_key(root, p), (float(n), float(occ)))
+    return lookup
+
+
+def fit_vehicle_scale(records: Sequence[SessionRecord], flow_lookup: Dict[str, tuple]) -> float:
+    """Largest log1p(vehicle count) over TRAINING-split frames, so val/test never set the scale."""
+    counts = [flow_lookup[p][0] for r in records if r.split == "train"
+              for p in r.frame_paths if p is not None and p in flow_lookup]
+    return float(np.log1p(max(counts))) if counts and max(counts) > 0 else 1.0
+
+
+class FlowFeatures:
+    """Per-step flow columns for a window; zeros (and flag 0) where the minute has no detection.
+    A class rather than a closure so datasets can be sent to DataLoader worker processes (Windows)."""
+
+    def __init__(self, lookup: Dict[str, tuple], vehicle_scale: float):
+        self.lookup = lookup
+        self.vehicle_scale = vehicle_scale
+
+    def __call__(self, record: SessionRecord, start: int) -> torch.Tensor:
+        flow = torch.zeros(WINDOW_STEPS, FLOW_FEATURES)
+        for j in range(WINDOW_STEPS):
+            path = record.frame_paths[start + j]
+            if path is not None and path in self.lookup:
+                n, occ = self.lookup[path]
+                flow[j] = torch.tensor([np.log1p(n) / self.vehicle_scale, occ, 1.0])
+        return flow
+
+
+def append_flow_features(item: dict, record: SessionRecord, start: int, flow: FlowFeatures) -> dict:
+    item["temporal"] = torch.cat([item["temporal"], flow(record, start)], dim=1)
+    return item
+
+
+def _temporal_dim(records: Sequence[SessionRecord], time_features: bool, flow) -> int:
+    return ((len(records[0].weather) if len(records) else 0)
+            + (TIME_FEATURES if time_features else 0) + (FLOW_FEATURES if flow is not None else 0))
+
+
+def _append_extras(dataset, item: dict, i: int) -> dict:
+    """Weather, then the time columns, then the flow columns -- the order temporal_dim assumes."""
+    record_index, start = dataset.index[i]
+    record = dataset.records[record_index]
+    if dataset.time_features:
+        append_time_features(item, record, start)
+    if dataset.flow is not None:
+        append_flow_features(item, record, start, dataset.flow)
+    return item
+
+
 class LabeledWindowDataset(ANTROUTEWindowDataset):
     """ANTROUTEWindowDataset restricted to visual windows containing at least one labelled frame.
 
     time_features=True appends two columns to `temporal`: how far into the session each step is
-    (congestion builds through the peak) and whether it is the PM session (AM peaks are lighter)."""
+    (congestion builds through the peak) and whether it is the PM session (AM peaks are lighter).
+    flow (a FlowFeatures) appends the CCTV-derived traffic flow columns after those."""
 
     def __init__(self, records: Sequence[SessionRecord], split: str, lookup: Dict[str, int],
-                 image_size: int = 224, time_features: bool = False):
+                 image_size: int = 224, time_features: bool = False, flow: Optional[FlowFeatures] = None):
         super().__init__(records, split, regime="visual", image_size=image_size,
                          target_fn=make_target_fn(lookup))
         self.time_features = time_features
-        self.temporal_dim = (len(records[0].weather) if len(records) else 0) + (TIME_FEATURES if time_features else 0)
+        self.flow = flow
+        self.temporal_dim = _temporal_dim(records, time_features, flow)
         self.index = [
             (i, s) for i, s in self.index
             if any(records[i].frame_paths[s + j] in lookup for j in range(WINDOW_STEPS)
@@ -251,11 +320,7 @@ class LabeledWindowDataset(ANTROUTEWindowDataset):
         ]
 
     def __getitem__(self, i: int) -> dict:
-        item = super().__getitem__(i)
-        if self.time_features:
-            record_index, start = self.index[i]
-            append_time_features(item, self.records[record_index], start)
-        return item
+        return _append_extras(self, super().__getitem__(i), i)
 
 
 class InferenceWindowDataset(ANTROUTEWindowDataset):
@@ -263,7 +328,7 @@ class InferenceWindowDataset(ANTROUTEWindowDataset):
     With a `lookup`, each item also carries the human target so predictions can be scored."""
 
     def __init__(self, records: Sequence[SessionRecord], image_size: int = 224, time_features: bool = False,
-                 lookup: Optional[Dict[str, int]] = None):
+                 lookup: Optional[Dict[str, int]] = None, flow: Optional[FlowFeatures] = None):
         super().__init__(records, "__none__", regime="visual", image_size=image_size,
                          target_fn=make_target_fn(lookup) if lookup else None)
         self.index = [
@@ -271,11 +336,8 @@ class InferenceWindowDataset(ANTROUTEWindowDataset):
             if any(p is not None for p in r.frame_paths[s:s + WINDOW_STEPS])
         ]
         self.time_features = time_features
-        self.temporal_dim = (len(records[0].weather) if len(records) else 0) + (TIME_FEATURES if time_features else 0)
+        self.flow = flow
+        self.temporal_dim = _temporal_dim(records, time_features, flow)
 
     def __getitem__(self, i: int) -> dict:
-        item = super().__getitem__(i)
-        if self.time_features:
-            record_index, start = self.index[i]
-            append_time_features(item, self.records[record_index], start)
-        return item
+        return _append_extras(self, super().__getitem__(i), i)

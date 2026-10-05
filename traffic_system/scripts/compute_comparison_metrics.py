@@ -18,6 +18,13 @@ predict_congestion_risk.py produced and that the live app serves routes from.
 The two numbers are not expected to match, and if the model you're evaluating
 barely beats the naive baseline here, that is real and should be reported as
 such, not smoothed over.
+
+"Always 0.5" is a weak bar: 57% of the labels are Heavy, so 0.5 is not the mean
+label. The output also reports the stronger "always predict the TRAIN-split mean
+label" constant, and a collapse check -- the mean predicted risk on Light, Medium
+and Heavy edges, and how much the risk varies at all. A model that has collapsed to
+(roughly) one value everywhere routes exactly like a shortest-distance router, since
+W = dist * (1 + lambda * c) is then the same scaling on every edge.
 """
 
 import argparse
@@ -54,9 +61,16 @@ def main() -> None:
     y_true = labelled["weak_target"].to_numpy(dtype=float)
     y_pred = labelled["risk"].to_numpy(dtype=float)
     y_naive = np.full_like(y_true, 0.5)
+    train = df[(df["camera_edge"] == True) & df["weak_target"].notna() & (df["split"] == "train")]  # noqa: E712
+    train_mean = float(train["weak_target"].mean()) if len(train) else float("nan")
 
     antroute = regression_metrics(y_true, y_pred)
     baseline = regression_metrics(y_true, y_naive)
+    naive_mean = regression_metrics(y_true, np.full_like(y_true, train_mean)) if len(train) else None
+    by_label = {
+        str(k): round(float(v), 4) for k, v in labelled.groupby("weak_target")["risk"].mean().items()
+    }
+    spread = (by_label.get("1.0", np.nan) - by_label.get("0.0", np.nan))
 
     result = {
         "risk_edges": str(a.risk_edges),
@@ -65,11 +79,30 @@ def main() -> None:
         "label_distribution": {str(k): int(v) for k, v in y_true_counts(y_true).items()},
         "antroute": antroute,
         "baseline": baseline,
+        "naive_train_mean": {"value": train_mean, **naive_mean} if naive_mean else None,
+        "collapse_check": {
+            "pearson_r": float(np.corrcoef(y_true, y_pred)[0, 1]) if y_pred.std() > 0 else 0.0,
+            "mean_risk_by_label": by_label,
+            "heavy_minus_light": round(float(spread), 4),
+            "risk_std_all_edges": round(float(df["risk"].std()), 4),
+            "risk_std_within_window_median": round(
+                float(df.groupby(window_column(df))["risk"].std().median()), 4),
+        },
     }
     print(json.dumps(result, indent=2))
     print()
+    if naive_mean and antroute["mae"] >= naive_mean["mae"]:
+        print(f"WARNING: MAE {antroute['mae']:.3f} does not beat always predicting the training mean "
+              f"({naive_mean['mae']:.3f}); the model has not learned usable per-edge risk.")
+    if not spread > 0.2:
+        print(f"WARNING: Heavy edges score only {spread:.3f} above Light ones; the risk barely separates "
+              "congestion levels, so routing will behave like shortest distance.")
     print("Paste the antroute/baseline mae, rmse and r2 values above into")
     print("app/evaluation.py's RAW_RESULTS, with this command in the comment above it.")
+
+
+def window_column(df: pd.DataFrame) -> str:
+    return "window_start" if "window_start" in df.columns else "window_end"
 
 
 def y_true_counts(y_true: np.ndarray) -> dict:

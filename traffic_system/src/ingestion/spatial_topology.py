@@ -36,6 +36,21 @@ INTERSECTIONS = {
     "Roxas Blvd-Kalaw": (ROXAS_ALIASES, ["kalaw avenue", "kalaw street", "kalaw"]),
     "Roxas-Padre Burgos": (ROXAS_ALIASES, ["padre burgos", "p. burgos", "p burgos"]),
 }
+# Roughly where each camera intersection really is (lat, lon). Street names alone are ambiguous:
+# OSM has two places where an "EDSA" road meets an "Aurora Boulevard" -- the camera's one in Cubao,
+# and Aurora Blvd (Tramo) in Pasay, 9 km south -- and picking the first name match put the
+# EDSA-Aurora camera in Pasay. A name match only counts within ANCHOR_RADIUS_M of the anchor.
+INTERSECTION_ANCHORS = {
+    "EDSA-Quezon Ave": (14.6442, 121.0377),
+    "EDSA-Kamuning": (14.6307, 121.0457),
+    "EDSA-Aurora": (14.6216, 121.0501),        # Cubao, NOT Aurora Blvd (Tramo), Pasay
+    "EDSA-Regalia (P. Tuazon)": (14.6165, 121.0523),
+    "EDSA-Ortigas-Shaw": (14.5934, 121.0583),  # the Ortigas Ave crossing; Shaw is a separate one
+    "8337-Ayala NB 1-PTZ": (14.5501, 121.0294),
+    "Roxas Blvd-Kalaw": (14.5798, 120.9774),
+    "Roxas-Padre Burgos": (14.5830, 120.9755),
+}
+ANCHOR_RADIUS_M = 500.0
 MANUAL_OVERRIDES: dict[str, int] = {}
 HF_REPO = "bettergovph/project-noah-hazard-maps"
 HF_API_TREE = f"https://huggingface.co/api/datasets/{HF_REPO}/tree/main"
@@ -67,7 +82,18 @@ def load_or_build_graph(graph_path: Path) -> nx.MultiDiGraph:
     return ox.graph_from_place(PLACE, network_type="drive", simplify=True)
 
 
+def _distance_m(lat1, lon1, lat2, lon2) -> float:
+    lat1, lon1, lat2, lon2 = map(np.radians, (lat1, lon1, lat2, lon2))
+    h = np.sin((lat2 - lat1) / 2) ** 2 + np.cos(lat1) * np.cos(lat2) * np.sin((lon2 - lon1) / 2) ** 2
+    return float(2 * 6_371_000.0 * np.arcsin(np.sqrt(h)))
+
+
 def locate_key_intersections(G: nx.MultiDiGraph) -> dict[str, int]:
+    # A graph loaded from a previous run's graphml still carries that run's CCTV flags; clear them,
+    # or a node this run no longer picks would stay marked as a camera next to the new one.
+    for _, data in G.nodes(data=True):
+        data.pop("is_cctv_node", None)
+        data.pop("cctv_label", None)
     node_streets: dict[int, set[str]] = {}
     for u, v, data in G.edges(data=True):
         names = _street_names(data)
@@ -85,6 +111,14 @@ def locate_key_intersections(G: nx.MultiDiGraph) -> dict[str, int]:
             for node, streets in node_streets.items()
             if _matches_any(streets, aliases_a) and _matches_any(streets, aliases_b)
         ]
+        if label in INTERSECTION_ANCHORS:
+            lat, lon = INTERSECTION_ANCHORS[label]
+            far = [n for n in candidates
+                   if _distance_m(lat, lon, G.nodes[n]["y"], G.nodes[n]["x"]) > ANCHOR_RADIUS_M]
+            if far:
+                log.info(f"'{label}': ignoring {len(far)} same-name match(es) more than "
+                         f"{ANCHOR_RADIUS_M:.0f} m from the intersection, e.g. node {far[0]}")
+            candidates = [n for n in candidates if n not in far]
         if not candidates:
             log.warning(f"No graph match for '{label}'")
             continue

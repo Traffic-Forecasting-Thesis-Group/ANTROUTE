@@ -15,8 +15,10 @@ from src.data.alignment import WINDOW_STEPS, session_start  # noqa: E402
 from src.data.graph_data import build_subgraph  # noqa: E402
 from src.data.graph_dataset import GraphWindowDataset  # noqa: E402
 from src.data.training_data import (
+    FlowFeatures,
     InferenceWindowDataset,
     build_training_records,
+    load_flow_lookup,
     load_frames_table,
     load_label_lookup,
     session_of,
@@ -55,7 +57,8 @@ def build_model(cfg: dict, device) -> TrafficRiskModel:
     )
     stgnn = RADRSTGNN(in_features=fusion.lstm.hidden_size)
     decoder = MLPDecoder(node_embedding_dim=stgnn.output_dim)
-    return TrafficRiskModel(fusion, stgnn, decoder).to(device)
+    n_camera_nodes = len(cfg["node_labels"]) if cfg.get("camera_embedding") else 0
+    return TrafficRiskModel(fusion, stgnn, decoder, n_camera_nodes=n_camera_nodes).to(device)
 
 
 def summarise(rows: List[dict]) -> dict:
@@ -109,7 +112,11 @@ def predict(
         visual_split=visual_split,
     )
     lookup = load_label_lookup(frames_roots, human_only=True) if with_labels else None
-    base = InferenceWindowDataset(records, cfg["image_size"], cfg.get("time_features", False), lookup or None)
+    # The vehicle scale is the one fitted on the training split, never refitted on what is scored.
+    flow = FlowFeatures(load_flow_lookup(frames_roots), cfg["vehicle_scale"]) if cfg.get("flow_features") else None
+    base = InferenceWindowDataset(
+        records, cfg["image_size"], cfg.get("time_features", False), lookup or None, flow=flow
+    )
     dataset = GraphWindowDataset(
         records,
         "infer",

@@ -24,12 +24,27 @@ def scatter_camera_features(
 
 class TrafficRiskModel(nn.Module):
 
-    def __init__(self, fusion: nn.Module, stgnn: RADRSTGNN, decoder: Optional[MLPDecoder] = None):
+    def __init__(
+        self,
+        fusion: nn.Module,
+        stgnn: RADRSTGNN,
+        decoder: Optional[MLPDecoder] = None,
+        n_camera_nodes: int = 0,
+    ):
         super().__init__()
         self.fusion = fusion
         self.stgnn = stgnn
         self.decoder = decoder or MLPDecoder(node_embedding_dim=stgnn.output_dim)
         self.placeholder = nn.Parameter(torch.zeros(fusion.lstm.hidden_size))
+        # One learned vector per camera intersection, added to its fused features before the graph.
+        # The Light/Medium/Heavy labels are relative to each camera's view, so without an identity
+        # signal the model cannot tell "Heavy for this camera" from "Heavy for that one". Zero-init:
+        # it starts as a no-op. Kept optional so checkpoints trained without it still load.
+        self.camera_embedding = (
+            nn.Embedding(n_camera_nodes, fusion.lstm.hidden_size) if n_camera_nodes else None
+        )
+        if self.camera_embedding is not None:
+            nn.init.zeros_(self.camera_embedding.weight)
 
     def forward(
         self,
@@ -46,6 +61,8 @@ class TrafficRiskModel(nn.Module):
             visual_mask=batch["visual_mask"],
             text_mask=batch["text_mask"],
         )
+        if self.camera_embedding is not None:
+            features = features + self.camera_embedding.weight.to(features.dtype)
         x = scatter_camera_features(features, camera_index, a_hat.shape[0], self.placeholder)
         nodes = self.stgnn(x, a_hat)
         return self.decoder(nodes, edge_index)

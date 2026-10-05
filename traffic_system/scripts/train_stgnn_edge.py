@@ -14,10 +14,13 @@ from src.data.graph_data import DEFAULT_K, GraphData, build_subgraph, graph_size
 from src.data.graph_dataset import GraphWindowDataset  # noqa: E402
 from src.data.training_data import (
     WEATHER_COLUMNS,
+    FlowFeatures,
     assign_session_splits,
     build_training_records,
     describe_split,
+    fit_vehicle_scale,
     labelled_sessions,
+    load_flow_lookup,
     load_label_lookup,
 )  # noqa: E402
 from src.models.cnn_lstm_fusion import CNNLSTMFusion  # noqa: E402
@@ -97,6 +100,8 @@ def train(
     min_session_labels: int = 100,
     time_features: bool = True,
     use_class_weights: bool = False,
+    flow_features: bool = False,
+    camera_embedding: bool = False,
 ) -> dict:
     torch.manual_seed(seed)
     np.random.seed(seed)
@@ -115,6 +120,15 @@ def train(
     )
     if not lookup:
         raise ValueError("No labelled frames (with human_only, review frames in the viewer first).")
+    flow = None
+    if flow_features:
+        if not human_only:
+            print("WARNING: --flow-features without --human-only: the automatic labels are a tercile of "
+                  "these same vehicle counts, so the model would just learn to invert the auto-labeller.")
+        flow_lookup = load_flow_lookup(frames_root)
+        flow = FlowFeatures(flow_lookup, fit_vehicle_scale(records, flow_lookup))
+        print(f"CCTV flow features on: {len(flow_lookup)} frames with YOLO detections, "
+              f"vehicle scale {flow.vehicle_scale:.3f}")
     camera_ids = sorted({r.camera_id for r in records})
     camera_map, unmapped = resolve_camera_map(camera_ids, list(graph.camera_nodes), camera_csv)
     print(
@@ -145,6 +159,7 @@ def train(
             image_size,
             sample_cameras=s == "train",
             time_features=time_features,
+            flow=flow,
         )
         for s in ("train", "val", "test")
     }
@@ -169,7 +184,9 @@ def train(
     )
     stgnn = RADRSTGNN(in_features=fusion.lstm.hidden_size)
     decoder = MLPDecoder(node_embedding_dim=stgnn.output_dim)
-    model = TrafficRiskModel(fusion, stgnn, decoder).to(device)
+    model = TrafficRiskModel(
+        fusion, stgnn, decoder, n_camera_nodes=len(node_labels) if camera_embedding else 0
+    ).to(device)
     fusion_params = set((id(p) for p in model.fusion.parameters()))
     optimizer = torch.optim.AdamW(
         [
@@ -189,6 +206,9 @@ def train(
         "temporal_dim": temporal_dim,
         "time_features": time_features,
         "use_class_weights": use_class_weights,
+        "flow_features": flow_features,
+        "vehicle_scale": flow.vehicle_scale if flow is not None else None,
+        "camera_embedding": camera_embedding,
         "use_text": raw_twitter_root is not None,
         "visual_split": {f"{d.isoformat()}|{s}": v for (d, s), v in (visual_split or VISUAL_SPLIT).items()},
         "weather_columns": WEATHER_COLUMNS,
@@ -293,6 +313,15 @@ def main():
         help="balance the BCE loss against the Light/Medium/Heavy label skew (57%% Heavy by default), "
              "instead of letting the model learn to predict close to the mean label everywhere",
     )
+    p.add_argument(
+        "--flow-features", action="store_true",
+        help="add the CCTV-derived traffic flow (YOLO vehicle count + occupancy per minute) to the "
+             "temporal input, as Section 3.3 specifies; use with --human-only",
+    )
+    p.add_argument(
+        "--camera-embedding", action="store_true",
+        help="learn one vector per camera intersection (labels are relative to each camera's view)",
+    )
     p.add_argument("--graph-sizes", action="store_true")
     a = p.parse_args()
     if a.graph_sizes:
@@ -326,6 +355,8 @@ def main():
         min_session_labels=a.min_session_labels,
         time_features=not a.no_time_features,
         use_class_weights=a.class_weights,
+        flow_features=a.flow_features,
+        camera_embedding=a.camera_embedding,
     )
 
 
