@@ -152,10 +152,11 @@ class SessionRecord:
 def _session_plan(
     nonvisual_start: date,
     buffer_start: date,
+    visual_split: Optional[Dict[Tuple[date, str], str]] = None,
 ) -> List[Tuple[date, str, str, str]]:
     plan = [
         (day, session, "visual", split)
-        for (day, session), split in VISUAL_SPLIT.items()
+        for (day, session), split in (VISUAL_SPLIT if visual_split is None else visual_split).items()
     ]
     for day in nonvisual_days(nonvisual_start, buffer_start):
         split = nonvisual_split(day, nonvisual_start, buffer_start)
@@ -172,6 +173,7 @@ def build_sessions(
     weather_columns: Sequence[str],
     nonvisual_start: date = NONVISUAL_START,
     buffer_start: date = BUFFER_START,
+    visual_split: Optional[Dict[Tuple[date, str], str]] = None,
 ) -> Tuple[List[SessionRecord], MinMaxScaler, int]:
     """
     Align all three streams to 1-minute timesteps per camera and session.
@@ -190,7 +192,7 @@ def build_sessions(
         .set_index("date")
     )
 
-    plan = _session_plan(nonvisual_start, buffer_start)
+    plan = _session_plan(nonvisual_start, buffer_start, visual_split)
 
     # Weather scaler: training days only (prevents leakage)
     train_days = sorted(

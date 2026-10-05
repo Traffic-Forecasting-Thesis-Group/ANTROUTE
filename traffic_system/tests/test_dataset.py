@@ -60,3 +60,32 @@ def test_batch_runs_through_model(tmp_path):
 
     assert output.shape == (2, 30, 128)
     assert torch.isfinite(output).all()
+
+def test_missing_frame_file_is_skipped_not_crashed(tmp_path):
+    """A frame path present in the session record but not actually on disk (e.g. an interrupted
+    Drive sync) must be treated as no frame for that step, not raise and kill the DataLoader."""
+    import warnings
+    import numpy as np
+    from datetime import date
+    from src.data.alignment import SESSION_STEPS
+
+    real_frame = tmp_path / "real.jpg"
+    from PIL import Image
+    Image.new("RGB", (8, 8)).save(real_frame)
+
+    paths = [None] * SESSION_STEPS
+    paths[0] = str(real_frame)
+    paths[1] = str(tmp_path / "missing.jpg")   # never written -- simulates an incomplete sync
+
+    record = SessionRecord(camera_id="CAM", day=date(2026, 5, 13), session="AM", regime="visual",
+                           split="train", frame_paths=paths, text_steps={}, weather=np.zeros(3, dtype="float32"))
+    ds = ANTROUTEWindowDataset([record], "train", regime="visual", image_size=8)
+
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        item = ds[0]
+
+    assert bool(item["visual_mask"][0]) is True             # the real file still loads
+    assert bool(item["visual_mask"][1]) is False             # the missing one is masked out, not crashed
+    assert torch.count_nonzero(item["images"][1]) == 0
+    assert any("unreadable" in str(w.message) for w in caught)
