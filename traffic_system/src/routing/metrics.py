@@ -49,7 +49,7 @@ def r_squared(actual: np.ndarray, predicted: np.ndarray) -> float:
 @dataclass
 class ScenarioMetrics:
     n_trials: int
-    n_eta_trials: int          # ETA observations with a ground truth (one per leg); ETA metrics use only these
+    n_eta_trials: int          # ETA observations with a ground truth (one per leg or segment); ETA metrics use only these
     route_optimality_mean: float
     route_optimality_sd: float
     mae: float
@@ -93,8 +93,9 @@ def compute_scenario_metrics(c_optimal, c_predicted, actual_eta, predicted_eta) 
 
 def trial_eta_metrics(actual_eta, predicted_eta) -> Dict[str, float]:
     """
-    ETA metrics for one trial (Appendix 2's per-trial rows). A single-leg trip has one
-    observation, so R^2 is NaN for it; a multi-destination trip is scored over its legs.
+    ETA metrics for one trial (Appendix 2's per-trial rows), over its observations: one per
+    leg, or one per stop-to-stop segment when segment times are recorded. R^2 needs at least
+    two observations, so it is NaN for a single leg scored whole.
     """
     actual = np.atleast_1d(np.asarray(actual_eta, dtype=np.float64))
     predicted = np.atleast_1d(np.asarray(predicted_eta, dtype=np.float64))
@@ -108,7 +109,7 @@ def trial_eta_metrics(actual_eta, predicted_eta) -> Dict[str, float]:
 
 
 def _pooled(trials: Sequence[dict], key: str) -> np.ndarray:
-    # A trial's ETA is one value, or one per leg for a multi-destination trip.
+    # A trial's ETA is one value per leg, or per segment when segment times are recorded.
     return np.concatenate([np.atleast_1d(np.asarray(t[key], dtype=np.float64)) for t in trials])
 
 

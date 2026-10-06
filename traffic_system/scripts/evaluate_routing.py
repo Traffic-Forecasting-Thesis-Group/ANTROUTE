@@ -31,19 +31,27 @@ The sheet has one row per leg (single-destination trips have one). Per row, in A
 (Driving, "Leave at" = apple_leave_at; Apple Maps only predicts typical traffic for a weekday
 and time, not a past date):
 
-    apple_eta_seconds            origin -> destination, Apple's own fastest route
-    antroute_apple_eta_seconds   origin -> antroute_waypoints (as stops, in order) -> destination
-    baseline_apple_eta_seconds   origin -> baseline_waypoints (as stops, in order) -> destination
+    apple_eta_seconds                origin -> destination, Apple's own fastest route
+    antroute_apple_eta_seconds       origin -> antroute_waypoints (as stops, in order) -> destination
+    baseline_apple_eta_seconds       origin -> baseline_waypoints (as stops, in order) -> destination
+    antroute_apple_segment_seconds   from that same Apple Maps route, the time of each stop-to-stop
+    baseline_apple_segment_seconds   segment in order, separated by "|" (waypoints + 1 values),
+                                     e.g. "180 | 240 | 300"
 
-When same_route is True one of the last two is enough. An alternative trip's
-apple_eta_seconds may be left blank: it is the same lookup as the recommended trip's.
+When same_route is True one system's columns are enough. An alternative trip's
+apple_eta_seconds may be left blank: it is the same lookup as the recommended trip's. A
+system's apple_eta_seconds may also be left blank once its segment times are in: it is
+their sum. A leg with no waypoints needs no segment times.
 
 Scoring (stored routes are re-scored as-is, ACO is not re-run):
 
     Route Optimality      = sum(apple_eta_seconds) / sum(<system>_apple_eta_seconds) * 100
-    MAE/RMSE/MSE/MAPE/R^2 = <system>'s own per-leg ETA vs <system>_apple_eta_seconds
+    MAE/RMSE/MSE/MAPE/R^2 = <system>'s own per-segment ETA vs <system>_apple_segment_seconds
                             (ANTROUTE's risk-aware ETA engine; for the baseline, the observed
-                            travel times Cheng's cost function is built from)
+                            travel times Cheng's cost function is built from). Scoring per
+                            segment gives every trial several ETA observations, so per-trial
+                            R^2 exists for single-destination trips too and is tested with
+                            Wilcoxon like the other metrics.
     significance          Shapiro-Wilk, Wilcoxon signed-rank, paired t-test (if normal),
                           d = baseline - proposed, Δ% (Equation 15)
 
@@ -106,6 +114,7 @@ from src.routing.route_trials import (  # noqa: E402
     SYSTEMS,
     pick_waypoints,
     score_trip,
+    split_at,
 )
 from src.routing.significance import compare_paired, relative_difference  # noqa: E402
 
@@ -345,14 +354,18 @@ def write_template(a, graph, baseline: "Baseline", config: AntColonyConfig) -> N
                     "apple_eta_seconds": "",
                 }
                 row["baseline_algorithm"] = baseline_algorithm
+                stops_on_route = {
+                    s: pick_waypoints(wg, routes[s], a.n_waypoints) if routes[s] else [] for s in SYSTEMS
+                }
                 for s in SYSTEMS:
-                    stops_on_route = pick_waypoints(wg, routes[s], a.n_waypoints) if routes[s] else []
                     row[f"{s}_waypoints"] = (
-                        " | ".join(latlon(coords, v) for v in stops_on_route) if routes[s] else "NO ROUTE"
+                        " | ".join(latlon(coords, v) for v in stops_on_route[s]) if routes[s] else "NO ROUTE"
                     )
                     row[f"{s}_apple_eta_seconds"] = ""
+                    row[f"{s}_apple_segment_seconds"] = ""
                 for s in SYSTEMS:
                     row[f"{s}_route"] = " ".join(str(v) for v in routes[s]) if routes[s] else ""
+                    row[f"{s}_waypoint_nodes"] = " ".join(str(v) for v in stops_on_route[s])
                 rows.append(row)
             print(f"{trip_id} {window} {' -> '.join(labels[v] for v in stops)}  baseline: {baseline_algorithm}")
 
@@ -388,6 +401,11 @@ def nodes(value: str) -> Optional[List[int]]:
     return [int(v) for v in value.split()] if value and value.strip() else None
 
 
+def segment_seconds(value: str) -> List[float]:
+    """'120 | 300 | 240' -> [120.0, 300.0, 240.0]; blank -> []."""
+    return [seconds(v) for v in value.split("|")] if value and value.strip() else []
+
+
 def json_safe(value):
     if isinstance(value, float) and math.isnan(value):
         return None
@@ -409,7 +427,8 @@ def mean_sd(values: Sequence[float]) -> Dict[str, float]:
 def score_sheet(a, graph, baseline: "Baseline", free_flow_seconds) -> Tuple[List[dict], List[str]]:
     sheet = pd.read_csv(a.apple_maps, dtype=str, keep_default_na=False)
     needed = {"trip_id", "scenario_type", "leg", "window", "apple_eta_seconds"} | {
-        f"{s}_{c}" for s in SYSTEMS for c in ("route", "apple_eta_seconds")
+        f"{s}_{c}" for s in SYSTEMS
+        for c in ("route", "apple_eta_seconds", "apple_segment_seconds", "waypoint_nodes")
     }
     if not needed <= set(sheet.columns):
         raise SystemExit(f"{a.apple_maps} is missing {sorted(needed - set(sheet.columns))}; make it with --template")
@@ -441,12 +460,23 @@ def score_sheet(a, graph, baseline: "Baseline", free_flow_seconds) -> Tuple[List
             for _, r in rows.iterrows()
         ]
         measured = {s: [seconds(r[f"{s}_apple_eta_seconds"]) for _, r in rows.iterrows()] for s in SYSTEMS}
+        segments = {s: [segment_seconds(r[f"{s}_apple_segment_seconds"]) for _, r in rows.iterrows()] for s in SYSTEMS}
+        waypoints = {s: [nodes(r[f"{s}_waypoint_nodes"]) or [] for _, r in rows.iterrows()] for s in SYSTEMS}
         same = [str(r.get("same_route", "")).strip().lower() == "true" for _, r in rows.iterrows()]
         for i, is_same in enumerate(same):
             if is_same:
                 shared = next((measured[s][i] for s in SYSTEMS if np.isfinite(measured[s][i])), float("nan"))
+                shared_segments = next((segments[s][i] for s in SYSTEMS if segments[s][i]), [])
                 for s in SYSTEMS:
                     measured[s][i] = shared
+                    segments[s][i] = shared_segments
+        for s in SYSTEMS:
+            for i in range(len(rows)):
+                # A leg without stops is one segment; a blank leg total is the sum of its segments.
+                if not segments[s][i] and not waypoints[s][i]:
+                    segments[s][i] = [measured[s][i]]
+                if not np.isfinite(measured[s][i]) and segments[s][i]:
+                    measured[s][i] = float(sum(segments[s][i]))
 
         routes = {s: [nodes(r[f"{s}_route"]) for _, r in rows.iterrows()] for s in SYSTEMS}
         if any(leg is None for leg in routes[ANTROUTE]):
@@ -456,18 +486,30 @@ def score_sheet(a, graph, baseline: "Baseline", free_flow_seconds) -> Tuple[List
             why = rows["baseline_algorithm"].iloc[0] if "baseline_algorithm" in rows else "no route"
             notes.append(f"{trip_id}: baseline has no route ({why}); trip left out of the paired comparison")
             continue
-        if not all(np.isfinite(v) for v in optimal + measured[ANTROUTE] + measured[BASELINE]):
+        all_segments = [v for s in SYSTEMS for leg in segments[s] for v in leg]
+        if not all(np.isfinite(v) for v in optimal + measured[ANTROUTE] + measured[BASELINE] + all_segments):
             notes.append(f"{trip_id}: Apple Maps times not all filled in; skipped")
             continue
-        for s in SYSTEMS:
-            # Each system's own predicted travel time for its own route: ANTROUTE's risk-aware
-            # ETA engine, and for the baseline the observed t_ij Cheng's cost is built from.
-            predicted = (
-                baseline.eta_seconds(window, routes[s]) if s == BASELINE else None
+        miscounted = [
+            s for s in SYSTEMS
+            if any(len(t) != len(w) + 1 for t, w in zip(segments[s], waypoints[s]))
+        ]
+        if miscounted:
+            notes.append(
+                f"{trip_id}: {', '.join(miscounted)} segment times do not match the waypoints "
+                "(one time per stop-to-stop segment, i.e. waypoints + 1 per leg); skipped"
             )
+            continue
+        for s in SYSTEMS:
+            # Each system's own predicted travel time for its own route, per segment: ANTROUTE's
+            # risk-aware ETA engine, and for the baseline the observed t_ij Cheng's cost is built from.
+            predicted = None
+            if s == BASELINE:
+                pieces = [seg for leg, w in zip(routes[s], waypoints[s]) for seg in split_at(leg, w)]
+                predicted = baseline.eta_seconds(window, pieces)
             trial = score_trip(
                 wg, routes[s], free_flow_seconds, a.gamma, s, scenario, optimal, measured[s], trip_id,
-                predicted_eta=predicted,
+                predicted_eta=predicted, waypoints=waypoints[s], apple_eta_segments=segments[s],
             )
             trial["route_optimality"] = float(route_optimality([trial["c_optimal"]], [trial["c_predicted"]])[0])
             trial.update(trial_eta_metrics(trial["actual_eta"], trial["predicted_eta"]))

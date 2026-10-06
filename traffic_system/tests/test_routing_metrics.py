@@ -14,6 +14,7 @@ from src.routing.route_trials import (
     RECOMMENDED,
     pick_waypoints,
     score_trip,
+    split_at,
 )
 from src.routing.significance import compare_paired, relative_difference
 from test_aco_routing import weighted_risky_direct
@@ -152,6 +153,54 @@ def test_waypoints_are_inner_nodes_spaced_along_the_route():
     assert pick_waypoints(wg, DETOUR, 10) == [101, 102]
     assert pick_waypoints(wg, DIRECT, 3) == []
     assert pick_waypoints(wg, DETOUR, 0) == []
+
+
+def test_split_at_cuts_the_route_at_its_stops_in_order():
+    assert split_at(DETOUR, [101, 102]) == [[100, 101], [101, 102], [102, 103]]
+    assert split_at(DETOUR, [102]) == [[100, 101, 102], [102, 103]]
+    assert split_at(DETOUR, []) == [DETOUR]
+    with pytest.raises(ValueError, match="inner node"):
+        split_at(DETOUR, [103])                           # the destination is not a stop
+    with pytest.raises(ValueError, match="inner node"):
+        split_at(DETOUR, [102, 101])                      # out of order
+
+
+def test_segment_times_give_a_single_leg_trip_a_per_trial_r2():
+    wg = weighted_risky_direct()
+    t = score_trip(
+        wg, [DETOUR], free_flow(wg), 1.0, ANTROUTE, RECOMMENDED, [100.0], [115.0],
+        waypoints=[[101, 102]], apple_eta_segments=[[40.0, 30.0, 45.0]],
+    )
+    assert t["actual_eta"] == [40.0, 30.0, 45.0] and t["eta_points"] == 3
+    assert t["predicted_eta"] == [pytest.approx(33.0)] * 3
+    assert sum(t["predicted_eta"]) == pytest.approx(99.0)           # same total as the whole leg
+    assert t["c_predicted"] == 115.0                                # optimality keeps the leg total
+    assert np.isfinite(trial_eta_metrics(t["actual_eta"], t["predicted_eta"])["r_squared"])
+
+
+def test_segment_times_cover_every_leg_of_a_multi_destination_trip():
+    wg = weighted_risky_direct()
+    legs = [[100, 101], [101, 102, 103]]
+    t = score_trip(
+        wg, legs, free_flow(wg), 1.0, ANTROUTE, MULTI_DESTINATION, [40.0, 70.0], [50.0, 80.0],
+        waypoints=[[], [102]], apple_eta_segments=[[50.0], [35.0, 45.0]],
+    )
+    assert t["actual_eta"] == [50.0, 35.0, 45.0] and t["eta_points"] == 3
+    assert t["c_predicted"] == 130.0
+
+
+def test_segment_times_must_match_the_stops():
+    wg = weighted_risky_direct()
+    with pytest.raises(ValueError, match="segment time"):
+        score_trip(
+            wg, [DETOUR], free_flow(wg), 1.0, ANTROUTE, RECOMMENDED, [100.0], [115.0],
+            waypoints=[[101, 102]], apple_eta_segments=[[40.0, 75.0]],
+        )
+    with pytest.raises(ValueError, match="predicted"):
+        score_trip(
+            wg, [DETOUR], free_flow(wg), 1.0, BASELINE, RECOMMENDED, [100.0], [115.0], predicted_eta=[99.0],
+            waypoints=[[101, 102]], apple_eta_segments=[[40.0, 30.0, 45.0]],
+        )
 
 
 def test_relative_difference_follows_equation_15():
