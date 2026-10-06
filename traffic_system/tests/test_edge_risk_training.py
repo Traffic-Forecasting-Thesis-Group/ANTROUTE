@@ -1,4 +1,5 @@
-"""train_stgnn_edge.py and predict_congestion_risk.py: CCTV flow features and the camera embedding."""
+"""train_stgnn_edge.py and predict_congestion_risk.py: CCTV flow features, the camera embedding and
+the NOAH flood hazard node feature."""
 
 import csv
 import importlib.util
@@ -6,9 +7,11 @@ import math
 from pathlib import Path
 
 import numpy as np
+import pytest
 import torch
 
-from test_stgnn_training import TRAIN_DAY, data  # noqa: F401  (shared synthetic frames, labels, weather, graph)
+from test_stgnn_training import TRAIN_DAY, data, path_graph  # noqa: F401  (shared synthetic frames, labels, weather, graph)
+from src.data.graph_data import flood_node_features, load_flood_hazard, subgraph_from_arrays
 from src.data.graph_dataset import GraphWindowDataset
 from src.data.training_data import (
     FLOW_FEATURES,
@@ -105,8 +108,11 @@ def test_edge_training_with_flow_and_camera_embedding_round_trips_into_scoring(d
         flow_features=True, camera_embedding=True)
     assert all(math.isfinite(h["train_loss"]) for h in result["history"])
 
-    cfg = torch.load(out, map_location="cpu", weights_only=False)["config"]
-    assert cfg["flow_features"] and cfg["camera_embedding"]
+    ckpt = torch.load(out, map_location="cpu", weights_only=False)
+    cfg = ckpt["config"]
+    assert cfg["flow_features"] and cfg["camera_embedding"] and cfg["flood_features"]
+    # The spatial branch reads the fused features plus one flood column.
+    assert ckpt["model"]["stgnn.gcn.layers.0.linear.weight"].shape[1] == 128 + 1
     assert cfg["temporal_dim"] == 3 + 2 + FLOW_FEATURES and cfg["vehicle_scale"] == np.log1p(19)
 
     # Scoring rebuilds the model and the flow columns from the checkpoint config alone.
@@ -122,11 +128,74 @@ def test_old_checkpoints_without_the_new_flags_still_score(data, tmp_path, monke
     out = tmp_path / "ckpt" / "old.pt"
     train_edge.train(
         data["frames"], data["weather"], None, None, out, camera_csv=data["camera_csv"], epochs=1,
-        batch_size=2, image_size=32, patch_size=16, patch_embed_dim=8, device="cpu", graph=data["graph"])
+        batch_size=2, image_size=32, patch_size=16, patch_embed_dim=8, device="cpu", graph=data["graph"],
+        flood_features=False)
     ckpt = torch.load(out, map_location="cpu", weights_only=False)
-    for key in ("flow_features", "vehicle_scale", "camera_embedding"):   # as v1-v4 were saved
+    assert ckpt["model"]["stgnn.gcn.layers.0.linear.weight"].shape[1] == 128   # adjacency only, as before
+    for key in ("flow_features", "vehicle_scale", "camera_embedding", "flood_features"):   # as v1-v4 were saved
         ckpt["config"].pop(key)
     torch.save(ckpt, out)
+
+    monkeypatch.setattr(predict_edge, "build_subgraph", lambda spatial_dir, k: data["graph"])
+    assert predict_edge.predict(out, data["frames"], data["weather"], tmp_path / "scores", device="cpu")["windows"] > 0
+
+
+# ---------------------------------------------------------------- flood hazard node feature
+
+def test_subgraph_keeps_each_kept_nodes_flood_level_and_scales_it_to_unit_range():
+    flood = np.array([3, 0, 1, 2, 0, 0, 0, 0, 1, 2, 3, 0])
+    graph = subgraph_from_arrays(path_graph(12), np.arange(100, 112), {"A": 2, "B": 9}, k=2, flood_hazard=flood)
+    assert graph.flood_hazard.tolist() == flood[graph.node_ids - 100].tolist()
+    features = flood_node_features(graph)
+    assert features.shape == (graph.n_nodes, 1)
+    assert torch.allclose(features[:, 0], torch.tensor(graph.flood_hazard / 3, dtype=torch.float32))
+
+
+def test_a_graph_without_flood_levels_refuses_to_make_the_feature():
+    graph = subgraph_from_arrays(path_graph(12), np.arange(12), {"A": 2, "B": 9}, k=2)
+    with pytest.raises(ValueError, match="flood"):
+        flood_node_features(graph)
+
+
+def test_flood_levels_follow_the_adjacency_node_order_and_none_may_be_missing(tmp_path):
+    (tmp_path / "full_network_static_features.csv").write_text(
+        "node_id,lat,lon,is_cctv_node,cctv_label,flood_hazard_level\n"
+        "30,0,0,False,,2\n10,0,0,True,A,0\n20,0,0,False,,3\n", encoding="utf-8")
+    assert load_flood_hazard(tmp_path, np.array([10, 20, 30])).tolist() == [0, 3, 2]
+    with pytest.raises(ValueError, match="no flood hazard level"):
+        load_flood_hazard(tmp_path, np.array([10, 20, 30, 40]))
+
+
+def test_flood_feature_reaches_the_edge_scores():
+    torch.manual_seed(0)
+    fusion = CNNLSTMFusion(text_dim=8, temporal_dim=2, image_size=32, patch_size=16, patch_embed_dim=8)
+    stgnn = RADRSTGNN(in_features=fusion.lstm.hidden_size + 1)
+    model = TrafficRiskModel(fusion, stgnn, MLPDecoder(stgnn.output_dim)).eval()
+    graph = subgraph_from_arrays(path_graph(10), np.arange(10), {"A": 2, "B": 7}, k=1,
+                                 flood_hazard=np.zeros(10, dtype=int))
+    camera_index = torch.tensor([graph.camera_nodes["A"], graph.camera_nodes["B"]])
+    batch = {"images": torch.rand(1, 2, 4, 3, 32, 32), "text": torch.zeros(1, 2, 4, 8),
+             "temporal": torch.rand(1, 2, 4, 2), "visual_mask": torch.ones(1, 2, 4, dtype=torch.bool),
+             "text_mask": torch.zeros(1, 2, 4, dtype=torch.bool)}
+    dry = flood_node_features(graph)
+    flooded = dry.clone()
+    flooded[0] = 1.0                                    # one high-hazard node, away from both cameras
+    with torch.no_grad():
+        a = model(batch, graph.a_hat, camera_index, graph.edge_index, dry)
+        b = model(batch, graph.a_hat, camera_index, graph.edge_index, flooded)
+    assert a.shape == (1, graph.edge_index.shape[1])
+    assert not torch.allclose(a, b)
+
+
+def test_no_flood_ablation_trains_on_the_adjacency_alone_and_scores(data, tmp_path, monkeypatch):
+    out = tmp_path / "ckpt" / "no_flood.pt"
+    train_edge.train(
+        data["frames"], data["weather"], None, None, out, camera_csv=data["camera_csv"], epochs=1,
+        batch_size=2, image_size=32, patch_size=16, patch_embed_dim=8, device="cpu", graph=data["graph"],
+        flood_features=False)
+    ckpt = torch.load(out, map_location="cpu", weights_only=False)
+    assert ckpt["config"]["flood_features"] is False
+    assert ckpt["model"]["stgnn.gcn.layers.0.linear.weight"].shape[1] == 128
 
     monkeypatch.setattr(predict_edge, "build_subgraph", lambda spatial_dir, k: data["graph"])
     assert predict_edge.predict(out, data["frames"], data["weather"], tmp_path / "scores", device="cpu")["windows"] > 0

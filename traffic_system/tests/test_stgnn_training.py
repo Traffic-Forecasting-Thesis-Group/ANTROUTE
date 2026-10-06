@@ -154,7 +154,8 @@ def data(tmp_path):
             w.writerow([f"2026-05-{d:02d}", 30 + d % 3, d % 5, 60 + d, "a"])
     camera_csv = tmp_path / "camera_nodes.csv"
     camera_csv.write_text("camera_id,intersection\nCAM_A,NODE_A\nCAM_B,NODE_B\n", encoding="utf-8")
-    graph = subgraph_from_arrays(path_graph(12), np.arange(12), {"NODE_A": 2, "NODE_B": 9}, k=2)
+    flood = np.array([0, 0, 1, 2, 3, 0, 0, 0, 1, 0, 2, 0])         # NOAH hazard level per node
+    graph = subgraph_from_arrays(path_graph(12), np.arange(12), {"NODE_A": 2, "NODE_B": 9}, k=2, flood_hazard=flood)
     return {"frames": frames, "weather": weather, "camera_csv": camera_csv, "graph": graph}
 
 

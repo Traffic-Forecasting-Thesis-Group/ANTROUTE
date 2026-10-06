@@ -12,7 +12,7 @@ from torch.utils.data import DataLoader
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 from src.data.alignment import WINDOW_STEPS, session_start  # noqa: E402
-from src.data.graph_data import build_subgraph  # noqa: E402
+from src.data.graph_data import build_subgraph, flood_node_features  # noqa: E402
 from src.data.graph_dataset import GraphWindowDataset  # noqa: E402
 from src.data.training_data import (
     FlowFeatures,
@@ -55,7 +55,9 @@ def build_model(cfg: dict, device) -> TrafficRiskModel:
         patch_size=cfg["patch_size"],
         patch_embed_dim=cfg["patch_embed_dim"],
     )
-    stgnn = RADRSTGNN(in_features=fusion.lstm.hidden_size)
+    # Checkpoints from before the flood feature (v1-v2) have no "flood_features" key: road adjacency only.
+    n_static = 1 if cfg.get("flood_features") else 0
+    stgnn = RADRSTGNN(in_features=fusion.lstm.hidden_size + n_static)
     decoder = MLPDecoder(node_embedding_dim=stgnn.output_dim)
     n_camera_nodes = len(cfg["node_labels"]) if cfg.get("camera_embedding") else 0
     return TrafficRiskModel(fusion, stgnn, decoder, n_camera_nodes=n_camera_nodes).to(device)
@@ -136,6 +138,7 @@ def predict(
     a_hat = graph.a_hat.to(device)
     camera_index_d = camera_index.to(device)
     edge_index_d = graph.edge_index.to(device)
+    node_features = flood_node_features(graph).to(device) if cfg.get("flood_features") else None
     node_ids = graph.node_ids
     src_np, dst_np = (graph.edge_index[0].numpy(), graph.edge_index[1].numpy())
     is_camera_edge_np = is_camera_edge.numpy()
@@ -147,7 +150,7 @@ def predict(
         for batch in loader:
             batch = {k: v.to(device) for k, v in batch.items()}
             with torch.autocast(device_type=device.type, enabled=device.type == "cuda"):
-                logits = model(batch, a_hat, camera_index_d, edge_index_d)
+                logits = model(batch, a_hat, camera_index_d, edge_index_d, node_features)
             risk = torch.sigmoid(logits.float()).cpu().numpy()
             weak_targets = camera_edge_targets(
                 batch["target"].cpu(), camera_index, graph.n_nodes, graph.edge_index, edge_ids

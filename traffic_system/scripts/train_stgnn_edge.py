@@ -10,7 +10,14 @@ from torch.utils.data import DataLoader
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 from src.data.alignment import VISUAL_SPLIT  # noqa: E402
-from src.data.graph_data import DEFAULT_K, GraphData, build_subgraph, graph_sizes, resolve_camera_map  # noqa: E402
+from src.data.graph_data import (
+    DEFAULT_K,
+    GraphData,
+    build_subgraph,
+    flood_node_features,
+    graph_sizes,
+    resolve_camera_map,
+)  # noqa: E402
 from src.data.graph_dataset import GraphWindowDataset  # noqa: E402
 from src.data.training_data import (
     WEATHER_COLUMNS,
@@ -52,14 +59,15 @@ def class_weights_from_lookup(lookup: Dict[str, int]) -> torch.Tensor:
 
 
 @torch.no_grad()
-def evaluate(model, loader, a_hat, camera_index, edge_index, edge_ids, n_nodes, device, class_weights=None) -> Optional[dict]:
+def evaluate(model, loader, a_hat, camera_index, edge_index, edge_ids, n_nodes, device, class_weights=None,
+             node_features=None) -> Optional[dict]:
     if len(loader.dataset) == 0:
         return None
     model.eval()
     total_loss, total_count, abs_err = (0.0, 0, 0.0)
     for batch in loader:
         batch = to_device(batch, device)
-        logits = model(batch, a_hat, camera_index, edge_index)
+        logits = model(batch, a_hat, camera_index, edge_index, node_features)
         targets = camera_edge_targets(batch["target"], camera_index, n_nodes, edge_index, edge_ids)
         loss, count = edge_risk_loss(logits, edge_ids, targets, class_weights)
         if count == 0:
@@ -102,6 +110,7 @@ def train(
     use_class_weights: bool = False,
     flow_features: bool = False,
     camera_embedding: bool = False,
+    flood_features: bool = True,
 ) -> dict:
     torch.manual_seed(seed)
     np.random.seed(seed)
@@ -149,6 +158,11 @@ def train(
     edge_index = graph.edge_index.to(device)
     edge_ids = camera_edge_ids(graph.edge_index, camera_index.cpu(), graph.n_nodes).to(device)
     print(f"{len(edge_ids)} of {graph.edge_index.shape[1]} edges touch a camera node")
+    # NOAH flood susceptibility as a static node feature of the spatial branch (paper Sections 3.2-3.3).
+    node_features = flood_node_features(graph).to(device) if flood_features else None
+    if node_features is not None:
+        print(f"flood hazard node feature on: {int((graph.flood_hazard > 0).sum())} of {graph.n_nodes} "
+              f"nodes lie in a NOAH flood hazard zone")
     datasets = {
         s: GraphWindowDataset(
             records,
@@ -182,7 +196,8 @@ def train(
         patch_size=patch_size,
         patch_embed_dim=patch_embed_dim,
     )
-    stgnn = RADRSTGNN(in_features=fusion.lstm.hidden_size)
+    n_static = node_features.shape[1] if node_features is not None else 0
+    stgnn = RADRSTGNN(in_features=fusion.lstm.hidden_size + n_static)
     decoder = MLPDecoder(node_embedding_dim=stgnn.output_dim)
     model = TrafficRiskModel(
         fusion, stgnn, decoder, n_camera_nodes=len(node_labels) if camera_embedding else 0
@@ -209,6 +224,7 @@ def train(
         "flow_features": flow_features,
         "vehicle_scale": flow.vehicle_scale if flow is not None else None,
         "camera_embedding": camera_embedding,
+        "flood_features": flood_features,
         "use_text": raw_twitter_root is not None,
         "visual_split": {f"{d.isoformat()}|{s}": v for (d, s), v in (visual_split or VISUAL_SPLIT).items()},
         "weather_columns": WEATHER_COLUMNS,
@@ -225,7 +241,7 @@ def train(
         for batch in loaders["train"]:
             batch = to_device(batch, device)
             with torch.autocast(device_type=device.type, enabled=amp):
-                logits = model(batch, a_hat, camera_index, edge_index)
+                logits = model(batch, a_hat, camera_index, edge_index, node_features)
                 targets = camera_edge_targets(
                     batch["target"], camera_index, graph.n_nodes, edge_index, edge_ids
                 )
@@ -240,7 +256,8 @@ def train(
             grad_scaler.update()
             running.append(float(loss.detach()))
         val = evaluate(
-            model, loaders["val"], a_hat, camera_index, edge_index, edge_ids, graph.n_nodes, device, class_weights
+            model, loaders["val"], a_hat, camera_index, edge_index, edge_ids, graph.n_nodes, device, class_weights,
+            node_features,
         )
         row = {"epoch": epoch, "train_loss": float(np.mean(running)) if running else float("nan"), "val": val}
         history.append(row)
@@ -272,7 +289,10 @@ def train(
         raise RuntimeError("No checkpoint was written (no epochs were run).")
     checkpoint = torch.load(out_path, map_location=device, weights_only=False)
     model.load_state_dict(checkpoint["model"])
-    test = evaluate(model, loaders["test"], a_hat, camera_index, edge_index, edge_ids, graph.n_nodes, device, class_weights)
+    test = evaluate(
+        model, loaders["test"], a_hat, camera_index, edge_index, edge_ids, graph.n_nodes, device, class_weights,
+        node_features,
+    )
     print(f"best epoch {checkpoint['epoch']}, test={test}")
     return {"history": history, "test": test, "best_epoch": checkpoint["epoch"]}
 
@@ -322,6 +342,11 @@ def main():
         "--camera-embedding", action="store_true",
         help="learn one vector per camera intersection (labels are relative to each camera's view)",
     )
+    p.add_argument(
+        "--no-flood", action="store_true",
+        help="ablation: leave out the NOAH flood hazard node feature, so the spatial input is the road "
+             "adjacency alone",
+    )
     p.add_argument("--graph-sizes", action="store_true")
     a = p.parse_args()
     if a.graph_sizes:
@@ -357,6 +382,7 @@ def main():
         use_class_weights=a.class_weights,
         flow_features=a.flow_features,
         camera_embedding=a.camera_embedding,
+        flood_features=not a.no_flood,
     )
 
 

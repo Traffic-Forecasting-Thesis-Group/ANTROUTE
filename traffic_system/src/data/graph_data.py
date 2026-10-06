@@ -20,6 +20,7 @@ from src.models.congestion_risk_score import edge_index_from_adjacency
 from src.models.radr_stgnn import normalize_adjacency
 
 DEFAULT_K = 8   # ~1.4k nodes; links most EDSA intersections (nearest pairs are 5-16 hops apart)
+FLOOD_MAX_LEVEL = 3   # Project NOAH 5-year flood hazard: 0 outside every zone, 1 low, 2 medium, 3 high
 
 
 @dataclass
@@ -29,10 +30,19 @@ class GraphData:
     a_hat: Optional[torch.Tensor]        # dense D^-1/2 (A+I) D^-1/2, [N, N]; None when routing
     edge_index: torch.Tensor             # [2, E]
     camera_nodes: Dict[str, int]         # intersection label -> subgraph index
+    flood_hazard: Optional[np.ndarray] = None   # NOAH flood hazard level (0-3) per subgraph node
 
     @property
     def n_nodes(self) -> int:
         return len(self.node_ids)
+
+
+def flood_node_features(graph: GraphData) -> torch.Tensor:
+    """[N, 1] flood susceptibility in [0, 1], the static node feature of the STGNN's spatial branch."""
+    if graph.flood_hazard is None:
+        raise ValueError("This graph carries no flood hazard levels; rebuild the spatial data with "
+                         "src/ingestion/spatial_topology.py (full_network_static_features.csv).")
+    return torch.tensor(graph.flood_hazard / FLOOD_MAX_LEVEL, dtype=torch.float32).unsqueeze(1)
 
 
 def khop_nodes(adjacency: sp.csr_matrix, seeds: Sequence[int], k: int) -> np.ndarray:
@@ -51,7 +61,9 @@ def khop_nodes(adjacency: sp.csr_matrix, seeds: Sequence[int], k: int) -> np.nda
 
 
 def subgraph_from_arrays(adjacency: sp.csr_matrix, node_order: np.ndarray,
-                         camera_full_index: Dict[str, int], k: int) -> GraphData:
+                         camera_full_index: Dict[str, int], k: int,
+                         flood_hazard: Optional[np.ndarray] = None) -> GraphData:
+    """flood_hazard, if given, is one level per full-graph node (aligned with node_order)."""
     keep = khop_nodes(adjacency, list(camera_full_index.values()), k)
     position = {int(full): i for i, full in enumerate(keep)}
     sub = adjacency[keep][:, keep].tocsr()
@@ -61,6 +73,7 @@ def subgraph_from_arrays(adjacency: sp.csr_matrix, node_order: np.ndarray,
         a_hat=normalize_adjacency(sub),
         edge_index=edge_index_from_adjacency(sub),
         camera_nodes={label: position[full] for label, full in camera_full_index.items()},
+        flood_hazard=None if flood_hazard is None else np.asarray(flood_hazard)[keep],
     )
 
 
@@ -72,11 +85,23 @@ def load_camera_full_index(spatial_dir: Path, node_order: np.ndarray) -> Dict[st
                 for r in csv.DictReader(f) if r["is_cctv_node"] == "True"}
 
 
+def load_flood_hazard(spatial_dir: Path, node_order: np.ndarray) -> np.ndarray:
+    """NOAH flood hazard level per full-graph node, in node_order (from spatial_topology.join_flood_hazard)."""
+    with (Path(spatial_dir) / "full_network_static_features.csv").open(encoding="utf-8", newline="") as f:
+        level = {int(r["node_id"]): int(r["flood_hazard_level"]) for r in csv.DictReader(f)}
+    missing = [int(n) for n in node_order if int(n) not in level]
+    if missing:
+        raise ValueError(f"{len(missing)} road nodes have no flood hazard level (e.g. {missing[0]}); "
+                         "full_network_static_features.csv is out of step with the adjacency.")
+    return np.array([level[int(n)] for n in node_order], dtype=np.int64)
+
+
 def build_subgraph(spatial_dir: Path, k: int = DEFAULT_K) -> GraphData:
     spatial_dir = Path(spatial_dir)
     adjacency = sp.load_npz(spatial_dir / "metro_manila_adjacency.npz").tocsr()
     node_order = np.load(spatial_dir / "metro_manila_node_order.npy")
-    return subgraph_from_arrays(adjacency, node_order, load_camera_full_index(spatial_dir, node_order), k)
+    return subgraph_from_arrays(adjacency, node_order, load_camera_full_index(spatial_dir, node_order), k,
+                                flood_hazard=load_flood_hazard(spatial_dir, node_order))
 
 
 def build_full_graph(spatial_dir: Path) -> GraphData:

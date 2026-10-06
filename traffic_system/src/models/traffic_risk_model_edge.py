@@ -22,6 +22,13 @@ def scatter_camera_features(
     return out
 
 
+def append_node_features(x: torch.Tensor, node_features: torch.Tensor) -> torch.Tensor:
+    """[B, T, N, F] + static [N, S] -> [B, T, N, F + S], the same S columns at every step."""
+    b, t, n, _ = x.shape
+    static = node_features.to(x.dtype).view(1, 1, n, -1).expand(b, t, n, -1)
+    return torch.cat([x, static], dim=-1)
+
+
 class TrafficRiskModel(nn.Module):
 
     def __init__(
@@ -52,7 +59,10 @@ class TrafficRiskModel(nn.Module):
         a_hat: torch.Tensor,
         camera_index: torch.Tensor,
         edge_index: torch.Tensor,
+        node_features: Optional[torch.Tensor] = None,
     ) -> torch.Tensor:
+        """node_features: static [N, S] per-node inputs to the spatial branch (the NOAH flood
+        susceptibility, Sections 3.2-3.3); the STGNN's in_features must count those S columns."""
         features = build_stgnn_input(
             self.fusion,
             batch["images"],
@@ -64,6 +74,8 @@ class TrafficRiskModel(nn.Module):
         if self.camera_embedding is not None:
             features = features + self.camera_embedding.weight.to(features.dtype)
         x = scatter_camera_features(features, camera_index, a_hat.shape[0], self.placeholder)
+        if node_features is not None:
+            x = append_node_features(x, node_features)
         nodes = self.stgnn(x, a_hat)
         return self.decoder(nodes, edge_index)
 
