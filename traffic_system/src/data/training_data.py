@@ -19,7 +19,12 @@ import numpy as np
 import pandas as pd
 import torch
 
-from src.data.tweet_geocode import cameras_by_intersection, load_camera_map, place
+from src.data.tweet_geocode import (
+    cameras_by_intersection,
+    load_camera_map,
+    load_label_locations,
+    place,
+)
 from src.routing.event_layer import load_landmarks
 
 from src.data.alignment import (
@@ -134,7 +139,10 @@ def load_tweets_table(
 
     kept = np.flatnonzero(keep)
     kept_texts = [texts[i] for i in kept]
-    overrides = [locations.get(ids[i]) if locations else None for i in kept]
+    # Default to the hand-labelled sheet; pass locations={} to train without it.
+    if locations is None:
+        locations = load_label_locations()
+    overrides = [locations.get(ids[i]) for i in kept]
 
     by_intersection = cameras_by_intersection(
         camera_ids, load_camera_map() if camera_map is None else camera_map
