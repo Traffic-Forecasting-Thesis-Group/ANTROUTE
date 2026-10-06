@@ -74,7 +74,7 @@ def data(tmp_path):
     return {"frames": frames, "weather": weather, "twitter": tmp_path / "twitter", "embeddings": embeddings}
 
 
-CAMERA_MAP = {"CAM1": "EDSA-Ortigas-Shaw", "CAM2": "Roxas Blvd-Kalaw"}
+CAMERA_MAP = {"CAM1": "EDSA-Shaw", "CAM2": "Roxas Blvd-Kalaw"}
 
 
 def test_tweet_times_are_recovered_in_manila_time(data):
