@@ -47,6 +47,14 @@ class RoutePlanResponse(BaseModel):
     notice: Optional[str] = None
 
 
+class RouteJobResponse(BaseModel):
+    job_id: str
+    model: Literal["antroute", "baseline"]
+    status: Literal["queued", "running", "completed", "failed"]
+    result: Optional[RoutePlanResponse] = None
+    error: Optional[str] = None
+
+
 class ComparisonMetricRow(BaseModel):
     metric: str
     antroute: str

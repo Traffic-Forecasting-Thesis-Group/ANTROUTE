@@ -30,6 +30,9 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
 
   backend:
     build:
@@ -40,6 +43,8 @@ services:
     environment:
       DATABASE_URL: postgresql+asyncpg://traffic:traffic@db:5432/traffic
       REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      CELERY_RESULT_BACKEND: redis://redis:6379/2
     ports:
       - "8000:8000"
     depends_on:
@@ -51,5 +56,38 @@ services:
       - ./traffic_system:/app
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
+  worker-primary:
+    build:
+      context: ./traffic_system
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      CELERY_RESULT_BACKEND: redis://redis:6379/2
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./traffic_system:/app
+    command: celery -A app.task_queue:celery_app worker --loglevel=INFO --pool=prefork --concurrency=1 --queues=routes-primary --hostname=primary@%h
+
+  worker-baseline:
+    build:
+      context: ./traffic_system
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      CELERY_RESULT_BACKEND: redis://redis:6379/2
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./traffic_system:/app
+    command: celery -A app.task_queue:celery_app worker --loglevel=INFO --pool=prefork --concurrency=1 --queues=routes-baseline --hostname=baseline@%h
+
 volumes:
   postgres_data:
+  redis_data:

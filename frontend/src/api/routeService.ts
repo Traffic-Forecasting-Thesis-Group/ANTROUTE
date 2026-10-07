@@ -1,4 +1,5 @@
 import apiClient from './client';
+import { waitForRouteJob } from './routeJobs';
 
 export type CongestionLevel = 'clear' | 'moderate' | 'heavy';
 export type RouteModel = 'antroute' | 'baseline';
@@ -80,7 +81,7 @@ interface ComparisonMetricsResponse {
 }
 
 /**
- * POST /routes/plan — returns the top 3 route options (best / least traffic /
+ * POST /routes/jobs + status polling — returns route options (best / least traffic /
  * shortest) for an origin and one or more destinations. Pass real coordinates
  * (GPS for origin, search results for destinations) whenever available —
  * they take priority over text on the backend, which otherwise falls back to
@@ -94,10 +95,11 @@ export async function planRoute(
   destinations: DestinationInput[],
   optimizeStopOrder: boolean = true,
   originCoords?: Coordinates | null,
-  model: RouteModel = 'antroute'
+  model: RouteModel = 'antroute',
+  signal?: AbortSignal
 ): Promise<RoutePlan> {
   try {
-    const { data } = await apiClient.post<PlanRouteResult>('/routes/plan', {
+    const data = await waitForRouteJob<PlanRouteResult>(apiClient, {
       origin,
       origin_lat: originCoords?.latitude ?? null,
       origin_lng: originCoords?.longitude ?? null,
@@ -108,7 +110,7 @@ export async function planRoute(
       })),
       optimize_stop_order: optimizeStopOrder,
       model,
-    });
+    }, { signal });
     return {
       routes: data.routes.map((r) => ({
         ...r,
@@ -117,6 +119,9 @@ export async function planRoute(
       notice: data.notice ?? null,
     };
   } catch (error: any) {
+    if (signal?.aborted || error?.name === 'AbortError' || error?.code === 'ERR_CANCELED') {
+      throw error;
+    }
     if (error.response) {
       throw new Error(
         error.response.data?.detail || error.response.data?.message || 'Could not compute a route.'

@@ -45,6 +45,7 @@ import {
   DestinationInput,
 } from '../api/routeService';
 import { searchPlaces, reverseGeocode, PlaceSuggestion } from '../api/placesService';
+import { requestRoutesIndependently } from '../api/routeBatch';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
@@ -141,6 +142,11 @@ export default function HomeScreen({ navigation }: any) {
   const [destinations, setDestinations] = useState<DestinationEntry[]>([{ name: '', coords: null }]);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [antLoading, setAntLoading] = useState(false);
+  const [baselineLoading, setBaselineLoading] = useState(false);
+  const [antNotice, setAntNotice] = useState<string | null>(null);
+  const routeRequestRef = useRef<AbortController | null>(null);
+  useEffect(() => () => routeRequestRef.current?.abort(), []);
   const [routeError, setRouteError] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [activeTab, setActiveTab] = useState<ModelTab>('antroute');
@@ -268,6 +274,7 @@ export default function HomeScreen({ navigation }: any) {
   };
 
   const fetchCurrentLocation = async () => {
+    if (!isNavigating) clearRouteResults();
     setIsLocating(true);
     setLocationError('');
     try {
@@ -287,6 +294,7 @@ export default function HomeScreen({ navigation }: any) {
         longitude: position.coords.longitude,
       };
       gpsRef.current = coords;
+      if (!isNavigating) clearRouteResults();
       setOriginCoords(coords);
 
       mapRef.current?.animateToRegion(
@@ -391,6 +399,13 @@ export default function HomeScreen({ navigation }: any) {
   };
 
   const clearRouteResults = () => {
+    routeRequestRef.current?.abort();
+    routeRequestRef.current = null;
+    setIsLoading(false);
+    setAntLoading(false);
+    setBaselineLoading(false);
+    setAntNotice(null);
+    setRouteError('');
     setNormalRoute(null);
     setAntRouteOptions([]);
     setBaselineModelOptions([]);
@@ -421,6 +436,7 @@ export default function HomeScreen({ navigation }: any) {
   const selectSuggestion = (suggestion: PlaceSuggestion) => {
     const coords: Coordinates = { latitude: suggestion.lat, longitude: suggestion.lng };
     searchRequestRef.current++;
+    if (!isNavigating) clearRouteResults();
 
     if (activeField === 'origin') {
       setOrigin(suggestion.formattedAddress);
@@ -446,14 +462,17 @@ export default function HomeScreen({ navigation }: any) {
   };
 
   const removeDestination = (index: number) => {
+    if (!isNavigating) clearRouteResults();
     setDestinations((prev) => prev.filter((_, i) => i !== index));
   };
 
   const addDestination = () => {
+    if (!isNavigating) clearRouteResults();
     setDestinations((prev) => [...prev, { name: '', coords: null }]);
   };
 
   const reorderDestination = (index: number) => {
+    if (!isNavigating) clearRouteResults();
     setDestinations((prev) => {
       if (prev.length < 2) return prev;
       const next = [...prev];
@@ -477,25 +496,53 @@ export default function HomeScreen({ navigation }: any) {
       return;
     }
 
+    clearRouteResults();
+    const controller = new AbortController();
+    routeRequestRef.current = controller;
     setRouteError('');
     setIsLoading(true);
-    try {
-      const [normalResults, antResults, baselineResults] = await Promise.all([
-        planRoute(originToUse.trim(), cleanedDestinations, false, originCoordsToUse),
-        planRoute(originToUse.trim(), cleanedDestinations, true, originCoordsToUse),
-        planRoute(originToUse.trim(), cleanedDestinations, true, originCoordsToUse, 'baseline'),
-      ]);
-
-      setNormalRoute(normalResults.routes[0] ?? null);
-      setAntRouteOptions(antResults.routes);
-      setBaselineModelOptions(baselineResults.routes);
-      setBaselineNotice(baselineResults.notice);
-      setSelectedIndex(0);
-    } catch (error: any) {
-      setRouteError(error?.message || 'Something went wrong. Please try again.');
-    } finally {
-      setIsLoading(false);
-    }
+    setAntLoading(true);
+    setBaselineLoading(true);
+    setSelectedIndex(0);
+    let remainingPrimary = 2;
+    requestRoutesIndependently(
+      {
+        normal: (signal) => planRoute(originToUse.trim(), cleanedDestinations, false, originCoordsToUse, 'antroute', signal),
+        antroute: (signal) => planRoute(originToUse.trim(), cleanedDestinations, true, originCoordsToUse, 'antroute', signal),
+        baseline: (signal) => planRoute(originToUse.trim(), cleanedDestinations, true, originCoordsToUse, 'baseline', signal),
+      },
+      {
+        onResult: (key, result) => {
+          if (key === 'normal') setNormalRoute(result.routes[0] ?? null);
+          if (key === 'antroute') {
+            setAntRouteOptions(result.routes);
+            setAntNotice(result.notice);
+          }
+          if (key === 'baseline') {
+            setBaselineModelOptions(result.routes);
+            setBaselineNotice(result.notice);
+          }
+        },
+        onError: (key, error) => {
+          const message = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
+          if (key === 'baseline') {
+            setBaselineNotice(`Baseline: ${message}`);
+          } else {
+            setRouteError(`${key === 'normal' ? 'Normal route' : 'ANTRoute'}: ${message}`);
+            if (key === 'antroute') setAntNotice(message);
+          }
+        },
+        onSettled: (key) => {
+          if (key === 'baseline') {
+            setBaselineLoading(false);
+          } else {
+            if (key === 'antroute') setAntLoading(false);
+            setIsLoading(--remainingPrimary > 0);
+          }
+        },
+      },
+      controller.signal
+    );
   };
 
   const handleFindRoutesPress = () => {
@@ -588,7 +635,7 @@ export default function HomeScreen({ navigation }: any) {
   const selectedRoute = currentModelOptions[selectedIndex];
   const antTop = antRouteOptions[0];
   const baselineTop = baselineModelOptions[0];
-  const hasAnyResults = normalRoute !== null || antRouteOptions.length > 0;
+  const hasAnyResults = normalRoute !== null || antRouteOptions.length > 0 || baselineModelOptions.length > 0;
   const showStopsList = !isNavigating || stopsRevealedDuringNav;
 
   const lastPlacedIndex = destinations.reduce((last, d, i) => (d.coords ? i : last), -1);
@@ -1006,7 +1053,7 @@ export default function HomeScreen({ navigation }: any) {
                       <Text style={styles.normalRouteDistance}>{normalRoute.distance_km} km</Text>
                     </View>
                     <Text style={styles.normalRouteVia}>Via {normalRoute.via}</Text>
-                    <Text style={styles.normalRouteLabel}>Normal route (no traffic optimization)</Text>
+                    <Text style={styles.normalRouteLabel}>ANTRoute reference route</Text>
                   </View>
                 )}
 
@@ -1076,12 +1123,12 @@ export default function HomeScreen({ navigation }: any) {
 
                 {!isNavigating &&
                   activeTab === 'baseline' &&
-                  hasAnyResults &&
+                  (hasAnyResults || baselineLoading || baselineNotice !== null) &&
                   baselineModelOptions.length === 0 && (
                     <View style={styles.comparisonEmptyState}>
-                      <Info size={18} color="#9ca3af" />
+                      {baselineLoading ? <ActivityIndicator size="small" color="#4475F2" /> : <Info size={18} color="#9ca3af" />}
                       <Text style={styles.comparisonEmptyText}>
-                        {baselineNotice ?? 'The baseline has no route for this trip.'}
+                        {baselineLoading ? 'Calculating baseline… ANTRoute is available as soon as it finishes.' : baselineNotice ?? 'The baseline has no route for this trip.'}
                       </Text>
                     </View>
                   )}
@@ -1104,12 +1151,12 @@ export default function HomeScreen({ navigation }: any) {
 
                     <View style={styles.comparisonCardsRow}>
                       {[
-                        { name: 'ANTRoute', method: 'Risk- and event-aware ACO', route: antTop, notice: null },
+                        { name: 'ANTRoute', method: 'Risk- and event-aware ACO', route: antTop, notice: antLoading ? 'Calculating ANTRoute…' : antNotice },
                         {
                           name: 'Baseline',
                           method: baselineMethodLabel(baselineTop),
                           route: baselineTop,
-                          notice: baselineNotice,
+                          notice: baselineLoading ? 'Calculating baseline…' : baselineNotice,
                         },
                       ].map((item) => (
                         <View key={item.name} style={styles.comparisonCard}>

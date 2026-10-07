@@ -1,43 +1,42 @@
-from fastapi import APIRouter
+from uuid import UUID
+
+from fastapi import APIRouter, HTTPException
 
 from app.evaluation import get_comparison_metrics
-from app.osrm import fetch_paths
-from app.route_engine import BaselineUnavailableError, plan_routes, resolve_points
-from app.schemas_route import ComparisonMetricsResponse, RoutePlanRequest, RoutePlanResponse
+from app.config import settings
+from app.route_jobs import RouteJobNotFound, RouteJobs, RouteJobServiceUnavailable
+from app.route_plan import compute_route_plan
+from app.schemas_route import ComparisonMetricsResponse, RouteJobResponse, RoutePlanRequest, RoutePlanResponse
+from app.task_queue import celery_app, job_registry
 
 router = APIRouter(prefix="/routes", tags=["routes"])
+jobs = RouteJobs(celery_app, job_registry, settings.route_job_ttl_seconds)
 
 
 @router.post("/plan", response_model=RoutePlanResponse)
 async def plan(payload: RoutePlanRequest):
-    destinations = [{"name": d.name, "lat": d.lat, "lng": d.lng} for d in payload.destinations]
+    # Compatibility endpoint. Updated clients use jobs for both models.
+    return await compute_route_plan(payload)
 
-    origin_coords_override = None
-    if payload.origin_lat is not None and payload.origin_lng is not None:
-        origin_coords_override = (payload.origin_lat, payload.origin_lng)
 
+@router.post("/jobs", response_model=RouteJobResponse, status_code=202)
+def create_route_job(payload: RoutePlanRequest):
+    # Sync endpoints run in FastAPI's thread pool: Redis/publishing cannot block
+    # the API event loop, and no road-graph calculation happens here.
     try:
-        routes = plan_routes(payload.origin, destinations, origin_coords_override, payload.model)
-    except BaselineUnavailableError as exc:
-        # A 200 with no routes, not an error status: the app requests ANTROUTE and the
-        # baseline side by side, and "the baseline has no route here" is a result to show
-        # next to ANTROUTE's, not a failure that should take ANTROUTE's results down with it.
-        return RoutePlanResponse(routes=[], notice=str(exc))
+        return jobs.submit(payload)
+    except RouteJobServiceUnavailable as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
 
-    # Routes already carrying a real path came from the actual graph pipeline (the
-    # nodes it computed cost over) -- drawing a different, independently-computed
-    # OSRM line for those would mean the map doesn't match what was scored. OSRM is
-    # only a stand-in for ANTROUTE's placeholder routes, which never had real geometry.
-    if not all(route.get("path") for route in routes):
-        points = resolve_points(payload.origin, destinations, origin_coords_override)
-        paths = await fetch_paths(points)
-        for i, route in enumerate(routes):
-            if route.get("path"):
-                continue
-            path = paths[i % len(paths)] if paths else points
-            route["path"] = [{"lat": lat, "lng": lng} for lat, lng in path]
 
-    return RoutePlanResponse(routes=routes)
+@router.get("/jobs/{job_id}", response_model=RouteJobResponse)
+def route_job_status(job_id: UUID):
+    try:
+        return jobs.status(str(job_id))
+    except RouteJobNotFound as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except RouteJobServiceUnavailable as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
 
 
 @router.get("/comparison-metrics", response_model=ComparisonMetricsResponse)

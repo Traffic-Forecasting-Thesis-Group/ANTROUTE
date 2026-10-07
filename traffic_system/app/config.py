@@ -4,6 +4,11 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     database_url: str = "postgresql+asyncpg://traffic:traffic@db:5432/traffic"
     redis_url: str = "redis://redis:6379/0"
+    # Separate Redis databases are supplied by Compose. Local runs may share redis_url.
+    celery_broker_url: str = ""
+    celery_result_backend: str = ""
+    route_job_ttl_seconds: int = 60 * 60 * 24
+    route_job_time_limit_seconds: int = 60 * 60
     secret_key: str = "change-me-before-you-ship-anything" 
     access_token_expire_minutes: int = 60 * 24 * 7 
     google_places_api_key: str = ""
