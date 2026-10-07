@@ -15,19 +15,23 @@ class Settings(BaseSettings):
     # RISK_EDGES_PATH in .env.
     risk_edges_path: str = "data/processed/risk_scores/risk_edges.csv"
 
-    # Event-Aware layer. event_mu scales how hard routing avoids reported incidents
-    # (0 disables it, leaving risk-only routing). event_as_of pins the moment incidents
-    # are evaluated at; empty means "use the risk snapshot's own window", which keeps
-    # both signals on one clock. Set it (e.g. 2026-05-25T17:30:00) to demo a recorded
-    # moment that has incidents on the board.
-    event_mu: float = 1.0
+    # Rule-based incident layer (src/routing/event_layer.py). It is NOT part of the thesis
+    # method: there, event text reaches routing only through the learned DistilBERT ->
+    # CNN+LSTM -> RADR STGNN risk scores, with W = distance * (1 + lambda * Risk). Off by
+    # default so the app routes exactly as the thesis evaluation does; a value > 0 adds the
+    # undocumented (1 + mu * Event) factor, for demos only. event_as_of pins the moment
+    # incidents are evaluated at; empty means "use the risk snapshot's own window".
+    event_mu: float = 0.0
     event_as_of: str = ""
 
-    # The baseline is Improved ACO (Cheng 2023), run as published, so on this network it
-    # usually finds no route. With the fallback on, such a trip gets the spatial
-    # shortest-distance route instead, the paper's own comparator, labelled as such, so
-    # route optimality stays computable. Off: the baseline returns no route at all.
-    baseline_fallback: bool = True
+    # The baseline is Improved ACO (Cheng 2023) with dead-end recovery. When it still finds
+    # no route the request says so (off, the default, as in the thesis evaluation). On, such
+    # a trip gets the spatial shortest-distance route instead, labelled as such.
+    baseline_fallback: bool = False
+
+    # auto_labels.csv files (YOLO vehicle counts per frame) for the baseline's traffic-flow
+    # term. Copy them here from the frames folders; without them the flow term is zero.
+    vehicle_counts_dir: str = "data/processed/vehicle_counts"
 
     class Config:
         env_file = ".env"

@@ -95,7 +95,7 @@ def train(
     human_only: bool = False,
     split: str = "official",
     min_session_labels: int = 100,
-    time_features: bool = True,
+    time_features: bool = False,
     use_class_weights: bool = False,
 ) -> dict:
     torch.manual_seed(seed)
@@ -169,7 +169,8 @@ def train(
     )
     stgnn = RADRSTGNN(in_features=fusion.lstm.hidden_size)
     decoder = MLPDecoder(node_embedding_dim=stgnn.output_dim)
-    model = TrafficRiskModel(fusion, stgnn, decoder).to(device)
+    # Project NOAH flood hazard level per node: the static spatial node attribute (thesis 3.6).
+    model = TrafficRiskModel(fusion, stgnn, decoder, flood_level=graph.flood_level).to(device)
     fusion_params = set((id(p) for p in model.fusion.parameters()))
     optimizer = torch.optim.AdamW(
         [
@@ -190,6 +191,7 @@ def train(
         "time_features": time_features,
         "use_class_weights": use_class_weights,
         "use_text": raw_twitter_root is not None,
+        "flood_hazard": graph.flood_level is not None,
         "visual_split": {f"{d.isoformat()}|{s}": v for (d, s), v in (visual_split or VISUAL_SPLIT).items()},
         "weather_columns": WEATHER_COLUMNS,
         "node_labels": node_labels,
@@ -287,7 +289,11 @@ def main():
     p.add_argument("--split", choices=["official", "auto"], default="official")
     p.add_argument("--min-session-labels", type=int, default=100)
     p.add_argument("--human-only", action="store_true")
-    p.add_argument("--no-time-features", action="store_true")
+    p.add_argument(
+        "--time-features", action="store_true",
+        help="ablation only, not in the thesis: append time-in-session and a PM flag to the weather input",
+    )
+    p.add_argument("--no-time-features", action="store_true", help=argparse.SUPPRESS)  # old default; now a no-op
     p.add_argument(
         "--class-weights", action="store_true",
         help="balance the BCE loss against the Light/Medium/Heavy label skew (57%% Heavy by default), "
@@ -324,7 +330,7 @@ def main():
         human_only=a.human_only,
         split=a.split,
         min_session_labels=a.min_session_labels,
-        time_features=not a.no_time_features,
+        time_features=a.time_features,
         use_class_weights=a.class_weights,
     )
 

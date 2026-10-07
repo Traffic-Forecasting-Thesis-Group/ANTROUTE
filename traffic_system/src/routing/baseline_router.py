@@ -4,32 +4,34 @@ same road graph, at the same moment, as ANTROUTE.
 
 What stays exactly as the paper wrote it lives in src/routing/baseline_iaco.py and is not
 touched here: the AHP-weighted cost (eq. 4-6), direction guidance (eq. 8), the transfer rule
-(eq. 10-11), local and global pheromone updates (eq. 12-14) and the tabu list. In particular
-there is no backtracking and no dead-end pruning. An ant left with no unvisited road dies, as in
-the paper, because that limitation is what ANTROUTE's search exists to overcome.
+(eq. 10-11), local and global pheromone updates (eq. 12-14) and the tabu list. The one
+adaptation to the algorithm, dead-end recovery, is documented there (IacoConfig.dead_end_recovery):
+without it every ant died at Metro Manila's dead-end streets and the baseline degenerated into
+shortest distance.
 
-What is adapted, and only here, is the input data and the plumbing:
+What is adapted here is the input data and the plumbing:
 
   - Travel time t_ij: free-flow time scaled by the congestion the cameras observed in the
     routing window (eta_engine.congested_eta), spread to every edge from the nearest camera.
     This is the same construction scripts/evaluate_baseline_iaco.py uses. It is observed, not
     predicted: the paper plans on measured traffic, so the baseline must not borrow ANTROUTE's
     risk model.
-  - Traffic flow n_ij: YOLO vehicle counts per camera when they are supplied. Without them the
-    flow term is zero, so s reduces to its length and time terms (w3 = 0.105 goes unused).
-    BaselineInputs.flow_observed records which case applies.
+  - Traffic flow n_ij: the mean YOLO vehicle count per camera over the routing window
+    (load_vehicle_counts / camera_flow below, read from the auto_labels.csv files the labeling
+    step writes), spread to every edge from the nearest camera. Only when no counts are
+    supplied is the flow term zero; BaselineInputs.flow_observed records which case applies.
   - Multi-stop trips are routed leg by leg, because the paper defines a single O-D search.
 
-When no ant reaches the destination, the leg falls back to the spatial shortest-distance path,
-which is the comparator the paper itself reports (Table 9). On the Metro Manila network that is
-nearly every trip: in a 24-trip test all 28,800 ants died, after a median of 7 steps, at the
-city's dead-end streets. The fallback keeps route optimality computable for every trip, while
-BaselineRoute.algorithm keeps IACO's own completion rate visible as a separate result.
+When no ant reaches the destination the leg has no baseline route. The spatial shortest-distance
+fallback (the paper's Table 9 comparator) is still available with fallback=True, but it is off
+by default for the thesis comparison, because a shortest-distance route is not Improved ACO.
+BaselineRoute.algorithm keeps IACO's own completion rate visible either way.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Dict, List, Mapping, Optional, Sequence
 
 import numpy as np
@@ -43,7 +45,10 @@ from src.routing.baseline_iaco import (
     iaco_search,
     spatial_shortest_path,
 )
+from src.data.graph_data import resolve_camera_map
 from src.routing.eta_engine import DEFAULT_GAMMA, congested_eta
+
+LOCAL_TZ = "Asia/Manila"
 
 IACO = "iaco"
 SHORTEST_DISTANCE = "shortest_distance"
@@ -101,6 +106,43 @@ def camera_observations(
     return {camera: float(np.mean(values)) for camera, values in totals.items()}
 
 
+def _local_naive(values: pd.Series) -> pd.Series:
+    """Timestamps as naive Manila local time."""
+    ts = pd.to_datetime(values, format="ISO8601")
+    if ts.dt.tz is not None:
+        ts = ts.dt.tz_convert(LOCAL_TZ).dt.tz_localize(None)
+    return ts
+
+
+def load_vehicle_counts(
+    paths: Sequence[Path], camera_nodes: Mapping[str, int], camera_csv: Optional[Path]
+) -> pd.DataFrame:
+    """
+    YOLO vehicle counts per frame (auto_labels.csv: camera_id, timestamp, n_vehicles), placed
+    at the graph index of each camera's intersection. Columns: camera, time, n_vehicles.
+    Frames from cameras that map to no intersection are dropped.
+    """
+    frames = [pd.read_csv(p, usecols=["camera_id", "timestamp", "n_vehicles"]) for p in paths]
+    if not frames:
+        return pd.DataFrame(columns=["camera", "time", "n_vehicles"])
+    counts = pd.concat(frames, ignore_index=True)
+    mapping, unmapped = resolve_camera_map(sorted(counts["camera_id"].unique()), list(camera_nodes), camera_csv)
+    if unmapped:
+        print(f"WARNING: {len(unmapped)} camera id(s) not mapped to an intersection, ignored: {unmapped[:5]}")
+    counts["camera"] = counts["camera_id"].map(lambda c: camera_nodes.get(mapping.get(c), -1))
+    counts = counts[counts["camera"] >= 0].copy()
+    counts["time"] = _local_naive(counts["timestamp"])
+    return counts[["camera", "time", "n_vehicles"]].sort_values("time").reset_index(drop=True)
+
+
+def camera_flow(counts: pd.DataFrame, start, end) -> Dict[int, float]:
+    """Mean vehicle count per camera (graph index) over [start, end)."""
+    start = _local_naive(pd.Series([start])).iloc[0]
+    end = _local_naive(pd.Series([end])).iloc[0]
+    inside = counts[(counts["time"] >= start) & (counts["time"] < end)]
+    return {int(c): float(v) for c, v in inside.groupby("camera")["n_vehicles"].mean().items()}
+
+
 def build_inputs(
     graph: IacoGraph,
     free_flow_seconds: np.ndarray,
@@ -143,7 +185,7 @@ def _no_route_reason(config: IacoConfig, failed_legs: int, legs: int, fell_back:
     where = "" if legs == 1 else f" for {failed_legs} of {legs} legs"
     reason = (
         f"IACO (Cheng 2023) found no route{where}: none of its {config.n_ants * config.n_iterations} "
-        "ants reached the destination, because each was left with no unvisited road to take."
+        "ants reached the destination."
     )
     if fell_back:
         reason += " Showing the spatial shortest-distance route, the comparator the paper itself reports."
@@ -154,11 +196,12 @@ def plan_baseline(
     inputs: BaselineInputs,
     stops: Sequence[int],
     config: IacoConfig = IacoConfig(),
-    fallback: bool = True,
+    fallback: bool = False,
 ) -> BaselineRoute:
     """
-    Route through `stops` (road-network node ids) leg by leg: IACO first, shortest distance
-    when IACO fails and `fallback` is on.
+    Route through `stops` (road-network node ids) leg by leg with IACO. When IACO finds no
+    route, the leg raises BaselineNoRouteError, or falls back to shortest distance when
+    `fallback` is on (not the thesis comparison; labelled as such in the result).
 
     Each leg starts from fresh pheromone and its own seeded generator, so a leg's result does
     not depend on how many legs came before it. Consecutive duplicate stops are skipped.

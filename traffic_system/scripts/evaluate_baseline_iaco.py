@@ -50,7 +50,7 @@ import pandas as pd
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
-from src.data.graph_data import DEFAULT_K, GraphData, build_subgraph, resolve_camera_map  # noqa: E402
+from src.data.graph_data import DEFAULT_K, GraphData, build_subgraph  # noqa: E402
 from src.routing.aco_routing import AntColonyConfig, ant_colony_shortest_path  # noqa: E402
 from src.routing.baseline_iaco import (  # noqa: E402
     IacoConfig,
@@ -62,6 +62,7 @@ from src.routing.baseline_iaco import (  # noqa: E402
     iaco_dynamic_trip,
     spatial_shortest_path,
 )
+from src.routing.baseline_router import camera_flow, load_vehicle_counts as shared_vehicle_counts  # noqa: E402
 from src.routing.dynamic_weight import DEFAULT_LAMBDA, build_weighted_graph, edge_distances  # noqa: E402
 from src.routing.eta_engine import DEFAULT_GAMMA, congested_eta, load_free_flow_seconds  # noqa: E402
 
@@ -132,26 +133,17 @@ def camera_labels_by_window(frame: pd.DataFrame, graph: GraphData) -> Dict[pd.Ti
 
 
 def load_vehicle_counts(paths: List[Path], graph: GraphData, camera_csv: Path) -> pd.DataFrame:
-    frames = [pd.read_csv(p, usecols=["camera_id", "timestamp", "n_vehicles"]) for p in paths]
-    counts = pd.concat(frames, ignore_index=True)
-    mapping, unmapped = resolve_camera_map(sorted(counts["camera_id"].unique()), list(graph.camera_nodes), camera_csv)
-    if unmapped:
-        print(f"WARNING: {len(unmapped)} camera id(s) not mapped to an intersection, ignored: {unmapped[:5]}")
-    counts["camera"] = counts["camera_id"].map(lambda c: graph.camera_nodes.get(mapping.get(c), -1))
-    counts = counts[counts["camera"] >= 0].copy()
-    counts["time"] = local_naive(counts["timestamp"])
-    return counts.sort_values("time")
+    """Shared with the thesis evaluation and the app: src/routing/baseline_router.py."""
+    return shared_vehicle_counts(paths, graph.camera_nodes, camera_csv)
 
 
 def flow_by_window(counts: pd.DataFrame, windows: pd.DataFrame) -> Dict[pd.Timestamp, Dict[int, float]]:
     """Mean vehicle count per camera for each window."""
     out: Dict[pd.Timestamp, Dict[int, float]] = {}
-    by_camera = {c: (g["time"].to_numpy(), g["n_vehicles"].to_numpy(dtype=float)) for c, g in counts.groupby("camera")}
     for start, end in windows[["start", "end"]].itertuples(index=False):
-        for camera, (times, values) in by_camera.items():
-            lo, hi = np.searchsorted(times, np.datetime64(start)), np.searchsorted(times, np.datetime64(end))
-            if hi > lo:
-                out.setdefault(end, {})[int(camera)] = float(values[lo:hi].mean())
+        flow = camera_flow(counts, start, end)
+        if flow:
+            out[end] = flow
     return out
 
 

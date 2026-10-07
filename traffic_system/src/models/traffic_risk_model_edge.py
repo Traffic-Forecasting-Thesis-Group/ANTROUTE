@@ -23,13 +23,38 @@ def scatter_camera_features(
 
 
 class TrafficRiskModel(nn.Module):
+    """
+    CNN+LSTM -> RADR STGNN -> MLP decoder, one Congestion Risk logit per edge.
 
-    def __init__(self, fusion: nn.Module, stgnn: RADRSTGNN, decoder: Optional[MLPDecoder] = None):
+    `flood_level` ([N] long, Project NOAH hazard level per graph node) is the static spatial
+    node attribute the thesis feeds the STGNN alongside the fused camera features. Each level
+    gets a learned vector of the fused-feature size that is added to that node's input at every
+    timestep, so the GCN input stays at the CNN+LSTM output size (Table 2: 128). The vectors
+    start at zero, so an untrained model behaves exactly as without the layer.
+    """
+
+    def __init__(
+        self,
+        fusion: nn.Module,
+        stgnn: RADRSTGNN,
+        decoder: Optional[MLPDecoder] = None,
+        flood_level: Optional[torch.Tensor] = None,
+        n_flood_levels: int = 4,
+    ):
         super().__init__()
         self.fusion = fusion
         self.stgnn = stgnn
         self.decoder = decoder or MLPDecoder(node_embedding_dim=stgnn.output_dim)
-        self.placeholder = nn.Parameter(torch.zeros(fusion.lstm.hidden_size))
+        hidden = fusion.lstm.hidden_size
+        self.placeholder = nn.Parameter(torch.zeros(hidden))
+        self.flood_embedding = None
+        if flood_level is not None:
+            flood_level = torch.as_tensor(flood_level, dtype=torch.long)
+            if flood_level.ndim != 1 or flood_level.min() < 0 or flood_level.max() >= n_flood_levels:
+                raise ValueError(f"flood_level must be [N] with values in [0, {n_flood_levels - 1}]")
+            self.register_buffer("flood_level", flood_level)
+            self.flood_embedding = nn.Embedding(n_flood_levels, hidden)
+            nn.init.zeros_(self.flood_embedding.weight)
 
     def forward(
         self,
@@ -47,6 +72,12 @@ class TrafficRiskModel(nn.Module):
             text_mask=batch["text_mask"],
         )
         x = scatter_camera_features(features, camera_index, a_hat.shape[0], self.placeholder)
+        if self.flood_embedding is not None:
+            if self.flood_level.shape[0] != a_hat.shape[0]:
+                raise ValueError(
+                    f"flood_level covers {self.flood_level.shape[0]} nodes but the graph has {a_hat.shape[0]}"
+                )
+            x = x + self.flood_embedding(self.flood_level).to(x.dtype)
         nodes = self.stgnn(x, a_hat)
         return self.decoder(nodes, edge_index)
 

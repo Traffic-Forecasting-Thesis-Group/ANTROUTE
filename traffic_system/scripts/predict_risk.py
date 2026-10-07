@@ -1,4 +1,8 @@
 """
+SUPERSEDED -- ablation only, not the thesis model. The thesis pipeline (RADR STGNN -> MLP Decoder ->
+Congestion Risk Score per edge) is src/models/traffic_risk_model_edge.py, trained by
+scripts/train_stgnn_edge.py and scored by scripts/predict_congestion_risk.py.
+
 Run a trained CNNLSTMFusion + RADR STGNN checkpoint over EVERY extracted session and write congestion
 predictions and risk scores.
 

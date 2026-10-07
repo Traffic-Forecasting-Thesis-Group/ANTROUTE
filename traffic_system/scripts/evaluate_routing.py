@@ -76,6 +76,7 @@ import pandas as pd
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
+from src.data.alignment import WINDOW_STEPS  # noqa: E402
 from src.data.graph_data import DEFAULT_K, build_subgraph  # noqa: E402
 from src.routing.aco_routing import AntColonyConfig, ant_colony_shortest_path, remaining_cost_to  # noqa: E402
 from src.routing.baseline_iaco import IacoConfig, IacoGraph  # noqa: E402
@@ -83,7 +84,9 @@ from src.routing.baseline_router import (  # noqa: E402
     IACO,
     BaselineInputs,
     build_inputs,
+    camera_flow,
     camera_observations,
+    load_vehicle_counts,
     plan_baseline,
 )
 from src.routing.dynamic_weight import (  # noqa: E402
@@ -140,7 +143,8 @@ class Baseline:
     measure it is judged by.
     """
 
-    def __init__(self, graph, spatial_dir: Path, risk_edges: Path, config: IacoConfig, fallback: bool):
+    def __init__(self, graph, spatial_dir: Path, risk_edges: Path, config: IacoConfig, fallback: bool,
+                 vehicle_counts: pd.DataFrame):
         coords = pd.read_csv(spatial_dir / "full_network_static_features.csv",
                              usecols=["node_id", "lat", "lon"]).set_index("node_id").reindex(graph.node_ids)
         if coords.isna().any().any():
@@ -158,6 +162,7 @@ class Baseline:
         self.node_ids = np.asarray(graph.node_ids)
         self.config = config
         self.fallback = fallback
+        self.vehicle_counts = vehicle_counts
         self._observations = self._load_observations(risk_edges)
         self._inputs: Dict[str, BaselineInputs] = {}
 
@@ -181,9 +186,10 @@ class Baseline:
             observed = (
                 camera_observations(rows, self.node_ids, self.cameras) if rows is not None else {}
             )
-            # No vehicle counts here (they live with the YOLO detections), so the flow term of
-            # Cheng's cost is zero; BaselineInputs.flow_observed records that.
-            self._inputs[window] = build_inputs(self.graph, self.free_flow, observed, camera_flow=None)
+            # Traffic flow n_ij: mean YOLO vehicle count per camera over this window.
+            start = pd.Timestamp(window)
+            flow = camera_flow(self.vehicle_counts, start, start + pd.Timedelta(minutes=WINDOW_STEPS))
+            self._inputs[window] = build_inputs(self.graph, self.free_flow, observed, camera_flow=flow)
         return self._inputs[window]
 
     def route(self, window: str, stops: Sequence[int]) -> Tuple[Optional[List[List[int]]], str]:
@@ -241,6 +247,22 @@ def leave_at(window: str) -> str:
         return ""
 
 
+def model_inputs(risk_edges: Path) -> dict:
+    """
+    Which thesis inputs reached the risk scores, from the risk_summary.json that
+    predict_congestion_risk.py writes beside risk_edges.csv. Warns when the learned text
+    pathway or the flood hazard input was off, since then the run is not the thesis model.
+    """
+    path = Path(risk_edges).parent / "risk_summary.json"
+    info = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    found = {"use_text": info.get("use_text"), "flood_hazard": info.get("flood_hazard")}
+    for key, what in (("use_text", "event text (DistilBERT branch)"), ("flood_hazard", "flood hazard input")):
+        if found[key] is not True:
+            state = "unknown (no risk_summary.json)" if found[key] is None else "off"
+            print(f"WARNING: {what} was {state} for these risk scores; this is not the thesis model")
+    return found
+
+
 def evaluation_windows(a) -> List[str]:
     frame = load_risk_edges(a.risk_edges)
     keys = window_key(frame)
@@ -295,7 +317,7 @@ def write_template(a, graph, baseline: "Baseline", config: AntColonyConfig) -> N
     def graphs_for(window):
         if window not in graphs:
             graphs[window] = weighted_graph_from_risk_file(
-                graph, a.risk_edges, window=window, lam=a.lam, missing_risk=a.missing_risk
+                graph, a.risk_edges, window=window, lam=a.lam, missing_risk=DEFAULT_MISSING_RISK
             )
         return graphs[window]
 
@@ -430,7 +452,7 @@ def score_sheet(a, graph, baseline: "Baseline", free_flow_seconds) -> Tuple[List
         if window not in graphs:
             try:
                 graphs[window] = weighted_graph_from_risk_file(
-                    graph, a.risk_edges, window=window, missing_risk=a.missing_risk
+                    graph, a.risk_edges, window=window, lam=a.lam, missing_risk=DEFAULT_MISSING_RISK
                 )
             except ValueError as err:
                 raise SystemExit(f"{a.apple_maps}: {err}") from None
@@ -556,6 +578,7 @@ def write_reports(a, graph, trials: List[dict]) -> dict:
     report = {
         "risk_edges": str(a.risk_edges),
         "apple_maps": str(a.apple_maps),
+        "model_inputs": model_inputs(a.risk_edges),
         ANTROUTE: {"algorithm": "ACO on the risk-weighted graph", "lambda": a.lam, "gamma": a.gamma},
         BASELINE: {
             "algorithm": "Improved ACO (Cheng 2023), doi:10.1155/2023/7651100",
@@ -566,9 +589,10 @@ def write_reports(a, graph, trials: List[dict]) -> dict:
             "n_ants": a.n_ants,
             "n_iterations": a.n_iterations,
             "shortest_distance_fallback": a.baseline_fallback,
+            "flow_term": "mean YOLO vehicle count per camera per window (auto_labels.csv)",
+            "dead_end_recovery": True,
             "multi_destination_adapted": a.baseline_multi_destination,
             "plans_on": "observed camera congestion (weak_target), not ANTROUTE's predicted risk",
-            "flow_term": "zero -- no vehicle counts supplied, so Cheng's w3 criterion is unused",
         },
         "per_trial_mean_sd": summary,
         "pooled": {s: {k: asdict(m) for k, m in r.items()} for s, r in pooled.items()},
@@ -616,7 +640,6 @@ def main() -> None:
     mode.add_argument("--apple-maps", type=Path, help="the filled-in sheet from --template, to score")
     p.add_argument("--spatial-dir", type=Path, default=REPO_ROOT / "data/processed/spatial")
     p.add_argument("-k", type=int, default=DEFAULT_K)
-    p.add_argument("--missing-risk", type=float, default=DEFAULT_MISSING_RISK)
     p.add_argument("--lambda", dest="lam", type=float, default=DEFAULT_LAMBDA, help="ANTROUTE risk penalty")
     p.add_argument("--gamma", type=float, default=DEFAULT_GAMMA, help="ANTROUTE ETA risk sensitivity")
     # The baseline is Improved ACO (Cheng 2023). Defaults are the paper's own (sec. 5.1.2);
@@ -627,10 +650,17 @@ def main() -> None:
     p.add_argument("--baseline-rho", type=float, default=0.3)
     p.add_argument("--baseline-q0", type=float, default=0.7)
     p.add_argument(
-        "--no-baseline-fallback", dest="baseline_fallback", action="store_false",
-        help="leave a trip unpaired when IACO finds no route, instead of using the spatial "
-             "shortest-distance route the paper also reports (Table 9)",
+        "--baseline-fallback", action="store_true",
+        help="give a trip IACO cannot route the spatial shortest-distance route (Cheng's Table 9 "
+             "comparator) instead of leaving it unpaired. Off by default: a shortest-distance "
+             "route is not the Improved ACO baseline the thesis compares against",
     )
+    p.add_argument(
+        "--auto-labels", required=True, type=Path, nargs="+",
+        help="auto_labels.csv file(s) from the labeling step; their YOLO vehicle counts are the "
+             "traffic flow term of the baseline's cost (Cheng eq. 6)",
+    )
+    p.add_argument("--camera-map", type=Path, default=REPO_ROOT / "configs/camera_nodes.csv")
     p.add_argument(
         "--no-baseline-multi-destination", dest="baseline_multi_destination", action="store_false",
         help="Cheng (2023) routes a single origin to a single destination. By default the "
@@ -651,6 +681,7 @@ def main() -> None:
     if a.n_stops < 3:
         p.error("--n-stops must be at least 3 (origin, one intermediate stop, destination)")
 
+    model_inputs(a.risk_edges)
     graph = build_subgraph(a.spatial_dir, a.k)
     baseline = Baseline(
         graph,
@@ -666,6 +697,7 @@ def main() -> None:
             seed=a.seed,
         ),
         fallback=a.baseline_fallback,
+        vehicle_counts=load_vehicle_counts(a.auto_labels, graph.camera_nodes, a.camera_map),
     )
     if a.template:
         config = AntColonyConfig(

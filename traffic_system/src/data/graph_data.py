@@ -20,6 +20,7 @@ from src.models.congestion_risk_score import edge_index_from_adjacency
 from src.models.radr_stgnn import normalize_adjacency
 
 DEFAULT_K = 8   # ~1.4k nodes; links most EDSA intersections (nearest pairs are 5-16 hops apart)
+N_FLOOD_LEVELS = 4   # Project NOAH hazard levels 0 (none), 1 low, 2 medium, 3 high
 
 
 @dataclass
@@ -29,6 +30,7 @@ class GraphData:
     a_hat: Optional[torch.Tensor]        # dense D^-1/2 (A+I) D^-1/2, [N, N]; None when routing
     edge_index: torch.Tensor             # [2, E]
     camera_nodes: Dict[str, int]         # intersection label -> subgraph index
+    flood_level: Optional[torch.Tensor] = None  # [N] long, Project NOAH 5-year hazard level per node
 
     @property
     def n_nodes(self) -> int:
@@ -72,11 +74,31 @@ def load_camera_full_index(spatial_dir: Path, node_order: np.ndarray) -> Dict[st
                 for r in csv.DictReader(f) if r["is_cctv_node"] == "True"}
 
 
+def load_flood_levels(spatial_dir: Path, node_ids: np.ndarray) -> torch.Tensor:
+    """
+    Project NOAH 5-year flood hazard level (0 none .. 3 high) per node, in `node_ids` order,
+    from the flood_hazard_level column spatial_topology.py joins onto every node.
+    """
+    levels: Dict[int, int] = {}
+    with (Path(spatial_dir) / "full_network_static_features.csv").open(encoding="utf-8", newline="") as f:
+        for r in csv.DictReader(f):
+            levels[int(r["node_id"])] = int(float(r["flood_hazard_level"]))
+    missing = [int(n) for n in node_ids if int(n) not in levels]
+    if missing:
+        raise ValueError(f"{len(missing)} node(s) have no flood_hazard_level in full_network_static_features.csv")
+    values = [levels[int(n)] for n in node_ids]
+    if min(values) < 0 or max(values) >= N_FLOOD_LEVELS:
+        raise ValueError(f"flood_hazard_level must lie in [0, {N_FLOOD_LEVELS - 1}]")
+    return torch.tensor(values, dtype=torch.long)
+
+
 def build_subgraph(spatial_dir: Path, k: int = DEFAULT_K) -> GraphData:
     spatial_dir = Path(spatial_dir)
     adjacency = sp.load_npz(spatial_dir / "metro_manila_adjacency.npz").tocsr()
     node_order = np.load(spatial_dir / "metro_manila_node_order.npy")
-    return subgraph_from_arrays(adjacency, node_order, load_camera_full_index(spatial_dir, node_order), k)
+    graph = subgraph_from_arrays(adjacency, node_order, load_camera_full_index(spatial_dir, node_order), k)
+    graph.flood_level = load_flood_levels(spatial_dir, graph.node_ids)
+    return graph
 
 
 def build_full_graph(spatial_dir: Path) -> GraphData:

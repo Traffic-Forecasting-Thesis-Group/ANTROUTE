@@ -9,12 +9,16 @@ from src.routing.baseline_router import (
     SHORTEST_DISTANCE,
     BaselineNoRouteError,
     build_inputs,
+    camera_flow,
     camera_observations,
+    load_vehicle_counts,
     plan_baseline,
 )
 
 # Always take the best-looking road, so a run is deterministic.
 GREEDY = IacoConfig(n_ants=3, n_iterations=2, q0=1.0, seed=0)
+# The same colony as the paper wrote it: an ant at a dead end dies.
+LITERAL = IacoConfig(n_ants=3, n_iterations=2, q0=1.0, seed=0, dead_end_recovery=False)
 
 
 def graph(node_ids, edges, coords, distance=None):
@@ -50,7 +54,13 @@ def test_the_trap_really_defeats_unaided_iaco():
     # Guards the fixture: if this ever finds a route, the fallback tests below prove nothing.
     g = dead_end_trap()
     s = free_inputs(g).s
-    assert iaco_search(g, 0, 3, s, np.ones(g.n_edges), GREEDY, np.random.default_rng(0)) is None
+    assert iaco_search(g, 0, 3, s, np.ones(g.n_edges), LITERAL, np.random.default_rng(0)) is None
+
+
+def test_dead_end_recovery_lets_iaco_escape_the_trap():
+    route = plan_baseline(free_inputs(dead_end_trap()), [0, 3], GREEDY)
+    assert route.nodes == [0, 2, 3]
+    assert route.algorithm == IACO and route.fallback_reason is None
 
 
 def test_iaco_route_is_used_when_an_ant_arrives():
@@ -63,7 +73,7 @@ def test_iaco_route_is_used_when_an_ant_arrives():
 
 
 def test_failed_iaco_falls_back_to_shortest_distance_and_says_so():
-    route = plan_baseline(free_inputs(dead_end_trap()), [0, 3], GREEDY)
+    route = plan_baseline(free_inputs(dead_end_trap()), [0, 3], LITERAL, fallback=True)
     assert route.nodes == [0, 2, 3]
     assert route.algorithm == SHORTEST_DISTANCE
     assert route.legs_by_iaco == 0
@@ -72,7 +82,7 @@ def test_failed_iaco_falls_back_to_shortest_distance_and_says_so():
 
 def test_without_the_fallback_a_failed_search_raises():
     with pytest.raises(BaselineNoRouteError, match="found no route"):
-        plan_baseline(free_inputs(dead_end_trap()), [0, 3], GREEDY, fallback=False)
+        plan_baseline(free_inputs(dead_end_trap()), [0, 3], LITERAL)
 
 
 def test_multi_stop_routes_leg_by_leg_and_reports_a_mixed_result():
@@ -80,7 +90,7 @@ def test_multi_stop_routes_leg_by_leg_and_reports_a_mixed_result():
     edges = [(0, 1), (1, 0), (0, 2), (2, 3), (3, 4)]
     coords = {0: (0, 0), 1: (0, 1.5), 2: (1, 1), 3: (0, 2), 4: (0, 3)}
     g = graph([0, 1, 2, 3, 4], edges, coords)
-    route = plan_baseline(free_inputs(g), [0, 3, 4], GREEDY)
+    route = plan_baseline(free_inputs(g), [0, 3, 4], LITERAL, fallback=True)
     assert route.nodes == [0, 2, 3, 4]
     assert route.algorithm == MIXED
     assert (route.legs_by_iaco, route.legs) == (1, 2)
@@ -122,3 +132,25 @@ def test_camera_observations_average_per_camera_and_skip_edges_it_cannot_own():
     # 100-101 twice -> camera 0 averages 0.5 and 1.0; 101-102 touches no camera; 100-103
     # touches two; 102-103 has no observation.
     assert camera_observations(rows, node_ids, cameras) == {0: 0.75}
+
+
+def test_vehicle_counts_become_the_flow_term(tmp_path):
+    labels = tmp_path / "auto_labels.csv"
+    pd.DataFrame({
+        "camera_id": ["camA", "camA", "camA", "camB"],
+        "timestamp": ["2026-05-25T17:00:00", "2026-05-25T17:10:00", "2026-05-25T18:00:00", "2026-05-25T17:05:00"],
+        "n_vehicles": [10, 20, 99, 4],
+    }).to_csv(labels, index=False)
+    camera_csv = tmp_path / "camera_nodes.csv"
+    pd.DataFrame({"camera_id": ["camA", "camB"], "intersection": ["A", "B"]}).to_csv(camera_csv, index=False)
+
+    counts = load_vehicle_counts([labels], {"A": 0, "B": 2}, camera_csv)
+    flow = camera_flow(counts, pd.Timestamp("2026-05-25T17:00:00"), pd.Timestamp("2026-05-25T17:30:00"))
+    assert flow == {0: 15.0, 2: 4.0}           # the 18:00 frame is outside the window
+
+    g = graph([0, 1, 2], [(0, 1), (1, 2)], {0: (0, 0), 1: (1, 0), 2: (2, 0)})
+    inputs = build_inputs(g, np.array([10.0, 10.0]), camera_congestion={}, camera_flow=flow)
+    w = ahp_weights().weights
+    assert inputs.flow_observed
+    # edge 0-1 takes camera 0's 15, edge 1-2 camera 2's 4; flow is divided by its max (15)
+    assert inputs.s.tolist() == pytest.approx([w[0] + w[1] + w[2], w[0] + w[1] + w[2] * 4 / 15])

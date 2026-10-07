@@ -20,7 +20,15 @@ labels, flow from YOLO vehicle counts.
 Deviations from the paper:
   - 20 ants x 60 iterations (same as ANTROUTE) instead of 1.5 x n_nodes ants.
   - Global evaporation xi is not given in the paper; uses 0.3 (same as rho).
-  - An ant that hits a dead end is dropped.
+  - Dead-end recovery (dead_end_recovery=True, the default). The paper's test networks have
+    no dead ends; Metro Manila's do, and under the literal tabu rule every ant died there
+    (28,800 of 28,800 in a 24-trip test), so the "baseline" was really shortest distance.
+    Two feasibility-only changes keep the algorithm itself intact: an ant never takes a road
+    from which the destination cannot be reached at all (pure topology, no cost or heuristic
+    information), and an ant left with no unvisited road steps back one node and forbids the
+    road it came in on instead of dying. The cost (eq. 6), heuristic (eq. 8), transfer rule
+    (eq. 10-11) and pheromone updates (eq. 12-14) are unchanged. dead_end_recovery=False is
+    the literal paper behaviour.
   - Eq. 9 is literal, so it raises pheromone on edges that got slower.
     invert_eq9 and reset_on_replan are sensitivity variants.
 
@@ -36,7 +44,7 @@ from typing import Dict, List, Mapping, Optional, Sequence, Tuple
 
 import numpy as np
 import scipy.sparse as sp
-from scipy.sparse.csgraph import dijkstra
+from scipy.sparse.csgraph import breadth_first_order, dijkstra
 
 # Table 3: path length (C1), travel time (C2), traffic flow (C3), Saaty scale.
 AHP_JUDGMENT = np.array(
@@ -231,6 +239,15 @@ class IacoGraph:
             edges.append(int(match[0]))
         return edges
 
+    def can_reach(self, destination_idx: int) -> np.ndarray:
+        """[N] True where some directed road path leads to the destination (topology only)."""
+        reversed_graph = sp.csr_matrix(
+            (np.ones(self.n_edges), (self.dst, self.src)), shape=(self.n_nodes, self.n_nodes)
+        )
+        reachable = np.zeros(self.n_nodes, dtype=bool)
+        reachable[breadth_first_order(reversed_graph, destination_idx, directed=True, return_predecessors=False)] = True
+        return reachable
+
     def goal_distance(self, destination_idx: int) -> np.ndarray:
         """d_jD (eq. 8): normalised straight-line distance from each node to the destination."""
         d = haversine_m(self.lat, self.lon, self.lat[destination_idx], self.lon[destination_idx])
@@ -265,6 +282,7 @@ class IacoConfig:
     q: float = 1.0               # pheromone constant Q
     initial_pheromone: float = 1.0
     max_steps: Optional[int] = None
+    dead_end_recovery: bool = True  # adaptation for real road networks; False = literal paper
     invert_eq9: bool = False       # variant: tau * t_old / t_new
     reset_on_replan: bool = False  # variant: fresh pheromone on each re-plan
     seed: Optional[int] = None
@@ -324,23 +342,45 @@ def _ant_tour(
     max_steps: int,
     config: IacoConfig,
     rng: np.random.Generator,
+    reachable: Optional[np.ndarray] = None,
 ) -> Optional[Tuple[List[int], List[int]]]:
     current = start
     visited = set(forbidden) | {start}
     path, edges = [start], []
-    for _ in range(max_steps):
+    blocked: Dict[int, set] = {}
+    steps = 0
+    # A step back does not count toward max_steps: each one forbids a road for the rest of
+    # the tour, so there can be at most one per edge.
+    while steps < max_steps:
         if current == destination:
             return path, edges
         out = g.out_edges(current)
-        allowed = np.array([e for e in out if int(g.dst[e]) not in visited], dtype=np.int64)
+        skip = blocked.get(current, ())
+        allowed = np.array(
+            [
+                e for e in out
+                if int(g.dst[e]) not in visited
+                and e not in skip
+                and (reachable is None or reachable[g.dst[e]])
+            ],
+            dtype=np.int64,
+        )
         if allowed.size == 0:
-            return None
+            if not config.dead_end_recovery or len(path) == 1:
+                return None
+            # Dead end: step back one node and forbid the road that led here.
+            path.pop()
+            dead_edge = edges.pop()
+            current = path[-1]
+            blocked.setdefault(current, set()).add(int(dead_edge))
+            continue
         eta = 1.0 / (s[allowed] + goal[g.dst[allowed]])     # eq. 8
         chosen = _transfer(allowed, tau, eta, config, rng)
         current = int(g.dst[chosen])
         visited.add(current)
         path.append(current)
         edges.append(chosen)
+        steps += 1
     return (path, edges) if current == destination else None
 
 
@@ -356,6 +396,7 @@ def iaco_search(
 ) -> Optional[SearchResult]:
     """Steps 1-7 of the paper. Updates tau in place. Returns None if no ant arrives."""
     goal = g.goal_distance(destination)
+    reachable = g.can_reach(destination) if config.dead_end_recovery else None
     max_steps = config.max_steps if config.max_steps is not None else g.n_nodes - 1
     forbidden = frozenset(int(n) for n in forbidden)
 
@@ -365,7 +406,7 @@ def iaco_search(
     for iteration in range(1, config.n_iterations + 1):
         tours = []
         for _ in range(config.n_ants):
-            tour = _ant_tour(g, start, destination, s, goal, tau, forbidden, max_steps, config, rng)
+            tour = _ant_tour(g, start, destination, s, goal, tau, forbidden, max_steps, config, rng, reachable)
             if tour is not None:
                 path, edges = tour
                 tours.append((path, edges, float(s[edges].sum())))

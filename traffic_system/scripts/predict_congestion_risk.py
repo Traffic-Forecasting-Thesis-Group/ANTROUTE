@@ -45,7 +45,7 @@ def parse_session_key(key: str):
     return (date.fromisoformat(day), session)
 
 
-def build_model(cfg: dict, device) -> TrafficRiskModel:
+def build_model(cfg: dict, device, graph=None) -> TrafficRiskModel:
     fusion = CNNLSTMFusion(
         text_dim=cfg["text_dim"],
         temporal_dim=cfg["temporal_dim"],
@@ -55,7 +55,11 @@ def build_model(cfg: dict, device) -> TrafficRiskModel:
     )
     stgnn = RADRSTGNN(in_features=fusion.lstm.hidden_size)
     decoder = MLPDecoder(node_embedding_dim=stgnn.output_dim)
-    return TrafficRiskModel(fusion, stgnn, decoder).to(device)
+    # Checkpoints trained before the flood input existed have no flood_hazard key.
+    flood = graph.flood_level if cfg.get("flood_hazard") and graph is not None else None
+    if cfg.get("flood_hazard") and flood is None:
+        raise ValueError("this checkpoint was trained with the flood hazard input; pass the graph")
+    return TrafficRiskModel(fusion, stgnn, decoder, flood_level=flood).to(device)
 
 
 def summarise(rows: List[dict]) -> dict:
@@ -123,7 +127,11 @@ def predict(
     print(
         f"{len(sessions)} sessions ({skipped} skipped for missing weather), {len(dataset)} windows, {len(node_labels)} intersections, {len(edge_ids)} camera-adjacent edges, text {('on' if use_text else 'off')}"
     )
-    model = build_model(cfg, device)
+    if not cfg.get("flood_hazard"):
+        print("WARNING: checkpoint predates the flood hazard input (thesis 3.6); retrain with train_stgnn_edge.py")
+    if not use_text:
+        print("WARNING: text branch off -- event text is not reaching the risk scores (thesis 3.4)")
+    model = build_model(cfg, device, graph)
     model.load_state_dict(ckpt["model"])
     model.eval()
     a_hat = graph.a_hat.to(device)
@@ -177,6 +185,8 @@ def predict(
         "sessions": len(sessions),
         "edges": graph.edge_index.shape[1],
         "camera_edges": len(edge_ids),
+        "use_text": use_text,
+        "flood_hazard": bool(cfg.get("flood_hazard")),
         "splits": summarise(rows),
     }
     (out_dir / "risk_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")

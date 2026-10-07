@@ -1,6 +1,13 @@
 """
 Event-Aware layer: turns MMDA incident reports into a routing penalty.
 
+NOT PART OF THE THESIS METHOD. In the thesis, event text reaches routing only through the
+learned pathway (cleaning -> MarianMT -> DistilBERT -> CNN+LSTM -> RADR STGNN -> MLP decoder
+-> Congestion Risk Score) and the cost is W = distance * (1 + lambda * Risk). This rule-based
+layer adds an extra (1 + mu * Event) factor, so it is disabled by default (app setting
+EVENT_MU = 0) and is never used by scripts/evaluate_routing.py. Kept only as an optional
+demo extension; documenting it in the thesis is required before reporting any result with it.
+
 The RADR STGNN predicts *recurring* congestion from what the cameras see. It cannot
 predict a crash that happened ten minutes ago, because nothing in its training signal
 represents one. This module covers that second, complementary signal: the unstructured

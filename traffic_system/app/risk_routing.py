@@ -10,9 +10,10 @@ run stands in for "right now". Picking a specific recorded day/time instead is a
 
 Routing covers the whole Metro Manila road network (build_full_graph), not just the
 k-hop subgraph the STGNN trains on -- that subgraph exists only because the model
-needs a dense adjacency, a constraint routing does not share. Congestion-risk
-awareness still only applies where a camera informs it; elsewhere an edge is assumed
-typical (see missing_risk below) rather than risk-free or risk-laden. An origin or
+needs a dense adjacency, a constraint routing does not share. Congestion risk is only
+predicted on the subgraph; every other edge is routed and timed on road distance and
+speed limit alone (risk 0, as the thesis scope states), the same rule
+scripts/evaluate_routing.py uses. An origin or
 destination further than MAX_SNAP_KM from every road in the network raises
 RouteOutsideNetworkError rather than silently inventing a route; route_engine.
 plan_routes() catches this and falls back to the distance-only placeholder.
@@ -35,6 +36,7 @@ import pandas as pd
 LOCAL_TZ = "Asia/Manila"
 
 from app.config import settings
+from src.data.alignment import WINDOW_STEPS
 from src.data.graph_data import GraphData, build_full_graph
 from src.routing.aco_routing import AntColonyConfig, ant_colony_shortest_path, multi_stop_route
 from src.routing.baseline_iaco import IacoConfig, IacoGraph
@@ -43,10 +45,18 @@ from src.routing.baseline_router import (
     SHORTEST_DISTANCE,
     BaselineInputs,
     build_inputs,
+    camera_flow,
     camera_observations,
+    load_vehicle_counts,
     plan_baseline,
 )
-from src.routing.dynamic_weight import DEFAULT_LAMBDA, PathMetrics, WeightedGraph, weighted_graph_from_risk_file
+from src.routing.dynamic_weight import (
+    DEFAULT_LAMBDA,
+    DEFAULT_MISSING_RISK,
+    PathMetrics,
+    WeightedGraph,
+    weighted_graph_from_risk_file,
+)
 from src.routing.eta_engine import load_free_flow_seconds, path_eta_seconds
 from src.routing.event_layer import (
     DEFAULT_MU,
@@ -64,9 +74,9 @@ MAX_SNAP_KM = 2.0  # how far a searched place may be from the nearest subgraph n
 FALLBACK_SPEED_KMH = 25.0  # used only if metro_manila_travel_time.npz is missing
 
 # The baseline colony: Cheng's parameters (alpha 1, beta 5, rho 0.3, q0 0.7 for a large
-# network) at baseline_iaco's 20 ants x 60 iterations. The paper's own 1.5 ants per node
-# would be ~89,000 ants per iteration on this graph. This is more search than ANTROUTE gets
-# below (8 x 15), which errs in the baseline's favour.
+# network) at baseline_iaco's 20 ants x 60 iterations, with dead-end recovery -- the same
+# IacoConfig defaults scripts/evaluate_routing.py runs. The paper's own 1.5 ants per node
+# would be ~89,000 ants per iteration on this graph.
 BASELINE_CONFIG = IacoConfig(seed=0)
 
 
@@ -118,7 +128,7 @@ def _load_node_coords(spatial_dir: Path, node_ids: np.ndarray) -> Dict[int, Tupl
 def _network() -> _Network:
     # The whole city, not the k-hop training subgraph: the subgraph exists because the
     # STGNN needs a dense adjacency, a constraint routing does not share. Risk is still
-    # only known on the camera-covered edges -- the rest fall back to `missing_risk`.
+    # only known on the subgraph edges -- the rest carry risk 0 (distance and speed only).
     graph = build_full_graph(SPATIAL_DIR)
     risk_edges_path = Path(settings.risk_edges_path)
     if not risk_edges_path.is_absolute():
@@ -126,19 +136,13 @@ def _network() -> _Network:
     if not risk_edges_path.exists():
         raise FileNotFoundError(risk_edges_path)
 
-    # What to assume for an edge no camera informs. 0 would be actively wrong here: a
-    # scored edge at the observed mean risk costs ~2.1x its length at lambda=2, so an
-    # unscored edge assumed risk-free would look less than half the price, and the
-    # router would systematically abandon the monitored corridor for roads it knows
-    # nothing about. Assuming the observed mean instead makes "unknown" cost the same
-    # as "typical", so coverage gaps neither attract nor repel a route.
-    scored = weighted_graph_from_risk_file(graph, risk_edges_path, lam=DEFAULT_LAMBDA, missing_risk=0.0)
-    observed = scored.risk[scored.risk > 0]
-    missing_risk = float(observed.mean()) if observed.size else 0.5
-
+    # Edges without a predicted risk (outside the camera subgraph) are routed and timed on
+    # road distance and speed limit alone, as the thesis scope states -- the same
+    # DEFAULT_MISSING_RISK (0) that scripts/evaluate_routing.py uses.
     wg_antroute = weighted_graph_from_risk_file(
-        graph, risk_edges_path, lam=DEFAULT_LAMBDA, missing_risk=missing_risk
+        graph, risk_edges_path, lam=DEFAULT_LAMBDA, missing_risk=DEFAULT_MISSING_RISK
     )
+    observed = wg_antroute.risk[wg_antroute.risk > 0]
 
     free_flow_seconds = None
     if (SPATIAL_DIR / "metro_manila_travel_time.npz").exists():
@@ -150,13 +154,14 @@ def _network() -> _Network:
     # same colour.
     risk_low, risk_high = np.percentile(observed if observed.size else wg_antroute.risk, [33, 66])
 
-    # Event layer. Parsing the whole tweet corpus takes a few seconds, so it happens
-    # once here rather than per request. An absent corpus is not fatal -- the system
-    # just falls back to risk-only routing.
+    # Rule-based incident layer (src/routing/event_layer.py). Not part of the thesis
+    # method -- there, event text reaches routing only through the learned DistilBERT ->
+    # CNN+LSTM -> RADR STGNN path, i.e. the risk scores above -- so it is off unless
+    # EVENT_MU is set above 0, and the thesis evaluation never uses it.
     events: List[TrafficEvent] = []
     raw_twitter = REPO_ROOT / "data/raw/twitter"
     landmarks = load_landmarks(REPO_ROOT / "configs/event_landmarks.csv")
-    if raw_twitter.exists() and landmarks:
+    if settings.event_mu > 0 and raw_twitter.exists() and landmarks:
         events = parse_alerts(raw_twitter, landmarks)
 
     # Where an incident label places on the graph. Starts from the 8 camera
@@ -227,9 +232,19 @@ def _baseline_inputs() -> BaselineInputs:
         np.asarray(net.graph.node_ids),
         list(net.graph.camera_nodes.values()),
     )
-    # No vehicle counts ship with the app (they live with the YOLO detections), so the flow
-    # term of Cheng's cost is zero here; build_inputs records that in flow_observed.
-    return build_inputs(g, free_flow, observed, camera_flow=None)
+    # Traffic flow n_ij: mean YOLO vehicle count per camera over the served window, from the
+    # auto_labels.csv files in VEHICLE_COUNTS_DIR -- the same rule scripts/evaluate_routing.py
+    # applies. Without those files the flow term is zero (BaselineInputs.flow_observed=False).
+    flow = None
+    counts_dir = Path(settings.vehicle_counts_dir)
+    if not counts_dir.is_absolute():
+        counts_dir = REPO_ROOT / counts_dir
+    paths = sorted(counts_dir.glob("*.csv")) if counts_dir.exists() else []
+    if paths and wg.window:
+        start = pd.Timestamp(wg.window)
+        counts = load_vehicle_counts(paths, net.graph.camera_nodes, REPO_ROOT / "configs/camera_nodes.csv")
+        flow = camera_flow(counts, start, start + pd.Timedelta(minutes=WINDOW_STEPS))
+    return build_inputs(g, free_flow, observed, camera_flow=flow)
 
 
 def _as_of(net: _Network) -> Optional[datetime]:
@@ -455,7 +470,7 @@ def plan_real_routes(
 
     wg = net.wg_antroute
     impact = None
-    live = live_events(net)
+    live = live_events(net) if settings.event_mu > 0 else []
     if live:
         impact = event_impact(net.graph, live, net.event_intersections)
         wg = apply_events(wg, impact, mu=settings.event_mu)

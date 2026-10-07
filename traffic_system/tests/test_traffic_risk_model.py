@@ -164,3 +164,35 @@ def test_joint_training_reduces_loss_on_a_learnable_signal():
         optimizer.step()
         losses.append(float(loss.detach()))
     assert sum(losses[-5:]) / 5 < sum(losses[:5]) / 5
+
+def test_flood_hazard_level_reaches_the_stgnn():
+    edge_index, camera_index, n_nodes = small_graph()
+    torch.manual_seed(0)
+    fusion = FakeFusion(output_dim=16)
+    stgnn = RADRSTGNN(in_features=16, gcn_hidden=16, gcn_out=8, gru_hidden=12)
+    decoder = MLPDecoder(node_embedding_dim=stgnn.output_dim, hidden_dim=16)
+    flood = torch.tensor([0, 0, 0, 3, 3, 0, 1, 2])
+    model = TrafficRiskModel(fusion, stgnn, decoder, flood_level=flood).eval()
+    a_hat = torch.eye(n_nodes)
+    batch = make_batch(batch_size=2, n_cameras=len(camera_index))
+    # zero-initialised: an untrained model is unchanged by the flood input
+    before = model(batch, a_hat, camera_index, edge_index)
+    with torch.no_grad():
+        model.flood_embedding.weight[3] = 1.0
+    after = model(batch, a_hat, camera_index, edge_index)
+    changed = (before - after).abs() > 1e-6
+    # only edges touching a level-3 node (3 or 4) move
+    touches = (edge_index[0] == 3) | (edge_index[0] == 4) | (edge_index[1] == 3) | (edge_index[1] == 4)
+    assert torch.equal(changed.any(dim=0), touches)
+    assert "flood_level" in model.state_dict()
+
+
+def test_flood_level_must_cover_the_graph():
+    edge_index, camera_index, n_nodes = small_graph()
+    fusion = FakeFusion(output_dim=16)
+    stgnn = RADRSTGNN(in_features=16, gcn_hidden=16, gcn_out=8, gru_hidden=12)
+    model = TrafficRiskModel(fusion, stgnn, flood_level=torch.zeros(n_nodes - 1, dtype=torch.long))
+    with pytest.raises(ValueError, match="flood_level covers"):
+        model(make_batch(1, len(camera_index)), torch.eye(n_nodes), camera_index, edge_index)
+    with pytest.raises(ValueError):
+        TrafficRiskModel(fusion, stgnn, flood_level=torch.tensor([0, 4]))
