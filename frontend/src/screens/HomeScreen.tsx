@@ -636,6 +636,7 @@ export default function HomeScreen({ navigation }: any) {
   const antTop = antRouteOptions[0];
   const baselineTop = baselineModelOptions[0];
   const hasAnyResults = normalRoute !== null || antRouteOptions.length > 0 || baselineModelOptions.length > 0;
+  const hasComparisonActivity = hasAnyResults || antLoading || baselineLoading || antNotice !== null || baselineNotice !== null;
   const showStopsList = !isNavigating || stopsRevealedDuringNav;
 
   const lastPlacedIndex = destinations.reduce((last, d, i) => (d.coords ? i : last), -1);
@@ -1133,7 +1134,7 @@ export default function HomeScreen({ navigation }: any) {
                     </View>
                   )}
 
-                {!isNavigating && activeTab === 'comparison' && !hasAnyResults && (
+                {!isNavigating && activeTab === 'comparison' && !hasComparisonActivity && (
                   <View style={styles.comparisonEmptyState}>
                     <Info size={18} color="#9ca3af" />
                     <Text style={styles.comparisonEmptyText}>
@@ -1145,7 +1146,7 @@ export default function HomeScreen({ navigation }: any) {
                 {/* Route comparison for this trip. It needs only the two route responses, so it
                     does not wait on the forecast metrics below. Both cards are measured the same
                     way (distance, ETA engine, risk), so a difference is a difference in the route. */}
-                {!isNavigating && activeTab === 'comparison' && hasAnyResults && (
+                {!isNavigating && activeTab === 'comparison' && hasComparisonActivity && (
                   <View>
                     <Text style={styles.comparisonResultLabel}>Comparison Result</Text>
 
