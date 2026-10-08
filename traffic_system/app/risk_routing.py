@@ -63,11 +63,14 @@ from src.routing.dynamic_weight import (
     DEFAULT_LAMBDA,
     DEFAULT_MISSING_RISK,
     RISK_KEY,
+    NearestScored,
     PathMetrics,
     WeightedGraph,
     build_weighted_graph,
+    fill_unscored_risk,
     load_risk_edges,
     risk_vector,
+    scored_mask,
     window_key,
 )
 from src.routing.eta_engine import load_free_flow_seconds, path_eta_seconds
@@ -318,19 +321,34 @@ def model_provenance() -> dict:
 @lru_cache(maxsize=16)
 def _weighted_graph(window: Optional[str]) -> WeightedGraph:
     """
-    ANTROUTE's weighted graph (lambda = DEFAULT_LAMBDA) for one recorded window. Edges
-    without a predicted risk (outside the camera subgraph) carry DEFAULT_MISSING_RISK (0),
-    routed and timed on road distance and speed limit alone -- the same rule
-    scripts/evaluate_routing.py uses. With no window (no risk_edges.csv) every edge does.
+    ANTROUTE's weighted graph (lambda = DEFAULT_LAMBDA) for one recorded window.
+
+    risk_edges.csv scores only the camera subgraph, ~2% of the city's edges. The rest are
+    filled by fill_unscored_risk -- the nearest scored road's risk within MAX_FILL_M, else the
+    window's median -- rather than DEFAULT_MISSING_RISK (0): with 0, a road without a
+    prediction looked empty, and ANTROUTE preferred side streets with no data over EDSA. The
+    WeightedGraph's coverage / scored_edges still count only the decoder's own predictions.
+    With no window (no risk_edges.csv) every edge carries 0.
     """
     net = _network()
     n_edges = net.graph.edge_index.shape[1]
     if window is None:
         return build_weighted_graph(net.graph, np.zeros(n_edges), coverage=0.0, scored_edges=0)
-    risk, scored = risk_vector(net.graph, net.risk_by_window[window], DEFAULT_MISSING_RISK)
+    frame = net.risk_by_window[window]
+    risk, scored = risk_vector(net.graph, frame, DEFAULT_MISSING_RISK)
+    mask = scored_mask(net.graph, frame)
+    risk, _ = fill_unscored_risk(net.graph, risk, mask, _nearest_scored(mask.tobytes()))
     return build_weighted_graph(
         net.graph, risk, lam=DEFAULT_LAMBDA, coverage=scored / n_edges, scored_edges=scored, window=window
     )
+
+
+@lru_cache(maxsize=2)
+def _nearest_scored(mask_bytes: bytes) -> NearestScored:
+    """NearestScored for one set of scored edges -- the same subgraph in every window, so one
+    road-distance pass serves them all."""
+    mask = np.frombuffer(mask_bytes, dtype=bool)
+    return NearestScored.build(_network().graph, mask)
 
 
 @lru_cache(maxsize=16)
@@ -581,9 +599,16 @@ def _baseline_option(net: _Network, window: Optional[str], stops: List[int]) -> 
     else:
         method = f"IACO for {route.legs_by_iaco} of {route.legs} legs, shortest distance for the rest"
     roads = _via_roads(net, wg, m.nodes)
+    # The app already names the method under every baseline card ("Baseline route · Improved
+    # ACO (Cheng 2023)"), so `via` adds it only when it is NOT plain IACO -- a fallback is the
+    # one thing the card would otherwise hide.
+    if roads and route.algorithm == IACO:
+        via = roads
+    else:
+        via = f"{roads} ({method})" if roads else method
     return {
         "label": "Baseline route",
-        "via": f"{roads} ({method})" if roads else method,
+        "via": via,
         "duration_min": _duration_min(net, wg, m),
         "distance_km": round(m.distance_m / 1000, 2),
         "congestion_level": _congestion_label(net, m.mean_risk),

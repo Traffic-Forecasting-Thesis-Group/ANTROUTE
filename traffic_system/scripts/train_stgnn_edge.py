@@ -60,6 +60,42 @@ def class_weights_from_lookup(lookup: Dict[str, int]) -> torch.Tensor:
     )
 
 
+def train_split_lookup(frames_root, lookup: Dict[str, int], split: dict) -> Dict[str, int]:
+    """The labels of frames in TRAINING sessions only (absolute frame path -> class)."""
+    from src.data.training_data import load_frames_table, session_of
+
+    frames = load_frames_table(frames_root)
+    train_paths = {
+        path for path, ts in zip(frames["frame_path"], frames["timestamp"])
+        if path in lookup and split.get(session_of(ts)) == "train"
+    }
+    return {path: lookup[path] for path in train_paths}
+
+
+def param_groups(model, lr_fusion: float, lr_graph: float, lr_context: Optional[float] = None) -> list:
+    """
+    AdamW groups: the CNN+LSTM at lr_fusion, the STGNN / decoder / placeholders at lr_graph, and
+    the node-context encoder at lr_context (lr_graph when None, the behaviour v7 trained with).
+
+    The context encoder gets its own rate because, at lr_graph = 10 x lr_fusion, the network-wide
+    context (clock, daily weather) can fit the labels long before the CNN+LSTM learns anything
+    from the frames -- the stgnn_edge_v7 sensitivity check found CCTV moving camera-edge risk by
+    ~0.002 on average. Setting lr_context = lr_fusion is the experiment that tests that.
+    """
+    fusion = {id(p) for p in model.fusion.parameters()}
+    context = set()
+    if getattr(model, "context_encoder", None) is not None:
+        context = {id(p) for p in model.context_encoder.parameters()}
+    groups = [
+        {"params": [p for p in model.parameters() if id(p) in fusion], "lr": lr_fusion},
+        {"params": [p for p in model.parameters() if id(p) not in fusion and id(p) not in context], "lr": lr_graph},
+    ]
+    if context:
+        groups.append({"params": [p for p in model.parameters() if id(p) in context],
+                       "lr": lr_graph if lr_context is None else lr_context})
+    return groups
+
+
 @torch.no_grad()
 def evaluate(model, loader, a_hat, camera_index, edge_index, edge_ids, n_nodes, device, class_weights=None) -> Optional[dict]:
     if len(loader.dataset) == 0:
@@ -115,6 +151,7 @@ def train(
     landmarks_csv: Optional[Path] = REPO_ROOT / "configs/event_landmarks.csv",
     intersections_csv: Optional[Path] = REPO_ROOT / "configs/event_intersections.csv",
     split_file: Optional[Path] = None,
+    lr_context: Optional[float] = None,
 ) -> dict:
     """
     context=True (the default) gives every graph node its own weather, flood, event, clock
@@ -133,9 +170,6 @@ def train(
     device = torch.device(device or ("cuda" if torch.cuda.is_available() else "cpu"))
     graph = graph or build_subgraph(spatial_dir, k)
     lookup = load_label_lookup(frames_root, human_only)
-    class_weights = class_weights_from_lookup(lookup).to(device) if use_class_weights else None
-    if class_weights is not None:
-        print(f"class weights (Light/Medium/Heavy): {class_weights.tolist()}")
     visual_split = None
     if split_file is not None:
         visual_split = load_split(split_file)
@@ -147,6 +181,17 @@ def train(
         counts = labelled_session_counts(frames_root, lookup, min_session_labels)
         visual_split = assign_day_splits(list(counts), weights=counts)
         print("70/15/15 split over the labelled sessions, by whole dates:\n" + describe_split(visual_split))
+    class_weights = None
+    if use_class_weights:
+        # From the TRAINING sessions' labels only: counting val/test labels here would let the
+        # held-out label mix shape the loss.
+        train_labels = train_split_lookup(frames_root, lookup, visual_split or VISUAL_SPLIT)
+        class_weights = class_weights_from_lookup(train_labels).to(device)
+        print(f"class weights (Light/Medium/Heavy), from {len(train_labels)} training labels: "
+              f"{class_weights.tolist()}")
+        print("NOTE: balanced class weights make the loss's best constant 0.5 whatever the label mix, "
+              "so scores come out centred near 0.5 while the labels average ~0.7; report MAE against "
+              "scripts/evaluate_risk_baselines.py, and prefer the unweighted loss for calibrated risk")
     if visual_split is not None:
         crossing = split_days_overlap(visual_split)
         if crossing:
@@ -234,13 +279,8 @@ def train(
         # CCTV-only ablation: Project NOAH flood level as the one static node attribute (thesis 3.6).
         decoder = MLPDecoder(node_embedding_dim=stgnn.output_dim)
         model = TrafficRiskModel(fusion, stgnn, decoder, flood_level=graph.flood_level).to(device)
-    fusion_params = set((id(p) for p in model.fusion.parameters()))
     optimizer = torch.optim.AdamW(
-        [
-            {"params": [p for p in model.parameters() if id(p) in fusion_params], "lr": lr_fusion},
-            {"params": [p for p in model.parameters() if id(p) not in fusion_params], "lr": lr_graph},
-        ],
-        weight_decay=weight_decay,
+        param_groups(model, lr_fusion, lr_graph, lr_context), weight_decay=weight_decay
     )
     amp = device.type == "cuda"
     grad_scaler = torch.amp.GradScaler("cuda", enabled=amp)
@@ -253,6 +293,9 @@ def train(
         "temporal_dim": temporal_dim,
         "time_features": time_features,
         "use_class_weights": use_class_weights,
+        "lr_fusion": lr_fusion,
+        "lr_graph": lr_graph,
+        "lr_context": lr_graph if lr_context is None else lr_context,
         "use_text": raw_twitter_root is not None,
         "flood_hazard": node_context is None and graph.flood_level is not None,
         "context": node_context is not None,
@@ -347,6 +390,8 @@ def main():
     p.add_argument("--batch-size", type=int, default=4)
     p.add_argument("--lr-fusion", type=float, default=0.0001)
     p.add_argument("--lr-graph", type=float, default=0.001)
+    p.add_argument("--lr-context", type=float, default=None,
+                   help="learning rate of the node-context encoder (default: --lr-graph, as v7 trained)")
     p.add_argument("--image-size", type=int, default=224)
     p.add_argument("--num-workers", type=int, default=0)
     p.add_argument("--max-train-windows", type=int, default=None)
@@ -419,6 +464,7 @@ def main():
         landmarks_csv=a.landmarks_csv,
         intersections_csv=a.event_intersections_csv,
         split_file=a.split_file,
+        lr_context=a.lr_context,
     )
 
 

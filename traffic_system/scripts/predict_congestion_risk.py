@@ -95,7 +95,18 @@ def build_context(cfg: dict, graph, spatial_dir: Path, weather_csv: Path, camera
     )
 
 
+# Below this many labelled edge rows an MAE is reported but flagged: "infer" holds the sessions
+# left out of the split for having under 100 labels (May 4 AM: 8 rows), and an MAE over 8 rows
+# is an anecdote, not a result.
+MIN_LABELLED_FOR_MAE = 50
+
+
 def summarise(rows: List[dict]) -> dict:
+    """
+    Rows and MAE per split. "infer" is every session not in the train/val/test split -- those
+    with no labels, and those with too few labels to be split (assign_day_splits' min_labels);
+    its MAE is never a held-out result.
+    """
     out = {}
     for split in sorted({r["split"] for r in rows}):
         labelled = [r for r in rows if r["split"] == split and r["camera_edge"] and (r["weak_target"] != "")]
@@ -103,6 +114,7 @@ def summarise(rows: List[dict]) -> dict:
         if labelled:
             err = np.array([abs(r["risk"] - r["weak_target"]) for r in labelled])
             entry["mae"] = float(err.mean())
+            entry["mae_reliable"] = split != "infer" and len(labelled) >= MIN_LABELLED_FOR_MAE
         out[split] = entry
     return out
 

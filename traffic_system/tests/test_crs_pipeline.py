@@ -152,6 +152,25 @@ def test_training_uses_the_split_file_exactly_and_scoring_inherits_it(data, tmp_
     assert edges.groupby("day")["split"].unique().map(list).to_dict() == {"2026-05-04": ["train"], "2026-05-20": ["val"]}
 
 
+def test_class_weights_count_only_the_training_sessions_labels(data):
+    from datetime import date
+
+    from src.data.training_data import load_label_lookup
+
+    lookup = load_label_lookup(data["frames"])
+    split = {(date(2026, 5, 4), "PM"): "train", (date(2026, 5, 20), "PM"): "val"}
+    train_only = train_stgnn_edge.train_split_lookup(data["frames"], lookup, split)
+    assert 0 < len(train_only) < len(lookup)
+    assert all("2026-05-04" in path for path in train_only)          # no May 20 (val) label is counted
+
+
+def test_scoring_flags_an_mae_from_too_few_or_unsplit_rows():
+    rows = [{"split": "infer", "camera_edge": True, "weak_target": 1.0, "risk": 0.4}] * 8 + \
+           [{"split": "test", "camera_edge": True, "weak_target": 1.0, "risk": 0.4}] * 60
+    summary = predict_congestion_risk.summarise(rows)
+    assert summary["infer"]["mae_reliable"] is False and summary["test"]["mae_reliable"] is True
+
+
 def test_a_checkpoint_scores_only_on_the_graph_it_was_trained_on(data, tmp_path):
     out = tmp_path / "ckpt" / "v7.pt"
     train(data, out)

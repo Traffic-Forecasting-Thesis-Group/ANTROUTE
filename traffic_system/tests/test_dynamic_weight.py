@@ -332,3 +332,57 @@ def test_the_real_subgraph_carries_plausible_road_lengths():
     # Every camera intersection must be reachable as a routing endpoint.
     for label, index in graph.camera_nodes.items():
         assert wg.index_of(int(wg.node_ids[index])) == index, label
+
+
+# --- unscored edges ----------------------------------------------------------
+def chain_graph(lengths) -> GraphData:
+    """A road 0 -> 1 -> ... -> n with the given segment lengths (metres)."""
+    n = len(lengths) + 1
+    adjacency = sp.csr_matrix((list(lengths), (list(range(n - 1)), list(range(1, n)))), shape=(n, n))
+    return GraphData(node_ids=np.arange(1000, 1000 + n), adjacency=adjacency,
+                     a_hat=normalize_adjacency(adjacency), edge_index=edge_index_from_adjacency(adjacency),
+                     camera_nodes={})
+
+
+def test_scored_mask_marks_exactly_the_edges_in_the_window():
+    from src.routing.dynamic_weight import scored_mask
+
+    graph = make_graph()
+    frame = risk_rows(0.9, 0.1).iloc[:2]           # only (100, 103) and (100, 101)
+    mask = scored_mask(graph, frame)
+    src, dst = graph.edge_index
+    scored_pairs = {(int(NODE_IDS[s]), int(NODE_IDS[d])) for s, d, m in zip(src, dst, mask) if m}
+    assert scored_pairs == {(100, 103), (100, 101)}
+
+
+def test_unscored_edges_near_a_scored_road_borrow_its_risk_and_far_ones_take_the_median():
+    from src.routing.dynamic_weight import NearestScored, fill_unscored_risk
+
+    # scored: the first two segments (risk 0.8 and 0.4); then 500 m, 1.2 km and 2 km of unscored road,
+    # so the last segment's nearer end is 1.7 km from any prediction
+    graph = chain_graph([100, 100, 500, 1200, 2000])
+    risk = np.zeros(5)
+    scored = np.zeros(5, dtype=bool)
+    for e, (u, v) in enumerate(zip(*graph.edge_index.tolist())):
+        if (u, v) == (0, 1):
+            risk[e], scored[e] = 0.8, True
+        elif (u, v) == (1, 2):
+            risk[e], scored[e] = 0.4, True
+    filled, counts = fill_unscored_risk(graph, risk, scored, NearestScored.build(graph, scored), max_m=1500)
+
+    by_pair = {(u, v): filled[e] for e, (u, v) in enumerate(zip(*graph.edge_index.tolist()))}
+    assert by_pair[(0, 1)] == 0.8 and by_pair[(1, 2)] == 0.4          # predictions untouched
+    assert by_pair[(2, 3)] == pytest.approx(0.4)                         # touches node 2: its risk
+    assert by_pair[(3, 4)] == pytest.approx(0.4)                         # 500 m away: still the nearest road's
+    assert by_pair[(4, 5)] == pytest.approx(0.6)                         # 1.7 km away: the median of 0.8 and 0.4
+    assert counts == {"scored": 2, "nearest": 2, "median": 1}
+    assert (filled > 0).all()                                            # no road reads as empty
+
+
+def test_no_prediction_at_all_leaves_the_risk_as_given():
+    from src.routing.dynamic_weight import NearestScored, fill_unscored_risk
+
+    graph = chain_graph([100, 100])
+    scored = np.zeros(2, dtype=bool)
+    filled, counts = fill_unscored_risk(graph, np.zeros(2), scored, NearestScored.build(graph, scored))
+    assert (filled == 0).all() and counts["scored"] == 0

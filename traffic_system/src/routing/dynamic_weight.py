@@ -35,9 +35,11 @@ from src.data.graph_data import GraphData
 # the setting worked through in the methodology.
 DEFAULT_LAMBDA = 2.0
 
-# Risk given to an edge the decoder produced no score for. 0.0 leaves such an edge at
-# its physical length: unknown risk is never treated as known-safe-and-cheaper, but it is
-# also not penalised. Always read `WeightedGraph.coverage` before trusting a route.
+# Risk given to an edge the decoder produced no score for, by the plain risk_vector. 0.0
+# leaves such an edge at its physical length. Fine on the camera subgraph, where nearly every
+# edge is scored (scripts/evaluate_routing.py); on the whole city it makes roads without a
+# prediction look empty, so the live app fills them with fill_unscored_risk instead.
+# Always read `WeightedGraph.coverage` before trusting a route.
 DEFAULT_MISSING_RISK = 0.0
 
 
@@ -328,6 +330,97 @@ def risk_vector(
             "is sigmoid-bounded, so check the risk file"
         )
     return risk, scored
+
+
+def scored_mask(graph: GraphData, frame: pd.DataFrame) -> np.ndarray:
+    """[E] True where `frame` (one window of risk_edges.csv) scores that edge."""
+    node_ids = np.asarray(graph.node_ids)
+    src, dst = graph.edge_index[0].numpy(), graph.edge_index[1].numpy()
+    keys = set(map(tuple, frame[RISK_KEY].astype(np.int64).to_numpy().tolist()))
+    return np.fromiter(((int(u), int(v)) in keys for u, v in zip(node_ids[src], node_ids[dst])),
+                       dtype=bool, count=src.size)
+
+
+# How far, by road, an unscored edge may be from a scored one and still borrow its risk.
+# Congestion spills along a corridor for a few blocks; past ~1.5 km the nearest scored road
+# says nothing specific about this one, so the window's median stands in instead.
+MAX_FILL_M = 1500.0
+
+
+@dataclass
+class NearestScored:
+    """
+    For every node, the nearest node touching a scored edge (by road distance) and how far.
+
+    Depends only on which edges are scored -- the camera subgraph, the same in every window
+    of a risk_edges.csv -- so it is built once and reused for every window.
+    """
+
+    source: np.ndarray       # [N] index of the nearest scored node (-9999 when unreachable)
+    distance_m: np.ndarray   # [N] road distance to it (inf when unreachable)
+
+    @classmethod
+    def build(cls, graph: GraphData, scored: np.ndarray) -> "NearestScored":
+        import scipy.sparse as sp
+        from scipy.sparse.csgraph import dijkstra
+
+        src, dst = graph.edge_index[0].numpy(), graph.edge_index[1].numpy()
+        n = graph.n_nodes
+        seeds = np.unique(np.concatenate([src[scored], dst[scored]]))
+        if seeds.size == 0:
+            return cls(np.full(n, -9999), np.full(n, np.inf))
+        roads = sp.csr_matrix((edge_distances(graph), (src, dst)), shape=(n, n))
+        dist, _, source = dijkstra(roads, directed=False, indices=seeds, min_only=True,
+                                   return_predecessors=True)
+        return cls(np.asarray(source), np.asarray(dist))
+
+
+def fill_unscored_risk(
+    graph: GraphData,
+    risk: np.ndarray,
+    scored: np.ndarray,
+    nearest: NearestScored,
+    max_m: float = MAX_FILL_M,
+) -> Tuple[np.ndarray, Dict[str, int]]:
+    """
+    Risk for the edges the decoder did not score, instead of a flat DEFAULT_MISSING_RISK.
+
+    A flat 0 makes every road without a prediction look free of congestion, so the router
+    prefers roads with *no data* over roads with data -- on Metro Manila, where the decoder
+    scores ~2% of edges around the cameras, ANTROUTE steered off EDSA onto side streets for
+    exactly that reason. Instead an unscored edge within `max_m` of a scored road (by road
+    distance, from its nearer endpoint) takes that road's risk for this window, and anything
+    farther takes the window's median: unknown is treated as typical, not as empty.
+
+    Returns the filled risk and how many edges each rule covered.
+    """
+    risk = np.asarray(risk, dtype=np.float64).copy()
+    scored = np.asarray(scored, dtype=bool)
+    if not scored.any():
+        return risk, {"scored": 0, "nearest": 0, "median": 0}
+    src, dst = graph.edge_index[0].numpy(), graph.edge_index[1].numpy()
+    n = graph.n_nodes
+
+    # risk at each scored node: the mean of the scored edges touching it
+    total = np.bincount(src[scored], weights=risk[scored], minlength=n) + np.bincount(
+        dst[scored], weights=risk[scored], minlength=n)
+    count = np.bincount(src[scored], minlength=n) + np.bincount(dst[scored], minlength=n)
+    node_risk = np.where(count > 0, total / np.maximum(count, 1), np.nan)
+
+    reachable = nearest.source >= 0
+    borrowed = np.full(n, np.nan)
+    borrowed[reachable] = node_risk[nearest.source[reachable]]
+    # each unscored edge borrows through whichever endpoint is nearer a scored road
+    use_src = nearest.distance_m[src] <= nearest.distance_m[dst]
+    edge_value = np.where(use_src, borrowed[src], borrowed[dst])
+    edge_distance = np.minimum(nearest.distance_m[src], nearest.distance_m[dst])
+
+    median = float(np.median(risk[scored]))
+    missing = ~scored
+    near = missing & (edge_distance <= max_m) & np.isfinite(edge_value)
+    risk[near] = edge_value[near]
+    risk[missing & ~near] = median
+    return risk, {"scored": int(scored.sum()), "nearest": int(near.sum()), "median": int((missing & ~near).sum())}
 
 
 def weighted_graph_from_risk_file(
