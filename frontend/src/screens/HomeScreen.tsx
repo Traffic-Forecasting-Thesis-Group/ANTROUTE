@@ -18,6 +18,7 @@ import {
 } from 'react-native';
 
 import MapView, { PROVIDER_GOOGLE, Marker, Polyline } from 'react-native-maps';
+import Constants, { ExecutionEnvironment } from 'expo-constants';
 import { useIsFocused } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -31,9 +32,11 @@ import {
   Navigation,
   Plus,
   MapPin,
+  Clock,
 } from 'lucide-react-native';
 
 import * as Location from 'expo-location';
+import DateTimePicker, { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 
 import {
   planRoute,
@@ -48,6 +51,14 @@ import { searchPlaces, reverseGeocode, PlaceSuggestion } from '../api/placesServ
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
+// Google Maps everywhere it can render: always on Android, and on iOS in a build made
+// with GOOGLE_MAPS_API_KEY (see app.config.js). Expo Go on iPhone has no Google Maps
+// SDK, so there it stays on Apple Maps rather than failing to load the map.
+const USE_GOOGLE_MAPS =
+  Platform.OS === 'android' ||
+  (Constants.executionEnvironment !== ExecutionEnvironment.StoreClient &&
+    Constants.expoConfig?.extra?.iosGoogleMaps === true);
+
 // Route panel heights the drag handle settles at (low, default, full), and the height
 // below which letting go closes the panel back to the search bar. Fractions of the space
 // above the keyboard, not of the screen: when the keyboard opens that space shrinks, and
@@ -61,12 +72,14 @@ const CONGESTION_COLORS: Record<CongestionLevel, string> = {
   clear: '#10b981',
   moderate: '#f59e0b',
   heavy: '#ef4444',
+  unknown: '#d1d5db',
 };
 
 const CONGESTION_WIDTH: Record<CongestionLevel, `${number}%`> = {
   clear: '30%',
   moderate: '60%',
   heavy: '85%',
+  unknown: '0%',
 };
 
 /** Names the algorithm that actually produced a baseline route, which is not always IACO. */
@@ -101,14 +114,52 @@ interface DestinationEntry {
 
 type ModelTab = 'antroute' | 'baseline' | 'comparison';
 
-function getArrivalTime(durationMin: number): string {
-  const now = new Date();
-  now.setMinutes(now.getMinutes() + durationMin);
-  let hours = now.getHours();
-  const minutes = now.getMinutes().toString().padStart(2, '0');
+function formatClock(date: Date): string {
+  let hours = date.getHours();
+  const minutes = date.getMinutes().toString().padStart(2, '0');
   const ampm = hours >= 12 ? 'PM' : 'AM';
   hours = hours % 12 || 12;
   return `${hours}:${minutes} ${ampm}`;
+}
+
+// departAt null means leaving now.
+function getArrivalTime(durationMin: number, departAt: Date | null): string {
+  const arrival = departAt ? new Date(departAt) : new Date();
+  arrival.setMinutes(arrival.getMinutes() + durationMin);
+  return formatClock(arrival);
+}
+
+// Departure picker: any minute, today or tomorrow only.
+function startOfDay(date: Date): Date {
+  const d = new Date(date);
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
+
+function daysFromToday(date: Date): number {
+  return Math.round((startOfDay(date).getTime() - startOfDay(new Date()).getTime()) / 86400000);
+}
+
+// The current minute -- the earliest a planned departure can be.
+function currentMinute(): Date {
+  const d = new Date();
+  d.setSeconds(0, 0);
+  return d;
+}
+
+// Keep a planned departure between now and the last minute of tomorrow.
+function clampDeparture(date: Date): Date {
+  const earliest = currentMinute();
+  const latest = startOfDay(new Date());
+  latest.setDate(latest.getDate() + 2);
+  latest.setMinutes(-1);
+  if (date < earliest) return earliest;
+  if (date > latest) return latest;
+  return date;
+}
+
+function formatDeparture(date: Date): string {
+  return `${daysFromToday(date) === 1 ? 'Tomorrow ' : ''}${formatClock(date)}`;
 }
 
 // Colour behind the status bar (the map). Change this if you use a dark map style.
@@ -139,6 +190,7 @@ export default function HomeScreen({ navigation }: any) {
   const [isLocating, setIsLocating] = useState(false);
   const [locationError, setLocationError] = useState('');
   const [destinations, setDestinations] = useState<DestinationEntry[]>([{ name: '', coords: null }]);
+  const [departAt, setDepartAt] = useState<Date | null>(null); // null = leave now
 
   const [isLoading, setIsLoading] = useState(false);
   const [routeError, setRouteError] = useState('');
@@ -159,6 +211,7 @@ export default function HomeScreen({ navigation }: any) {
   const [baselineModelOptions, setBaselineModelOptions] = useState<RouteOption[]>([]);
   // Why the baseline has no route for this trip, when it has none (a result, not an error).
   const [baselineNotice, setBaselineNotice] = useState<string | null>(null);
+  const [trafficNote, setTrafficNote] = useState<string | null>(null);
 
   const [comparisonMetrics, setComparisonMetrics] = useState<ComparisonMetrics | null>(null);
   const [metricsLoading, setMetricsLoading] = useState(false);
@@ -395,6 +448,39 @@ export default function HomeScreen({ navigation }: any) {
     setAntRouteOptions([]);
     setBaselineModelOptions([]);
     setBaselineNotice(null);
+    setTrafficNote(null);
+  };
+
+  // Routes were planned for one departure time; a new one needs new routes.
+  const changeDeparture = (next: Date | null) => {
+    setDepartAt(next ? clampDeparture(next) : null);
+    clearRouteResults();
+  };
+
+  // A time picked from the clock, on the departure's current day. A time that has
+  // already passed today means tomorrow (the Tomorrow chip lights up to show it).
+  const setDepartureTime = (time: Date) => {
+    const next = new Date(departAt ?? currentMinute());
+    next.setHours(time.getHours(), time.getMinutes(), 0, 0);
+    if (next < currentMinute()) next.setDate(next.getDate() + 1);
+    changeDeparture(next);
+  };
+
+  const openTimePicker = () => {
+    if (!departAt) return;
+    DateTimePickerAndroid.open({
+      value: departAt,
+      mode: 'time',
+      is24Hour: false,
+      onValueChange: (_, time) => setDepartureTime(time),
+    });
+  };
+
+  const setDepartureDay = (dayOffset: number) => {
+    const next = new Date(departAt ?? currentMinute());
+    const today = new Date();
+    next.setFullYear(today.getFullYear(), today.getMonth(), today.getDate() + dayOffset);
+    changeDeparture(next);
   };
 
   const handleOriginChange = (text: string) => {
@@ -480,16 +566,25 @@ export default function HomeScreen({ navigation }: any) {
     setRouteError('');
     setIsLoading(true);
     try {
-      const [normalResults, antResults, baselineResults] = await Promise.all([
-        planRoute(originToUse.trim(), cleanedDestinations, false, originCoordsToUse),
-        planRoute(originToUse.trim(), cleanedDestinations, true, originCoordsToUse),
-        planRoute(originToUse.trim(), cleanedDestinations, true, originCoordsToUse, 'baseline'),
+      const [antResult, baselineResult] = await Promise.allSettled([
+        planRoute(originToUse.trim(), cleanedDestinations, originCoordsToUse, 'antroute', departAt),
+        planRoute(originToUse.trim(), cleanedDestinations, originCoordsToUse, 'baseline', departAt),
       ]);
+      if (antResult.status === 'rejected') throw antResult.reason;
+      const antPlan = antResult.value;
+      // A failed baseline should not hide ANTRoute's routes; its reason goes in the notice.
+      const baselinePlan =
+        baselineResult.status === 'fulfilled'
+          ? baselineResult.value
+          : { routes: [], notice: baselineResult.reason?.message || 'The baseline route could not be computed.' };
 
-      setNormalRoute(normalResults.routes[0] ?? null);
-      setAntRouteOptions(antResults.routes);
-      setBaselineModelOptions(baselineResults.routes);
-      setBaselineNotice(baselineResults.notice);
+      // The baseline (Improved ACO, Cheng 2023) has one optimal path; it is drawn as the
+      // comparison route next to ANTRoute's options.
+      setNormalRoute(baselinePlan.routes[0] ?? null);
+      setAntRouteOptions(antPlan.routes);
+      setBaselineModelOptions(baselinePlan.routes);
+      setBaselineNotice(baselinePlan.notice);
+      setTrafficNote(antPlan.trafficNote);
       setSelectedIndex(0);
     } catch (error: any) {
       setRouteError(error?.message || 'Something went wrong. Please try again.');
@@ -508,6 +603,9 @@ export default function HomeScreen({ navigation }: any) {
   };
 
   const handleStartNavigation = () => {
+    // Starting means leaving now: arrival times and any re-plan (adding a stop) should
+    // count from now, not from the departure the routes were planned for.
+    setDepartAt(null);
     setIsNavigating(true);
     setStopsRevealedDuringNav(false);
     setIsAddingStop(false);
@@ -524,6 +622,7 @@ export default function HomeScreen({ navigation }: any) {
     setOriginCoords(null);
     setLocationError('');
     setDestinations([{ name: '', coords: null }]);
+    setDepartAt(null);
     clearRouteResults();
     setSelectedIndex(0);
     setActiveTab('antroute');
@@ -621,15 +720,15 @@ export default function HomeScreen({ navigation }: any) {
 
       <MapView
         ref={mapRef}
-        provider={Platform.OS === 'android' ? PROVIDER_GOOGLE : undefined}
+        provider={USE_GOOGLE_MAPS ? PROVIDER_GOOGLE : undefined}
         style={styles.map}
         showsUserLocation={hasLocationPermission}
         showsMyLocationButton={false}
-        // iOS places its compass inside the map's layout margins; a taller top margin
-        // drops the compass just below the locate button. (On Android, padding would
-        // also shift the map centre, and Google's compass sits top-left anyway.)
+        // Apple Maps places its compass inside the map's layout margins; a taller top
+        // margin drops the compass just below the locate button. (On Google Maps, padding
+        // would also shift the map centre, and its compass sits top-left anyway.)
         mapPadding={
-          Platform.OS === 'ios'
+          !USE_GOOGLE_MAPS
             ? { top: MAP_BUTTON_TOP + MAP_BUTTON_SIZE + 10, right: 8, bottom: 8, left: 8 }
             : undefined
         }
@@ -925,6 +1024,66 @@ export default function HomeScreen({ navigation }: any) {
                       </TouchableOpacity>
                     )}
 
+                    {/* Departure time */}
+                    {!isNavigating && (
+                      <View style={styles.departCard}>
+                        <View style={styles.departHeaderRow}>
+                          <Clock size={16} color="#4475F2" />
+                          <Text style={styles.departLabel}>Departure</Text>
+                          {[
+                            { label: 'Leave now', active: !departAt, onPress: () => departAt && changeDeparture(null) },
+                            { label: 'Depart at', active: !!departAt, onPress: () => !departAt && changeDeparture(currentMinute()) },
+                          ].map((chip) => (
+                            <TouchableOpacity
+                              key={chip.label}
+                              style={[styles.departChip, chip.active && styles.departChipActive]}
+                              onPress={chip.onPress}
+                            >
+                              <Text style={[styles.departChipText, chip.active && styles.departChipTextActive]}>
+                                {chip.label}
+                              </Text>
+                            </TouchableOpacity>
+                          ))}
+                        </View>
+
+                        {departAt && (
+                          <>
+                            <View style={styles.departDayRow}>
+                              {['Today', 'Tomorrow'].map((label, offset) => {
+                                const active = daysFromToday(departAt) === offset;
+                                return (
+                                  <TouchableOpacity
+                                    key={label}
+                                    style={[styles.departChip, active && styles.departChipActive]}
+                                    onPress={() => setDepartureDay(offset)}
+                                  >
+                                    <Text style={[styles.departChipText, active && styles.departChipTextActive]}>
+                                      {label}
+                                    </Text>
+                                  </TouchableOpacity>
+                                );
+                              })}
+                            </View>
+                            <View style={styles.departTimeRow}>
+                              {Platform.OS === 'ios' ? (
+                                <DateTimePicker
+                                  style={styles.departTimePickerIOS}
+                                  value={departAt}
+                                  mode="time"
+                                  display="compact"
+                                  onValueChange={(_, time) => setDepartureTime(time)}
+                                />
+                              ) : (
+                                <TouchableOpacity style={styles.departTimeButton} onPress={openTimePicker}>
+                                  <Text style={styles.departTimeText}>{formatClock(departAt)}</Text>
+                                </TouchableOpacity>
+                              )}
+                            </View>
+                          </>
+                        )}
+                      </View>
+                    )}
+
                   </>
                 )}
 
@@ -934,7 +1093,7 @@ export default function HomeScreen({ navigation }: any) {
                   <>
                     <View style={styles.vehicleNoteRow}>
                       <CarFront size={14} color="#9ca3af" />
-                      <Text style={styles.vehicleNoteText}>Routes optimized for 4-wheel vehicles.</Text>
+                      <Text style={styles.vehicleNoteText}>Routes for private 4-wheel vehicles only.</Text>
                     </View>
                     <TouchableOpacity
                       style={[styles.findButton, isLoading && styles.findButtonDisabled]}
@@ -980,7 +1139,8 @@ export default function HomeScreen({ navigation }: any) {
                           <Text style={styles.summaryDurationNumber}>{selectedRoute.duration_min}</Text> min
                         </Text>
                         <Text style={styles.summarySubtext}>
-                          Arrive By {getArrivalTime(selectedRoute.duration_min)} · {selectedRoute.distance_km} km
+                          {departAt ? `Leave ${formatDeparture(departAt)} · ` : ''}
+                          Arrive By {getArrivalTime(selectedRoute.duration_min, departAt)} · {selectedRoute.distance_km} km
                         </Text>
                       </View>
                       {isNavigating ? (
@@ -999,22 +1159,30 @@ export default function HomeScreen({ navigation }: any) {
                   </TouchableOpacity>
                 )}
 
-                {!isNavigating && hasAnyResults && activeTab !== 'comparison' && normalRoute && (
+                {!isNavigating && hasAnyResults && activeTab === 'antroute' && normalRoute && (
                   <View style={styles.normalRouteCard}>
                     <View style={styles.normalRouteTopRow}>
                       <Text style={styles.normalRouteTime}>{normalRoute.duration_min} min</Text>
                       <Text style={styles.normalRouteDistance}>{normalRoute.distance_km} km</Text>
                     </View>
                     <Text style={styles.normalRouteVia}>Via {normalRoute.via}</Text>
-                    <Text style={styles.normalRouteLabel}>Normal route (no traffic optimization)</Text>
+                    <Text style={styles.normalRouteLabel}>Baseline route · {baselineMethodLabel(normalRoute)}</Text>
                   </View>
                 )}
 
                 {!isNavigating && activeTab !== 'comparison' && currentModelOptions.length > 0 && (
                   <>
                     <Text style={styles.sectionHeaderBlue}>
-                      Alternative Route by {selectedModelTab === 'baseline' ? 'Baseline' : 'ANTRoute'} Model
+                      {selectedModelTab === 'baseline'
+                        ? 'Route by Baseline Model (Improved ACO)'
+                        : 'Alternative Routes by ANTRoute Model'}
                     </Text>
+                    {trafficNote ? (
+                      <View style={styles.trafficNoteRow}>
+                        <Clock size={12} color="#9ca3af" />
+                        <Text style={styles.trafficNoteText}>{trafficNote}</Text>
+                      </View>
+                    ) : null}
                     {currentModelOptions.map((route, index) => {
                       const isSelected = index === selectedIndex;
                       return (
@@ -1104,7 +1272,7 @@ export default function HomeScreen({ navigation }: any) {
 
                     <View style={styles.comparisonCardsRow}>
                       {[
-                        { name: 'ANTRoute', method: 'Risk- and event-aware ACO', route: antTop, notice: null },
+                        { name: 'ANTRoute', method: 'Risk-aware ACO (CNN-LSTM + RADR-STGNN)', route: antTop, notice: null },
                         {
                           name: 'Baseline',
                           method: baselineMethodLabel(baselineTop),
@@ -1155,7 +1323,7 @@ export default function HomeScreen({ navigation }: any) {
 
                     <View style={styles.comparisonDivider} />
 
-                    <Text style={styles.evaluationTitle}>Congestion Forecast Accuracy</Text>
+                    <Text style={styles.evaluationTitle}>{comparisonMetrics?.title ?? 'Evaluation Results'}</Text>
                     {metricsLoading ? (
                       <ActivityIndicator style={{ marginVertical: 30 }} color="#4475F2" />
                     ) : metricsError ? (
@@ -1167,11 +1335,7 @@ export default function HomeScreen({ navigation }: any) {
                       </View>
                     ) : comparisonMetrics ? (
                       <>
-                        <Text style={styles.evaluationSubtitle}>
-                          How well ANTRoute's model predicts congestion on held-out test data, against a
-                          forecaster that always predicts {comparisonMetrics.baselineName}. This scores the
-                          model, not the route above.
-                        </Text>
+                        <Text style={styles.evaluationSubtitle}>{comparisonMetrics.description}</Text>
                         <View style={styles.metricsTable}>
                           <View style={styles.metricsTableHeaderRow}>
                             <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText, { flex: 1.5 }]}>
@@ -1179,12 +1343,15 @@ export default function HomeScreen({ navigation }: any) {
                             </Text>
                             <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>ANTRoute</Text>
                             <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>
-                              {comparisonMetrics.baselineName}
+                              {comparisonMetrics.source === 'routing' ? 'Baseline' : comparisonMetrics.baselineName}
                             </Text>
-                            <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>Improvement</Text>
+                            <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>Δ%</Text>
+                            {comparisonMetrics.source === 'routing' ? (
+                              <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>p-value</Text>
+                            ) : null}
                           </View>
                           {comparisonMetrics.metrics.map((row) => {
-                            const isGood = row.higherIsBetter ? row.improvementPct > 0 : row.improvementPct < 0;
+                            const isGood = row.improvementPct != null && row.improvementPct > 0;
                             return (
                               <View key={row.metric} style={styles.metricsTableRow}>
                                 <Text style={[styles.metricsTableCell, { flex: 1.5 }]}>{row.metric}</Text>
@@ -1197,15 +1364,23 @@ export default function HomeScreen({ navigation }: any) {
                                     isGood && styles.improvementGood,
                                   ]}
                                 >
-                                  {row.improvementPct > 0 ? '+' : ''}
-                                  {row.improvementPct}%
+                                  {row.improvementPct == null
+                                    ? '–'
+                                    : `${row.improvementPct > 0 ? '+' : ''}${row.improvementPct}%`}
                                 </Text>
+                                {comparisonMetrics.source === 'routing' ? (
+                                  <Text style={[styles.metricsTableCell, row.significant && styles.improvementGood]}>
+                                    {row.pValue == null ? '–' : row.pValue < 0.001 ? '<0.001' : row.pValue.toFixed(3)}
+                                  </Text>
+                                ) : null}
                               </View>
                             );
                           })}
                         </View>
                         <Text style={styles.comparisonFootnote}>
-                          Lower is better for MAE and RMSE. Higher is better for accuracy and R².
+                          {comparisonMetrics.source === 'routing'
+                            ? `Δ% is positive when ANTRoute is better. Wilcoxon signed-rank test; p < 0.05 is significant (shown in green). Baseline: ${comparisonMetrics.baselineName}.`
+                            : 'Δ% is positive when ANTRoute is better (percentage points for R²).'}
                         </Text>
                       </>
                     ) : null}
@@ -1523,6 +1698,81 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '600',
     color: '#4475F2',
+  },
+  departCard: {
+    backgroundColor: '#f9fafb',
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#f3f4f6',
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+    marginBottom: 12,
+    gap: 10,
+  },
+  departHeaderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  departLabel: {
+    flex: 1,
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#1f2937',
+  },
+  departChip: {
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderRadius: 12,
+  },
+  departChipActive: {
+    backgroundColor: '#eff6ff',
+  },
+  departChipText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#9ca3af',
+  },
+  departChipTextActive: {
+    color: '#4475F2',
+  },
+  departDayRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 6,
+  },
+  departTimeRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  departTimePickerIOS: {
+    alignSelf: 'center',
+  },
+  departTimeButton: {
+    paddingVertical: 6,
+    paddingHorizontal: 20,
+    borderRadius: 16,
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#c7d2fe',
+  },
+  departTimeText: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#111827',
+  },
+  trafficNoteRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    marginTop: -4,
+    marginBottom: 10,
+  },
+  trafficNoteText: {
+    flex: 1,
+    fontSize: 11,
+    color: '#9ca3af',
   },
   errorText: {
     color: '#ef4444',
@@ -1844,7 +2094,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   routeListItemSelected: {
-    borderColor: '#4475F2',
+    borderColor: '#89A6F0',
     borderWidth: 2,
   },
   routeListTopRow: {

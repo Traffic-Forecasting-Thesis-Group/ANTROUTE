@@ -28,6 +28,9 @@ const resolveApiBaseUrl = (): string => {
 
 const apiClient = axios.create({
   baseURL: resolveApiBaseUrl(),
+  // Route planning runs two ant colonies on the whole city; give it longer than the
+  // platform default rather than reporting a slow answer as an unreachable server.
+  timeout: 90000,
   headers: {
     'Content-Type': 'application/json',
   },

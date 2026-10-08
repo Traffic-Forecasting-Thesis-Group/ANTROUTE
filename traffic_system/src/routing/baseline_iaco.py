@@ -38,6 +38,7 @@ Table 8. The paper's reported optimal path ranks 5th of 15 under its own cost.
 
 from __future__ import annotations
 
+from bisect import bisect_right
 from collections import deque
 from dataclasses import dataclass, field
 from typing import Dict, List, Mapping, Optional, Sequence, Tuple
@@ -212,6 +213,7 @@ class IacoGraph:
         order = np.argsort(self.src, kind="stable")
         self._out_edges = order.astype(np.int64)
         self._out_start = np.searchsorted(self.src[order], np.arange(self.n_nodes + 1))
+        self._adjacency: Optional[List[List[Tuple[int, int]]]] = None
 
     @property
     def n_nodes(self) -> int:
@@ -229,6 +231,21 @@ class IacoGraph:
 
     def out_edges(self, node: int) -> np.ndarray:
         return self._out_edges[self._out_start[node] : self._out_start[node + 1]]
+
+    def adjacency(self, reachable: Optional[np.ndarray] = None) -> List[List[Tuple[int, int]]]:
+        """
+        (edge, next node) for the roads out of each node, in out_edges order, as plain ints
+        for the ants' inner loop. With `reachable`, only roads into reachable nodes.
+        """
+        if self._adjacency is None:
+            edges = self._out_edges.tolist()
+            heads = self.dst[self._out_edges].tolist()
+            starts = self._out_start.tolist()
+            self._adjacency = [list(zip(edges[a:b], heads[a:b])) for a, b in zip(starts, starts[1:])]
+        if reachable is None:
+            return self._adjacency
+        ok = reachable.tolist()
+        return [[(e, v) for e, v in row if ok[v]] for row in self._adjacency]
 
     def edges_of(self, path_indices: Sequence[int]) -> List[int]:
         edges = []
@@ -252,6 +269,43 @@ class IacoGraph:
         """d_jD (eq. 8): normalised straight-line distance from each node to the destination."""
         d = haversine_m(self.lat, self.lon, self.lat[destination_idx], self.lon[destination_idx])
         return extremum_normalise(d)
+
+
+def corridor_subgraph(
+    g: IacoGraph,
+    origin_idx: int,
+    destination_idx: int,
+    margin: float,
+    buffer_m: float = 500.0,
+) -> Tuple[IacoGraph, np.ndarray]:
+    """
+    The roads inside an ellipse around a trip: nodes whose straight-line distance to the
+    origin plus to the destination is at most (1 + margin) x the trip's straight-line
+    length + buffer_m. Returns the subgraph and, per subgraph edge, its edge index in g.
+
+    The paper's test networks are a few dozen nodes; on all of Metro Manila the
+    goal-distance term (eq. 8), normalised over every node in the city, barely separates
+    nearby nodes, so ants wander for thousands of steps on a trip of a hundred.
+    """
+    od = haversine_m(g.lat[origin_idx], g.lon[origin_idx], g.lat[destination_idx], g.lon[destination_idx])
+    detour = haversine_m(g.lat, g.lon, g.lat[origin_idx], g.lon[origin_idx]) + haversine_m(
+        g.lat, g.lon, g.lat[destination_idx], g.lon[destination_idx]
+    )
+    keep = detour <= od * (1.0 + margin) + buffer_m
+    keep[[origin_idx, destination_idx]] = True
+    nodes = np.flatnonzero(keep)
+    new_index = np.full(g.n_nodes, -1, dtype=np.int64)
+    new_index[nodes] = np.arange(len(nodes))
+    edges = np.flatnonzero(keep[g.src] & keep[g.dst])
+    sub = IacoGraph(
+        node_ids=g.node_ids[nodes],
+        src=new_index[g.src[edges]],
+        dst=new_index[g.dst[edges]],
+        distance=g.distance[edges],
+        lat=g.lat[nodes],
+        lon=g.lon[nodes],
+    )
+    return sub, edges
 
 
 def spatial_shortest_path(g: IacoGraph, origin: int, destination: int) -> List[int]:
@@ -331,19 +385,40 @@ def _transfer(
     return int(rng.choice(candidates, p=score / total))
 
 
+def _transfer_scored(candidates: List[int], scores: List[float], config: IacoConfig, rng: np.random.Generator) -> int:
+    """_transfer with tau^alpha * eta^beta already computed: the same rule and random draws."""
+    if rng.random() < config.q0:
+        # First of the best, as np.argmax. Scores cannot be NaN: tau stays positive.
+        return candidates[max(range(len(scores)), key=scores.__getitem__)]
+    total = float(np.array(scores).sum())
+    if not np.isfinite(total) or total <= 0:
+        return int(rng.choice(np.array(candidates, dtype=np.int64)))
+    # rng.choice(candidates, p=scores / total), step for step: a cumulative distribution
+    # normalised by its last value, searched (right side) with one uniform draw.
+    cdf, running = [], 0.0
+    for x in scores:
+        running += x / total
+        cdf.append(running)
+    last = cdf[-1]
+    cdf = [c / last for c in cdf]
+    return candidates[bisect_right(cdf, rng.random())]
+
+
 def _ant_tour(
-    g: IacoGraph,
+    adjacency: List[List[Tuple[int, int]]],
     start: int,
     destination: int,
-    s: np.ndarray,
-    goal: np.ndarray,
-    tau: np.ndarray,
+    score: List[float],
     forbidden: frozenset,
     max_steps: int,
     config: IacoConfig,
     rng: np.random.Generator,
-    reachable: Optional[np.ndarray] = None,
 ) -> Optional[Tuple[List[int], List[int]]]:
+    """
+    One ant from start to destination. `adjacency` is g.adjacency(), already limited to
+    roads from which the destination can be reached when dead-end recovery is on; `score`
+    is tau^alpha * eta^beta (eq. 8, 10) per edge for this iteration.
+    """
     current = start
     visited = set(forbidden) | {start}
     path, edges = [start], []
@@ -354,29 +429,19 @@ def _ant_tour(
     while steps < max_steps:
         if current == destination:
             return path, edges
-        out = g.out_edges(current)
         skip = blocked.get(current, ())
-        allowed = np.array(
-            [
-                e for e in out
-                if int(g.dst[e]) not in visited
-                and e not in skip
-                and (reachable is None or reachable[g.dst[e]])
-            ],
-            dtype=np.int64,
-        )
-        if allowed.size == 0:
+        allowed = [e for e, v in adjacency[current] if v not in visited and e not in skip]
+        if not allowed:
             if not config.dead_end_recovery or len(path) == 1:
                 return None
             # Dead end: step back one node and forbid the road that led here.
             path.pop()
             dead_edge = edges.pop()
             current = path[-1]
-            blocked.setdefault(current, set()).add(int(dead_edge))
+            blocked.setdefault(current, set()).add(dead_edge)
             continue
-        eta = 1.0 / (s[allowed] + goal[g.dst[allowed]])     # eq. 8
-        chosen = _transfer(allowed, tau, eta, config, rng)
-        current = int(g.dst[chosen])
+        chosen = _transfer_scored(allowed, [score[e] for e in allowed], config, rng)
+        current = next(v for e, v in adjacency[current] if e == chosen)
         visited.add(current)
         path.append(current)
         edges.append(chosen)
@@ -395,18 +460,26 @@ def iaco_search(
     forbidden: Sequence[int] = (),
 ) -> Optional[SearchResult]:
     """Steps 1-7 of the paper. Updates tau in place. Returns None if no ant arrives."""
+    start, destination = int(start), int(destination)
     goal = g.goal_distance(destination)
     reachable = g.can_reach(destination) if config.dead_end_recovery else None
+    adjacency = g.adjacency(reachable)
     max_steps = config.max_steps if config.max_steps is not None else g.n_nodes - 1
     forbidden = frozenset(int(n) for n in forbidden)
+    # eta (eq. 8) depends only on the edge and the destination, so it is fixed for the search.
+    with np.errstate(divide="ignore", over="ignore", under="ignore"):
+        eta_beta = (1.0 / (s + goal[g.dst])) ** config.beta
 
     best: Optional[SearchResult] = None
     curve: List[float] = []
     iteration_best: List[float] = []
     for iteration in range(1, config.n_iterations + 1):
+        # tau only changes between iterations, so every ant of this one sees the same scores.
+        with np.errstate(over="ignore", under="ignore"):
+            score = (tau ** config.alpha * eta_beta).tolist()
         tours = []
         for _ in range(config.n_ants):
-            tour = _ant_tour(g, start, destination, s, goal, tau, forbidden, max_steps, config, rng, reachable)
+            tour = _ant_tour(adjacency, start, destination, score, forbidden, max_steps, config, rng)
             if tour is not None:
                 path, edges = tour
                 tours.append((path, edges, float(s[edges].sum())))

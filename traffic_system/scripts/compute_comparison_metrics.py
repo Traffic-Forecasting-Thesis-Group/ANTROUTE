@@ -1,6 +1,6 @@
 """
-Compute the real ANTROUTE-vs-baseline numbers for app/evaluation.py from a scored
-risk_edges.csv, instead of hand-typing them.
+Compute the ANTROUTE-vs-baseline congestion forecast numbers from a scored
+risk_edges.csv -- the same calculation app/evaluation.py serves live.
 
     python scripts/compute_comparison_metrics.py --risk-edges data/processed/risk_scores/risk_edges.csv
 
@@ -68,8 +68,8 @@ def main() -> None:
     }
     print(json.dumps(result, indent=2))
     print()
-    print("Paste the antroute/baseline mae, rmse and r2 values above into")
-    print("app/evaluation.py's RAW_RESULTS, with this command in the comment above it.")
+    print("GET /routes/comparison-metrics computes these same numbers live from")
+    print("risk_edges.csv (when no routing_eval/metrics.json exists); use this to check them offline.")
 
 
 def y_true_counts(y_true: np.ndarray) -> dict:

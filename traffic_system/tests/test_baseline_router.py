@@ -72,6 +72,26 @@ def test_iaco_route_is_used_when_an_ant_arrives():
     assert route.travel_time_s == pytest.approx(24.0)
 
 
+def test_corridor_search_reports_edges_of_the_whole_graph():
+    # Far-off roads listed first, so a corridor's own edge numbering differs from g's.
+    edges = [(3, 4), (4, 3), (0, 1), (1, 2)]
+    coords = {0: (0, 0), 1: (1, 0), 2: (2, 0), 3: (0, 40), 4: (1, 40)}
+    g = graph([0, 1, 2, 3, 4], edges, coords)
+    inputs = build_inputs(g, np.array([5.0, 5.0, 12.0, 13.0]), camera_congestion={})
+    route = plan_baseline(inputs, [0, 2], GREEDY, corridor_margin=0.2)
+    assert route.nodes == [0, 1, 2]
+    assert route.edges == [2, 3]
+    assert route.travel_time_s == pytest.approx(25.0)
+
+
+@pytest.mark.parametrize("detour_y", [5, 8])  # reached by widening; only by the whole graph
+def test_corridor_widens_until_it_joins_the_stops(detour_y):
+    g = graph([0, 1, 2], [(0, 1), (1, 2)], {0: (0, 0), 1: (1, detour_y), 2: (2, 0)})
+    route = plan_baseline(free_inputs(g), [0, 2], GREEDY, corridor_margin=0.2)
+    assert route.nodes == [0, 1, 2]
+    assert route.algorithm == IACO
+
+
 def test_failed_iaco_falls_back_to_shortest_distance_and_says_so():
     route = plan_baseline(free_inputs(dead_end_trap()), [0, 3], LITERAL, fallback=True)
     assert route.nodes == [0, 2, 3]

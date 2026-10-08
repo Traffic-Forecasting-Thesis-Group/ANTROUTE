@@ -1,6 +1,7 @@
 
 from __future__ import annotations
-from dataclasses import dataclass
+from bisect import bisect_right
+from dataclasses import dataclass, replace
 from typing import Dict, List, Optional, Sequence, Tuple
 import numpy as np
 import scipy.sparse as sp
@@ -43,31 +44,6 @@ def remaining_cost_to(wg: WeightedGraph, destination_idx: int) -> np.ndarray:
     reversed_graph = sp.csr_matrix((wg.weight, (wg.dst, wg.src)), shape=(n, n))
     distances = dijkstra(reversed_graph, directed=True, indices=destination_idx)
     return distances
-
-
-def _candidate_edges(
-    wg: WeightedGraph,
-    current: int,
-    visited: np.ndarray,
-    remaining: np.ndarray,
-    blocked: Optional[set] = None,
-) -> np.ndarray:
-    """
-    Edges out of `current` that lead somewhere this ant has not been and that can still
-    reach the destination.
-
-    `visited` is a boolean array over nodes rather than a set: on the full city graph an
-    ant walks hundreds of steps per tour and this runs at every one of them, so the
-    per-element Python indexing this used to do dominated routing time.
-    """
-    out = wg.out_edges(current)
-    if out.size == 0:
-        return out
-    dst = wg.dst[out]
-    keep = ~visited[dst] & np.isfinite(remaining[dst])
-    if blocked:
-        keep &= np.array([int(e) not in blocked for e in out], dtype=bool)
-    return out[keep]
 
 
 def _choose_edge(
@@ -120,7 +96,90 @@ def _choose_edge(
     else:
         probabilities = desirability / total
 
-    return int(rng.choice(candidates, p=probabilities))
+    # rng.choice(candidates, p=probabilities) step for step -- same cumulative distribution,
+    # same single uniform draw -- without its per-call validation, which made this one line
+    # most of the routing time.
+    cdf = np.cumsum(probabilities)
+    cdf /= cdf[-1]
+    return int(candidates[int(np.searchsorted(cdf, rng.random(), side="right"))])
+
+
+# Road layout -> adjacency lists. Graphs that differ only in weight (diverse_routes'
+# penalised copies, other risk windows) share src/dst arrays, so they share this.
+_ADJACENCY_CACHE: List[Tuple[np.ndarray, np.ndarray, List[List[Tuple[int, int]]]]] = []
+
+
+def _adjacency(wg: WeightedGraph) -> List[List[Tuple[int, int]]]:
+    """(edge, head) for the edges out of each node, in out_edges order, as plain ints."""
+    for src, dst, adjacency in _ADJACENCY_CACHE:
+        if src is wg.src and dst is wg.dst:
+            return adjacency
+    edges = wg._out_edges.tolist()
+    heads = wg.dst[wg._out_edges].tolist()
+    starts = wg._out_start.tolist()
+    adjacency = [list(zip(edges[a:b], heads[a:b])) for a, b in zip(starts, starts[1:])]
+    _ADJACENCY_CACHE.insert(0, (wg.src, wg.dst, adjacency))
+    del _ADJACENCY_CACHE[4:]
+    return adjacency
+
+
+@dataclass
+class _ColonyInputs:
+    """What every ant of one colony reads, as plain Python values for the inner loop."""
+
+    adjacency: List[List[Tuple[int, int]]]
+    reachable: List[bool]       # [N] the destination can be reached from this node
+    estimate: List[float]       # [E] weight + remaining cost at the edge's head
+    remaining: List[float]      # [N]
+
+    @classmethod
+    def build(cls, wg: WeightedGraph, remaining: np.ndarray) -> "_ColonyInputs":
+        return cls(
+            adjacency=_adjacency(wg),
+            reachable=np.isfinite(remaining).tolist(),
+            estimate=(wg.weight + remaining[wg.dst]).tolist(),
+            remaining=remaining.tolist(),
+        )
+
+
+def _choose_scored(
+    candidates: List[int],
+    estimate: List[float],
+    pheromone: List[float],
+    current_remaining: float,
+    alpha: float,
+    beta: float,
+    rng: np.random.Generator,
+    wg: WeightedGraph,
+    pheromone_array: np.ndarray,
+    remaining: np.ndarray,
+) -> int:
+    """
+    _choose_edge on plain floats, for the inner loop: the same validation, regret,
+    desirability, cumulative distribution and single uniform draw. Anything non-finite
+    goes to _choose_edge itself, which owns the fallbacks.
+    """
+    weights = [estimate[e] for e in candidates]
+    tau = [pheromone[e] for e in candidates]
+    if not all(0.0 < w < np.inf for w in weights) or not all(0.0 <= t < np.inf for t in tau):
+        return _choose_edge(
+            wg, np.array(candidates, dtype=np.int64), pheromone_array, remaining,
+            current_remaining, alpha, beta, rng,
+        )
+    desirability = [t ** alpha * (1.0 / (max(w - current_remaining, 0.0) + 1.0)) ** beta for t, w in zip(tau, weights)]
+    total = float(np.array(desirability).sum())
+    if not (0.0 < total < np.inf):
+        return _choose_edge(
+            wg, np.array(candidates, dtype=np.int64), pheromone_array, remaining,
+            current_remaining, alpha, beta, rng,
+        )
+    cdf, running = [], 0.0
+    for d in desirability:
+        running += d / total
+        cdf.append(running)
+    last = cdf[-1]
+    cdf = [c / last for c in cdf]
+    return candidates[bisect_right(cdf, rng.random())]
 
 
 def _build_tour(
@@ -132,9 +191,22 @@ def _build_tour(
     config: AntColonyConfig,
     max_steps: int,
     rng: np.random.Generator,
+    colony: Optional["_ColonyInputs"] = None,
+    pheromone_list: Optional[List[float]] = None,
 ) -> Optional[Tuple[List[int], List[int]]]:
-    visited = np.zeros(wg.n_nodes, dtype=bool)
-    visited[origin_idx] = True
+    """
+    One ant's tour. `colony` and `pheromone_list` (pheromone as floats) are the inputs
+    the colony precomputes once; without them they are built here.
+    """
+    if colony is None:
+        colony = _ColonyInputs.build(wg, remaining)
+    if pheromone_list is None:
+        pheromone_list = pheromone.tolist()
+    adjacency, reachable, estimate, remaining_list = (
+        colony.adjacency, colony.reachable, colony.estimate, colony.remaining
+    )
+    visited = bytearray(wg.n_nodes)
+    visited[origin_idx] = 1
     path_indices = [origin_idx]
     edge_ids: List[int] = []
     blocked_from: Dict[int, set] = {}
@@ -143,27 +215,29 @@ def _build_tour(
         current = path_indices[-1]
         if current == destination_idx:
             return (path_indices, edge_ids)
-        candidates = _candidate_edges(
-            wg, current, visited, remaining, blocked_from.get(current)
-        )
-        if candidates.size == 0:
+        blocked = blocked_from.get(current, ())
+        candidates = [
+            e for e, v in adjacency[current] if reachable[v] and not visited[v] and e not in blocked
+        ]
+        if not candidates:
             # Dead end (e.g. every onward node already visited by this ant): back up one
             # step and forbid the edge that led here, rather than discarding the whole tour.
             if len(path_indices) == 1:
                 return None
             dead_end_node = path_indices.pop()
             dead_end_edge = edge_ids.pop()
-            visited[dead_end_node] = False
-            blocked_from.setdefault(path_indices[-1], set()).add(int(dead_end_edge))
+            visited[dead_end_node] = 0
+            blocked_from.setdefault(path_indices[-1], set()).add(dead_end_edge)
             steps += 1
             continue
-        chosen = _choose_edge(
-            wg, candidates, pheromone, remaining, remaining[current], config.alpha, config.beta, rng
+        chosen = _choose_scored(
+            candidates, estimate, pheromone_list, remaining_list[current], config.alpha, config.beta,
+            rng, wg, pheromone, remaining,
         )
-        next_node = int(wg.dst[chosen])
+        next_node = next(v for e, v in adjacency[current] if e == chosen)
         path_indices.append(next_node)
         edge_ids.append(chosen)
-        visited[next_node] = True
+        visited[next_node] = 1
         steps += 1
     if path_indices[-1] == destination_idx:
         return (path_indices, edge_ids)
@@ -199,12 +273,16 @@ def ant_colony_shortest_path(
     max_steps = config.max_steps if config.max_steps is not None else wg.n_nodes - 1
     rng = np.random.default_rng(config.seed)
     pheromone = np.full(wg.n_edges, config.initial_pheromone, dtype=np.float64)
+    # Fixed for the colony; pheromone changes only between iterations.
+    colony = _ColonyInputs.build(wg, remaining)
     found: Dict[Tuple[int, ...], PathMetrics] = {}
     for _ in range(config.n_iterations):
+        pheromone_list = pheromone.tolist()
         tours: List[Tuple[PathMetrics, List[int]]] = []
         for _ in range(config.n_ants):
             result = _build_tour(
-                wg, origin_idx, destination_idx, pheromone, remaining, config, max_steps, rng
+                wg, origin_idx, destination_idx, pheromone, remaining, config, max_steps, rng,
+                colony, pheromone_list,
             )
             if result is None:
                 continue
@@ -248,3 +326,66 @@ def multi_stop_route(
         full_path.extend(leg.best.nodes[1:])
     best = wg.evaluate_path(full_path)
     return RouteResult(best=best, alternatives=[])
+
+
+# Two routes sharing more than this fraction of the shorter one's length are the same
+# route with a small detour, not an alternative worth offering.
+MAX_SHARED_FRACTION = 0.7
+
+# Each round, edges already used by a found route cost this much more, compounding, so
+# the colony is pushed onto different roads until it finds a genuinely separate route.
+REUSE_PENALTY = 1.5
+
+
+def _path_edges(wg: WeightedGraph, nodes: Sequence[int]) -> List[int]:
+    indices = [wg.index_of(n) for n in nodes]
+    return [wg.edge_id(u, v) for u, v in zip(indices, indices[1:])]
+
+
+def shared_fraction(wg: WeightedGraph, a: PathMetrics, b: PathMetrics) -> float:
+    """Length the two routes have in common, as a fraction of the shorter one."""
+    edges_a, edges_b = set(_path_edges(wg, a.nodes)), set(_path_edges(wg, b.nodes))
+    shared = float(wg.distance[list(edges_a & edges_b)].sum()) if edges_a & edges_b else 0.0
+    return shared / min(a.distance_m, b.distance_m)
+
+
+def diverse_routes(
+    wg: WeightedGraph,
+    stops: Sequence[int],
+    k: int = 3,
+    config: AntColonyConfig = AntColonyConfig(),
+    max_rounds: int = 4,
+) -> List[PathMetrics]:
+    """
+    Up to `k` genuinely different routes through `stops`, cheapest first under `wg`'s
+    dynamic cost (the k shortest routes, in the model's own sense of "short").
+
+    The colony's own alternatives are the other tours its ants happened to walk, and
+    once pheromone converges those are the best route with a one-node detour -- not
+    something to offer a driver. So this uses the penalty method: run the colony, make
+    every edge of the routes found so far REUSE_PENALTY times more expensive, run it
+    again, and keep a route only if it shares at most MAX_SHARED_FRACTION of its length
+    with each route already kept. Every route is scored on the real, unpenalised `wg`.
+    Fewer than `k` come back when the network offers no more separate roads.
+    """
+    if k <= 0:
+        raise ValueError("k must be greater than zero")
+    kept: List[PathMetrics] = []
+    searched = wg
+    for _ in range(max_rounds):
+        if len(stops) == 2:
+            result = ant_colony_shortest_path(searched, stops[0], stops[1], config)
+            candidates = [result.best] + result.alternatives
+        else:
+            candidates = [multi_stop_route(searched, stops, config).best]
+        for candidate in candidates:
+            route = wg.evaluate_path(candidate.nodes)
+            if all(shared_fraction(wg, route, other) <= MAX_SHARED_FRACTION for other in kept):
+                kept.append(route)
+            if len(kept) == k:
+                return sorted(kept, key=lambda m: m.dynamic_cost)
+        weight = searched.weight.copy()
+        for route in kept:
+            weight[_path_edges(wg, route.nodes)] *= REUSE_PENALTY
+        searched = replace(searched, weight=weight)
+    return sorted(kept, key=lambda m: m.dynamic_cost)

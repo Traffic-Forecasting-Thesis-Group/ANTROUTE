@@ -21,6 +21,9 @@ What is adapted here is the input data and the plumbing:
     step writes), spread to every edge from the nearest camera. Only when no counts are
     supplied is the flow term zero; BaselineInputs.flow_observed records which case applies.
   - Multi-stop trips are routed leg by leg, because the paper defines a single O-D search.
+  - Optionally (corridor_margin) each leg is searched on the roads in an ellipse around it
+    rather than the whole city (baseline_iaco.corridor_subgraph), which the live app needs
+    to answer in seconds instead of hours.
 
 When no ant reaches the destination the leg has no baseline route. The spatial shortest-distance
 fallback (the paper's Table 9 comparator) is still available with fallback=True, but it is off
@@ -32,7 +35,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Mapping, Optional, Sequence
+from typing import Dict, List, Mapping, Optional, Sequence, Tuple
 
 import numpy as np
 import pandas as pd
@@ -41,6 +44,7 @@ from src.routing.baseline_iaco import (
     IacoConfig,
     IacoGraph,
     comprehensive_cost,
+    corridor_subgraph,
     fill_from_nearest_camera,
     iaco_search,
     spatial_shortest_path,
@@ -53,6 +57,9 @@ LOCAL_TZ = "Asia/Manila"
 IACO = "iaco"
 SHORTEST_DISTANCE = "shortest_distance"
 MIXED = "mixed"
+
+# Past this, a corridor is most of the city; search the whole graph instead.
+MAX_CORRIDOR_MARGIN = 3.2
 
 
 class BaselineNoRouteError(ValueError):
@@ -192,16 +199,40 @@ def _no_route_reason(config: IacoConfig, failed_legs: int, legs: int, fell_back:
     return reason
 
 
+def _search_area(
+    g: IacoGraph, origin: int, destination: int, margin: Optional[float]
+) -> Tuple[IacoGraph, Optional[np.ndarray]]:
+    """
+    The graph a leg is searched on and, for a corridor, each of its edges' index in g
+    (None when it is g itself). Widens the corridor until it joins the stops; when even
+    the widest one does not, the whole graph.
+    """
+    if margin is None:
+        return g, None
+    o, d = g.index_of(origin), g.index_of(destination)
+    while margin <= MAX_CORRIDOR_MARGIN:
+        sub, edge_index = corridor_subgraph(g, o, d, margin)
+        if sub.can_reach(sub.index_of(destination))[sub.index_of(origin)]:
+            return sub, edge_index
+        margin *= 2
+    return g, None
+
+
 def plan_baseline(
     inputs: BaselineInputs,
     stops: Sequence[int],
     config: IacoConfig = IacoConfig(),
     fallback: bool = False,
+    corridor_margin: Optional[float] = None,
 ) -> BaselineRoute:
     """
     Route through `stops` (road-network node ids) leg by leg with IACO. When IACO finds no
     route, the leg raises BaselineNoRouteError, or falls back to shortest distance when
     `fallback` is on (not the thesis comparison; labelled as such in the result).
+
+    With `corridor_margin`, each leg searches only the roads in an ellipse around it (see
+    baseline_iaco.corridor_subgraph), doubling the margin until the ellipse connects the
+    leg's stops. None searches the whole graph.
 
     Each leg starts from fresh pheromone and its own seeded generator, so a leg's result does
     not depend on how many legs came before it. Consecutive duplicate stops are skipped.
@@ -219,13 +250,15 @@ def plan_baseline(
     edges: List[int] = []
     by_iaco = 0
     for origin, destination in legs:
-        o, d = g.index_of(origin), g.index_of(destination)
-        tau = np.full(g.n_edges, config.initial_pheromone, dtype=np.float64)
-        found = iaco_search(g, o, d, inputs.s, tau, config, np.random.default_rng(config.seed))
+        search_g, edge_index = _search_area(g, origin, destination, corridor_margin)
+        o, d = search_g.index_of(origin), search_g.index_of(destination)
+        s = inputs.s if edge_index is None else inputs.s[edge_index]
+        tau = np.full(search_g.n_edges, config.initial_pheromone, dtype=np.float64)
+        found = iaco_search(search_g, o, d, s, tau, config, np.random.default_rng(config.seed))
         if found is not None:
             by_iaco += 1
-            leg_nodes = [int(g.node_ids[i]) for i in found.path]
-            leg_edges = list(found.edges)
+            leg_nodes = [int(search_g.node_ids[i]) for i in found.path]
+            leg_edges = list(found.edges) if edge_index is None else [int(edge_index[e]) for e in found.edges]
         elif fallback:
             leg_nodes = spatial_shortest_path(g, origin, destination)  # ValueError if unreachable
             leg_edges = g.edges_of([g.index_of(n) for n in leg_nodes])
