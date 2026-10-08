@@ -9,10 +9,14 @@ Two sources, best first:
               baseline Improved ACO (Cheng 2023) on Route Optimality and the ETA metrics,
               with the Wilcoxon signed-rank p-value of each.
   forecast    risk_edges.csv's held-out TEST split: how well the congestion model predicts
-              the human-labelled Light/Medium/Heavy targets, against a forecaster that
-              always predicts Medium (0.5) -- the same calculation as
-              scripts/compute_comparison_metrics.py. Shown until the routing evaluation
-              has been run.
+              the human-labelled Light/Medium/Heavy targets, against a constant at the
+              TRAINING split's label mean -- the stronger of the two constants
+              scripts/compute_comparison_metrics.py reports (the labels are mostly Heavy,
+              so "always Medium" is a weak bar). The model's scores are first put on the
+              labels' scale by the affine map of src/models/risk_calibration.py, fitted on
+              the train split only (or the file's own risk_calibrated column when
+              scripts/calibrate_risk_edges.py added one), and the uncalibrated MAE is shown
+              beside it. Shown until the routing evaluation has been run.
 
 Neither available raises MetricsUnavailableError, so the app says so instead of showing
 made-up numbers. Both are cached until the file they read changes.
@@ -28,6 +32,7 @@ import pandas as pd
 
 from app.config import settings
 from app.schemas_route import ComparisonMetricRow, ComparisonMetricsResponse
+from src.models import risk_calibration
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 ROUTING_METRICS = REPO_ROOT / "outputs/routing_eval/metrics.json"
@@ -113,19 +118,45 @@ def _routing_metrics(path: Path) -> ComparisonMetricsResponse:
     )
 
 
+def _calibrated(df: pd.DataFrame, train: pd.DataFrame, labelled: pd.DataFrame) -> Tuple[np.ndarray, Optional[str]]:
+    """
+    The test-split predictions on the labels' scale, and how they got there (None = raw).
+
+    The file's own risk_calibrated column wins (scripts/calibrate_risk_edges.py fitted it
+    on the train split); otherwise the same train-split affine fit is made here. Too few
+    train labels, or a model whose train scores do not vary, leaves the raw scores.
+    """
+    if "risk_calibrated" in df.columns:
+        return labelled["risk_calibrated"].to_numpy(dtype=float), "risk_calibrated column"
+    try:
+        calibration = risk_calibration.fit(
+            train["risk"].to_numpy(dtype=float), train["weak_target"].to_numpy(dtype=float)
+        )
+    except ValueError:
+        return labelled["risk"].to_numpy(dtype=float), None
+    return (
+        calibration.apply(labelled["risk"].to_numpy(dtype=float)),
+        f"clip({calibration.slope:.3f} x risk + {calibration.intercept:.3f}) fitted on the train split",
+    )
+
+
 def _forecast_metrics(path: Path) -> ComparisonMetricsResponse:
     header = pd.read_csv(path, nrows=0).columns
     needed = {"risk", "weak_target", "camera_edge", "split"}
     if not needed <= set(header):
         raise MetricsUnavailableError(f"{path.name} has no labelled test split to score.")
-    df = pd.read_csv(path, usecols=list(needed))
-    labelled = df[df["camera_edge"].astype(str).str.lower().eq("true") & df["weak_target"].notna() & df["split"].eq("test")]
+    df = pd.read_csv(path, usecols=list(needed | ({"risk_calibrated"} & set(header))))
+    scored = df[df["camera_edge"].astype(str).str.lower().eq("true") & df["weak_target"].notna()]
+    labelled, train = scored[scored["split"].eq("test")], scored[scored["split"].eq("train")]
     if labelled.empty:
         raise MetricsUnavailableError(f"{path.name} has no labelled camera edges in its test split.")
 
     y = labelled["weak_target"].to_numpy(dtype=float)
-    pred = labelled["risk"].to_numpy(dtype=float)
-    naive = np.full_like(y, 0.5)
+    raw = labelled["risk"].to_numpy(dtype=float)
+    pred, calibration = _calibrated(df, train, labelled)
+    # The stronger constant: the training labels' mean, held out from the test split.
+    constant = float(train["weak_target"].mean()) if not train.empty else 0.5
+    naive = np.full_like(y, constant)
 
     def scores(p: np.ndarray) -> Tuple[float, float, float]:
         err = p - y
@@ -150,14 +181,29 @@ def _forecast_metrics(path: Path) -> ComparisonMetricsResponse:
                 higher_is_better=higher,
             )
         )
+    if calibration is not None:
+        # What the calibration bought, stated rather than absorbed: the raw scores against the
+        # same constant, so the table never reads as if the model had always been on scale.
+        raw_mae, base_mae = scores(raw)[0], base[0]
+        rows.append(
+            ComparisonMetricRow(
+                metric="Congestion Risk MAE (uncalibrated)",
+                antroute=f"{raw_mae:.3f}",
+                baseline=f"{base_mae:.3f}",
+                improvement_pct=_improvement_pct(raw_mae, base_mae, False),
+                higher_is_better=False,
+            )
+        )
+    scale = f"Scores calibrated by {calibration}; the uncalibrated MAE is shown too. " if calibration else ""
     return ComparisonMetricsResponse(
         source="forecast",
         title="Congestion Forecast Accuracy",
-        baseline_name="Always 'Medium'",
+        baseline_name=f"Always {constant:.3f} (training mean)",
         description=(
             f"How well ANTRoute's model predicts congestion on {len(labelled):,} held-out test camera "
-            "edges, against a forecaster that always predicts Medium. This scores the model, not the "
-            "routes. The routing comparison appears here once scripts/evaluate_routing.py has been run."
+            f"edges, against a forecaster that always predicts the training labels' mean ({constant:.3f}). "
+            f"{scale}This scores the model, not the routes. The routing comparison appears here once "
+            "scripts/evaluate_routing.py has been run."
         ),
         metrics=rows,
     )

@@ -65,7 +65,7 @@ def data(tmp_path):
     tweets = [
         {"createdAt": f"Mon May 04 09:{m}:00 +0000 2026",
          "id": f"t{m}",
-         "text": "MMDA ALERT: Stalled truck at EDSA Ortigas NB as of 5:05 PM. One lane occupied."}
+         "text": "MMDA ALERT: Stalled truck at EDSA Shaw Blvd. NB as of 5:05 PM. One lane occupied."}
         for m in (10, 20, 30)
     ]
     (twitter / "tweets_1700_1900.json").write_text(json.dumps({"data": tweets}), encoding="utf-8")
@@ -74,7 +74,7 @@ def data(tmp_path):
     return {"frames": frames, "weather": weather, "twitter": tmp_path / "twitter", "embeddings": embeddings}
 
 
-CAMERA_MAP = {"CAM1": "EDSA-Ortigas-Shaw", "CAM2": "Roxas Blvd-Kalaw"}
+CAMERA_MAP = {"CAM1": "EDSA-Shaw", "CAM2": "Roxas Blvd-Kalaw"}
 
 
 def test_tweet_times_are_recovered_in_manila_time(data):
@@ -120,7 +120,7 @@ def test_a_hand_read_location_places_a_tweet_no_rule_could(data, tmp_path):
     unplaced = load_tweets_table(tmp_path / "prose", embeddings, ["CAM1"], camera_map=CAMERA_MAP)
     assert unplaced.empty
     placed = load_tweets_table(tmp_path / "prose", embeddings, ["CAM1"], camera_map=CAMERA_MAP,
-                               locations={"p1": "EDSA Ortigas"})
+                               locations={"p1": "EDSA Shaw"})
     assert set(placed["camera_id"]) == {"CAM1"}
 
 

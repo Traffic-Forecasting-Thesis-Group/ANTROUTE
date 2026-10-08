@@ -62,11 +62,14 @@ Outputs (in --out-dir):
 
 import argparse
 import collections
+import csv
 import json
 import math
 import sys
 from dataclasses import asdict
 from datetime import datetime
+from heapq import heappop, heappush
+from zoneinfo import ZoneInfo
 from itertools import permutations
 from pathlib import Path
 from typing import Dict, List, Optional, Sequence, Tuple
@@ -97,12 +100,21 @@ from src.routing.dynamic_weight import (  # noqa: E402
     window_key,
     weighted_graph_from_risk_file,
 )
+from src.routing.event_layer import (  # noqa: E402
+    DEFAULT_MU,
+    active_at,
+    apply_events,
+    event_impact,
+    load_landmarks,
+    parse_alerts,
+)
 from src.routing.eta_engine import DEFAULT_GAMMA, load_free_flow_seconds  # noqa: E402
 from src.routing.metrics import compute_metrics_by_scenario, route_optimality, trial_eta_metrics  # noqa: E402
 from src.routing.route_trials import (  # noqa: E402
     ALTERNATIVE,
     ANTROUTE,
     BASELINE,
+    INCIDENT_EXPOSED,
     MULTI_DESTINATION,
     RECOMMENDED,
     SCENARIOS,
@@ -113,7 +125,142 @@ from src.routing.route_trials import (  # noqa: E402
 from src.routing.significance import compare_paired, relative_difference  # noqa: E402
 
 ETA_METRICS = ("mae", "rmse", "mse", "mape", "r_squared")
-TRIP_PREFIX = {RECOMMENDED: "R", ALTERNATIVE: "A", MULTI_DESTINATION: "M"}
+TRIP_PREFIX = {RECOMMENDED: "R", ALTERNATIVE: "A", MULTI_DESTINATION: "M", INCIDENT_EXPOSED: "E"}
+LOCAL_TZ = "Asia/Manila"
+MAX_SNAP_KM = 2.0  # how far an incident landmark may sit from this subgraph and still count
+
+
+# ---------------------------------------------------------------- the event layer
+
+
+class Events:
+    """
+    The Event-Aware layer, applied to the routes this evaluation scores.
+
+    Without this the appendix would measure risk-aware routing only: ANTROUTE's graph would
+    carry the STGNN's predicted congestion but none of the reported incidents, which is the
+    half of RQ2 the event layer exists to answer. The live app has always applied it
+    (app/risk_routing.py); the evaluation did not, so the two disagreed about what ANTROUTE is.
+
+    Incidents are evaluated as of the routing window itself, the same clock the risk snapshot
+    uses, so both signals describe one moment. Only ANTROUTE's graph gets them: the baseline
+    is Cheng's method planning on observed traffic, and reported incidents are precisely what
+    ANTROUTE adds over it.
+    """
+
+    def __init__(self, graph, spatial_dir: Path, mu: float, enabled: bool = True):
+        # `enabled` governs whether the penalty reaches the router, NOT whether incidents are
+        # known. The ablation has to study the same trips in both arms, and the
+        # incident_exposed scenario is selected by where the incidents are -- so with
+        # --no-events the feed is still parsed and placed, and only applied() stands down.
+        # Folding the two together meant the ablation's control arm sampled different trips
+        # from its treatment arm, which is not an ablation.
+        self.mu = mu
+        self.enabled = enabled
+        self.events = []
+        self.intersections: Dict[str, int] = {}
+        self._impact: Dict[str, Optional[np.ndarray]] = {}
+        self._live: Dict[str, list] = {}
+        landmarks = load_landmarks(REPO_ROOT / "configs/event_landmarks.csv")
+        raw_twitter = REPO_ROOT / "data/raw/twitter"
+        if raw_twitter.exists() and landmarks:
+            self.events = parse_alerts(raw_twitter, landmarks)
+        self.intersections = self._place(graph, spatial_dir)
+
+    @staticmethod
+    def _place(graph, spatial_dir: Path) -> Dict[str, int]:
+        """
+        Incident label -> graph index, for this subgraph.
+
+        Starts from the cameras, whose indices are already known, and adds the non-camera
+        landmarks the MMDA feed names, snapped to the nearest node. A landmark further than
+        MAX_SNAP_KM from this subgraph is dropped rather than pulled onto it: the subgraph is
+        a corridor, and an incident kilometres away does not belong on it.
+        """
+        placed: Dict[str, int] = dict(graph.camera_nodes)
+        path = REPO_ROOT / "configs/event_intersections.csv"
+        if not path.exists():
+            return placed
+        coords = pd.read_csv(spatial_dir / "full_network_static_features.csv",
+                             usecols=["node_id", "lat", "lon"]).set_index("node_id").reindex(graph.node_ids)
+        lat, lon = np.radians(coords["lat"].to_numpy()), np.radians(coords["lon"].to_numpy())
+        with path.open(encoding="utf-8", newline="") as f:
+            for row in csv.DictReader(f):
+                label = row["intersection"].strip()
+                if label in placed:
+                    continue
+                la, lo = np.radians(float(row["lat"])), np.radians(float(row["lon"]))
+                h = np.sin((lat - la) / 2) ** 2 + np.cos(la) * np.cos(lat) * np.sin((lon - lo) / 2) ** 2
+                km = 2 * 6371.0 * np.arcsin(np.sqrt(h))
+                best = int(np.argmin(km))
+                if km[best] <= MAX_SNAP_KM:
+                    placed[label] = best
+        return placed
+
+    def live(self, window: str) -> list:
+        """
+        (event, strength) pairs in force at this window.
+
+        Reported whether or not the penalty is enabled: in the ablation's control arm an
+        incident is still in force, the router simply is not told. Suppressing it here would
+        make the two arms look like they met different traffic.
+        """
+        if not self.events:
+            return []
+        if window not in self._live:
+            try:
+                when = datetime.fromisoformat(window)
+            except ValueError:
+                self._live[window] = []
+                return []
+            when = when if when.tzinfo else when.replace(tzinfo=ZoneInfo(LOCAL_TZ))
+            self._live[window] = active_at(self.events, when)
+        return self._live[window]
+
+    def impact(self, graph, window: str) -> Optional[np.ndarray]:
+        if window not in self._impact:
+            live = self.live(window)
+            self._impact[window] = event_impact(graph, live, self.intersections) if live else None
+        return self._impact[window]
+
+    def applied(self, wg, graph, window: str):
+        """
+        ANTROUTE's graph with this window's incidents penalised.
+
+        Unchanged when there are none, and unchanged under --no-events -- that single
+        difference is the whole of the ablation, so it is the only place `enabled` is read.
+        """
+        if not self.enabled:
+            return wg
+        impact = self.impact(graph, window)
+        return wg if impact is None else apply_events(wg, impact, mu=self.mu)
+
+    def nodes_live(self, graph, window: str) -> set:
+        """
+        Graph indices of the intersections carrying an incident penalty at this window.
+
+        Read off the impact array rather than the event list so it cannot drift from what
+        routing is actually penalised by: event_impact drops incidents whose landmark is not
+        on this subgraph, and an intersection missing from that array is one no route can be
+        diverted away from.
+        """
+        impact = self.impact(graph, window)
+        if impact is None:
+            return set()
+        src, dst = graph.edge_index[0].numpy(), graph.edge_index[1].numpy()
+        penalised = impact > 0
+        return set(src[penalised].tolist()) | set(dst[penalised].tolist())
+
+    def on_route(self, wg, graph, window: str, legs: Sequence[Sequence[int]]) -> int:
+        """How many of this route's edges carry an incident penalty -- 0 when it avoided them all."""
+        impact = self.impact(graph, window)
+        if impact is None:
+            return 0
+        hit = 0
+        for leg in legs:
+            indices = [wg.index_of(v) for v in leg]
+            hit += sum(1 for u, v in zip(indices, indices[1:]) if impact[wg.edge_id(u, v)] > 0)
+        return hit
 
 
 # ---------------------------------------------------------------- the baseline
@@ -286,7 +433,66 @@ def reachability(wg, cameras: Sequence[int]) -> Dict[Tuple[int, int], bool]:
     return out
 
 
-def sample_trips(cameras, connected, windows, a, rng) -> Dict[str, List[Tuple[str, Tuple[int, ...]]]]:
+def forward_cost_from(wg, origin: int) -> np.ndarray:
+    """
+    Least dynamic cost from `origin` to every node -- the mirror of remaining_cost_to.
+
+    Needed because a node lies on an optimal origin-to-destination route exactly when
+    cost(origin -> node) + cost(node -> destination) equals cost(origin -> destination),
+    and only the second term was already available.
+    """
+    cost = np.full(wg.n_nodes, np.inf, dtype=np.float64)
+    cost[origin] = 0.0
+    heap = [(0.0, int(origin))]
+    while heap:
+        here, u = heappop(heap)
+        if here > cost[u]:
+            continue
+        for e in wg.out_edges(u):
+            v = int(wg.dst[e])
+            through = here + float(wg.weight[e])
+            if through < cost[v]:
+                cost[v] = through
+                heappush(heap, (through, v))
+    return cost
+
+
+def interior_incident_pairs(wg, pairs, incident_nodes: set, tolerance: float = 1e-6):
+    """
+    The origin/destination pairs whose risk-only optimal route runs through an incident
+    that is neither the origin nor the destination.
+
+    This is the selection that makes the incident_exposed scenario meaningful: the layer can
+    only divert a route when there is something to divert it away from, mid-route. Optimality
+    is judged on the un-penalised graph on purpose -- the question is what the router would
+    have done knowing nothing of the incident, which is the ablation's control arm.
+    """
+    if not incident_nodes:
+        return []
+    out = []
+    remaining_cache: Dict[int, np.ndarray] = {}
+    forward_cache: Dict[int, np.ndarray] = {}
+    for origin, destination in pairs:
+        o, d = wg.index_of(origin), wg.index_of(destination)
+        if d not in remaining_cache:
+            remaining_cache[d] = remaining_cost_to(wg, d)
+        if o not in forward_cache:
+            forward_cache[o] = forward_cost_from(wg, o)
+        remaining, forward = remaining_cache[d], forward_cache[o]
+        best = remaining[o]
+        if not np.isfinite(best):
+            continue
+        for node in incident_nodes:
+            if node == o or node == d:
+                continue          # no route can avoid its own origin or destination
+            through = forward[node] + remaining[node]
+            if np.isfinite(through) and through <= best * (1.0 + tolerance):
+                out.append((origin, destination))
+                break
+    return out
+
+
+def sample_trips(cameras, connected, windows, a, rng, exposed_pairs=None) -> Dict[str, List[Tuple[str, Tuple[int, ...]]]]:
     pairs = [(o, d) for o in cameras for d in cameras if connected[(o, d)]]
     sequences = [
         s for s in permutations(cameras, a.n_stops) if all(connected[leg] for leg in zip(s, s[1:]))
@@ -302,10 +508,22 @@ def sample_trips(cameras, connected, windows, a, rng) -> Dict[str, List[Tuple[st
         return [combos[i] for i in sorted(picks)]
 
     single = draw(pairs)
-    return {RECOMMENDED: single, ALTERNATIVE: single, MULTI_DESTINATION: draw(sequences)}
+    out = {RECOMMENDED: single, ALTERNATIVE: single, MULTI_DESTINATION: draw(sequences)}
+
+    # The incident-exposed scenario draws from (window, pair) combinations already known to
+    # put an incident mid-route, so its windows are not interchangeable with the others' and
+    # it cannot reuse draw(). An empty list is not an error: with the event layer off, or in
+    # a split whose windows carry no placeable incident, there is nothing to expose.
+    combos = sorted(exposed_pairs or [])
+    if combos:
+        picks = rng.choice(len(combos), size=min(a.n_trials, len(combos)), replace=False)
+        out[INCIDENT_EXPOSED] = [combos[i] for i in sorted(picks)]
+    else:
+        out[INCIDENT_EXPOSED] = []
+    return out
 
 
-def write_template(a, graph, baseline: "Baseline", config: AntColonyConfig) -> None:
+def write_template(a, graph, baseline: "Baseline", events: "Events", config: AntColonyConfig) -> None:
     windows = evaluation_windows(a)
     coords = load_coordinates(a.spatial_dir)
     labels = camera_labels(graph)
@@ -313,21 +531,45 @@ def write_template(a, graph, baseline: "Baseline", config: AntColonyConfig) -> N
     rng = np.random.default_rng(a.seed)
 
     graphs: Dict[str, object] = {}
+    plain: Dict[str, object] = {}
 
     def graphs_for(window):
+        """ANTROUTE's graph for this window: predicted risk, plus any incidents in force."""
         if window not in graphs:
-            graphs[window] = weighted_graph_from_risk_file(
+            base = weighted_graph_from_risk_file(
                 graph, a.risk_edges, window=window, lam=a.lam, missing_risk=DEFAULT_MISSING_RISK
             )
+            plain[window] = base
+            graphs[window] = events.applied(base, graph, window)
         return graphs[window]
 
-    connected = reachability(graphs_for(windows[0]), cameras)
-    trips = sample_trips(cameras, connected, windows, a, rng)
+    # Connectivity is a property of the roads, not of today's incidents, so it is read off the
+    # un-penalised graph -- an incident makes an edge expensive, never impassable.
+    graphs_for(windows[0])
+    connected = reachability(plain[windows[0]], cameras)
+    pairs = [(o, d) for o in cameras for d in cameras if connected[(o, d)]]
+
+    # Which (window, pair) combinations can exercise the event layer at all. Each window has
+    # its own incidents and its own risk snapshot, so this is per window; windows with no
+    # placeable incident contribute nothing and are skipped before the Dijkstras.
+    exposed_combos: List[Tuple[str, Tuple[int, ...]]] = []
+    for window in windows:
+        incident_nodes = events.nodes_live(graph, window)
+        if not incident_nodes:
+            continue
+        graphs_for(window)
+        exposed_combos.extend(
+            (window, pair) for pair in interior_incident_pairs(plain[window], pairs, incident_nodes)
+        )
+    trips = sample_trips(cameras, connected, windows, a, rng, exposed_pairs=exposed_combos)
+    print(f"incident-exposed candidates: {len(exposed_combos)} (window, origin-destination) "
+          f"combination(s) put an incident mid-route")
 
     rows = []
     routed: Dict[Tuple[str, Tuple[int, ...]], List] = {}       # one ACO run per trip
     baselines: Dict[Tuple[str, Tuple[int, ...]], Tuple] = {}   # one IACO run per trip
     algorithms: Dict[str, str] = {}                            # trip_id -> which algorithm routed the baseline
+    event_rows: Dict[str, Tuple[int, int, int]] = {}           # trip_id -> (live, antroute hits, baseline hits)
     for scenario in SCENARIOS:
         for number, (window, stops) in enumerate(trips[scenario], start=1):
             wg = graphs_for(window)
@@ -351,6 +593,19 @@ def write_template(a, graph, baseline: "Baseline", config: AntColonyConfig) -> N
 
             trip_id = f"{TRIP_PREFIX[scenario]}{number:02d}"
             algorithms[trip_id] = baseline_algorithm
+            # Whether this trip could exercise the event layer at all, and whether each system's
+            # route still runs into an incident. ANTROUTE routed with the penalty applied, the
+            # baseline never sees it, so this is the per-trip evidence for RQ2.
+            n_live = len(events.live(window))
+            antroute_hits = (
+                events.on_route(plain[window], graph, window, [r for r in antroute_legs if r])
+                if n_live else 0
+            )
+            baseline_hits = (
+                events.on_route(plain[window], graph, window, [r for r in (baseline_legs or []) if r])
+                if n_live and baseline_legs else 0
+            )
+            event_rows[trip_id] = (n_live, antroute_hits, baseline_hits)
             for leg_no, (o, d) in enumerate(zip(stops, stops[1:]), start=1):
                 routes = {s: legs[s][leg_no - 1] for s in SYSTEMS}
                 row = {
@@ -367,6 +622,8 @@ def write_template(a, graph, baseline: "Baseline", config: AntColonyConfig) -> N
                     "apple_eta_seconds": "",
                 }
                 row["baseline_algorithm"] = baseline_algorithm
+                row["events_live"], row["antroute_event_edges"], row["baseline_event_edges"] = \
+                    event_rows[trip_id]
                 for s in SYSTEMS:
                     stops_on_route = pick_waypoints(wg, routes[s], a.n_waypoints) if routes[s] else []
                     row[f"{s}_waypoints"] = (
@@ -389,6 +646,35 @@ def write_template(a, graph, baseline: "Baseline", config: AntColonyConfig) -> N
     print("\nBaseline (Improved ACO, Cheng 2023) over " f"{len(algorithms)} trips:")
     for name, n in counts.most_common():
         print(f"  {n:4d}  {name}")
+
+    # RQ2's evidence: the event layer can only be shown to work on trips where an incident was
+    # actually in force. Printing the count keeps a run that happened to sample quiet windows
+    # from being read as evidence that the layer does nothing.
+    exposed = [t for t, (live, _, _) in event_rows.items() if live]
+    print(f"\nEvent-Aware layer ({'on' if events.enabled else 'OFF'}, mu={events.mu}):")
+    print(f"  {len(exposed)} of {len(event_rows)} trips had an incident in force at their window")
+    if exposed:
+        avoided = sum(1 for t in exposed if event_rows[t][1] == 0)
+        base_hit = sum(1 for t in exposed if event_rows[t][2] > 0)
+        print(f"  ANTROUTE's route is clear of every incident on {avoided} of those {len(exposed)}")
+        print(f"  the baseline's route runs into one on {base_hit} of those {len(exposed)}")
+        # Broken out because the first three scenarios sample origins and destinations from the
+        # camera intersections, which is where incidents get matched -- so an incident there is
+        # usually AT an endpoint, where avoidance is impossible and a clear route proves nothing.
+        # Only the incident_exposed trips put one mid-route, so only they can show avoidance.
+        mid_route = [t for t in exposed if t.startswith(TRIP_PREFIX[INCIDENT_EXPOSED])]
+        if mid_route:
+            clear = sum(1 for t in mid_route if event_rows[t][1] == 0)
+            hit = sum(1 for t in mid_route if event_rows[t][2] > 0)
+            print(f"  of the {len(mid_route)} incident_exposed trips, where the incident is "
+                  f"mid-route and avoidable:")
+            print(f"      ANTROUTE avoided it on {clear}")
+            print(f"      the baseline ran into one on {hit}")
+        else:
+            print("  NOTE: no incident_exposed trips in this run, so no trip could demonstrate "
+                  "avoidance -- an incident at a trip's own origin or destination cannot be routed around")
+    else:
+        print("  no trip in this sample is affected; --split all or more --n-trials would reach one")
     no_antroute = sum(1 for r in rows if not r["antroute_route"])
     if no_antroute:
         print(
@@ -579,7 +865,12 @@ def write_reports(a, graph, trials: List[dict]) -> dict:
         "risk_edges": str(a.risk_edges),
         "apple_maps": str(a.apple_maps),
         "model_inputs": model_inputs(a.risk_edges),
-        ANTROUTE: {"algorithm": "ACO on the risk-weighted graph", "lambda": a.lam, "gamma": a.gamma},
+        ANTROUTE: {
+            "algorithm": "ACO on the risk-weighted, event-aware graph",
+            "lambda": a.lam,
+            "gamma": a.gamma,
+            "event_layer": "off" if a.no_events else f"on (mu={a.event_mu})",
+        },
         BASELINE: {
             "algorithm": "Improved ACO (Cheng 2023), doi:10.1155/2023/7651100",
             "alpha": a.baseline_alpha,
@@ -645,6 +936,14 @@ def main() -> None:
     # The baseline is Improved ACO (Cheng 2023). Defaults are the paper's own (sec. 5.1.2);
     # q0 = 0.7 is its "large network" setting, and the global volatility xi it never states
     # follows baseline_iaco's default.
+    # The Event-Aware layer, on by default: without it the appendix measures risk-aware routing
+    # only, which is half of what RQ2 asks. --no-events is the ablation.
+    p.add_argument("--event-mu", type=float, default=DEFAULT_MU,
+                   help="how hard ANTROUTE avoids reported incidents (0 disables the penalty)")
+    p.add_argument("--no-events", action="store_true",
+                   help="ablation: route with predicted risk only. Incidents are still parsed and "
+                        "still select the incident_exposed trips, so both arms study the same "
+                        "trips; the router simply never sees the penalty")
     p.add_argument("--baseline-alpha", type=float, default=1.0)
     p.add_argument("--baseline-beta", type=float, default=5.0)
     p.add_argument("--baseline-rho", type=float, default=0.3)
@@ -683,6 +982,7 @@ def main() -> None:
 
     model_inputs(a.risk_edges)
     graph = build_subgraph(a.spatial_dir, a.k)
+    events = Events(graph, a.spatial_dir, mu=a.event_mu, enabled=not a.no_events)
     baseline = Baseline(
         graph,
         a.spatial_dir,
@@ -709,7 +1009,7 @@ def main() -> None:
             n_alternatives=1,
             seed=a.seed,
         )
-        write_template(a, graph, baseline, config)
+        write_template(a, graph, baseline, events, config)
     else:
         score(a, graph, baseline)
 

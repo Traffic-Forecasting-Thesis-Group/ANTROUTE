@@ -27,6 +27,7 @@ inventing a route.
 from __future__ import annotations
 
 import csv
+import json
 import logging
 import math
 import threading
@@ -177,9 +178,7 @@ def _build_network() -> _Network:
     # The whole city, not the k-hop training subgraph: the subgraph exists because the
     # STGNN needs a dense adjacency, a constraint routing does not share.
     graph = build_full_graph(SPATIAL_DIR)
-    risk_edges_path = Path(settings.risk_edges_path)
-    if not risk_edges_path.is_absolute():
-        risk_edges_path = REPO_ROOT / risk_edges_path
+    edges_path = risk_edges_path()
 
     # Read once and split by window; each window's weighted graph is only built when a
     # departure first lands on it (_weighted_graph), since aligning one window to the
@@ -187,8 +186,8 @@ def _build_network() -> _Network:
     # camera observations (weak_target) ride along for the baseline.
     risk_by_window: Dict[str, pd.DataFrame] = {}
     risk_low = risk_high = float("nan")
-    if risk_edges_path.exists():
-        frame = load_risk_edges(risk_edges_path)
+    if edges_path.exists():
+        frame = load_risk_edges(edges_path)
         keys = window_key(frame)
         columns = RISK_KEY + ["risk"] + (["weak_target"] if "weak_target" in frame.columns else [])
         risk_by_window = {str(k): rows for k, rows in frame[columns].groupby(keys, sort=True)}
@@ -199,7 +198,7 @@ def _build_network() -> _Network:
         # per-window cutoffs would split every departure time into the same three shares.
         risk_low, risk_high = (float(x) for x in np.percentile(frame["risk"].to_numpy(), [33, 66]))
     else:
-        logger.warning("%s not found: routing without congestion risk", risk_edges_path)
+        logger.warning("%s not found: routing without congestion risk", edges_path)
 
     free_flow_seconds = None
     if (SPATIAL_DIR / "metro_manila_travel_time.npz").exists():
@@ -242,6 +241,78 @@ def _build_network() -> _Network:
         graph, risk_by_window, free_flow_seconds, node_coords, risk_low, risk_high,
         events, event_intersections, _load_edge_names(SPATIAL_DIR, graph),
     )
+
+
+def risk_edges_path() -> Path:
+    """Where this server reads risk_edges.csv from (app setting RISK_EDGES_PATH)."""
+    path = Path(settings.risk_edges_path)
+    return path if path.is_absolute() else REPO_ROOT / path
+
+
+def model_provenance() -> dict:
+    """
+    Which scored artefact -- and therefore which trained checkpoint -- this running server is
+    actually serving routes from (GET /health/model).
+
+    risk_edges.csv is too large to commit, so it is copied in by hand from wherever the
+    scoring run wrote it; nothing in the file name says which checkpoint produced it, and a
+    stale copy produces perfectly plausible routes. During a demo "which model is this?" has
+    to be answerable from the system itself.
+
+    The checkpoint name comes from risk_summary.json, which predict_congestion_risk.py writes
+    beside risk_edges.csv; so do `context` (True for a multimodal checkpoint, whose risk moves
+    on roads without a camera) and `context_drop`. If it was not copied across, that is
+    reported as unknown rather than guessed at. Raises FileNotFoundError when there is no
+    risk_edges.csv at all.
+    """
+    path = risk_edges_path()
+    if not path.exists():
+        raise FileNotFoundError(str(path))
+    net = _network()
+    stat = path.stat()
+    window, _ = window_for_departure(datetime.now(ZoneInfo(LOCAL_TZ)).replace(tzinfo=None, microsecond=0))
+    wg = _weighted_graph(window)
+    out = {
+        "risk_edges": {
+            "path": str(path),
+            "size_bytes": stat.st_size,
+            "modified": datetime.fromtimestamp(stat.st_mtime, ZoneInfo(LOCAL_TZ)).isoformat(),
+            "windows": len(net.risk_by_window),
+        },
+        "serving_window": window,
+        "graph": {
+            "nodes": int(net.graph.n_nodes),
+            "edges": int(wg.n_edges),
+            "edges_with_a_predicted_risk": int(wg.scored_edges),
+            "coverage": round(float(wg.coverage), 4),
+        },
+        "events": {"parsed": len(net.events), "placed_intersections": len(net.event_intersections)},
+        "checkpoint": "unknown -- risk_summary.json was not copied beside risk_edges.csv",
+        "calibration": "none -- no risk_calibration.json beside risk_edges.csv",
+    }
+
+    summary_path = path.with_name("risk_summary.json")
+    if summary_path.exists():
+        try:
+            summary = json.loads(summary_path.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as exc:
+            out["checkpoint"] = f"risk_summary.json present but unreadable: {exc}"
+        else:
+            out["checkpoint"] = summary.get("checkpoint", out["checkpoint"])
+            out["scoring_run"] = {
+                k: summary[k]
+                for k in ("windows", "sessions", "edges", "camera_edges", "context", "context_drop",
+                          "flood_hazard", "use_text", "splits")
+                if k in summary
+            }
+
+    calibration_path = path.with_name("risk_calibration.json")
+    if calibration_path.exists():
+        try:
+            out["calibration"] = json.loads(calibration_path.read_text(encoding="utf-8")).get("calibration")
+        except (OSError, ValueError) as exc:
+            out["calibration"] = f"risk_calibration.json present but unreadable: {exc}"
+    return out
 
 
 @lru_cache(maxsize=16)

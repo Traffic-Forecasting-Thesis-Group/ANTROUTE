@@ -30,6 +30,34 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 CAMERA_MAP_CSV = REPO_ROOT / "configs" / "camera_nodes.csv"
 
 
+LABELS_CSV = REPO_ROOT / "data" / "labels" / "tweet_training_window.csv"
+
+
+def load_label_locations(path: Path = LABELS_CSV) -> Dict[str, str]:
+    """
+    tweet id -> the location a human read out of it, from the hand-labelled sheet.
+
+    Only rows marked relevant with a location are returned: a tweet a labeller judged not to
+    be about a road condition should not reach a camera just because it names a place.
+
+    These are the posts no rule can place -- news items, radio bulletins, ordinary prose --
+    which is why a person had to read them. The structured feeds (MMDA alerts, @MakatiTraffic
+    updates) are placed from their own text and need no sheet.
+    """
+    path = Path(path)
+    if not path.exists():
+        return {}
+    out: Dict[str, str] = {}
+    with path.open(encoding="utf-8-sig", newline="") as f:
+        for row in csv.DictReader(f):
+            relevant = str(row.get("label_relevant", "")).strip()
+            location = str(row.get("label_location", "")).strip()
+            tweet_id = str(row.get("tweet_id", "")).strip()
+            if tweet_id and location and relevant in ("1", "1.0"):
+                out[tweet_id] = location
+    return out
+
+
 def load_camera_map(path: Path = CAMERA_MAP_CSV) -> Dict[str, str]:
     """camera id -> the intersection label it watches, from configs/camera_nodes.csv."""
     path = Path(path)

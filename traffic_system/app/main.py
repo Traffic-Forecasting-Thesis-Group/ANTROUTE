@@ -38,3 +38,23 @@ app.include_router(places.router)
 @app.get("/health")
 async def health():
     return {"status": "ok"}
+
+
+@app.get("/health/model")
+async def model_health():
+    """
+    Which scored artefact this server is serving routes from, so a demo can answer "is this
+    really the new model?" from the system rather than from someone's recollection.
+
+    Loading the network is the expensive part of a first request, so a failure here is
+    returned as a readable message instead of a 500 -- "the file is missing" is exactly the
+    answer being asked for.
+    """
+    from app.risk_routing import model_provenance
+
+    try:
+        return model_provenance()
+    except FileNotFoundError as exc:
+        return {"status": "no risk_edges.csv", "expected_at": str(exc)}
+    except Exception as exc:  # noqa: BLE001 -- a diagnostic endpoint must not itself 500
+        return {"status": "could not read the scored artefact", "error": f"{type(exc).__name__}: {exc}"}
