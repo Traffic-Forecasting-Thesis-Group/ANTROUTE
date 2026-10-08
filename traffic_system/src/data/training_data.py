@@ -207,6 +207,82 @@ def assign_session_splits(sessions: Sequence[tuple], ratios=(0.70, 0.15, 0.15)) 
             for i, s in enumerate(ordered)}
 
 
+def labelled_session_counts(frames_roots, lookup: Dict[str, int], min_labels: int = 1) -> Dict[tuple, int]:
+    """(date, AM/PM) -> labelled frames, for sessions with at least `min_labels` of them."""
+    frames = load_frames_table(frames_roots)
+    times = pd.to_datetime(frames.loc[frames["frame_path"].isin(lookup), "timestamp"], format="ISO8601")
+    counts = collections.Counter(session_of(t) for t in times)
+    return {s: n for s, n in sorted(counts.items()) if n >= min_labels}
+
+
+def assign_day_splits(sessions: Sequence[tuple], weights: Optional[Dict[tuple, float]] = None,
+                      ratios=(0.70, 0.15, 0.15)) -> Dict[tuple, str]:
+    """
+    Chronological train / val / test split by WHOLE DAYS: both sessions of a date always land
+    in the same split.
+
+    assign_session_splits can put a date's AM session in train and its PM session in val. Every
+    modality keyed by the date then crosses the boundary -- the daily weather is one value per
+    date, and a morning incident is still in force in the afternoon's context -- so a held-out
+    session would share inputs with a training one. Splitting by date closes that.
+
+    Days are indivisible, so the shares cannot always hit 70/15/15 exactly; the two cut points
+    are the ones whose shares of `weights` (labelled frames per session, or one per session when
+    None) come closest to `ratios`, with at least one day in each split. Fewer than 3 days cannot
+    fill all three: 1 day -> train, 2 -> train + val.
+    """
+    weights = weights or {}
+    by_day: Dict = collections.OrderedDict()
+    for s in sorted(set(sessions)):
+        by_day.setdefault(s[0], []).append(s)
+    days = list(by_day)
+    load = [sum(float(weights.get(s, 1.0)) for s in by_day[d]) for d in days]
+    total = sum(load) or 1.0
+    n = len(days)
+    if n < 3:
+        name_of = {d: ("train" if i == 0 else "val") for i, d in enumerate(days)}
+    else:
+        best = None
+        for i in range(1, n - 1):              # train = days[:i]
+            for j in range(i + 1, n):          # val = days[i:j], test = days[j:]
+                shares = (sum(load[:i]) / total, sum(load[i:j]) / total, sum(load[j:]) / total)
+                miss = sum(abs(a - b) for a, b in zip(shares, ratios))
+                if best is None or miss < best[0] - 1e-12:
+                    best = (miss, i, j)
+        _, i, j = best
+        name_of = {d: ("train" if k < i else "val" if k < j else "test") for k, d in enumerate(days)}
+    return {s: name_of[s[0]] for d in days for s in by_day[d]}
+
+
+def split_days_overlap(split: Dict[tuple, str]) -> Dict:
+    """Dates that appear in more than one split ({} when the split is clean)."""
+    seen: Dict = collections.defaultdict(set)
+    for (day, _), name in split.items():
+        seen[day].add(name)
+    return {day: sorted(names) for day, names in seen.items() if len(names) > 1}
+
+
+def save_split(split: Dict[tuple, str], path: Path) -> None:
+    """The split as {"YYYY-MM-DD|AM": "train", ...}, the format checkpoints already store."""
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps({f"{d.isoformat()}|{s}": v for (d, s), v in sorted(split.items())}, indent=2),
+                    encoding="utf-8")
+
+
+def load_split(path: Path) -> Dict[tuple, str]:
+    from datetime import date
+
+    raw = json.loads(Path(path).read_text(encoding="utf-8"))
+    out = {}
+    for key, value in raw.items():
+        day, session = key.split("|")
+        if value not in ("train", "val", "test"):
+            raise ValueError(f"{path}: {key} has split {value!r}; expected train, val or test")
+        out[(date.fromisoformat(day), session)] = value
+    return out
+
+
 def describe_split(split: Dict[tuple, str]) -> str:
     lines = []
     for name in ("train", "val", "test"):

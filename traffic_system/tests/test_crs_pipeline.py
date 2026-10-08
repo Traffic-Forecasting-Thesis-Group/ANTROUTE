@@ -135,6 +135,23 @@ def test_the_ablation_checkpoints_still_score(data, tmp_path):
     assert score(data, dropped, tmp_path / "risk_dropped")["context_drop"] == ["weather", "flood"]
 
 
+def test_training_uses_the_split_file_exactly_and_scoring_inherits_it(data, tmp_path):
+    from datetime import date
+
+    from src.data.training_data import save_split
+
+    split = {(date(2026, 5, 4), "PM"): "train", (date(2026, 5, 20), "PM"): "val"}
+    save_split(split, tmp_path / "split.json")
+    out = tmp_path / "ckpt" / "v7.pt"
+    train(data, out, split_file=tmp_path / "split.json")
+    cfg = torch.load(out, map_location="cpu", weights_only=False)["config"]
+    assert cfg["visual_split"] == {"2026-05-04|PM": "train", "2026-05-20|PM": "val"}
+
+    score(data, out, tmp_path / "risk")
+    edges = pd.read_csv(tmp_path / "risk" / "risk_edges.csv", usecols=["day", "split"])
+    assert edges.groupby("day")["split"].unique().map(list).to_dict() == {"2026-05-04": ["train"], "2026-05-20": ["val"]}
+
+
 def test_a_checkpoint_scores_only_on_the_graph_it_was_trained_on(data, tmp_path):
     out = tmp_path / "ckpt" / "v7.pt"
     train(data, out)

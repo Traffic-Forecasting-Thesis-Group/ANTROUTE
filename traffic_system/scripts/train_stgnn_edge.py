@@ -14,11 +14,15 @@ from src.data.graph_data import DEFAULT_K, GraphData, build_subgraph, graph_size
 from src.data.graph_dataset import GraphWindowDataset  # noqa: E402
 from src.data.training_data import (
     WEATHER_COLUMNS,
+    assign_day_splits,
     assign_session_splits,
     build_training_records,
     describe_split,
+    labelled_session_counts,
     labelled_sessions,
     load_label_lookup,
+    load_split,
+    split_days_overlap,
 )  # noqa: E402
 from src.data.node_context import (  # noqa: E402
     GROUPS,
@@ -110,12 +114,19 @@ def train(
     events_root: Optional[Path] = REPO_ROOT / "data/raw/twitter",
     landmarks_csv: Optional[Path] = REPO_ROOT / "configs/event_landmarks.csv",
     intersections_csv: Optional[Path] = REPO_ROOT / "configs/event_intersections.csv",
+    split_file: Optional[Path] = None,
 ) -> dict:
     """
     context=True (the default) gives every graph node its own weather, flood, event, clock
     and road inputs (src/data/node_context.py), so the risk of roads without a camera depends
     on more than the cameras two hops away. drop_context zeroes whole sources for ablation;
     context=False is the CCTV-only model the earlier checkpoints were.
+
+    The split is one assignment of sessions to train / val / test, and every modality follows
+    it because every input is looked up by its window's time (src/data/split_report.py).
+    split="auto-day" keeps both sessions of a date together, so no date's weather or incidents
+    sit on both sides; split_file uses a split saved by the notebook (training_data.save_split)
+    exactly, so the table printed there is the split trained here.
     """
     torch.manual_seed(seed)
     np.random.seed(seed)
@@ -126,9 +137,21 @@ def train(
     if class_weights is not None:
         print(f"class weights (Light/Medium/Heavy): {class_weights.tolist()}")
     visual_split = None
-    if split == "auto":
+    if split_file is not None:
+        visual_split = load_split(split_file)
+        print(f"split from {split_file}:\n" + describe_split(visual_split))
+    elif split == "auto":
         visual_split = assign_session_splits(labelled_sessions(frames_root, lookup, min_session_labels))
         print("70/15/15 split over the labelled sessions:\n" + describe_split(visual_split))
+    elif split == "auto-day":
+        counts = labelled_session_counts(frames_root, lookup, min_session_labels)
+        visual_split = assign_day_splits(list(counts), weights=counts)
+        print("70/15/15 split over the labelled sessions, by whole dates:\n" + describe_split(visual_split))
+    if visual_split is not None:
+        crossing = split_days_overlap(visual_split)
+        if crossing:
+            print(f"WARNING: these dates are in more than one split, so their daily weather and incidents "
+                  f"cross it: {crossing}. Use --split auto-day.")
     records, scaler, skipped = build_training_records(
         frames_root, weather_csv, raw_twitter_root, embeddings_path, visual_split
     )
@@ -329,7 +352,10 @@ def main():
     p.add_argument("--max-train-windows", type=int, default=None)
     p.add_argument("--device", default=None)
     p.add_argument("--seed", type=int, default=0)
-    p.add_argument("--split", choices=["official", "auto"], default="official")
+    p.add_argument("--split", choices=["official", "auto", "auto-day"], default="official",
+                   help="auto: 70/15/15 by session; auto-day: 70/15/15 by whole date (no date in two splits)")
+    p.add_argument("--split-file", type=Path, default=None,
+                   help="a split saved by the notebook (training_data.save_split); overrides --split")
     p.add_argument("--min-session-labels", type=int, default=100)
     p.add_argument("--human-only", action="store_true")
     p.add_argument(
@@ -392,6 +418,7 @@ def main():
         events_root=a.events_root,
         landmarks_csv=a.landmarks_csv,
         intersections_csv=a.event_intersections_csv,
+        split_file=a.split_file,
     )
 
 
