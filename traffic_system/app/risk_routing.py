@@ -21,6 +21,7 @@ plan_routes() catches this and falls back to the distance-only placeholder.
 from __future__ import annotations
 
 import csv
+import json
 import math
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -184,6 +185,64 @@ def _network() -> _Network:
         graph, wg_antroute, risk_edges_path, free_flow_seconds, node_coords, float(risk_low), float(risk_high),
         events, event_intersections,
     )
+
+
+def model_provenance() -> dict:
+    """
+    Which scored artefact -- and therefore which trained checkpoint -- this running server is
+    actually serving routes from.
+
+    Worth an endpoint rather than a README line. risk_edges.csv is too large to commit, so it
+    is copied in by hand from wherever the scoring run wrote it; nothing in the file name says
+    which checkpoint produced it, and a stale copy produces perfectly plausible routes. During
+    a demo "which model is this?" has to be answerable from the system itself, not from
+    someone's memory of which file they dragged across.
+
+    The checkpoint name comes from risk_summary.json, which predict_congestion_risk.py writes
+    beside risk_edges.csv. If it was not copied across, that is reported as unknown rather than
+    guessed at -- an unverified claim about which model is live is worse than none.
+    """
+    net = _network()
+    path = net.risk_edges_path
+    stat = path.stat()
+    out = {
+        "risk_edges": {
+            "path": str(path),
+            "size_bytes": stat.st_size,
+            "modified": datetime.fromtimestamp(stat.st_mtime, ZoneInfo(LOCAL_TZ)).isoformat(),
+        },
+        "serving_window": net.wg_antroute.window,
+        "graph": {
+            "nodes": int(net.graph.edge_index.max()) + 1 if net.graph.edge_index.numel() else 0,
+            "edges": int(net.wg_antroute.n_edges),
+            "edges_with_a_predicted_risk": int(net.wg_antroute.scored_edges),
+            "coverage": round(float(net.wg_antroute.coverage), 4),
+        },
+        "events": {"parsed": len(net.events), "placed_intersections": len(net.event_intersections)},
+        "checkpoint": "unknown -- risk_summary.json was not copied beside risk_edges.csv",
+        "calibration": "none -- risk_edges.csv has no risk_calibrated column",
+    }
+
+    summary_path = path.with_name("risk_summary.json")
+    if summary_path.exists():
+        try:
+            summary = json.loads(summary_path.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as exc:
+            out["checkpoint"] = f"risk_summary.json present but unreadable: {exc}"
+        else:
+            out["checkpoint"] = summary.get("checkpoint", out["checkpoint"])
+            out["scoring_run"] = {k: summary[k] for k in ("windows", "sessions", "edges", "camera_edges")
+                                  if k in summary}
+            if "splits" in summary:
+                out["scoring_run"]["splits"] = summary["splits"]
+
+    calibration_path = path.with_name("risk_calibration.json")
+    if calibration_path.exists():
+        try:
+            out["calibration"] = json.loads(calibration_path.read_text(encoding="utf-8")).get("calibration")
+        except (OSError, ValueError) as exc:
+            out["calibration"] = f"risk_calibration.json present but unreadable: {exc}"
+    return out
 
 
 def _observed_rows(path: Path, window: Optional[str]) -> pd.DataFrame:

@@ -6,6 +6,17 @@ Scenarios follow the thesis (Section 3.8, Appendices 1-3):
     recommended        the best route ACO returns for an origin/destination
     alternative        the next-best route from the same ACO run
     multi_destination  a sequential multi-stop trip, routed leg by leg
+    incident_exposed   like recommended, but origin and destination are chosen so that a
+                       reported incident lies on the INTERIOR of the risk-only route
+
+The fourth exists because the first three cannot measure RQ2. They draw origins and
+destinations from the CCTV intersections, and the Event-Aware layer matches incidents to
+those same intersections through the shared gazetteer, so an incident lands on the trip's
+own endpoint: over 120 legs it did so on 8 of the 10 that met one, and no router can avoid
+its own destination. The layer changed no route, which measured the sampling, not the layer.
+Reported as its own scenario and never merged into the others: selecting trips that can
+exercise a mechanism is what makes an ablation informative, but pooling them with trips
+drawn uniformly would overstate how often the mechanism bites in ordinary use.
 
 Route Optimality (Equation 1) uses travel time as the cost, with Apple Maps as the oracle
 on both sides so it measures route quality rather than how optimistic a system's ETA is:
@@ -35,7 +46,8 @@ SYSTEMS = (ANTROUTE, BASELINE)
 RECOMMENDED = "recommended"
 ALTERNATIVE = "alternative"
 MULTI_DESTINATION = "multi_destination"
-SCENARIOS = (RECOMMENDED, ALTERNATIVE, MULTI_DESTINATION)
+INCIDENT_EXPOSED = "incident_exposed"
+SCENARIOS = (RECOMMENDED, ALTERNATIVE, MULTI_DESTINATION, INCIDENT_EXPOSED)
 
 
 def pick_waypoints(wg: WeightedGraph, nodes: Sequence[int], n: int) -> List[int]:

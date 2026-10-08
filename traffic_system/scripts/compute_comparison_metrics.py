@@ -7,9 +7,18 @@ risk_edges.csv, instead of hand-typing them.
 Evaluates on the held-out TEST split only, against the real human-labelled
 Light/Medium/Heavy targets (weak_target) on camera edges -- the same ground truth
 train_stgnn_edge.py trains against. "Baseline" here is the naive "always predict
-Medium (0.5)" constant, the same reference point used throughout training (a
-roughly balanced Light/Medium/Heavy label mix gives it MAE ~0.33-0.38 depending on
-the exact split).
+Medium (0.5)" constant, the same reference point used throughout training.
+
+Two constants are reported, not one, because 0.5 is a weak bar on this data: the
+labels are not balanced -- the test split is 67% Heavy, mean 0.784 -- so a constant
+sitting at the *training* mean is a much stronger reference, and a reader will ask
+for it. Both are printed so neither can be chosen after the fact.
+
+Likewise both the raw `risk` column and `risk_calibrated` are scored when the latter
+is present (scripts/calibrate_risk_edges.py adds it). The raw scores lose to the
+train-mean constant purely through being miscentred rather than misordered; see
+src/models/risk_calibration.py. Whichever figures the write-up quotes, quote the
+pair, and say which column produced them.
 
 This is a genuinely harder bar than train_stgnn_edge.py's own reported val_mae:
 that number comes from its own internal windowing/target alignment during
@@ -53,19 +62,28 @@ def main() -> None:
 
     y_true = labelled["weak_target"].to_numpy(dtype=float)
     y_pred = labelled["risk"].to_numpy(dtype=float)
-    y_naive = np.full_like(y_true, 0.5)
 
-    antroute = regression_metrics(y_true, y_pred)
-    baseline = regression_metrics(y_true, y_naive)
+    # Fitted on the train split, so it is a held-out reference for every other split.
+    train = df[(df["camera_edge"] == True) & df["weak_target"].notna() & (df["split"] == "train")]  # noqa: E712
+    train_mean = float(train["weak_target"].mean()) if not train.empty else 0.5
 
     result = {
         "risk_edges": str(a.risk_edges),
         "split": a.split,
         "n_labelled_edges": int(len(labelled)),
         "label_distribution": {str(k): int(v) for k, v in y_true_counts(y_true).items()},
-        "antroute": antroute,
-        "baseline": baseline,
+        "label_mean": float(y_true.mean()),
+        "antroute": regression_metrics(y_true, y_pred),
+        "baseline": regression_metrics(y_true, np.full_like(y_true, 0.5)),
+        "baseline_train_mean": {
+            "constant": train_mean,
+            **regression_metrics(y_true, np.full_like(y_true, train_mean)),
+        },
     }
+    if "risk_calibrated" in labelled.columns:
+        result["antroute_calibrated"] = regression_metrics(
+            y_true, labelled["risk_calibrated"].to_numpy(dtype=float)
+        )
     print(json.dumps(result, indent=2))
     print()
     print("Paste the antroute/baseline mae, rmse and r2 values above into")
