@@ -154,10 +154,22 @@ def test_waypoints_are_inner_nodes_spaced_along_the_route():
     assert pick_waypoints(wg, DETOUR, 0) == []
 
 
-def test_relative_difference_follows_equation_15():
-    assert relative_difference(80.0, 90.0) == pytest.approx(-12.5)
+def test_relative_difference_follows_equations_7_and_8():
+    # Equation 7 (MAE, RMSE, MSE, MAPE): lower is better, so a lower proposed value is positive
     assert relative_difference(200.0, 150.0) == pytest.approx(25.0)
+    assert relative_difference(80.0, 90.0) == pytest.approx(-12.5)
+    # Equation 8 (Route Optimality, R^2): higher is better, so a higher proposed value is positive
+    assert relative_difference(80.0, 90.0, higher_is_better=True) == pytest.approx(12.5)
+    assert relative_difference(0.8, 0.6, higher_is_better=True) == pytest.approx(-25.0)
     assert math.isnan(relative_difference(0.0, 1.0))
+
+
+def test_paired_comparison_applies_the_right_equation_per_metric():
+    better = [95.0, 97.0, 92.0]
+    worse = [85.0, 88.0, 84.0]
+    assert compare_paired("route_optimality", better, worse).relative_difference_pct > 0
+    assert compare_paired("r_squared", better, worse).relative_difference_pct > 0
+    assert compare_paired("mae", worse, better).relative_difference_pct > 0     # lower error = better
 
 
 def test_paired_comparison_uses_baseline_minus_proposed():

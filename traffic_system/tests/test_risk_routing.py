@@ -116,3 +116,14 @@ def test_available_is_false_without_the_road_network(tmp_path, monkeypatch):
     monkeypatch.setattr(risk_routing, "SPATIAL_DIR", tmp_path / "missing_spatial")
     assert risk_routing.available() is False
     risk_routing._build_network.cache_clear()
+
+
+def test_congestion_is_unknown_where_the_model_made_no_prediction_near_the_route():
+    """A route whose risk is mostly the window's median stand-in gets no congestion level."""
+    from types import SimpleNamespace
+
+    net = SimpleNamespace(risk_by_window={"w": None}, risk_low=0.4, risk_high=0.6)
+    assert risk_routing._congestion_label(net, 0.5, coverage=1.0) == "moderate"
+    assert risk_routing._congestion_label(net, 0.5, coverage=0.49) == "unknown"
+    assert risk_routing._congestion_label(net, 0.5, coverage=risk_routing.MIN_RISK_COVERAGE) == "moderate"
+    assert risk_routing._congestion_label(SimpleNamespace(risk_by_window={}), 0.5) == "unknown"

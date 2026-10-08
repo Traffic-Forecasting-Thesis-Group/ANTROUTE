@@ -40,8 +40,9 @@ import DateTimePicker, { DateTimePickerAndroid } from '@react-native-community/d
 
 import {
   planRoute,
-  getComparisonMetrics,
-  ComparisonMetrics,
+  getTripEvaluation,
+  ComparisonMetricRow,
+  TripEvaluation,
   RouteOption,
   CongestionLevel,
   Coordinates,
@@ -92,17 +93,6 @@ function baselineMethodLabel(route?: RouteOption): string {
     default:
       return 'Improved ACO (Cheng 2023)';
   }
-}
-
-/** True when two routes follow the same road, so the map draws one line over the other. */
-function samePath(a?: RouteOption, b?: RouteOption): boolean {
-  const pa = a?.path ?? [];
-  const pb = b?.path ?? [];
-  return (
-    pa.length > 1 &&
-    pa.length === pb.length &&
-    pa.every((p, i) => p.latitude === pb[i].latitude && p.longitude === pb[i].longitude)
-  );
 }
 
 type ActiveField = 'origin' | number | null;
@@ -213,27 +203,9 @@ export default function HomeScreen({ navigation }: any) {
   const [baselineNotice, setBaselineNotice] = useState<string | null>(null);
   const [trafficNote, setTrafficNote] = useState<string | null>(null);
 
-  const [comparisonMetrics, setComparisonMetrics] = useState<ComparisonMetrics | null>(null);
-  const [metricsLoading, setMetricsLoading] = useState(false);
-  const [metricsError, setMetricsError] = useState('');
-
-  const loadComparisonMetrics = async () => {
-    setMetricsLoading(true);
-    setMetricsError('');
-    try {
-      setComparisonMetrics(await getComparisonMetrics());
-    } catch (e: any) {
-      setMetricsError(e?.message || 'Could not load comparison metrics.');
-    } finally {
-      setMetricsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (activeTab === 'comparison' && !comparisonMetrics && !metricsLoading) {
-      loadComparisonMetrics();
-    }
-  }, [activeTab]);
+  // The evaluation of the trip just planned: its own metrics when it is a test trip.
+  const [tripEvaluation, setTripEvaluation] = useState<TripEvaluation | null>(null);
+  const [tripEvaluationError, setTripEvaluationError] = useState('');
 
   const [isNavigating, setIsNavigating] = useState(false);
   const [isAddingStop, setIsAddingStop] = useState(false);
@@ -566,10 +538,18 @@ export default function HomeScreen({ navigation }: any) {
     setRouteError('');
     setIsLoading(true);
     try {
-      const [antResult, baselineResult] = await Promise.allSettled([
+      setTripEvaluation(null);
+      setTripEvaluationError('');
+      const [antResult, baselineResult, evaluationResult] = await Promise.allSettled([
         planRoute(originToUse.trim(), cleanedDestinations, originCoordsToUse, 'antroute', departAt),
         planRoute(originToUse.trim(), cleanedDestinations, originCoordsToUse, 'baseline', departAt),
+        getTripEvaluation(originToUse.trim(), cleanedDestinations, originCoordsToUse, departAt),
       ]);
+      if (evaluationResult.status === 'fulfilled') {
+        setTripEvaluation(evaluationResult.value);
+      } else {
+        setTripEvaluationError(evaluationResult.reason?.message || 'Could not load this trip’s evaluation.');
+      }
       if (antResult.status === 'rejected') throw antResult.reason;
       const antPlan = antResult.value;
       // A failed baseline should not hide ANTRoute's routes; its reason goes in the notice.
@@ -687,6 +667,50 @@ export default function HomeScreen({ navigation }: any) {
   const selectedRoute = currentModelOptions[selectedIndex];
   const antTop = antRouteOptions[0];
   const baselineTop = baselineModelOptions[0];
+  // Route Optimality of this trip's own evaluated routes; null unless it is a test trip.
+  const tripOptimality = tripEvaluation?.status === 'evaluated' ? tripEvaluation.routeOptimality : null;
+
+  // This trip's evaluation metrics, always in the same six rows; a metric the trip has no
+  // value for (not timed in Apple Maps, or R² on a single-leg trip) shows a dash.
+  const tripMetricRows: ComparisonMetricRow[] = ['Route Optimality', 'MAE', 'RMSE', 'MSE', 'MAPE', 'R²'].map(
+    (metric) =>
+      tripEvaluation?.metrics.find((m) => m.metric === metric) ?? {
+        metric,
+        antroute: '–',
+        baseline: '–',
+        improvementPct: null,
+        higherIsBetter: metric === 'Route Optimality' || metric === 'R²',
+        pValue: null,
+        significant: null,
+      }
+  );
+
+  const renderMetricsTable = (rows: ComparisonMetricRow[]) => (
+    <View style={styles.metricsTable}>
+      <View style={styles.metricsTableHeaderRow}>
+        <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText, { flex: 1.5 }]}>Metric</Text>
+        <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>ANTRoute</Text>
+        <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>Baseline</Text>
+        <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>Improvement</Text>
+      </View>
+      {rows.map((row) => {
+        const isGood = row.improvementPct != null && row.improvementPct > 0;
+        return (
+          <View key={row.metric} style={styles.metricsTableRow}>
+            <Text style={[styles.metricsTableCell, { flex: 1.5 }]}>
+              {row.metric}
+              {row.significant ? ' *' : ''}
+            </Text>
+            <Text style={styles.metricsTableCell}>{row.antroute}</Text>
+            <Text style={styles.metricsTableCell}>{row.baseline}</Text>
+            <Text style={[styles.metricsTableCell, styles.metricsTableImprovement, isGood && styles.improvementGood]}>
+              {row.improvementPct == null ? '–' : `${row.improvementPct > 0 ? '+' : ''}${row.improvementPct}%`}
+            </Text>
+          </View>
+        );
+      })}
+    </View>
+  );
   const hasAnyResults = normalRoute !== null || antRouteOptions.length > 0;
   const showStopsList = !isNavigating || stopsRevealedDuringNav;
 
@@ -1263,22 +1287,17 @@ export default function HomeScreen({ navigation }: any) {
                   </View>
                 )}
 
-                {/* Route comparison for this trip. It needs only the two route responses, so it
-                    does not wait on the forecast metrics below. Both cards are measured the same
-                    way (distance, ETA engine, risk), so a difference is a difference in the route. */}
+                {/* Comparison for the trip just planned: each model's distance and ETA, and this
+                    trip's own evaluation against Apple Maps. Only trips timed in Apple Maps have
+                    one; any other trip shows dashes rather than another trip's numbers. */}
                 {!isNavigating && activeTab === 'comparison' && hasAnyResults && (
                   <View>
                     <Text style={styles.comparisonResultLabel}>Comparison Result</Text>
 
                     <View style={styles.comparisonCardsRow}>
                       {[
-                        { name: 'ANTRoute', method: 'Risk-aware ACO (CNN-LSTM + RADR-STGNN)', route: antTop, notice: null },
-                        {
-                          name: 'Baseline',
-                          method: baselineMethodLabel(baselineTop),
-                          route: baselineTop,
-                          notice: baselineNotice,
-                        },
+                        { name: 'ANTRoute', route: antTop, notice: null, optimality: tripOptimality?.antroute ?? null },
+                        { name: 'Baseline', route: baselineTop, notice: baselineNotice, optimality: tripOptimality?.baseline ?? null },
                       ].map((item) => (
                         <View key={item.name} style={styles.comparisonCard}>
                           <View style={styles.comparisonCardHeader}>
@@ -1287,103 +1306,41 @@ export default function HomeScreen({ navigation }: any) {
                               <Text style={styles.comparisonCardDistance}>{item.route.distance_km} km</Text>
                             ) : null}
                           </View>
-                          <Text style={styles.comparisonCardMethod}>{item.method}</Text>
                           {item.route ? (
                             <>
                               <Text style={styles.comparisonCardLabel}>ETA</Text>
                               <Text style={styles.comparisonCardEta}>{item.route.duration_min} min</Text>
-                              <Text style={[styles.comparisonCardLabel, { marginTop: 10 }]}>Avg. congestion risk</Text>
+                              <Text style={[styles.comparisonCardLabel, { marginTop: 10 }]}>Route Optimality</Text>
                               <Text style={styles.comparisonCardOpt}>
-                                {item.route.mean_risk != null ? `${Math.round(item.route.mean_risk * 100)}%` : '–'}
+                                {item.optimality != null ? `${Math.round(item.optimality)}%` : '–'}
                               </Text>
                             </>
                           ) : (
-                            <Text style={styles.comparisonCardNoRoute}>
-                              {item.notice ?? 'No route for this trip.'}
-                            </Text>
+                            <Text style={styles.comparisonCardNoRoute}>{item.notice ?? 'No route for this trip.'}</Text>
                           )}
                         </View>
                       ))}
                     </View>
 
-                    {samePath(antTop, baselineTop) ? (
-                      <View style={styles.infoBox}>
-                        <Info size={14} color="#3b82f6" />
-                        <Text style={styles.infoText}>
-                          Both models chose the same road for this trip, so the map shows one line.
-                        </Text>
-                      </View>
-                    ) : null}
-                    {baselineTop?.fallback_reason ? (
-                      <View style={styles.infoBox}>
-                        <Info size={14} color="#3b82f6" />
-                        <Text style={styles.infoText}>{baselineTop.fallback_reason}</Text>
-                      </View>
-                    ) : null}
-
                     <View style={styles.comparisonDivider} />
 
-                    <Text style={styles.evaluationTitle}>{comparisonMetrics?.title ?? 'Evaluation Results'}</Text>
-                    {metricsLoading ? (
-                      <ActivityIndicator style={{ marginVertical: 30 }} color="#4475F2" />
-                    ) : metricsError ? (
+                    <Text style={styles.evaluationTitle}>Evaluation Metrics</Text>
+                    {tripEvaluationError ? (
                       <View style={styles.comparisonEmptyState}>
-                        <Text style={styles.comparisonEmptyText}>{metricsError}</Text>
-                        <TouchableOpacity style={styles.retryButton} onPress={loadComparisonMetrics}>
-                          <Text style={styles.retryButtonText}>Retry</Text>
-                        </TouchableOpacity>
+                        <Text style={styles.comparisonEmptyText}>{tripEvaluationError}</Text>
                       </View>
-                    ) : comparisonMetrics ? (
+                    ) : !tripEvaluation ? (
+                      <ActivityIndicator style={{ marginVertical: 30 }} color="#4475F2" />
+                    ) : (
                       <>
-                        <Text style={styles.evaluationSubtitle}>{comparisonMetrics.description}</Text>
-                        <View style={styles.metricsTable}>
-                          <View style={styles.metricsTableHeaderRow}>
-                            <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText, { flex: 1.5 }]}>
-                              Metric
-                            </Text>
-                            <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>ANTRoute</Text>
-                            <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>
-                              {comparisonMetrics.source === 'routing' ? 'Baseline' : comparisonMetrics.baselineName}
-                            </Text>
-                            <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>Δ%</Text>
-                            {comparisonMetrics.source === 'routing' ? (
-                              <Text style={[styles.metricsTableCell, styles.metricsTableHeaderText]}>p-value</Text>
-                            ) : null}
-                          </View>
-                          {comparisonMetrics.metrics.map((row) => {
-                            const isGood = row.improvementPct != null && row.improvementPct > 0;
-                            return (
-                              <View key={row.metric} style={styles.metricsTableRow}>
-                                <Text style={[styles.metricsTableCell, { flex: 1.5 }]}>{row.metric}</Text>
-                                <Text style={styles.metricsTableCell}>{row.antroute}</Text>
-                                <Text style={styles.metricsTableCell}>{row.baseline}</Text>
-                                <Text
-                                  style={[
-                                    styles.metricsTableCell,
-                                    styles.metricsTableImprovement,
-                                    isGood && styles.improvementGood,
-                                  ]}
-                                >
-                                  {row.improvementPct == null
-                                    ? '–'
-                                    : `${row.improvementPct > 0 ? '+' : ''}${row.improvementPct}%`}
-                                </Text>
-                                {comparisonMetrics.source === 'routing' ? (
-                                  <Text style={[styles.metricsTableCell, row.significant && styles.improvementGood]}>
-                                    {row.pValue == null ? '–' : row.pValue < 0.001 ? '<0.001' : row.pValue.toFixed(3)}
-                                  </Text>
-                                ) : null}
-                              </View>
-                            );
-                          })}
-                        </View>
+                        {renderMetricsTable(tripMetricRows)}
                         <Text style={styles.comparisonFootnote}>
-                          {comparisonMetrics.source === 'routing'
-                            ? `Δ% is positive when ANTRoute is better. Wilcoxon signed-rank test; p < 0.05 is significant (shown in green). Baseline: ${comparisonMetrics.baselineName}.`
-                            : 'Δ% is positive when ANTRoute is better (percentage points for R²).'}
+                          {tripEvaluation.status === 'evaluated'
+                            ? 'Lower is better for MAE, RMSE, MSE, MAPE. Higher is better for Route Optimality and R².'
+                            : tripEvaluation.message}
                         </Text>
                       </>
-                    ) : null}
+                    )}
                   </View>
                 )}
 

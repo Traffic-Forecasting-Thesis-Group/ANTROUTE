@@ -67,6 +67,7 @@ from src.routing.dynamic_weight import (
     PathMetrics,
     WeightedGraph,
     build_weighted_graph,
+    MAX_FILL_M,
     fill_unscored_risk,
     load_risk_edges,
     risk_vector,
@@ -511,9 +512,18 @@ def nearest_node(net: _Network, point: Tuple[float, float]) -> int:
     return int(net.coord_ids[best])
 
 
-def _congestion_label(net: _Network, mean_risk: float) -> str:
+# A route's congestion is reported only when most of its length has a risk that came from
+# the model -- predicted on the road itself, or borrowed from a predicted road within
+# MAX_FILL_M. Below this share the risk is mostly the window's median stand-in, and calling
+# that "moderate" would present a default as an assessment.
+MIN_RISK_COVERAGE = 0.5
+
+
+def _congestion_label(net: _Network, mean_risk: float, coverage: float = 1.0) -> str:
     if not net.risk_by_window:
         return "unknown"  # no risk_edges.csv: nothing to say, rather than a false "clear"
+    if coverage < MIN_RISK_COVERAGE:
+        return "unknown"  # no prediction near this route: the risk is the window median
     if mean_risk <= net.risk_low:
         return "clear"
     if mean_risk <= net.risk_high:
@@ -558,18 +568,49 @@ def _duration_min(net: _Network, wg: WeightedGraph, m: PathMetrics) -> int:
     return max(1, round(path_eta_seconds(wg, net.free_flow_seconds, m.nodes) / 60))
 
 
+def risk_coverage(wg: WeightedGraph, nodes: List[int]) -> float:
+    """
+    Share of a route's length whose risk came from the model for wg's window: predicted on
+    the edge, or borrowed by fill_unscored_risk from a predicted road within MAX_FILL_M. The
+    rest carries the window's median as a stand-in. 0 without a window.
+    """
+    if wg.window is None:
+        return 0.0
+    informed = _informed_edges(wg.window)
+    indices = [wg.index_of(n) for n in nodes]
+    edges = [wg.edge_id(u, v) for u, v in zip(indices, indices[1:])]
+    length = wg.distance[edges]
+    return float(length[informed[edges]].sum() / length.sum()) if length.sum() > 0 else 0.0
+
+
+@lru_cache(maxsize=16)
+def _informed_edges(window: str) -> np.ndarray:
+    """[E] True where this window's risk came from the model rather than the median stand-in."""
+    net = _network()
+    mask = scored_mask(net.graph, net.risk_by_window[window])
+    nearest = _nearest_scored(mask.tobytes())
+    src, dst = net.graph.edge_index[0].numpy(), net.graph.edge_index[1].numpy()
+    near = np.minimum(nearest.distance_m[src], nearest.distance_m[dst]) <= MAX_FILL_M
+    return mask | near
+
+
 def _metrics_to_option(net: _Network, wg: WeightedGraph, label: str, m: PathMetrics) -> dict:
+    coverage = risk_coverage(wg, m.nodes)
     return {
         "label": label,
         "via": _via_roads(net, wg, m.nodes) or "local roads",
         "duration_min": _duration_min(net, wg, m),
         "distance_km": round(m.distance_m / 1000, 2),
-        "congestion_level": _congestion_label(net, m.mean_risk),
+        "congestion_level": _congestion_label(net, m.mean_risk, coverage),
         "mean_risk": round(m.mean_risk, 4),
+        "risk_coverage": round(coverage, 3),
         "algorithm": "antroute",
         "fallback_reason": None,
         "event_note": None,
         "path": _path_points(net, m.nodes),
+        # Graph node ids along the route, for scripts/citywide_trips.py; not part of the API
+        # response (RouteOption has no such field, so the endpoint drops it).
+        "nodes": [int(n) for n in m.nodes],
     }
 
 
@@ -599,6 +640,7 @@ def _baseline_option(net: _Network, window: Optional[str], stops: List[int]) -> 
     else:
         method = f"IACO for {route.legs_by_iaco} of {route.legs} legs, shortest distance for the rest"
     roads = _via_roads(net, wg, m.nodes)
+    coverage = risk_coverage(wg, m.nodes)
     # The app already names the method under every baseline card ("Baseline route · Improved
     # ACO (Cheng 2023)"), so `via` adds it only when it is NOT plain IACO -- a fallback is the
     # one thing the card would otherwise hide.
@@ -611,12 +653,14 @@ def _baseline_option(net: _Network, window: Optional[str], stops: List[int]) -> 
         "via": via,
         "duration_min": _duration_min(net, wg, m),
         "distance_km": round(m.distance_m / 1000, 2),
-        "congestion_level": _congestion_label(net, m.mean_risk),
+        "congestion_level": _congestion_label(net, m.mean_risk, coverage),
         "mean_risk": round(m.mean_risk, 4),
+        "risk_coverage": round(coverage, 3),
         "algorithm": route.algorithm,
         "fallback_reason": route.fallback_reason,
         "event_note": None,
         "path": _path_points(net, route.nodes),
+        "nodes": [int(n) for n in route.nodes],  # see _metrics_to_option
     }
 
 
@@ -656,6 +700,12 @@ def _event_note(
     )
 
 
+def snap_stops(points: List[Tuple[float, float]]) -> List[int]:
+    """The graph node each stop (lat, lng) routes from, origin first -- as plan_real_routes snaps them."""
+    net = _network()
+    return [nearest_node(net, p) for p in points]
+
+
 def plan_real_routes(
     origin_coords: Tuple[float, float],
     destination_coords: List[Tuple[float, float]],
@@ -677,7 +727,7 @@ def plan_real_routes(
     baseline_router.BaselineNoRouteError when the baseline finds none.
     """
     net = _network()
-    stops = [nearest_node(net, origin_coords)] + [nearest_node(net, c) for c in destination_coords]
+    stops = snap_stops([origin_coords, *destination_coords])
     if any(a == b for a, b in zip(stops, stops[1:])):
         raise NoRouteError("Two consecutive stops are at the same spot on the road network.")
 

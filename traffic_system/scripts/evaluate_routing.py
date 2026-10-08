@@ -57,7 +57,8 @@ Outputs (in --out-dir):
     appendix3_routing_results.csv        per-trial path, distance, risk exposure, ETA (min)
     appendix3_route_optimality_pairs.csv per-trial paired Route Optimality, d_i, Δ%
     appendix3_significance.csv           per scenario and metric: Shapiro-Wilk, Wilcoxon, t-test
-    metrics.json                         all of the above plus pooled metrics per scenario
+    per_trip.csv                         per trip: both systems on every metric, Δ% and the better one
+    metrics.json                        all of the above plus pooled metrics per scenario
 """
 
 import argparse
@@ -122,7 +123,7 @@ from src.routing.route_trials import (  # noqa: E402
     pick_waypoints,
     score_trip,
 )
-from src.routing.significance import compare_paired, relative_difference  # noqa: E402
+from src.routing.significance import HIGHER_IS_BETTER, compare_paired, relative_difference  # noqa: E402
 
 ETA_METRICS = ("mae", "rmse", "mse", "mape", "r_squared")
 TRIP_PREFIX = {RECOMMENDED: "R", ALTERNATIVE: "A", MULTI_DESTINATION: "M", INCIDENT_EXPOSED: "E"}
@@ -714,13 +715,29 @@ def mean_sd(values: Sequence[float]) -> Dict[str, float]:
     }
 
 
+def citywide_graph(window: str):
+    """
+    The app's weighted graph for `window` over the whole city (unscored roads filled from the
+    nearest scored road, as the app routes), for trips from scripts/citywide_trips.py. Imported
+    here so a sheet of camera trips only never pays the ~40 s whole-city build.
+    """
+    from app import risk_routing
+
+    return risk_routing._weighted_graph(window)
+
+
 def score_sheet(a, graph, baseline: "Baseline", free_flow_seconds) -> Tuple[List[dict], List[str]]:
-    sheet = pd.read_csv(a.apple_maps, dtype=str, keep_default_na=False)
+    # Several sheets score together (the camera trips and scripts/citywide_trips.py's).
+    sheet = pd.concat(
+        [pd.read_csv(path, dtype=str, keep_default_na=False) for path in a.apple_maps], ignore_index=True
+    ).fillna("")
+    if sheet.duplicated(["trip_id", "leg"]).any():
+        raise SystemExit("the sheets share trip ids; each trip must appear in only one sheet")
     needed = {"trip_id", "scenario_type", "leg", "window", "apple_eta_seconds"} | {
         f"{s}_{c}" for s in SYSTEMS for c in ("route", "apple_eta_seconds")
     }
     if not needed <= set(sheet.columns):
-        raise SystemExit(f"{a.apple_maps} is missing {sorted(needed - set(sheet.columns))}; make it with --template")
+        raise SystemExit(f"{[str(x) for x in a.apple_maps]} is missing {sorted(needed - set(sheet.columns))}; make it with --template")
 
     # Apple's own route is the same lookup for every trip with this window and leg endpoints.
     optimal_by_leg = {
@@ -735,14 +752,20 @@ def score_sheet(a, graph, baseline: "Baseline", free_flow_seconds) -> Tuple[List
     for trip_id, rows in sheet.groupby("trip_id", sort=True):
         rows = rows.sort_values("leg", key=lambda c: c.astype(int))
         window, scenario = rows["window"].iloc[0], rows["scenario_type"].iloc[0]
-        if window not in graphs:
+        # Trips from scripts/citywide_trips.py start anywhere in the city: they were routed by
+        # the app on the whole-city graph and carry each system's own per-leg ETA.
+        citywide = "graph" in rows and rows["graph"].iloc[0].strip() == "full"
+        if citywide:
+            wg = citywide_graph(window)
+        elif window not in graphs:
             try:
                 graphs[window] = weighted_graph_from_risk_file(
                     graph, a.risk_edges, window=window, lam=a.lam, missing_risk=DEFAULT_MISSING_RISK
                 )
             except ValueError as err:
-                raise SystemExit(f"{a.apple_maps}: {err}") from None
-        wg = graphs[window]
+                raise SystemExit(f"{window}: {err}") from None
+        if not citywide:
+            wg = graphs[window]
 
         optimal = [
             seconds(r["apple_eta_seconds"].strip() or optimal_by_leg.get((r["window"], r["origin"], r["destination"])))
@@ -767,16 +790,19 @@ def score_sheet(a, graph, baseline: "Baseline", free_flow_seconds) -> Tuple[List
         if not all(np.isfinite(v) for v in optimal + measured[ANTROUTE] + measured[BASELINE]):
             notes.append(f"{trip_id}: Apple Maps times not all filled in; skipped")
             continue
+        labels = list(rows["origin"]) + [rows["destination"].iloc[-1]]
         for s in SYSTEMS:
             # Each system's own predicted travel time for its own route: ANTROUTE's risk-aware
             # ETA engine, and for the baseline the observed t_ij Cheng's cost is built from.
-            predicted = (
-                baseline.eta_seconds(window, routes[s]) if s == BASELINE else None
-            )
+            if citywide:
+                predicted = [seconds(v) for v in rows[f"{s}_predicted_eta_seconds"]]
+            else:
+                predicted = baseline.eta_seconds(window, routes[s]) if s == BASELINE else None
             trial = score_trip(
                 wg, routes[s], free_flow_seconds, a.gamma, s, scenario, optimal, measured[s], trip_id,
                 predicted_eta=predicted,
             )
+            trial["stop_labels"] = labels
             trial["route_optimality"] = float(route_optimality([trial["c_optimal"]], [trial["c_predicted"]])[0])
             trial.update(trial_eta_metrics(trial["actual_eta"], trial["predicted_eta"]))
             trials.append(trial)
@@ -785,6 +811,54 @@ def score_sheet(a, graph, baseline: "Baseline", free_flow_seconds) -> Tuple[List
 
 def describe(stops: Sequence[int], labels: Dict[int, str]) -> str:
     return " -> ".join(labels.get(v, str(v)) for v in stops)
+
+
+def stops_text(trial: dict, labels: Dict[int, str]) -> str:
+    """A trial's stops by name: the sheet's own labels (citywide trips start at any road), else
+    the camera intersection names."""
+    if trial.get("stop_labels"):
+        return " -> ".join(trial["stop_labels"])
+    return describe(trial["stops"], labels)
+
+
+def per_trip_comparison(trip_ids, scenario_of, by, labels) -> List[dict]:
+    """
+    One row per trip: ANTROUTE and the baseline side by side on every evaluation metric, the
+    relative difference by Equation 7 (lower is better) or Equation 8 (higher is better), and
+    which system did better on that trip. R^2 needs at least two legs, so it is blank on
+    single-leg trips. Positive Δ% means ANTROUTE is better.
+    """
+    rows = []
+    for i in trip_ids:
+        ant, base = by[(i, ANTROUTE)], by[(i, BASELINE)]
+        row = {
+            "scenario_type": scenario_of[i],
+            "trip_id": i,
+            "window": ant["window"],
+            "stops": stops_text(ant, labels),
+            # Graph node ids, origin first: what the app matches a planned trip against.
+            "stop_nodes": " ".join(str(v) for v in ant["stops"]),
+            "legs": len(ant["actual_eta"]),
+        }
+        wins = {ANTROUTE: 0, BASELINE: 0}
+        for metric in ("route_optimality",) + ETA_METRICS:
+            p, b = float(ant[metric]), float(base[metric])
+            higher = metric in HIGHER_IS_BETTER
+            row[f"{metric}_antroute"] = p
+            row[f"{metric}_baseline"] = b
+            if not (math.isfinite(p) and math.isfinite(b)):
+                row[f"{metric}_delta_pct"], row[f"{metric}_better"] = float("nan"), ""
+                continue
+            row[f"{metric}_delta_pct"] = relative_difference(b, p, higher_is_better=higher)
+            if math.isclose(p, b, rel_tol=1e-9, abs_tol=1e-9):
+                row[f"{metric}_better"] = "tie"
+            else:
+                winner = ANTROUTE if (p > b) == higher else BASELINE
+                row[f"{metric}_better"] = winner
+                wins[winner] += 1
+        row["metrics_won_antroute"], row["metrics_won_baseline"] = wins[ANTROUTE], wins[BASELINE]
+        rows.append(row)
+    return rows
 
 
 def write_reports(a, graph, trials: List[dict]) -> dict:
@@ -802,7 +876,8 @@ def write_reports(a, graph, trials: List[dict]) -> dict:
     flat = []
     for t in trials:
         row = dict(t)
-        row["stops"] = describe(t["stops"], labels)
+        row["stops"] = stops_text(t, labels)
+        row.pop("stop_labels", None)
         row["path"] = " ".join(str(v) for v in t["path"])
         row["actual_eta"] = " | ".join(f"{v:g}" for v in t["actual_eta"])
         row["predicted_eta"] = " | ".join(f"{v:.1f}" for v in t["predicted_eta"])
@@ -824,7 +899,7 @@ def write_reports(a, graph, trials: List[dict]) -> dict:
                 "scenario_type": scenario_of[i],
                 "trial": i,
                 "model": s,
-                "path": describe(by[(i, s)]["stops"], labels),
+                "path": stops_text(by[(i, s)], labels),
                 "hops": by[(i, s)]["hops"],
                 "total_distance_m": by[(i, s)]["distance_m"],
                 "route_risk_exposure": by[(i, s)]["risk_exposure"],
@@ -842,12 +917,16 @@ def write_reports(a, graph, trials: List[dict]) -> dict:
                 "baseline": by[(i, BASELINE)]["route_optimality"],
                 "d_i": by[(i, BASELINE)]["route_optimality"] - by[(i, ANTROUTE)]["route_optimality"],
                 "relative_difference_pct": relative_difference(
-                    by[(i, BASELINE)]["route_optimality"], by[(i, ANTROUTE)]["route_optimality"]
+                    by[(i, BASELINE)]["route_optimality"], by[(i, ANTROUTE)]["route_optimality"],
+                    higher_is_better=True,
                 ),
             }
             for i in trip_ids
         ]
     ).to_csv(out / "appendix3_route_optimality_pairs.csv", index=False)
+
+    per_trip = per_trip_comparison(trip_ids, scenario_of, by, labels)
+    pd.DataFrame(per_trip).to_csv(out / "per_trip.csv", index=False)
 
     significance, summary = [], {}
     for group, ids in groups.items():
@@ -863,7 +942,7 @@ def write_reports(a, graph, trials: List[dict]) -> dict:
     pooled = {s: compute_metrics_by_scenario([t for t in trials if t["system"] == s]) for s in SYSTEMS}
     report = {
         "risk_edges": str(a.risk_edges),
-        "apple_maps": str(a.apple_maps),
+        "apple_maps": [str(x) for x in a.apple_maps],
         "model_inputs": model_inputs(a.risk_edges),
         ANTROUTE: {
             "algorithm": "ACO on the risk-weighted, event-aware graph",
@@ -885,6 +964,7 @@ def write_reports(a, graph, trials: List[dict]) -> dict:
             "multi_destination_adapted": a.baseline_multi_destination,
             "plans_on": "observed camera congestion (weak_target), not ANTROUTE's predicted risk",
         },
+        "per_trip": per_trip,
         "per_trial_mean_sd": summary,
         "pooled": {s: {k: asdict(m) for k, m in r.items()} for s, r in pooled.items()},
         "significance": significance,
@@ -901,7 +981,7 @@ def score(a, graph, baseline: "Baseline") -> None:
     for note in notes:
         print(f"NOTE: {note}")
     if not trials:
-        raise SystemExit(f"{a.apple_maps} has no fully filled-in trips")
+        raise SystemExit("the Apple Maps sheet(s) have no fully filled-in trips")
     over = sum(t["c_optimal"] > t["c_predicted"] for t in trials)
     if over:
         print(
@@ -920,7 +1000,16 @@ def score(a, graph, baseline: "Baseline") -> None:
             f"{ro[ANTROUTE]['mean']:>10.2f} / {ro[BASELINE]['mean']:<11.2f}  "
             f"{p:>10.4f}  {ma[ANTROUTE]['mean']:>8.1f} / {ma[BASELINE]['mean']:<8.1f}"
         )
-    print(f"\nwrote appendix tables, trials.csv and metrics.json to {a.out_dir}")
+    print(f"\n{'trip':<5} {'scenario':<18}{'optimality % ant / base':>24}  {'MAE min ant / base':>19}  {'MAPE % ant / base':>18}  won ant:base")
+    for r in report["per_trip"]:
+        print(
+            f"{r['trip_id']:<5} {r['scenario_type']:<18}"
+            f"{r['route_optimality_antroute']:>10.1f} / {r['route_optimality_baseline']:<11.1f}  "
+            f"{r['mae_antroute'] / 60:>8.1f} / {r['mae_baseline'] / 60:<8.1f}  "
+            f"{r['mape_antroute']:>7.1f} / {r['mape_baseline']:<8.1f}  "
+            f"{r['metrics_won_antroute']}:{r['metrics_won_baseline']}"
+        )
+    print(f"\nwrote appendix tables, per_trip.csv, trials.csv and metrics.json to {a.out_dir}")
 
 
 def main() -> None:
@@ -928,7 +1017,8 @@ def main() -> None:
     p.add_argument("--risk-edges", required=True, type=Path)
     mode = p.add_mutually_exclusive_group(required=True)
     mode.add_argument("--template", type=Path, help="route the test trips and write the Apple Maps sheet")
-    mode.add_argument("--apple-maps", type=Path, help="the filled-in sheet from --template, to score")
+    mode.add_argument("--apple-maps", type=Path, nargs="+",
+                      help="the filled-in sheet(s) from --template (and scripts/citywide_trips.py), to score")
     p.add_argument("--spatial-dir", type=Path, default=REPO_ROOT / "data/processed/spatial")
     p.add_argument("-k", type=int, default=DEFAULT_K)
     p.add_argument("--lambda", dest="lam", type=float, default=DEFAULT_LAMBDA, help="ANTROUTE risk penalty")

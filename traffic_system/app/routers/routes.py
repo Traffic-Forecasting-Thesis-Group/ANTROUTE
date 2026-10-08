@@ -5,11 +5,21 @@ from fastapi import APIRouter, HTTPException
 from starlette.concurrency import run_in_threadpool
 
 from app import risk_routing
-from app.evaluation import MetricsUnavailableError, get_comparison_metrics
+from app.evaluation import (
+    MetricsUnavailableError,
+    get_comparison_metrics,
+    get_forecast_metrics,
+    get_trip_evaluation,
+)
 from app.risk_routing import LOCAL_TZ
 from app.route_engine import BaselineUnavailableError, RoutingUnavailableError, local_departure, plan_routes
 from app.routers.places import _get_results
-from app.schemas_route import ComparisonMetricsResponse, RoutePlanRequest, RoutePlanResponse
+from app.schemas_route import (
+    ComparisonMetricsResponse,
+    RoutePlanRequest,
+    RoutePlanResponse,
+    TripEvaluationResponse,
+)
 
 router = APIRouter(prefix="/routes", tags=["routes"])
 
@@ -68,5 +78,40 @@ async def comparison_metrics():
     # event loop.
     try:
         return await run_in_threadpool(get_comparison_metrics)
+    except MetricsUnavailableError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+
+
+@router.post("/trip-evaluation", response_model=TripEvaluationResponse)
+async def trip_evaluation(payload: RoutePlanRequest):
+    """
+    The routing evaluation of the trip in `payload` (the same body as /routes/plan; `model`
+    is ignored): its own Route Optimality and ETA errors when its stops and departure time
+    match one of the test trips scored against Apple Maps, otherwise a status saying why not.
+    """
+    if not risk_routing.available():
+        raise HTTPException(status_code=503, detail="Routing data isn't loaded on the server.")
+    points: List[Tuple[float, float]] = [await _resolve(payload.origin, payload.origin_lat, payload.origin_lng)]
+    for d in payload.destinations:
+        points.append(await _resolve(d.name, d.lat, d.lng))
+    try:
+        stops = await run_in_threadpool(risk_routing.snap_stops, points)
+        window, _ = risk_routing.window_for_departure(local_departure(payload.depart_at))
+        return await run_in_threadpool(get_trip_evaluation, stops, window)
+    except risk_routing.RouteOutsideNetworkError:
+        raise HTTPException(
+            status_code=422,
+            detail="One of these places is too far from the Metro Manila road network to evaluate.",
+        )
+    except MetricsUnavailableError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+
+
+@router.get("/forecast-metrics", response_model=ComparisonMetricsResponse)
+async def forecast_metrics():
+    """Congestion Risk Score diagnostics on risk_edges.csv's test split. Not the thesis
+    routing evaluation, which is /routes/comparison-metrics."""
+    try:
+        return await run_in_threadpool(get_forecast_metrics)
     except MetricsUnavailableError as exc:
         raise HTTPException(status_code=404, detail=str(exc))

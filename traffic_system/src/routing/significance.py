@@ -8,11 +8,12 @@ Per metric, over trials paired by trip (same origin/destination, window and stop
     Shapiro-Wilk on d_i                                       (Equation 8)
     Wilcoxon signed-rank, W = min(W+, W-)                     (Equation 12)
     paired t-test, reported only when d_i is normal           (Equations 10-11)
-    Δ% = (C_baseline - C_proposed) / C_baseline * 100         (Equation 15)
+    Δ% = (C_baseline - C_proposed) / C_baseline * 100         (Equation 7: MAE, RMSE, MSE, MAPE)
+    Δ% = (C_proposed - C_baseline) / C_baseline * 100         (Equation 8: Route Optimality, R^2)
 
-Δ% follows Equation 15 literally, so its sign means "proposed is lower". That reads as an
-improvement for the error metrics (MAE, RMSE, MSE, MAPE) but as a decline for Route
-Optimality and R^2, where higher is better.
+so a positive Δ% always means ANTROUTE did better, and a negative one that it did worse
+(thesis Section 3.9, "Relative Difference"). HIGHER_IS_BETTER names the metrics Equation 8
+applies to.
 """
 
 from __future__ import annotations
@@ -22,6 +23,9 @@ import numpy as np
 from scipy import stats
 
 ALPHA = 0.05
+
+# Equation 8 metrics; every other metric is lower-is-better (Equation 7).
+HIGHER_IS_BETTER = frozenset({"route_optimality", "r_squared"})
 
 
 @dataclass
@@ -34,7 +38,7 @@ class PairedComparison:
     baseline_sd: float
     mean_difference: float              # d̄, with d = baseline - proposed
     sd_difference: float                # S_d
-    relative_difference_pct: float      # Δ% of the means, Equation 15
+    relative_difference_pct: float      # Δ% of the means, Equation 7 or 8 (positive = proposed better)
     shapiro_w: float
     shapiro_p: float
     normal: bool                        # Shapiro-Wilk p >= alpha
@@ -45,9 +49,15 @@ class PairedComparison:
     significant: bool                   # Wilcoxon p < alpha
 
 
-def relative_difference(baseline: float, proposed: float) -> float:
-    """Equation 15. NaN when the baseline value is 0."""
-    return float((baseline - proposed) / baseline * 100.0) if baseline != 0 else float("nan")
+def relative_difference(baseline: float, proposed: float, higher_is_better: bool = False) -> float:
+    """
+    Δ%: Equation 7 for lower-is-better metrics, Equation 8 for higher-is-better ones.
+    Positive means the proposed model did better. NaN when the baseline value is 0.
+    """
+    if baseline == 0:
+        return float("nan")
+    diff = (proposed - baseline) if higher_is_better else (baseline - proposed)
+    return float(diff / abs(baseline) * 100.0)
 
 
 def _sd(x: np.ndarray) -> float:
@@ -93,7 +103,9 @@ def compare_paired(
         baseline_sd=_sd(baseline),
         mean_difference=float(np.mean(d)) if n else nan,
         sd_difference=_sd(d),
-        relative_difference_pct=relative_difference(baseline_mean, proposed_mean) if n else nan,
+        relative_difference_pct=(
+            relative_difference(baseline_mean, proposed_mean, metric in HIGHER_IS_BETTER) if n else nan
+        ),
         shapiro_w=shapiro_w,
         shapiro_p=shapiro_p,
         normal=normal,

@@ -41,6 +41,10 @@ class RouteOption(BaseModel):
     fallback_reason: Optional[str] = None
     # Mean predicted congestion risk along the route, on one yardstick for both systems.
     mean_risk: Optional[float] = None
+    # Share of the route's length whose risk came from the model (predicted on the road, or on a
+    # predicted road within 1.5 km); the rest is the window's median. Below 0.5 the
+    # congestion_level is "unknown" rather than a level read off that median.
+    risk_coverage: Optional[float] = None
 
 
 class RoutePlanResponse(BaseModel):
@@ -64,12 +68,39 @@ class ComparisonMetricRow(BaseModel):
     significant: Optional[bool] = None
 
 
+class RouteOptimalitySummary(BaseModel):
+    """Mean Route Optimality (%) per system over the evaluated test trips (Equation 1)."""
+    antroute: float
+    baseline: float
+    n_trials: int
+
+
+class TripEvaluationResponse(BaseModel):
+    """
+    The routing evaluation for one planned trip (POST /routes/trip-evaluation): its own
+    Route Optimality and ETA errors against Apple Maps, when it is one of the evaluated test
+    trips. Only those have Apple Maps travel times, so any other trip has no evaluation.
+    """
+    # "evaluated": this trip, at this departure time, is a test trip; metrics are its own.
+    # "other_time": the same stops were evaluated, but departing at evaluated_window's time.
+    # "not_evaluated": these stops are not among the test trips.
+    status: Literal["evaluated", "other_time", "not_evaluated"]
+    message: str
+    trip_id: Optional[str] = None
+    scenario_type: Optional[str] = None
+    evaluated_window: Optional[str] = None
+    baseline_name: str = "Improved ACO (Cheng 2023)"
+    route_optimality: Optional[RouteOptimalitySummary] = None
+    metrics: List[ComparisonMetricRow] = []
+
+
 class ComparisonMetricsResponse(BaseModel):
-    # "routing": ANTROUTE vs the baseline Improved ACO, from scripts/evaluate_routing.py.
-    # "forecast": the congestion model vs an always-Medium forecaster, until that has run.
-    # The app labels each by name and must not present one as the other.
+    # "routing": ANTROUTE vs the baseline Improved ACO, from scripts/evaluate_routing.py --
+    #            the only source GET /routes/comparison-metrics serves.
+    # "forecast": congestion-model diagnostics, GET /routes/forecast-metrics only.
     source: Literal["routing", "forecast"]
     title: str
     baseline_name: str
     description: str
     metrics: List[ComparisonMetricRow]
+    route_optimality: Optional[RouteOptimalitySummary] = None

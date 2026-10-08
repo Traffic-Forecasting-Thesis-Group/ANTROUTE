@@ -25,6 +25,8 @@ export interface RouteOption {
   fallback_reason?: string | null;
   /** Mean predicted congestion risk (0-1) along the route, measured the same way for both models. */
   mean_risk?: number | null;
+  /** Share of the route's length whose risk came from the model; below 0.5 congestion_level is 'unknown'. */
+  risk_coverage?: number | null;
 }
 
 export interface Coordinates {
@@ -50,10 +52,17 @@ export interface ComparisonMetricRow {
   significant: boolean | null;
 }
 
+/** Mean Route Optimality (%) per system over the evaluated test trips (thesis Equation 1). */
+export interface RouteOptimalitySummary {
+  antroute: number;
+  baseline: number;
+  nTrials: number;
+}
+
 /**
- * Evaluation results. `source` says what is compared: 'routing' is ANTRoute against the
- * baseline Improved ACO (scripts/evaluate_routing.py); 'forecast' is the congestion model
- * against a naive forecaster, shown until the routing evaluation has been run.
+ * The thesis routing evaluation (Section 3.9, Appendix 3): ANTRoute against the baseline
+ * Improved ACO on Route Optimality and ETA MAE, RMSE, MSE, MAPE and R², scored against Apple
+ * Maps by scripts/evaluate_routing.py. Δ% follows Equations 7-8 (positive = ANTRoute better).
  */
 export interface ComparisonMetrics {
   source: 'routing' | 'forecast';
@@ -61,6 +70,31 @@ export interface ComparisonMetrics {
   baselineName: string;
   description: string;
   metrics: ComparisonMetricRow[];
+  routeOptimality: RouteOptimalitySummary | null;
+}
+
+/**
+ * The routing evaluation of one planned trip. Only the test trips were timed in Apple Maps,
+ * so 'evaluated' carries that trip's own Route Optimality and ETA errors; 'other_time' means
+ * the same stops were evaluated at another departure time; 'not_evaluated' means no test trip
+ * has these stops. `message` says which, in words for the user.
+ */
+export interface TripEvaluation {
+  status: 'evaluated' | 'other_time' | 'not_evaluated';
+  message: string;
+  tripId: string | null;
+  baselineName: string;
+  routeOptimality: { antroute: number; baseline: number } | null;
+  metrics: ComparisonMetricRow[];
+}
+
+interface TripEvaluationResponse {
+  status: 'evaluated' | 'other_time' | 'not_evaluated';
+  message: string;
+  trip_id?: string | null;
+  baseline_name: string;
+  route_optimality?: { antroute: number; baseline: number } | null;
+  metrics: ComparisonMetricsResponse['metrics'];
 }
 
 export interface RoutePlan {
@@ -92,6 +126,7 @@ interface ComparisonMetricsResponse {
     p_value?: number | null;
     significant?: boolean | null;
   }[];
+  route_optimality?: { antroute: number; baseline: number; n_trials: number } | null;
 }
 
 /**
@@ -150,7 +185,54 @@ export async function planRoute(
   }
 }
 
-/** GET /routes/comparison-metrics — ANTRoute vs. baseline evaluation results. */
+/**
+ * POST /routes/trip-evaluation — the evaluation of this trip (same stops and departure as
+ * planRoute): its own metrics when it is one of the test trips timed in Apple Maps.
+ */
+export async function getTripEvaluation(
+  origin: string,
+  destinations: DestinationInput[],
+  originCoords?: Coordinates | null,
+  departAt: Date | null = null
+): Promise<TripEvaluation> {
+  try {
+    const { data } = await apiClient.post<TripEvaluationResponse>('/routes/trip-evaluation', {
+      origin,
+      origin_lat: originCoords?.latitude ?? null,
+      origin_lng: originCoords?.longitude ?? null,
+      destinations: destinations.map((d) => ({ name: d.name, lat: d.lat ?? null, lng: d.lng ?? null })),
+      depart_at: departAt ? departAt.toISOString() : null,
+    });
+    return {
+      status: data.status,
+      message: data.message,
+      tripId: data.trip_id ?? null,
+      baselineName: data.baseline_name,
+      routeOptimality: data.route_optimality
+        ? { antroute: data.route_optimality.antroute, baseline: data.route_optimality.baseline }
+        : null,
+      metrics: data.metrics.map((m) => ({
+        metric: m.metric,
+        antroute: m.antroute,
+        baseline: m.baseline,
+        improvementPct: m.improvement_pct,
+        higherIsBetter: m.higher_is_better,
+        pValue: m.p_value ?? null,
+        significant: m.significant ?? null,
+      })),
+    };
+  } catch (error: any) {
+    if (error.response) {
+      throw new Error(error.response.data?.detail || 'Could not load this trip’s evaluation.');
+    }
+    if (error.request) {
+      throw new Error('Could not reach the server. Check your connection and try again.');
+    }
+    throw new Error('Could not load this trip’s evaluation.');
+  }
+}
+
+/** GET /routes/comparison-metrics — the thesis routing evaluation (never the CRS forecast scores). */
 export async function getComparisonMetrics(): Promise<ComparisonMetrics> {
   try {
     const { data } = await apiClient.get<ComparisonMetricsResponse>('/routes/comparison-metrics');
@@ -168,6 +250,13 @@ export async function getComparisonMetrics(): Promise<ComparisonMetrics> {
         pValue: m.p_value ?? null,
         significant: m.significant ?? null,
       })),
+      routeOptimality: data.route_optimality
+        ? {
+            antroute: data.route_optimality.antroute,
+            baseline: data.route_optimality.baseline,
+            nTrials: data.route_optimality.n_trials,
+          }
+        : null,
     };
   } catch (error: any) {
     if (error.response) {
