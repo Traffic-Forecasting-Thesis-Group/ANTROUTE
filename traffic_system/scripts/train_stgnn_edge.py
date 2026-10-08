@@ -20,6 +20,14 @@ from src.data.training_data import (
     labelled_sessions,
     load_label_lookup,
 )  # noqa: E402
+from src.data.node_context import (  # noqa: E402
+    GROUPS,
+    N_FEATURES,
+    NodeContext,
+    edge_features as road_edge_features,
+    event_node_index,
+    load_events,
+)
 from src.models.cnn_lstm_fusion import CNNLSTMFusion  # noqa: E402
 from src.models.mlp_decoder import MLPDecoder  # noqa: E402
 from src.models.radr_stgnn import RADRSTGNN  # noqa: E402
@@ -97,7 +105,18 @@ def train(
     min_session_labels: int = 100,
     time_features: bool = False,
     use_class_weights: bool = False,
+    context: bool = True,
+    drop_context: tuple = (),
+    events_root: Optional[Path] = REPO_ROOT / "data/raw/twitter",
+    landmarks_csv: Optional[Path] = REPO_ROOT / "configs/event_landmarks.csv",
+    intersections_csv: Optional[Path] = REPO_ROOT / "configs/event_intersections.csv",
 ) -> dict:
+    """
+    context=True (the default) gives every graph node its own weather, flood, event, clock
+    and road inputs (src/data/node_context.py), so the risk of roads without a camera depends
+    on more than the cameras two hops away. drop_context zeroes whole sources for ablation;
+    context=False is the CCTV-only model the earlier checkpoints were.
+    """
     torch.manual_seed(seed)
     np.random.seed(seed)
     device = torch.device(device or ("cuda" if torch.cuda.is_available() else "cpu"))
@@ -135,6 +154,19 @@ def train(
     edge_index = graph.edge_index.to(device)
     edge_ids = camera_edge_ids(graph.edge_index, camera_index.cpu(), graph.n_nodes).to(device)
     print(f"{len(edge_ids)} of {graph.edge_index.shape[1]} edges touch a camera node")
+    node_context = None
+    if context:
+        events = load_events(events_root, landmarks_csv)
+        event_nodes = event_node_index(graph, spatial_dir, intersections_csv)
+        node_context = NodeContext.build(
+            graph, spatial_dir, weather_csv, events, event_nodes, camera_index.cpu().tolist(),
+            train_days={r.day for r in records if r.split == "train"}, drop=drop_context,
+        )
+        placed = sum(len(v) for v in node_context.events.values())
+        print(
+            f"node context: {N_FEATURES} features on all {graph.n_nodes} nodes | {placed} incident reports "
+            f"placed at {len(node_context.events)} nodes | dropped: {', '.join(drop_context) or 'none'}"
+        )
     datasets = {
         s: GraphWindowDataset(
             records,
@@ -145,6 +177,7 @@ def train(
             image_size,
             sample_cameras=s == "train",
             time_features=time_features,
+            context=node_context,
         )
         for s in ("train", "val", "test")
     }
@@ -168,9 +201,16 @@ def train(
         patch_embed_dim=patch_embed_dim,
     )
     stgnn = RADRSTGNN(in_features=fusion.lstm.hidden_size)
-    decoder = MLPDecoder(node_embedding_dim=stgnn.output_dim)
-    # Project NOAH flood hazard level per node: the static spatial node attribute (thesis 3.6).
-    model = TrafficRiskModel(fusion, stgnn, decoder, flood_level=graph.flood_level).to(device)
+    if node_context is not None:
+        # Every source per node via the context (flood included, as ordinal and x rainfall),
+        # and each edge's road attributes in the decoder.
+        edge_attr = road_edge_features(graph, spatial_dir)
+        decoder = MLPDecoder(node_embedding_dim=stgnn.output_dim, edge_feature_dim=edge_attr.shape[1])
+        model = TrafficRiskModel(fusion, stgnn, decoder, context_dim=N_FEATURES, edge_features=edge_attr).to(device)
+    else:
+        # CCTV-only ablation: Project NOAH flood level as the one static node attribute (thesis 3.6).
+        decoder = MLPDecoder(node_embedding_dim=stgnn.output_dim)
+        model = TrafficRiskModel(fusion, stgnn, decoder, flood_level=graph.flood_level).to(device)
     fusion_params = set((id(p) for p in model.fusion.parameters()))
     optimizer = torch.optim.AdamW(
         [
@@ -191,7 +231,10 @@ def train(
         "time_features": time_features,
         "use_class_weights": use_class_weights,
         "use_text": raw_twitter_root is not None,
-        "flood_hazard": graph.flood_level is not None,
+        "flood_hazard": node_context is None and graph.flood_level is not None,
+        "context": node_context is not None,
+        "edge_features": node_context is not None,
+        **(node_context.config() if node_context is not None else {}),
         "visual_split": {f"{d.isoformat()}|{s}": v for (d, s), v in (visual_split or VISUAL_SPLIT).items()},
         "weather_columns": WEATHER_COLUMNS,
         "node_labels": node_labels,
@@ -299,6 +342,18 @@ def main():
         help="balance the BCE loss against the Light/Medium/Heavy label skew (57%% Heavy by default), "
              "instead of letting the model learn to predict close to the mean label everywhere",
     )
+    p.add_argument(
+        "--no-context", action="store_true",
+        help="ablation: CCTV-only model (no per-node weather/flood/event/clock/road inputs)",
+    )
+    p.add_argument(
+        "--drop-context", default="",
+        help=f"ablation: comma-separated sources to zero in the node context ({', '.join(GROUPS)})",
+    )
+    p.add_argument("--events-root", type=Path, default=REPO_ROOT / "data/raw/twitter",
+                   help="tweets_*.json holding the MMDA alerts (event source; independent of --no-text)")
+    p.add_argument("--landmarks-csv", type=Path, default=REPO_ROOT / "configs/event_landmarks.csv")
+    p.add_argument("--event-intersections-csv", type=Path, default=REPO_ROOT / "configs/event_intersections.csv")
     p.add_argument("--graph-sizes", action="store_true")
     a = p.parse_args()
     if a.graph_sizes:
@@ -332,6 +387,11 @@ def main():
         min_session_labels=a.min_session_labels,
         time_features=a.time_features,
         use_class_weights=a.class_weights,
+        context=not a.no_context,
+        drop_context=tuple(s.strip() for s in a.drop_context.split(",") if s.strip()),
+        events_root=a.events_root,
+        landmarks_csv=a.landmarks_csv,
+        intersections_csv=a.event_intersections_csv,
     )
 
 

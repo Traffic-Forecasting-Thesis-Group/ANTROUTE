@@ -6,6 +6,9 @@ Several cameras may map to one intersection (Ortigas-Shaw has five). By default 
 most frames in the window is used; with sample_cameras=True (training) one of that node's cameras
 is drawn at random each time, so every camera is seen over the epochs.
 Nodes with no camera in a window get zero inputs and fully masked timesteps.
+
+With a `context` (src/data/node_context.NodeContext), each window also carries
+"context": [T, N_graph, C] -- the non-visual inputs of every graph node, camera or not.
 """
 
 import random
@@ -28,8 +31,9 @@ def last_labelled_step(target: torch.Tensor) -> int:
 class GraphWindowDataset(Dataset):
     def __init__(self, records: Sequence[SessionRecord], split: str, lookup: Dict[str, int],
                  node_labels: Sequence[str], camera_to_label: Dict[str, str], image_size: int = 224,
-                 sample_cameras: bool = False, time_features: bool = False, base=None):
+                 sample_cameras: bool = False, time_features: bool = False, base=None, context=None):
         self.sample_cameras = sample_cameras
+        self.context = context
         self.base = base if base is not None else LabeledWindowDataset(records, split, lookup, image_size, time_features)
         self.node_labels = list(node_labels)
         self.image_size = image_size
@@ -73,5 +77,8 @@ class GraphWindowDataset(Dataset):
             if "target" in item:
                 target[slot] = last_labelled_step(item["target"])
 
-        return {"images": images, "text": text, "temporal": temporal,
+        item = {"images": images, "text": text, "temporal": temporal,
                 "visual_mask": visual_mask, "text_mask": text_mask, "target": target}
+        if self.context is not None:
+            item["context"] = self.context.window(*self.keys[i])
+        return item

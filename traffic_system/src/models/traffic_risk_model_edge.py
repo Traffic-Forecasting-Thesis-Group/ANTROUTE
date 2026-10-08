@@ -22,15 +22,41 @@ def scatter_camera_features(
     return out
 
 
+class ContextEncoder(nn.Module):
+    """
+    Per-node, per-minute context (src/data/node_context.py: daily weather of the node's cell,
+    flood hazard and its interaction with rain, live incidents, clock, road attributes) ->
+    a vector of the CNN+LSTM output size, added to every node's STGNN input.
+
+    This is what lets the non-visual sources reach every road: a node without a camera used
+    to get one shared placeholder, so its risk could only change through camera features
+    carried at most two GCN hops.
+    """
+
+    def __init__(self, context_dim: int, hidden: int, width: int = 64):
+        super().__init__()
+        self.net = nn.Sequential(nn.Linear(context_dim, width), nn.ReLU(), nn.Linear(width, hidden))
+
+    def forward(self, context: torch.Tensor) -> torch.Tensor:
+        return self.net(context)
+
+
 class TrafficRiskModel(nn.Module):
     """
     CNN+LSTM -> RADR STGNN -> MLP decoder, one Congestion Risk logit per edge.
 
-    `flood_level` ([N] long, Project NOAH hazard level per graph node) is the static spatial
-    node attribute the thesis feeds the STGNN alongside the fused camera features. Each level
-    gets a learned vector of the fused-feature size that is added to that node's input at every
-    timestep, so the GCN input stays at the CNN+LSTM output size (Table 2: 128). The vectors
-    start at zero, so an untrained model behaves exactly as without the layer.
+    STGNN input per node and timestep:
+        camera nodes:  CNN+LSTM fused features (CCTV + its text + its temporal input)
+        other nodes:   a learned placeholder ("no camera here")
+        every node:    + ContextEncoder(context) when context_dim > 0
+                       + the legacy flood_level embedding, for checkpoints trained with it
+
+    `flood_level` ([N] long, Project NOAH hazard level per graph node) is the older way flood
+    entered: a learned vector per level, zero-initialised. New models carry flood inside the
+    context instead (ordinal and x rainfall), so it is kept only to load those checkpoints.
+
+    `edge_features` ([E, D], node_context.edge_features) are per-edge road attributes passed to
+    the decoder, aligned to the edge_index given at forward time.
     """
 
     def __init__(
@@ -40,13 +66,23 @@ class TrafficRiskModel(nn.Module):
         decoder: Optional[MLPDecoder] = None,
         flood_level: Optional[torch.Tensor] = None,
         n_flood_levels: int = 4,
+        context_dim: int = 0,
+        edge_features: Optional[torch.Tensor] = None,
     ):
         super().__init__()
         self.fusion = fusion
         self.stgnn = stgnn
-        self.decoder = decoder or MLPDecoder(node_embedding_dim=stgnn.output_dim)
+        edge_feature_dim = 0 if edge_features is None else int(edge_features.shape[1])
+        self.decoder = decoder or MLPDecoder(node_embedding_dim=stgnn.output_dim, edge_feature_dim=edge_feature_dim)
+        if self.decoder.edge_feature_dim != edge_feature_dim:
+            raise ValueError("the decoder's edge_feature_dim must match edge_features")
         hidden = fusion.lstm.hidden_size
         self.placeholder = nn.Parameter(torch.zeros(hidden))
+        self.context_encoder = ContextEncoder(context_dim, hidden) if context_dim else None
+        if edge_features is not None:
+            self.register_buffer("edge_features", torch.as_tensor(edge_features, dtype=torch.float32))
+        else:
+            self.edge_features = None
         self.flood_embedding = None
         if flood_level is not None:
             flood_level = torch.as_tensor(flood_level, dtype=torch.long)
@@ -78,8 +114,15 @@ class TrafficRiskModel(nn.Module):
                     f"flood_level covers {self.flood_level.shape[0]} nodes but the graph has {a_hat.shape[0]}"
                 )
             x = x + self.flood_embedding(self.flood_level).to(x.dtype)
+        if self.context_encoder is not None:
+            context = batch.get("context")
+            if context is None or tuple(context.shape[:3]) != tuple(x.shape[:3]):
+                raise ValueError(
+                    f"this model needs batch['context'] of shape [B, T, N, C] matching {tuple(x.shape[:3])}"
+                )
+            x = x + self.context_encoder(context.to(x.dtype)).to(x.dtype)
         nodes = self.stgnn(x, a_hat)
-        return self.decoder(nodes, edge_index)
+        return self.decoder(nodes, edge_index, self.edge_features)
 
 
 def camera_edge_ids(edge_index: torch.Tensor, camera_index: torch.Tensor, n_nodes: int) -> torch.Tensor:
