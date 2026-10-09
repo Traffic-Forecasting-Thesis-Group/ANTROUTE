@@ -29,6 +29,7 @@ from src.routing.event_layer import load_landmarks
 
 from src.data.alignment import (
     BUFFER_START,
+    LEGACY_TEXT_ACTIVE_MINUTES,
     SESSION_STEPS,
     window_starts,
     WINDOW_STEPS,
@@ -299,9 +300,11 @@ def build_training_records(
     visual_split: Optional[Dict[tuple, str]] = None,
     camera_map: Optional[Dict[str, str]] = None,
     locations: Optional[Dict[str, str]] = None,
+    text_active_minutes: int = LEGACY_TEXT_ACTIVE_MINUTES,
 ):
     """
     Sessions for every camera on the visual-regime days. Text is skipped if no paths are given.
+    `text_active_minutes`: how long a post stays current (alignment.ALERT_ACTIVE_MINUTES).
 
     `camera_map` (camera id -> intersection) and `locations` (tweet id -> hand-read location)
     steer where a tweet lands; both default to the project's own configs. See
@@ -323,6 +326,7 @@ def build_training_records(
     return build_sessions(
         frames, tweets, load_weather_daily(weather_csv), camera_ids, WEATHER_COLUMNS,
         nonvisual_start=BUFFER_START, buffer_start=BUFFER_START, visual_split=visual_split,
+        text_active_minutes=text_active_minutes,
     )
 
 

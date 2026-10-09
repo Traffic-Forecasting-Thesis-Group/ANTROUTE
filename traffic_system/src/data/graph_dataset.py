@@ -19,6 +19,7 @@ import torch
 from torch.utils.data import Dataset
 
 from src.data.alignment import WINDOW_STEPS, SessionRecord
+from src.data.augment import augment_window
 from src.data.training_data import IGNORE_INDEX, LabeledWindowDataset
 
 
@@ -31,9 +32,12 @@ def last_labelled_step(target: torch.Tensor) -> int:
 class GraphWindowDataset(Dataset):
     def __init__(self, records: Sequence[SessionRecord], split: str, lookup: Dict[str, int],
                  node_labels: Sequence[str], camera_to_label: Dict[str, str], image_size: int = 224,
-                 sample_cameras: bool = False, time_features: bool = False, base=None, context=None):
+                 sample_cameras: bool = False, time_features: bool = False, base=None, context=None,
+                 augment: bool = False):
         self.sample_cameras = sample_cameras
         self.context = context
+        # Training only: one modest photometric / crop change per camera window (src/data/augment.py).
+        self.augment = augment
         self.base = base if base is not None else LabeledWindowDataset(records, split, lookup, image_size, time_features)
         self.node_labels = list(node_labels)
         self.image_size = image_size
@@ -72,7 +76,8 @@ class GraphWindowDataset(Dataset):
             candidates = self.index[i][label]
             chosen = random.choice(candidates) if self.sample_cameras else candidates[0]
             item = self.base[chosen]
-            images[slot], text[slot], temporal[slot] = item["images"], item["text"], item["temporal"]
+            frames = augment_window(item["images"], item["visual_mask"]) if self.augment else item["images"]
+            images[slot], text[slot], temporal[slot] = frames, item["text"], item["temporal"]
             visual_mask[slot], text_mask[slot] = item["visual_mask"], item["text_mask"]
             if "target" in item:
                 target[slot] = last_labelled_step(item["target"])

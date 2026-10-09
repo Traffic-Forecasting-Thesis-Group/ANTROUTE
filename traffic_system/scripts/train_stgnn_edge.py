@@ -1,5 +1,7 @@
 import argparse
 import csv
+import json
+import random
 import sys
 from pathlib import Path
 from typing import Dict, Optional
@@ -9,7 +11,7 @@ from torch.utils.data import DataLoader
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
-from src.data.alignment import VISUAL_SPLIT  # noqa: E402
+from src.data.alignment import ALERT_ACTIVE_MINUTES, VISUAL_SPLIT  # noqa: E402
 from src.data.graph_data import DEFAULT_K, GraphData, build_subgraph, graph_sizes, resolve_camera_map  # noqa: E402
 from src.data.graph_dataset import GraphWindowDataset  # noqa: E402
 from src.data.training_data import (
@@ -25,6 +27,7 @@ from src.data.training_data import (
     split_days_overlap,
 )  # noqa: E402
 from src.data.node_context import (  # noqa: E402
+    COLUMN as CONTEXT_COLUMN,
     GROUPS,
     N_FEATURES,
     NodeContext,
@@ -41,7 +44,9 @@ from src.models.traffic_risk_model_edge import (
     camera_edge_ids,
     camera_edge_targets,
     edge_risk_loss,
+    incident_edge_weights,
 )  # noqa: E402
+from src.vision.patch_embedder import PatchEmbedder, load_vit_b16_patch_weights, patch_feature_stats  # noqa: E402
 
 
 def to_device(batch: dict, device) -> dict:
@@ -94,6 +99,19 @@ def param_groups(model, lr_fusion: float, lr_graph: float, lr_context: Optional[
         groups.append({"params": [p for p in model.parameters() if id(p) in context],
                        "lr": lr_graph if lr_context is None else lr_context})
     return groups
+
+
+def sample_frames(dataset, limit: int) -> torch.Tensor:
+    """Up to `limit` real (unaugmented) frames from the first windows of a dataset, for the
+    patch-weight compatibility check."""
+    frames = []
+    base = dataset.base
+    for i in range(min(len(base), 50)):
+        item = base[i]
+        frames.extend(item["images"][item["visual_mask"]][:4])
+        if len(frames) >= limit:
+            break
+    return torch.stack(frames[:limit]) if frames else torch.empty(0)
 
 
 @torch.no_grad()
@@ -152,6 +170,11 @@ def train(
     intersections_csv: Optional[Path] = REPO_ROOT / "configs/event_intersections.csv",
     split_file: Optional[Path] = None,
     lr_context: Optional[float] = None,
+    visual_init: str = "random",
+    augment: bool = False,
+    text_active_minutes: int = ALERT_ACTIVE_MINUTES,
+    incident_weight: float = 1.0,
+    patience: Optional[int] = None,
 ) -> dict:
     """
     context=True (the default) gives every graph node its own weather, flood, event, clock
@@ -164,9 +187,19 @@ def train(
     split="auto-day" keeps both sessions of a date together, so no date's weather or incidents
     sit on both sides; split_file uses a split saved by the notebook (training_data.save_split)
     exactly, so the table printed there is the split trained here.
+
+    Training options (each recorded in the checkpoint config and the run's .result.json):
+      visual_init        "random" or "vit_b16": patch projection + positions from ImageNet ViT-B/16,
+                         with the input standardisation they expect (compare on val over seeds)
+      augment            modest per-window photometric / crop augmentation, training split only
+      text_active_minutes how long a post stays current (alignment.ALERT_ACTIVE_MINUTES = 60;
+                         checkpoints up to v8 used 1)
+      incident_weight    loss weight for camera edges with a live incident within 2 hops (1 = off)
+      patience           stop after this many epochs without a lower validation loss
     """
     torch.manual_seed(seed)
     np.random.seed(seed)
+    random.seed(seed)  # GraphWindowDataset draws a node's camera with `random`
     device = torch.device(device or ("cuda" if torch.cuda.is_available() else "cpu"))
     graph = graph or build_subgraph(spatial_dir, k)
     lookup = load_label_lookup(frames_root, human_only)
@@ -198,7 +231,8 @@ def train(
             print(f"WARNING: these dates are in more than one split, so their daily weather and incidents "
                   f"cross it: {crossing}. Use --split auto-day.")
     records, scaler, skipped = build_training_records(
-        frames_root, weather_csv, raw_twitter_root, embeddings_path, visual_split
+        frames_root, weather_csv, raw_twitter_root, embeddings_path, visual_split,
+        text_active_minutes=text_active_minutes,
     )
     if not lookup:
         raise ValueError("No labelled frames (with human_only, review frames in the viewer first).")
@@ -246,6 +280,7 @@ def train(
             sample_cameras=s == "train",
             time_features=time_features,
             context=node_context,
+            augment=augment and s == "train",
         )
         for s in ("train", "val", "test")
     }
@@ -268,6 +303,19 @@ def train(
         patch_size=patch_size,
         patch_embed_dim=patch_embed_dim,
     )
+    visual_init_info = None
+    if visual_init == "vit_b16":
+        embedder = fusion.visual_encoder.patch_embedder
+        sample = sample_frames(datasets["train"], 32)
+        before = patch_feature_stats(PatchEmbedder(img_size=image_size, patch_size=patch_size,
+                                                   embed_dim=patch_embed_dim), sample) if len(sample) else None
+        visual_init_info = load_vit_b16_patch_weights(embedder)
+        after = patch_feature_stats(embedder, sample) if len(sample) else None
+        visual_init_info.update({"stats_random_init": before, "stats_vit_b16": after})
+        print(f"visual init: ViT-B/16 patch weights | patch-token stats on {len(sample)} training frames: "
+              f"random {before} -> vit_b16 {after}")
+    elif visual_init != "random":
+        raise ValueError(f"unknown visual_init {visual_init!r}; use 'random' or 'vit_b16'")
     stgnn = RADRSTGNN(in_features=fusion.lstm.hidden_size)
     if node_context is not None:
         # Every source per node via the context (flood included, as ordinal and x rainfall),
@@ -279,6 +327,8 @@ def train(
         # CCTV-only ablation: Project NOAH flood level as the one static node attribute (thesis 3.6).
         decoder = MLPDecoder(node_embedding_dim=stgnn.output_dim)
         model = TrafficRiskModel(fusion, stgnn, decoder, flood_level=graph.flood_level).to(device)
+    if incident_weight != 1.0 and node_context is None:
+        raise ValueError("incident_weight needs the node context (incidents live there); drop --no-context")
     optimizer = torch.optim.AdamW(
         param_groups(model, lr_fusion, lr_graph, lr_context), weight_decay=weight_decay
     )
@@ -306,13 +356,21 @@ def train(
         "node_labels": node_labels,
         "camera_map": camera_map,
         "graph_node_ids": graph.node_ids,
+        "seed": seed,
+        "visual_init": visual_init,
+        "visual_init_info": visual_init_info,
+        "augment": augment,
+        "text_active_minutes": text_active_minutes,
+        "incident_weight": incident_weight,
+        "patience": patience,
     }
     out_path.parent.mkdir(parents=True, exist_ok=True)
     metrics_csv = out_path.with_suffix(".metrics.csv")
     history, best = ([], float("inf"))
+    since_best, stopped_early = 0, False
     for epoch in range(1, epochs + 1):
         model.train()
-        running = []
+        running, weighted_edges = [], 0
         for batch in loaders["train"]:
             batch = to_device(batch, device)
             with torch.autocast(device_type=device.type, enabled=amp):
@@ -320,7 +378,12 @@ def train(
                 targets = camera_edge_targets(
                     batch["target"], camera_index, graph.n_nodes, edge_index, edge_ids
                 )
-                loss, count = edge_risk_loss(logits.float(), edge_ids, targets, class_weights)
+                extra = None
+                if incident_weight != 1.0:
+                    extra = incident_edge_weights(batch["context"], a_hat, edge_index, edge_ids, incident_weight,
+                                                  CONTEXT_COLUMN["event_impact"])
+                    weighted_edges += int(((extra != 1.0) & ~torch.isnan(targets)).sum())
+                loss, count = edge_risk_loss(logits.float(), edge_ids, targets, class_weights, extra)
             if count == 0:
                 continue
             optimizer.zero_grad()
@@ -335,7 +398,9 @@ def train(
         )
         row = {"epoch": epoch, "train_loss": float(np.mean(running)) if running else float("nan"), "val": val}
         history.append(row)
-        print(f"epoch {epoch}: train_loss={row['train_loss']:.4f} val={val}")
+        row["incident_weighted_edges"] = weighted_edges
+        print(f"epoch {epoch}: train_loss={row['train_loss']:.4f} val={val}"
+              + (f" | incident-weighted labelled edges this epoch: {weighted_edges}" if incident_weight != 1.0 else ""))
         with metrics_csv.open("a", encoding="utf-8", newline="") as f:
             writer = csv.writer(f)
             if metrics_csv.stat().st_size == 0:
@@ -347,6 +412,7 @@ def train(
         score = val["loss"] if val else row["train_loss"]
         if score < best:
             best = score
+            since_best = 0
             torch.save(
                 {
                     "model": model.state_dict(),
@@ -359,12 +425,27 @@ def train(
                 },
                 out_path,
             )
+        else:
+            since_best += 1
+            if patience is not None and since_best >= patience:
+                print(f"early stop: no lower validation loss for {patience} epochs (best epoch {epoch - since_best})")
+                stopped_early = True
+                break
     if not out_path.exists():
         raise RuntimeError("No checkpoint was written (no epochs were run).")
     checkpoint = torch.load(out_path, map_location=device, weights_only=False)
     model.load_state_dict(checkpoint["model"])
     test = evaluate(model, loaders["test"], a_hat, camera_index, edge_index, edge_ids, graph.n_nodes, device, class_weights)
     print(f"best epoch {checkpoint['epoch']}, test={test}")
+    best_val = next((h["val"] for h in history if h["epoch"] == checkpoint["epoch"]), None)
+    result = {
+        "checkpoint": str(out_path), "seed": seed, "best_epoch": checkpoint["epoch"],
+        "epochs_run": len(history), "stopped_early": stopped_early, "val": best_val, "test": test,
+        "options": {k: config[k] for k in ("visual_init", "augment", "text_active_minutes", "incident_weight",
+                                       "patience", "use_class_weights", "context", "use_text")},
+        "history": history,
+    }
+    out_path.with_suffix(".result.json").write_text(json.dumps(result, indent=2, default=str), encoding="utf-8")
     return {"history": history, "test": test, "best_epoch": checkpoint["epoch"]}
 
 
@@ -425,6 +506,15 @@ def main():
                    help="tweets_*.json holding the MMDA alerts (event source; independent of --no-text)")
     p.add_argument("--landmarks-csv", type=Path, default=REPO_ROOT / "configs/event_landmarks.csv")
     p.add_argument("--event-intersections-csv", type=Path, default=REPO_ROOT / "configs/event_intersections.csv")
+    p.add_argument("--visual-init", choices=["random", "vit_b16"], default="random",
+                   help="initialise the patch projection from ImageNet ViT-B/16 (compare against random over seeds)")
+    p.add_argument("--augment", action="store_true", help="modest per-window image augmentation (training split only)")
+    p.add_argument("--text-active-minutes", type=int, default=ALERT_ACTIVE_MINUTES,
+                   help="how long a post stays current (default %(default)s; checkpoints up to v8 used 1)")
+    p.add_argument("--incident-weight", type=float, default=1.0,
+                   help="loss weight for camera edges with a live incident within 2 hops (1 = off)")
+    p.add_argument("--patience", type=int, default=None,
+                   help="early stopping: epochs without a lower validation loss before stopping")
     p.add_argument("--graph-sizes", action="store_true")
     a = p.parse_args()
     if a.graph_sizes:
@@ -465,6 +555,11 @@ def main():
         intersections_csv=a.event_intersections_csv,
         split_file=a.split_file,
         lr_context=a.lr_context,
+        visual_init=a.visual_init,
+        augment=a.augment,
+        text_active_minutes=a.text_active_minutes,
+        incident_weight=a.incident_weight,
+        patience=a.patience,
     )
 
 

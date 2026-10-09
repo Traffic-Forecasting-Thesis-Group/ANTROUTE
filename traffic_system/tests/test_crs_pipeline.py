@@ -122,6 +122,28 @@ def test_scoring_writes_the_file_the_router_reads_with_a_score_on_every_edge(dat
     assert edges["camera_edge"].any() and (~edges["camera_edge"]).any()
 
 
+def test_the_v9_training_options_run_together_and_scoring_rebuilds_them(data, tmp_path, monkeypatch):
+    import json
+
+    from src.vision import patch_embedder
+
+    # Stand-in for the ImageNet download, shaped for this test's tiny embedder (dim 8, 2 x 2 patches).
+    fake = (torch.randn(8, 3, 16, 16), torch.randn(8), torch.randn(1, 4, 8))
+    monkeypatch.setattr(patch_embedder, "vit_b16_patch_weights", lambda: fake)
+    out = tmp_path / "ckpt" / "v9_s0.pt"
+    result = train(data, out, visual_init="vit_b16", augment=True, text_active_minutes=60,
+                   incident_weight=3.0, patience=1, seed=0)
+    cfg = torch.load(out, map_location="cpu", weights_only=False)["config"]
+    assert cfg["visual_init"] == "vit_b16" and cfg["augment"] and cfg["text_active_minutes"] == 60
+    assert cfg["incident_weight"] == 3.0 and cfg["patience"] == 1 and cfg["seed"] == 0
+    assert set(cfg["visual_init_info"]) >= {"source", "stats_random_init", "stats_vit_b16"}
+    saved = json.loads(out.with_suffix(".result.json").read_text(encoding="utf-8"))
+    assert saved["options"]["visual_init"] == "vit_b16" and saved["best_epoch"] == result["best_epoch"]
+    assert "incident_weighted_edges" in saved["history"][0]
+    summary = score(data, out, tmp_path / "risk_v9")                  # rebuilds normalisation + post duration
+    assert summary["context"]
+
+
 def test_the_ablation_checkpoints_still_score(data, tmp_path):
     cctv_only = tmp_path / "ckpt" / "cctv.pt"
     train(data, cctv_only, context=False)

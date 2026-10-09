@@ -35,6 +35,15 @@ SESSION_STEPS = 120          # 2-hour peak session
 WINDOW_STEPS = 30            # 30-minute window
 STRIDE_STEPS = 5             # 5-minute stride
 SESSION_STARTS = {"AM": time(7, 0), "PM": time(17, 0)}
+
+# How long a post counts as current after it is posted. Checkpoints up to v8 used 1: a post
+# reached the model only in the minute it was created, so an alert posted ten minutes before
+# a window was invisible to it. ALERT_ACTIVE_MINUTES matches the incident decay used for the
+# node context and routing (event_layer.EVENT_TTL_MINUTES): MMDA posts the incident, not its
+# clearance, and 60 minutes is the usual clear-up for the single-lane incidents that dominate
+# the feed. A checkpoint records the value it was trained with ("text_active_minutes").
+LEGACY_TEXT_ACTIVE_MINUTES = 1
+ALERT_ACTIVE_MINUTES = 60
 LOCAL_TZ = "Asia/Manila"
 
 # Non-visual regime (visual modality missing)
@@ -174,9 +183,14 @@ def build_sessions(
     nonvisual_start: date = NONVISUAL_START,
     buffer_start: date = BUFFER_START,
     visual_split: Optional[Dict[Tuple[date, str], str]] = None,
+    text_active_minutes: int = LEGACY_TEXT_ACTIVE_MINUTES,
 ) -> Tuple[List[SessionRecord], MinMaxScaler, int]:
     """
     Align all three streams to 1-minute timesteps per camera and session.
+
+    A post counts for `text_active_minutes` steps from the minute it was created (including
+    posts created up to that long before the session starts); a step's text is the mean
+    embedding of every post current at it.
 
     Returns:
         records, fitted weather scaler, number of sessions skipped (no weather row)
@@ -236,10 +250,12 @@ def build_sessions(
                 for k, path in zip(step_index(sel["timestamp"], start), sel["frame_path"]):
                     frame_paths[int(k)] = path
 
-            # Text: mean embedding of posts created inside each minute
+            # Text: mean embedding of the posts current at each minute
             text_steps: Dict[int, np.ndarray] = {}
+            active = max(1, int(text_active_minutes))
+            lead = pd.Timedelta(minutes=(active - 1) * STEP_MINUTES)
             sel = camera_tweets[
-                (camera_tweets["created_at"] >= start)
+                (camera_tweets["created_at"] >= start - lead)
                 & (camera_tweets["created_at"] < end)
             ]
             if len(sel):
@@ -247,8 +263,14 @@ def build_sessions(
                 embeddings = np.stack(
                     [np.asarray(e, dtype=np.float32) for e in sel["embedding"]]
                 )
-                for k in np.unique(steps):
-                    text_steps[int(k)] = embeddings[steps == k].mean(axis=0)
+                totals: Dict[int, np.ndarray] = {}
+                counts: Dict[int, int] = {}
+                for k, embedding in zip(steps, embeddings):
+                    for step in range(max(0, int(k)), min(SESSION_STEPS, int(k) + active)):
+                        totals[step] = totals.get(step, 0.0) + embedding
+                        counts[step] = counts.get(step, 0) + 1
+                for step, total in totals.items():
+                    text_steps[step] = (total / counts[step]).astype(np.float32)
 
             # Temporal: normalized daily weather
             weather_vector = scaler.transform(

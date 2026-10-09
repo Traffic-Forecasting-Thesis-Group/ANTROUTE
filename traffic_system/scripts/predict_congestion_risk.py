@@ -12,6 +12,8 @@ from torch.utils.data import DataLoader
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 from src.data.alignment import WINDOW_STEPS, session_start  # noqa: E402
+from src.data.alignment import LEGACY_TEXT_ACTIVE_MINUTES  # noqa: E402
+from src.vision.patch_embedder import use_imagenet_normalisation  # noqa: E402
 from src.data.graph_data import build_subgraph  # noqa: E402
 from src.data.graph_dataset import GraphWindowDataset  # noqa: E402
 from src.data.training_data import (
@@ -60,6 +62,9 @@ def build_model(cfg: dict, device, graph=None, spatial_dir: Path = REPO_ROOT / "
         patch_size=cfg["patch_size"],
         patch_embed_dim=cfg["patch_embed_dim"],
     )
+    if cfg.get("visual_init") == "vit_b16":
+        # trained from ViT patch weights: its frames were ImageNet-standardised (not saved in the state dict)
+        use_imagenet_normalisation(fusion.visual_encoder.patch_embedder)
     stgnn = RADRSTGNN(in_features=fusion.lstm.hidden_size)
     if cfg.get("context"):
         # Multimodal checkpoint: per-node context + per-edge road attributes.
@@ -159,6 +164,8 @@ def predict(
         raw_twitter_root if use_text else None,
         embeddings_path if use_text else None,
         visual_split=visual_split,
+        # the post duration this checkpoint was trained with (1 for checkpoints up to v8)
+        text_active_minutes=cfg.get("text_active_minutes", LEGACY_TEXT_ACTIVE_MINUTES),
     )
     lookup = load_label_lookup(frames_roots, human_only=True) if with_labels else None
     node_context = build_context(

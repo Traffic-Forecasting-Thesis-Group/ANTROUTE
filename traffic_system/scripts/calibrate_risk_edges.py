@@ -10,9 +10,11 @@ scored against, so most of its reported MAE is a constant offset rather than a w
 of roads. src/models/risk_calibration.py explains why that happens and why a single affine
 map fitted on the training split is the right correction.
 
-The new column is added alongside `risk`, never over it. The map is monotone, so edge
-ordering -- and therefore every route -- is unchanged by construction, and keeping both
-columns lets the raw and calibrated figures be reported side by side.
+The new column is added alongside `risk`, never over it, so the raw and calibrated figures
+can be reported side by side. The map is monotone, so the ordering of edges by risk is
+unchanged -- but routes are not guaranteed to be: W = d * (1 + lambda * Risk) weighs risk
+against distance, and rescaling Risk changes that balance. The app routes on `risk` unless
+RISK_SCORES=calibrated (see src/models/risk_calibration.py).
 
 The fit uses the TRAIN split only; the val and test figures printed here are held out from it.
 """

@@ -166,18 +166,56 @@ def sample_weights_from_targets(
     return class_weights.to(targets.device)[class_idx]
 
 
+def incident_edge_weights(
+    context: torch.Tensor,
+    a_hat: torch.Tensor,
+    edge_index: torch.Tensor,
+    edge_ids: torch.Tensor,
+    factor: float,
+    impact_column: int,
+    hops: int = 2,
+) -> torch.Tensor:
+    """
+    [B, len(edge_ids)] loss weight per camera edge: `factor` where a reported incident is live
+    at, or within `hops` road hops of, either end of the edge at any minute of the window
+    (node context column `event_impact` > 0), else 1.
+
+    Few training windows have an incident nearby (~6% of the labelled camera windows), so with
+    an unweighted loss they barely move the model; weighting them is one way to make it attend
+    to them without collecting more. Training only: validation and test loss stay unweighted,
+    so model selection is not shifted by it.
+    """
+    live = (context[..., impact_column] > 0).any(dim=1).to(a_hat.dtype)   # [B, N]
+    reach = live
+    for _ in range(hops):
+        reach = ((reach @ a_hat.T) > 0).to(a_hat.dtype)                     # a_hat has self-loops
+    src, dst = edge_index[0, edge_ids], edge_index[1, edge_ids]
+    near = (reach[:, src] > 0) | (reach[:, dst] > 0)                         # [B, E_cam]
+    return torch.where(near, torch.full_like(near, factor, dtype=torch.float32),
+                       torch.ones_like(near, dtype=torch.float32))
+
+
 def edge_risk_loss(
     logits: torch.Tensor,
     edge_ids: torch.Tensor,
     targets: torch.Tensor,
     class_weights: Optional[torch.Tensor] = None,
+    extra_weights: Optional[torch.Tensor] = None,
 ) -> Tuple[torch.Tensor, int]:
+    """
+    Mean BCE over the labelled camera edges. `extra_weights` ([B, len(edge_ids)], e.g. from
+    incident_edge_weights) multiplies the per-edge weight; the mean is over the edge count, as
+    without it.
+    """
     at_camera_edges = logits[:, edge_ids]
     mask = ~torch.isnan(targets)
     count = int(mask.sum())
     if count == 0:
         return (at_camera_edges.sum() * 0.0, 0)
     weight = sample_weights_from_targets(targets, class_weights)
+    if extra_weights is not None:
+        extra = extra_weights.to(targets.device, dtype=torch.float32)
+        weight = extra if weight is None else weight * extra
     loss = F.binary_cross_entropy_with_logits(
         at_camera_edges[mask], targets[mask],
         weight=weight[mask] if weight is not None else None,

@@ -17,9 +17,12 @@ circular in exactly the way scripts/evaluate_baseline_iaco.py was.
 Two deliberate limits. Affine, not isotonic or Platt: with three distinct target values and
 ~6.6k training rows a monotone step function would chase the class proportions, and an
 affine map cannot invent separation the model did not find. And it is a separate column,
-not a replacement for `risk`: being monotone it leaves every edge *ranking* untouched, so
-routes are unchanged by construction, and keeping both lets the thesis report the raw and
-calibrated figures side by side instead of quietly substituting one.
+not a replacement for `risk`: being monotone it leaves every edge's risk *ranking* untouched,
+and keeping both lets the thesis report the raw and calibrated figures side by side instead of
+quietly substituting one. It does NOT leave routes unchanged: the routing cost
+W = d * (1 + lambda * Risk) mixes distance with risk, and an affine change of Risk changes how
+much risk weighs against distance, so routing on the calibrated column (RISK_SCORES=calibrated
+in the app) can pick different routes and needs its own routing evaluation.
 """
 
 from __future__ import annotations
