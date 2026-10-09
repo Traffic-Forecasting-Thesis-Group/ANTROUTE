@@ -1,3 +1,47 @@
+"""
+===============================================================================
+ARCHITECTURE BLOCKS 10 & 11: Temporal Data (WeatherStack) -> Sequence Norm
+===============================================================================
+Diagram path:   [TEMPORAL DATA (WeatherStack)]
+                  -> [SEQUENCE NORM (Weather)]
+                  -> RADR STGNN (block 15), via node context
+
+WHAT IT DOES
+    Block 10  Pulls historical weather for Metro Manila from the WeatherStack
+              API. The city is covered by a grid of points spaced
+              WEATHER_GRID_SIZE_DEG (0.05 degrees) apart rather than one
+              city-wide reading, so rain over Quezon City and clear sky over
+              Pasay are not averaged into the same number.
+              Three features are kept: WEATHER_FEATURES =
+              temperature, precipitation, humidity.
+
+    Block 11  "Sequence Norm" on the diagram = two steps here:
+              zscore_normalize()  puts the three features on a common scale,
+                                  so precipitation in mm cannot dominate
+                                  temperature in degrees purely by magnitude.
+              build_sequences()   stacks each grid cell's normalised readings
+                                  into a rolling window of WINDOW (6) steps,
+                                  which is the sequence shape the temporal
+                                  side of the model expects.
+
+HONEST LIMIT
+    WeatherStack historical data is daily, so weather joins to the rest of the
+    pipeline by DATE, not by timestamp. A morning downpour and a dry afternoon
+    on the same date carry the same weather features.
+
+INPUT   <- WeatherStack API (key from .env), grid built off the road network
+OUTPUT  -> data/processed/temporal/weatherstack_historical.csv, which
+           src/data/node_context.py turns into the per-node "weather" feature
+           group fed to the STGNN (block 15)
+
+KEY NAMES
+    build_grid_points()     the 0.05-degree sampling grid
+    zscore_normalize()      block 11, the normalisation half
+    build_sequences()       block 11, the windowing half
+    run()                   end-to-end entry point
+===============================================================================
+"""
+
 from __future__ import annotations
 
 import argparse
@@ -112,6 +156,8 @@ def fetch_or_load_historical(grid_points: pd.DataFrame, save_path: Path, api_key
     return df
 
 
+# [BLOCK 11] Sequence Norm, part 1 of 2: put temp / precip / humidity on a
+# common scale so none dominates the others by raw magnitude alone.
 def zscore_normalize(df: pd.DataFrame, columns: list[str]) -> pd.DataFrame:
     norm_df = df.copy()
     for col in columns:
@@ -121,6 +167,8 @@ def zscore_normalize(df: pd.DataFrame, columns: list[str]) -> pd.DataFrame:
     return norm_df
 
 
+# [BLOCK 11] Sequence Norm, part 2 of 2: stack each grid cell's readings into
+# rolling windows of WINDOW steps -- the sequence shape the model consumes.
 def build_sequences(df: pd.DataFrame, group_col: str, time_col: str,
                      feature_columns: list[str], window_size: int):
     sequences, labels = [], []

@@ -1,10 +1,36 @@
 """
+===============================================================================
+ARCHITECTURE BLOCKS 6 & 7: Visual Data (MMDA CCTV)
+                            -> Frame Extraction & Normalization
+===============================================================================
+Diagram path:   [VISUAL DATA (MMDA CCTV)]
+                  -> [FRAME EXTRACTION & NORMALIZATION]
+                  -> 2D Patch Embedding (block 8)
+                  -> also feeds YOLOv8 Auto-Labeling (block 14)
+
 Frame Extraction & Normalization stage of the ANTROUTE visual branch.
 
 Turns raw CCTV segments (.dar / .mp4 / ...) into JPEG frames plus a manifest
 that matches what src/data/alignment.py expects (camera_id, timestamp,
 frame_path). Patch embedding is NOT done here: it is the first learned layer
 of CNNLSTMFusion, so frames stay as ordinary images.
+
+WHAT "NORMALIZATION" MEANS HERE
+    Sampling one frame every SAMPLE_INTERVAL_SEC (60s) and resizing to
+    FRAME_MAX_SIDE with aspect ratio kept. Pixel scaling to [0,1] and the
+    final 224x224 resize happen later, at load time in the dataset.
+
+WHY THIS FILE IS SO DEFENSIVE
+    MMDA footage arrives damaged in predictable ways, and each constant below
+    is a real bug that cost a training run:
+      - chunks whose H.264 parameter set appears mid-stream (first_sps_offset)
+      - cameras whose declared fps is wrong (25 read as 30)  (_valid_fps)
+      - truncated conversions that silently yield a short video
+        (MAX_BYTES_PER_SEC, plausible_duration)
+      - tail fragments too short to be worth keeping (MIN_CHUNK_BYTES)
+    Several extraction methods are attempted in order (_attempts) before a
+    segment is declared failed, and failures are logged rather than raised so
+    one bad chunk cannot stop a multi-hour run.
 
 Layout expected on disk (as delivered by MMDA):
     <root>/.../<session start - session end>/.../<camera_id>/Dados/<name>_<n>.dar
@@ -13,6 +39,13 @@ Outputs (under out_root):
     <session date>/<camera_id>/<segment stem>_<k:03d>.jpg
     manifest.csv   one row per saved frame
     segments.csv   one row per source video (ok / failed, method, duration)
+
+KEY NAMES
+    discover_segments()  find the raw CCTV chunks on disk
+    sample_frames()      block 7, one frame per interval
+    resize_max_side()    block 7, the normalisation half
+    extract_all()        end-to-end entry point (scripts/extract_frames.py)
+===============================================================================
 """
 
 import csv
@@ -254,6 +287,7 @@ def _attempts(src: Path, tmp_dir: Path, header: Optional[bytes] = None,
         yield "direct", src
 
 
+# [BLOCK 7] The "Normalization" half: uniform frame size, aspect ratio kept.
 def resize_max_side(frame, max_side: int = FRAME_MAX_SIDE):
     h, w = frame.shape[:2]
     scale = max_side / max(h, w)
@@ -308,6 +342,7 @@ def plausible_duration(duration_sec: float, size_bytes: int) -> bool:
     return duration_sec * MAX_BYTES_PER_SEC >= size_bytes
 
 
+# [BLOCK 7] The "Frame Extraction" half: one frame per interval_sec of video.
 def sample_frames(video_path: Path, interval_sec: int = SAMPLE_INTERVAL_SEC,
                   force_sequential: bool = False):
     """Keep one frame per `interval_sec` of video time -> ([(k, bgr_frame)], duration_sec).
@@ -515,6 +550,7 @@ def _process_folder(segments: List[Segment], done: Dict[str, dict], logged_empty
     return manifest_rows, segment_rows, stats
 
 
+# [BLOCKS 6->7] Entry point: raw MMDA footage in, JPEG frames + manifest out.
 def extract_all(root: Path, out_root: Path, interval_sec: int = SAMPLE_INTERVAL_SEC,
                 progress=lambda it, **kw: it, workers: int = 1, only: Sequence[str] = (),
                 cameras: Sequence[str] = ()) -> Dict[str, int]:

@@ -1,3 +1,40 @@
+"""
+===============================================================================
+ARCHITECTURE BLOCK 19 (part): ETA Estimation
+===============================================================================
+Diagram path:   part of [DYNAMIC ROUTING ENGINE]
+                "ACO, alt. routes, multi-stop, ETA Estimation"
+
+WHAT IT DOES
+    Converts a chosen route into a predicted travel time:
+
+        t_edge = t_freeflow * (1 + gamma * Risk)
+
+    t_freeflow is the OSM free-flow seconds for that road (from block 13's
+    travel-time matrix) and Risk is the Congestion Risk Score (block 17).
+    gamma = DEFAULT_GAMMA = 1.0, so a fully congested edge is predicted to
+    take twice as long as it would on an empty road.
+
+    Note the shape is deliberately the same as the Dynamic Weight Engine's
+    W = distance * (1 + lambda * Risk): one penalises distance for routing,
+    this one penalises time for display.
+
+HONEST RESULT (carry this into the paper)
+    This is the weakest part of the system. In the 50-trip evaluation the
+    Cheng IACO baseline, which estimates ETA from OBSERVED travel times,
+    beat ANTROUTE on every error metric (MAE 826s vs 1095s, MAPE 37.8% vs
+    51.8%, both significant). ANTROUTE wins clearly on route QUALITY and
+    loses on ETA accuracy -- report both.
+
+INPUT   <- free-flow seconds per edge, risk per edge, a chosen path
+OUTPUT  -> predicted seconds, surfaced as duration_min in the app
+
+KEY NAMES
+    DEFAULT_GAMMA   1.0
+    congested_eta() the formula, vectorised over edges
+===============================================================================
+"""
+
 from __future__ import annotations
 from pathlib import Path
 from typing import Sequence
@@ -9,6 +46,8 @@ from src.routing.dynamic_weight import WeightedGraph
 DEFAULT_GAMMA = 1.0
 
 
+# [BLOCK 19 - ETA] t = t_freeflow * (1 + gamma * Risk). Same shape as the
+# Dynamic Weight Engine's formula, applied to time instead of distance.
 def congested_eta(
     free_flow_seconds: np.ndarray, risk: np.ndarray, gamma: float = DEFAULT_GAMMA
 ) -> np.ndarray:

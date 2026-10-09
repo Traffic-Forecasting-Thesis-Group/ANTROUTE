@@ -1,3 +1,36 @@
+"""
+===============================================================================
+ARCHITECTURE BLOCK 8: 2D Patch Embedding
+===============================================================================
+Diagram path:   Frame Extraction & Normalization (block 7)
+                  -> [2D PATCH EMBEDDING]
+                  -> CNN + LSTM (block 9)
+
+WHAT IT DOES
+    Cuts each 224x224 CCTV frame into a grid of 16x16 non-overlapping patches
+    and projects every patch to a 768-dimensional vector, turning one image
+    into a sequence of 196 patch embeddings (14 x 14 = 196 patches).
+
+    Why patches instead of the whole frame at once: congestion is local. A
+    queue builds in one part of the junction while another stays clear, and
+    patching lets the model weigh those regions separately.
+
+IMPLEMENTATION NOTE
+    "Patchify then linearly project" is done by ONE Conv2d whose kernel_size
+    and stride both equal patch_size. That is mathematically identical to
+    slicing the image and applying a shared linear layer, but far faster.
+
+WHERE IT LIVES IN THE PIPELINE
+    This is NOT a separate saved preprocessing step. It is the first learned
+    layer inside CNNLSTMFusion (block 9), trained end-to-end with the rest of
+    the network, so the patch projection adapts to the congestion task rather
+    than being a fixed random projection.
+
+INPUT   <- (B, 3, 224, 224) normalized frames
+OUTPUT  -> (B, 196, 768) patch embedding sequence, consumed by block 9
+===============================================================================
+"""
+
 import torch
 import torch.nn as nn
 

@@ -1,4 +1,26 @@
 """
+===============================================================================
+ARCHITECTURE BLOCK 18: Dynamic Weight Engine
+                       W = distance x (1 + lambda . Risk)
+===============================================================================
+Diagram path:   Congestion Risk Score (block 17)
+                  -> [DYNAMIC WEIGHT ENGINE]
+                  -> Dynamic Routing Engine (block 19)
+
+THIS IS THE HINGE OF THE WHOLE SYSTEM
+    Everything above this line predicts congestion. Everything below it finds
+    routes. This single formula is how a prediction becomes a routing
+    decision -- it is the only place the risk penalty is applied, and the one
+    box on the diagram that carries its own equation.
+
+HOW TO READ THE FORMULA
+    lambda = 0    risk ignored; pure shortest distance (the static baseline,
+                  reproduced exactly by WeightedGraph.with_lambda(0))
+    lambda = 2.0  DEFAULT_LAMBDA: a fully congested edge (Risk = 1.0) costs
+                  3x its length, so the router will take a detour up to three
+                  times longer to avoid it
+    Raising lambda buys more risk-aversion at the price of longer routes.
+
 Dynamic Weight Engine: turns the per-edge Congestion Risk Score into a routing cost.
 
 It sits between the MLP decoder (scripts/predict_congestion_risk.py -> risk_edges.csv)
@@ -18,6 +40,23 @@ the risks of its edges - the risk is NOT re-weighted by distance here:
 Both follow Xue et al. (2026), equations 3 and 5.
 
 Edges keep the direction of the road network, so W(u, v) and W(v, u) may differ.
+
+COVERAGE: THE PART TO BE HONEST ABOUT
+    The decoder only scores edges near a camera (~1.5% of city edges). Early
+    on, unscored edges defaulted to Risk = 0.0, which made every unmonitored
+    road look perfectly clear and sent the router off EDSA onto side streets.
+    fill_unscored_risk() fixes this: an unscored edge within MAX_FILL_M
+    (1500 m by road) borrows the nearest scored road's risk, and anything
+    farther takes the window median. Routes then report risk_coverage, and
+    anything under 50% is labelled "unknown" rather than claimed as clear.
+
+KEY NAMES
+    dynamic_weight()      the diagram's formula, exactly
+    DEFAULT_LAMBDA        2.0
+    WeightedGraph         the graph the ant colony walks
+    evaluate_path()       distance / risk exposure / dynamic cost of a route
+    fill_unscored_risk()  the coverage fix described above
+===============================================================================
 """
 
 from __future__ import annotations
@@ -44,7 +83,7 @@ DEFAULT_MISSING_RISK = 0.0
 
 
 # ---------------------------------------------------------------------------
-# core formula
+# core formula  --  [BLOCK 18] the equation printed on the architecture diagram
 # ---------------------------------------------------------------------------
 def dynamic_weight(
     distance: np.ndarray,

@@ -1,3 +1,37 @@
+"""
+===============================================================================
+ARCHITECTURE BLOCK 2: Textual Pre-cleaning
+===============================================================================
+Diagram path:   Unstructured Data (X/Twitter)  ->  [TEXTUAL PRE-CLEANING]
+                                               ->  MarianMT (block 3)
+
+WHAT IT DOES
+    Prepares a raw tweet for translation. Three jobs, in this order:
+      1. Strip the noise MarianMT would otherwise try to translate:
+         URLs, @mentions, and runs of extra whitespace.
+      2. Rewrite Tagalog traffic slang that MarianMT has no vocabulary for
+         ("buhol-buhol" -> "heavy traffic"). Without this the translator
+         emits garbage for exactly the posts we care most about.
+      3. Find and preserve location anchors (EDSA, Ortigas, Roxas Blvd...).
+         These survive translation intact and are what later lets a tweet be
+         attached to a specific camera intersection.
+
+    Why step 3 matters downstream: a tweet that names no monitored junction
+    is dropped at training time (src/data/training_data.py), because giving
+    every camera the same tweet makes the text feature identical everywhere
+    and therefore useless.
+
+INPUT   <- raw tweet text, from src/ingestion/twitter_scraper.py (block 1)
+OUTPUT  -> {"cleaned_text", "entities"}, consumed by BatchNLPPipeline (block 3)
+
+KEY NAMES
+    remove_noise()                  URLs / @mentions / whitespace
+    replace_slang()                 the MarianMT out-of-vocabulary fix
+    extract_and_preserve_entities() the location anchors
+    clean()                         runs all three in order
+===============================================================================
+"""
+
 import re
 import json
 
@@ -29,6 +63,7 @@ class TextCleaner:
             r'\bnabangga\b': 'crashed'
         }
             
+    # [BLOCK 2] "Removes URLs, @mentions, extra whitespace" on the diagram.
     def remove_noise(self, text: str) -> str:
         # Strip URLs
         text = re.sub(r'http\S+|www\.\S+', '', text)
@@ -43,6 +78,8 @@ class TextCleaner:
             text = re.sub(pattern, replacement, text, flags=re.IGNORECASE)
         return text
 
+    # [BLOCK 2] "preserves key entities" on the diagram. These location anchors
+    # are how a tweet later gets attached to one camera's intersection.
     def extract_and_preserve_entities(self, text: str) -> tuple[str, list[str]]:
         entities_found = set()
 
@@ -60,6 +97,7 @@ class TextCleaner:
 
         return text, list(entities_found)
 
+    # [BLOCK 2] Entry point: the whole pre-cleaning block in one call.
     def clean(self, raw_text: str) -> dict:
         denoised = self.remove_noise(raw_text)
         de_slanged = self.replace_slang(denoised)

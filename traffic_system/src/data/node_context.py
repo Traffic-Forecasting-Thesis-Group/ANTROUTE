@@ -1,4 +1,23 @@
 """
+===============================================================================
+WHERE THE NON-VISUAL BRANCHES REACH THE MODEL
+    Sequence Norm / Weather  (block 11)  --+
+    Geocoding & Topology     (block 13)  --+--> per-node context --> RADR
+    MMDA incident reports                 -+                        STGNN (15)
+===============================================================================
+On the diagram, the Temporal and Spatial branches have arrows running into the
+RADR STGNN. THIS FILE IS THOSE ARROWS. It turns weather, flood hazard, live
+incidents, clock and road attributes into 17 features attached to every node,
+in 5 ablatable groups (GROUPS): weather, flood, events, temporal, spatial.
+
+Without it only ~9 camera junctions had real inputs, so most of a 59,521-node
+city could not respond to rain or incidents at all. With it, the Congestion
+Risk Score is multimodal across the whole graph.
+
+Ablation hooks: train_stgnn_edge.py --no-context (CCTV only) and
+--drop-context <group> (zero out one source, to measure what it contributes).
+===============================================================================
+
 Per-node context for the Congestion Risk Score: what every road node -- with or without a
 camera -- is known to face at each minute of a window.
 

@@ -1,3 +1,70 @@
+"""
+===============================================================================
+ARCHITECTURE BLOCKS 19 & 20: Dynamic Routing Engine -> Optimal Path
+                 (ACO, alternative routes, multi-stop, ETA estimation)
+===============================================================================
+Diagram path:   Dynamic Weight Engine (block 18)
+                  -> [DYNAMIC ROUTING ENGINE]
+                  -> [OPTIMAL PATH]
+
+This is ANTROUTE's proposed routing method -- the "ANT" in the name. The
+Cheng (2023) Improved ACO it is compared against lives in baseline_iaco.py.
+
+ANT COLONY OPTIMIZATION IN FOUR SENTENCES
+    Many simple "ants" each walk from origin to destination, choosing the next
+    road probabilistically rather than greedily. After every round, each ant
+    lays "pheromone" on the roads it used, in inverse proportion to how
+    expensive its route was -- cheaper routes get more. All pheromone then
+    evaporates by a fixed fraction, so early lucky routes do not lock the
+    colony in. Repeat, and the colony converges on low-cost routes while
+    still exploring alternatives.
+
+    The cost being minimised is NOT distance. It is the dynamic weight
+    W = distance x (1 + lambda x Risk) from block 18, which is exactly how
+    predicted congestion steers the route.
+
+THE ONE NON-TEXTBOOK PART, AND WHY IT IS NEEDED
+    Plain ACO does not scale to a 59,521-node city: with raw path cost as the
+    desirability signal, 0 of 500 ants completed a single tour. Two additions
+    fix it, and you should expect to see them in the code:
+
+      remaining_cost_to()  runs ONE Dijkstra on the reversed graph to get, for
+                           every node, the remaining cost to the destination.
+                           This is an A*-style goal heuristic: ants are pulled
+                           toward the destination instead of wandering.
+      regret               an edge is judged by how much it ADDS to the best
+                           achievable remaining cost, not by its own weight.
+                           Without this, long-but-necessary edges look bad.
+
+    Dead ends are handled by backtracking one node and blacklisting the edge,
+    rather than throwing the whole tour away.
+
+BLOCK 20, "OPTIMAL PATH", IS diverse_routes()
+    The app does not want one route, it wants a recommendation plus real
+    alternatives. diverse_routes() re-runs the colony with a compounding
+    REUSE_PENALTY (1.5) on already-used edges and rejects any candidate
+    sharing more than MAX_SHARED_FRACTION (0.7) of its length with an
+    accepted one -- so "Alternative 1" is a genuinely different road, not the
+    same route with one block changed.
+
+TUNING NOTE
+    Defaults here are 20 ants x 60 iterations. The live API runs 8 x 15
+    because on a 165-hop cross-city route it returned the identical path in
+    0.9 s instead of 8.7 s. See app/risk_routing.py.
+
+INPUT   <- WeightedGraph from block 18 (risk already baked into the weights)
+OUTPUT  -> PathMetrics (node path, distance, risk exposure, dynamic cost);
+           ETA is added by src/routing/eta_engine.py
+
+KEY NAMES
+    AntColonyConfig            alpha, beta, evaporation, n_ants, n_iterations
+    remaining_cost_to()        the Dijkstra goal heuristic
+    _choose_edge()             pheromone^alpha * desirability^beta
+    ant_colony_shortest_path() block 19, the main solver
+    multi_stop_route()         block 19, "multi-stop" on the diagram
+    diverse_routes()           block 20, the optimal path + alternatives
+===============================================================================
+"""
 
 from __future__ import annotations
 from bisect import bisect_right
@@ -28,6 +95,9 @@ class RouteResult:
     alternatives: List[PathMetrics]
 
 
+# [BLOCK 19] The goal heuristic. One Dijkstra on the REVERSED graph gives every
+# node its remaining cost to the destination, so ants are pulled toward the
+# goal. Without this, 0 of 500 ants finished a tour at city scale.
 def remaining_cost_to(wg: WeightedGraph, destination_idx: int) -> np.ndarray:
     """
     Shortest remaining dynamic_cost from every node to `destination_idx`, via one Dijkstra run
@@ -244,6 +314,9 @@ def _build_tour(
     return None
 
 
+# [BLOCK 19] THE DYNAMIC ROUTING ENGINE ITSELF. Each iteration: every ant walks
+# a tour, then pheromone evaporates (so early luck fades) and is deposited in
+# inverse proportion to tour cost (so good routes get reinforced).
 def ant_colony_shortest_path(
     wg: WeightedGraph, origin: int, destination: int, config: AntColonyConfig = AntColonyConfig()
 ) -> RouteResult:
@@ -315,6 +388,8 @@ def ant_colony_shortest_path(
     return RouteResult(best=best, alternatives=alternatives)
 
 
+# [BLOCK 19] "multi-stop" on the diagram: a trip with waypoints is routed one
+# leg at a time, each leg a full colony run.
 def multi_stop_route(
     wg: WeightedGraph, stops: Sequence[int], config: AntColonyConfig = AntColonyConfig()
 ) -> RouteResult:
@@ -349,6 +424,9 @@ def shared_fraction(wg: WeightedGraph, a: PathMetrics, b: PathMetrics) -> float:
     return shared / min(a.distance_m, b.distance_m)
 
 
+# [BLOCK 20] OPTIMAL PATH: the recommended route plus genuinely distinct
+# alternatives. Re-runs the colony with a compounding penalty on already-used
+# edges, rejecting anything that overlaps an accepted route too heavily.
 def diverse_routes(
     wg: WeightedGraph,
     stops: Sequence[int],

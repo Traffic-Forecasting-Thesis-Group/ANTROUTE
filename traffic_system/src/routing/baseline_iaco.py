@@ -1,4 +1,26 @@
 """
+===============================================================================
+NOT ON THE ARCHITECTURE DIAGRAM -- THIS IS THE COMPARISON BASELINE
+===============================================================================
+Read this before confusing it with aco_routing.py.
+
+    src/routing/aco_routing.py   = ANTROUTE's PROPOSED method (blocks 19-20).
+                                   Routes on PREDICTED risk from the model.
+    src/routing/baseline_iaco.py = THIS FILE. The published method we are
+                                   measured against. Routes on OBSERVED
+                                   traffic, never on our predictions.
+
+    Both are ant colony algorithms, which is exactly why they are easy to mix
+    up. The difference that matters for the thesis is the input: ours uses the
+    Congestion Risk Score (block 17); this one uses recorded congestion labels
+    and YOLO vehicle counts.
+
+    Evaluation result (50 trips, outputs/routing_eval/): ANTROUTE 83.66% route
+    optimality vs this baseline's 73.60%, Wilcoxon p = 4.4e-6. The baseline
+    wins on ETA accuracy.
+
+===============================================================================
+
 Baseline router: Improved Ant Colony Algorithm (IACO) from Cheng (2023),
 "Dynamic Path Optimization Based on Improved Ant Colony Algorithm",
 J. Adv. Transportation, doi:10.1155/2023/7651100.

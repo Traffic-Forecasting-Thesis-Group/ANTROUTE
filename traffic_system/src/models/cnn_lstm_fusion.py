@@ -1,3 +1,52 @@
+"""
+===============================================================================
+ARCHITECTURE BLOCK 9: CNN + LSTM (Visual and Event Feature Extraction)
+===============================================================================
+Diagram path:   2D Patch Embedding (block 8) ---+
+                DistilBERT         (block 5) ---+--> [CNN + LSTM]
+                Sequence Norm      (block 11) --+        |
+                                                         v
+                                              RADR STGNN (block 15)
+
+THIS IS WHERE THE THREE INPUT BRANCHES MEET
+    Look at the diagram: three arrows converge on this box. That fusion is
+    literally self.fused_input_dim below -- the three projected modalities
+    concatenated into one vector per timestep:
+
+        visual   CNN over the patch embeddings of one CCTV frame   (128-d)
+      + text     projected DistilBERT tweet embedding              (128-d)
+      + temporal projected normalised weather/time features         (32-d)
+      ------------------------------------------------------------------
+      = 288-d fused vector per timestep -> LayerNorm -> LSTM
+
+    "CNN"  = VisualCNNEncoder, which turns one frame's 196 patch embeddings
+             into a single 128-d frame descriptor.
+    "LSTM" = reads the fused vectors ACROSS TIME, so the model sees congestion
+             building or clearing over a window rather than judging each
+             frame in isolation.
+
+HANDLING MISSING MODALITIES (important, and easy to miss)
+    A timestep often has a frame but no tweet, or neither. Rather than
+    dropping it, the module substitutes a LEARNED placeholder vector
+    (missing_visual / missing_text) wherever visual_mask / text_mask is False.
+    The network therefore learns what "no data here" means instead of being
+    fed a misleading zero.
+
+    This masked assignment is also where a real GPU-only bug lived: under
+    autocast the placeholder was fp16 while the destination was fp32. Fixed,
+    but it is why dtype is handled explicitly in forward().
+
+INPUT   <- images [B,T,3,224,224], text_embeddings [B,T,768],
+           temporal_features [B,T,temporal_dim], plus optional masks/lengths
+OUTPUT  -> [B, T, lstm_hidden_dim] sequence features, scattered onto camera
+           nodes and consumed by RADR STGNN (block 15)
+
+KEY NAMES
+    VisualCNNEncoder   the "CNN" half (wraps PatchEmbedder, block 8)
+    CNNLSTMFusion      the fusion + the "LSTM" half
+===============================================================================
+"""
+
 import torch
 import torch.nn as nn
 from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
@@ -175,16 +224,21 @@ class CNNLSTMFusion(nn.Module):
             nn.Dropout(dropout),
         )
 
-        # Learned placeholders for timesteps with no frame / no tweet
+        # [BLOCK 9] Learned placeholders for timesteps with no frame / no tweet.
+        # Learned, not zeros: the model works out what "no data" should mean.
         self.missing_visual = nn.Parameter(torch.zeros(visual_feature_dim))
         self.missing_text = nn.Parameter(torch.zeros(text_projection_dim))
 
+        # [BLOCK 9] THE FUSION POINT: visual + text + temporal concatenated.
+        # This single line is where the diagram's three arrows become one.
         # Fusion size + normalization (puts all modalities on one scale)
         self.fused_input_dim = (
             visual_feature_dim + text_projection_dim + temporal_projection_dim
         )
         self.fusion_norm = nn.LayerNorm(self.fused_input_dim)
 
+        # [BLOCK 9] The "LSTM" half: reads the fused vectors across time, so
+        # congestion building or clearing over the window is visible.
         # LSTM layer
         self.lstm = nn.LSTM(
             input_size=self.fused_input_dim,

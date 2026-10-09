@@ -1,4 +1,22 @@
 """
+===============================================================================
+THE DIAGRAM IN PRODUCTION  --  blocks 17 -> 18 -> 19 -> 20, served live
+===============================================================================
+This is where the architecture stops being a training pipeline and becomes the
+app the user taps. It is the production counterpart to
+src/models/traffic_risk_model_edge.py (which is the training-side assembly).
+
+One thing surprises most readers: NO .pt CHECKPOINT IS LOADED HERE. The model
+is run offline by scripts/predict_congestion_risk.py, which writes the
+Congestion Risk Score (block 17) to risk_edges.csv. This service reads that
+file and runs only blocks 18-20 live. GET /health/model reports which
+checkpoint the loaded scores came from, so "which model is this?" is always
+answerable during a demo.
+
+Coverage honesty: a route whose risk is less than MIN_RISK_COVERAGE (50%)
+model-informed is reported as congestion_level "unknown" rather than "clear".
+===============================================================================
+
 Wires the real CNN+LSTM -> RADR STGNN -> MLP Decoder -> Dynamic Weight Engine -> ACO
 pipeline into the FastAPI route-planning endpoint, alongside the thesis baseline,
 Improved ACO (Cheng 2023).

@@ -1,3 +1,66 @@
+"""
+===============================================================================
+THE WHOLE MODEL, ASSEMBLED  --  start here if you are reading the code
+                                against the architecture diagram
+===============================================================================
+This file is where blocks 9, 15, 16 and 17 are wired into one network, and
+where its output is compared against block 14 in the training loss. If you
+read only one model file, read this one: TrafficRiskModel.forward() is the
+diagram's entire bottom half, top to bottom, in about twenty lines.
+
+    [BLOCK 9 ] CNN + LSTM          build_stgnn_input(self.fusion, ...)
+                                       |
+                                       v  scatter_camera_features()
+                                   put each camera's features on ITS node;
+                                   every other node gets a learned
+                                   placeholder meaning "no camera here"
+                                       |
+                                       +  ContextEncoder(context)
+                                          weather / flood / events / clock
+                                          for EVERY node (blocks 11 + 12)
+                                       |
+                                       v
+    [BLOCK 15] RADR STGNN          self.stgnn(x, a_hat)
+                                       |  -> one embedding per junction
+                                       v
+    [BLOCK 16] MLP Decoder         self.decoder(nodes, edge_index, ...)
+                                       |  -> one logit per road segment
+                                       v
+    [BLOCK 17] Congestion Risk Score   sigmoid(logit) -> risk in [0, 1]
+                                       ^
+    [BLOCK 14] YOLOv8 Auto-Labeling ---+  edge_risk_loss() compares the two
+
+WHY THE CONTEXT ENCODER EXISTS (the "multimodal" fix)
+    Originally only camera nodes had real inputs and every other node shared
+    one placeholder, so weather, floods and tweets could only reach a road
+    through at most two GCN hops from a camera. With ~9 camera junctions in a
+    59k-node city that meant most roads could not move at all. ContextEncoder
+    gives all nodes their own 17-feature context vector, which is what makes
+    the Congestion Risk Score genuinely multimodal across the whole graph.
+
+HOW LABELS BECOME EDGE TARGETS
+    CLASS_RISK = [0.0, 0.5, 1.0] maps Light/Medium/Heavy (block 14) onto the
+    same [0, 1] scale the model predicts. camera_edge_targets() then averages
+    the two endpoint junctions' labels to get a target for the EDGE between
+    them, because labels are observed at cameras (nodes) but predicted per
+    road (edge). Unlabelled entries are nan and masked out of the loss.
+
+A NOTE ON CLASS WEIGHTS (open decision, see SESSION_HANDOFF.md)
+    class_weights re-weights Light/Medium/Heavy to counter the ~58% Heavy
+    skew. But balanced weights make the loss's best constant prediction
+    exactly 0.5 while the labels average ~0.72, which builds a calibration
+    offset in by construction. src/models/risk_calibration.py exists to undo
+    it. Training unweighted is the current recommendation for calibrated risk.
+
+KEY NAMES
+    scatter_camera_features()  camera features -> their graph nodes
+    ContextEncoder             non-visual sources -> every node
+    TrafficRiskModel.forward() blocks 9 -> 15 -> 16 in one pass
+    camera_edge_targets()      block 14 labels -> per-edge targets
+    edge_risk_loss()           where prediction meets training target
+===============================================================================
+"""
+
 from typing import Dict, Optional, Tuple
 import torch
 import torch.nn as nn
@@ -99,6 +162,8 @@ class TrafficRiskModel(nn.Module):
         camera_index: torch.Tensor,
         edge_index: torch.Tensor,
     ) -> torch.Tensor:
+        # [BLOCK 9] CNN + LSTM: fuse CCTV frames, tweet embeddings and temporal
+        # features into one sequence vector per camera, per timestep.
         features = build_stgnn_input(
             self.fusion,
             batch["images"],
@@ -107,6 +172,8 @@ class TrafficRiskModel(nn.Module):
             visual_mask=batch["visual_mask"],
             text_mask=batch["text_mask"],
         )
+        # [BLOCK 9 -> 15] Place each camera's features on the graph node it
+        # watches. Nodes without a camera get the learned placeholder.
         x = scatter_camera_features(features, camera_index, a_hat.shape[0], self.placeholder)
         if self.flood_embedding is not None:
             if self.flood_level.shape[0] != a_hat.shape[0]:
@@ -120,8 +187,17 @@ class TrafficRiskModel(nn.Module):
                 raise ValueError(
                     f"this model needs batch['context'] of shape [B, T, N, C] matching {tuple(x.shape[:3])}"
                 )
+            # [BLOCKS 11 + 12 -> 15] Weather, flood, incidents and clock for
+            # EVERY node, not just camera nodes. This is what makes the risk
+            # score multimodal across the whole graph.
             x = x + self.context_encoder(context.to(x.dtype)).to(x.dtype)
+
+        # [BLOCK 15] RADR STGNN: spatial GCN then temporal GRU -> one
+        # embedding per junction.
         nodes = self.stgnn(x, a_hat)
+
+        # [BLOCK 16] MLP Decoder: junction embeddings -> one risk logit per
+        # road segment. sigmoid() turns this into block 17's score.
         return self.decoder(nodes, edge_index, self.edge_features)
 
 
@@ -143,6 +219,9 @@ def camera_edge_targets(
     edge_index: torch.Tensor,
     edge_ids: torch.Tensor,
 ) -> torch.Tensor:
+    # [BLOCK 14 -> 17] Labels are observed AT CAMERAS (nodes) but predicted per
+    # ROAD (edge), so an edge's target is the mean of its two endpoints'
+    # labels. Unlabelled endpoints are nan and get masked out of the loss.
     known = target != IGNORE_INDEX
     values = CLASS_RISK.to(target.device)[target.clamp(min=0)]
     values = torch.where(known, values, torch.full_like(values, float("nan")))
@@ -172,6 +251,9 @@ def edge_risk_loss(
     targets: torch.Tensor,
     class_weights: Optional[torch.Tensor] = None,
 ) -> Tuple[torch.Tensor, int]:
+    # [BLOCK 17 vs BLOCK 14] THE TRAINING LOSS -- the dashed arrow on the
+    # diagram. Only edges at a camera can be scored, because only they have a
+    # ground-truth label; the rest of the city is learned by propagation.
     at_camera_edges = logits[:, edge_ids]
     mask = ~torch.isnan(targets)
     count = int(mask.sum())

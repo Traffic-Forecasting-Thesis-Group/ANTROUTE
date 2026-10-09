@@ -1,8 +1,31 @@
-"""Collect X posts that align exactly with the CCTV observation windows.
+"""
+===============================================================================
+ARCHITECTURE BLOCK 1: Unstructured Data (X / Twitter)
+===============================================================================
+Diagram path:   [UNSTRUCTURED DATA (X)]  ->  Textual Pre-cleaning (block 2)
 
-The advanced-search endpoint returns at most 20 posts and its provider advises
-against cursor pagination. Each observation window is therefore split into
-small, non-overlapping time slices and saved as one auditable JSON dataset.
+WHAT IT DOES
+    Collect X posts that align exactly with the CCTV observation windows.
+
+    The advanced-search endpoint returns at most 20 posts and its provider
+    advises against cursor pagination. Each observation window is therefore
+    split into small, non-overlapping time slices and saved as one auditable
+    JSON dataset.
+
+    The search query is assembled from three keyword groups, so a post must
+    look like a traffic event AND name a Metro Manila place:
+        TRAFFIC_KEYWORDS        conditions + incidents (trapik, banggaan, baha)
+        LOCATION_ANCHORS        EDSA, Roxas Blvd, Makati, ...
+        AUTHORITY_AND_META_TERMS  MMDA / #TrafficUpdate style accounts
+
+INPUT   <- twitterapi.io advanced search, keyed by TWITTER_API_KEY in .env
+OUTPUT  -> data/raw/twitter/<date>/*.json, read by TextCleaner (block 2)
+
+KEY NAMES
+    build_query()           assembles the three keyword groups
+    retrieve_twitter_data() one observation window, sliced and saved
+    collect_full_month()    the bulk collection entry point
+===============================================================================
 """
 
 import json

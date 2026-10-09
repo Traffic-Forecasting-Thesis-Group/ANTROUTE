@@ -1,3 +1,55 @@
+"""
+===============================================================================
+ARCHITECTURE BLOCKS 12 & 13: Spatial Data (OSMnx, Project NOAH)
+                              -> Geocoding & Topology
+===============================================================================
+Diagram path:   [SPATIAL DATA (OSMnx, Project NOAH)]
+                  -> [GEOCODING & TOPOLOGY]
+                  -> RADR STGNN (block 15)  and  Dynamic Weight Engine (18)
+
+WHAT IT DOES
+    Builds the road network every other part of the system stands on: the
+    59,521-node Metro Manila graph, its travel times, and its flood risk.
+
+    Block 12  Two data sources:
+              OSMnx         -> the drivable road graph for Metro Manila
+                               (data/raw/spatial/metro_manila_road_graph.graphml)
+              Project NOAH  -> 5-year flood hazard polygons, downloaded from
+                               the HF_REPO mirror and joined onto each node
+
+    Block 13  "Geocoding" = locate_key_intersections(): finds the specific
+              junctions the CCTV cameras watch (EDSA x Ortigas, EDSA x Shaw,
+              Roxas x Kalaw ...) by matching OSM street names against the
+              alias lists, and marks them is_cctv_node. This is what ties a
+              camera to a graph node.
+              "Topology" = the matrices the model and router consume:
+              adjacency, free-flow travel time, speed, and lane counts.
+
+    Road length and free-flow speed come from here, which is what makes
+    W = distance * (1 + lambda * Risk) computable later (block 18).
+
+WATCH OUT
+    is_cctv_node in full_network_static_features.csv is the SOURCE OF TRUTH for
+    camera siting; key_intersections_node_order.csv is derived from it. If a
+    camera is re-sited, the k-hop training subgraph changes shape and
+    risk_edges.csv must be regenerated before its numbers mean anything.
+
+INPUT   <- OpenStreetMap via OSMnx; Project NOAH flood shapefiles
+OUTPUT  -> data/processed/spatial/: metro_manila_adjacency.npz,
+           metro_manila_travel_time.npz, metro_manila_speed_kph.npz,
+           metro_manila_lanes.npz, full_network_static_features.csv,
+           full_network_edge_features.csv, key_intersections_*.{csv,npz}
+
+KEY NAMES
+    load_or_build_graph()       block 12, the OSMnx road graph
+    fetch_flood_hazard()        block 12, Project NOAH hazard polygons
+    locate_key_intersections()  block 13, geocoding cameras onto nodes
+    build_adjacency()           block 13, the graph topology matrix
+    build_travel_time_matrix()  block 13, free-flow seconds per edge
+    run()                       end-to-end entry point
+===============================================================================
+"""
+
 from __future__ import annotations
 import argparse
 import glob
@@ -67,6 +119,8 @@ def load_or_build_graph(graph_path: Path) -> nx.MultiDiGraph:
     return ox.graph_from_place(PLACE, network_type="drive", simplify=True)
 
 
+# [BLOCK 13] "Geocoding": match OSM street names to find the junctions the CCTV
+# cameras actually watch, and bind each camera to one graph node.
 def locate_key_intersections(G: nx.MultiDiGraph) -> dict[str, int]:
     node_streets: dict[int, set[str]] = {}
     for u, v, data in G.edges(data=True):
@@ -213,6 +267,8 @@ def build_edge_features_table(G: nx.MultiDiGraph, node_order) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+# [BLOCK 13] "Topology": the adjacency matrix. This is the graph structure the
+# STGNN's GCN layers propagate over (block 15) and the router walks (block 19).
 def build_adjacency(G: nx.MultiDiGraph):
     G_simple = nx.DiGraph(G)
     node_order = list(G_simple.nodes())
@@ -223,6 +279,7 @@ def build_adjacency(G: nx.MultiDiGraph):
     return (adj_matrix, node_order)
 
 
+# [BLOCK 12] Project NOAH half of the spatial input: 5-year flood hazard.
 def fetch_flood_hazard(
     spatial_raw_dir: Path, hazard_folder: str = "Flood/5yr", name_hints=("manila", "ncr", "metro")
 ) -> gpd.GeoDataFrame:

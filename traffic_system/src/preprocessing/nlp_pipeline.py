@@ -1,3 +1,45 @@
+"""
+===============================================================================
+ARCHITECTURE BLOCKS 3, 4 & 5: MarianMT -> Tokenizer -> DistilBERT
+===============================================================================
+Diagram path:   Textual Pre-cleaning (block 2)
+                  -> [MarianMT]    Tagalog-English translation
+                  -> [TOKENIZER]
+                  -> [DISTILBERT]  text embedding
+                  -> CNN + LSTM (block 9)
+
+NOTE FOR READERS
+    The diagram draws these as three separate boxes. In code they are three
+    stages of one class, BatchNLPPipeline, because they always run together on
+    the same batch and share a device. Follow process_batch() top to bottom and
+    you are walking those three boxes in order.
+
+WHAT IT DOES
+    Turns a cleaned tweet into one 768-dimensional vector that represents its
+    meaning, which is the only form the neural network can consume.
+
+      Block 3  MarianMT (Helsinki-NLP/opus-mt-tl-en) translates Tagalog to
+               English. It is Tagalog->English ONLY, so the pipeline first
+               detects language and skips text already in English -- feeding
+               English in produces garbled output (see _is_english).
+      Block 4  The DistilBERT tokenizer splits text into sub-word tokens and
+               pads/truncates the batch to a uniform 512 tokens.
+      Block 5  DistilBERT (distilbert-base-uncased) encodes those tokens, and
+               masked mean pooling collapses them into ONE 768-d vector per
+               post. Masking matters: without it, padding would drag every
+               short tweet's embedding toward the same value.
+
+INPUT   <- cleaned_text from TextCleaner (block 2)
+OUTPUT  -> 768-d embedding per post. Collected into
+           data/processed/embeddings.pt, which CNNLSTMFusion (block 9) reads
+           as its text branch.
+
+KEY NAMES
+    _is_english()    guards MarianMT against English input
+    process_batch()  blocks 3 -> 4 -> 5 in one pass; numbered steps inside
+===============================================================================
+"""
+
 import torch
 from transformers import MarianMTModel, MarianTokenizer, DistilBertModel, DistilBertTokenizer
 from langdetect import detect, LangDetectException, DetectorFactory
@@ -14,12 +56,12 @@ class BatchNLPPipeline:
         else:
             self.device = device
 
-        # MarianMT Tagalog to English Translation
+        # [BLOCK 3] MarianMT Tagalog to English Translation
         mt_model_name = "Helsinki-NLP/opus-mt-tl-en"
         self.mt_tokenizer = MarianTokenizer.from_pretrained(mt_model_name)
         self.mt_model = MarianMTModel.from_pretrained(mt_model_name).to(self.device).eval()
 
-        # DistilBERT Text Embedding
+        # [BLOCKS 4 & 5] DistilBERT tokenizer + text embedding model
         bert_model_name = "distilbert-base-uncased"
         self.bert_tokenizer = DistilBertTokenizer.from_pretrained(bert_model_name)
         self.bert_model = DistilBertModel.from_pretrained(bert_model_name).to(self.device).eval()
@@ -64,7 +106,7 @@ class BatchNLPPipeline:
         if translate_idx:
             texts_to_translate = [batch_texts[i] for i in translate_idx]
 
-            # 1. Translation Step (only for the non-English subset)
+            # 1. [BLOCK 3] Translation Step (only for the non-English subset)
             # Max length padding for Tweets/News up to 512 tokens
             mt_tokens = self.mt_tokenizer(
                 texts_to_translate,
@@ -83,7 +125,8 @@ class BatchNLPPipeline:
             for i, translated in zip(translate_idx, translated_subset):
                 translated_texts[i] = translated
 
-        # 2. Embedding Step (runs on all items: translated non-English + pass-through English)
+        # 2. [BLOCK 4] Tokenizer Step: sub-word tokens, padded/truncated to 512.
+        # Runs on all items: translated non-English + pass-through English.
         bert_tokens = self.bert_tokenizer(
             translated_texts,
             return_tensors="pt",
@@ -95,7 +138,9 @@ class BatchNLPPipeline:
         with torch.inference_mode():
             outputs = self.bert_model(**bert_tokens)
 
-        # Masked mean pooling prevents padding tokens from affecting embeddings.
+        # 3. [BLOCK 5] DistilBERT text embedding. Masked mean pooling collapses
+        # the per-token outputs into one 768-d vector; the mask stops padding
+        # from pulling every short tweet toward the same embedding.
         attention_mask = bert_tokens["attention_mask"].unsqueeze(-1)
         summed = (outputs.last_hidden_state * attention_mask).sum(dim=1)
         embeddings = summed / attention_mask.sum(dim=1).clamp(min=1)

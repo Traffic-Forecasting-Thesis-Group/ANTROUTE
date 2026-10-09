@@ -1,3 +1,37 @@
+"""
+===============================================================================
+PRODUCES ARCHITECTURE BLOCK 17: Congestion Risk Score
+===============================================================================
+Diagram path:   trained model (blocks 9 -> 15 -> 16)
+                  -> [CONGESTION RISK SCORE]  <-- this script writes it
+                  -> Dynamic Weight Engine (block 18)
+
+WHAT IT DOES
+    Loads a trained checkpoint, runs the full model over every recorded
+    30-minute window, and writes one risk value per road segment per window to
+
+        data/processed/risk_scores/risk_edges.csv
+
+    This CSV is the handoff artefact between the two halves of the thesis:
+    everything upstream trains the model, everything downstream (routing, the
+    API, the app) reads only this file. It is ~120 MB and NOT in git, so it
+    must be copied by hand after a scoring run.
+
+    Also writes risk_summary.json (which checkpoint, how many windows and
+    edges, per-split MAE) -- this is what GET /health/model reports.
+
+MAE HYGIENE
+    mae_reliable / MIN_LABELLED_FOR_MAE guard against quoting a split's MAE
+    when too few labelled edges back it. The `infer` split in particular
+    (sessions with under 100 labels) is never a held-out result -- do not
+    report its number.
+
+RUN IT AFTER ANY CAMERA RE-SITING
+    Moving a camera changes the k-hop subgraph's shape, which invalidates
+    every score in the existing risk_edges.csv.
+===============================================================================
+"""
+
 import argparse
 import csv
 import json

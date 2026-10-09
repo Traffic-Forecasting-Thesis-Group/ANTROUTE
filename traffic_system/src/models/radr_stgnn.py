@@ -1,3 +1,55 @@
+"""
+===============================================================================
+ARCHITECTURE BLOCK 15: RADR STGNN
+                       (Spatial GCN + Temporal GRU Modeling)
+===============================================================================
+Diagram path:   CNN + LSTM          (block 9)  ---+
+                Sequence Norm       (block 11) ---+--> [RADR STGNN]
+                Geocoding & Topology(block 13) ---+          |
+                                                             v
+                                                  MLP Decoder (block 16)
+
+WHAT "SPATIO-TEMPORAL" ACTUALLY MEANS HERE
+    Two stacked ideas, and forward() below is literally these two steps:
+
+      SPATIAL (GCN)   For each timestep independently, a Graph Convolutional
+                      Network passes information between CONNECTED ROADS.
+                      This is what lets congestion spread: a jam at EDSA x
+                      Shaw raises the predicted risk of its neighbours even
+                      though no camera watches them. Without it, the 8-9
+                      camera junctions would be the only roads we could say
+                      anything about.
+
+      TEMPORAL (GRU)  The sequence of per-timestep spatial embeddings is then
+                      read by a GRU, so the model sees how the whole network's
+                      state is EVOLVING -- building vs clearing -- rather than
+                      judging each timestep alone.
+
+    Order matters: GCN first (space), then GRU over the result (time). See
+    RADRSTGNN.forward(): loop the GCN over timesteps, stack, then run the GRU
+    and keep its final hidden state.
+
+WHY THE ADJACENCY IS NORMALISED
+    normalize_adjacency() builds A_hat = D^-1/2 (A + I) D^-1/2. Adding I keeps
+    a road's own features (self-loop); the D^-1/2 scaling stops high-degree
+    junctions from dominating purely because they have more neighbours.
+
+INPUT   <- x: [B, T, N, F] per-node features. Camera nodes carry CNN+LSTM
+           output (block 9); every node also carries 17 context features
+           (weather / flood / events / temporal / spatial) from
+           src/data/node_context.py.
+           a_hat: normalised adjacency from block 13.
+OUTPUT  -> [B, N, gru_hidden] one embedding per road junction, handed to the
+           MLP Decoder (block 16)
+
+KEY NAMES
+    normalize_adjacency()  A_hat, the symmetric normalisation
+    GCNLayer / GCNEncoder  the SPATIAL half
+    GRUTemporalLayer       the TEMPORAL half
+    RADRSTGNN.forward()    the two halves in order
+===============================================================================
+"""
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -13,6 +65,8 @@ def load_adjacency_npz(path: Path) -> sp.csr_matrix:
     return sp.load_npz(path).tocsr()
 
 
+# [BLOCK 15] A_hat = D^-1/2 (A + I) D^-1/2. The +I keeps each road's own
+# features; the D^-1/2 scaling stops busy junctions dominating by degree alone.
 def normalize_adjacency(adj: sp.csr_matrix) -> torch.Tensor:
     n = adj.shape[0]
     adj = adj.astype(bool).astype(np.float32)
@@ -99,11 +153,18 @@ class RADRSTGNN(nn.Module):
         self.output_dim = gru_hidden
 
     def forward(self, x: torch.Tensor, a_hat: torch.Tensor) -> torch.Tensor:
+        # [BLOCK 15] The whole spatio-temporal idea, in seven lines.
         b, t, n, f = x.shape
+
+        # 1. SPATIAL: run the GCN at each timestep separately, so congestion
+        #    propagates between connected roads within that snapshot.
         spatial_embeddings = []
         for step in range(t):
             spatial_embeddings.append(self.gcn(x[:, step], a_hat))
         spatial_seq = torch.stack(spatial_embeddings, dim=1)
 
+        # 2. TEMPORAL: read that sequence of network snapshots over time.
+        #    Only the final hidden state is kept -- the network's state at the
+        #    end of the window, which is what we predict risk from.
         _, final_state = self.gru(spatial_seq)
         return final_state
