@@ -145,6 +145,14 @@ def test_per_trial_eta_metrics_leave_r2_undefined_for_one_observation():
     assert np.isfinite(trial_eta_metrics([100.0, 200.0, 300.0], [110.0, 190.0, 310.0])["r_squared"])
 
 
+def test_per_trial_r2_is_undefined_for_two_legs():
+    # Two points always fit a line exactly; R^2 over them swings to -50 or -140 on a small
+    # miss and says nothing about the model. The 3-stop multi-destination trips have 2 legs.
+    two = trial_eta_metrics([1000.0, 1010.0], [500.0, 900.0])
+    assert math.isnan(two["r_squared"])
+    assert two["mae"] == pytest.approx(305.0)
+
+
 def test_waypoints_are_inner_nodes_spaced_along_the_route():
     wg = weighted_risky_direct()
     assert pick_waypoints(wg, DETOUR, 1) == [101]     # 300 m mark: 101 (200 m) and 102 (400 m) tie, first wins

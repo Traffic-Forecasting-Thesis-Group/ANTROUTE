@@ -91,19 +91,27 @@ def compute_scenario_metrics(c_optimal, c_predicted, actual_eta, predicted_eta) 
     )
 
 
+# Fewest legs a single trial needs for its own R^2. Over two points SS_TOT is one squared
+# gap, so a small miss sends R^2 to -50 or -140 (the 3-stop multi-destination trials did
+# exactly that) and the value says nothing about the model. R^2 is reported pooled over a
+# scenario's legs instead (compute_scenario_metrics), where it is well defined.
+MIN_R2_OBSERVATIONS = 3
+
+
 def trial_eta_metrics(actual_eta, predicted_eta) -> Dict[str, float]:
     """
-    ETA metrics for one trial (Appendix 2's per-trial rows). A single-leg trip has one
-    observation, so R^2 is NaN for it; a multi-destination trip is scored over its legs.
+    ETA metrics for one trial (Appendix 2's per-trial rows), over its legs. R^2 is NaN for a
+    trial with fewer than MIN_R2_OBSERVATIONS legs; single-leg MAE/RMSE are then both |error|.
     """
     actual = np.atleast_1d(np.asarray(actual_eta, dtype=np.float64))
     predicted = np.atleast_1d(np.asarray(predicted_eta, dtype=np.float64))
+    enough = actual.size >= MIN_R2_OBSERVATIONS
     return {
         "mae": _or_nan(mae, actual, predicted),
         "rmse": _or_nan(rmse, actual, predicted),
         "mse": _or_nan(mse, actual, predicted),
         "mape": _or_nan(mape, actual, predicted),
-        "r_squared": _or_nan(r_squared, actual, predicted),
+        "r_squared": _or_nan(r_squared, actual, predicted) if enough else float("nan"),
     }
 
 
