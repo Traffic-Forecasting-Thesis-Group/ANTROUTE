@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import {
   Home,
-  Newspaper,
+  ChartColumn,
   User,
 } from 'lucide-react-native';
 
@@ -13,7 +13,7 @@ import LandingScreen from '../screens/LandingScreen';
 import SignInScreen from '../screens/SignInScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import HomeScreen from '../screens/HomeScreen';
-import FeedScreen from '../screens/FeedScreen';
+import EvaluationScreen from '../screens/EvaluationScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import PasswordScreen from '../screens/PasswordScreen';
 import EditProfileScreen from '../screens/EditProfileScreen';
@@ -47,11 +47,11 @@ function MainTabNavigator() {
       />
 
       <Tab.Screen
-        name="Feed"
-        component={FeedScreen}
+        name="Evaluation"
+        component={EvaluationScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <Newspaper color={color} size={24} />
+            <ChartColumn color={color} size={24} />
           ),
         }}
       />
