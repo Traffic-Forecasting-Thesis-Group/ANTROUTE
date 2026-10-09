@@ -15,6 +15,8 @@ import {
   Alert,
   Animated,
   PanResponder,
+  LayoutAnimation,
+  UIManager,
 } from 'react-native';
 
 import MapView, { PROVIDER_GOOGLE, Marker, Polyline } from 'react-native-maps';
@@ -33,9 +35,29 @@ import {
   Plus,
   MapPin,
   Clock,
+  ArrowUp,
+  ArrowUpLeft,
+  ArrowUpRight,
+  CornerUpLeft,
+  CornerUpRight,
+  RotateCcw,
+  Flag,
 } from 'lucide-react-native';
 
 import * as Location from 'expo-location';
+import {
+  Maneuver,
+  ManeuverKind,
+  RouteProgress,
+  cumulativeM,
+  bearingDeg,
+  distanceM,
+  formatDistance,
+  maneuverText,
+  nextManeuver,
+  progressOnRoute,
+  remainingPath,
+} from '../navigation/guidance';
 import DateTimePicker, { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 
 import {
@@ -170,6 +192,34 @@ function getStatusBarStyle(bgHex: string): 'dark-content' | 'light-content' {
   return luminance > 0.5 ? 'dark-content' : 'light-content';
 }
 
+if (Platform.OS === 'android') UIManager.setLayoutAnimationEnabledExperimental?.(true);
+
+// Navigation: within this distance of a stop counts as reaching it; this far from the route
+// for OFF_ROUTE_FIXES fixes in a row (each accurate to within OFF_ROUTE_M) triggers a reroute.
+const ARRIVAL_RADIUS_M = 35;
+const OFF_ROUTE_M = 50;
+const OFF_ROUTE_FIXES = 3;
+
+function ManeuverIcon({ kind }: { kind: ManeuverKind }) {
+  const props = { size: 30, color: '#fff' };
+  switch (kind) {
+    case 'left':
+      return <CornerUpLeft {...props} />;
+    case 'right':
+      return <CornerUpRight {...props} />;
+    case 'slight-left':
+      return <ArrowUpLeft {...props} />;
+    case 'slight-right':
+      return <ArrowUpRight {...props} />;
+    case 'u-turn':
+      return <RotateCcw {...props} />;
+    case 'arrive':
+      return <Flag {...props} />;
+    default:
+      return <ArrowUp {...props} />;
+  }
+}
+
 export default function HomeScreen({ navigation }: any) {
   const mapRef = useRef<MapView | null>(null);
   const insets = useSafeAreaInsets();
@@ -210,6 +260,15 @@ export default function HomeScreen({ navigation }: any) {
   const [isNavigating, setIsNavigating] = useState(false);
   const [isAddingStop, setIsAddingStop] = useState(false);
   const [stopsRevealedDuringNav, setStopsRevealedDuringNav] = useState(false);
+
+  // Live guidance while navigating: where the driver is along the chosen route, the next
+  // turn, which stop is next, and whether they have arrived or are being rerouted.
+  const [navProgress, setNavProgress] = useState<RouteProgress | null>(null);
+  const [navManeuver, setNavManeuver] = useState<Maneuver | null>(null);
+  const [navStopIndex, setNavStopIndex] = useState(0);
+  const [navArrived, setNavArrived] = useState(false);
+  const [isRerouting, setIsRerouting] = useState(false);
+  const watchRef = useRef<Location.LocationSubscription | null>(null);
 
   const [activeField, setActiveField] = useState<ActiveField>(null);
   const [suggestions, setSuggestions] = useState<PlaceSuggestion[]>([]);
@@ -390,6 +449,24 @@ export default function HomeScreen({ navigation }: any) {
         snapSheet(nearest);
       },
       onPanResponderTerminate: () => snapSheet(sheetRestRef.current),
+    })
+  ).current;
+
+  // The navigation panel's drag bar: up shows the stops and "Add Destination" above the trip
+  // summary, down (or a tap when open) hides them again. Created once, so it reaches the
+  // current handlers through a ref.
+  const navPanelRef = useRef({ open: false, expand: () => {}, collapse: () => {} });
+  const navPanResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder: (_, g) => Math.abs(g.dy) > 4,
+      onPanResponderRelease: (_, g) => {
+        const panel = navPanelRef.current;
+        const tap = Math.abs(g.dy) < 8 && Math.abs(g.vy) < 0.3;
+        const up = g.dy < 0 || g.vy < -0.3;
+        if (tap ? !panel.open : up) panel.expand();
+        else panel.collapse();
+      },
     })
   ).current;
 
@@ -582,7 +659,79 @@ export default function HomeScreen({ navigation }: any) {
     handleFindRoutes(nonEmptyDestinations, origin, originCoords);
   };
 
-  const handleStartNavigation = () => {
+  const stopWatchingPosition = () => {
+    watchRef.current?.remove();
+    watchRef.current = null;
+  };
+
+  // One GPS fix while navigating. Reads the route, stops and stop index through refs: the
+  // location callback outlives the render it was created in.
+  const offRouteCountRef = useRef(0);
+  const reroutingRef = useRef(false);
+  const onNavigationFix = async (pos: Location.LocationObject) => {
+    const here: Coordinates = { latitude: pos.coords.latitude, longitude: pos.coords.longitude };
+    gpsRef.current = here;
+    const path = navRouteRef.current?.path ?? [];
+    if (path.length < 2) return;
+    if (navCumRef.current.path !== path) navCumRef.current = { path, cum: cumulativeM(path) };
+    const cum = navCumRef.current.cum;
+
+    const progress = progressOnRoute(path, cum, here);
+    setNavProgress(progress);
+    setNavManeuver(nextManeuver(path, cum, progress));
+
+    // Follow the driver, pointing the map where they are heading: the GPS heading when
+    // they are moving, else the direction of the road they are on.
+    const moving = (pos.coords.speed ?? 0) > 1 && (pos.coords.heading ?? -1) >= 0;
+    const heading = moving
+      ? (pos.coords.heading as number)
+      : bearingDeg(path[progress.segment], path[Math.min(progress.segment + 1, path.length - 1)]);
+    mapRef.current?.animateCamera({ center: here, heading, pitch: 45, zoom: 17 }, { duration: 900 });
+
+    // Reaching a stop: the next stop becomes the target, and the last one ends the trip.
+    const stops = navStopsRef.current;
+    const target = stops[navStopIndexRef.current];
+    if (target?.coords && distanceM(here, target.coords) <= ARRIVAL_RADIUS_M) {
+      if (navStopIndexRef.current >= stops.length - 1) {
+        setNavArrived(true);
+        stopWatchingPosition();
+        return;
+      }
+      navStopIndexRef.current += 1;
+      setNavStopIndex(navStopIndexRef.current);
+    }
+
+    // Off the route for several fixes in a row (one bad fix is GPS noise, not a wrong turn):
+    // plan again from here to the stops still ahead.
+    const accurate = (pos.coords.accuracy ?? 0) <= OFF_ROUTE_M;
+    offRouteCountRef.current = accurate && progress.offRouteM > OFF_ROUTE_M ? offRouteCountRef.current + 1 : 0;
+    if (offRouteCountRef.current >= OFF_ROUTE_FIXES && !reroutingRef.current) {
+      reroutingRef.current = true;
+      offRouteCountRef.current = 0;
+      setIsRerouting(true);
+      const ahead = stops.slice(navStopIndexRef.current);
+      setOrigin('Current location');
+      setOriginCoords(here);
+      setDestinations(ahead);
+      navStopIndexRef.current = 0;
+      setNavStopIndex(0);
+      try {
+        await findRoutesRef.current(ahead, 'Current location', here);
+      } finally {
+        reroutingRef.current = false;
+        setIsRerouting(false);
+      }
+    }
+  };
+
+  const handleStartNavigation = async () => {
+    const { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      Alert.alert('Location permission needed', 'Allow location access so the app can guide you along the route.');
+      return;
+    }
+    setHasLocationPermission(true);
+
     // Starting means leaving now: arrival times and any re-plan (adding a stop) should
     // count from now, not from the departure the routes were planned for.
     setDepartAt(null);
@@ -591,9 +740,32 @@ export default function HomeScreen({ navigation }: any) {
     setIsAddingStop(false);
     Keyboard.dismiss();
     setSuggestions([]);
+    setNavArrived(false);
+    setNavProgress(null);
+    setNavManeuver(null);
+    navStopIndexRef.current = 0;
+    setNavStopIndex(0);
+    offRouteCountRef.current = 0;
+
+    stopWatchingPosition();
+    try {
+      watchRef.current = await Location.watchPositionAsync(
+        { accuracy: Location.Accuracy.BestForNavigation, timeInterval: 1000, distanceInterval: 3 },
+        (pos) => {
+          onNavigationFixRef.current(pos);
+        }
+      );
+    } catch {
+      Alert.alert('Could not get your location', 'Please check that location services are on and try again.');
+    }
   };
 
   const handleEndNavigation = () => {
+    stopWatchingPosition();
+    setNavProgress(null);
+    setNavManeuver(null);
+    setNavArrived(false);
+    setIsRerouting(false);
     setIsNavigating(false);
     setIsAddingStop(false);
     setStopsRevealedDuringNav(false);
@@ -621,10 +793,12 @@ export default function HomeScreen({ navigation }: any) {
   };
 
   const handleExpandNavStops = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setStopsRevealedDuringNav(true);
   };
 
   const handleCollapseNavStops = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     if (isAddingStop) {
       setDestinations((prev) => prev.slice(0, -1));
       setIsAddingStop(false);
@@ -632,6 +806,12 @@ export default function HomeScreen({ navigation }: any) {
     setStopsRevealedDuringNav(false);
     setActiveField(null);
     setSuggestions([]);
+  };
+
+  navPanelRef.current = {
+    open: stopsRevealedDuringNav,
+    expand: handleExpandNavStops,
+    collapse: handleCollapseNavStops,
   };
 
   const renderSuggestions = (field: ActiveField) => {
@@ -718,8 +898,41 @@ export default function HomeScreen({ navigation }: any) {
 
   const ANT_COLOR = '#3B6BE6';
   const BASELINE_COLOR = '#F7C441';
+  const TRAVELLED_ALPHA = '80'; // hex alpha appended to the route colour: 50% for the part already driven
+
+  // The location callback is created once per navigation, so it reads the current route,
+  // stops and handlers through these refs rather than through a stale render's values.
+  const navRouteRef = useRef<RouteOption | undefined>(undefined);
+  navRouteRef.current = selectedRoute;
+  const navCumRef = useRef<{ path: Coordinates[] | null; cum: number[] }>({ path: null, cum: [] });
+  const navStopsRef = useRef<DestinationEntry[]>([]);
+  navStopsRef.current = destinations.filter((d) => d.coords);
+  const navStopIndexRef = useRef(0);
+  const findRoutesRef = useRef(handleFindRoutes);
+  findRoutesRef.current = handleFindRoutes;
+  const onNavigationFixRef = useRef(onNavigationFix);
+  onNavigationFixRef.current = onNavigationFix;
+
+  // Stop following the GPS when the screen goes away mid-trip.
+  useEffect(() => stopWatchingPosition, []);
+
+  // What is left of the trip, for the summary bar: the route's own time scaled by the share
+  // of its distance still ahead.
+  const navRemainingMin =
+    isNavigating && navProgress && selectedRoute && navProgress.totalM > 0
+      ? Math.max(
+          navArrived ? 0 : 1,
+          Math.round((selectedRoute.duration_min * navProgress.remainingM) / navProgress.totalM)
+        )
+      : selectedRoute?.duration_min ?? 0;
+  const navRemainingKm =
+    isNavigating && navProgress ? Math.round(navProgress.remainingM / 100) / 10 : selectedRoute?.distance_km ?? 0;
+  const navTargetName =
+    navStopsRef.current[navStopIndex]?.name ?? destinations[destinations.length - 1]?.name ?? '';
 
   useEffect(() => {
+    // While navigating the camera follows the driver instead (onNavigationFix).
+    if (isNavigating) return;
     const path =
       activeTab === 'comparison' && !isNavigating
         ? [...(antTop?.path ?? []), ...(baselineTop?.path ?? [])]
@@ -821,17 +1034,82 @@ export default function HomeScreen({ navigation }: any) {
             ) : null}
           </>
         ) : selectedRoute?.path?.length ? (
-          <Polyline
-            coordinates={selectedRoute.path}
-            strokeColor={selectedModelTab === 'baseline' ? BASELINE_COLOR : ANT_COLOR}
-            strokeWidth={6}
-            lineJoin="round"
-            lineCap="round"
-          />
+          <>
+            {/* The whole route as one steady line: its points only change when the route does
+                (keyed so a reroute redraws it), never on a GPS fix. Once navigation has a fix
+                it turns half-transparent, which is how the part already driven shows. */}
+            <Polyline
+              key={`route-${selectedModelTab}-${selectedIndex}-${selectedRoute.path.length}-${selectedRoute.duration_min}`}
+              coordinates={selectedRoute.path}
+              strokeColor={
+                (selectedModelTab === 'baseline' ? BASELINE_COLOR : ANT_COLOR) +
+                (isNavigating && navProgress ? TRAVELLED_ALPHA : '')
+              }
+              strokeWidth={isNavigating ? 8 : 6}
+              lineJoin="round"
+              lineCap="round"
+              zIndex={1}
+            />
+            {/* While navigating, the part still ahead in the solid colour on top of it. */}
+            {isNavigating && navProgress ? (
+              <Polyline
+                coordinates={remainingPath(selectedRoute.path, navProgress)}
+                strokeColor={selectedModelTab === 'baseline' ? BASELINE_COLOR : ANT_COLOR}
+                strokeWidth={8}
+                lineJoin="round"
+                lineCap="round"
+                zIndex={2}
+              />
+            ) : null}
+          </>
         ) : null}
       </MapView>
 
+      {/* Turn-by-turn banner while navigating, where the legend and locate button sit
+          otherwise (the camera already follows the driver). */}
+      {isNavigating && (
+        <View style={[styles.navBanner, { top: insets.top + 8 }]}>
+          <View style={styles.navBannerIcon}>
+            {navArrived ? (
+              <Flag size={28} color="#fff" />
+            ) : isRerouting ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <ManeuverIcon kind={navManeuver?.kind ?? 'straight'} />
+            )}
+          </View>
+          <View style={styles.navBannerText}>
+            {navArrived ? (
+              <>
+                <Text style={styles.navBannerDistance}>You have arrived</Text>
+                <Text style={styles.navBannerInstruction} numberOfLines={1}>{navTargetName}</Text>
+              </>
+            ) : isRerouting ? (
+              <>
+                <Text style={styles.navBannerDistance}>Rerouting…</Text>
+                <Text style={styles.navBannerInstruction}>You left the route. Finding a new one.</Text>
+              </>
+            ) : navManeuver ? (
+              <>
+                <Text style={styles.navBannerDistance}>{formatDistance(navManeuver.distanceM)}</Text>
+                <Text style={styles.navBannerInstruction} numberOfLines={2}>
+                  {navManeuver.kind === 'arrive' && navTargetName
+                    ? `Arrive at ${navTargetName}`
+                    : maneuverText(navManeuver.kind)}
+                </Text>
+              </>
+            ) : (
+              <>
+                <Text style={styles.navBannerDistance}>Starting navigation</Text>
+                <Text style={styles.navBannerInstruction}>Waiting for your location…</Text>
+              </>
+            )}
+          </View>
+        </View>
+      )}
+
       {/* Legends / locate button: sit above the map but BEHIND the scrollable panel */}
+      {!isNavigating && (
       <View style={styles.legendCard}>
         <View style={styles.legendItem}>
           <View style={[styles.dot, { backgroundColor: '#ef4444' }]} />
@@ -846,7 +1124,9 @@ export default function HomeScreen({ navigation }: any) {
           <Text style={styles.legendText}>Clear</Text>
         </View>
       </View>
+      )}
 
+      {!isNavigating && (
       <TouchableOpacity
         style={[styles.myLocationButton, { top: insets.top + MAP_BUTTON_TOP }]}
         onPress={centerOnMyLocation}
@@ -859,6 +1139,7 @@ export default function HomeScreen({ navigation }: any) {
           <Navigation size={20} color="#374151" />
         )}
       </TouchableOpacity>
+      )}
 
       {!isNavigating && activeTab === 'comparison' && hasAnyResults && (
         <View style={styles.routeLegendCard}>
@@ -904,7 +1185,16 @@ export default function HomeScreen({ navigation }: any) {
             ) : (
               <>
               {/* Drag handle: outside the ScrollView so it stays put and owns the gesture */}
-              {!isNavigating && (
+              {isNavigating ? (
+                <View
+                  style={styles.navDragHandleZone}
+                  {...navPanResponder.panHandlers}
+                  accessibilityRole="adjustable"
+                  accessibilityLabel={stopsRevealedDuringNav ? 'Hide stops' : 'Show stops'}
+                >
+                  <View style={styles.dragHandle} />
+                </View>
+              ) : (
                 <View style={styles.dragHandleZone} {...sheetPanResponder.panHandlers}>
                   <View style={styles.dragHandle} />
                 </View>
@@ -912,7 +1202,9 @@ export default function HomeScreen({ navigation }: any) {
               <ScrollView
                 showsVerticalScrollIndicator={false}
                 style={isNavigating ? styles.routeBox : styles.routeBoxFill}
-                contentContainerStyle={styles.routeBoxContent}
+                contentContainerStyle={
+                  isNavigating ? styles.navBoxContent : styles.routeBoxContent
+                }
                 keyboardShouldPersistTaps="handled"
                 nestedScrollEnabled
                 bounces={false}
@@ -1142,7 +1434,7 @@ export default function HomeScreen({ navigation }: any) {
 
                 {!isNavigating && activeTab === 'comparison' ? null : selectedRoute && (
                   <TouchableOpacity
-                    style={styles.summaryBar}
+                    style={[styles.summaryBar, isNavigating && styles.summaryBarNavigating]}
                     activeOpacity={isNavigating && !stopsRevealedDuringNav ? 0.7 : 1}
                     onPress={() => {
                       if (isNavigating && !stopsRevealedDuringNav) handleExpandNavStops();
@@ -1160,11 +1452,11 @@ export default function HomeScreen({ navigation }: any) {
                       <CarFront size={20} color="#111827" />
                       <View style={styles.summaryTextWrap}>
                         <Text style={styles.summaryDuration}>
-                          <Text style={styles.summaryDurationNumber}>{selectedRoute.duration_min}</Text> min
+                          <Text style={styles.summaryDurationNumber}>{navRemainingMin}</Text> min
                         </Text>
                         <Text style={styles.summarySubtext}>
                           {departAt ? `Leave ${formatDeparture(departAt)} · ` : ''}
-                          Arrive By {getArrivalTime(selectedRoute.duration_min, departAt)} · {selectedRoute.distance_km} km
+                          Arrive By {getArrivalTime(navRemainingMin, departAt)} · {navRemainingKm} km
                         </Text>
                       </View>
                       {isNavigating ? (
@@ -1387,6 +1679,44 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#fff',
   },
+  navBanner: {
+    position: 'absolute',
+    left: 16,
+    right: 16,
+    zIndex: 40,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 14,
+    backgroundColor: '#1F3FA8',
+    borderRadius: 16,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    elevation: 30,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
+  },
+  navBannerIcon: {
+    width: 44,
+    height: 44,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  navBannerText: {
+    flex: 1,
+    minWidth: 0,
+  },
+  navBannerDistance: {
+    color: '#fff',
+    fontSize: 24,
+    fontWeight: '700',
+  },
+  navBannerInstruction: {
+    color: '#DCE5FF',
+    fontSize: 15,
+    marginTop: 2,
+  },
   legendCard: {
     position: 'absolute',
     top: StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 60,
@@ -1499,7 +1829,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 24,
     paddingTop: 16,
     paddingHorizontal: 20,
-    paddingBottom: 4,
+    paddingBottom: 0,
     elevation: 20,
     shadowColor: '#000',
     shadowOpacity: 0.1,
@@ -1546,6 +1876,15 @@ const styles = StyleSheet.create({
     marginHorizontal: -25,
     paddingTop: 12,
     paddingBottom: 15,
+  },
+  // Same bar as planning, sized for the navigation panel's padding (navigatingWrapper)
+  navDragHandleZone: {
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    marginTop: -12,
+    marginHorizontal: -20,
+    paddingTop: 4,
+    paddingBottom: 12,
   },
   dragHandle: {
     width: 40,
@@ -1775,6 +2114,12 @@ const styles = StyleSheet.create({
   loadingText: {
     fontSize: 12,
     color: '#6b7280',
+  },
+  navBoxContent: {
+    paddingBottom: 12,
+  },
+  summaryBarNavigating: {
+    marginBottom: 0,
   },
   summaryBar: {
     backgroundColor: '#f9fafb',
