@@ -110,7 +110,16 @@ from src.routing.event_layer import (  # noqa: E402
     parse_alerts,
 )
 from src.routing.eta_engine import DEFAULT_GAMMA, load_free_flow_seconds  # noqa: E402
-from src.routing.metrics import compute_metrics_by_scenario, route_optimality, trial_eta_metrics  # noqa: E402
+from src.routing.metrics import (  # noqa: E402
+    compute_metrics_by_scenario,
+    mae,
+    mape,
+    mse,
+    r_squared,
+    rmse,
+    route_optimality,
+    trial_eta_metrics,
+)
 from src.routing.route_trials import (  # noqa: E402
     ALTERNATIVE,
     ANTROUTE,
@@ -123,9 +132,17 @@ from src.routing.route_trials import (  # noqa: E402
     pick_waypoints,
     score_trip,
 )
-from src.routing.significance import HIGHER_IS_BETTER, compare_paired, relative_difference  # noqa: E402
+from src.routing.significance import (  # noqa: E402
+    HIGHER_IS_BETTER,
+    compare_paired,
+    holm,
+    paired_bootstrap,
+    relative_difference,
+)
+from src.routing.eta_calibration import cross_fitted_scale  # noqa: E402
 
 ETA_METRICS = ("mae", "rmse", "mse", "mape", "r_squared")
+POOLED_METRICS = {"mae": mae, "rmse": rmse, "mse": mse, "mape": mape, "r_squared": r_squared}
 TRIP_PREFIX = {RECOMMENDED: "R", ALTERNATIVE: "A", MULTI_DESTINATION: "M", INCIDENT_EXPOSED: "E"}
 LOCAL_TZ = "Asia/Manila"
 MAX_SNAP_KM = 2.0  # how far an incident landmark may sit from this subgraph and still count
@@ -861,7 +878,63 @@ def per_trip_comparison(trip_ids, scenario_of, by, labels) -> List[dict]:
     return rows
 
 
-def write_reports(a, graph, trials: List[dict]) -> dict:
+def legs_of(trials: Sequence[dict]) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """(actual, predicted, trip id) per leg, trials in the given order."""
+    actual = np.concatenate([np.atleast_1d(np.asarray(t["actual_eta"], float)) for t in trials])
+    predicted = np.concatenate([np.atleast_1d(np.asarray(t["predicted_eta"], float)) for t in trials])
+    groups = np.concatenate([[t["trip_id"]] * len(np.atleast_1d(t["actual_eta"])) for t in trials])
+    return actual, predicted, groups
+
+
+def calibrate_eta(trials: List[dict]) -> Tuple[List[dict], Dict[str, float]]:
+    """
+    The trials with each system's ETA cross-fitted onto Apple Maps' scale
+    (src/routing/eta_calibration.py), and the all-data scale per system for the report.
+
+    Each system gets its own scale, fitted the same way: it is calibrating each ETA engine
+    to the ground truth, not one system to the other. Routes, and so Route Optimality, are
+    untouched; only predicted_eta and the ETA metrics derived from it change.
+    """
+    out: List[dict] = []
+    scales: Dict[str, float] = {}
+    for s in SYSTEMS:
+        mine = [t for t in trials if t["system"] == s]
+        actual, predicted, groups = legs_of(mine)
+        calibrated, scales[s] = cross_fitted_scale(actual, predicted, groups)
+        start = 0
+        for t in mine:
+            n = len(np.atleast_1d(t["actual_eta"]))
+            new = dict(t, predicted_eta=[float(v) for v in calibrated[start:start + n]])
+            start += n
+            new["eta_minutes"] = float(sum(new["predicted_eta"])) / 60.0
+            new.update(trial_eta_metrics(new["actual_eta"], new["predicted_eta"]))
+            out.append(new)
+    return out, scales
+
+
+def pooled_bootstrap_rows(group: str, ids: Sequence[str], by: dict, n_boot: int, seed: int) -> List[dict]:
+    """
+    Paired trip-resampling bootstrap of each pooled ETA metric for one scenario group. The
+    only test of R^2 this evaluation can make: per-trial R^2 needs 3+ legs, which no trip has.
+    """
+    ant = legs_of([by[(i, ANTROUTE)] for i in ids])
+    base = legs_of([by[(i, BASELINE)] for i in ids])
+    if not np.array_equal(ant[2], base[2]):
+        raise ValueError(f"{group}: the two systems' legs do not pair up trip by trip")
+    rows = []
+    for name, fn in POOLED_METRICS.items():
+        try:
+            result = paired_bootstrap(fn, ant[0], ant[1], base[0], base[1], ant[2],
+                                      higher_is_better=name in HIGHER_IS_BETTER, n_boot=n_boot, seed=seed)
+        except ValueError:          # e.g. R^2 with one leg in the group
+            continue
+        rows.append({"scenario_type": group, "metric": name, **result,
+                     "significant": bool(np.isfinite(result["p_value"]) and result["p_value"] < 0.05)})
+    return rows
+
+
+def write_reports(a, graph, trials: List[dict], out_dir: Optional[Path] = None,
+                  eta_calibration: Optional[dict] = None) -> dict:
     labels = camera_labels(graph)
     by = {(t["trip_id"], t["system"]): t for t in trials}
     trip_ids = sorted({t["trip_id"] for t in trials})
@@ -870,7 +943,7 @@ def write_reports(a, graph, trials: List[dict]) -> dict:
     groups.update({sc: [i for i in trip_ids if scenario_of[i] == sc] for sc in SCENARIOS})
     groups = {k: v for k, v in groups.items() if v}
 
-    out = a.out_dir
+    out = out_dir or a.out_dir
     out.mkdir(parents=True, exist_ok=True)
 
     flat = []
@@ -928,16 +1001,25 @@ def write_reports(a, graph, trials: List[dict]) -> dict:
     per_trip = per_trip_comparison(trip_ids, scenario_of, by, labels)
     pd.DataFrame(per_trip).to_csv(out / "per_trip.csv", index=False)
 
-    significance, summary = [], {}
+    significance, summary, bootstrap = [], {}, []
     for group, ids in groups.items():
         summary[group] = {}
+        rows = []
         for metric in ("route_optimality",) + ETA_METRICS:
             proposed = [by[(i, ANTROUTE)][metric] for i in ids]
             baseline = [by[(i, BASELINE)][metric] for i in ids]
             c = compare_paired(metric, proposed, baseline)
-            significance.append({"scenario_type": group, **asdict(c)})
+            rows.append({"scenario_type": group, **asdict(c)})
             summary[group][metric] = {ANTROUTE: mean_sd(proposed), BASELINE: mean_sd(baseline)}
+        # Family-wise correction over this scenario's metrics. `significant` stays the thesis's
+        # own decision rule (Wilcoxon p < alpha); significant_holm is the corrected reading.
+        for row, adjusted in zip(rows, holm([r["wilcoxon_p"] for r in rows])):
+            row["wilcoxon_p_holm"] = adjusted
+            row["significant_holm"] = bool(np.isfinite(adjusted) and adjusted < 0.05)
+        significance.extend(rows)
+        bootstrap.extend(pooled_bootstrap_rows(group, ids, by, a.n_boot, a.seed))
     pd.DataFrame(significance).to_csv(out / "appendix3_significance.csv", index=False)
+    pd.DataFrame(bootstrap).to_csv(out / "pooled_bootstrap.csv", index=False)
 
     pooled = {s: compute_metrics_by_scenario([t for t in trials if t["system"] == s]) for s in SYSTEMS}
     report = {
@@ -968,6 +1050,8 @@ def write_reports(a, graph, trials: List[dict]) -> dict:
         "per_trial_mean_sd": summary,
         "pooled": {s: {k: asdict(m) for k, m in r.items()} for s, r in pooled.items()},
         "significance": significance,
+        "pooled_bootstrap": bootstrap,
+        "eta_calibration": eta_calibration,
     }
     (out / "metrics.json").write_text(json.dumps(json_safe(report), indent=2), encoding="utf-8")
     return report
@@ -989,7 +1073,19 @@ def score(a, graph, baseline: "Baseline") -> None:
             "Usually traffic shifted between lookups -- re-check those rows."
         )
 
-    report = write_reports(a, graph, trials)
+    # Raw ETA: the thesis's engine as specified (gamma = 1, speed-limit free flow).
+    write_reports(a, graph, trials, eta_calibration={"applied": False})
+    # The same trials with each system's ETA cross-fitted onto Apple's scale. Kept as a
+    # separate report, never in place of the raw one -- see src/routing/eta_calibration.py.
+    calibrated, scales = calibrate_eta(trials)
+    report = write_reports(
+        a, graph, calibrated, out_dir=a.out_dir / "eta_calibrated",
+        eta_calibration={"applied": True, "method": "leave-one-trip-out scale, least squares through 0",
+                         "scale_all_trips": scales},
+    )
+    print("\nETA scale fitted on all trips (reporting only; each trip is scored with the scale "
+          "fitted without it): " + ", ".join(f"{s} x{k:.3f}" for s, k in scales.items()))
+    print("Raw-ETA tables are in the output dir; the summary below is the calibrated one.")
     sig = {(r["scenario_type"], r["metric"]): r for r in report["significance"]}
     print(f"\n{'scenario':<18}{'n':>3}  {'optimality % ant / base':>24}  {'Wilcoxon p':>10}  {'MAE s ant / base':>18}")
     for group, metrics in report["per_trial_mean_sd"].items():
@@ -1009,7 +1105,8 @@ def score(a, graph, baseline: "Baseline") -> None:
             f"{r['mape_antroute']:>7.1f} / {r['mape_baseline']:<8.1f}  "
             f"{r['metrics_won_antroute']}:{r['metrics_won_baseline']}"
         )
-    print(f"\nwrote appendix tables, per_trip.csv, trials.csv and metrics.json to {a.out_dir}")
+    print(f"\nwrote appendix tables, per_trip.csv, trials.csv, pooled_bootstrap.csv and metrics.json to "
+          f"{a.out_dir} (raw ETA) and {a.out_dir / 'eta_calibrated'} (calibrated ETA)")
 
 
 def main() -> None:
@@ -1065,6 +1162,8 @@ def main() -> None:
     p.add_argument("--beta", type=float, default=2.0)
     p.add_argument("--evaporation", type=float, default=0.5)
     p.add_argument("--seed", type=int, default=0)
+    p.add_argument("--n-boot", type=int, default=10_000,
+                   help="--apple-maps: trip resamples for the pooled-metric paired bootstrap")
     p.add_argument("--out-dir", type=Path, default=REPO_ROOT / "outputs/routing_eval")
     a = p.parse_args()
     if a.n_stops < 3:
