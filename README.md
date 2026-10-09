@@ -10,24 +10,38 @@ Our repository follows a reproducible layout suitable for standard machine learn
 ANTROUTE/
 ├── .github/
 │   └── pull_request_template.md    # Standard PR template
+├── docker-compose.yml              # PostGIS + Redis + backend API
 ├── pipeline_context.md             # NLP data preprocessing context and schema logs
+├── SESSION_HANDOFF.md              # Project status notes (training results, known issues)
+├── frontend/                       # React Native (Expo) mobile app
+│   ├── App.js / index.js           # Entry point -> src/navigation/AppNavigator.tsx
+│   └── src/
+│       ├── api/                    # Axios client + auth/places/route services for the backend
+│       ├── navigation/             # Navigator and turn-by-turn guidance helpers
+│       └── screens/                # App screens
 ├── traffic_system/
-│   ├── configs/                    # Configuration files (YAML, JSON, env templates)
+│   ├── app/                        # FastAPI backend (auth, places, risk-aware routing, evaluation)
+│   ├── configs/                    # Camera/intersection mappings, gazetteers, .env template
 │   ├── data/
-│   │   ├── raw/                    # Immutable raw data (CCTV footages, raw tweets/news)
-│   │   └── processed/              # Cleaned, normalized, and tokenized datasets
-│   ├── docs/                       # Project documentation, architecture diagrams, and meeting notes
-│   ├── experiments/                # Scripts for running model training experiments and hyperparameter tuning
-│   ├── notebooks/                  # Jupyter notebooks for EDA and rapid prototyping
+│   │   ├── labels/                 # Human-annotated tweet labels
+│   │   ├── raw/                    # Immutable raw data (tweets, OSM graph, flood hazard maps)
+│   │   └── processed/              # Cleaned tweets, embeddings, spatial/temporal features
+│   ├── docs/                       # Project documentation
+│   ├── notebooks/                  # Colab notebook for training and risk scoring
+│   ├── outputs/                    # Routing evaluation results and Apple Maps lookup sheets
+│   ├── scripts/                    # CLI tools: frame extraction, training, scoring, evaluation
 │   ├── src/                        # Core source code
-│   │   ├── ingestion/              # Data scrapers (Twitter, GDELT, CCTV APIs)
-│   │   ├── preprocessing/          # Text and Vision cleaners, tokenizers, normalizers
-│   │   ├── models/                 # Model architectures (CNN, LSTM, ViT)
-│   │   ├── routing/                # Traffic routing algorithms and graph heuristics
-│   │   └── vision/                 # Visual data pipeline (Frame extractors, Patch Embedders)
-│   ├── tests/                      # Unit and integration tests
-│   ├── requirements.txt            # Python dependencies
-│   └── pipeline_runner.py          # Unified runner for data pipelines
+│   │   ├── data/                   # Dataset alignment, graph data, training windows, metrics
+│   │   ├── ingestion/              # Twitter scraper, OSM road graph, weather collectors
+│   │   ├── preprocessing/          # Text cleaner, MarianMT translation, DistilBERT embedding
+│   │   ├── models/                 # CNN+LSTM fusion, RADR STGNN, MLP decoder, risk baselines
+│   │   ├── routing/                # ACO routing, dynamic weights, ETA, baselines, metrics
+│   │   ├── text/                   # Tweet corpus loading for labeling/gazetteer tools
+│   │   └── vision/                 # Frame extraction, patch embedder, YOLO auto-labels
+│   ├── tests/                      # Unit and integration tests (pytest)
+│   ├── main.py                     # Builds data/processed/embeddings.pt from raw tweets
+│   ├── pipeline_runner.py          # Cleans + translates + embeds raw tweets into data/processed/x
+│   └── requirements.txt            # Python dependencies
 └── README.md                       # This file
 ```
 
@@ -119,12 +133,14 @@ pip install -r requirements.txt
    docker-compose up -d
    ```
 
-   This starts PostgreSQL and Redis. The backend and frontend are run locally during development.
+   This starts PostgreSQL and Redis (and a containerised backend on port 8000). To run the backend
+   locally instead, stop the `backend` service and use the next step.
 
 3. Start the backend in a separate terminal:
 
    ```bash
-
+   cd traffic_system
+   uvicorn app.main:app --reload
    ```
 
 4. Start the frontend in another terminal:
@@ -148,10 +164,11 @@ If you already have the project cloned and dependencies installed, use this shor
    ```bash
    docker-compose up -d
    ```
-2. Start the backend from the `backend` directory:
+2. Start the backend from the `traffic_system` directory:
 
    ```bash
-
+   cd traffic_system
+   uvicorn app.main:app --reload
    ```
 
 3. Start the frontend from the `frontend` directory:

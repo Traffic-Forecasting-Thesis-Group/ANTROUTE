@@ -1,3 +1,9 @@
+"""
+Congestion-aware ETA: each edge's free-flow time is stretched by its predicted risk,
+eta = free_flow * (1 + gamma * risk), so risk 0 keeps free-flow speed and risk 1 with the
+default gamma doubles the travel time.
+"""
+
 from __future__ import annotations
 from pathlib import Path
 from typing import Sequence

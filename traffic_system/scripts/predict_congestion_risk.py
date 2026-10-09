@@ -31,7 +31,7 @@ from src.data.node_context import (  # noqa: E402
 from src.models.cnn_lstm_fusion import CNNLSTMFusion  # noqa: E402
 from src.models.mlp_decoder import MLPDecoder  # noqa: E402
 from src.models.radr_stgnn import RADRSTGNN  # noqa: E402
-from src.models.traffic_risk_model_edge import IGNORE_INDEX, TrafficRiskModel, camera_edge_ids, camera_edge_targets  # noqa: E402
+from src.models.traffic_risk_model_edge import TrafficRiskModel, camera_edge_ids, camera_edge_targets  # noqa: E402
 
 EDGE_FIELDS = [
     "day",

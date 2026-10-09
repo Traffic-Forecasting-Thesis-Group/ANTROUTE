@@ -24,6 +24,7 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence
 
+from src.data import graph_data
 from src.routing.event_layer import _LOCATION, match_landmark
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -60,15 +61,7 @@ def load_label_locations(path: Path = LABELS_CSV) -> Dict[str, str]:
 
 def load_camera_map(path: Path = CAMERA_MAP_CSV) -> Dict[str, str]:
     """camera id -> the intersection label it watches, from configs/camera_nodes.csv."""
-    path = Path(path)
-    if not path.exists():
-        return {}
-    with path.open(encoding="utf-8", newline="") as f:
-        return {
-            row["camera_id"].strip(): row["intersection"].strip()
-            for row in csv.DictReader(f)
-            if row.get("camera_id") and row.get("intersection")
-        }
+    return graph_data.load_camera_map(path)
 
 
 def cameras_by_intersection(camera_ids: Sequence[str], camera_map: Dict[str, str]) -> Dict[str, List[str]]:

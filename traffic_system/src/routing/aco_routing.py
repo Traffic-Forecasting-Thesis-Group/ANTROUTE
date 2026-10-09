@@ -1,3 +1,13 @@
+"""
+Ant Colony Optimization (ACO) routing over a risk-weighted road graph.
+
+Edge costs come from dynamic_weight.WeightedGraph (free-flow travel time scaled by the
+predicted Congestion Risk Score). Each iteration, every ant walks origin -> destination,
+choosing edges with probability ~ pheromone^alpha * (1 / (1 + regret))^beta, where regret is
+how much worse the edge is than the best option at that junction under an exact remaining-cost
+heuristic (see remaining_cost_to). Pheromone then evaporates and each completed tour deposits
+1 / route_cost on its edges. diverse_routes layers a penalty method on top for alternatives.
+"""
 
 from __future__ import annotations
 from bisect import bisect_right
@@ -11,19 +21,21 @@ from src.routing.dynamic_weight import PathMetrics, WeightedGraph
 
 @dataclass
 class AntColonyConfig:
-    n_ants: int = 20
-    n_iterations: int = 60
-    alpha: float = 1.0
-    beta: float = 2.0
-    evaporation: float = 0.5
+    n_ants: int = 20                  # tours walked per iteration
+    n_iterations: int = 60            # pheromone update rounds
+    alpha: float = 1.0                # weight of pheromone in the edge choice
+    beta: float = 2.0                 # weight of the cost heuristic (regret) in the edge choice
+    evaporation: float = 0.5          # fraction of pheromone lost each iteration
     initial_pheromone: float = 1.0
-    max_steps: Optional[int] = None
-    n_alternatives: int = 3
-    seed: Optional[int] = None
+    max_steps: Optional[int] = None   # per-tour step cap; None = number of nodes - 1
+    n_alternatives: int = 3           # extra distinct tours returned besides the best
+    seed: Optional[int] = None        # RNG seed, for reproducible routes
 
 
 @dataclass
 class RouteResult:
+    """Cheapest route found, plus the next-cheapest distinct tours the ants walked."""
+
     best: PathMetrics
     alternatives: List[PathMetrics]
 
@@ -247,6 +259,11 @@ def _build_tour(
 def ant_colony_shortest_path(
     wg: WeightedGraph, origin: int, destination: int, config: AntColonyConfig = AntColonyConfig()
 ) -> RouteResult:
+    """
+    Route between two road-graph node ids (OSM ids, not indices). Every distinct tour any ant
+    completes is kept, ranked by dynamic_cost; raises ValueError on invalid config, an
+    unreachable destination, or when no ant completes a tour.
+    """
     origin_idx = wg.index_of(origin)
     destination_idx = wg.index_of(destination)
     if origin_idx == destination_idx:
@@ -318,6 +335,7 @@ def ant_colony_shortest_path(
 def multi_stop_route(
     wg: WeightedGraph, stops: Sequence[int], config: AntColonyConfig = AntColonyConfig()
 ) -> RouteResult:
+    """Chain one colony run per consecutive pair of stops into a single route (no alternatives)."""
     if len(stops) < 2:
         raise ValueError("multi_stop_route needs at least an origin and a destination")
     full_path: List[int] = [int(stops[0])]

@@ -21,9 +21,6 @@ import argparse
 import json
 import sys
 from pathlib import Path
-from typing import Optional
-
-import numpy as np
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))

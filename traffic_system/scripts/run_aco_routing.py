@@ -3,7 +3,7 @@ import json
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List
 import pandas as pd
 
 REPO_ROOT = Path(__file__).resolve().parents[1]

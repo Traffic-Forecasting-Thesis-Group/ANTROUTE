@@ -9,7 +9,7 @@ def run_smoke_tests():
     print("Running Dependency Smoke Tests...\n")
 
     dependencies = {
-        "Data Engineering": ["numpy", "pandas", "h5py", "requests", "dotenv"],
+        "Data Engineering": ["numpy", "pandas", "requests", "dotenv"],
         "Deep Learning (PyTorch)": ["torch", "torchvision"],
         "NLP (Transformers)": ["transformers", "sentencepiece", "sacremoses"],
         "Computer Vision": ["cv2", "ffmpeg"],

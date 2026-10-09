@@ -1,3 +1,9 @@
+"""
+Builds data/processed/embeddings.pt: one DistilBERT embedding (plus English translation) per
+raw tweet under data/raw/twitter, in TwitterTrafficDataset order. Run from traffic_system/.
+(pipeline_runner.py writes the per-record JSON version to data/processed/x instead.)
+"""
+
 import torch
 import os
 from torch.utils.data import DataLoader

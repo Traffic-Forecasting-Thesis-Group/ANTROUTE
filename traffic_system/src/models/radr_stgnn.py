@@ -1,3 +1,10 @@
+"""
+RADR STGNN: a spatial GCN applied at every timestep, followed by a GRU over time.
+
+Input [B, T, N, F] node features plus a normalised adjacency A_hat [N, N]; output is the
+GRU's final hidden state per node, [B, N, gru_hidden], consumed by the MLP decoder.
+"""
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -14,6 +21,7 @@ def load_adjacency_npz(path: Path) -> sp.csr_matrix:
 
 
 def normalize_adjacency(adj: sp.csr_matrix) -> torch.Tensor:
+    """Kipf & Welling GCN normalisation, D^-1/2 (A + I) D^-1/2, as a dense float tensor."""
     n = adj.shape[0]
     adj = adj.astype(bool).astype(np.float32)
     adj_tilde = adj + sp.eye(n, format="csr", dtype=np.float32)
@@ -99,6 +107,8 @@ class RADRSTGNN(nn.Module):
         self.output_dim = gru_hidden
 
     def forward(self, x: torch.Tensor, a_hat: torch.Tensor) -> torch.Tensor:
+        # Same GCN weights at every timestep -> [B, T, N, gcn_out], then the GRU summarises
+        # each node's sequence and its final state is the node embedding.
         b, t, n, f = x.shape
         spatial_embeddings = []
         for step in range(t):

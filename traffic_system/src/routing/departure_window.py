@@ -1,3 +1,8 @@
+"""
+Maps a requested departure time onto the recorded risk windows in a scored risk CSV, since
+risk is only predicted for the observed peak sessions.
+"""
+
 from __future__ import annotations
 from datetime import datetime
 from pathlib import Path
@@ -30,6 +35,10 @@ def available_windows(risk_csv: Path) -> pd.DataFrame:
 
 
 def resolve_departure_window(risk_csv: Path, depart_at: Optional[str]) -> Optional[str]:
+    """
+    The window_start (or window_end) of the risk window containing `depart_at` by full
+    timestamp, else the nearest one with a warning. None when no departure is given.
+    """
     if depart_at is None:
         return None
     windows = available_windows(risk_csv)

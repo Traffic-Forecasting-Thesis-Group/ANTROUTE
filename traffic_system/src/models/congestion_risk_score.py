@@ -1,3 +1,5 @@
+"""Helpers for turning MLP-decoder output into per-edge Congestion Risk Scores in [0, 1]."""
+
 from __future__ import annotations
 
 import numpy as np
@@ -8,6 +10,7 @@ import torch.nn as nn
 
 
 def edge_index_from_adjacency(adj: sp.csr_matrix) -> torch.Tensor:
+    """[2, E] (source, target) index pairs for every non-zero entry of the adjacency."""
     coo = adj.tocoo()
     edge_index = np.vstack([coo.row, coo.col])
     return torch.tensor(edge_index, dtype=torch.long)

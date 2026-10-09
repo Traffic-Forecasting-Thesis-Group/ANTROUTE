@@ -4,22 +4,11 @@ import torch.nn as nn
 import torch.nn.functional as F
 from src.models.mlp_decoder import MLPDecoder
 from src.models.radr_stgnn import RADRSTGNN
-from src.models.stgnn_input_builder import build_stgnn_input
+from src.models.stgnn_input_builder import build_stgnn_input, scatter_camera_features
 
 IGNORE_INDEX = -100
 CLASS_RISK = torch.tensor([0.0, 0.5, 1.0])
 N_CLASSES = 3
-
-
-def scatter_camera_features(
-    camera_features: torch.Tensor, camera_index: torch.Tensor, n_nodes: int, fill: torch.Tensor
-) -> torch.Tensor:
-    b, t, _, f = camera_features.shape
-    out = fill.view(1, 1, 1, f).expand(b, t, n_nodes, f).clone()
-    # Under autocast camera_features comes back float16 while `out` (built from the plain fp32
-    # placeholder parameter) is float32; fancy-index assignment needs an exact dtype match.
-    out[:, :, camera_index, :] = camera_features.to(out.dtype)
-    return out
 
 
 class ContextEncoder(nn.Module):

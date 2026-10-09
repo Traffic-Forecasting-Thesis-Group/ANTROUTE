@@ -1,3 +1,12 @@
+"""
+Per-record NLP preprocessing of raw tweets: data/raw/twitter/**.json -> data/processed/x/**.json.
+
+Each tweet goes Text Pre-Cleaner -> MarianMT (Tagalog -> English) -> DistilBERT, and is saved
+with its cleaned text, translation, 768-d embedding and gazetteer entities, mirroring the raw
+folder layout. Files whose output already has the same record count are skipped, so reruns
+only process new or incomplete files. (main.py builds the single embeddings.pt tensor instead.)
+"""
+
 import json
 import sys
 from pathlib import Path
@@ -11,7 +20,6 @@ from src.preprocessing.text_cleaner import TextCleaner
 from src.preprocessing.nlp_pipeline import BatchNLPPipeline
 
 RAW_DIR_TWITTER = current_dir / "data" / "raw" / "twitter"
-RAW_DIR_NEWS = current_dir / "data" / "raw" / "news"
 PROCESSED_DIR = current_dir / "data" / "processed"
 
 BATCH_SIZE = 16  # Process 16 texts at a time to manage memory/CPU effectively
@@ -125,9 +133,7 @@ def run_pipeline():
     cleaner = TextCleaner()
     nlp = BatchNLPPipeline()
 
-    # Process both unstructured data sources
     process_directory(RAW_DIR_TWITTER, "X", cleaner, nlp)
-    process_directory(RAW_DIR_NEWS, "News", cleaner, nlp)
 
 if __name__ == "__main__":
     run_pipeline()

@@ -1,3 +1,8 @@
+"""
+Routing evaluation metrics: route optimality (C_optimal / C_predicted * 100) and ETA error
+(MAE, MSE, RMSE, MAPE, R^2), computed per trial and pooled per scenario.
+"""
+
 from __future__ import annotations
 from dataclasses import dataclass
 from typing import Dict, Sequence

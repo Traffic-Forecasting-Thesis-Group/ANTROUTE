@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 import pytest
 import scipy.sparse as sp
-import torch
 
 from src.data.graph_data import GraphData
 from src.models.congestion_risk_score import edge_index_from_adjacency
