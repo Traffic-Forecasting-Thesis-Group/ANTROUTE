@@ -15,7 +15,7 @@ from src.routing.route_trials import (
     pick_waypoints,
     score_trip,
 )
-from src.routing.significance import compare_paired, relative_difference
+from src.routing.significance import compare_paired, holm, paired_bootstrap, relative_difference
 from test_aco_routing import weighted_risky_direct
 
 
@@ -196,3 +196,32 @@ def test_paired_comparison_handles_ties_and_missing_values():
     assert c.n == 2                                   # the NaN pair is dropped
     assert math.isnan(c.wilcoxon_p) and not c.significant
     assert math.isnan(c.shapiro_p) and c.t_value is None
+
+
+def test_holm_adjusts_step_down_and_stays_monotone():
+    adjusted = holm([0.01, 0.04, 0.03, math.nan])
+    # sorted 0.01, 0.03, 0.04 over m=3 tests: 0.03, 0.06, 0.06 (monotone), NaN untouched
+    assert adjusted[0] == pytest.approx(0.03)
+    assert adjusted[2] == pytest.approx(0.06)
+    assert adjusted[1] == pytest.approx(0.06)
+    assert math.isnan(adjusted[3])
+
+
+def test_paired_bootstrap_detects_a_pooled_r2_gap_and_resamples_whole_trips():
+    rng = np.random.default_rng(1)
+    actual = rng.uniform(600, 3000, 40)
+    good = actual * rng.normal(1.0, 0.05, 40)
+    bad = actual * rng.normal(1.0, 0.40, 40)
+    groups = np.repeat(np.arange(20), 2)          # 20 two-leg trips
+    from src.routing.metrics import r_squared
+    out = paired_bootstrap(r_squared, actual, good, actual, bad, groups, higher_is_better=True, n_boot=500, seed=0)
+    assert out["proposed"] > out["baseline"]
+    assert out["ci_low"] > 0 and out["p_value"] < 0.05     # difference oriented: positive = proposed better
+
+
+def test_paired_bootstrap_no_difference_is_not_significant():
+    actual = np.linspace(500, 3000, 30)
+    pred = actual * 0.9
+    out = paired_bootstrap(lambda a, p: float(np.mean(np.abs(a - p))), actual, pred, actual, pred,
+                           np.arange(30), higher_is_better=False, n_boot=300, seed=0)
+    assert out["difference"] == pytest.approx(0.0) and out["p_value"] >= 0.05

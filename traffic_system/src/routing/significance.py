@@ -18,7 +18,7 @@ applies to.
 
 from __future__ import annotations
 from dataclasses import dataclass
-from typing import Optional, Sequence
+from typing import Callable, Dict, List, Optional, Sequence
 import numpy as np
 from scipy import stats
 
@@ -58,6 +58,82 @@ def relative_difference(baseline: float, proposed: float, higher_is_better: bool
         return float("nan")
     diff = (proposed - baseline) if higher_is_better else (baseline - proposed)
     return float(diff / abs(baseline) * 100.0)
+
+
+def holm(p_values: Sequence[float]) -> List[float]:
+    """
+    Holm-Bonferroni adjusted p-values, in the input order; NaN stays NaN and is not counted.
+
+    Six metrics are tested per scenario at alpha = 0.05, so by chance alone about one in
+    four scenarios would show a "significant" metric. Holm controls that family-wise error
+    without Bonferroni's loss of power. Compare the adjusted value against alpha as usual.
+    """
+    p = np.asarray(p_values, dtype=np.float64)
+    out = np.full(p.shape, np.nan)
+    finite = np.flatnonzero(np.isfinite(p))
+    m = finite.size
+    running = 0.0
+    for rank, i in enumerate(finite[np.argsort(p[finite], kind="stable")]):
+        running = max(running, min(1.0, (m - rank) * p[i]))   # step-down, kept monotone
+        out[i] = running
+    return out.tolist()
+
+
+def paired_bootstrap(
+    metric: Callable[[np.ndarray, np.ndarray], float],
+    actual_proposed: Sequence[float],
+    predicted_proposed: Sequence[float],
+    actual_baseline: Sequence[float],
+    predicted_baseline: Sequence[float],
+    groups: Sequence,
+    higher_is_better: bool,
+    n_boot: int = 10_000,
+    seed: int = 0,
+    alpha: float = ALPHA,
+) -> Dict[str, float]:
+    """
+    Paired bootstrap of a POOLED metric (R^2, RMSE, MSE over every leg), resampling whole trips.
+
+    Pooled metrics are one number per system, so there is nothing per trial for Wilcoxon to
+    rank -- and per-trial R^2 is undefined for 1- and 2-leg trips. Resampling trips (all of a
+    trip's legs together, for both systems at once) keeps the pairing and the within-trip
+    correlation. `difference` is oriented so positive means the proposed model is better,
+    matching relative_difference. The p-value is the two-sided percentile p for no difference.
+    """
+    ap, pp = np.asarray(actual_proposed, float), np.asarray(predicted_proposed, float)
+    ab, pb = np.asarray(actual_baseline, float), np.asarray(predicted_baseline, float)
+    groups = np.asarray(groups)
+    if not (ap.shape == pp.shape == ab.shape == pb.shape == groups.shape):
+        raise ValueError("both systems need one value per leg, aligned to the same groups")
+    sign = 1.0 if higher_is_better else -1.0
+
+    def diff(idx: np.ndarray) -> float:
+        return sign * (metric(ap[idx], pp[idx]) - metric(ab[idx], pb[idx]))
+
+    unique = np.unique(groups)
+    members = [np.flatnonzero(groups == g) for g in unique]
+    rng = np.random.default_rng(seed)
+    draws = np.empty(n_boot)
+    for b in range(n_boot):
+        idx = np.concatenate([members[i] for i in rng.integers(0, unique.size, unique.size)])
+        try:
+            draws[b] = diff(idx)
+        except ValueError:          # e.g. R^2 on a resample whose actual values are all equal
+            draws[b] = np.nan
+    draws = draws[np.isfinite(draws)]
+    everything = np.arange(groups.size)
+    observed = diff(everything)
+    p = 2.0 * min(np.mean(draws <= 0), np.mean(draws >= 0)) if draws.size else float("nan")
+    return {
+        "proposed": float(metric(ap, pp)),
+        "baseline": float(metric(ab, pb)),
+        "difference": float(observed),
+        "ci_low": float(np.quantile(draws, alpha / 2)) if draws.size else float("nan"),
+        "ci_high": float(np.quantile(draws, 1 - alpha / 2)) if draws.size else float("nan"),
+        "p_value": float(min(1.0, p)),
+        "n_trips": int(unique.size),
+        "n_boot": int(draws.size),
+    }
 
 
 def _sd(x: np.ndarray) -> float:
