@@ -343,7 +343,7 @@ def scored_mask(graph: GraphData, frame: pd.DataFrame) -> np.ndarray:
 
 # How far, by road, an unscored edge may be from a scored one and still borrow its risk.
 # Congestion spills along a corridor for a few blocks; past ~1.5 km the nearest scored road
-# says nothing specific about this one, so the window's median stands in instead.
+# says nothing specific about this one, so the non-visual model predicts it instead.
 MAX_FILL_M = 1500.0
 
 
@@ -375,52 +375,80 @@ class NearestScored:
         return cls(np.asarray(source), np.asarray(dist))
 
 
+# Where each edge's risk came from (src/models/nonvisual_risk.py defines the same codes).
+SOURCE_PREDICTED, SOURCE_BORROWED, SOURCE_NONVISUAL, SOURCE_UNAVAILABLE = 0, 1, 2, 3
+
+
 def fill_unscored_risk(
     graph: GraphData,
     risk: np.ndarray,
     scored: np.ndarray,
     nearest: NearestScored,
+    fallback: Optional[np.ndarray] = None,
     max_m: float = MAX_FILL_M,
-) -> Tuple[np.ndarray, Dict[str, int]]:
+    unavailable_risk: float = DEFAULT_MISSING_RISK,
+) -> Tuple[np.ndarray, np.ndarray, Dict[str, int]]:
     """
-    Risk for the edges the decoder did not score, instead of a flat DEFAULT_MISSING_RISK.
+    Risk for the edges the decoder did not score, and where every edge's risk came from.
 
-    A flat 0 makes every road without a prediction look free of congestion, so the router
-    prefers roads with *no data* over roads with data -- on Metro Manila, where the decoder
-    scores ~2% of edges around the cameras, ANTROUTE steered off EDSA onto side streets for
-    exactly that reason. Instead an unscored edge within `max_m` of a scored road (by road
-    distance, from its nearer endpoint) takes that road's risk for this window, and anything
-    farther takes the window's median: unknown is treated as typical, not as empty.
+    1. predicted  -- scored by the decoder (camera subgraph): kept as is.
+    2. borrowed   -- an unscored edge within `max_m` of a scored road (by road distance, from
+                     its nearer endpoint) takes that road's risk for this window: congestion
+                     spills along a corridor for a few blocks.
+    3. nonvisual  -- any other edge takes `fallback`, the non-visual model's prediction for this
+                     window (src/models/nonvisual_risk.py), where it has one.
+    4. unavailable -- no prediction of any kind (no fallback given, or NaN there): the edge gets
+                     `unavailable_risk` (DEFAULT_MISSING_RISK, physical length only) and is
+                     reported as unavailable. The window's median is no longer used anywhere:
+                     a constant stand-in made routing outside the subgraph distance-only while
+                     looking like an assessment.
 
-    Returns the filled risk and how many edges each rule covered.
+    Returns (risk, source code per edge, how many edges each rule covered).
     """
     risk = np.asarray(risk, dtype=np.float64).copy()
     scored = np.asarray(scored, dtype=bool)
-    if not scored.any():
-        return risk, {"scored": 0, "nearest": 0, "median": 0}
+    n_edges = risk.size
+    sources = np.full(n_edges, SOURCE_UNAVAILABLE, dtype=np.int8)
+    sources[scored] = SOURCE_PREDICTED
     src, dst = graph.edge_index[0].numpy(), graph.edge_index[1].numpy()
     n = graph.n_nodes
 
-    # risk at each scored node: the mean of the scored edges touching it
-    total = np.bincount(src[scored], weights=risk[scored], minlength=n) + np.bincount(
-        dst[scored], weights=risk[scored], minlength=n)
-    count = np.bincount(src[scored], minlength=n) + np.bincount(dst[scored], minlength=n)
-    node_risk = np.where(count > 0, total / np.maximum(count, 1), np.nan)
+    near = np.zeros(n_edges, dtype=bool)
+    if scored.any():
+        # risk at each scored node: the mean of the scored edges touching it
+        total = np.bincount(src[scored], weights=risk[scored], minlength=n) + np.bincount(
+            dst[scored], weights=risk[scored], minlength=n)
+        count = np.bincount(src[scored], minlength=n) + np.bincount(dst[scored], minlength=n)
+        node_risk = np.where(count > 0, total / np.maximum(count, 1), np.nan)
 
-    reachable = nearest.source >= 0
-    borrowed = np.full(n, np.nan)
-    borrowed[reachable] = node_risk[nearest.source[reachable]]
-    # each unscored edge borrows through whichever endpoint is nearer a scored road
-    use_src = nearest.distance_m[src] <= nearest.distance_m[dst]
-    edge_value = np.where(use_src, borrowed[src], borrowed[dst])
-    edge_distance = np.minimum(nearest.distance_m[src], nearest.distance_m[dst])
+        reachable = nearest.source >= 0
+        borrowed = np.full(n, np.nan)
+        borrowed[reachable] = node_risk[nearest.source[reachable]]
+        # each unscored edge borrows through whichever endpoint is nearer a scored road
+        use_src = nearest.distance_m[src] <= nearest.distance_m[dst]
+        edge_value = np.where(use_src, borrowed[src], borrowed[dst])
+        edge_distance = np.minimum(nearest.distance_m[src], nearest.distance_m[dst])
+        near = ~scored & (edge_distance <= max_m) & np.isfinite(edge_value)
+        risk[near] = edge_value[near]
+        sources[near] = SOURCE_BORROWED
 
-    median = float(np.median(risk[scored]))
-    missing = ~scored
-    near = missing & (edge_distance <= max_m) & np.isfinite(edge_value)
-    risk[near] = edge_value[near]
-    risk[missing & ~near] = median
-    return risk, {"scored": int(scored.sum()), "nearest": int(near.sum()), "median": int((missing & ~near).sum())}
+    rest = ~scored & ~near
+    if fallback is not None:
+        fallback = np.asarray(fallback, dtype=np.float64)
+        if fallback.shape != (n_edges,):
+            raise ValueError(f"fallback must have shape ({n_edges},), received {fallback.shape}")
+        predicted = rest & np.isfinite(fallback)
+        risk[predicted] = np.clip(fallback[predicted], 0.0, 1.0)
+        sources[predicted] = SOURCE_NONVISUAL
+        rest = rest & ~predicted
+    risk[rest] = unavailable_risk
+    counts = {
+        "scored": int(scored.sum()),
+        "nearest": int(near.sum()),
+        "nonvisual": int((sources == SOURCE_NONVISUAL).sum()),
+        "unavailable": int(rest.sum()),
+    }
+    return risk, sources, counts
 
 
 def weighted_graph_from_risk_file(

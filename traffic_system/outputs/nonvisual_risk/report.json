@@ -1,0 +1,625 @@
+{
+  "features_built": [
+    "length_log",
+    "edge_speed",
+    "edge_travel_time_log",
+    "src_in_degree",
+    "src_out_degree",
+    "dst_in_degree",
+    "dst_out_degree",
+    "src_mean_speed",
+    "dst_mean_speed",
+    "endpoint_max_speed",
+    "flood_level",
+    "nbr_mean_speed",
+    "nbr_degree",
+    "nbr_flood",
+    "temp",
+    "precip",
+    "humidity",
+    "weather_available",
+    "flood_x_precip",
+    "minute_sin",
+    "minute_cos",
+    "weekday_sin",
+    "weekday_cos",
+    "incident_impact",
+    "incident_count",
+    "incident_feed_available",
+    "incident_covered"
+  ],
+  "model_features": [
+    "temp",
+    "precip",
+    "humidity",
+    "weather_available",
+    "flood_x_precip",
+    "minute_sin",
+    "minute_cos",
+    "weekday_sin",
+    "weekday_cos",
+    "incident_impact",
+    "incident_count",
+    "incident_feed_available",
+    "incident_covered"
+  ],
+  "params": {
+    "max_iter": 150,
+    "learning_rate": 0.05,
+    "max_depth": 2,
+    "min_samples_leaf": 80,
+    "l2_regularization": 2.0,
+    "random_state": 0
+  },
+  "rows": 9424,
+  "segments": 42,
+  "cameras": [
+    "8337-Ayala NB 1-PTZ",
+    "EDSA-Aurora",
+    "EDSA-Kamuning",
+    "EDSA-Ortigas",
+    "EDSA-Quezon Ave",
+    "EDSA-Regalia (P. Tuazon)",
+    "EDSA-Shaw",
+    "Roxas Blvd-Kalaw",
+    "Roxas-Padre Burgos"
+  ],
+  "temporal_val": {
+    "nonvisual": {
+      "n": 1707,
+      "mae": 0.2505274281042621,
+      "rmse": 0.31113299097337094,
+      "spearman": 0.13552852354971315,
+      "prediction_mean": 0.8269461644429232,
+      "prediction_sd": 0.08644849647301142
+    },
+    "train_mean": {
+      "n": 1707,
+      "mae": 0.29314839305548224,
+      "rmse": 0.31608584294046055,
+      "spearman": null,
+      "prediction_mean": 0.7173187746436156,
+      "prediction_sd": 2.220446049250313e-16
+    },
+    "session_mean": {
+      "n": 1707,
+      "mae": 0.28376602517856125,
+      "rmse": 0.3088968417285907,
+      "spearman": 0.19343442065881744,
+      "prediction_mean": 0.7273307062956842,
+      "prediction_sd": 0.03762499439909301
+    },
+    "window_median_fallback": {
+      "n": 1707,
+      "mae": 0.26391382542472175,
+      "rmse": 0.3117769011435931,
+      "spearman": 0.1684245920449846,
+      "prediction_mean": 0.7559249560632688,
+      "prediction_sd": 0.11338969820738404
+    },
+    "camera_model_reference": {
+      "n": 1707,
+      "mae": 0.25479800820152315,
+      "rmse": 0.30110335245168723,
+      "spearman": 0.17407029773084656,
+      "prediction_mean": 0.7878647920328059,
+      "prediction_sd": 0.09229842982846322
+    },
+    "segment_history_reference": {
+      "n": 1707,
+      "mae": 0.24861604066757487,
+      "rmse": 0.29024827032213174,
+      "spearman": 0.3772079665804533,
+      "prediction_mean": 0.7360525890859894,
+      "prediction_sd": 0.1215535353072377
+    }
+  },
+  "temporal_test": {
+    "nonvisual": {
+      "n": 1123,
+      "mae": 0.3148289909947296,
+      "rmse": 0.3588635497381173,
+      "spearman": 0.09488335987023425,
+      "prediction_mean": 0.7466009173314029,
+      "prediction_sd": 0.04431029674021678
+    },
+    "train_mean": {
+      "n": 1123,
+      "mae": 0.32217867301979414,
+      "rmse": 0.36034860059650264,
+      "spearman": null,
+      "prediction_mean": 0.731478135164438,
+      "prediction_sd": 0.0
+    },
+    "session_mean": {
+      "n": 1123,
+      "mae": 0.3180160053250587,
+      "rmse": 0.35800851730525807,
+      "spearman": 0.12201029361397238,
+      "prediction_mean": 0.7275884956441159,
+      "prediction_sd": 0.04708873159634533
+    },
+    "window_median_fallback": {
+      "n": 1123,
+      "mae": 0.3323472395369546,
+      "rmse": 0.36431295004113684,
+      "spearman": 0.06969964641739003,
+      "prediction_mean": 0.6949880231522707,
+      "prediction_sd": 0.004030024384207746
+    },
+    "camera_model_reference": {
+      "n": 1123,
+      "mae": 0.3177158504007124,
+      "rmse": 0.3573407030908812,
+      "spearman": 0.10164378387082715,
+      "prediction_mean": 0.738273820124666,
+      "prediction_sd": 0.026743303192353973
+    },
+    "segment_history_reference": {
+      "n": 1123,
+      "mae": 0.2791540982144343,
+      "rmse": 0.3343047943739016,
+      "spearman": 0.372850888237271,
+      "prediction_mean": 0.7186182342876025,
+      "prediction_sd": 0.13666674626429348
+    }
+  },
+  "leave_one_camera_out": {
+    "pooled": {
+      "nonvisual": {
+        "n": 1123,
+        "mae": 0.32335182916259403,
+        "rmse": 0.366758732704441,
+        "spearman": -0.08479868179522962,
+        "prediction_mean": 0.7445062834779659,
+        "prediction_sd": 0.05113945159233231
+      },
+      "train_mean": {
+        "n": 1123,
+        "mae": 0.3242912470817808,
+        "rmse": 0.36183104212792944,
+        "spearman": -0.04702224219220219,
+        "prediction_mean": 0.7314915576929636,
+        "prediction_sd": 0.011499259172539857
+      },
+      "session_mean": {
+        "n": 1123,
+        "mae": 0.32198667441268636,
+        "rmse": 0.36200165687542446,
+        "spearman": -0.032416883373453644,
+        "prediction_mean": 0.7276308380670652,
+        "prediction_sd": 0.049445511901375055
+      },
+      "window_median_fallback": {
+        "n": 1123,
+        "mae": 0.3323472395369546,
+        "rmse": 0.36431295004113684,
+        "spearman": 0.06969964641739003,
+        "prediction_mean": 0.6949880231522707,
+        "prediction_sd": 0.0040300243842077465
+      }
+    },
+    "per_camera": {
+      "8337-Ayala NB 1-PTZ": {
+        "nonvisual": {
+          "n": 84,
+          "mae": 0.5343929710299096,
+          "rmse": 0.5911035824252489,
+          "spearman": -0.0885411433808399,
+          "prediction_mean": 0.7531274435155396,
+          "prediction_sd": 0.033290804832284554
+        },
+        "train_mean": {
+          "n": 84,
+          "mae": 0.5342211257375761,
+          "rmse": 0.5864498705201483,
+          "spearman": null,
+          "prediction_mean": 0.7437287280978193,
+          "prediction_sd": 1.1102230246251565e-16
+        },
+        "session_mean": {
+          "n": 84,
+          "mae": 0.5555256795319776,
+          "rmse": 0.5988923021763748,
+          "spearman": -0.41932202322832096,
+          "prediction_mean": 0.7284947362817654,
+          "prediction_sd": 0.05334365887245384
+        },
+        "window_median_fallback": {
+          "n": 84,
+          "mae": 0.5232690476190476,
+          "rmse": 0.5598325388431964,
+          "spearman": -0.006336476479017312,
+          "prediction_mean": 0.6941785714285714,
+          "prediction_sd": 0.004365627959754838
+        }
+      },
+      "EDSA-Aurora": {
+        "nonvisual": {
+          "n": 192,
+          "mae": 0.29394807160515973,
+          "rmse": 0.2973756742020587,
+          "spearman": 0.015554693563500399,
+          "prediction_mean": 0.6915155200636479,
+          "prediction_sd": 0.023190976933357667
+        },
+        "train_mean": {
+          "n": 192,
+          "mae": 0.26927419354838716,
+          "rmse": 0.2698101768031231,
+          "spearman": null,
+          "prediction_mean": 0.7243010752688174,
+          "prediction_sd": 2.220446049250313e-16
+        },
+        "session_mean": {
+          "n": 192,
+          "mae": 0.27479733833464093,
+          "rmse": 0.2809961281631634,
+          "spearman": 0.0,
+          "prediction_mean": 0.7169368822204786,
+          "prediction_sd": 0.054470038719152514
+        },
+        "window_median_fallback": {
+          "n": 192,
+          "mae": 0.29129374999999996,
+          "rmse": 0.29356270225668996,
+          "spearman": -0.04094335247633829,
+          "prediction_mean": 0.6950656249999999,
+          "prediction_sd": 0.003794680435738298
+        }
+      },
+      "EDSA-Kamuning": {
+        "nonvisual": {
+          "n": 144,
+          "mae": 0.25540732450074355,
+          "rmse": 0.29648355093207773,
+          "spearman": 0.4151632181949796,
+          "prediction_mean": 0.8385713969055372,
+          "prediction_sd": 0.021056719775008413
+        },
+        "train_mean": {
+          "n": 144,
+          "mae": 0.2724839400428266,
+          "rmse": 0.2893538693273176,
+          "spearman": null,
+          "prediction_mean": 0.7301927194860812,
+          "prediction_sd": 1.1102230246251565e-16
+        },
+        "session_mean": {
+          "n": 144,
+          "mae": 0.243684313157807,
+          "rmse": 0.2703691099095023,
+          "spearman": 0.5311280251576342,
+          "prediction_mean": 0.7406557427009223,
+          "prediction_sd": 0.04739489258511013
+        },
+        "window_median_fallback": {
+          "n": 144,
+          "mae": 0.2732104166666666,
+          "rmse": 0.29215728016629444,
+          "spearman": 0.35070515647035916,
+          "prediction_mean": 0.6952937499999999,
+          "prediction_sd": 0.0042791235595037455
+        }
+      },
+      "EDSA-Ortigas": {
+        "nonvisual": {
+          "n": 96,
+          "mae": 0.2328288552754817,
+          "rmse": 0.23444104190653933,
+          "spearman": null,
+          "prediction_mean": 0.7671711447245183,
+          "prediction_sd": 0.027446790000517383
+        },
+        "train_mean": {
+          "n": 96,
+          "mae": 0.29169452989166783,
+          "rmse": 0.2916945298916678,
+          "spearman": null,
+          "prediction_mean": 0.7083054701083321,
+          "prediction_sd": 1.1102230246251565e-16
+        },
+        "session_mean": {
+          "n": 96,
+          "mae": 0.30260550670120456,
+          "rmse": 0.3067380616051347,
+          "spearman": null,
+          "prediction_mean": 0.6973944932987953,
+          "prediction_sd": 0.050181129435103666
+        },
+        "window_median_fallback": {
+          "n": 96,
+          "mae": 0.3058708333333333,
+          "rmse": 0.3058951948107936,
+          "spearman": null,
+          "prediction_mean": 0.6941291666666668,
+          "prediction_sd": 0.0038605082962681943
+        }
+      },
+      "EDSA-Quezon Ave": {
+        "nonvisual": {
+          "n": 145,
+          "mae": 0.2710481763284603,
+          "rmse": 0.2751688305334169,
+          "spearman": -0.31586244546662523,
+          "prediction_mean": 0.7217464887826225,
+          "prediction_sd": 0.04353775645101208
+        },
+        "train_mean": {
+          "n": 145,
+          "mae": 0.2552354069792604,
+          "rmse": 0.2554488249641916,
+          "spearman": null,
+          "prediction_mean": 0.7383210152001115,
+          "prediction_sd": 0.0
+        },
+        "session_mean": {
+          "n": 145,
+          "mae": 0.27922763690405694,
+          "rmse": 0.2834751416338918,
+          "spearman": -0.4418896241249585,
+          "prediction_mean": 0.7325871577145496,
+          "prediction_sd": 0.054232189665074274
+        },
+        "window_median_fallback": {
+          "n": 145,
+          "mae": 0.27575172413793103,
+          "rmse": 0.27998251946665625,
+          "spearman": -0.3827347778885823,
+          "prediction_mean": 0.6952241379310344,
+          "prediction_sd": 0.00373551502910899
+        }
+      },
+      "EDSA-Regalia (P. Tuazon)": {
+        "nonvisual": {
+          "n": 132,
+          "mae": 0.2515181722565681,
+          "rmse": 0.25272166490017745,
+          "spearman": 0.3165352840893864,
+          "prediction_mean": 0.7301282339287998,
+          "prediction_sd": 0.01463785144223686
+        },
+        "train_mean": {
+          "n": 132,
+          "mae": 0.25247055764015297,
+          "rmse": 0.2528238801724224,
+          "spearman": null,
+          "prediction_mean": 0.7364119329791582,
+          "prediction_sd": 0.0
+        },
+        "session_mean": {
+          "n": 132,
+          "mae": 0.23153536716422904,
+          "rmse": 0.23431557003535694,
+          "spearman": 0.5241424183609592,
+          "prediction_mean": 0.7402646386899926,
+          "prediction_sd": 0.039259718784568014
+        },
+        "window_median_fallback": {
+          "n": 132,
+          "mae": 0.2583159090909091,
+          "rmse": 0.26399788502079813,
+          "spearman": 0.1749153889949587,
+          "prediction_mean": 0.6950659090909092,
+          "prediction_sd": 0.004378858982855639
+        }
+      },
+      "EDSA-Shaw": {
+        "nonvisual": {
+          "n": 78,
+          "mae": 0.272424062663379,
+          "rmse": 0.27291899702027794,
+          "spearman": -0.0781097823381568,
+          "prediction_mean": 0.7234970733031034,
+          "prediction_sd": 0.008387042348998008
+        },
+        "train_mean": {
+          "n": 78,
+          "mae": 0.271153846153846,
+          "rmse": 0.2714809810593056,
+          "spearman": null,
+          "prediction_mean": 0.725,
+          "prediction_sd": 0.0
+        },
+        "session_mean": {
+          "n": 78,
+          "mae": 0.26958265955628047,
+          "rmse": 0.2723055342524989,
+          "spearman": -0.21004201260420144,
+          "prediction_mean": 0.7320424758716716,
+          "prediction_sd": 0.03919823380688343
+        },
+        "window_median_fallback": {
+          "n": 78,
+          "mae": 0.2965942307692308,
+          "rmse": 0.297967546148389,
+          "spearman": -0.13485344503826754,
+          "prediction_mean": 0.6955134615384616,
+          "prediction_sd": 0.004331316145955294
+        }
+      },
+      "Roxas Blvd-Kalaw": {
+        "nonvisual": {
+          "n": 124,
+          "mae": 0.24219302858991865,
+          "rmse": 0.24306125177495272,
+          "spearman": 0.31434680347792404,
+          "prediction_mean": 0.7594063189815295,
+          "prediction_sd": 0.019843865114068906
+        },
+        "train_mean": {
+          "n": 124,
+          "mae": 0.24962488094047242,
+          "rmse": 0.2496354332386877,
+          "spearman": null,
+          "prediction_mean": 0.7523257381690712,
+          "prediction_sd": 2.220446049250313e-16
+        },
+        "session_mean": {
+          "n": 124,
+          "mae": 0.24306227016985538,
+          "rmse": 0.24762054616792248,
+          "spearman": 0.16878989451394444,
+          "prediction_mean": 0.7440329095147792,
+          "prediction_sd": 0.04742566426222936
+        },
+        "window_median_fallback": {
+          "n": 124,
+          "mae": 0.25743225806451614,
+          "rmse": 0.2631784188745162,
+          "spearman": 0.23756049573343152,
+          "prediction_mean": 0.694932258064516,
+          "prediction_sd": 0.003780863282268897
+        }
+      },
+      "Roxas-Padre Burgos": {
+        "nonvisual": {
+          "n": 128,
+          "mae": 0.6162769004839805,
+          "rmse": 0.6510112322572231,
+          "spearman": -0.1752973413547696,
+          "prediction_mean": 0.7344909153659789,
+          "prediction_sd": 0.039617469785470476
+        },
+        "train_mean": {
+          "n": 128,
+          "mae": 0.6087871535680813,
+          "rmse": 0.6407894142560926,
+          "spearman": null,
+          "prediction_mean": 0.72405944570893,
+          "prediction_sd": 2.220446049250313e-16
+        },
+        "session_mean": {
+          "n": 128,
+          "mae": 0.5922443345566508,
+          "rmse": 0.6251893041142127,
+          "spearman": 0.41920074426028076,
+          "prediction_mean": 0.7139080432514465,
+          "prediction_sd": 0.03127359525986473
+        },
+        "window_median_fallback": {
+          "n": 128,
+          "mae": 0.5898390625000001,
+          "rmse": 0.6175916543189157,
+          "spearman": 0.40144445970390624,
+          "prediction_mean": 0.6950890625,
+          "prediction_sd": 0.003794295355674587
+        }
+      }
+    }
+  },
+  "feature_selection": {
+    "criterion": "leave-one-camera-out MAE on test days (lower is better)",
+    "inputs_only (deployed)": {
+      "n": 1123,
+      "mae": 0.32335182916259403,
+      "rmse": 0.366758732704441,
+      "spearman": -0.08479868179522962,
+      "prediction_mean": 0.7445062834779659,
+      "prediction_sd": 0.05113945159233231
+    },
+    "all_built_features": {
+      "n": 1123,
+      "mae": 0.33622503179299523,
+      "rmse": 0.38815645927345616,
+      "spearman": -0.1795579607897576,
+      "prediction_mean": 0.744874915453685,
+      "prediction_sd": 0.08561571085060637
+    },
+    "constant_train_mean": {
+      "n": 1123,
+      "mae": 0.3242912470817808,
+      "rmse": 0.36183104212792944,
+      "spearman": -0.04702224219220219,
+      "prediction_mean": 0.7314915576929636,
+      "prediction_sd": 0.011499259172539857
+    }
+  },
+  "calibration": {
+    "nonvisual": {
+      "slope": 0.6746023082458892,
+      "intercept": 0.24005741732461106,
+      "n_samples": 24903,
+      "fitted_on": "out-of-fold train+val (leave one camera out, with modality dropout)"
+    },
+    "nonvisual_oof_mae": {
+      "raw": {
+        "n": 24903,
+        "mae": 0.2879880727550424,
+        "rmse": 0.3374130845589618,
+        "spearman": 0.20857616932681008,
+        "prediction_mean": 0.7284598819675357,
+        "prediction_sd": 0.1137264440489071
+      },
+      "calibrated": {
+        "n": 24903,
+        "mae": 0.29252861128224905,
+        "rmse": 0.3353639990857338,
+        "spearman": 0.20857616932681008,
+        "prediction_mean": 0.7314781351644387,
+        "prediction_sd": 0.07672012166398968
+      }
+    },
+    "test_day_camera_segments": {
+      "labels_mean": 0.7560106856634016,
+      "nonvisual_raw": {
+        "n": 1123,
+        "mae": 0.3148289909947296,
+        "rmse": 0.3588635497381173,
+        "spearman": 0.09488335987023425,
+        "prediction_mean": 0.7466009173314029,
+        "prediction_sd": 0.04431029674021678
+      },
+      "nonvisual_calibrated": {
+        "n": 1123,
+        "mae": 0.316627674160514,
+        "rmse": 0.3586017074679558,
+        "spearman": 0.09488335987023425,
+        "prediction_mean": 0.7437161194948737,
+        "prediction_sd": 0.029891828460010553
+      },
+      "camera_model_raw": {
+        "n": 1123,
+        "mae": 0.3177158504007124,
+        "rmse": 0.3573407030908812,
+        "spearman": 0.10164378387082715,
+        "prediction_mean": 0.738273820124666,
+        "prediction_sd": 0.026743303192353973
+      },
+      "camera_model_calibrated": {
+        "n": 1123,
+        "mae": 0.31063389713729667,
+        "rmse": 0.35661697924517494,
+        "spearman": 0.10164378387082715,
+        "prediction_mean": 0.7606763754601635,
+        "prediction_sd": 0.032758118386206306
+      }
+    }
+  },
+  "response_checks": {
+    "baseline_mean": 0.7703570180820047,
+    "baseline_sd": 0.04770578603328901,
+    "precip_plus_20mm": 0.013444705552400786,
+    "incident_impact_1": 0.03541814594262138,
+    "flood_level_max": 0.0,
+    "edge_speed_halved": 0.0,
+    "am_peak_clock": -0.011088830253670608,
+    "share_with_known_incident_status": 0.087,
+    "share_with_weather": 1.0
+  },
+  "permutation_importance_test": {
+    "minute_cos": 0.0016939577938419159,
+    "minute_sin": 0.0005003769773579414,
+    "temp": 0.0,
+    "humidity": 0.0,
+    "weather_available": 0.0,
+    "weekday_sin": 0.0,
+    "weekday_cos": 0.0,
+    "incident_count": 0.0,
+    "incident_feed_available": 0.0,
+    "incident_covered": 0.0,
+    "incident_impact": -6.172196404097274e-06,
+    "precip": -5.287209523895387e-05,
+    "flood_x_precip": -0.00028359838344367284
+  }
+}

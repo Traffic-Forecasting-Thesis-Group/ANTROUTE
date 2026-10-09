@@ -15,6 +15,14 @@ class Settings(BaseSettings):
     # RISK_EDGES_PATH in .env.
     risk_edges_path: str = "data/processed/risk_scores/risk_edges.csv"
 
+    # Which risk scores routing uses. "raw" (default, what the Apple Maps evaluation was run on)
+    # or "calibrated": the camera model's train-split calibration (risk_edges.csv column
+    # risk_calibrated, scripts/calibrate_risk_edges.py) and the non-visual model's out-of-fold
+    # calibration, both onto the Light/Medium/Heavy label scale. Routes can differ between the
+    # two (W = d * (1 + lambda * Risk) is not invariant to rescaling Risk), so switching means
+    # re-running the routing evaluation.
+    risk_scores: str = "raw"
+
     # Rule-based incident layer (src/routing/event_layer.py). It is NOT part of the thesis
     # method: there, event text reaches routing only through the learned DistilBERT ->
     # CNN+LSTM -> RADR STGNN risk scores, with W = distance * (1 + lambda * Risk). Off by

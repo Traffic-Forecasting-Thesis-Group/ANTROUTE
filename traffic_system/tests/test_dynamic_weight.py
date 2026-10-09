@@ -355,11 +355,9 @@ def test_scored_mask_marks_exactly_the_edges_in_the_window():
     assert scored_pairs == {(100, 103), (100, 101)}
 
 
-def test_unscored_edges_near_a_scored_road_borrow_its_risk_and_far_ones_take_the_median():
-    from src.routing.dynamic_weight import NearestScored, fill_unscored_risk
-
-    # scored: the first two segments (risk 0.8 and 0.4); then 500 m, 1.2 km and 2 km of unscored road,
-    # so the last segment's nearer end is 1.7 km from any prediction
+def _chain_with_two_predictions():
+    """Scored: the first two segments (risk 0.8 and 0.4); then 500 m, 1.2 km and 2 km of
+    unscored road, so the last segment's nearer end is 1.7 km from any prediction."""
     graph = chain_graph([100, 100, 500, 1200, 2000])
     risk = np.zeros(5)
     scored = np.zeros(5, dtype=bool)
@@ -368,21 +366,62 @@ def test_unscored_edges_near_a_scored_road_borrow_its_risk_and_far_ones_take_the
             risk[e], scored[e] = 0.8, True
         elif (u, v) == (1, 2):
             risk[e], scored[e] = 0.4, True
-    filled, counts = fill_unscored_risk(graph, risk, scored, NearestScored.build(graph, scored), max_m=1500)
+    return graph, risk, scored
 
-    by_pair = {(u, v): filled[e] for e, (u, v) in enumerate(zip(*graph.edge_index.tolist()))}
+
+def _by_pair(graph, values):
+    return {(u, v): values[e] for e, (u, v) in enumerate(zip(*graph.edge_index.tolist()))}
+
+
+def test_unscored_edges_near_a_scored_road_still_borrow_its_risk():
+    from src.routing.dynamic_weight import SOURCE_BORROWED, SOURCE_PREDICTED, NearestScored, fill_unscored_risk
+
+    graph, risk, scored = _chain_with_two_predictions()
+    fallback = np.full(5, 0.3)
+    filled, sources, counts = fill_unscored_risk(graph, risk, scored, NearestScored.build(graph, scored),
+                                                 fallback=fallback, max_m=1500)
+    by_pair, src_of = _by_pair(graph, filled), _by_pair(graph, sources)
     assert by_pair[(0, 1)] == 0.8 and by_pair[(1, 2)] == 0.4          # predictions untouched
     assert by_pair[(2, 3)] == pytest.approx(0.4)                         # touches node 2: its risk
     assert by_pair[(3, 4)] == pytest.approx(0.4)                         # 500 m away: still the nearest road's
-    assert by_pair[(4, 5)] == pytest.approx(0.6)                         # 1.7 km away: the median of 0.8 and 0.4
-    assert counts == {"scored": 2, "nearest": 2, "median": 1}
-    assert (filled > 0).all()                                            # no road reads as empty
+    assert src_of[(0, 1)] == SOURCE_PREDICTED and src_of[(3, 4)] == SOURCE_BORROWED
+    assert counts["scored"] == 2 and counts["nearest"] == 2
 
 
-def test_no_prediction_at_all_leaves_the_risk_as_given():
-    from src.routing.dynamic_weight import NearestScored, fill_unscored_risk
+def test_far_edges_take_the_nonvisual_prediction_never_the_median():
+    from src.routing.dynamic_weight import SOURCE_NONVISUAL, NearestScored, fill_unscored_risk
+
+    graph, risk, scored = _chain_with_two_predictions()
+    fallback = np.array([0.11, 0.22, 0.33, 0.44, 0.91])                  # one value per edge, in edge order
+    filled, sources, counts = fill_unscored_risk(graph, risk, scored, NearestScored.build(graph, scored),
+                                                 fallback=fallback, max_m=1500)
+    far = [e for e, (u, v) in enumerate(zip(*graph.edge_index.tolist())) if (u, v) == (4, 5)][0]
+    assert filled[far] == pytest.approx(fallback[far])                   # 1.7 km away: its own prediction
+    assert filled[far] != pytest.approx(0.6)                             # not the median of 0.8 and 0.4
+    assert sources[far] == SOURCE_NONVISUAL
+    assert counts == {"scored": 2, "nearest": 2, "nonvisual": 1, "unavailable": 0}
+    assert "median" not in counts
+
+
+def test_without_a_nonvisual_prediction_far_edges_are_unavailable_not_median():
+    from src.routing.dynamic_weight import DEFAULT_MISSING_RISK, SOURCE_UNAVAILABLE, NearestScored, fill_unscored_risk
+
+    graph, risk, scored = _chain_with_two_predictions()
+    for fallback in (None, np.full(5, np.nan)):
+        filled, sources, counts = fill_unscored_risk(graph, risk, scored, NearestScored.build(graph, scored),
+                                                     fallback=fallback, max_m=1500)
+        far = [e for e, (u, v) in enumerate(zip(*graph.edge_index.tolist())) if (u, v) == (4, 5)][0]
+        assert sources[far] == SOURCE_UNAVAILABLE
+        assert filled[far] == DEFAULT_MISSING_RISK
+        assert counts["unavailable"] == 1 and counts["nonvisual"] == 0
+
+
+def test_no_camera_prediction_at_all_leaves_everything_to_the_nonvisual_layer():
+    from src.routing.dynamic_weight import SOURCE_NONVISUAL, NearestScored, fill_unscored_risk
 
     graph = chain_graph([100, 100])
     scored = np.zeros(2, dtype=bool)
-    filled, counts = fill_unscored_risk(graph, np.zeros(2), scored, NearestScored.build(graph, scored))
-    assert (filled == 0).all() and counts["scored"] == 0
+    filled, sources, counts = fill_unscored_risk(graph, np.zeros(2), scored, NearestScored.build(graph, scored),
+                                                 fallback=np.array([0.5, 0.7]))
+    assert filled.tolist() == [0.5, 0.7] and (sources == SOURCE_NONVISUAL).all()
+    assert counts["scored"] == 0 and counts["nonvisual"] == 2
