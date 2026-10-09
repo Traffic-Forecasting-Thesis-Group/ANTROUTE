@@ -1,7 +1,10 @@
+import csv
 import json
 import math
 import re
 import unicodedata
+from functools import lru_cache
+from pathlib import Path
 
 import httpx
 from fastapi import APIRouter, Query
@@ -214,6 +217,61 @@ async def _get_results(query: str) -> list[dict]:
     return results
 
 
+# The stops of the Apple Maps test trips (scripts/evaluate_routing.py, scripts/citywide_trips.py).
+# Searching one by name offers its exact point first: a search result from Nominatim lands tens
+# of metres away, on a different road point, and the app then cannot recognise the trip as a
+# test trip (POST /routes/trip-evaluation matches the exact stops).
+TEST_TRIP_SHEETS = (
+    Path(__file__).resolve().parents[2] / "outputs/appendix/template.csv",
+    Path(__file__).resolve().parents[2] / "outputs/appendix/template_citywide.csv",
+)
+TEST_STOP_ALIASES = {"8337-Ayala NB 1-PTZ": "EDSA-Ayala (8337-Ayala NB 1-PTZ)"}
+
+
+def _words(text: str) -> list[str]:
+    return re.findall(r"[a-z0-9]+", _plain(text))
+
+
+@lru_cache(maxsize=1)
+def _test_stops() -> tuple:
+    """(display name, raw label, lat, lng) for every stop in the test-trip sheets."""
+    stops: dict[tuple[float, float], tuple[str, str]] = {}
+    for sheet in TEST_TRIP_SHEETS:
+        if not sheet.exists():
+            continue
+        with sheet.open(encoding="utf-8", newline="") as f:
+            for row in csv.DictReader(f):
+                for name_col, point_col in (("origin", "origin_latlon"), ("destination", "destination_latlon")):
+                    label, point = (row.get(name_col) or "").strip(), (row.get(point_col) or "").strip()
+                    if not label or "," not in point:
+                        continue
+                    lat_s, lng_s = point.split(",", 1)
+                    key = (round(float(lat_s), 6), round(float(lng_s), 6))
+                    name = re.sub(r"\s*\(\d+\.\d+,\s*\d+\.\d+\)$", "", label)   # citywide labels carry coordinates
+                    stops.setdefault(key, (TEST_STOP_ALIASES.get(name, name), label))
+    return tuple((name, label, lat, lng) for (lat, lng), (name, label) in sorted(stops.items()))
+
+
+def _test_stop_results(query: str) -> list[dict]:
+    """Test-trip stops whose name contains every word of the query."""
+    wanted = _words(_normalize_query(query))
+    if not wanted:
+        return []
+    out = []
+    for name, label, lat, lng in _test_stops():
+        have = " ".join(_words(_normalize_query(name)))
+        if all(w in have for w in wanted):
+            out.append({
+                "id": f"test:{lat:.6f},{lng:.6f}",
+                "lat": lat,
+                "lng": lng,
+                "name": name,
+                "address": f"{lat:.6f}, {lng:.6f}",
+                "formatted_address": name,
+            })
+    return out
+
+
 @router.get("/search")
 async def search_places(
     query: str = Query(..., min_length=2),
@@ -223,7 +281,14 @@ async def search_places(
     # lat/lng (optional) is where the user is. It is only used to rank, so the
     # cached results are shared by everyone.
     results = await _get_results(query)
-    return {"results": _rank_results(results, query, lat, lng)[:MAX_RESULTS]}
+    ranked = _rank_results(results, query, lat, lng)
+    # Test-trip stops first (their exact points), then the ordinary results.
+    stops = _test_stop_results(query)
+    if lat is not None and lng is not None:
+        stops = [{**s, "distance_km": round(_distance_km(lat, lng, s["lat"], s["lng"]), 1)} for s in stops]
+    else:
+        stops = [{**s, "distance_km": None} for s in stops]
+    return {"results": (stops + ranked)[:MAX_RESULTS]}
 
 
 @router.get("/reverse")

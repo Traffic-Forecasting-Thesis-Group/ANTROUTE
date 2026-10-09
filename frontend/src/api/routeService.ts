@@ -25,8 +25,10 @@ export interface RouteOption {
   fallback_reason?: string | null;
   /** Mean predicted congestion risk (0-1) along the route, measured the same way for both models. */
   mean_risk?: number | null;
-  /** Share of the route's length whose risk came from the model; below 0.5 congestion_level is 'unknown'. */
+  /** Share of the route's length with a risk prediction of any kind; below 0.5 congestion_level is 'unknown'. */
   risk_coverage?: number | null;
+  /** Share of the route's length by where its risk came from: camera model, borrowed nearby, non-visual model, or none. */
+  risk_sources?: { predicted: number; borrowed: number; nonvisual: number; unavailable: number } | null;
 }
 
 export interface Coordinates {
@@ -71,6 +73,17 @@ export interface ComparisonMetrics {
   description: string;
   metrics: ComparisonMetricRow[];
   routeOptimality: RouteOptimalitySummary | null;
+  /** The same table per scenario: "overall" (every trip) first, then each scenario. */
+  scenarios: ScenarioEvaluation[];
+  /** True when each system's predicted ETA was calibrated before scoring (leave-one-trip-out scale). */
+  etaCalibrated: boolean;
+}
+
+export interface ScenarioEvaluation {
+  scenario: string;
+  label: string;
+  nTrials: number;
+  metrics: ComparisonMetricRow[];
 }
 
 /**
@@ -86,6 +99,7 @@ export interface TripEvaluation {
   baselineName: string;
   routeOptimality: { antroute: number; baseline: number } | null;
   metrics: ComparisonMetricRow[];
+  etaCalibrated: boolean;
 }
 
 interface TripEvaluationResponse {
@@ -95,6 +109,7 @@ interface TripEvaluationResponse {
   baseline_name: string;
   route_optimality?: { antroute: number; baseline: number } | null;
   metrics: ComparisonMetricsResponse['metrics'];
+  eta_calibrated?: boolean;
 }
 
 export interface RoutePlan {
@@ -127,6 +142,22 @@ interface ComparisonMetricsResponse {
     significant?: boolean | null;
   }[];
   route_optimality?: { antroute: number; baseline: number; n_trials: number } | null;
+  scenarios?: { scenario: string; label: string; n_trials: number; metrics: MetricRowResponse[] }[];
+  eta_calibrated?: boolean;
+}
+
+type MetricRowResponse = ComparisonMetricsResponse['metrics'][number];
+
+function toMetricRow(m: MetricRowResponse): ComparisonMetricRow {
+  return {
+    metric: m.metric,
+    antroute: m.antroute,
+    baseline: m.baseline,
+    improvementPct: m.improvement_pct,
+    higherIsBetter: m.higher_is_better,
+    pValue: m.p_value ?? null,
+    significant: m.significant ?? null,
+  };
 }
 
 /**
@@ -220,6 +251,7 @@ export async function getTripEvaluation(
         pValue: m.p_value ?? null,
         significant: m.significant ?? null,
       })),
+      etaCalibrated: data.eta_calibrated ?? false,
     };
   } catch (error: any) {
     if (error.response) {
@@ -241,15 +273,14 @@ export async function getComparisonMetrics(): Promise<ComparisonMetrics> {
       title: data.title,
       baselineName: data.baseline_name,
       description: data.description,
-      metrics: data.metrics.map((m) => ({
-        metric: m.metric,
-        antroute: m.antroute,
-        baseline: m.baseline,
-        improvementPct: m.improvement_pct,
-        higherIsBetter: m.higher_is_better,
-        pValue: m.p_value ?? null,
-        significant: m.significant ?? null,
+      metrics: data.metrics.map(toMetricRow),
+      scenarios: (data.scenarios ?? []).map((sc) => ({
+        scenario: sc.scenario,
+        label: sc.label,
+        nTrials: sc.n_trials,
+        metrics: sc.metrics.map(toMetricRow),
       })),
+      etaCalibrated: data.eta_calibrated ?? false,
       routeOptimality: data.route_optimality
         ? {
             antroute: data.route_optimality.antroute,

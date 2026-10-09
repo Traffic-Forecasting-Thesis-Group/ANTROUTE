@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List, Literal, Optional
+from typing import Dict, List, Literal, Optional
 
 from pydantic import BaseModel
 
@@ -45,6 +45,10 @@ class RouteOption(BaseModel):
     # predicted road within 1.5 km); the rest is the window's median. Below 0.5 the
     # congestion_level is "unknown" rather than a level read off that median.
     risk_coverage: Optional[float] = None
+    # Share of the route's length by where its risk came from: "predicted" (camera model),
+    # "borrowed" (within 1.5 km of a predicted road), "nonvisual" (weather, flood, incidents and
+    # clock only) and "unavailable" (no prediction of any kind).
+    risk_sources: Optional[Dict[str, float]] = None
 
 
 class RoutePlanResponse(BaseModel):
@@ -75,6 +79,14 @@ class RouteOptimalitySummary(BaseModel):
     n_trials: int
 
 
+class ScenarioEvaluation(BaseModel):
+    """The evaluation table for one scenario of Section 3.9, or "overall" for every trip."""
+    scenario: str
+    label: str
+    n_trials: int
+    metrics: List[ComparisonMetricRow]
+
+
 class TripEvaluationResponse(BaseModel):
     """
     The routing evaluation for one planned trip (POST /routes/trip-evaluation): its own
@@ -92,6 +104,8 @@ class TripEvaluationResponse(BaseModel):
     baseline_name: str = "Improved ACO (Cheng 2023)"
     route_optimality: Optional[RouteOptimalitySummary] = None
     metrics: List[ComparisonMetricRow] = []
+    # True when the ETA errors come from the calibrated evaluation (see app/evaluation.py).
+    eta_calibrated: bool = False
 
 
 class ComparisonMetricsResponse(BaseModel):
@@ -104,3 +118,7 @@ class ComparisonMetricsResponse(BaseModel):
     description: str
     metrics: List[ComparisonMetricRow]
     route_optimality: Optional[RouteOptimalitySummary] = None
+    # The same table per scenario of Section 3.9, "overall" first; routing evaluation only.
+    scenarios: List[ScenarioEvaluation] = []
+    # True when the ETA errors come from the calibrated evaluation (see app/evaluation.py).
+    eta_calibrated: bool = False

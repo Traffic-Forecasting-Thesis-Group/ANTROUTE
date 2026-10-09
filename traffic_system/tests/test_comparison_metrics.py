@@ -121,3 +121,41 @@ def test_without_the_evaluation_it_says_so_instead_of_showing_another_table(tmp_
     response = TestClient(app).get("/routes/comparison-metrics")
     assert response.status_code == 404
     assert "evaluate_routing.py" in response.json()["detail"]
+
+
+def test_each_scenario_gets_its_own_table(tmp_path, monkeypatch):
+    rows = [
+        {"scenario_type": scenario, **asdict(compare_paired(m, p, b))}
+        for scenario in ("overall", "recommended")
+        for m, (p, b) in TRIALS.items()
+    ]
+    path = tmp_path / "metrics.json"
+    path.write_text(json.dumps({"significance": rows}, default=float), encoding="utf-8")
+    monkeypatch.setattr(evaluation, "ROUTING_METRICS", path)
+    evaluation._cache.clear()
+    body = TestClient(app).get("/routes/comparison-metrics").json()
+    assert [(s["scenario"], s["label"], s["n_trials"]) for s in body["scenarios"]] == [
+        ("overall", "All scenarios", 10),
+        ("recommended", "Recommended", 10),
+    ]  # scenarios with no trials are left out
+    assert body["scenarios"][0]["metrics"] == body["metrics"]
+
+
+def test_the_calibrated_evaluation_is_shown_when_it_exists(tmp_path, monkeypatch):
+    rows = [{"scenario_type": "overall", **asdict(compare_paired(m, p, b))} for m, (p, b) in TRIALS.items()]
+    raw = tmp_path / "metrics.json"
+    raw.write_text(json.dumps({"significance": rows}, default=float), encoding="utf-8")
+    monkeypatch.setattr(evaluation, "ROUTING_METRICS", raw)
+    evaluation._cache.clear()
+    assert TestClient(app).get("/routes/comparison-metrics").json()["eta_calibrated"] is False
+    assert evaluation.eta_display_scale() == 1.0          # no calibration: ETAs as computed
+
+    (tmp_path / "eta_calibrated").mkdir()
+    calibration = {"applied": True, "scale_all_trips": {"antroute": 1.9, "baseline": 1.0}}
+    (tmp_path / "eta_calibrated" / "metrics.json").write_text(
+        json.dumps({"significance": rows, "eta_calibration": calibration}, default=float), encoding="utf-8"
+    )
+    evaluation._cache.clear()
+    body = TestClient(app).get("/routes/comparison-metrics").json()
+    assert body["eta_calibrated"] is True and "leave-one-trip-out" in body["description"]
+    assert evaluation.eta_display_scale() == 1.9          # ANTROUTE's engine times both cards
