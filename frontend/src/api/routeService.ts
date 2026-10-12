@@ -18,6 +18,9 @@ export interface RouteOption {
   duration_min: number;
   distance_km: number;
   congestion_level: CongestionLevel;
+  /** 0..1: the route's mean risk as a percentile of every prediction the model made;
+   *  congestion_level splits it in thirds. Null when unknown. */
+  congestion_score?: number | null;
   event_note?: string | null;
   path?: Coordinates[];
   algorithm?: RouteAlgorithm | null;

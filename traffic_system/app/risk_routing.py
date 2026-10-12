@@ -531,6 +531,30 @@ def _congestion_label(net: _Network, mean_risk: float, coverage: float = 1.0) ->
     return "heavy"
 
 
+@lru_cache(maxsize=1)
+def _pooled_risk() -> np.ndarray:
+    """Every risk the decoder produced, all windows, sorted: the distribution the label's
+    terciles (risk_low / risk_high) are taken from."""
+    net = _network()
+    if not net.risk_by_window:
+        return np.empty(0)
+    return np.sort(np.concatenate([rows["risk"].to_numpy(dtype=np.float64) for rows in net.risk_by_window.values()]))
+
+
+def _congestion_score(net: _Network, mean_risk: float, coverage: float = 1.0) -> Optional[float]:
+    """
+    The route's mean risk as a percentile (0..1) of every prediction the model made: the value
+    behind congestion_level, which splits this same distribution in thirds (clear below ~0.33,
+    heavy above ~0.66). None whenever the label is "unknown".
+    """
+    if _congestion_label(net, mean_risk, coverage) == "unknown":
+        return None
+    pooled = _pooled_risk()
+    if pooled.size == 0 or not np.isfinite(mean_risk):
+        return None
+    return round(float(np.searchsorted(pooled, mean_risk, side="right") / pooled.size), 3)
+
+
 def _path_points(net: _Network, node_ids: List[int]) -> List[dict]:
     return [{"lat": net.node_coords[n][0], "lng": net.node_coords[n][1]} for n in node_ids]
 
@@ -602,6 +626,7 @@ def _metrics_to_option(net: _Network, wg: WeightedGraph, label: str, m: PathMetr
         "duration_min": _duration_min(net, wg, m),
         "distance_km": round(m.distance_m / 1000, 2),
         "congestion_level": _congestion_label(net, m.mean_risk, coverage),
+        "congestion_score": _congestion_score(net, m.mean_risk, coverage),
         "mean_risk": round(m.mean_risk, 4),
         "risk_coverage": round(coverage, 3),
         "algorithm": "antroute",
@@ -654,6 +679,7 @@ def _baseline_option(net: _Network, window: Optional[str], stops: List[int]) -> 
         "duration_min": _duration_min(net, wg, m),
         "distance_km": round(m.distance_m / 1000, 2),
         "congestion_level": _congestion_label(net, m.mean_risk, coverage),
+        "congestion_score": _congestion_score(net, m.mean_risk, coverage),
         "mean_risk": round(m.mean_risk, 4),
         "risk_coverage": round(coverage, 3),
         "algorithm": route.algorithm,

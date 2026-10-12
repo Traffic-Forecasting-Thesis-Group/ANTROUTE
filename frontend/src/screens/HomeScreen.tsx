@@ -98,12 +98,22 @@ const CONGESTION_COLORS: Record<CongestionLevel, string> = {
   unknown: '#d1d5db',
 };
 
+// Fallback bar widths, only for a route the server sent no congestion_score for.
 const CONGESTION_WIDTH: Record<CongestionLevel, `${number}%`> = {
   clear: '30%',
   moderate: '60%',
   heavy: '85%',
   unknown: '0%',
 };
+
+/** The congestion bar follows the route's score (0..1); a small floor keeps a low score
+ *  visible. Unknown routes get an empty bar. */
+function congestionBarWidth(route: RouteOption): `${number}%` {
+  if (route.congestion_level === 'unknown') return '0%';
+  const score = route.congestion_score;
+  if (score == null || !Number.isFinite(score)) return CONGESTION_WIDTH[route.congestion_level];
+  return `${Math.round(Math.max(0.05, Math.min(1, score)) * 100)}%`;
+}
 
 /** Names the algorithm that actually produced a baseline route, which is not always IACO. */
 function baselineMethodLabel(route?: RouteOption): string {
@@ -1108,24 +1118,7 @@ export default function HomeScreen({ navigation }: any) {
         </View>
       )}
 
-      {/* Legends / locate button: sit above the map but BEHIND the scrollable panel */}
-      {!isNavigating && (
-      <View style={styles.legendCard}>
-        <View style={styles.legendItem}>
-          <View style={[styles.dot, { backgroundColor: '#ef4444' }]} />
-          <Text style={styles.legendText}>Heavy</Text>
-        </View>
-        <View style={styles.legendItem}>
-          <View style={[styles.dot, { backgroundColor: '#f59e0b' }]} />
-          <Text style={styles.legendText}>Moderate</Text>
-        </View>
-        <View style={styles.legendItem}>
-          <View style={[styles.dot, { backgroundColor: '#10b981' }]} />
-          <Text style={styles.legendText}>Clear</Text>
-        </View>
-      </View>
-      )}
-
+      {/* Locate button: sits above the map but BEHIND the scrollable panel */}
       {!isNavigating && (
       <TouchableOpacity
         style={[styles.myLocationButton, { top: insets.top + MAP_BUTTON_TOP }]}
@@ -1528,7 +1521,7 @@ export default function HomeScreen({ navigation }: any) {
                                 style={[
                                   styles.progress,
                                   {
-                                    width: CONGESTION_WIDTH[route.congestion_level],
+                                    width: congestionBarWidth(route),
                                     backgroundColor: CONGESTION_COLORS[route.congestion_level],
                                   },
                                 ]}
@@ -1536,6 +1529,9 @@ export default function HomeScreen({ navigation }: any) {
                             </View>
                             <Text style={styles.metricValue}>
                               {route.congestion_level.charAt(0).toUpperCase() + route.congestion_level.slice(1)}
+                              {route.congestion_level !== 'unknown' && route.congestion_score != null
+                                ? ` ${Math.round(route.congestion_score * 100)}%`
+                                : ''}
                             </Text>
                           </View>
 
@@ -1717,22 +1713,10 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginTop: 2,
   },
-  legendCard: {
-    position: 'absolute',
-    top: StatusBar.currentHeight ? StatusBar.currentHeight + 20 : 60,
-    left: 20,
-    zIndex: 1,
-  },
   legendItem: {
     flexDirection: 'row',
     alignItems: 'center',
     marginVertical: 3,
-  },
-  dot: {
-    width: 12,
-    height: 12,
-    borderRadius: 6,
-    marginRight: 10,
   },
   legendText: {
     fontSize: 12,

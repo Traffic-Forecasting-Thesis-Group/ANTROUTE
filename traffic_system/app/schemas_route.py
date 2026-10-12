@@ -32,6 +32,9 @@ class RouteOption(BaseModel):
     duration_min: int
     distance_km: float
     congestion_level: str
+    # The route's mean risk as a percentile (0..1) of every prediction the model made;
+    # congestion_level splits it in thirds. None when the level is unknown.
+    congestion_score: Optional[float] = None
     event_note: Optional[str] = None
     path: List[PathPoint] = []
     # Which algorithm produced this route: "antroute", or for the baseline "iaco",
