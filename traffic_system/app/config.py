@@ -15,13 +15,14 @@ class Settings(BaseSettings):
     # RISK_EDGES_PATH in .env.
     risk_edges_path: str = "data/processed/risk_scores/risk_edges.csv"
 
-    # Rule-based incident layer (src/routing/event_layer.py). It is NOT part of the thesis
-    # method: there, event text reaches routing only through the learned DistilBERT ->
-    # CNN+LSTM -> RADR STGNN risk scores, with W = distance * (1 + lambda * Risk). Off by
-    # default so the app routes exactly as the thesis evaluation does; a value > 0 adds the
-    # undocumented (1 + mu * Event) factor, for demos only. event_as_of pins the moment
-    # incidents are evaluated at; empty means "use the risk snapshot's own window".
-    event_mu: float = 0.0
+    # Event-Aware layer (src/routing/event_layer.py), part of the method: ANTROUTE's cost is
+    # W = dist * (1 + lambda * Risk) * (1 + mu * Event), Event in [0, 1] from MMDA incident
+    # reports (base impact 0.5 for one lane occupied, 1.0 for two or more, decaying linearly to
+    # 0 over 60 minutes). event_mu is that mu; the default, 1.0, is the evaluated setting
+    # (event_layer.DEFAULT_MU). 0 turns the penalty off -- the ablation, not the method.
+    # event_as_of pins the moment incidents are evaluated at; empty means "use the risk
+    # snapshot's own window".
+    event_mu: float = 1.0
     event_as_of: str = ""
 
     # The baseline is Improved ACO (Cheng 2023) with dead-end recovery. When it still finds

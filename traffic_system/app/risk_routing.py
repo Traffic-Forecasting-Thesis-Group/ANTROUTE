@@ -11,17 +11,28 @@ them uses the closest peak window and says so in the response. Both systems use 
 same window: ANTROUTE its predicted risk, the baseline the camera observations of it.
 
 risk_edges.csv is not in git (~100MB). Without it ANTROUTE's routes are still real --
-the same road graph, ACO search and free-flow ETAs -- just with no congestion risk, and
-the response says so rather than passing that off as traffic-aware.
+the same road graph and ACO search -- just with no congestion risk, and the response says
+so rather than passing that off as traffic-aware.
 
-Routing covers the whole Metro Manila road network (build_full_graph), not just the
-k-hop subgraph the STGNN trains on -- that subgraph exists only because the model
-needs a dense adjacency, a constraint routing does not share. Congestion risk is only
-predicted on the subgraph; every other edge is routed and timed on road distance and
-speed limit alone (risk 0, as the thesis scope states), the same rule
-scripts/evaluate_routing.py uses. An origin or destination further than MAX_SNAP_KM
-from every road in the network raises RouteOutsideNetworkError rather than silently
-inventing a route.
+Scope is Metro Manila. Routing covers the whole road network (build_full_graph, 59,521
+nodes), and so does congestion risk, in three tiers (dynamic_weight.TIERS):
+
+    observed     the camera subgraph (k-hop around the CCTV intersections), where the
+                 RADR STGNN -> MLP decoder predicts risk with camera observations as input
+    propagated   roads within MAX_FILL_M of it, which carry the nearest predicted road's risk
+    assumed      roads farther away, estimated from the other inputs alone -- weather, flood
+                 hazard, reported incidents, clock and road class (src/routing/context_risk.py)
+
+Each route reports how much of its length falls in each tier (risk_sources). The subgraph
+exists only because the STGNN needs a dense adjacency, a constraint routing does not share.
+An origin or destination further than MAX_SNAP_KM from every road in the network raises
+RouteOutsideNetworkError rather than silently inventing a route.
+
+The Event-Aware layer (src/routing/event_layer.py) is part of the method: ANTROUTE's cost is
+W = dist * (1 + lambda * Risk) * (1 + mu * Event), mu = EVENT_MU (app/config.py).
+
+Route durations come from the ETA engine and are labelled "estimated, not evaluated": ETA is
+not one of the thesis's research questions or metrics.
 """
 
 from __future__ import annotations
@@ -58,18 +69,29 @@ from src.routing.baseline_router import (
     load_vehicle_counts,
     plan_baseline,
 )
+from src.routing.context_risk import (
+    ContextRiskModel,
+    EdgeContext,
+    evenly,
+    fit_from_windows,
+    quantile_map,
+    text_ablation,
+)
 from src.routing.departure_window import match_recorded_window
 from src.routing.dynamic_weight import (
     DEFAULT_LAMBDA,
     DEFAULT_MISSING_RISK,
+    OBSERVED,
+    PROPAGATED,
     RISK_KEY,
+    TIERS,
     NearestScored,
     PathMetrics,
     WeightedGraph,
     build_weighted_graph,
-    MAX_FILL_M,
     fill_unscored_risk,
     load_risk_edges,
+    risk_tiers,
     risk_vector,
     scored_mask,
     window_key,
@@ -79,6 +101,7 @@ from src.routing.event_layer import (
     TrafficEvent,
     active_at,
     apply_events,
+    describe_event_layer,
     event_impact,
     load_landmarks,
     parse_alerts,
@@ -88,10 +111,25 @@ logger = logging.getLogger("uvicorn.error")
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SPATIAL_DIR = REPO_ROOT / "data/processed/spatial"
+# Hourly when collected (src/ingestion/temporal_weather.py --hourly), else the daily file. Only
+# the assumed-tier estimate reads it, and it is refitted at every start, so either works.
+WEATHER_CSV = (REPO_ROOT / "data/processed/temporal/weatherstack_hourly.csv"
+               if (REPO_ROOT / "data/processed/temporal/weatherstack_hourly.csv").exists()
+               else REPO_ROOT / "data/processed/temporal/weatherstack_historical.csv")
 MAX_SNAP_KM = 2.0  # how far a searched place may be from the nearest road node
 FALLBACK_SPEED_KMH = 25.0  # used only if metro_manila_travel_time.npz is missing
 
-NO_RISK_NOTE = "Congestion data is not loaded on the server - ETA uses road speed limits only"
+NO_RISK_NOTE = "Congestion data is not loaded on the server - routes use road distance only"
+
+# Shown with every route duration. The ETA engine's times are not one of the thesis's
+# metrics and were never scored against a reference, so they are never presented as if
+# they had been.
+DURATION_NOTE = "estimated, not evaluated"
+
+# How many recorded windows the assumed-tier estimate is fitted and checked on. Each adds a
+# few thousand rows (one per camera-subgraph edge); past this the fit no longer changes.
+CONTEXT_FIT_WINDOWS = 120
+CONTEXT_HOLDOUT_WINDOWS = 60
 
 # The baseline colony: Cheng's parameters (alpha 1, beta 5, rho 0.3, q0 0.7 for a large
 # network) with dead-end recovery, at the same 8 ants x 15 iterations the app gives
@@ -193,7 +231,7 @@ def _build_network() -> _Network:
     if edges_path.exists():
         frame = load_risk_edges(edges_path)
         keys = window_key(frame)
-        columns = RISK_KEY + ["risk"] + (["weak_target"] if "weak_target" in frame.columns else [])
+        columns = RISK_KEY + ["risk"] + [c for c in ("weak_target", "split") if c in frame.columns]
         risk_by_window = {str(k): rows for k, rows in frame[columns].groupby(keys, sort=True)}
         # Terciles over the edges the decoder actually scored. Taken over every edge
         # they would mostly measure the imputed constant, and every route would come
@@ -210,14 +248,14 @@ def _build_network() -> _Network:
 
     node_coords = _load_node_coords(SPATIAL_DIR, graph.node_ids)
 
-    # Rule-based incident layer (src/routing/event_layer.py). Not part of the thesis
-    # method -- there, event text reaches routing only through the learned DistilBERT ->
-    # CNN+LSTM -> RADR STGNN path, i.e. the risk scores above -- so it is off unless
-    # EVENT_MU is set above 0, and the thesis evaluation never uses it.
+    # Reported MMDA incidents (src/routing/event_layer.py). They feed two parts of the method:
+    # the Event-Aware layer's routing penalty (mu = EVENT_MU) and the incident input of the
+    # assumed-tier risk estimate. Parsed whenever the feed is present, so turning the penalty
+    # off (EVENT_MU = 0) does not also silently change the risk on roads far from a camera.
     events: List[TrafficEvent] = []
     raw_twitter = REPO_ROOT / "data/raw/twitter"
     landmarks = load_landmarks(REPO_ROOT / "configs/event_landmarks.csv")
-    if settings.event_mu > 0 and raw_twitter.exists() and landmarks:
+    if raw_twitter.exists() and landmarks:
         events = parse_alerts(raw_twitter, landmarks)
 
     # Where an incident label places on the graph. Starts from the camera intersections
@@ -276,6 +314,7 @@ def model_provenance() -> dict:
     stat = path.stat()
     window, _ = window_for_departure(datetime.now(ZoneInfo(LOCAL_TZ)).replace(tzinfo=None, microsecond=0))
     wg = _weighted_graph(window)
+    fitted = _context_model()
     out = {
         "risk_edges": {
             "path": str(path),
@@ -289,8 +328,13 @@ def model_provenance() -> dict:
             "edges": int(wg.n_edges),
             "edges_with_a_predicted_risk": int(wg.scored_edges),
             "coverage": round(float(wg.coverage), 4),
+            "edges_by_risk_tier": {t: int(n) for t, n in zip(*np.unique(_edge_tiers(window), return_counts=True))}
+            if window else {},
         },
+        "assumed_tier": fitted[1].describe() if fitted else
+        "window median -- the non-visual estimate could not be fitted",
         "events": {"parsed": len(net.events), "placed_intersections": len(net.event_intersections)},
+        "event_layer": describe_event_layer(settings.event_mu),
         "checkpoint": "unknown -- risk_summary.json was not copied beside risk_edges.csv",
         "calibration": "none -- no risk_calibration.json beside risk_edges.csv",
     }
@@ -322,14 +366,16 @@ def model_provenance() -> dict:
 @lru_cache(maxsize=16)
 def _weighted_graph(window: Optional[str]) -> WeightedGraph:
     """
-    ANTROUTE's weighted graph (lambda = DEFAULT_LAMBDA) for one recorded window.
+    ANTROUTE's risk-weighted graph (lambda = DEFAULT_LAMBDA) for one recorded window, before
+    the Event-Aware layer (see event_graph).
 
-    risk_edges.csv scores only the camera subgraph, ~2% of the city's edges. The rest are
-    filled by fill_unscored_risk -- the nearest scored road's risk within MAX_FILL_M, else the
-    window's median -- rather than DEFAULT_MISSING_RISK (0): with 0, a road without a
-    prediction looked empty, and ANTROUTE preferred side streets with no data over EDSA. The
-    WeightedGraph's coverage / scored_edges still count only the decoder's own predictions.
-    With no window (no risk_edges.csv) every edge carries 0.
+    risk_edges.csv scores only the camera subgraph (OBSERVED), ~2% of the city's edges. The
+    rest are filled by fill_unscored_risk: the nearest scored road's risk within MAX_FILL_M
+    (PROPAGATED), else the non-visual estimate of _assumed_risk (ASSUMED) -- never
+    DEFAULT_MISSING_RISK (0): with 0, a road without a prediction looked empty, and ANTROUTE
+    preferred side streets with no data over EDSA. The WeightedGraph's coverage / scored_edges
+    still count only the decoder's own predictions. With no window (no risk_edges.csv) every
+    edge carries 0.
     """
     net = _network()
     n_edges = net.graph.edge_index.shape[1]
@@ -338,10 +384,132 @@ def _weighted_graph(window: Optional[str]) -> WeightedGraph:
     frame = net.risk_by_window[window]
     risk, scored = risk_vector(net.graph, frame, DEFAULT_MISSING_RISK)
     mask = scored_mask(net.graph, frame)
-    risk, _ = fill_unscored_risk(net.graph, risk, mask, _nearest_scored(mask.tobytes()))
+    risk, _ = fill_unscored_risk(net.graph, risk, mask, _nearest_scored(mask.tobytes()),
+                                 assumed=_assumed_risk(window))
     return build_weighted_graph(
         net.graph, risk, lam=DEFAULT_LAMBDA, coverage=scored / n_edges, scored_edges=scored, window=window
     )
+
+
+def _window_time(window: str) -> datetime:
+    """A window label as naive Manila wall-clock time."""
+    when = datetime.fromisoformat(window)
+    return when.astimezone(ZoneInfo(LOCAL_TZ)).replace(tzinfo=None) if when.tzinfo else when
+
+
+@lru_cache(maxsize=16)
+def _window_impact(window: Optional[str]) -> Optional[np.ndarray]:
+    """[E] incident impact in force at this window (event_layer.event_impact), None when none is."""
+    net = _network()
+    live = live_events(net, window)
+    return event_impact(net.graph, live, net.event_intersections) if live else None
+
+
+@lru_cache(maxsize=1)
+def _context_model() -> Optional[Tuple[EdgeContext, ContextRiskModel]]:
+    """
+    The assumed-tier estimate (src/routing/context_risk.py), fitted once per server.
+
+    It learns from the human congestion labels (weak_target) on the camera edges -- what people
+    actually saw -- from weather, flood, incidents, clock, road attributes and text (the year of
+    posts per road, and the posts of the last hour): the inputs every road has. On roads no
+    camera covers, those inputs have to carry the camera's share, and only a target that is real
+    congestion lets them; imitating the decoder's own risk could not, since the decoder never
+    saw text. Fitted on the train-split label windows and scored on the validation and test
+    ones, with and without text (text_ablation). Without labels in risk_edges.csv it falls back
+    to imitating the decoder's risk. None when nothing can be fitted -- the assumed tier then
+    takes the window's median, and /health/model says so.
+    """
+    net = _network()
+    if not net.risk_by_window:
+        return None
+    try:
+        context = EdgeContext.build(net.graph, SPATIAL_DIR, WEATHER_CSV)
+        first = next(iter(net.risk_by_window.values()))
+        mask = scored_mask(net.graph, first)
+        edge_of = {
+            (int(u), int(v)): e
+            for e, (u, v) in enumerate(zip(np.asarray(net.graph.node_ids)[net.graph.edge_index[0].numpy()],
+                                           np.asarray(net.graph.node_ids)[net.graph.edge_index[1].numpy()]))
+            if mask[e]
+        }
+
+        def sample(window: str, column: str):
+            rows = net.risk_by_window[window]
+            rows = rows[rows[column].notna()] if column in rows.columns else rows.iloc[0:0]
+            values = rows.groupby(RISK_KEY, sort=False)[column].mean()
+            edges = np.array([edge_of.get((int(u), int(v)), -1) for u, v in values.index], dtype=np.int64)
+            keep = edges >= 0
+            return _window_time(window), edges[keep], values.to_numpy(dtype=np.float64)[keep], _window_impact(window)
+
+        def split_of(window: str) -> str:
+            rows = net.risk_by_window[window]
+            return str(rows["split"].iloc[0]) if "split" in rows.columns else "train"
+
+        def labelled(window: str) -> bool:
+            rows = net.risk_by_window[window]
+            return "weak_target" in rows.columns and rows["weak_target"].notna().any()
+
+        windows = sorted(net.risk_by_window)
+        label_train = [w for w in windows if labelled(w) and split_of(w) == "train"]
+        label_held = [w for w in windows if labelled(w) and split_of(w) in ("val", "test")]
+        if label_train:
+            train_samples = [sample(w, "weak_target") for w in label_train]
+            held_samples = [sample(w, "weak_target") for w in label_held]
+            model = fit_from_windows(context, train_samples, held_samples, target="human congestion labels")
+            model.text_ablation = text_ablation(context, train_samples, held_samples)
+        else:
+            train = [w for w in windows if split_of(w) == "train"] or windows
+            held = [w for w in windows if w not in set(train)]
+            model = fit_from_windows(
+                context,
+                (sample(w, "risk") for w in evenly(train, CONTEXT_FIT_WINDOWS)),
+                (sample(w, "risk") for w in evenly(held, CONTEXT_HOLDOUT_WINDOWS)),
+            )
+    except (OSError, ValueError, KeyError) as exc:
+        logger.warning("assumed-tier risk estimate unavailable (%s); far roads take the window median", exc)
+        return None
+    logger.info("assumed-tier risk estimate (%s): held-out %s", model.target, model.holdout)
+    return context, model
+
+
+@lru_cache(maxsize=16)
+def _assumed_risk(window: str) -> Optional[np.ndarray]:
+    """
+    [E] the non-visual risk estimate for every edge at this window, or None.
+
+    The estimate ranks the roads; quantile_map then puts those ranks on the scale of the
+    decoder's own risk on this window's observed edges, so a far road and a camera road with
+    the same congestion carry about the same risk -- the label-trained estimate and the
+    decoder are on different scales.
+    """
+    fitted = _context_model()
+    if fitted is None:
+        return None
+    context, model = fitted
+    prediction = model.predict(context.features(_window_time(window), _window_impact(window)))
+    if model.target == "decoder risk":
+        return prediction
+    net = _network()
+    frame = net.risk_by_window[window]
+    risk, _ = risk_vector(net.graph, frame, DEFAULT_MISSING_RISK)
+    scored = scored_mask(net.graph, frame)
+    return np.clip(quantile_map(prediction, prediction[scored], risk[scored]), 0.0, 1.0)
+
+
+def event_graph(window: Optional[str]) -> Tuple[WeightedGraph, Optional[np.ndarray], List[tuple]]:
+    """
+    ANTROUTE's full cost for a window: the risk-weighted graph with the Event-Aware layer
+    applied, W = dist * (1 + lambda * Risk) * (1 + mu * Event), mu = EVENT_MU. Also returns the
+    [E] incident impact (None when none is in force) and the live incidents. With mu = 0 the
+    graph is the risk-weighted one unchanged.
+    """
+    wg = _weighted_graph(window)
+    live = live_events(_network(), window)
+    impact = _window_impact(window)
+    if impact is None or settings.event_mu <= 0:
+        return wg, impact, live
+    return apply_events(wg, impact, mu=settings.event_mu), impact, live
 
 
 @lru_cache(maxsize=2)
@@ -512,18 +680,30 @@ def nearest_node(net: _Network, point: Tuple[float, float]) -> int:
     return int(net.coord_ids[best])
 
 
-# A route's congestion is reported only when most of its length has a risk that came from
-# the model -- predicted on the road itself, or borrowed from a predicted road within
-# MAX_FILL_M. Below this share the risk is mostly the window's median stand-in, and calling
-# that "moderate" would present a default as an assessment.
+# A route's congestion level traces back to the camera-fed decoder when most of its length is
+# in the observed or propagated tier. Below this share it is mostly the assumed tier's
+# non-visual estimate: the level is still shown, read off that estimate, but with
+# ESTIMATED_NOTE beside it so it never passes for something a camera saw. Without the estimate
+# (it could not be fitted) the assumed tier is only the window median, and the level is
+# "unknown" rather than a level read off a stand-in.
 MIN_RISK_COVERAGE = 0.5
+ESTIMATED_NOTE = "Estimated from weather, road type and traffic reports"
 
 
-def _congestion_label(net: _Network, mean_risk: float, coverage: float = 1.0) -> str:
+def _congestion_label(net: _Network, mean_risk: float, coverage: float = 1.0) -> Tuple[str, Optional[str]]:
+    """(congestion level, note): the note is ESTIMATED_NOTE when the level rests mostly on the
+    assumed tier's estimate, else None."""
     if not net.risk_by_window:
-        return "unknown"  # no risk_edges.csv: nothing to say, rather than a false "clear"
+        return "unknown", None  # no risk_edges.csv: nothing to say, rather than a false "clear"
+    note = None
     if coverage < MIN_RISK_COVERAGE:
-        return "unknown"  # no prediction near this route: the risk is the window median
+        if _context_model() is None:
+            return "unknown", None  # the far roads carry only the window median
+        note = ESTIMATED_NOTE
+    return _level(net, mean_risk), note
+
+
+def _level(net: _Network, mean_risk: float) -> str:
     if mean_risk <= net.risk_low:
         return "clear"
     if mean_risk <= net.risk_high:
@@ -556,54 +736,75 @@ def _via_roads(net: _Network, wg: WeightedGraph, nodes: List[int], max_roads: in
 
 def _duration_min(net: _Network, wg: WeightedGraph, m: PathMetrics) -> int:
     """
-    Travel time of a route by the app's one ETA engine, whichever system chose the route.
+    Travel time of a route by the app's one ETA engine, whichever system chose the route --
+    estimated, not evaluated (DURATION_NOTE): ETA is not a thesis metric, and these times
+    were never scored against a reference.
 
     Both systems' cards are timed with this, on ANTROUTE's risk graph for the same window,
     so two systems that pick the same road always show the same time, and a difference on
-    the map is a difference in the route. Each system's own ETA prediction is a separate
-    question, scored offline against Apple Maps by scripts/evaluate_routing.py.
+    the map is a difference in the route.
     """
     if net.free_flow_seconds is None:
         return max(1, round(m.distance_m / 1000 / FALLBACK_SPEED_KMH * 60))
     return max(1, round(path_eta_seconds(wg, net.free_flow_seconds, m.nodes) / 60))
 
 
-def risk_coverage(wg: WeightedGraph, nodes: List[int]) -> float:
+def risk_sources(wg: WeightedGraph, nodes: List[int]) -> Dict[str, float]:
     """
-    Share of a route's length whose risk came from the model for wg's window: predicted on
-    the edge, or borrowed by fill_unscored_risk from a predicted road within MAX_FILL_M. The
-    rest carries the window's median as a stand-in. 0 without a window.
+    Share of a route's length in each risk tier (OBSERVED, PROPAGATED, ASSUMED) for wg's
+    window. Empty without a window, when no risk is loaded at all.
     """
     if wg.window is None:
-        return 0.0
-    informed = _informed_edges(wg.window)
+        return {}
+    tiers = _edge_tiers(wg.window)
     indices = [wg.index_of(n) for n in nodes]
-    edges = [wg.edge_id(u, v) for u, v in zip(indices, indices[1:])]
+    edges = np.array([wg.edge_id(u, v) for u, v in zip(indices, indices[1:])], dtype=np.int64)
     length = wg.distance[edges]
-    return float(length[informed[edges]].sum() / length.sum()) if length.sum() > 0 else 0.0
+    total = float(length.sum())
+    if total <= 0:
+        return {}
+    return {t: round(float(length[tiers[edges] == t].sum()) / total, 3) for t in TIERS}
+
+
+def risk_coverage(wg: WeightedGraph, nodes: List[int]) -> float:
+    """
+    Share of a route's length whose risk traces back to the camera-fed decoder: the observed
+    and propagated tiers. The rest is the assumed tier's non-visual estimate. 0 without a window.
+    """
+    shares = risk_sources(wg, nodes)
+    return shares.get(OBSERVED, 0.0) + shares.get(PROPAGATED, 0.0)
 
 
 @lru_cache(maxsize=16)
-def _informed_edges(window: str) -> np.ndarray:
-    """[E] True where this window's risk came from the model rather than the median stand-in."""
+def _edge_tiers(window: str) -> np.ndarray:
+    """[E] OBSERVED / PROPAGATED / ASSUMED for this window, by the rule fill_unscored_risk applies."""
     net = _network()
     mask = scored_mask(net.graph, net.risk_by_window[window])
-    nearest = _nearest_scored(mask.tobytes())
-    src, dst = net.graph.edge_index[0].numpy(), net.graph.edge_index[1].numpy()
-    near = np.minimum(nearest.distance_m[src], nearest.distance_m[dst]) <= MAX_FILL_M
-    return mask | near
+    return risk_tiers(net.graph, mask, _nearest_scored(mask.tobytes()))
+
+
+def _risk_fields(net: _Network, wg: WeightedGraph, m: PathMetrics) -> dict:
+    """The congestion fields every option carries, measured the same way for both systems."""
+    sources = risk_sources(wg, m.nodes)
+    coverage = sources.get(OBSERVED, 0.0) + sources.get(PROPAGATED, 0.0)
+    level, note = _congestion_label(net, m.mean_risk, coverage)
+    return {
+        "duration_min": _duration_min(net, wg, m),
+        "duration_note": DURATION_NOTE,
+        "distance_km": round(m.distance_m / 1000, 2),
+        "congestion_level": level,
+        "congestion_note": note,
+        "mean_risk": round(m.mean_risk, 4),
+        "risk_coverage": round(coverage, 3),
+        "risk_sources": sources or None,
+    }
 
 
 def _metrics_to_option(net: _Network, wg: WeightedGraph, label: str, m: PathMetrics) -> dict:
-    coverage = risk_coverage(wg, m.nodes)
     return {
         "label": label,
         "via": _via_roads(net, wg, m.nodes) or "local roads",
-        "duration_min": _duration_min(net, wg, m),
-        "distance_km": round(m.distance_m / 1000, 2),
-        "congestion_level": _congestion_label(net, m.mean_risk, coverage),
-        "mean_risk": round(m.mean_risk, 4),
-        "risk_coverage": round(coverage, 3),
+        **_risk_fields(net, wg, m),
         "algorithm": "antroute",
         "fallback_reason": None,
         "event_note": None,
@@ -640,7 +841,6 @@ def _baseline_option(net: _Network, window: Optional[str], stops: List[int]) -> 
     else:
         method = f"IACO for {route.legs_by_iaco} of {route.legs} legs, shortest distance for the rest"
     roads = _via_roads(net, wg, m.nodes)
-    coverage = risk_coverage(wg, m.nodes)
     # The app already names the method under every baseline card ("Baseline route · Improved
     # ACO (Cheng 2023)"), so `via` adds it only when it is NOT plain IACO -- a fallback is the
     # one thing the card would otherwise hide.
@@ -651,11 +851,7 @@ def _baseline_option(net: _Network, window: Optional[str], stops: List[int]) -> 
     return {
         "label": "Baseline route",
         "via": via,
-        "duration_min": _duration_min(net, wg, m),
-        "distance_km": round(m.distance_m / 1000, 2),
-        "congestion_level": _congestion_label(net, m.mean_risk, coverage),
-        "mean_risk": round(m.mean_risk, 4),
-        "risk_coverage": round(coverage, 3),
+        **_risk_fields(net, wg, m),
         "algorithm": route.algorithm,
         "fallback_reason": route.fallback_reason,
         "event_note": None,
@@ -737,12 +933,9 @@ def plan_real_routes(
         return [_baseline_option(net, window, stops)]
 
     wg_risk_only = _weighted_graph(window)
-    wg = wg_risk_only
-    impact = None
-    live = live_events(net, window) if settings.event_mu > 0 else []
-    if live:
-        impact = event_impact(net.graph, live, net.event_intersections)
-        wg = apply_events(wg, impact, mu=settings.event_mu)
+    wg, impact, live = event_graph(window)
+    if settings.event_mu <= 0:
+        impact, live = None, []   # penalty off: no route was adjusted, so no note may say so
 
     # Lighter than the library default (20 ants x 60 iterations) because the colony
     # searches the whole city. With the goal-directed heuristic the ants converge on the

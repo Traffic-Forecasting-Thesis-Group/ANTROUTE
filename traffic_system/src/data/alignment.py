@@ -6,7 +6,7 @@ Collection rates:
     Visual (MMDA CCTV):  1 frame every 60 s, peak sessions only,
                          May 4-25, 2026 (Mon/Wed/Fri)
     Unstructured (X):    retrieved every 2 h, aligned by each post's created_at
-    Temporal (weather):  daily
+    Temporal (weather):  hourly (weatherstack_hourly.csv), or daily (weatherstack_historical.csv)
 
 Common timestep: 1 minute.
 Step k of a session covers [session_start + k min, session_start + (k + 1) min).
@@ -15,7 +15,7 @@ Expected inputs (pandas DataFrames):
     frames:  camera_id, timestamp, frame_path
     tweets:  camera_id, created_at, embedding   (768-d DistilBERT vector per post,
                                                  camera_id = geocoded intersection)
-    weather: date, <weather_columns...>         (one row per day)
+    weather: date, [hour,] <weather_columns...> (one row per day, or per day and hour)
 
 Naive timestamps are assumed to already be Manila local time.
 Timezone-aware timestamps (e.g. X API created_at in UTC) are converted.
@@ -146,7 +146,9 @@ class SessionRecord:
     split: str                                # "train", "val", "test"
     frame_paths: List[Optional[str]]          # length SESSION_STEPS, None = no frame
     text_steps: Dict[int, np.ndarray] = field(default_factory=dict)  # step -> mean embedding
-    weather: Optional[np.ndarray] = None      # normalized daily weather vector
+    # normalized weather: [weather_dim] for daily weather, [SESSION_STEPS, weather_dim] for
+    # hourly, where each minute carries the weather of its own hour
+    weather: Optional[np.ndarray] = None
 
 
 def _session_plan(
@@ -174,9 +176,14 @@ def build_sessions(
     nonvisual_start: date = NONVISUAL_START,
     buffer_start: date = BUFFER_START,
     visual_split: Optional[Dict[Tuple[date, str], str]] = None,
+    text_active_minutes: int = 1,
 ) -> Tuple[List[SessionRecord], MinMaxScaler, int]:
     """
     Align all three streams to 1-minute timesteps per camera and session.
+
+    A post stays in the text input for `text_active_minutes` after it was created: each minute's
+    text is the mean embedding of every post still active then, including posts from before the
+    session started. 1 is the original rule (a post counts only in its own minute).
 
     Returns:
         records, fitted weather scaler, number of sessions skipped (no weather row)
@@ -186,24 +193,36 @@ def build_sessions(
     # Normalize timestamps
     frames = frames.assign(timestamp=to_local(frames["timestamp"]))
     tweets = tweets.assign(created_at=to_local(tweets["created_at"]))
-    weather = (
-        weather.assign(date=pd.to_datetime(weather["date"]).dt.date)
-        .drop_duplicates("date", keep="last")
-        .set_index("date")
-    )
+    hourly = "hour" in weather.columns
+    weather = weather.assign(date=pd.to_datetime(weather["date"]).dt.date)
+    if hourly:
+        weather = weather.assign(hour=weather["hour"].astype(int)).drop_duplicates(["date", "hour"], keep="last")
+        weather_days = set(weather["date"])
+    else:
+        weather = weather.drop_duplicates("date", keep="last").set_index("date")
+        weather_days = set(weather.index)
 
     plan = _session_plan(nonvisual_start, buffer_start, visual_split)
 
-    # Weather scaler: training days only (prevents leakage)
-    train_days = sorted(
-        {day for day, _, _, split in plan if split == "train"} & set(weather.index)
-    )
+    # Weather scaler: training days only (prevents leakage); every hour of them when hourly
+    train_days = sorted({day for day, _, _, split in plan if split == "train"} & weather_days)
     if not train_days:
         raise ValueError("No weather rows found for any training day.")
 
-    scaler = MinMaxScaler().fit(
-        weather.loc[train_days, weather_columns].to_numpy(dtype=np.float32)
-    )
+    fit_rows = weather[weather["date"].isin(train_days)] if hourly else weather.loc[train_days]
+    scaler = MinMaxScaler().fit(fit_rows[weather_columns].to_numpy(dtype=np.float32))
+    by_hour = {(d, h): row for d, h, row in zip(
+        weather["date"], weather["hour"], weather[weather_columns].to_numpy(dtype=np.float32)
+    )} if hourly else {}
+
+    def session_weather(day: date, start: pd.Timestamp) -> np.ndarray:
+        """[SESSION_STEPS, D] hourly weather of each minute; an hour without a row takes the
+        mean of that day's hours."""
+        day_rows = np.stack([v for (d, _), v in by_hour.items() if d == day])
+        fill = day_rows.mean(axis=0)
+        hours = [(start + pd.Timedelta(minutes=k * STEP_MINUTES)).hour for k in range(SESSION_STEPS)]
+        raw = np.stack([by_hour.get((day, h), fill) for h in hours])
+        return scaler.transform(raw)
 
     frames_by_camera = {c: g for c, g in frames.groupby("camera_id")}
     tweets_by_camera = {c: g for c, g in tweets.groupby("camera_id")}
@@ -219,7 +238,7 @@ def build_sessions(
         for day, session, regime, split in plan:
 
             # Weather check
-            if day not in weather.index:
+            if day not in weather_days:
                 skipped += 1
                 continue
 
@@ -236,24 +255,34 @@ def build_sessions(
                 for k, path in zip(step_index(sel["timestamp"], start), sel["frame_path"]):
                     frame_paths[int(k)] = path
 
-            # Text: mean embedding of posts created inside each minute
+            # Text: mean embedding of the posts active in each minute -- created in it, or up to
+            # text_active_minutes - 1 minutes before it
             text_steps: Dict[int, np.ndarray] = {}
+            active = max(int(text_active_minutes), 1)
             sel = camera_tweets[
-                (camera_tweets["created_at"] >= start)
+                (camera_tweets["created_at"] >= start - pd.Timedelta(minutes=(active - 1) * STEP_MINUTES))
                 & (camera_tweets["created_at"] < end)
             ]
             if len(sel):
-                steps = step_index(sel["created_at"], start)
+                steps = step_index(sel["created_at"], start)          # negative: before the session
                 embeddings = np.stack(
                     [np.asarray(e, dtype=np.float32) for e in sel["embedding"]]
                 )
-                for k in np.unique(steps):
-                    text_steps[int(k)] = embeddings[steps == k].mean(axis=0)
+                sums: Dict[int, np.ndarray] = {}
+                counts: Dict[int, int] = {}
+                for k0, emb in zip(steps, embeddings):
+                    for k in range(max(int(k0), 0), min(int(k0) + active, SESSION_STEPS)):
+                        sums[k] = sums[k] + emb if k in sums else emb.copy()
+                        counts[k] = counts.get(k, 0) + 1
+                text_steps = {k: sums[k] / counts[k] for k in sums}
 
-            # Temporal: normalized daily weather
-            weather_vector = scaler.transform(
-                weather.loc[[day], weather_columns].to_numpy(dtype=np.float32)
-            )[0]
+            # Temporal: normalized weather -- per minute when hourly, one vector when daily
+            if hourly:
+                weather_vector = session_weather(day, start)
+            else:
+                weather_vector = scaler.transform(
+                    weather.loc[[day], weather_columns].to_numpy(dtype=np.float32)
+                )[0]
 
             records.append(
                 SessionRecord(

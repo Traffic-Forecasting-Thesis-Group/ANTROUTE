@@ -20,7 +20,7 @@ class ANTROUTEWindowDataset(Dataset):
     Each item:
         images:      [T, 3, 224, 224]  pixels in [0, 1]; zeros where no frame
         text:        [T, 768]          zeros where no post
-        temporal:    [T, weather_dim]  daily weather repeated per step
+        temporal:    [T, weather_dim]  each step's hourly weather, or daily weather repeated
         visual_mask: [T]               True where a frame exists
         text_mask:   [T]               True where at least one post exists
         target:      optional, from target_fn(record, start_step)
@@ -85,8 +85,11 @@ class ANTROUTEWindowDataset(Dataset):
                 text[j] = torch.from_numpy(embedding)
                 text_mask[j] = True
 
-        # Temporal (daily weather, repeated per step)
-        temporal = torch.from_numpy(record.weather).unsqueeze(0).repeat(T, 1)
+        # Temporal: hourly weather is already per minute of the session; daily is repeated
+        if record.weather.ndim == 2:
+            temporal = torch.from_numpy(record.weather[start:start + T].copy())
+        else:
+            temporal = torch.from_numpy(record.weather).unsqueeze(0).repeat(T, 1)
 
         item = {
             "images": images,

@@ -25,7 +25,14 @@ sys.path.insert(0, str(REPO_ROOT))
 from scripts.predict_congestion_risk import build_context, build_model, parse_session_key  # noqa: E402
 from src.data.graph_data import build_subgraph  # noqa: E402
 from src.data.graph_dataset import GraphWindowDataset  # noqa: E402
-from src.data.training_data import InferenceWindowDataset, build_training_records, load_frames_table, session_of  # noqa: E402
+from src.data.training_data import (  # noqa: E402
+    InferenceWindowDataset,
+    build_training_records,
+    check_weather_resolution,
+    default_weather_csv,
+    load_frames_table,
+    session_of,
+)
 from src.models.source_sensitivity import SOURCES, constant_edges, source_sensitivity  # noqa: E402
 from src.models.traffic_risk_model_edge import camera_edge_ids  # noqa: E402
 
@@ -34,7 +41,8 @@ def main() -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--checkpoint", required=True, type=Path)
     p.add_argument("--frames-root", required=True, type=Path, nargs="+")
-    p.add_argument("--weather-csv", type=Path, default=REPO_ROOT / "data/processed/temporal/weatherstack_historical.csv")
+    p.add_argument("--weather-csv", type=Path, default=None,
+                   help="default: the file matching the checkpoint's weather resolution")
     p.add_argument("--raw-twitter", type=Path, default=REPO_ROOT / "data/raw/twitter")
     p.add_argument("--embeddings", type=Path, default=REPO_ROOT / "data/processed/embeddings.pt")
     p.add_argument("--spatial-dir", type=Path, default=REPO_ROOT / "data/processed/spatial")
@@ -49,6 +57,8 @@ def main() -> None:
     device = torch.device(a.device or ("cuda" if torch.cuda.is_available() else "cpu"))
     ckpt = torch.load(a.checkpoint, map_location="cpu", weights_only=False)
     cfg = ckpt["config"]
+    a.weather_csv = a.weather_csv or default_weather_csv(cfg.get("weather_resolution", "daily"))
+    check_weather_resolution(cfg, a.weather_csv)
     graph = build_subgraph(a.spatial_dir, cfg["k"])
     if not np.array_equal(graph.node_ids, cfg["graph_node_ids"]):
         raise SystemExit("the road subgraph differs from the one this checkpoint was trained on")
@@ -62,6 +72,8 @@ def main() -> None:
     records, _, _ = build_training_records(
         a.frames_root, a.weather_csv, a.raw_twitter if use_text else None, a.embeddings if use_text else None,
         visual_split=visual_split,
+        text_radius_km=cfg.get("text_radius_km", 0.0),
+        text_active_minutes=cfg.get("text_active_minutes", 1),
     )
     context = build_context(cfg, graph, a.spatial_dir, a.weather_csv, camera_index,
                             a.raw_twitter, a.landmarks_csv, a.event_intersections_csv)
@@ -77,8 +89,12 @@ def main() -> None:
     a_hat, edge_index, cams = graph.a_hat.to(device), graph.edge_index.to(device), camera_index.to(device)
 
     totals, risks, batches = {}, [], 0
+    text_present, text_slots = 0, 0
     for batch in loader:
         batch = {k: v.to(device) for k, v in batch.items() if k != "target"}
+        if "text_mask" in batch:
+            text_present += int(batch["text_mask"].sum())
+            text_slots += batch["text_mask"].numel()
         with torch.no_grad():
             risks.append(torch.sigmoid(model(batch, a_hat, cams, edge_index).float()).cpu())
         for source, stats in source_sensitivity(model, batch, a_hat, cams, edge_index, cam_edges.to(device)).items():
@@ -96,10 +112,16 @@ def main() -> None:
         "context": bool(cfg.get("context")),
         "windows": int(sum(len(r) for r in risks)),
         "constant_non_camera_edges": constant_edges(torch.cat(risks), cam_edges),
+        "use_text": use_text,
+        # Share of (camera, minute) slots in the sampled windows that had any tweet: the text
+        # source can only move the risk where there was text to remove.
+        "text_present_share": (text_present / text_slots) if text_slots else 0.0,
         "sources": totals,
     }
     print(f"{result['windows']} windows | context {'on' if result['context'] else 'OFF (CCTV-only checkpoint)'}")
     print(f"non-camera edges with the same risk in every window: {result['constant_non_camera_edges']:.1%}\n")
+    print(f"text present in {result['text_present_share']:.1%} of (camera, minute) slots "
+          f"(text branch {'on' if use_text else 'OFF'})\n")
     print(f"{'source':10s} {'camera mean':>12s} {'other mean':>11s} {'other max':>10s} {'other moved':>12s}")
     for source in SOURCES:
         if source not in totals:

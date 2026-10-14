@@ -49,11 +49,11 @@ def test_nearest_node_rejects_a_point_far_from_every_node():
 
 def test_congestion_label_buckets_at_the_tercile_cutoffs():
     net = make_network({}, risk_low=0.3, risk_high=0.6)
-    assert _congestion_label(net, 0.1) == "clear"
-    assert _congestion_label(net, 0.3) == "clear"
-    assert _congestion_label(net, 0.45) == "moderate"
-    assert _congestion_label(net, 0.6) == "moderate"
-    assert _congestion_label(net, 0.9) == "heavy"
+    assert _congestion_label(net, 0.1) == ("clear", None)
+    assert _congestion_label(net, 0.3) == ("clear", None)
+    assert _congestion_label(net, 0.45) == ("moderate", None)
+    assert _congestion_label(net, 0.6) == ("moderate", None)
+    assert _congestion_label(net, 0.9) == ("heavy", None)
 
 
 def test_describe_window_names_the_recorded_moment():
@@ -108,7 +108,7 @@ def test_via_roads_is_none_without_road_names():
 
 def test_congestion_is_unknown_without_a_scored_risk_file():
     net = make_network({}, has_risk=False)
-    assert _congestion_label(net, 0.0) == "unknown"
+    assert _congestion_label(net, 0.0) == ("unknown", None)
 
 
 def test_available_is_false_without_the_road_network(tmp_path, monkeypatch):
@@ -118,12 +118,25 @@ def test_available_is_false_without_the_road_network(tmp_path, monkeypatch):
     risk_routing._build_network.cache_clear()
 
 
-def test_congestion_is_unknown_where_the_model_made_no_prediction_near_the_route():
-    """A route whose risk is mostly the window's median stand-in gets no congestion level."""
+def test_a_route_mostly_in_the_assumed_tier_shows_its_estimate_and_says_so(monkeypatch):
+    """Mostly far from the cameras: the level comes from the non-visual estimate, labelled as such."""
     from types import SimpleNamespace
 
     net = SimpleNamespace(risk_by_window={"w": None}, risk_low=0.4, risk_high=0.6)
-    assert risk_routing._congestion_label(net, 0.5, coverage=1.0) == "moderate"
-    assert risk_routing._congestion_label(net, 0.5, coverage=0.49) == "unknown"
-    assert risk_routing._congestion_label(net, 0.5, coverage=risk_routing.MIN_RISK_COVERAGE) == "moderate"
-    assert risk_routing._congestion_label(SimpleNamespace(risk_by_window={}), 0.5) == "unknown"
+    monkeypatch.setattr(risk_routing, "_context_model", lambda: ("context", "model"))
+    note = risk_routing.ESTIMATED_NOTE
+    assert note == "Estimated from weather, road type and traffic reports"
+    assert risk_routing._congestion_label(net, 0.5, coverage=1.0) == ("moderate", None)
+    assert risk_routing._congestion_label(net, 0.5, coverage=0.49) == ("moderate", note)
+    assert risk_routing._congestion_label(net, 0.9, coverage=0.0) == ("heavy", note)
+    assert risk_routing._congestion_label(net, 0.5, coverage=risk_routing.MIN_RISK_COVERAGE) == ("moderate", None)
+    assert risk_routing._congestion_label(SimpleNamespace(risk_by_window={}), 0.5) == ("unknown", None)
+
+
+def test_without_the_estimate_a_mostly_assumed_route_is_unknown(monkeypatch):
+    """The estimate could not be fitted: far roads carry only the window median, so no level."""
+    from types import SimpleNamespace
+
+    net = SimpleNamespace(risk_by_window={"w": None}, risk_low=0.4, risk_high=0.6)
+    monkeypatch.setattr(risk_routing, "_context_model", lambda: None)
+    assert risk_routing._congestion_label(net, 0.5, coverage=0.49) == ("unknown", None)

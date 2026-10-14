@@ -1,29 +1,30 @@
 """
-More Apple Maps test trips, this time anywhere in Metro Manila rather than only between the
+More Google Maps test trips, this time anywhere in Metro Manila rather than only between the
 seven EDSA camera intersections.
 
     python scripts/citywide_trips.py --out outputs/appendix/template_citywide.csv
 
 The first batch (scripts/evaluate_routing.py --template) draws its trips from the camera
 intersections and routes them on the camera subgraph. Trips the app plans start and end
-anywhere, on the whole-city graph, so this batch is drawn from road points across the city
-and routed by the app's own code (app.risk_routing.plan_real_routes): the routes the team
-times in Apple Maps are exactly the routes the app shows for that trip and departure.
+anywhere, on the whole-city graph (59,521 nodes), so this batch is drawn from road points
+across the city and routed by the app's own code (app.risk_routing.plan_real_routes): the
+routes the team times in Google Maps are exactly the routes the app shows for that trip and
+departure. Their roads carry risk in all three tiers -- observed, propagated and assumed (see
+src/routing/dynamic_weight.py) -- and ANTROUTE routes them with the Event-Aware layer on:
+this script refuses to run with EVENT_MU = 0, since that is the ablation, not the method.
 
-Per trip, both systems' recommended route and each system's own per-leg ETA are written in
-evaluate_routing.py's template format, plus three columns it uses for these trips:
+Per trip, both systems' recommended route is written in evaluate_routing.py's template
+format, plus a `graph` column ("full": length, congestion and event exposure are measured on
+the city graph when scored). No system's own ETA is written: ETA is not a thesis metric.
 
-    graph                           "full": distance and risk are measured on the city graph
-    antroute_predicted_eta_seconds  ANTROUTE's ETA engine, per leg (what the app shows)
-    baseline_predicted_eta_seconds  IACO's own estimate, the observed t_ij it planned with
+Departures reuse the first batch's slots, so whoever does the lookups sets the departure to
+times they already know. Trip ids continue the first batch's numbering (R11..., M11...) so the
+two sheets can be scored together:
 
-Departures reuse the first batch's slots (Monday, the same times), so whoever does the
-lookups sets "Leave at" to times they already know. Trip ids continue the first batch's
-numbering (R11..., M11...) so the two sheets can be scored together:
-
-    python scripts/apple_maps_worklist.py --template outputs/appendix/template_citywide.csv \
+    python scripts/google_maps_worklist.py --template outputs/appendix/template_citywide.csv \
         --out outputs/appendix/lookups_citywide.csv
-    # fill eta_seconds, then --apply, then score both sheets with evaluate_routing.py --apple-maps
+    # fill duration_seconds and the provenance columns, then --apply, then score both sheets
+    # with evaluate_routing.py --google-maps
 """
 
 import argparse
@@ -40,8 +41,7 @@ import pandas as pd  # noqa: E402
 
 from app import risk_routing as rr  # noqa: E402
 from src.routing.baseline_router import BaselineNoRouteError  # noqa: E402
-from src.routing.eta_engine import path_eta_seconds  # noqa: E402
-from src.routing.route_trials import MULTI_DESTINATION, RECOMMENDED, pick_waypoints  # noqa: E402
+from src.routing.route_trials import MULTI_DESTINATION, RECOMMENDED, REFERENCE_FIELDS, pick_waypoints  # noqa: E402
 
 PREFIX = {RECOMMENDED: "R", MULTI_DESTINATION: "M"}
 # A leg shorter than this is a few blocks, where both systems take the same street; longer
@@ -76,13 +76,6 @@ def split_legs(nodes: Sequence[int], stops: Sequence[int]) -> List[List[int]]:
             raise ValueError(f"route does not pass through stop {stop}")
         cuts.append(start)
     return [list(nodes[a:b + 1]) for a, b in zip(cuts, cuts[1:])]
-
-
-def baseline_eta(window: str, leg: Sequence[int]) -> float:
-    """IACO's own estimate for a leg: the observed travel times it planned with."""
-    inputs = rr._baseline_inputs(window)
-    g = inputs.graph
-    return float(inputs.travel_time[g.edges_of([g.index_of(v) for v in leg])].sum())
 
 
 def draw_stops(rng, candidates, coords, n_stops: int) -> List[int]:
@@ -123,16 +116,19 @@ def main() -> None:
     p.add_argument("--out", type=Path, default=REPO_ROOT / "outputs/appendix/template_citywide.csv")
     p.add_argument("--n-trials", type=int, default=10, help="trips per scenario")
     p.add_argument("--n-stops", type=int, default=3, help="stops per multi-destination trip")
-    p.add_argument("--n-waypoints", type=int, default=6, help="Apple Maps stops per leg")
+    p.add_argument("--n-waypoints", type=int, default=6, help="Google Maps stops per leg (at most 9)")
     p.add_argument("--seed", type=int, default=1)
     a = p.parse_args()
+    if not rr.settings.event_mu > 0:
+        raise SystemExit("EVENT_MU is 0: the Event-Aware layer is off, which is the ablation, not the "
+                         "method. Unset it (default 1.0) before drawing evaluation trips.")
 
     first = pd.read_csv(a.first_batch, dtype=str, keep_default_na=False)
     net = rr._network()
     windows = sorted(w for w in first["window"].unique() if w in net.risk_by_window)
     if not windows:
         raise SystemExit(f"none of {a.first_batch}'s windows are in risk_edges.csv")
-    leave_at = dict(zip(first["window"], first["apple_leave_at"]))
+    slot = dict(zip(first["window"], first["google_departure_slot"]))
     taken = {
         prefix: max((int(t[1:]) for t in first["trip_id"].unique() if t.startswith(prefix) and t[1:].isdigit()),
                     default=0)
@@ -153,7 +149,7 @@ def main() -> None:
             window = str(rng.choice(windows))
             stops = draw_stops(rng, candidates, coords, n_stops)
             trip_id = f"{PREFIX[scenario]}{number + made + 1:02d}"
-            print(f"{trip_id} {leave_at[window]}  {' -> '.join(label(s) for s in stops)}")
+            print(f"{trip_id} {slot[window]}  {' -> '.join(label(s) for s in stops)}")
             legs = route_trip(window, stops)
             if legs is None:
                 continue
@@ -165,30 +161,24 @@ def main() -> None:
                     "scenario_type": scenario,
                     "leg": leg_no,
                     "window": window,
-                    "apple_leave_at": leave_at[window],
+                    "google_departure_slot": slot[window],
                     "origin": label(o),
                     "destination": label(d),
                     "origin_latlon": latlon(o),
                     "destination_latlon": latlon(d),
                     "same_route": ant == base,
-                    "apple_eta_seconds": "",
+                    "google_duration_seconds": "",
+                    **{field: "" for field in REFERENCE_FIELDS},
                     "baseline_algorithm": "iaco",
-                    "events_live": 0,
-                    "antroute_event_edges": 0,
-                    "baseline_event_edges": 0,
                 }
                 for system, nodes in (("antroute", ant), ("baseline", base)):
                     row[f"{system}_waypoints"] = " | ".join(
                         latlon(v) for v in pick_waypoints(wg, nodes, a.n_waypoints)
                     )
-                    row[f"{system}_apple_eta_seconds"] = ""
+                    row[f"{system}_google_duration_seconds"] = ""
                 for system, nodes in (("antroute", ant), ("baseline", base)):
                     row[f"{system}_route"] = " ".join(str(v) for v in nodes)
                 row["graph"] = "full"
-                row["antroute_predicted_eta_seconds"] = round(
-                    path_eta_seconds(wg, net.free_flow_seconds, ant), 1
-                )
-                row["baseline_predicted_eta_seconds"] = round(baseline_eta(window, base), 1)
                 rows.append(row)
             made += 1
 
@@ -197,7 +187,7 @@ def main() -> None:
     trips = len({r["trip_id"] for r in rows})
     same = sum(r["same_route"] for r in rows)
     print(f"\nwrote {len(rows)} legs for {trips} trips to {a.out} ({same} legs where both systems took the same path)")
-    print(f"next: python scripts/apple_maps_worklist.py --template {a.out} "
+    print(f"next: python scripts/google_maps_worklist.py --template {a.out} "
           f"--out {a.out.with_name('lookups_citywide.csv')}")
 
 

@@ -9,8 +9,10 @@ congestion here" from a signal that is the same everywhere. That is what this mo
 
 Placement reuses the Event-Aware layer's gazetteer (configs/event_landmarks.csv), so routing and
 training agree on where a landmark is, and widening the gazetteer improves both at once. A tweet
-is attached only to a camera whose own intersection it names: the cameras are the only places
-with visual ground truth to learn against, so text anywhere else has no target to inform.
+is attached to the cameras whose own intersection it names -- and, with a placement radius
+(cameras_within), to every camera within that distance of the intersection it names, because a
+crash a kilometre up the road affects the traffic the camera sees. The cameras are the only
+places with visual ground truth to learn against, so text with no camera in reach is dropped.
 
 Deliberately conservative, for the same reason event_layer.py is: a tweet that cannot be placed
 is dropped rather than guessed at. Spreading it over every camera is what produced the bug.
@@ -19,6 +21,7 @@ is dropped rather than guessed at. Spreading it over every camera is what produc
 from __future__ import annotations
 
 import csv
+import math
 import re
 from collections import defaultdict
 from pathlib import Path
@@ -77,6 +80,67 @@ def cameras_by_intersection(camera_ids: Sequence[str], camera_map: Dict[str, str
         if label:
             out[label].append(camera_id)
     return dict(out)
+
+
+INTERSECTIONS_CSV = REPO_ROOT / "configs" / "event_intersections.csv"
+SPATIAL_DIR = REPO_ROOT / "data" / "processed" / "spatial"
+
+
+def intersection_coordinates(spatial_dir: Path = SPATIAL_DIR,
+                             intersections_csv: Path = INTERSECTIONS_CSV) -> Dict[str, tuple]:
+    """
+    (lat, lon) of every intersection label a landmark can map to: the camera intersections from
+    the road graph's own nodes (full_network_static_features.csv, cctv_label), and the other
+    intersections the gazetteer names from configs/event_intersections.csv.
+    """
+    coords: Dict[str, tuple] = {}
+    path = Path(intersections_csv)
+    if path.exists():
+        with path.open(encoding="utf-8", newline="") as f:
+            for row in csv.DictReader(f):
+                coords[row["intersection"].strip()] = (float(row["lat"]), float(row["lon"]))
+    static = Path(spatial_dir) / "full_network_static_features.csv"
+    if static.exists():
+        sums: Dict[str, List[float]] = defaultdict(lambda: [0.0, 0.0, 0])
+        with static.open(encoding="utf-8", newline="") as f:
+            for row in csv.DictReader(f):
+                if row.get("is_cctv_node") == "True" and row.get("cctv_label"):
+                    s = sums[row["cctv_label"].strip()]
+                    s[0] += float(row["lat"]); s[1] += float(row["lon"]); s[2] += 1
+        for label, (lat, lon, n) in sums.items():
+            coords[label] = (lat / n, lon / n)
+    return coords
+
+
+def _km(a: tuple, b: tuple) -> float:
+    (la1, lo1), (la2, lo2) = a, b
+    p1, p2 = math.radians(la1), math.radians(la2)
+    h = math.sin((p2 - p1) / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(math.radians(lo2 - lo1) / 2) ** 2
+    return 2 * 6371.0 * math.asin(math.sqrt(h))
+
+
+def cameras_within(
+    by_intersection: Dict[str, List[str]], coords: Dict[str, tuple], radius_km: float
+) -> Dict[str, List[str]]:
+    """
+    intersection label -> the cameras within `radius_km` (straight line) of it, for every label
+    with coordinates; with radius 0 it is `by_intersection` itself (a camera's own intersection).
+
+    This is what lets a tweet about a nearby intersection -- a crash at EDSA-Guadalupe, a few
+    hundred metres from the Ortigas cameras' corridor -- inform the cameras whose traffic it
+    affects, instead of being dropped for not naming their exact intersection. A label without
+    coordinates still reaches its own cameras.
+    """
+    if radius_km <= 0:
+        return dict(by_intersection)
+    out: Dict[str, List[str]] = {label: list(cams) for label, cams in by_intersection.items()}
+    camera_points = [(label, coords[label]) for label in by_intersection if label in coords]
+    for label, point in coords.items():
+        near = [cam for cam_label, cam_point in camera_points if _km(point, cam_point) <= radius_km
+                for cam in by_intersection[cam_label]]
+        if near:
+            out[label] = sorted(set(out.get(label, [])) | set(near))
+    return out
 
 
 def locate(text: str, landmarks: Dict[str, str]) -> Optional[str]:

@@ -16,12 +16,15 @@ from src.data.graph_data import build_subgraph  # noqa: E402
 from src.data.graph_dataset import GraphWindowDataset  # noqa: E402
 from src.data.training_data import (
     InferenceWindowDataset,
+    check_weather_resolution,
+    default_weather_csv,
     build_training_records,
     load_frames_table,
     load_label_lookup,
     session_of,
 )  # noqa: E402
 from src.data.node_context import (  # noqa: E402
+    EDGE_FEATURES_V1,
     FEATURES as CONTEXT_FEATURES,
     NodeContext,
     edge_features as road_edge_features,
@@ -65,12 +68,15 @@ def build_model(cfg: dict, device, graph=None, spatial_dir: Path = REPO_ROOT / "
         # Multimodal checkpoint: per-node context + per-edge road attributes.
         if graph is None:
             raise ValueError("this checkpoint uses the node context; pass the graph")
-        if list(cfg["context_features"]) != list(CONTEXT_FEATURES):
-            raise ValueError("the checkpoint's context features differ from src/data/node_context.py")
-        edge_attr = road_edge_features(graph, spatial_dir)
+        context_names = list(cfg["context_features"])
+        if context_names != list(CONTEXT_FEATURES[:len(context_names)]):
+            raise ValueError("the checkpoint's context features are not a prefix of src/data/node_context.py's")
+        # A checkpoint without "edge_feature_names" was trained with the original two.
+        edge_names = cfg.get("edge_feature_names") or EDGE_FEATURES_V1
+        edge_attr = road_edge_features(graph, spatial_dir, edge_names)
         decoder = MLPDecoder(node_embedding_dim=stgnn.output_dim, edge_feature_dim=edge_attr.shape[1])
         return TrafficRiskModel(
-            fusion, stgnn, decoder, context_dim=len(CONTEXT_FEATURES), edge_features=edge_attr
+            fusion, stgnn, decoder, context_dim=len(context_names), edge_features=edge_attr
         ).to(device)
     decoder = MLPDecoder(node_embedding_dim=stgnn.output_dim)
     # Checkpoints trained before the flood input existed have no flood_hazard key.
@@ -86,12 +92,20 @@ def build_context(cfg: dict, graph, spatial_dir: Path, weather_csv: Path, camera
     """The node context a checkpoint was trained with, scaled exactly as in training."""
     if not cfg.get("context"):
         return None
+    names = list(cfg["context_features"])
+    prior = None
+    if "text_reports" in names:
+        from datetime import date
+
+        from src.data.text_prior import build_text_prior
+        prior = build_text_prior(graph, before=date.fromisoformat(cfg["text_prior_before"]))
     return NodeContext.build(
         graph, spatial_dir, weather_csv,
         load_events(events_root, landmarks_csv), event_node_index(graph, spatial_dir, intersections_csv),
         camera_index.tolist(),
         weather_min=np.asarray(cfg["context_weather_min"]), weather_max=np.asarray(cfg["context_weather_max"]),
         drop=tuple(cfg.get("context_drop", ())),
+        text_prior=prior, feature_names=names,
     )
 
 
@@ -138,6 +152,8 @@ def predict(
     device = torch.device(device or ("cuda" if torch.cuda.is_available() else "cpu"))
     ckpt = torch.load(checkpoint, map_location="cpu", weights_only=False)
     cfg = ckpt["config"]
+    weather_csv = weather_csv or default_weather_csv(cfg.get("weather_resolution", "daily"))
+    check_weather_resolution(cfg, weather_csv)
     node_labels, camera_map = (cfg["node_labels"], cfg["camera_map"])
     graph = build_subgraph(spatial_dir, cfg["k"])
     if not np.array_equal(graph.node_ids, cfg["graph_node_ids"]):
@@ -159,6 +175,9 @@ def predict(
         raw_twitter_root if use_text else None,
         embeddings_path if use_text else None,
         visual_split=visual_split,
+        # the text rules the checkpoint was trained with; older ones used 0 km and 1 minute
+        text_radius_km=cfg.get("text_radius_km", 0.0),
+        text_active_minutes=cfg.get("text_active_minutes", 1),
     )
     lookup = load_label_lookup(frames_roots, human_only=True) if with_labels else None
     node_context = build_context(
@@ -241,11 +260,15 @@ def predict(
         writer.writerows(rows)
     summary = {
         "checkpoint": str(checkpoint),
+        "weather_resolution": cfg.get("weather_resolution", "daily"),
+        "edge_feature_names": list(cfg.get("edge_feature_names") or EDGE_FEATURES_V1) if cfg.get("context") else [],
         "windows": len(dataset),
         "sessions": len(sessions),
         "edges": graph.edge_index.shape[1],
         "camera_edges": len(edge_ids),
         "use_text": use_text,
+        "text_radius_km": cfg.get("text_radius_km", 0.0),
+        "text_active_minutes": cfg.get("text_active_minutes", 1),
         "flood_hazard": bool(cfg.get("flood_hazard")) or bool(cfg.get("context")),
         "context": bool(cfg.get("context")),
         "context_drop": list(cfg.get("context_drop", [])),
@@ -262,7 +285,8 @@ def main():
     p.add_argument("--frames-root", required=True, type=Path, nargs="+")
     p.add_argument("--out-dir", type=Path, default=REPO_ROOT / "outputs/risk_scores")
     p.add_argument(
-        "--weather-csv", type=Path, default=REPO_ROOT / "data/processed/temporal/weatherstack_historical.csv"
+        "--weather-csv", type=Path, default=None,
+        help="default: the file matching the checkpoint's weather resolution (hourly or daily)"
     )
     p.add_argument("--raw-twitter", type=Path, default=REPO_ROOT / "data/raw/twitter")
     p.add_argument("--embeddings", type=Path, default=REPO_ROOT / "data/processed/embeddings.pt")

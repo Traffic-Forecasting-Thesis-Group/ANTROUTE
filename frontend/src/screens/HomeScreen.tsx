@@ -69,6 +69,7 @@ import {
   CongestionLevel,
   Coordinates,
   DestinationInput,
+  DURATION_NOTE,
 } from '../api/routeService';
 import { searchPlaces, reverseGeocode, PlaceSuggestion } from '../api/placesService';
 
@@ -850,16 +851,22 @@ export default function HomeScreen({ navigation }: any) {
   // Route Optimality of this trip's own evaluated routes; null unless it is a test trip.
   const tripOptimality = tripEvaluation?.status === 'evaluated' ? tripEvaluation.routeOptimality : null;
 
-  // This trip's evaluation metrics, always in the same six rows; a metric the trip has no
-  // value for (not timed in Apple Maps, or R² on a single-leg trip) shows a dash.
-  const tripMetricRows: ComparisonMetricRow[] = ['Route Optimality', 'MAE', 'RMSE', 'MSE', 'MAPE', 'R²'].map(
+  // This trip's evaluation metrics, always in the same four rows; a trip that was not timed in
+  // Google Maps shows dashes. ETA is not an evaluation metric, so it never appears here.
+  const tripMetricRows: ComparisonMetricRow[] = [
+    'Route Optimality',
+    'Congestion exposure',
+    'Event exposure',
+    'Avoidable event exposure',
+    'Route length (descriptive)',
+  ].map(
     (metric) =>
       tripEvaluation?.metrics.find((m) => m.metric === metric) ?? {
         metric,
         antroute: '–',
         baseline: '–',
         improvementPct: null,
-        higherIsBetter: metric === 'Route Optimality' || metric === 'R²',
+        higherIsBetter: metric === 'Route Optimality',
         pValue: null,
         significant: null,
       }
@@ -1458,6 +1465,9 @@ export default function HomeScreen({ navigation }: any) {
                           {departAt ? `Leave ${formatDeparture(departAt)} · ` : ''}
                           Arrive By {getArrivalTime(navRemainingMin, departAt)} · {navRemainingKm} km
                         </Text>
+                        <Text style={styles.durationNote}>
+                          Time {selectedRoute?.duration_note ?? DURATION_NOTE}
+                        </Text>
                       </View>
                       {isNavigating ? (
                         <TouchableOpacity
@@ -1481,6 +1491,7 @@ export default function HomeScreen({ navigation }: any) {
                       <Text style={styles.normalRouteTime}>{normalRoute.duration_min} min</Text>
                       <Text style={styles.normalRouteDistance}>{normalRoute.distance_km} km</Text>
                     </View>
+                    <Text style={styles.durationNote}>Time {normalRoute.duration_note ?? DURATION_NOTE}</Text>
                     <Text style={styles.normalRouteVia}>Via {normalRoute.via}</Text>
                     <Text style={styles.normalRouteLabel}>Baseline route · {baselineMethodLabel(normalRoute)}</Text>
                   </View>
@@ -1518,6 +1529,7 @@ export default function HomeScreen({ navigation }: any) {
                               )}
                             </View>
                           </View>
+                          <Text style={styles.durationNote}>Time {route.duration_note ?? DURATION_NOTE}</Text>
                           <Text style={styles.routeListDistance}>{route.distance_km} km</Text>
                           <Text style={styles.routeListVia}>Via {route.via}</Text>
 
@@ -1538,6 +1550,9 @@ export default function HomeScreen({ navigation }: any) {
                               {route.congestion_level.charAt(0).toUpperCase() + route.congestion_level.slice(1)}
                             </Text>
                           </View>
+                          {route.congestion_note ? (
+                            <Text style={styles.durationNote}>{route.congestion_note}</Text>
+                          ) : null}
 
                           {route.event_note ? (
                             <View style={styles.infoBox}>
@@ -1579,9 +1594,10 @@ export default function HomeScreen({ navigation }: any) {
                   </View>
                 )}
 
-                {/* Comparison for the trip just planned: each model's distance and ETA, and this
-                    trip's own evaluation against Apple Maps. Only trips timed in Apple Maps have
-                    one; any other trip shows dashes rather than another trip's numbers. */}
+                {/* Comparison for the trip just planned: each model's distance and estimated time
+                    (not evaluated), and this trip's own evaluation against Google Maps. Only trips
+                    timed in Google Maps have one; any other trip shows dashes rather than another
+                    trip's numbers. */}
                 {!isNavigating && activeTab === 'comparison' && hasAnyResults && (
                   <View>
                     <Text style={styles.comparisonResultLabel}>Comparison Result</Text>
@@ -1600,8 +1616,9 @@ export default function HomeScreen({ navigation }: any) {
                           </View>
                           {item.route ? (
                             <>
-                              <Text style={styles.comparisonCardLabel}>ETA</Text>
+                              <Text style={styles.comparisonCardLabel}>Time</Text>
                               <Text style={styles.comparisonCardEta}>{item.route.duration_min} min</Text>
+                              <Text style={styles.durationNote}>{item.route.duration_note ?? DURATION_NOTE}</Text>
                               <Text style={[styles.comparisonCardLabel, { marginTop: 10 }]}>Route Optimality</Text>
                               <Text style={styles.comparisonCardOpt}>
                                 {item.optimality != null ? `${Math.round(item.optimality)}%` : '–'}
@@ -1628,7 +1645,7 @@ export default function HomeScreen({ navigation }: any) {
                         {renderMetricsTable(tripMetricRows)}
                         <Text style={styles.comparisonFootnote}>
                           {tripEvaluation.status === 'evaluated'
-                            ? 'Lower is better for MAE, RMSE, MSE, MAPE. Higher is better for Route Optimality and R².'
+                            ? 'Higher is better for Route Optimality (timed in Google Maps). Lower is better for congestion and event exposure. Route length is descriptive. Travel time is estimated, not evaluated.'
                             : tripEvaluation.message}
                         </Text>
                       </>
@@ -2162,6 +2179,13 @@ const styles = StyleSheet.create({
   summarySubtext: {
     fontSize: 11,
     color: '#6b7280',
+    marginTop: 1,
+  },
+  // Every displayed travel time carries this caption: it is estimated, not evaluated.
+  durationNote: {
+    fontSize: 10,
+    color: '#9ca3af',
+    fontStyle: 'italic',
     marginTop: 1,
   },
   summaryButton: {

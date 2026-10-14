@@ -175,7 +175,11 @@ def test_a_checkpoint_scores_only_on_the_graph_it_was_trained_on(data, tmp_path)
     out = tmp_path / "ckpt" / "v7.pt"
     train(data, out)
     ckpt = torch.load(out, map_location="cpu", weights_only=False)
-    ckpt["config"]["context_features"] = FEATURES[:-1]
+    # A shorter prefix is legitimate (older checkpoints read FEATURES[:17]); a list that is not a
+    # prefix of today's -- two columns in another order -- means the columns moved, and is refused.
+    stale = list(ckpt["config"]["context_features"])
+    stale[0], stale[1] = stale[1], stale[0]
+    ckpt["config"]["context_features"] = stale
     torch.save(ckpt, tmp_path / "ckpt" / "stale.pt")
     with pytest.raises(ValueError, match="context features"):
         score(data, tmp_path / "ckpt" / "stale.pt", tmp_path / "risk_stale")

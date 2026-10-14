@@ -1,4 +1,5 @@
 import argparse
+from datetime import date
 import csv
 import sys
 from pathlib import Path
@@ -13,7 +14,10 @@ from src.data.alignment import VISUAL_SPLIT  # noqa: E402
 from src.data.graph_data import DEFAULT_K, GraphData, build_subgraph, graph_sizes, resolve_camera_map  # noqa: E402
 from src.data.graph_dataset import GraphWindowDataset  # noqa: E402
 from src.data.training_data import (
+    TEXT_DEFAULTS,
     WEATHER_COLUMNS,
+    default_weather_csv,
+    weather_resolution,
     assign_day_splits,
     assign_session_splits,
     build_training_records,
@@ -25,13 +29,17 @@ from src.data.training_data import (
     split_days_overlap,
 )  # noqa: E402
 from src.data.node_context import (  # noqa: E402
+    EDGE_FEATURES_V1,
+    EDGE_FEATURES_V2,
+    FEATURES,
+    FEATURES_V1,
     GROUPS,
-    N_FEATURES,
     NodeContext,
     edge_features as road_edge_features,
     event_node_index,
     load_events,
 )
+from src.data.text_prior import DEFAULT_BEFORE as TEXT_PRIOR_BEFORE, build_text_prior  # noqa: E402
 from src.models.cnn_lstm_fusion import CNNLSTMFusion  # noqa: E402
 from src.models.mlp_decoder import MLPDecoder  # noqa: E402
 from src.models.radr_stgnn import RADRSTGNN  # noqa: E402
@@ -152,6 +160,10 @@ def train(
     intersections_csv: Optional[Path] = REPO_ROOT / "configs/event_intersections.csv",
     split_file: Optional[Path] = None,
     lr_context: Optional[float] = None,
+    text_radius_km: float = TEXT_DEFAULTS["text_radius_km"],
+    text_active_minutes: int = TEXT_DEFAULTS["text_active_minutes"],
+    text_prior: bool = True,
+    text_prior_before: date = TEXT_PRIOR_BEFORE,
 ) -> dict:
     """
     context=True (the default) gives every graph node its own weather, flood, event, clock
@@ -198,8 +210,14 @@ def train(
             print(f"WARNING: these dates are in more than one split, so their daily weather and incidents "
                   f"cross it: {crossing}. Use --split auto-day.")
     records, scaler, skipped = build_training_records(
-        frames_root, weather_csv, raw_twitter_root, embeddings_path, visual_split
+        frames_root, weather_csv, raw_twitter_root, embeddings_path, visual_split,
+        text_radius_km=text_radius_km, text_active_minutes=text_active_minutes,
     )
+    if raw_twitter_root is not None:
+        slots = sum(len(r.frame_paths) for r in records)
+        with_text = sum(len(r.text_steps) for r in records)
+        print(f"text: within {text_radius_km} km, active {text_active_minutes} min -> "
+              f"{with_text / max(slots, 1):.1%} of camera-minutes have text")
     if not lookup:
         raise ValueError("No labelled frames (with human_only, review frames in the viewer first).")
     camera_ids = sorted({r.camera_id for r in records})
@@ -226,13 +244,20 @@ def train(
     if context:
         events = load_events(events_root, landmarks_csv)
         event_nodes = event_node_index(graph, spatial_dir, intersections_csv)
+        prior = None
+        if text_prior:
+            # A year of traffic posts about each road, from before the first camera session --
+            # src/data/text_prior.py. Every session (train, val, test) is in May 2026.
+            prior = build_text_prior(graph, before=text_prior_before)
+            print(f"text prior: {prior.describe()}")
         node_context = NodeContext.build(
             graph, spatial_dir, weather_csv, events, event_nodes, camera_index.cpu().tolist(),
             train_days={r.day for r in records if r.split == "train"}, drop=drop_context,
+            text_prior=prior, feature_names=FEATURES if prior is not None else FEATURES_V1,
         )
         placed = sum(len(v) for v in node_context.events.values())
         print(
-            f"node context: {N_FEATURES} features on all {graph.n_nodes} nodes | {placed} incident reports "
+            f"node context: {len(node_context.feature_names)} features on all {graph.n_nodes} nodes | {placed} incident reports "
             f"placed at {len(node_context.events)} nodes | dropped: {', '.join(drop_context) or 'none'}"
         )
     datasets = {
@@ -271,10 +296,17 @@ def train(
     stgnn = RADRSTGNN(in_features=fusion.lstm.hidden_size)
     if node_context is not None:
         # Every source per node via the context (flood included, as ordinal and x rainfall),
-        # and each edge's road attributes in the decoder.
-        edge_attr = road_edge_features(graph, spatial_dir)
+        # and each edge's road attributes in the decoder: length and speed limit, plus lane count
+        # and road type once full_network_edge_features.csv has been built
+        # (spatial_topology.py --edge-attributes-only).
+        has_road_table = (Path(spatial_dir) / "full_network_edge_features.csv").exists()
+        edge_feature_names = EDGE_FEATURES_V2 if has_road_table else EDGE_FEATURES_V1
+        if not has_road_table:
+            print("WARNING: full_network_edge_features.csv not built; training without lane count and road type")
+        edge_attr = road_edge_features(graph, spatial_dir, edge_feature_names)
         decoder = MLPDecoder(node_embedding_dim=stgnn.output_dim, edge_feature_dim=edge_attr.shape[1])
-        model = TrafficRiskModel(fusion, stgnn, decoder, context_dim=N_FEATURES, edge_features=edge_attr).to(device)
+        model = TrafficRiskModel(fusion, stgnn, decoder, context_dim=len(node_context.feature_names),
+                                 edge_features=edge_attr).to(device)
     else:
         # CCTV-only ablation: Project NOAH flood level as the one static node attribute (thesis 3.6).
         decoder = MLPDecoder(node_embedding_dim=stgnn.output_dim)
@@ -297,12 +329,16 @@ def train(
         "lr_graph": lr_graph,
         "lr_context": lr_graph if lr_context is None else lr_context,
         "use_text": raw_twitter_root is not None,
+        "text_radius_km": text_radius_km,
+        "text_active_minutes": text_active_minutes,
         "flood_hazard": node_context is None and graph.flood_level is not None,
         "context": node_context is not None,
         "edge_features": node_context is not None,
+        "edge_feature_names": list(edge_feature_names) if node_context is not None else [],
         **(node_context.config() if node_context is not None else {}),
         "visual_split": {f"{d.isoformat()}|{s}": v for (d, s), v in (visual_split or VISUAL_SPLIT).items()},
         "weather_columns": WEATHER_COLUMNS,
+        "weather_resolution": weather_resolution(weather_csv),
         "node_labels": node_labels,
         "camera_map": camera_map,
         "graph_node_ids": graph.node_ids,
@@ -379,11 +415,21 @@ def main():
     p.add_argument("--spatial-dir", type=Path, default=REPO_ROOT / "data/processed/spatial")
     p.add_argument("--camera-csv", type=Path, default=REPO_ROOT / "configs/camera_nodes.csv")
     p.add_argument(
-        "--weather-csv", type=Path, default=REPO_ROOT / "data/processed/temporal/weatherstack_historical.csv"
+        "--weather-csv", type=Path, default=None,
+        help="default: weatherstack_hourly.csv when collected, else the daily weatherstack_historical.csv"
     )
     p.add_argument("--raw-twitter", type=Path, default=REPO_ROOT / "data/raw/twitter")
     p.add_argument("--embeddings", type=Path, default=REPO_ROOT / "data/processed/embeddings.pt")
     p.add_argument("--no-text", action="store_true")
+    p.add_argument("--text-radius-km", type=float, default=TEXT_DEFAULTS["text_radius_km"],
+                   help="attach a tweet to every camera within this distance of the place it names (0: only that "
+                        "place's own cameras, the rule before v10)")
+    p.add_argument("--no-text-prior", action="store_true",
+                   help="leave out the text prior (a year of traffic posts per road, src/data/text_prior.py)")
+    p.add_argument("--text-prior-before", type=lambda s: date.fromisoformat(s), default=TEXT_PRIOR_BEFORE,
+                   help="build the text prior only from posts before this date (default: the first camera session)")
+    p.add_argument("--text-active-minutes", type=int, default=TEXT_DEFAULTS["text_active_minutes"],
+                   help="how long a tweet stays in the text input after it is posted (1: its own minute only)")
     p.add_argument("--out", type=Path, default=REPO_ROOT / "checkpoints/stgnn_edge_risk.pt")
     p.add_argument("--k", type=int, default=DEFAULT_K)
     p.add_argument("--epochs", type=int, default=10)
@@ -427,6 +473,8 @@ def main():
     p.add_argument("--event-intersections-csv", type=Path, default=REPO_ROOT / "configs/event_intersections.csv")
     p.add_argument("--graph-sizes", action="store_true")
     a = p.parse_args()
+    a.weather_csv = a.weather_csv or default_weather_csv()
+    print(f"weather: {a.weather_csv} ({weather_resolution(a.weather_csv)})")
     if a.graph_sizes:
         for k, nodes, edges in graph_sizes(a.spatial_dir, range(1, 11)):
             print(
@@ -465,6 +513,10 @@ def main():
         intersections_csv=a.event_intersections_csv,
         split_file=a.split_file,
         lr_context=a.lr_context,
+        text_radius_km=a.text_radius_km,
+        text_active_minutes=a.text_active_minutes,
+        text_prior=not a.no_text_prior,
+        text_prior_before=a.text_prior_before,
     )
 
 

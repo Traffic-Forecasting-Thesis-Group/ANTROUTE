@@ -195,7 +195,28 @@ def build_lane_matrix(G: nx.MultiDiGraph, node_order):
     return nx.adjacency_matrix(G_simple, nodelist=node_order, weight="lanes")
 
 
+def _tagged(value) -> bool:
+    return value is not None and not (isinstance(value, float) and np.isnan(value)) and str(value).strip() != ""
+
+
+def mark_sources(G: nx.MultiDiGraph) -> nx.MultiDiGraph:
+    """
+    Record, before any filling-in, whether each edge's speed limit and lane count were tagged in
+    OpenStreetMap ("osm") or will be assumed from its road type ("road_type"). Run before
+    add_lane_counts, which overwrites `lanes`; an edge already marked keeps its mark.
+    """
+    for _, _, data in G.edges(data=True):
+        data.setdefault("maxspeed_source", "osm" if _tagged(data.get("maxspeed")) else "road_type")
+        data.setdefault("lanes_source", "osm" if _tagged(data.get("lanes")) else "road_type")
+    return G
+
+
 def build_edge_features_table(G: nx.MultiDiGraph, node_order) -> pd.DataFrame:
+    """
+    One row per directed edge of the simple graph (the same edges as the adjacency matrix):
+    length, road type, lane count, speed and free-flow travel time, with where the speed limit
+    and lane count came from, plus one-way, access and name for auditing.
+    """
     G_simple = nx.DiGraph(G)
     rows = []
     for u, v, data in G_simple.edges(data=True):
@@ -206,11 +227,46 @@ def build_edge_features_table(G: nx.MultiDiGraph, node_order) -> pd.DataFrame:
                 "length_m": data.get("length"),
                 "road_type": _road_type(data),
                 "lanes": data.get("lanes"),
+                "lanes_source": data.get("lanes_source"),
                 "speed_kph": data.get("speed_kph"),
+                "maxspeed_source": data.get("maxspeed_source"),
                 "travel_time_s": data.get("travel_time"),
+                "oneway": _to_bool(data.get("oneway")),
+                "access": _first_value(data.get("access")),
+                "name": _first_value(data.get("name")),
             }
         )
     return pd.DataFrame(rows)
+
+
+def run_edge_attributes(data_dir: Path) -> None:
+    """
+    Speed limits, lane counts and the per-edge feature table, from the stored graph -- without
+    downloading it again or touching the adjacency, node order or travel times the trained
+    models are aligned to. Refuses to write if the stored graph's node order no longer matches
+    metro_manila_node_order.npy.
+    """
+    raw_dir = data_dir / "raw" / "spatial"
+    proc_dir = data_dir / "processed" / "spatial"
+    G = ox.load_graphml(raw_dir / "metro_manila_road_graph.graphml")
+    node_order = list(nx.DiGraph(G).nodes())
+    saved = np.load(proc_dir / "metro_manila_node_order.npy")
+    if [int(n) for n in node_order] != [int(n) for n in saved]:
+        raise SystemExit("the stored graph's node order differs from metro_manila_node_order.npy; "
+                         "rebuilding speeds/lanes from it would misalign every saved matrix")
+    G = mark_sources(G)
+    if not all("speed_kph" in d and "travel_time" in d for _, _, d in G.edges(data=True)):
+        G = add_free_flow_travel_times(G)
+    G = add_lane_counts(G)
+    sp.save_npz(proc_dir / "metro_manila_speed_kph.npz", build_speed_matrix(G, node_order).tocsr())
+    sp.save_npz(proc_dir / "metro_manila_lanes.npz", build_lane_matrix(G, node_order).tocsr())
+    table = build_edge_features_table(G, node_order)
+    table.to_csv(proc_dir / "full_network_edge_features.csv", index=False)
+    log.info(f"Saved metro_manila_speed_kph.npz, metro_manila_lanes.npz and full_network_edge_features.csv "
+             f"({len(table):,} edges)")
+    for column in ("maxspeed_source", "lanes_source"):
+        log.info(f"  {column}: {table[column].value_counts().to_dict()}")
+    log.info(f"  road_type: {table['road_type'].value_counts().head(8).to_dict()}")
 
 
 def build_adjacency(G: nx.MultiDiGraph):
@@ -329,6 +385,7 @@ def run(data_dir: Path, force_rebuild: bool = False, make_plot: bool = True) -> 
     adj_matrix, node_order = build_adjacency(G)
     sp.save_npz(proc_dir / "metro_manila_adjacency.npz", adj_matrix.tocsr())
     np.save(proc_dir / "metro_manila_node_order.npy", np.array(node_order))
+    G = mark_sources(G)
     G = add_free_flow_travel_times(G)
     G = add_lane_counts(G)
     travel_time_matrix = build_travel_time_matrix(G, node_order)
@@ -390,9 +447,15 @@ def parse_args():
     parser.add_argument("--data-dir", type=Path, default=Path("data"))
     parser.add_argument("--force-rebuild", action="store_true")
     parser.add_argument("--no-plot", action="store_true")
+    parser.add_argument("--edge-attributes-only", action="store_true",
+                        help="only (re)build speed limits, lane counts and full_network_edge_features.csv "
+                             "from the stored graph, leaving the adjacency and node order untouched")
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     args = parse_args()
-    run(data_dir=args.data_dir, force_rebuild=args.force_rebuild, make_plot=not args.no_plot)
+    if args.edge_attributes_only:
+        run_edge_attributes(args.data_dir)
+    else:
+        run(data_dir=args.data_dir, force_rebuild=args.force_rebuild, make_plot=not args.no_plot)

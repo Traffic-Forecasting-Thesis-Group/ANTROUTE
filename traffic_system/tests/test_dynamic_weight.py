@@ -354,7 +354,7 @@ def test_scored_mask_marks_exactly_the_edges_in_the_window():
     assert scored_pairs == {(100, 103), (100, 101)}
 
 
-def test_unscored_edges_near_a_scored_road_borrow_its_risk_and_far_ones_take_the_median():
+def test_unscored_edges_near_a_scored_road_borrow_its_risk_and_far_ones_take_the_median_without_a_context_estimate():
     from src.routing.dynamic_weight import NearestScored, fill_unscored_risk
 
     # scored: the first two segments (risk 0.8 and 0.4); then 500 m, 1.2 km and 2 km of unscored road,
@@ -374,7 +374,7 @@ def test_unscored_edges_near_a_scored_road_borrow_its_risk_and_far_ones_take_the
     assert by_pair[(2, 3)] == pytest.approx(0.4)                         # touches node 2: its risk
     assert by_pair[(3, 4)] == pytest.approx(0.4)                         # 500 m away: still the nearest road's
     assert by_pair[(4, 5)] == pytest.approx(0.6)                         # 1.7 km away: the median of 0.8 and 0.4
-    assert counts == {"scored": 2, "nearest": 2, "median": 1}
+    assert counts == {"observed": 2, "propagated": 2, "assumed": 1}
     assert (filled > 0).all()                                            # no road reads as empty
 
 
@@ -384,4 +384,45 @@ def test_no_prediction_at_all_leaves_the_risk_as_given():
     graph = chain_graph([100, 100])
     scored = np.zeros(2, dtype=bool)
     filled, counts = fill_unscored_risk(graph, np.zeros(2), scored, NearestScored.build(graph, scored))
-    assert (filled == 0).all() and counts["scored"] == 0
+    assert (filled == 0).all() and counts["observed"] == 0
+
+
+def test_far_edges_take_the_context_estimate_when_one_is_given():
+    from src.routing.dynamic_weight import NearestScored, fill_unscored_risk, risk_tiers
+
+    graph = chain_graph([100, 100, 500, 1200, 2000])
+    risk, scored = np.zeros(5), np.zeros(5, dtype=bool)
+    for e, (u, v) in enumerate(zip(*graph.edge_index.tolist())):
+        if (u, v) in {(0, 1), (1, 2)}:
+            risk[e], scored[e] = 0.5, True
+    nearest = NearestScored.build(graph, scored)
+    assumed = np.full(5, 0.9)
+    filled, counts = fill_unscored_risk(graph, risk, scored, nearest, max_m=1500, assumed=assumed)
+    tiers = risk_tiers(graph, scored, nearest, max_m=1500)
+
+    by_pair = {(u, v): (filled[e], tiers[e]) for e, (u, v) in enumerate(zip(*graph.edge_index.tolist()))}
+    assert by_pair[(0, 1)] == (0.5, "observed")
+    assert by_pair[(3, 4)] == (pytest.approx(0.5), "propagated")      # near: borrowed, not the estimate
+    assert by_pair[(4, 5)] == (pytest.approx(0.9), "assumed")         # far: the context estimate
+    assert counts == {"observed": 2, "propagated": 2, "assumed": 1}
+
+
+def test_a_context_estimate_outside_the_risk_range_is_rejected():
+    from src.routing.dynamic_weight import NearestScored, fill_unscored_risk
+
+    graph = chain_graph([100, 2000])
+    scored = np.array([True, False])
+    with pytest.raises(ValueError, match="assumed"):
+        fill_unscored_risk(graph, np.array([0.5, 0.0]), scored, NearestScored.build(graph, scored),
+                           assumed=np.array([0.5, 1.5]))
+
+
+def test_path_metrics_carry_the_event_exposure_of_the_route():
+    graph = make_graph()
+    risk, _ = risk_vector(graph, risk_rows(direct=0.9, detour=0.1))
+    wg = build_weighted_graph(graph, risk, lam=2.0)
+    impact = np.zeros(len(wg.distance))
+    impact[wg.edge_id(wg.index_of(100), wg.index_of(103))] = 0.5
+    assert wg.evaluate_path([100, 103], impact).event_exposure == 0.5
+    assert wg.evaluate_path([100, 101, 102, 103], impact).event_exposure == 0.0
+    assert wg.evaluate_path([100, 103]).event_exposure == 0.0

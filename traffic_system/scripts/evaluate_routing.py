@@ -1,51 +1,72 @@
 """
-Evaluate ANTROUTE against the baseline with Apple Maps as ground truth, as the thesis specifies
-(Sections 3.8-3.9, Appendices 1-3).
+Evaluate ANTROUTE against the baseline with Google Maps as the reference, as the thesis specifies
+(Sections 3.8-3.9, Appendices 1-3). Scope: Metro Manila.
 
 The baseline is Improved ACO (Cheng 2023, doi:10.1155/2023/7651100), the algorithm the thesis
 names, implemented as published in src/routing/baseline_iaco.py and adapted to this graph in
 src/routing/baseline_router.py. See the Baseline class below for what the paper defines per
 scenario and what is an adaptation.
 
-Each system plans on its own signal -- ANTROUTE on predicted risk, the baseline on observed
-camera congestion -- and both are then scored against Apple Maps, which neither plans on, so
-neither system is optimising the measure it is judged by.
+Each system plans on its own signal -- ANTROUTE on predicted risk plus the Event-Aware layer,
+the baseline on observed camera congestion -- and both are then timed by Google Maps, which
+neither plans on, so neither system is optimising the measure it is judged by.
 
-    # 1. route the test trips with both systems and write the Apple Maps lookup sheet
-    python scripts/evaluate_routing.py --risk-edges data/processed/risk_scores/risk_edges.csv \
-        --template apple_maps.csv
+    # 1. route the test trips with both systems and write the Google Maps lookup sheet
+    python scripts/evaluate_routing.py --risk-edges data/processed/risk_scores/risk_edges.csv \\
+        --auto-labels ... --template google_maps.csv
 
-    # 2. fill in the *_apple_eta_seconds columns (see below), then score
-    python scripts/evaluate_routing.py --risk-edges data/processed/risk_scores/risk_edges.csv \
-        --apple-maps apple_maps.csv
+    # 2. fill in the google_* columns (see below), then score
+    python scripts/evaluate_routing.py --risk-edges data/processed/risk_scores/risk_edges.csv \\
+        --google-maps google_maps.csv
 
 Trips (--n-trials per scenario, default 10 as in Appendices 1-3) are drawn from the risk file's
 held-out --split (default "test", per Section 3.3) and from CCTV intersections that are
-connected on the road graph:
+connected on the road graph; scripts/citywide_trips.py adds trips anywhere in Metro Manila,
+routed on the whole-city graph:
 
     recommended        best ACO route, origin -> destination
     alternative        next-best ACO route for the same origin/destination/window
     multi_destination  --n-stops CCTV intersections visited in order, routed leg by leg
+    incident_exposed   an incident in force mid-route (see src/routing/route_trials.py)
 
-The sheet has one row per leg (single-destination trips have one). Per row, in Apple Maps
-(Driving, "Leave at" = apple_leave_at; Apple Maps only predicts typical traffic for a weekday
-and time, not a past date):
+The sheet has one row per leg (single-destination trips have one). Per row, in Google Maps
+(Driving, departing at google_departure_slot -- a weekday and time; Google only predicts
+traffic for a present or future date, so the window's own May date cannot be used):
 
-    apple_eta_seconds            origin -> destination, Apple's own fastest route
-    antroute_apple_eta_seconds   origin -> antroute_waypoints (as stops, in order) -> destination
-    baseline_apple_eta_seconds   origin -> baseline_waypoints (as stops, in order) -> destination
+    google_duration_seconds            origin -> destination, Google's own fastest route
+    antroute_google_duration_seconds   origin -> antroute_waypoints (in order) -> destination
+    baseline_google_duration_seconds   origin -> baseline_waypoints (in order) -> destination
 
-When same_route is True one of the last two is enough. An alternative trip's
-apple_eta_seconds may be left blank: it is the same lookup as the recommended trip's.
+and how each was obtained, which scoring requires and metrics.json reports (REFERENCE_FIELDS):
+
+    google_access_method    e.g. "Google Maps web (desktop), Depart at" or
+                            "Routes API computeRoutes, TRAFFIC_AWARE_OPTIMAL"
+    google_departure_date   the actual date entered as the departure (YYYY-MM-DD), a date
+                            falling on the slot's weekday
+    google_queried_on       the date the lookup was made (YYYY-MM-DD)
+    google_traffic_model    which figure was read, e.g. "best_guess", or for the web app's
+                            "typically X-Y min" range "typical_range_upper" -- one rule for
+                            every row
+
+When same_route is True one of the two system columns is enough. An alternative trip's
+google_duration_seconds may be left blank: it is the same lookup as the recommended trip's.
 
 Scoring (stored routes are re-scored as-is, ACO is not re-run):
 
-    Route Optimality      = sum(apple_eta_seconds) / sum(<system>_apple_eta_seconds) * 100
-    MAE/RMSE/MSE/MAPE/R^2 = <system>'s own per-leg ETA vs <system>_apple_eta_seconds
-                            (ANTROUTE's risk-aware ETA engine; for the baseline, the observed
-                            travel times Cheng's cost function is built from)
-    significance          Shapiro-Wilk, Wilcoxon signed-rank, paired t-test (if normal),
-                          d = baseline - proposed, Δ% (Equation 15)
+    Route Optimality     = sum(google_duration_seconds) / sum(<system>_google_duration_seconds) * 100
+    congestion exposure  = sum of predicted Risk(u, v) over the route, under the window's risk
+    event exposure       = sum of Event(u, v) over the route, under the incidents in force then
+    avoidable event exp. = the same without the edges at the trip's own stops (unavoidable)
+    route length         = descriptive only
+    significance         Shapiro-Wilk, Wilcoxon signed-rank, paired t-test (if normal),
+                         d = baseline - proposed, Δ% (Equations 7-8)
+
+ETA is not a research question or metric: neither system's own travel-time estimate is scored.
+
+Model provenance is required: risk_summary.json (written beside risk_edges.csv by
+scripts/predict_congestion_risk.py) names the checkpoint and whether the text branch was used,
+and it is copied into metrics.json. Without it the run stops (--allow-unknown-model overrides,
+and says so in the report).
 
 A trip the baseline cannot route is reported in the run's summary and left out of the paired
 comparison rather than dropped silently, so the baseline's route-found rate stays visible.
@@ -53,12 +74,12 @@ comparison rather than dropped silently, so the baseline's route-found rate stay
 Outputs (in --out-dir):
     trials.csv                           one row per (system, trip)
     appendix1_route_optimality.csv       per-trial C_optimal, C_predicted, Route Optimality
-    appendix2_eta.csv                    per-trial MAE, RMSE, MSE, MAPE, R^2
-    appendix3_routing_results.csv        per-trial path, distance, risk exposure, ETA (min)
+    appendix2_exposure.csv               per-trial congestion, event and avoidable event exposure, length
+    appendix3_routing_results.csv        per-trial path, length, congestion and event exposure
     appendix3_route_optimality_pairs.csv per-trial paired Route Optimality, d_i, Δ%
     appendix3_significance.csv           per scenario and metric: Shapiro-Wilk, Wilcoxon, t-test
     per_trip.csv                         per trip: both systems on every metric, Δ% and the better one
-    metrics.json                        all of the above plus pooled metrics per scenario
+    metrics.json                         all of the above plus the model, reference and event-layer records
 """
 
 import argparse
@@ -105,12 +126,18 @@ from src.routing.event_layer import (  # noqa: E402
     DEFAULT_MU,
     active_at,
     apply_events,
+    describe_event_layer,
     event_impact,
     load_landmarks,
     parse_alerts,
 )
-from src.routing.eta_engine import DEFAULT_GAMMA, load_free_flow_seconds  # noqa: E402
-from src.routing.metrics import compute_metrics_by_scenario, route_optimality, trial_eta_metrics  # noqa: E402
+from src.routing.eta_engine import load_free_flow_seconds  # noqa: E402
+from src.routing.metrics import (  # noqa: E402
+    DESCRIPTIVE_METRICS,
+    TESTED_METRICS,
+    compute_metrics_by_scenario,
+    route_optimality,
+)
 from src.routing.route_trials import (  # noqa: E402
     ALTERNATIVE,
     ANTROUTE,
@@ -118,14 +145,14 @@ from src.routing.route_trials import (  # noqa: E402
     INCIDENT_EXPOSED,
     MULTI_DESTINATION,
     RECOMMENDED,
+    REFERENCE_FIELDS,
     SCENARIOS,
     SYSTEMS,
     pick_waypoints,
     score_trip,
 )
-from src.routing.significance import HIGHER_IS_BETTER, compare_paired, relative_difference  # noqa: E402
+from src.routing.significance import HIGHER_IS_BETTER, Q3_FAMILY, compare_paired, holm_adjust, relative_difference  # noqa: E402
 
-ETA_METRICS = ("mae", "rmse", "mse", "mape", "r_squared")
 TRIP_PREFIX = {RECOMMENDED: "R", ALTERNATIVE: "A", MULTI_DESTINATION: "M", INCIDENT_EXPOSED: "E"}
 LOCAL_TZ = "Asia/Manila"
 MAX_SNAP_KM = 2.0  # how far an incident landmark may sit from this subgraph and still count
@@ -136,12 +163,13 @@ MAX_SNAP_KM = 2.0  # how far an incident landmark may sit from this subgraph and
 
 class Events:
     """
-    The Event-Aware layer, applied to the routes this evaluation scores.
+    The Event-Aware layer, part of the method, applied to the routes this evaluation scores.
 
     Without this the appendix would measure risk-aware routing only: ANTROUTE's graph would
-    carry the STGNN's predicted congestion but none of the reported incidents, which is the
-    half of RQ2 the event layer exists to answer. The live app has always applied it
-    (app/risk_routing.py); the evaluation did not, so the two disagreed about what ANTROUTE is.
+    carry the STGNN's predicted congestion but none of the reported incidents, which are the
+    "road-event conditions" of RQ2. The app applies the same layer with the same mu
+    (app/config.py EVENT_MU, event_layer.DEFAULT_MU); describe_event_layer records the cost
+    term, strength and decay in metrics.json.
 
     Incidents are evaluated as of the routing window itself, the same clock the risk snapshot
     uses, so both signals describe one moment. Only ANTROUTE's graph gets them: the baseline
@@ -253,14 +281,24 @@ class Events:
         return set(src[penalised].tolist()) | set(dst[penalised].tolist())
 
     def on_route(self, wg, graph, window: str, legs: Sequence[Sequence[int]]) -> int:
-        """How many of this route's edges carry an incident penalty -- 0 when it avoided them all."""
+        """
+        How many of this route's edges carry an incident penalty AND could have been avoided --
+        0 when it avoided every avoidable one.
+
+        An edge touching one of the trip's own stops is left out: an incident at the origin or
+        destination penalises the edges there, and no route can avoid its own endpoints.
+        Counting them made every route through an incident at its endpoint look like a failure
+        to avoid (on the incident_exposed trips, all ten "hits" were endpoint edges).
+        """
         impact = self.impact(graph, window)
         if impact is None:
             return 0
+        stops = {wg.index_of(leg[0]) for leg in legs} | {wg.index_of(legs[-1][-1])} if legs else set()
         hit = 0
         for leg in legs:
             indices = [wg.index_of(v) for v in leg]
-            hit += sum(1 for u, v in zip(indices, indices[1:]) if impact[wg.edge_id(u, v)] > 0)
+            hit += sum(1 for u, v in zip(indices, indices[1:])
+                       if impact[wg.edge_id(u, v)] > 0 and not ({u, v} & stops))
         return hit
 
 
@@ -277,8 +315,8 @@ class Baseline:
       recommended        the paper's one optimal path -- a direct comparison.
       alternative        not defined. Section 4.2.3 Step 7 outputs "the current optimal
                          path", one route, so the baseline has no second route to pair
-                         against ANTROUTE's alternative. Those trips are reported for
-                         ANTROUTE alone rather than invented for the baseline.
+                         against ANTROUTE's alternative. Those trips are not evaluated
+                         (shown in the app only) rather than invented for the baseline.
       multi_destination  not defined either: both of the paper's experiments are a single
                          origin to a single destination. --baseline-multi-destination
                          (default on) routes it leg by leg, the same way ANTROUTE's own
@@ -287,8 +325,8 @@ class Baseline:
                          'alternative'.
 
     IACO plans on observed camera traffic, never on ANTROUTE's predicted risk. Both systems
-    are then scored against Apple Maps, which neither plans on, so neither optimises the
-    measure it is judged by.
+    are then timed by Google Maps, which neither plans on, so neither optimises the measure
+    it is judged by.
     """
 
     def __init__(self, graph, spatial_dir: Path, risk_edges: Path, config: IacoConfig, fallback: bool,
@@ -344,7 +382,7 @@ class Baseline:
         """
         (route per leg, algorithm) for this trip, or (None, reason) when it has none.
 
-        Routed one leg at a time because Apple Maps times are recorded per leg, so each leg
+        Routed one leg at a time because Google Maps times are recorded per leg, so each leg
         needs its own node list. The algorithm is reported over the whole trip: 'iaco' only
         when IACO itself found every leg.
         """
@@ -360,16 +398,6 @@ class Baseline:
             algorithms.append(leg.algorithm)
         unique = set(algorithms)
         return legs, unique.pop() if len(unique) == 1 else "mixed"
-
-    def eta_seconds(self, window: str, legs: Sequence[Sequence[int]]) -> List[float]:
-        """IACO's own travel-time estimate per leg: the observed t_ij it planned with."""
-        inputs = self.inputs_for(window)
-        g = self.graph
-        out = []
-        for leg in legs:
-            edges = g.edges_of([g.index_of(v) for v in leg])
-            out.append(float(inputs.travel_time[edges].sum()))
-        return out
 
 
 # ---------------------------------------------------------------- template
@@ -388,27 +416,56 @@ def latlon(coords: Dict[int, Tuple[float, float]], node_id: int) -> str:
     return f"{lat:.6f},{lon:.6f}"
 
 
-def leave_at(window: str) -> str:
+def departure_slot(window: str) -> str:
+    """
+    The Google Maps departure for a recorded window: its weekday and time. Google predicts
+    traffic only for a present or future date, so the person doing the lookup enters the next
+    date on that weekday and records it in google_departure_date.
+    """
     try:
         return datetime.fromisoformat(window).strftime("%a %H:%M")
     except ValueError:
         return ""
 
 
-def model_inputs(risk_edges: Path) -> dict:
+def model_provenance(risk_edges: Path, allow_unknown: bool = False) -> dict:
     """
-    Which thesis inputs reached the risk scores, from the risk_summary.json that
-    predict_congestion_risk.py writes beside risk_edges.csv. Warns when the learned text
-    pathway or the flood hazard input was off, since then the run is not the thesis model.
+    Which trained model produced the risk scores, from the risk_summary.json that
+    predict_congestion_risk.py writes beside risk_edges.csv: the checkpoint, whether the text
+    branch (DistilBERT event text) and the node context (weather, flood, incidents, clock, road)
+    reached the scores, and the per-split decoder MAE. Copied whole into metrics.json, because
+    risk_edges.csv itself says none of this and the "event-aware" claim rests on it.
+
+    Stops without risk_summary.json unless `allow_unknown`, in which case the report says the
+    model is unknown rather than leaving the field out.
     """
     path = Path(risk_edges).parent / "risk_summary.json"
-    info = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
-    found = {"use_text": info.get("use_text"), "flood_hazard": info.get("flood_hazard")}
-    for key, what in (("use_text", "event text (DistilBERT branch)"), ("flood_hazard", "flood hazard input")):
-        if found[key] is not True:
-            state = "unknown (no risk_summary.json)" if found[key] is None else "off"
-            print(f"WARNING: {what} was {state} for these risk scores; this is not the thesis model")
-    return found
+    if not path.exists():
+        if not allow_unknown:
+            raise SystemExit(
+                f"{path} not found: copy it from the scoring run beside risk_edges.csv. Without it "
+                "the report cannot say which checkpoint produced these scores or whether text was "
+                "used (--allow-unknown-model runs anyway and records them as unknown)."
+            )
+        print("WARNING: no risk_summary.json; checkpoint and text use are recorded as unknown")
+        return {"checkpoint": None, "use_text": None, "context": None, "risk_summary": None}
+    info = json.loads(path.read_text(encoding="utf-8"))
+    drop = set(info.get("context_drop") or [])
+    out = {
+        "checkpoint": info.get("checkpoint"),
+        "use_text": info.get("use_text"),
+        "context": info.get("context"),
+        "context_drop": sorted(drop),
+        "flood_hazard": info.get("flood_hazard"),
+        "incidents_in_node_context": bool(info.get("context")) and "events" not in drop,
+        "risk_summary": str(path),
+        "splits": info.get("splits"),
+    }
+    print(f"risk scores from {out['checkpoint']}: text {'on' if out['use_text'] else 'OFF'}, "
+          f"node context {'on' if out['context'] else 'OFF'}")
+    if out["use_text"] is not True:
+        print("WARNING: the text branch (DistilBERT event text) did not reach these risk scores")
+    return out
 
 
 def evaluation_windows(a) -> List[str]:
@@ -614,13 +671,14 @@ def write_template(a, graph, baseline: "Baseline", events: "Events", config: Ant
                     "scenario_type": scenario,
                     "leg": leg_no,
                     "window": window,
-                    "apple_leave_at": leave_at(window),
+                    "google_departure_slot": departure_slot(window),
                     "origin": labels[o],
                     "destination": labels[d],
                     "origin_latlon": latlon(coords, o),
                     "destination_latlon": latlon(coords, d),
                     "same_route": routes[ANTROUTE] is not None and routes[ANTROUTE] == routes[BASELINE],
-                    "apple_eta_seconds": "",
+                    "google_duration_seconds": "",
+                    **{field: "" for field in REFERENCE_FIELDS},
                 }
                 row["baseline_algorithm"] = baseline_algorithm
                 row["events_live"], row["antroute_event_edges"], row["baseline_event_edges"] = \
@@ -630,7 +688,7 @@ def write_template(a, graph, baseline: "Baseline", events: "Events", config: Ant
                     row[f"{s}_waypoints"] = (
                         " | ".join(latlon(coords, v) for v in stops_on_route) if routes[s] else "NO ROUTE"
                     )
-                    row[f"{s}_apple_eta_seconds"] = ""
+                    row[f"{s}_google_duration_seconds"] = ""
                 for s in SYSTEMS:
                     row[f"{s}_route"] = " ".join(str(v) for v in routes[s]) if routes[s] else ""
                 rows.append(row)
@@ -638,7 +696,7 @@ def write_template(a, graph, baseline: "Baseline", events: "Events", config: Ant
 
     a.template.parent.mkdir(parents=True, exist_ok=True)
     pd.DataFrame(rows).to_csv(a.template, index=False)
-    print(f"\nwrote {len(rows)} Apple Maps lookups for {sum(len(t) for t in trips.values())} trips to {a.template}")
+    print(f"\nwrote {len(rows)} Google Maps lookups for {sum(len(t) for t in trips.values())} trips to {a.template}")
 
     # How the baseline fared is a result in its own right, so report it rather than burying it:
     # on a real road network IACO frequently finds no route at all (its ants have no way out of
@@ -657,8 +715,8 @@ def write_template(a, graph, baseline: "Baseline", events: "Events", config: Ant
     if exposed:
         avoided = sum(1 for t in exposed if event_rows[t][1] == 0)
         base_hit = sum(1 for t in exposed if event_rows[t][2] > 0)
-        print(f"  ANTROUTE's route is clear of every incident on {avoided} of those {len(exposed)}")
-        print(f"  the baseline's route runs into one on {base_hit} of those {len(exposed)}")
+        print(f"  ANTROUTE's route is clear of every avoidable (mid-route) incident on {avoided} of those {len(exposed)}")
+        print(f"  the baseline's route runs into a mid-route incident on {base_hit} of those {len(exposed)}")
         # Broken out because the first three scenarios sample origins and destinations from the
         # camera intersections, which is where incidents get matched -- so an incident there is
         # usually AT an endpoint, where avoidance is impossible and a clear route proves nothing.
@@ -671,6 +729,7 @@ def write_template(a, graph, baseline: "Baseline", events: "Events", config: Ant
                   f"mid-route and avoidable:")
             print(f"      ANTROUTE avoided it on {clear}")
             print(f"      the baseline ran into one on {hit}")
+            print("      (incidents at a trip's own origin or destination are unavoidable and not counted)")
         else:
             print("  NOTE: no incident_exposed trips in this run, so no trip could demonstrate "
                   "avoidance -- an incident at a trip's own origin or destination cannot be routed around")
@@ -682,7 +741,7 @@ def write_template(a, graph, baseline: "Baseline", events: "Events", config: Ant
             f"\nNOTE: {no_antroute} alternative leg(s) have NO ROUTE for ANTROUTE: its colony found no "
             "second route. Those trips cannot be paired; raise --n-iterations / --n-ants or accept fewer."
         )
-    print("\nFill in the *_apple_eta_seconds columns from Apple Maps, then re-run with --apple-maps.")
+    print("\nFill in the google_* columns (durations and how they were obtained), then re-run with --google-maps.")
 
 
 # ---------------------------------------------------------------- scoring
@@ -715,63 +774,94 @@ def mean_sd(values: Sequence[float]) -> Dict[str, float]:
     }
 
 
-def citywide_graph(window: str):
+def citywide_conditions(window: str):
     """
-    The app's weighted graph for `window` over the whole city (unscored roads filled from the
-    nearest scored road, as the app routes), for trips from scripts/citywide_trips.py. Imported
-    here so a sheet of camera trips only never pays the ~40 s whole-city build.
+    The app's risk-weighted graph for `window` over the whole city -- every road in its risk
+    tier, as the app routes -- and the incident impact in force then, for trips from
+    scripts/citywide_trips.py. Imported here so a sheet of camera trips only never pays the
+    ~40 s whole-city build.
     """
     from app import risk_routing
 
-    return risk_routing._weighted_graph(window)
+    return risk_routing._weighted_graph(window), risk_routing._window_impact(window)
 
 
-def score_sheet(a, graph, baseline: "Baseline", free_flow_seconds) -> Tuple[List[dict], List[str]]:
+def reference_record(sheet: pd.DataFrame) -> dict:
+    """
+    How the Google Maps reference was obtained, summarised over the rows that were scored:
+    access method(s), departure dates and query dates (ranges), traffic model(s), and the
+    departure slots used. Mixed methods or traffic models are reported, not hidden.
+    """
+    def distinct(column):
+        return sorted({v.strip() for v in sheet[column] if v.strip()}) if column in sheet else []
+
+    def span(column):
+        values = distinct(column)
+        return {"first": values[0], "last": values[-1], "n_distinct": len(values)} if values else None
+
+    record = {
+        "reference": "Google Maps",
+        "access_methods": distinct("google_access_method"),
+        "traffic_models": distinct("google_traffic_model"),
+        "departure_dates": span("google_departure_date"),
+        "queried_on": span("google_queried_on"),
+        "departure_slots": distinct("google_departure_slot"),
+    }
+    for key in ("access_methods", "traffic_models"):
+        if len(record[key]) > 1:
+            print(f"NOTE: the Google Maps lookups used {len(record[key])} different {key.replace('_', ' ')}: "
+                  f"{record[key]}")
+    return record
+
+
+def score_sheet(a, graph, events: "Events") -> Tuple[List[dict], List[str], dict, List[dict]]:
     # Several sheets score together (the camera trips and scripts/citywide_trips.py's).
     sheet = pd.concat(
-        [pd.read_csv(path, dtype=str, keep_default_na=False) for path in a.apple_maps], ignore_index=True
+        [pd.read_csv(path, dtype=str, keep_default_na=False) for path in a.google_maps], ignore_index=True
     ).fillna("")
     if sheet.duplicated(["trip_id", "leg"]).any():
         raise SystemExit("the sheets share trip ids; each trip must appear in only one sheet")
-    needed = {"trip_id", "scenario_type", "leg", "window", "apple_eta_seconds"} | {
-        f"{s}_{c}" for s in SYSTEMS for c in ("route", "apple_eta_seconds")
+    needed = {"trip_id", "scenario_type", "leg", "window", "google_duration_seconds", *REFERENCE_FIELDS} | {
+        f"{s}_{c}" for s in SYSTEMS for c in ("route", "google_duration_seconds")
     }
     if not needed <= set(sheet.columns):
-        raise SystemExit(f"{[str(x) for x in a.apple_maps]} is missing {sorted(needed - set(sheet.columns))}; make it with --template")
+        raise SystemExit(f"{[str(x) for x in a.google_maps]} is missing {sorted(needed - set(sheet.columns))}; "
+                         "make it with --template")
 
-    # Apple's own route is the same lookup for every trip with this window and leg endpoints.
+    # Google's own route is the same lookup for every trip with this window and leg endpoints.
     optimal_by_leg = {
-        (r["window"], r["origin"], r["destination"]): r["apple_eta_seconds"]
+        (r["window"], r["origin"], r["destination"]): r["google_duration_seconds"]
         for _, r in sheet.iterrows()
-        if r["apple_eta_seconds"].strip()
+        if r["google_duration_seconds"].strip()
     }
     graphs: Dict[str, object] = {}
     trials: List[dict] = []
     notes: List[str] = []
+    scored_rows: List[pd.DataFrame] = []
 
     for trip_id, rows in sheet.groupby("trip_id", sort=True):
         rows = rows.sort_values("leg", key=lambda c: c.astype(int))
         window, scenario = rows["window"].iloc[0], rows["scenario_type"].iloc[0]
         # Trips from scripts/citywide_trips.py start anywhere in the city: they were routed by
-        # the app on the whole-city graph and carry each system's own per-leg ETA.
+        # the app on the whole-city graph, and are measured on it.
         citywide = "graph" in rows and rows["graph"].iloc[0].strip() == "full"
         if citywide:
-            wg = citywide_graph(window)
-        elif window not in graphs:
-            try:
-                graphs[window] = weighted_graph_from_risk_file(
-                    graph, a.risk_edges, window=window, lam=a.lam, missing_risk=DEFAULT_MISSING_RISK
-                )
-            except ValueError as err:
-                raise SystemExit(f"{window}: {err}") from None
-        if not citywide:
-            wg = graphs[window]
+            wg, impact = citywide_conditions(window)
+        else:
+            if window not in graphs:
+                try:
+                    graphs[window] = weighted_graph_from_risk_file(
+                        graph, a.risk_edges, window=window, lam=a.lam, missing_risk=DEFAULT_MISSING_RISK
+                    )
+                except ValueError as err:
+                    raise SystemExit(f"{window}: {err}") from None
+            wg, impact = graphs[window], events.impact(graph, window)
 
         optimal = [
-            seconds(r["apple_eta_seconds"].strip() or optimal_by_leg.get((r["window"], r["origin"], r["destination"])))
+            seconds(r["google_duration_seconds"].strip() or optimal_by_leg.get((r["window"], r["origin"], r["destination"])))
             for _, r in rows.iterrows()
         ]
-        measured = {s: [seconds(r[f"{s}_apple_eta_seconds"]) for _, r in rows.iterrows()] for s in SYSTEMS}
+        measured = {s: [seconds(r[f"{s}_google_duration_seconds"]) for _, r in rows.iterrows()] for s in SYSTEMS}
         same = [str(r.get("same_route", "")).strip().lower() == "true" for _, r in rows.iterrows()]
         for i, is_same in enumerate(same):
             if is_same:
@@ -783,30 +873,45 @@ def score_sheet(a, graph, baseline: "Baseline", free_flow_seconds) -> Tuple[List
         if any(leg is None for leg in routes[ANTROUTE]):
             notes.append(f"{trip_id}: ANTROUTE has no route for some leg; trip left out")
             continue
+        # Only paired trips are evaluated. Without a baseline route (Cheng defines no
+        # alternative, or IACO found none) the trip is left out: alternatives are shown in the
+        # app, not evaluated.
         if any(leg is None for leg in routes[BASELINE]):
             why = rows["baseline_algorithm"].iloc[0] if "baseline_algorithm" in rows else "no route"
-            notes.append(f"{trip_id}: baseline has no route ({why}); trip left out of the paired comparison")
+            notes.append(f"{trip_id}: baseline has no route ({why}); not evaluated")
             continue
-        if not all(np.isfinite(v) for v in optimal + measured[ANTROUTE] + measured[BASELINE]):
-            notes.append(f"{trip_id}: Apple Maps times not all filled in; skipped")
+        systems = SYSTEMS
+        if not all(np.isfinite(v) for v in optimal + [x for s in systems for x in measured[s]]):
+            notes.append(f"{trip_id}: Google Maps times not all filled in; skipped")
             continue
+        unrecorded = [f for f in REFERENCE_FIELDS if any(not str(v).strip() for v in rows[f])]
+        if unrecorded:
+            notes.append(f"{trip_id}: Google Maps lookup not documented ({', '.join(unrecorded)} blank); skipped")
+            continue
+        scored_rows.append(rows)
         labels = list(rows["origin"]) + [rows["destination"].iloc[-1]]
-        for s in SYSTEMS:
-            # Each system's own predicted travel time for its own route: ANTROUTE's risk-aware
-            # ETA engine, and for the baseline the observed t_ij Cheng's cost is built from.
-            if citywide:
-                predicted = [seconds(v) for v in rows[f"{s}_predicted_eta_seconds"]]
-            else:
-                predicted = baseline.eta_seconds(window, routes[s]) if s == BASELINE else None
-            trial = score_trip(
-                wg, routes[s], free_flow_seconds, a.gamma, s, scenario, optimal, measured[s], trip_id,
-                predicted_eta=predicted,
-            )
+        for s in systems:
+            trial = score_trip(wg, routes[s], s, scenario, optimal, measured[s], trip_id, impact=impact)
             trial["stop_labels"] = labels
+            trial["graph"] = "full" if citywide else "camera_subgraph"
+            trial["risk_sources"] = route_provenance(wg, trial["path"], citywide)
             trial["route_optimality"] = float(route_optimality([trial["c_optimal"]], [trial["c_predicted"]])[0])
-            trial.update(trial_eta_metrics(trial["actual_eta"], trial["predicted_eta"]))
             trials.append(trial)
-    return trials, notes
+    reference = reference_record(pd.concat(scored_rows, ignore_index=True)) if scored_rows else {}
+    return trials, notes, reference
+
+
+def route_provenance(wg, path: Sequence[int], citywide: bool) -> Dict[str, float]:
+    """
+    Share of the route's length in each risk tier: observed (scored by the model at a camera),
+    propagated (borrowed from the nearest scored road within 1.5 km) and assumed (the non-visual
+    estimate, or the window median when no estimate exists -- the default). The camera subgraph
+    is scored everywhere, so a route there is entirely observed.
+    """
+    if not citywide:
+        return {"observed": 1.0, "propagated": 0.0, "assumed": 0.0}
+    from app import risk_routing
+    return risk_routing.risk_sources(wg, [int(v) for v in path])
 
 
 def describe(stops: Sequence[int], labels: Dict[int, str]) -> str:
@@ -823,10 +928,10 @@ def stops_text(trial: dict, labels: Dict[int, str]) -> str:
 
 def per_trip_comparison(trip_ids, scenario_of, by, labels) -> List[dict]:
     """
-    One row per trip: ANTROUTE and the baseline side by side on every evaluation metric, the
-    relative difference by Equation 7 (lower is better) or Equation 8 (higher is better), and
-    which system did better on that trip. R^2 needs at least two legs, so it is blank on
-    single-leg trips. Positive Δ% means ANTROUTE is better.
+    One row per trip: ANTROUTE and the baseline side by side on every tested metric (Route
+    Optimality, congestion exposure, event exposure), the relative difference by Equation 8
+    (higher is better) or Equation 7 (lower is better), and which system did better on that
+    trip; route length beside them, descriptive only. Positive Δ% means ANTROUTE is better.
     """
     rows = []
     for i in trip_ids:
@@ -835,13 +940,17 @@ def per_trip_comparison(trip_ids, scenario_of, by, labels) -> List[dict]:
             "scenario_type": scenario_of[i],
             "trip_id": i,
             "window": ant["window"],
+            "graph": ant.get("graph", "camera_subgraph"),
             "stops": stops_text(ant, labels),
             # Graph node ids, origin first: what the app matches a planned trip against.
             "stop_nodes": " ".join(str(v) for v in ant["stops"]),
-            "legs": len(ant["actual_eta"]),
+            "legs": len(ant["reference_route_seconds"]),
         }
+        for system, trial in ((ANTROUTE, ant), (BASELINE, base)):
+            for tier, share in (trial.get("risk_sources") or {}).items():
+                row[f"{tier}_share_{system}"] = share
         wins = {ANTROUTE: 0, BASELINE: 0}
-        for metric in ("route_optimality",) + ETA_METRICS:
+        for metric in TESTED_METRICS:
             p, b = float(ant[metric]), float(base[metric])
             higher = metric in HIGHER_IS_BETTER
             row[f"{metric}_antroute"] = p
@@ -856,12 +965,14 @@ def per_trip_comparison(trip_ids, scenario_of, by, labels) -> List[dict]:
                 winner = ANTROUTE if (p > b) == higher else BASELINE
                 row[f"{metric}_better"] = winner
                 wins[winner] += 1
+        for metric in DESCRIPTIVE_METRICS:
+            row[f"{metric}_antroute"], row[f"{metric}_baseline"] = float(ant[metric]), float(base[metric])
         row["metrics_won_antroute"], row["metrics_won_baseline"] = wins[ANTROUTE], wins[BASELINE]
         rows.append(row)
     return rows
 
 
-def write_reports(a, graph, trials: List[dict]) -> dict:
+def write_reports(a, graph, trials: List[dict], provenance: dict) -> dict:
     labels = camera_labels(graph)
     by = {(t["trip_id"], t["system"]): t for t in trials}
     trip_ids = sorted({t["trip_id"] for t in trials})
@@ -879,8 +990,7 @@ def write_reports(a, graph, trials: List[dict]) -> dict:
         row["stops"] = stops_text(t, labels)
         row.pop("stop_labels", None)
         row["path"] = " ".join(str(v) for v in t["path"])
-        row["actual_eta"] = " | ".join(f"{v:g}" for v in t["actual_eta"])
-        row["predicted_eta"] = " | ".join(f"{v:.1f}" for v in t["predicted_eta"])
+        row["reference_route_seconds"] = " | ".join(f"{v:g}" for v in t["reference_route_seconds"])
         flat.append(row)
     pd.DataFrame(flat).to_csv(out / "trials.csv", index=False)
 
@@ -892,7 +1002,7 @@ def write_reports(a, graph, trials: List[dict]) -> dict:
         pd.DataFrame(rows).to_csv(out / name, index=False)
 
     per_trial(("c_optimal", "c_predicted", "route_optimality"), "appendix1_route_optimality.csv")
-    per_trial(ETA_METRICS, "appendix2_eta.csv")
+    per_trial(("congestion_exposure", "event_exposure", "avoidable_event_exposure", "distance_m"), "appendix2_exposure.csv")
     pd.DataFrame(
         [
             {
@@ -902,8 +1012,9 @@ def write_reports(a, graph, trials: List[dict]) -> dict:
                 "path": stops_text(by[(i, s)], labels),
                 "hops": by[(i, s)]["hops"],
                 "total_distance_m": by[(i, s)]["distance_m"],
-                "route_risk_exposure": by[(i, s)]["risk_exposure"],
-                "eta_min": by[(i, s)]["eta_minutes"],
+                "congestion_exposure": by[(i, s)]["congestion_exposure"],
+                "event_exposure": by[(i, s)]["event_exposure"],
+                "avoidable_event_exposure": by[(i, s)]["avoidable_event_exposure"],
             }
             for i in trip_ids for s in (BASELINE, ANTROUTE)
         ]
@@ -931,24 +1042,37 @@ def write_reports(a, graph, trials: List[dict]) -> dict:
     significance, summary = [], {}
     for group, ids in groups.items():
         summary[group] = {}
-        for metric in ("route_optimality",) + ETA_METRICS:
+        tested = {}
+        for metric in TESTED_METRICS:
             proposed = [by[(i, ANTROUTE)][metric] for i in ids]
             baseline = [by[(i, BASELINE)][metric] for i in ids]
             c = compare_paired(metric, proposed, baseline)
-            significance.append({"scenario_type": group, **asdict(c)})
+            tested[metric] = c
             summary[group][metric] = {ANTROUTE: mean_sd(proposed), BASELINE: mean_sd(baseline)}
+        holm_adjust([tested[m] for m in Q3_FAMILY if m in tested])        # Q3: congestion + event, Holm
+        holm_adjust([c for m, c in tested.items() if m not in Q3_FAMILY and m != "avoidable_event_exposure"])
+        holm_adjust([tested[m] for m in ("avoidable_event_exposure",) if m in tested])
+        significance.extend({"scenario_type": group, **asdict(c)} for c in tested.values())
+        for metric in DESCRIPTIVE_METRICS:
+            summary[group][metric] = {s: mean_sd([by[(i, s)][metric] for i in ids]) for s in SYSTEMS}
     pd.DataFrame(significance).to_csv(out / "appendix3_significance.csv", index=False)
 
     pooled = {s: compute_metrics_by_scenario([t for t in trials if t["system"] == s]) for s in SYSTEMS}
     report = {
+        "scope": "Metro Manila",
         "risk_edges": str(a.risk_edges),
-        "apple_maps": [str(x) for x in a.apple_maps],
-        "model_inputs": model_inputs(a.risk_edges),
+        "reference_sheets": [str(x) for x in a.google_maps],
+        "reference": provenance["reference"],
+        "model": provenance["model"],
+        "metrics": {
+            "tested": list(TESTED_METRICS),
+            "descriptive": list(DESCRIPTIVE_METRICS),
+            "not_evaluated": "ETA -- not a research question or metric of this thesis",
+        },
         ANTROUTE: {
-            "algorithm": "ACO on the risk-weighted, event-aware graph",
+            "algorithm": "ACO on the risk-weighted graph with the Event-Aware layer",
             "lambda": a.lam,
-            "gamma": a.gamma,
-            "event_layer": "off" if a.no_events else f"on (mu={a.event_mu})",
+            "event_layer": describe_event_layer(0.0 if a.no_events else a.event_mu),
         },
         BASELINE: {
             "algorithm": "Improved ACO (Cheng 2023), doi:10.1155/2023/7651100",
@@ -973,42 +1097,44 @@ def write_reports(a, graph, trials: List[dict]) -> dict:
     return report
 
 
-def score(a, graph, baseline: "Baseline") -> None:
-    if not (a.spatial_dir / "metro_manila_travel_time.npz").exists():
-        raise SystemExit("metro_manila_travel_time.npz not found; the systems' own ETAs need it")
-    free_flow_seconds = load_free_flow_seconds(a.spatial_dir, graph)
-    trials, notes = score_sheet(a, graph, baseline, free_flow_seconds)
+def score(a, graph, events: "Events", model: dict) -> None:
+    trials, notes, reference = score_sheet(a, graph, events)
     for note in notes:
         print(f"NOTE: {note}")
     if not trials:
-        raise SystemExit("the Apple Maps sheet(s) have no fully filled-in trips")
+        raise SystemExit("the Google Maps sheet(s) have no fully filled-in, documented trips")
     over = sum(t["c_optimal"] > t["c_predicted"] for t in trials)
     if over:
         print(
-            f"NOTE: {over} trial(s) score above 100%: Apple timed the forced route faster than its own. "
+            f"NOTE: {over} trial(s) score above 100%: Google timed the forced route faster than its own. "
             "Usually traffic shifted between lookups -- re-check those rows."
         )
 
-    report = write_reports(a, graph, trials)
+    report = write_reports(a, graph, trials, {"reference": reference, "model": model})
     sig = {(r["scenario_type"], r["metric"]): r for r in report["significance"]}
-    print(f"\n{'scenario':<18}{'n':>3}  {'optimality % ant / base':>24}  {'Wilcoxon p':>10}  {'MAE s ant / base':>18}")
+    print(f"\n{'scenario':<18}{'n':>3}  {'optimality % ant / base':>24}  {'Wilcoxon p':>10}  "
+          f"{'congestion exp. ant / base':>27}  {'event exp. ant / base':>22}")
     for group, metrics in report["per_trial_mean_sd"].items():
-        ro, ma = metrics["route_optimality"], metrics["mae"]
+        ro, ce, ee = metrics["route_optimality"], metrics["congestion_exposure"], metrics["event_exposure"]
         p = sig[(group, "route_optimality")]["wilcoxon_p"]
         print(
             f"{group:<18}{sig[(group, 'route_optimality')]['n']:>3}  "
-            f"{ro[ANTROUTE]['mean']:>10.2f} / {ro[BASELINE]['mean']:<11.2f}  "
-            f"{p:>10.4f}  {ma[ANTROUTE]['mean']:>8.1f} / {ma[BASELINE]['mean']:<8.1f}"
+            f"{ro[ANTROUTE]['mean']:>10.2f} / {ro[BASELINE]['mean']:<11.2f}  {p:>10.4f}  "
+            f"{ce[ANTROUTE]['mean']:>12.2f} / {ce[BASELINE]['mean']:<12.2f}  "
+            f"{ee[ANTROUTE]['mean']:>9.2f} / {ee[BASELINE]['mean']:<9.2f}"
         )
-    print(f"\n{'trip':<5} {'scenario':<18}{'optimality % ant / base':>24}  {'MAE min ant / base':>19}  {'MAPE % ant / base':>18}  won ant:base")
+    print(f"\n{'trip':<5} {'scenario':<18}{'optimality % ant / base':>24}  {'congestion ant / base':>22}  "
+          f"{'event ant / base':>17}  won ant:base")
     for r in report["per_trip"]:
         print(
             f"{r['trip_id']:<5} {r['scenario_type']:<18}"
             f"{r['route_optimality_antroute']:>10.1f} / {r['route_optimality_baseline']:<11.1f}  "
-            f"{r['mae_antroute'] / 60:>8.1f} / {r['mae_baseline'] / 60:<8.1f}  "
-            f"{r['mape_antroute']:>7.1f} / {r['mape_baseline']:<8.1f}  "
+            f"{r['congestion_exposure_antroute']:>9.2f} / {r['congestion_exposure_baseline']:<10.2f}  "
+            f"{r['event_exposure_antroute']:>7.2f} / {r['event_exposure_baseline']:<7.2f}  "
             f"{r['metrics_won_antroute']}:{r['metrics_won_baseline']}"
         )
+    print(f"  {scenario:18s} n={m['n']:3d}  optimality {m['route_optimality']['mean']:.1f}%  "
+                  f"congestion {m['congestion_exposure']['mean']:.2f}  event {m['event_exposure']['mean']:.2f}")
     print(f"\nwrote appendix tables, per_trip.csv, trials.csv and metrics.json to {a.out_dir}")
 
 
@@ -1016,24 +1142,24 @@ def main() -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--risk-edges", required=True, type=Path)
     mode = p.add_mutually_exclusive_group(required=True)
-    mode.add_argument("--template", type=Path, help="route the test trips and write the Apple Maps sheet")
-    mode.add_argument("--apple-maps", type=Path, nargs="+",
+    mode.add_argument("--template", type=Path, help="route the test trips and write the Google Maps sheet")
+    mode.add_argument("--google-maps", type=Path, nargs="+",
                       help="the filled-in sheet(s) from --template (and scripts/citywide_trips.py), to score")
+    p.add_argument("--allow-unknown-model", action="store_true",
+                   help="run without risk_summary.json; the report then records the checkpoint as unknown")
     p.add_argument("--spatial-dir", type=Path, default=REPO_ROOT / "data/processed/spatial")
     p.add_argument("-k", type=int, default=DEFAULT_K)
     p.add_argument("--lambda", dest="lam", type=float, default=DEFAULT_LAMBDA, help="ANTROUTE risk penalty")
-    p.add_argument("--gamma", type=float, default=DEFAULT_GAMMA, help="ANTROUTE ETA risk sensitivity")
+    # The Event-Aware layer is part of the method and on for evaluation; --no-events is the ablation.
+    p.add_argument("--event-mu", type=float, default=DEFAULT_MU,
+                   help="how hard ANTROUTE avoids reported incidents; must be > 0 (use --no-events to ablate)")
+    p.add_argument("--no-events", action="store_true",
+                   help="ablation: route with predicted risk only. Incidents are still parsed and "
+                        "still select the incident_exposed trips and measure event exposure, so both "
+                        "arms study the same trips; the router simply never sees the penalty")
     # The baseline is Improved ACO (Cheng 2023). Defaults are the paper's own (sec. 5.1.2);
     # q0 = 0.7 is its "large network" setting, and the global volatility xi it never states
     # follows baseline_iaco's default.
-    # The Event-Aware layer, on by default: without it the appendix measures risk-aware routing
-    # only, which is half of what RQ2 asks. --no-events is the ablation.
-    p.add_argument("--event-mu", type=float, default=DEFAULT_MU,
-                   help="how hard ANTROUTE avoids reported incidents (0 disables the penalty)")
-    p.add_argument("--no-events", action="store_true",
-                   help="ablation: route with predicted risk only. Incidents are still parsed and "
-                        "still select the incident_exposed trips, so both arms study the same "
-                        "trips; the router simply never sees the penalty")
     p.add_argument("--baseline-alpha", type=float, default=1.0)
     p.add_argument("--baseline-beta", type=float, default=5.0)
     p.add_argument("--baseline-rho", type=float, default=0.3)
@@ -1045,9 +1171,9 @@ def main() -> None:
              "route is not the Improved ACO baseline the thesis compares against",
     )
     p.add_argument(
-        "--auto-labels", required=True, type=Path, nargs="+",
-        help="auto_labels.csv file(s) from the labeling step; their YOLO vehicle counts are the "
-             "traffic flow term of the baseline's cost (Cheng eq. 6)",
+        "--auto-labels", type=Path, nargs="+",
+        help="--template: auto_labels.csv file(s) from the labeling step; their YOLO vehicle counts "
+             "are the traffic flow term of the baseline's cost (Cheng eq. 6)",
     )
     p.add_argument("--camera-map", type=Path, default=REPO_ROOT / "configs/camera_nodes.csv")
     p.add_argument(
@@ -1058,7 +1184,8 @@ def main() -> None:
     p.add_argument("--split", default="test", help='--template: risk-file split to draw windows from, or "all"')
     p.add_argument("--n-trials", type=int, default=10, help="--template: trials per scenario")
     p.add_argument("--n-stops", type=int, default=3, help="--template: stops per multi-destination trip")
-    p.add_argument("--n-waypoints", type=int, default=6, help="--template: Apple Maps stops per leg")
+    p.add_argument("--n-waypoints", type=int, default=6,
+                   help="--template: Google Maps stops per leg (the web app takes up to 9 waypoints)")
     p.add_argument("--n-ants", type=int, default=20)
     p.add_argument("--n-iterations", type=int, default=60)
     p.add_argument("--alpha", type=float, default=1.0)
@@ -1069,27 +1196,31 @@ def main() -> None:
     a = p.parse_args()
     if a.n_stops < 3:
         p.error("--n-stops must be at least 3 (origin, one intermediate stop, destination)")
+    if not a.no_events and not a.event_mu > 0:
+        p.error("--event-mu must be > 0: the Event-Aware layer is part of the method (ablate with --no-events)")
+    if a.template and not a.auto_labels:
+        p.error("--template needs --auto-labels: the baseline's traffic-flow term is built from them")
 
-    model_inputs(a.risk_edges)
+    model = model_provenance(a.risk_edges, allow_unknown=a.allow_unknown_model)
     graph = build_subgraph(a.spatial_dir, a.k)
     events = Events(graph, a.spatial_dir, mu=a.event_mu, enabled=not a.no_events)
-    baseline = Baseline(
-        graph,
-        a.spatial_dir,
-        a.risk_edges,
-        IacoConfig(
-            n_ants=a.n_ants,
-            n_iterations=a.n_iterations,
-            alpha=a.baseline_alpha,
-            beta=a.baseline_beta,
-            rho=a.baseline_rho,
-            q0=a.baseline_q0,
-            seed=a.seed,
-        ),
-        fallback=a.baseline_fallback,
-        vehicle_counts=load_vehicle_counts(a.auto_labels, graph.camera_nodes, a.camera_map),
-    )
     if a.template:
+        baseline = Baseline(
+            graph,
+            a.spatial_dir,
+            a.risk_edges,
+            IacoConfig(
+                n_ants=a.n_ants,
+                n_iterations=a.n_iterations,
+                alpha=a.baseline_alpha,
+                beta=a.baseline_beta,
+                rho=a.baseline_rho,
+                q0=a.baseline_q0,
+                seed=a.seed,
+            ),
+            fallback=a.baseline_fallback,
+            vehicle_counts=load_vehicle_counts(a.auto_labels, graph.camera_nodes, a.camera_map),
+        )
         config = AntColonyConfig(
             n_ants=a.n_ants,
             n_iterations=a.n_iterations,
@@ -1101,7 +1232,7 @@ def main() -> None:
         )
         write_template(a, graph, baseline, events, config)
     else:
-        score(a, graph, baseline)
+        score(a, graph, events, model)
 
 
 if __name__ == "__main__":

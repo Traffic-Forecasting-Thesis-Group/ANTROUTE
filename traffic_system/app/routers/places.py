@@ -217,7 +217,7 @@ async def _get_results(query: str) -> list[dict]:
     return results
 
 
-# The stops of the Apple Maps test trips (scripts/evaluate_routing.py, scripts/citywide_trips.py).
+# The stops of the Google Maps test trips (scripts/evaluate_routing.py, scripts/citywide_trips.py).
 # Searching one by name offers its exact point first: a search result from Nominatim lands tens
 # of metres away, on a different road point, and the app then cannot recognise the trip as a
 # test trip (POST /routes/trip-evaluation matches the exact stops).

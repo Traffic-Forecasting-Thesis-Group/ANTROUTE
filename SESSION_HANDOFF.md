@@ -1,5 +1,12 @@
 # ANTROUTE — Session Handoff (as of 2026-09-30)
 
+> **Update 2026-10-14.** Parts of this note are out of date. The risk scores in use
+> (`MMDA_RISK_SCORES/risk_edges.csv`) come from **`stgnn_edge_v8.pt`, trained and scored with
+> text on** (`use_text: true`) and with the node context. The `--no-text` runs below are v1/v2
+> only. Routing, the Dynamic Weight Engine and the evaluation are built. The evaluation now uses
+> Google Maps as the reference and does not score ETA. See
+> `traffic_system/docs/evaluation_protocol.md`.
+
 Read this first in a new session before doing anything else. It says where the project actually
 stands against the system architecture, what's already working, what's broken, and what's next.
 

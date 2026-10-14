@@ -15,7 +15,7 @@ import { useIsFocused } from '@react-navigation/native';
 import { getComparisonMetrics, ComparisonMetrics } from '../api/routeService';
 
 /**
- * The thesis routing evaluation over every test trip timed in Apple Maps (Section 3.9,
+ * The thesis routing evaluation over every test trip timed in Google Maps (Section 3.9,
  * Appendix 3): ANTRoute against the baseline Improved ACO, overall and per scenario.
  * A single trip's own evaluation is on the Home screen's Comparison tab.
  */
@@ -98,11 +98,9 @@ export default function EvaluationScreen() {
             </Text>
             <Text style={styles.subtitle}>
               {`ANTRoute against the baseline (${data?.baselineName}) on ${shown.nTrials} test trips, ` +
-                `both routed on the same stops and departure times and timed in Apple Maps typical traffic.` +
-                (data?.etaCalibrated
-                  ? ` ETAs calibrated: each model's predicted ETA is scaled by one factor fitted on the other test trips.`
-                  : '')}
+                `both routed on the same stops and departure times in Metro Manila.`}
             </Text>
+            {data?.description ? <Text style={styles.subtitle}>{data.description}</Text> : null}
 
             <View style={styles.metricsTable}>
               <View style={styles.metricsTableHeaderRow}>
@@ -132,8 +130,9 @@ export default function EvaluationScreen() {
             </View>
 
             <Text style={styles.footnote}>
-              {`Lower is better for MAE, RMSE, MSE, MAPE. Higher is better for Route Optimality and R². ` +
-                `Route Optimality is the mean over trips; the ETA errors pool every leg. ` +
+              {`Higher is better for Route Optimality (both routes timed in Google Maps against Google's own). ` +
+                `Lower is better for congestion and event exposure. Route length is descriptive and not tested. ` +
+                `All values are means over trips. ETA is not evaluated. ` +
                 `Improvement is the relative difference Δ% (Equations 7–8): positive means ANTRoute is better. ` +
                 `* significant, Wilcoxon signed-rank p < 0.05.`}
             </Text>

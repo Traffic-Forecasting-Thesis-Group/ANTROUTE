@@ -8,8 +8,8 @@ Per metric, over trials paired by trip (same origin/destination, window and stop
     Shapiro-Wilk on d_i                                       (Equation 8)
     Wilcoxon signed-rank, W = min(W+, W-)                     (Equation 12)
     paired t-test, reported only when d_i is normal           (Equations 10-11)
-    Δ% = (C_baseline - C_proposed) / C_baseline * 100         (Equation 7: MAE, RMSE, MSE, MAPE)
-    Δ% = (C_proposed - C_baseline) / C_baseline * 100         (Equation 8: Route Optimality, R^2)
+    Δ% = (C_baseline - C_proposed) / C_baseline * 100         (Equation 7: congestion, event and avoidable event exposure)
+    Δ% = (C_proposed - C_baseline) / C_baseline * 100         (Equation 8: Route Optimality)
 
 so a positive Δ% always means ANTROUTE did better, and a negative one that it did worse
 (thesis Section 3.9, "Relative Difference"). HIGHER_IS_BETTER names the metrics Equation 8
@@ -24,8 +24,12 @@ from scipy import stats
 
 ALPHA = 0.05
 
+# Q3 family: the two exposure metrics tested together, so Holm corrects for two comparisons.
+# Route Optimality (Q2) and the avoidable refinement of event exposure are their own questions.
+Q3_FAMILY = ("congestion_exposure", "event_exposure")
+
 # Equation 8 metrics; every other metric is lower-is-better (Equation 7).
-HIGHER_IS_BETTER = frozenset({"route_optimality", "r_squared"})
+HIGHER_IS_BETTER = frozenset({"route_optimality"})
 
 
 @dataclass
@@ -47,6 +51,8 @@ class PairedComparison:
     t_value: Optional[float]            # supplementary, only when normal
     t_p: Optional[float]
     significant: bool                   # Wilcoxon p < alpha
+    wilcoxon_p_holm: Optional[float] = None   # Holm-adjusted within its family (holm_adjust); None until applied
+    significant_holm: Optional[bool] = None   # Holm-adjusted p < alpha
 
 
 def relative_difference(baseline: float, proposed: float, higher_is_better: bool = False) -> float:
@@ -115,3 +121,21 @@ def compare_paired(
         t_p=t_p,
         significant=bool(np.isfinite(wilcoxon_p) and wilcoxon_p < alpha),
     )
+
+
+def holm_adjust(comparisons: Sequence[PairedComparison], alpha: float = ALPHA) -> None:
+    """
+    Holm step-down correction over one family of comparisons, in place: sets wilcoxon_p_holm
+    and significant_holm. A comparison whose Wilcoxon p is undefined (every pair tied) still
+    counts toward the family size -- the conservative choice -- and stays None / False.
+    """
+    m = len(comparisons)
+    live = sorted((c for c in comparisons if np.isfinite(c.wilcoxon_p)), key=lambda c: c.wilcoxon_p)
+    running = 0.0
+    for rank, c in enumerate(live):
+        running = max(running, min(1.0, (m - rank) * c.wilcoxon_p))   # adjusted p is non-decreasing
+        c.wilcoxon_p_holm = float(running)
+        c.significant_holm = bool(running < alpha)
+    for c in comparisons:
+        if c.significant_holm is None:
+            c.significant_holm = False

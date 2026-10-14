@@ -3,20 +3,20 @@ Secondary analysis: ANTROUTE, Improved ACO (Cheng 2023) and spatial shortest dis
 through a simulator of the observed traffic.
 
 NOT the thesis evaluation, and its numbers must not be reported beside it. Appendices 1-3 --
-Route Optimality, the ETA metrics and the significance tests -- come from
+Route Optimality, congestion and event exposure, and the significance tests -- come from
 scripts/evaluate_routing.py, which routes the same baseline (src/routing/baseline_iaco.py via
-baseline_router.py) and scores both systems against Apple Maps. Two reasons to keep them apart:
+baseline_router.py) and times both systems in Google Maps. Two reasons to keep them apart:
 
   1. This script has no external oracle. A route is scored by driving it against the same
      observed travel times the planner was handed, so IACO is judged on a quantity that is
      25.8% of its own objective (Cheng's w2 term), while ANTROUTE plans on predicted risk and
-     is not. That flatters the baseline. evaluate_routing.py avoids it: Apple Maps is external
+     is not. That flatters the baseline. evaluate_routing.py avoids it: Google Maps is external
      to both planners.
-  2. It computes no Route Optimality, no MAE/RMSE/MSE/MAPE/R^2 and no significance test.
+  2. It computes no Route Optimality and no significance test.
 
 What it is for, and what nothing else covers: Cheng's third stated novelty, dynamic
 optimization (eq. 9, Steps 8-9), where the vehicle re-plans mid-trip as new traffic data
-arrives. Apple Maps cannot score that -- one lookup prices one fixed route -- so the appendix
+arrives. A Google Maps lookup cannot score that -- one lookup prices one fixed route -- so the appendix
 pipeline deliberately plans each leg once. Use this script to show eq. 9 is implemented and
 what it does: re-plan counts, the convergence iteration (the paper's "number of iterations",
 Tables 8-9), and the paper's own three-way comparison from Table 9.
@@ -236,10 +236,10 @@ def summarise(trips: pd.DataFrame) -> dict:
 SIMULATOR_CAVEAT = (
     "> **Secondary analysis, not Appendix 1-3.** Routes here are scored against the same "
     "observed travel times the planners were given, so Improved ACO is judged on 25.8% of its "
-    "own objective while ANTROUTE is not. The thesis evaluation (Route Optimality, ETA metrics, "
-    "significance tests) comes from `scripts/evaluate_routing.py`, scored against Apple Maps. "
-    "What this table uniquely shows is Cheng's eq. 9 dynamic re-planning, which Apple Maps "
-    "cannot score."
+    "own objective while ANTROUTE is not. The thesis evaluation (Route Optimality, exposures, "
+    "significance tests) comes from `scripts/evaluate_routing.py`, timed in Google Maps. "
+    "What this table uniquely shows is Cheng's eq. 9 dynamic re-planning, which a Google Maps "
+    "lookup cannot score."
 )
 
 
@@ -350,7 +350,7 @@ def main() -> None:
         "Secondary analysis, not Appendix 1-3. Routes are scored against the same observed "
         "travel times the planners were given, so Improved ACO is judged on 25.8% of its own "
         "objective while ANTROUTE is not. The thesis evaluation comes from "
-        "scripts/evaluate_routing.py, scored against Apple Maps."
+        "scripts/evaluate_routing.py, timed in Google Maps."
     )
     summary["settings"] = {k: (str(v) if isinstance(v, Path) else v) for k, v in vars(a).items()
                            if k not in ("auto_labels",)}
