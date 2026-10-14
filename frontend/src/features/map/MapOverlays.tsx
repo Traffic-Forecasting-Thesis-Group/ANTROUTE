@@ -157,6 +157,59 @@ export function IncidentMarkers({ incidents }: { incidents: MapIncident[] }) {
   );
 }
 
+const LABEL_COLOR = { Light: '#10b981', Medium: '#f59e0b', Heavy: '#ef4444' } as const;
+
+/**
+ * The cameras and incidents of the recorded window the routes were planned on: each camera is
+ * coloured by its human congestion label there, each incident by the incident glyph. Recorded
+ * data, so nothing appears until a trip has been planned.
+ */
+export function RecordedMarkers() {
+  const { recordedInputs } = useTripPlanner();
+  if (!recordedInputs) return null;
+  const camera = INCIDENT_LEGEND.camera;
+  const incident = INCIDENT_LEGEND.accident;
+  const CameraIcon = camera.icon;
+  const IncidentIcon = incident.icon;
+
+  return (
+    <>
+      {recordedInputs.cameras.map((c) => (
+        <AdvancedMarker
+          key={`cam-${c.camera}`}
+          position={{ lat: c.lat, lng: c.lon }}
+          anchorPoint={AdvancedMarkerAnchorPoint.CENTER}
+          title={`${c.camera}: ${c.human_label ?? 'no label'}${c.vehicle_count != null ? `, ${c.vehicle_count} vehicles` : ''} (recorded)`}
+        >
+          <span
+            className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-white shadow-md"
+            style={{ backgroundColor: c.human_label ? LABEL_COLOR[c.human_label] : camera.color }}
+          >
+            <CameraIcon size={12} color="#fff" aria-hidden />
+          </span>
+        </AdvancedMarker>
+      ))}
+      {recordedInputs.incidents.map((i, n) =>
+        i.lat != null && i.lon != null ? (
+          <AdvancedMarker
+            key={`inc-${n}`}
+            position={{ lat: i.lat, lng: i.lon }}
+            anchorPoint={AdvancedMarkerAnchorPoint.CENTER}
+            title={`${i.location}: ${i.kind}, ${i.lanes} lane(s) (recorded)`}
+          >
+            <span
+              className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-white shadow-md"
+              style={{ backgroundColor: incident.color }}
+            >
+              <IncidentIcon size={13} color="#fff" aria-hidden />
+            </span>
+          </AdvancedMarker>
+        ) : null
+      )}
+    </>
+  );
+}
+
 /** Keeps the camera on whatever the planner last asked for. */
 export function CameraController({ followingDriver = false }: { followingDriver?: boolean }) {
   const { cameraTarget, selectedRoute, antTop, baselineTop, hasPlannedTrip } = useTripPlanner();

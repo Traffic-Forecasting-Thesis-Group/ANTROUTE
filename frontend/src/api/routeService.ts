@@ -39,6 +39,130 @@ export interface RouteOption {
    * propagated (within 1.5 km of it), assumed (farther: weather, flood, incidents, clock, road class).
    */
   risk_sources?: { observed: number; propagated: number; assumed: number } | null;
+  /** The recorded inputs along this route: cameras, incidents, weather, flood, vehicle counts. */
+  inputs?: RouteInputs | null;
+}
+
+export interface CameraReading {
+  camera: string;
+  node_id: number;
+  lat: number;
+  lon: number;
+  /** The model's mean risk on the camera's edges, 0-1. */
+  model_risk: number | null;
+  /** The human congestion label at the camera in that window. */
+  human_label: 'Light' | 'Medium' | 'Heavy' | null;
+  /** Mean YOLO vehicle count over the window. */
+  vehicle_count: number | null;
+  /** Metres from the route, on a route's inputs. */
+  distance_m?: number | null;
+}
+
+export interface IncidentReading {
+  location: string;
+  intersection: string;
+  kind: string;
+  lanes: number;
+  /** Base impact times linear decay, 0-1. */
+  strength: number;
+  reported_at: string;
+  minutes_ago: number | null;
+  lat: number | null;
+  lon: number | null;
+  distance_m?: number | null;
+}
+
+export interface WeatherReading {
+  available: boolean;
+  where?: string | null;
+  hour?: string | null;
+  temp_c?: number | null;
+  precip_mm?: number | null;
+  precip_mm_max?: number | null;
+  humidity_pct?: number | null;
+  source?: string | null;
+  note?: string | null;
+}
+
+/**
+ * The recorded inputs along one route, for comparing alternatives. "Recorded": read from one
+ * window of recorded data, not a live feed.
+ */
+export interface RouteInputs {
+  recorded: boolean;
+  window: string;
+  cameras: CameraReading[];
+  incidents: IncidentReading[];
+  weather: WeatherReading;
+  flood: { max_level?: number; share_of_route_flood_prone?: number };
+  vehicle_count_mean: number | null;
+}
+
+export interface WindowInfo {
+  window: string;
+  window_end: string | null;
+  day: string;
+  session: 'AM' | 'PM';
+  label: string;
+  split: string;
+  /** True for the test split (May 25): the model never saw it in training or validation. */
+  held_out: boolean;
+  split_note: string;
+}
+
+/** The "Inputs used" panel: every recorded input of the window the routes were planned on. */
+export interface RecordedInputs {
+  recorded: boolean;
+  matched_window: WindowInfo;
+  cameras: CameraReading[];
+  incidents: IncidentReading[];
+  weather: WeatherReading;
+  flood: { mean_level?: number | null; share_of_roads_flood_prone?: number | null; source?: string };
+  vehicle_counts_available: boolean;
+}
+
+export interface RecordedSession {
+  day: string;
+  session: 'AM' | 'PM';
+  label: string;
+  split: string;
+  held_out: boolean;
+  note: string;
+  labelled_edges: number;
+  windows: { start: string; end: string | null }[];
+}
+
+export interface WhatIfCase {
+  key: string;
+  label: string;
+  description: string;
+  camera_mean: number;
+  camera_max: number;
+  other_mean: number;
+  other_max: number;
+  other_moved: number;
+}
+
+export interface WhatIf {
+  model: string;
+  windows: number;
+  note: string;
+  cases: WhatIfCase[];
+  route_effect: {
+    n_trips: number | null;
+    lanes: number | null;
+    active_minutes: number | null;
+    systems: Record<
+      string,
+      {
+        routes_changed_share: number;
+        event_exposure_old: number;
+        event_exposure_recalculated: number;
+        congestion_exposure_old: number;
+        congestion_exposure_recalculated: number;
+      }
+    >;
+  } | null;
 }
 
 export interface Coordinates {
@@ -123,6 +247,10 @@ export interface RoutePlan {
   routes: RouteOption[];
   /** Which recorded traffic the routes were planned on, or that none is loaded. */
   trafficNote: string;
+  /** The recorded inputs of the window the routes were planned on. */
+  recordedInputs: RecordedInputs | null;
+  /** True when the user chose the recorded day and session (simulation mode). */
+  simulation: boolean;
   /** Why `routes` is empty, when the server says so (e.g. no baseline route for this trip). */
   notice: string | null;
 }
@@ -132,6 +260,8 @@ interface PlanRouteResult {
   departure_time: string;
   traffic_note?: string;
   notice?: string | null;
+  recorded_inputs?: RecordedInputs | null;
+  simulation?: boolean;
 }
 
 interface ComparisonMetricsResponse {
@@ -183,7 +313,8 @@ export async function planRoute(
   destinations: DestinationInput[],
   originCoords?: Coordinates | null,
   model: RouteModel = 'antroute',
-  departAt: Date | null = null
+  departAt: Date | null = null,
+  recordedWindow: string | null = null
 ): Promise<RoutePlan> {
   try {
     const { data } = await apiClient.post<PlanRouteResult>('/routes/plan', {
@@ -197,6 +328,7 @@ export async function planRoute(
       })),
       model,
       depart_at: departAt ? departAt.toISOString() : null,
+      recorded_window: recordedWindow,
     });
     return {
       routes: data.routes.map((r) => ({
@@ -204,6 +336,8 @@ export async function planRoute(
         path: (r.path ?? []).map((p) => ({ latitude: p.lat, longitude: p.lng })),
       })),
       trafficNote: data.traffic_note ?? '',
+      recordedInputs: data.recorded_inputs ?? null,
+      simulation: data.simulation ?? false,
       notice: data.notice ?? null,
     };
   } catch (error: any) {
@@ -219,6 +353,42 @@ export async function planRoute(
       throw new Error('Could not reach the server. Check your connection and try again.');
     }
     throw error;
+  }
+}
+
+function failure(error: any, fallback: string): Error {
+  if (error.response) return new Error(error.response.data?.detail || fallback);
+  if (error.request) return new Error('Could not reach the server. Check your connection and try again.');
+  return new Error(fallback);
+}
+
+/** GET /routes/recorded-sessions — every recorded day and session, for simulation mode. */
+export async function getRecordedSessions(): Promise<RecordedSession[]> {
+  try {
+    const { data } = await apiClient.get<{ sessions: RecordedSession[] }>('/routes/recorded-sessions');
+    return data.sessions;
+  } catch (error: any) {
+    throw failure(error, 'Could not load the recorded sessions.');
+  }
+}
+
+/** GET /routes/recorded-inputs — the recorded inputs of one window (a RecordedSession window start). */
+export async function getRecordedInputs(window: string): Promise<RecordedInputs> {
+  try {
+    const { data } = await apiClient.get<RecordedInputs>('/routes/recorded-inputs', { params: { window } });
+    return data;
+  } catch (error: any) {
+    throw failure(error, 'Could not load the recorded inputs.');
+  }
+}
+
+/** GET /routes/what-if — precomputed cases: the checkpoint with rain, flood, incidents or cameras changed. */
+export async function getWhatIf(): Promise<WhatIf> {
+  try {
+    const { data } = await apiClient.get<WhatIf>('/routes/what-if');
+    return data;
+  } catch (error: any) {
+    throw failure(error, 'Could not load the what-if table.');
   }
 }
 

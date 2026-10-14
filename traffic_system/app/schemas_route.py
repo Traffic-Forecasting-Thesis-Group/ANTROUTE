@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Dict, List, Literal, Optional
+from typing import Any, Dict, List, Literal, Optional
 
 from pydantic import BaseModel
 
@@ -19,6 +19,131 @@ class RoutePlanRequest(BaseModel):
     # When the driver leaves, ISO 8601 (an offset is expected; without one it is read as
     # Manila time). Omitted means leaving now.
     depart_at: Optional[datetime] = None
+    # Simulation mode: plan on this recorded window (a RecordedWindow.start from
+    # /routes/recorded-sessions) instead of the window matching depart_at.
+    recorded_window: Optional[str] = None
+
+
+class CameraReading(BaseModel):
+    """One camera in one recorded window."""
+    camera: str
+    node_id: int
+    lat: float
+    lon: float
+    model_risk: Optional[float] = None       # the model's mean risk on the camera's edges, 0-1
+    human_score: Optional[float] = None      # the human congestion label as 0 / 0.5 / 1
+    human_label: Optional[Literal["Light", "Medium", "Heavy"]] = None
+    vehicle_count: Optional[float] = None    # mean YOLO vehicle count over the window
+    distance_m: Optional[int] = None         # from the route, on a route's inputs
+
+
+class IncidentReading(BaseModel):
+    """One MMDA incident in force at a recorded window's moment."""
+    location: str
+    intersection: str
+    kind: str
+    lanes: int
+    strength: float                          # base impact x linear decay, 0-1
+    reported_at: str
+    minutes_ago: Optional[int] = None
+    node_id: Optional[int] = None
+    lat: Optional[float] = None
+    lon: Optional[float] = None
+    distance_m: Optional[int] = None         # from the route, on a route's inputs
+
+
+class WeatherReading(BaseModel):
+    available: bool
+    where: Optional[str] = None
+    hour: Optional[str] = None
+    temp_c: Optional[float] = None
+    precip_mm: Optional[float] = None
+    precip_mm_max: Optional[float] = None
+    humidity_pct: Optional[float] = None
+    cells: Optional[int] = None
+    source: Optional[str] = None
+    note: Optional[str] = None
+
+
+class RouteInputs(BaseModel):
+    """
+    The recorded inputs along one route, for comparing alternatives: the cameras and incidents
+    on it, the weather and flood along it, and the vehicle counts at its cameras. Always
+    "recorded": read from one window of risk_edges.csv, not a live feed.
+    """
+    recorded: bool = True
+    window: str
+    cameras: List[CameraReading] = []
+    incidents: List[IncidentReading] = []
+    weather: WeatherReading
+    flood: Dict[str, Any] = {}
+    vehicle_count_mean: Optional[float] = None
+
+
+class WindowInfo(BaseModel):
+    window: str
+    window_end: Optional[str] = None
+    day: str
+    session: Literal["AM", "PM"]
+    label: str
+    split: str                               # train / val / test / infer
+    held_out: bool                           # True for the test split (May 25)
+    split_note: str = ""
+
+
+class RecordedInputs(BaseModel):
+    """The "Inputs used" panel: every recorded input of one window, over the whole map."""
+    recorded: bool = True
+    matched_window: WindowInfo
+    cameras: List[CameraReading] = []
+    incidents: List[IncidentReading] = []
+    weather: WeatherReading
+    flood: Dict[str, Any] = {}
+    vehicle_counts_available: bool = False
+
+
+class RecordedWindow(BaseModel):
+    start: str
+    end: Optional[str] = None
+
+
+class RecordedSession(BaseModel):
+    day: str
+    session: Literal["AM", "PM"]
+    label: str
+    split: str
+    held_out: bool
+    note: str = ""
+    labelled_edges: int = 0
+    windows: List[RecordedWindow]
+
+
+class RecordedSessionsResponse(BaseModel):
+    sessions: List[RecordedSession]
+    note: str
+
+
+class WhatIfCase(BaseModel):
+    key: str
+    label: str
+    description: str
+    camera_mean: float                       # mean absolute change in risk on camera edges
+    camera_max: float
+    other_mean: float                        # ... on every other edge
+    other_max: float
+    other_moved: float                       # share of other edges whose risk moved by more than 0.001
+
+
+class WhatIfResponse(BaseModel):
+    """
+    Precomputed what-if cases: one input of the real checkpoint changed at a time, in the same
+    batch, and how far the risk moved. Re-inference by the checkpoint offline, not live.
+    """
+    model: str
+    windows: int
+    note: str
+    cases: List[WhatIfCase]
+    route_effect: Optional[Dict[str, Any]] = None
 
 
 class PathPoint(BaseModel):
@@ -54,6 +179,8 @@ class RouteOption(BaseModel):
     # "observed" (camera subgraph, decoder prediction), "propagated" (within 1.5 km of it) and
     # "assumed" (farther: estimated from weather, flood, incidents, clock and road class).
     risk_sources: Optional[Dict[str, float]] = None
+    # The recorded inputs along this route (cameras, incidents, weather, flood, vehicle counts).
+    inputs: Optional[RouteInputs] = None
 
 
 class RoutePlanResponse(BaseModel):
@@ -63,6 +190,10 @@ class RoutePlanResponse(BaseModel):
     traffic_note: str = ""
     # Set when `routes` is empty for a reason the user should see, e.g. no baseline route.
     notice: Optional[str] = None
+    # The recorded inputs of the window the routes were planned on (the "Inputs used" panel).
+    recorded_inputs: Optional[RecordedInputs] = None
+    # True when the user chose the recorded day and session (simulation mode).
+    simulation: bool = False
 
 
 class ComparisonMetricRow(BaseModel):

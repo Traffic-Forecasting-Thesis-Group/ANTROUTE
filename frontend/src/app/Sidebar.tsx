@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, BarChart3, Columns2, Settings } from 'lucide-react';
+import { LayoutDashboard, BarChart3, Columns2, FlaskConical, Settings } from 'lucide-react';
 
 import { cn } from '@/lib/cn';
 
@@ -7,6 +7,7 @@ const NAV = [
   { to: '/', label: 'Dashboard', icon: LayoutDashboard, end: true },
   { to: '/evaluation', label: 'Evaluation', icon: BarChart3, end: false },
   { to: '/comparison', label: 'Comparison', icon: Columns2, end: false },
+  { to: '/what-if', label: 'What-if', icon: FlaskConical, end: false },
   { to: '/settings', label: 'Settings', icon: Settings, end: false },
 ];
 

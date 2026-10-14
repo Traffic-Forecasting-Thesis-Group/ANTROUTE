@@ -33,6 +33,8 @@ class Settings(BaseSettings):
     # auto_labels.csv files (YOLO vehicle counts per frame) for the baseline's traffic-flow
     # term. Copy them here from the frames folders; without them the flow term is zero.
     vehicle_counts_dir: str = "data/processed/vehicle_counts"
+    # Precomputed what-if tables (scripts/build_what_if.py), served by GET /routes/what-if.
+    what_if_dir: str = "outputs/what_if"
 
     class Config:
         env_file = ".env"

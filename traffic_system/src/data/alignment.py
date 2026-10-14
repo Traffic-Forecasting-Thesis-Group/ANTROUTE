@@ -41,7 +41,11 @@ LOCAL_TZ = "Asia/Manila"
 NONVISUAL_START = date(2025, 6, 1)
 BUFFER_START = date(2026, 4, 27)     # buffer week: Apr 27 - May 3, 2026 (excluded)
 
-# Visual regime: chronological split by session (14 / 3 / 3)
+# Visual regime: the automatic chronological split over all 20 recorded sessions (14 / 3 / 3), the
+# fallback when training is given no split file. It is NOT the split the v8 checkpoint was
+# trained with: v8 used configs/visual_split_v8.json, over the 17 labelled sessions (train 11 /
+# val 4 / test 2; May 22 validates and May 25 is the only held-out date). The app and the
+# evaluation read v8's split from the risk file; see docs/evaluation_protocol.md, "The split".
 _TRAIN_DAYS = (4, 6, 8, 11, 13, 15, 18)
 VISUAL_SPLIT: Dict[Tuple[date, str], str] = {
     **{(date(2026, 5, d), s): "train" for d in _TRAIN_DAYS for s in ("AM", "PM")},

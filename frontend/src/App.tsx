@@ -6,6 +6,7 @@ import DashboardPage from './pages/DashboardPage';
 import EvaluationPage from './pages/EvaluationPage';
 import ComparisonPage from './pages/ComparisonPage';
 import SettingsPage from './pages/SettingsPage';
+import WhatIfPage from './pages/WhatIfPage';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="/" element={<DashboardPage />} />
           <Route path="/evaluation" element={<EvaluationPage />} />
           <Route path="/comparison" element={<ComparisonPage />} />
+          <Route path="/what-if" element={<WhatIfPage />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

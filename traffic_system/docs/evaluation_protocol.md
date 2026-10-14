@@ -168,46 +168,80 @@ For evaluation the layer is on. `evaluate_routing.py` refuses `--event-mu 0`, an
 is the ablation. `citywide_trips.py` and `evaluate_condition_updates.py` refuse to run with
 `EVENT_MU = 0`. `metrics.json` records all of the above under `antroute.event_layer`.
 
-## 6. Route Quality Before and After Condition Updates (`src/routing/condition_update.py`)
+## 6. Condition updates (`src/routing/condition_update.py`, `scripts/evaluate_condition_updates.py`)
 
-A route is planned under the conditions at window t0. Conditions are then updated to t1, the
-first window of the same session starting at least 30 minutes later, which brings that window's
-predicted risk and the incidents in force by then. The trip is re-routed under t1. Both routes
-are measured **under the conditions at t1**:
+The harness plans a trip under conditions A, applies an update, recalculates, and compares, for
+ANTROUTE and the baseline on the whole-city graph, routed by the app's own code and settings.
 
-- congestion exposure of the old route vs the recalculated route
-- event exposure of the old route vs the recalculated route
-- route length, as a descriptive extra
+**Updates**
 
-Improvement is old minus recalculated (positive means recalculating helped). The exposures are
-compared pairwise over trips with a Wilcoxon signed-rank test (Δ% by Equation 7), over all trips
-and over the trips whose route changed.
+- `--update traffic`: a different recorded window. t1 is the first window of the same session at
+  least 30 minutes after t0, bringing its predicted risk and the incidents in force then.
+- `--update session`: a different recorded session. t1 is the same clock time in the nearest other
+  recorded day's session (AM or PM).
+- `--update event`: a road event. An MMDA incident (2 lanes, strength 1.0) is injected at a
+  gazetteer intersection (`--intersection`, else one drawn per trip) and stays active for its
+  60-minute decay; it is measured at `--event-age-minutes` (default 0). Risk is unchanged, so the
+  incident is the only change. Origin and destination are drawn on opposite sides of it, and a
+  trip is kept only when the old route runs into it.
+- `--update recorded-event`: a real incident reported between t0 and t1 (the old
+  `--require-events`).
+
+**Measures**
+
+- **Route Recalculation Response Time:** seconds per recalculation, from conditions B being loaded
+  (the window's risk and the baseline's observations are cached first) to the new route, which
+  covers applying the incidents plus the search. Median and 95th percentile per system, on the
+  same machine in one run, plus a paired Wilcoxon test (ANTROUTE vs baseline).
+- **Changes in Recommended Routes:** share of trips whose route changes, and the shared-length
+  fraction, the share of the old route's length the new route still uses (1 = unchanged).
+- **Route Quality Before and After:** the old route under conditions B vs the recalculated route,
+  on congestion exposure and event exposure (avoidable event exposure alongside); route length is
+  descriptive. Both systems are measured with the same yardstick: ANTROUTE's risk tiers and
+  Event-Aware layer at B.
+- **Warm start (optional, `--warm-start`):** ANTROUTE recalculates again starting from the old
+  colony's pheromone (rescaled to the cold start's mean, with a floor), and reports convergence:
+  the iteration at which the colony first reached its final best cost, cold vs warm.
 
 ```
-python scripts/evaluate_condition_updates.py --n-trips 30                    # uniform trips across the city
-python scripts/evaluate_condition_updates.py --n-trips 30 --require-events   # an incident reported between t0 and t1, on the old route
+python scripts/evaluate_condition_updates.py --update traffic --n-trips 30 --warm-start --out-dir outputs/condition_updates/traffic
+python scripts/evaluate_condition_updates.py --update session --n-trips 30 --warm-start --out-dir outputs/condition_updates/session
+python scripts/evaluate_condition_updates.py --update event   --n-trips 30 --warm-start --out-dir outputs/condition_updates/event
 ```
 
-Report the two samples separately. With `--google`, each trip is also timed in Google Maps at
-t1's slot (Google's own route, the old route and the recalculated one), adding Route Optimality
-before and after the update.
+Report each update type as its own sample. `--google` adds Google Route Optimality for
+ANTROUTE's old and recalculated routes; `--rescore` recomputes a finished run from its saved routes.
 
-### Results (2026-10-14, `outputs/google_eval/condition_updates/`)
+### Results (2026-10-15, `outputs/condition_updates/`, test split, 30 trips each)
 
-| Sample | Routes changed | Congestion exposure, old → recalculated | Event exposure (= avoidable here), old → recalculated | Google Route Optimality, old → recalculated |
-|---|---|---|---|---|
-| Uniform trips across the city (test split) | 0 of 30 | 73.3 → 73.3 | 0 → 0 | 86.8% → 86.8% |
-| New incident on the old route (all splits) | 15 of 30 | 60.5 → 58.9 (−2.6%, p = 0.02) | 0.70 → 0.36 (−48%, p = 0.001) | 88.2% → 85.1% (n.s., p = 0.48) |
-| ↳ the 15 changed routes | | 59.4 → 56.2 (p = 0.02) | 0.71 → 0.04 (p < 0.001) | 89.4% → 83.3% (n.s.) |
+Machine: Windows 11, Intel 12-thread CPU, Python 3.12; ANTROUTE colony 8 ants x 15 iterations;
+baseline colony 8 x 15 in a corridor around the trip.
 
-These trips were selected so the new incident lies mid-route, so all their event exposure is
-avoidable and the two event columns coincide. `--rescore` recomputes the metrics of a finished run
-from its saved routes without rerouting or new Google requests.
+| Update | System | Response time, median / p95 | Routes changed | Shared length (changed routes, median) | Congestion exposure, old → recalculated | Event exposure, old → recalculated |
+|---|---|---|---|---|---|---|
+| Traffic (next window) | ANTROUTE | 0.34 s / 0.59 s | 2 of 30 (7%) | 0.93 | 73.2 → 73.0 (n.s.) | 0 → 0 |
+| | Baseline | 0.24 s / 0.61 s | 22 of 30 (73%) | 0.40 | 115.7 → 123.4 (n.s.) | 0 → 0 |
+| Session (other day) | ANTROUTE | 0.42 s / 0.60 s | 4 of 30 (13%) | 0.90 | 72.1 → 72.6 (n.s.) | 0 → 0 |
+| | Baseline | 0.17 s / 1.06 s | 16 of 30 (53%) | 0.41 | 118.5 → 120.8 (n.s.) | 0 → 0 |
+| Injected incident | ANTROUTE | 0.18 s / 0.24 s | 23 of 30 (77%) | 0.83 | 53.5 → 54.9 (n.s.) | 2.00 → 0.53 (p < 0.001) |
+| | Baseline | 0.08 s / 0.40 s | 0 of 30 (0%) | 1.00 | 73.4 → 73.4 | 1.13 → 1.13 |
 
-Without a new incident, 30 minutes of updated risk never changes a route. When a new incident
-lands on the old route, recalculating halves the event exposure (and nearly removes it on the
-routes that change) with a small drop in congestion exposure; the cost is a slight, not
-significant, loss of Route Optimality by Google's timing.
+- Both systems recalculate a whole-city route in well under a second. The baseline is faster
+  (paired p < 0.05 in all three samples), because it searches only a corridor around the trip.
+- ANTROUTE keeps its route when only traffic changes (7-13% change, and changed routes keep about
+  90% of their length). The baseline's routes swing far more (53-73% change, keeping about 40%),
+  and those swings do not lower congestion exposure.
+- When an incident lands on the route, ANTROUTE moves off it in 23 of 30 trips, cutting event
+  exposure from 2.00 to 0.53 for a small, not significant rise in congestion exposure. The
+  baseline has no incident input, so it never changes its route.
+- Warm start brings no gain: cold and warm colonies both reach their final best at iteration 1
+  and return the same route, because ANTROUTE's cost-to-go heuristic already steers the first
+  ants onto the best route. The warm run's lower time follows from running second (warm
+  caches), not from the pheromone.
+
+The earlier samples in `outputs/google_eval/condition_updates/` (uniform: 0 of 30 changed; new
+recorded incident: 15 of 30 changed, event exposure 0.70 → 0.36, Google Route Optimality 88.2% →
+85.1%, n.s.) were ANTROUTE-only runs of the previous version of this script.
 
 ## 7. Model provenance
 
@@ -434,3 +468,50 @@ area.
 - **Per-trip provenance:** `per_trip.csv` carries `observed_share_*`, `propagated_share_*` and
   `assumed_share_*` for each system: the share of route length in each risk tier (the assumed
   share covers what the pasted request called borrowed and default).
+
+## 10. The split, said once
+
+The v8 checkpoint (the one behind `risk_edges.csv`) was trained and scored on this split, read from
+its own `config["visual_split"]` and the saved `configs/visual_split_v8.json`:
+
+| Split | Sessions | Count |
+|---|---|---|
+| train | May 4 PM; May 6, 8, 11, 13, 18 AM and PM | 11 |
+| validation | May 20 AM and PM; **May 22 AM and PM** | 4 |
+| test (held out) | **May 25 AM and PM** | 2 |
+| not used | May 4 AM; May 15 AM and PM (partial extraction, no usable labels) | 3 |
+
+May 22 is labelled (about 1,000 human labels) and **validates**; it is not a test session and it is not
+unlabelled. May 25 is the only held-out date: the model saw it in neither training nor validation.
+Two older statements disagreed with this and were corrected: `SESSION_HANDOFF.md` called May 22
+unlabelled, and `alignment.VISUAL_SPLIT` (the automatic 14 / 3 / 3 split over all 20 sessions, used only
+when training is given no split file) puts May 22 PM in test. The risk file's `split` column is
+the authority, and the app reads it.
+
+## 11. The app's recorded inputs, simulation mode and what-if table
+
+There is no live feed. Every input the app shows is **recorded**: read from one 30-minute window
+of `risk_edges.csv` and the files beside it (`app/recorded.py`).
+
+- **Inputs used panel** (`recorded_inputs` on `POST /routes/plan`, or `GET /routes/recorded-inputs`):
+  the matched window with its split (and "held out" for May 25); the incidents in force then
+  (location, kind, lanes, strength, minutes ago); that day's WeatherStack hourly weather (city mean
+  at the window's hour); the Project NOAH flood hazard of the roads; and every camera with the
+  model's risk on its edges, the human congestion label (Light / Medium / Heavy) and the mean YOLO
+  vehicle count in the window (`scripts/build_vehicle_counts.py`).
+- **Per-route fields** (`inputs` on each route option): the cameras and incidents within 200 m of the
+  route, the weather across the grid cells it crosses, the flood level along it, the mean vehicle
+  count at its cameras, and `risk_sources` (observed / propagated / assumed share of its length), so
+  alternatives are compared on what each is made of.
+- **Simulation mode** (`recorded_window` on the plan request; `GET /routes/recorded-sessions` lists
+  the days and sessions): both systems plan on the chosen recorded window itself, with that day's
+  overlays, whatever the departure time. May 25 is flagged held out. Simulated trips are not part
+  of the Google Maps evaluation.
+- **What-if table** (`GET /routes/what-if`, `scripts/build_what_if.py`): the real v8 checkpoint is
+  re-run offline with one input changed at a time (heavy rain, flood level 3, new incidents, cameras
+  off, no traffic posts, time of day) over 24 recorded windows, and the table shows how far the risk
+  moves on camera roads and on the roads without a camera. It also shows what an injected incident does
+  to a route, from the condition-update run (section 6). It is precomputed, not a live run: serving the
+  checkpoint (PyTorch and the frames) on the app server is not done.
+- **Hourly weather:** `weatherstack_hourly.csv` (June 2025 – May 2026) and `node_context.py` read it;
+  the next retrain on Colab uses it. The retrained scores are not produced yet.

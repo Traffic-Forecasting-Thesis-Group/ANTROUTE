@@ -1,10 +1,11 @@
+from datetime import datetime
 from typing import List, Optional, Tuple
 from zoneinfo import ZoneInfo
 
 from fastapi import APIRouter, HTTPException
 from starlette.concurrency import run_in_threadpool
 
-from app import risk_routing
+from app import recorded, risk_routing
 from app.evaluation import (
     MetricsUnavailableError,
     get_comparison_metrics,
@@ -12,13 +13,23 @@ from app.evaluation import (
     get_trip_evaluation,
 )
 from app.risk_routing import LOCAL_TZ
-from app.route_engine import BaselineUnavailableError, RoutingUnavailableError, local_departure, plan_routes
+from app.route_engine import (
+    BaselineUnavailableError,
+    RoutingUnavailableError,
+    UnknownWindowError,
+    local_departure,
+    plan_routes,
+)
+from app.what_if import WhatIfUnavailableError, load_what_if
 from app.routers.places import _get_results
 from app.schemas_route import (
     ComparisonMetricsResponse,
+    RecordedInputs,
+    RecordedSessionsResponse,
     RoutePlanRequest,
     RoutePlanResponse,
     TripEvaluationResponse,
+    WhatIfResponse,
 )
 
 router = APIRouter(prefix="/routes", tags=["routes"])
@@ -48,17 +59,28 @@ async def plan(payload: RoutePlanRequest):
         points.append(await _resolve(d.name, d.lat, d.lng))
 
     depart_at = local_departure(payload.depart_at)
+    simulation = payload.recorded_window is not None
+    if simulation:
+        # Simulation mode leaves at the recorded window's own time, on its own day.
+        try:
+            depart_at = datetime.fromisoformat(payload.recorded_window)
+        except ValueError:
+            raise HTTPException(status_code=422, detail=f"{payload.recorded_window!r} is not a recorded window.")
     departure_time = depart_at.replace(tzinfo=ZoneInfo(LOCAL_TZ)).isoformat(timespec="minutes")
     # The ACO search is CPU-bound (and the first call waits for the network to load),
     # so keep it off the event loop -- the app sends its ANTRoute and baseline requests
     # in parallel.
     try:
-        routes, traffic_note = await run_in_threadpool(plan_routes, points, payload.model, depart_at)
+        routes, traffic_note = await run_in_threadpool(
+            plan_routes, points, payload.model, depart_at, payload.recorded_window
+        )
     except BaselineUnavailableError as exc:
         # A 200 with no routes, not an error status: the app requests ANTROUTE and the
         # baseline side by side, and "the baseline has no route here" is a result to show
         # next to ANTROUTE's, not a failure that should take ANTROUTE's results down with it.
         return RoutePlanResponse(routes=[], notice=str(exc), departure_time=departure_time)
+    except UnknownWindowError as exc:
+        raise HTTPException(status_code=422, detail=str(exc))
     except RoutingUnavailableError:
         raise HTTPException(status_code=503, detail="Routing data isn't loaded on the server.")
     except risk_routing.RouteOutsideNetworkError:
@@ -69,7 +91,53 @@ async def plan(payload: RoutePlanRequest):
     except risk_routing.NoRouteError as exc:
         raise HTTPException(status_code=422, detail=str(exc))
 
-    return RoutePlanResponse(routes=routes, departure_time=departure_time, traffic_note=traffic_note)
+    return RoutePlanResponse(
+        routes=routes, departure_time=departure_time, traffic_note=traffic_note,
+        recorded_inputs=await _panel(routes, payload.recorded_window, depart_at), simulation=simulation,
+    )
+
+
+async def _panel(routes: List[dict], recorded_window: Optional[str], depart_at: datetime) -> Optional[dict]:
+    """The "Inputs used" panel for the window the routes were planned on, if any."""
+    window = recorded_window
+    if window is None:
+        window = next((r["inputs"]["window"] for r in routes if r.get("inputs")), None)
+    if window is None:
+        window, _ = risk_routing.window_for_departure(depart_at)
+    return await run_in_threadpool(recorded.inputs_for_window, window) if window else None
+
+
+@router.get("/recorded-sessions", response_model=RecordedSessionsResponse)
+async def recorded_sessions():
+    """Every recorded day and session, for simulation mode. May 25 is held out (split "test")."""
+    if not risk_routing.available():
+        raise HTTPException(status_code=503, detail="Routing data isn't loaded on the server.")
+    sessions = await run_in_threadpool(recorded.recorded_windows)
+    return RecordedSessionsResponse(
+        sessions=sessions,
+        note="Recorded AM and PM peaks only; there is no live feed. Held-out sessions were never seen by the "
+             "model in training or validation.",
+    )
+
+
+@router.get("/recorded-inputs", response_model=RecordedInputs)
+async def recorded_inputs(window: str):
+    """The recorded inputs of one window (a RecordedWindow.start): cameras, incidents, weather, flood."""
+    if not risk_routing.available():
+        raise HTTPException(status_code=503, detail="Routing data isn't loaded on the server.")
+    try:
+        return await run_in_threadpool(recorded.inputs_for_window, window)
+    except KeyError:
+        raise HTTPException(status_code=404, detail=f"{window!r} is not a recorded window.")
+
+
+@router.get("/what-if", response_model=WhatIfResponse)
+async def what_if():
+    """Precomputed what-if cases: the checkpoint with rain, flood, incidents or cameras changed."""
+    try:
+        return await run_in_threadpool(load_what_if)
+    except WhatIfUnavailableError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
 
 
 @router.get("/comparison-metrics", response_model=ComparisonMetricsResponse)

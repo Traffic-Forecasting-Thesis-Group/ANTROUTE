@@ -1,10 +1,11 @@
-import { Clock, Info } from 'lucide-react';
+import { Camera, Clock, Info } from 'lucide-react';
 
 import { DURATION_NOTE, type RouteOption } from '@/api/routeService';
 import { cn } from '@/lib/cn';
 import { CONGESTION_COLORS, CONGESTION_WIDTH } from '@/lib/theme';
 import { getArrivalTime } from '@/lib/time';
 
+import { weatherLine } from './RecordedInputsPanel';
 import { useTripPlanner } from './TripPlannerContext';
 
 function InfoNote({ children }: { children: React.ReactNode }) {
@@ -13,6 +14,93 @@ function InfoNote({ children }: { children: React.ReactNode }) {
       <Info size={13} className="mt-0.5 shrink-0 text-blue-500" aria-hidden />
       <span>{children}</span>
     </p>
+  );
+}
+
+const TIER_LABEL = {
+  observed: 'Observed',
+  propagated: 'Propagated',
+  assumed: 'Assumed',
+} as const;
+const TIER_COLOR = { observed: '#1d4ed8', propagated: '#60a5fa', assumed: '#cbd5e1' } as const;
+
+/**
+ * What this route is made of, so alternatives can be compared: where its risk comes from, the
+ * cameras and incidents on it, the weather and flood along it. Recorded, not live.
+ */
+function RouteFacts({ route }: { route: RouteOption }) {
+  const inputs = route.inputs;
+  const sources = route.risk_sources;
+  if (!inputs && !sources) return null;
+
+  return (
+    <div className="mt-3 border-t border-slate-200 pt-2.5 text-[11px] text-slate-600">
+      {sources && (
+        <div className="mb-2">
+          <div className="flex h-1.5 overflow-hidden rounded-full bg-slate-200" aria-hidden>
+            {(Object.keys(TIER_LABEL) as (keyof typeof TIER_LABEL)[]).map((tier) => (
+              <span
+                key={tier}
+                style={{ width: `${Math.round((sources[tier] ?? 0) * 100)}%`, backgroundColor: TIER_COLOR[tier] }}
+              />
+            ))}
+          </div>
+          <p className="mt-1 text-slate-500">
+            Risk from{' '}
+            {(Object.keys(TIER_LABEL) as (keyof typeof TIER_LABEL)[])
+              .map((tier) => `${TIER_LABEL[tier].toLowerCase()} ${Math.round((sources[tier] ?? 0) * 100)}%`)
+              .join(' · ')}
+          </p>
+        </div>
+      )}
+
+      {inputs && (
+        <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1">
+          <dt className="flex items-center gap-1 text-slate-400">
+            <Camera size={11} aria-hidden /> Cameras
+          </dt>
+          <dd>
+            {inputs.cameras.length === 0
+              ? 'none within 200 m'
+              : inputs.cameras
+                  .map(
+                    (c) =>
+                      `${c.camera}${c.human_label ? ` (${c.human_label.toLowerCase()}` : ' ('}${
+                        c.vehicle_count != null ? `${c.human_label ? ', ' : ''}${c.vehicle_count} veh` : ''
+                      })`
+                  )
+                  .join('; ')}
+          </dd>
+
+          <dt className="text-slate-400">Incidents</dt>
+          <dd>
+            {inputs.incidents.length === 0
+              ? 'none on the route'
+              : inputs.incidents
+                  .map((i) => `${i.location} (${i.lanes} lane${i.lanes === 1 ? '' : 's'}, ${i.minutes_ago ?? '?'} min ago)`)
+                  .join('; ')}
+          </dd>
+
+          <dt className="text-slate-400">Weather</dt>
+          <dd>{weatherLine(inputs.weather)}</dd>
+
+          <dt className="text-slate-400">Flood</dt>
+          <dd>
+            {inputs.flood.share_of_route_flood_prone
+              ? `${Math.round(inputs.flood.share_of_route_flood_prone * 100)}% of the route flood-prone (up to level ${inputs.flood.max_level ?? 0})`
+              : 'no flood-prone roads'}
+          </dd>
+
+          {inputs.vehicle_count_mean != null && (
+            <>
+              <dt className="text-slate-400">Vehicles</dt>
+              <dd>{inputs.vehicle_count_mean} per frame at its cameras</dd>
+            </>
+          )}
+        </dl>
+      )}
+      {inputs && <p className="mt-1.5 text-[10px] italic text-slate-400">Recorded data, not a live feed.</p>}
+    </div>
   );
 }
 
@@ -83,6 +171,7 @@ function RouteCard({
 
       {route.event_note && <InfoNote>{route.event_note}</InfoNote>}
       {route.fallback_reason && <InfoNote>{route.fallback_reason}</InfoNote>}
+      <RouteFacts route={route} />
     </button>
   );
 }
@@ -98,6 +187,7 @@ export default function RouteResultsList() {
     selectedIndex,
     setSelectedIndex,
     departAt,
+    simulationWindow,
     hasPlannedTrip,
   } = useTripPlanner();
 
@@ -155,7 +245,7 @@ export default function RouteResultsList() {
               route={route}
               index={index}
               isSelected={index === selectedIndex}
-              departAt={departAt}
+              departAt={simulationWindow ? new Date(simulationWindow) : departAt}
               onSelect={() => setSelectedIndex(index)}
             />
           ))}

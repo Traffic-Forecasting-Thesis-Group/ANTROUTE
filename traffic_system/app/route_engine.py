@@ -28,10 +28,30 @@ def local_departure(depart_at: Optional[datetime]) -> datetime:
     return depart_at.astimezone(tz).replace(tzinfo=None)
 
 
+class UnknownWindowError(ValueError):
+    """The simulation window is not one of the recorded windows."""
+
+
+def simulated_window(recorded_window: str) -> Tuple[str, str]:
+    """
+    (window, traffic note) for simulation mode: the chosen recorded window itself, whatever the
+    departure time. The note says it is a simulation and, for May 25, that the day was held out.
+    """
+    from app import recorded
+
+    windows = risk_routing._network().risk_by_window
+    if recorded_window not in windows:
+        raise UnknownWindowError(f"{recorded_window!r} is not a recorded window")
+    info = recorded.window_description(recorded_window)
+    held = " (held out: the model never saw this day in training)" if info["held_out"] else ""
+    return recorded_window, f"Simulation: planned on the recorded traffic of {info['label']}{held}"
+
+
 def plan_routes(
     points: List[Tuple[float, float]],
     model: str = "antroute",
     depart_at: Optional[datetime] = None,
+    recorded_window: Optional[str] = None,
 ) -> Tuple[List[dict], str]:
     """
     Routes through `points` (origin first, as (lat, lng)) from the real pipeline.
@@ -48,7 +68,10 @@ def plan_routes(
     """
     if not risk_routing.available():
         raise RoutingUnavailableError
-    window, traffic_note = risk_routing.window_for_departure(depart_at or local_departure(None))
+    if recorded_window is not None:
+        window, traffic_note = simulated_window(recorded_window)
+    else:
+        window, traffic_note = risk_routing.window_for_departure(depart_at or local_departure(None))
     try:
         routes = risk_routing.plan_real_routes(points[0], points[1:], model, window)
     except BaselineNoRouteError as exc:

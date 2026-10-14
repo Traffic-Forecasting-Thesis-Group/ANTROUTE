@@ -4,7 +4,9 @@ import PageHeader from '@/app/PageHeader';
 import { Button, ErrorText, Spinner } from '@/components/ui';
 import MapCard from '@/features/map/MapCard';
 import DeparturePicker from '@/features/trip/DeparturePicker';
+import RecordedInputsPanel from '@/features/trip/RecordedInputsPanel';
 import RouteResultsList from '@/features/trip/RouteResultsList';
+import SimulationPicker from '@/features/trip/SimulationPicker';
 import TripDetailsPanel from '@/features/trip/TripDetailsPanel';
 import { useTripPlanner } from '@/features/trip/TripPlannerContext';
 import UploadFilePanel from '@/features/upload/UploadFilePanel';
@@ -30,6 +32,7 @@ export default function DashboardPage() {
 
           <TripDetailsPanel />
           <DeparturePicker />
+          <SimulationPicker />
 
           <div>
             <p className="mb-2 flex items-center gap-1.5 text-[11px] text-slate-400">
@@ -44,6 +47,7 @@ export default function DashboardPage() {
           </div>
 
           <RouteResultsList />
+          <RecordedInputsPanel />
         </div>
 
         {/* Map column */}

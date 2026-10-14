@@ -17,6 +17,7 @@ import MapLegend from './MapLegend';
 import {
   CameraController,
   IncidentMarkers,
+  RecordedMarkers,
   RoutePolylines,
   StopMarkers,
 } from './MapOverlays';
@@ -148,6 +149,7 @@ export default function MapCard() {
             className="h-full w-full"
           >
             <IncidentMarkers incidents={incidents} />
+            <RecordedMarkers />
             <TrafficLayerBinding enabled={trafficEnabled} />
 
             {/* Everything that needs the map instance lives inside <Map>. */}

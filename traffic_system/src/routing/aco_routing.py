@@ -11,7 +11,7 @@ heuristic (see remaining_cost_to). Pheromone then evaporates and each completed 
 
 from __future__ import annotations
 from bisect import bisect_right
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, field, replace
 from typing import Dict, List, Optional, Sequence, Tuple
 import numpy as np
 import scipy.sparse as sp
@@ -38,6 +38,34 @@ class RouteResult:
 
     best: PathMetrics
     alternatives: List[PathMetrics]
+    # Final pheromone per edge (for a warm start of the next recalculation) and the best cost
+    # found so far after each iteration (convergence). Empty for chained multi-stop routes.
+    pheromone: Optional[np.ndarray] = None
+    best_cost_by_iteration: List[float] = field(default_factory=list)
+
+
+def warm_pheromone(previous: np.ndarray, initial: float = 1.0) -> np.ndarray:
+    """
+    Pheromone to start a recalculation from: the previous colony's trails rescaled so their
+    mean is `initial` (the cold start's level), plus a floor of a tenth of it so no edge is
+    unreachable. Pheromone sums of 1/cost are tiny next to the cold start's 1.0; rescaling
+    keeps the old preference without swamping the cost heuristic.
+    """
+    previous = np.asarray(previous, dtype=np.float64)
+    mean = float(previous.mean()) if previous.size else 0.0
+    scaled = previous * (initial / mean) if mean > 0 else np.full_like(previous, initial)
+    return scaled + 0.1 * initial
+
+
+def converged_at(best_cost_by_iteration: Sequence[float], rel_tol: float = 1e-9) -> Optional[int]:
+    """1-based iteration at which the colony first reached its final best cost; None if empty."""
+    if not best_cost_by_iteration:
+        return None
+    final = best_cost_by_iteration[-1]
+    for i, cost in enumerate(best_cost_by_iteration, start=1):
+        if cost <= final * (1 + rel_tol):
+            return i
+    return len(best_cost_by_iteration)
 
 
 def remaining_cost_to(wg: WeightedGraph, destination_idx: int) -> np.ndarray:
@@ -257,12 +285,19 @@ def _build_tour(
 
 
 def ant_colony_shortest_path(
-    wg: WeightedGraph, origin: int, destination: int, config: AntColonyConfig = AntColonyConfig()
+    wg: WeightedGraph,
+    origin: int,
+    destination: int,
+    config: AntColonyConfig = AntColonyConfig(),
+    pheromone: Optional[np.ndarray] = None,
 ) -> RouteResult:
     """
     Route between two road-graph node ids (OSM ids, not indices). Every distinct tour any ant
     completes is kept, ranked by dynamic_cost; raises ValueError on invalid config, an
     unreachable destination, or when no ant completes a tour.
+
+    `pheromone` ([E], see warm_pheromone) warm-starts the colony from an earlier run's trails
+    instead of config.initial_pheromone everywhere.
     """
     origin_idx = wg.index_of(origin)
     destination_idx = wg.index_of(destination)
@@ -289,7 +324,13 @@ def ant_colony_shortest_path(
 
     max_steps = config.max_steps if config.max_steps is not None else wg.n_nodes - 1
     rng = np.random.default_rng(config.seed)
-    pheromone = np.full(wg.n_edges, config.initial_pheromone, dtype=np.float64)
+    if pheromone is None:
+        pheromone = np.full(wg.n_edges, config.initial_pheromone, dtype=np.float64)
+    else:
+        pheromone = np.array(pheromone, dtype=np.float64)
+        if pheromone.shape != (wg.n_edges,) or not np.all(np.isfinite(pheromone)) or np.any(pheromone <= 0):
+            raise ValueError("a warm-start pheromone needs one finite positive value per edge")
+    best_cost_by_iteration: List[float] = []
     # Fixed for the colony; pheromone changes only between iterations.
     colony = _ColonyInputs.build(wg, remaining)
     found: Dict[Tuple[int, ...], PathMetrics] = {}
@@ -319,6 +360,7 @@ def ant_colony_shortest_path(
         for metrics, edge_ids in tours:
             if edge_ids:
                 pheromone[edge_ids] += 1.0 / metrics.dynamic_cost
+        best_cost_by_iteration.append(min((m.dynamic_cost for m in found.values()), default=float("inf")))
     if not found:
         raise ValueError(
             f"No route from {origin} to {destination} was found "
@@ -329,7 +371,8 @@ def ant_colony_shortest_path(
     ranked = sorted(found.values(), key=lambda m: m.dynamic_cost)
     best = ranked[0]
     alternatives = ranked[1 : 1 + config.n_alternatives]
-    return RouteResult(best=best, alternatives=alternatives)
+    return RouteResult(best=best, alternatives=alternatives, pheromone=pheromone,
+                       best_cost_by_iteration=best_cost_by_iteration)
 
 
 def multi_stop_route(

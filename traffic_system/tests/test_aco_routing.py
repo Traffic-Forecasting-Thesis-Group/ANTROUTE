@@ -267,3 +267,28 @@ def test_backtracking_recovers_from_a_dead_end_instead_of_failing_the_tour():
     config = AntColonyConfig(n_ants=5, n_iterations=10, seed=2)
     result = ant_colony_shortest_path(wg, 10, 15, config)
     assert result.best.nodes == [10, 11, 13, 15]
+
+
+def test_a_colony_reports_its_pheromone_and_convergence_and_can_be_warm_started():
+    from src.routing.aco_routing import converged_at, warm_pheromone
+
+    wg = weighted_risky_direct()
+    config = AntColonyConfig(n_ants=10, n_iterations=30, seed=0)
+    cold = ant_colony_shortest_path(wg, 100, 103, config)
+    assert cold.pheromone.shape == (wg.n_edges,) and len(cold.best_cost_by_iteration) == 30
+    assert all(a >= b for a, b in zip(cold.best_cost_by_iteration, cold.best_cost_by_iteration[1:]))
+    assert 1 <= converged_at(cold.best_cost_by_iteration) <= 30
+
+    start = warm_pheromone(cold.pheromone)
+    assert start.mean() == pytest.approx(1.1) and start.min() >= 0.1          # mean 1 rescaled, plus the floor
+    warm = ant_colony_shortest_path(wg, 100, 103, config, pheromone=start)
+    assert warm.best.nodes == cold.best.nodes
+    with pytest.raises(ValueError, match="warm-start"):
+        ant_colony_shortest_path(wg, 100, 103, config, pheromone=np.zeros(wg.n_edges))
+
+
+def test_convergence_is_the_first_iteration_at_the_final_best():
+    from src.routing.aco_routing import converged_at
+
+    assert converged_at([9.0, 7.0, 5.0, 5.0, 5.0]) == 3
+    assert converged_at([]) is None

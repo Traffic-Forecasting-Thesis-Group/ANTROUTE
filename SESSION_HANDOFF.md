@@ -88,13 +88,14 @@ overwriting each other).
 ```
 train (11): May 04 PM, May 06 AM, May 06 PM, May 08 AM, May 08 PM, May 11 AM, May 11 PM,
             May 13 AM, May 13 PM, May 18 AM, May 18 PM
-val   (2):  May 20 AM, May 20 PM
-test  (2):  May 25 AM, May 25 PM
+val   (4):  May 20 AM, May 20 PM, May 22 AM, May 22 PM
+test  (2):  May 25 AM, May 25 PM      <- held out; the only test sessions
 ```
 
-Still unlabeled: **May 22** (both sessions, fully extracted, just untouched — highest-value next
-target, would give a second independent test session). May 15 is low-value (weak/partial
-extraction, only ~390 frames for the AM session) — not worth prioritizing.
+(Corrected: May 22 is labelled (~1,000 labels) and validates. An earlier version of this file
+called it unlabeled, and `alignment.VISUAL_SPLIT` once had May 22 PM as test; the v8 checkpoint's
+own `visual_split` and Drive's `split_70_15_15_by_date.json` agree with the table above.)
+May 4 AM and May 15 are not used (partial extraction). May 25 is the only held-out date.
 
 This is enough to train on right now. Don't block training on more labeling.
 
@@ -128,8 +129,7 @@ This is enough to train on right now. Don't block training on more labeling.
    decided as a team.
 5. **Only after a trusted risk-score model**: start the Dynamic Weight Engine
    (`W = distance × (1 + λ·Risk)`) and Dynamic Routing Engine stages — nothing built there yet.
-6. Optional, lower priority: label May 22 for a second test session; copy fresh `embeddings.pt` to
-   Drive and try a text-on training run.
+6. Optional, lower priority: copy fresh `embeddings.pt` to Drive and try a text-on training run.
 
 ## Where things live
 

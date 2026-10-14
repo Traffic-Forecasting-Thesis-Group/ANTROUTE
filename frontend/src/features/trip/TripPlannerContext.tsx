@@ -2,6 +2,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -9,11 +10,13 @@ import {
 } from 'react';
 
 import {
+  getRecordedInputs,
   getTripEvaluation,
   planRoute,
   type ComparisonMetricRow,
   type Coordinates,
   type DestinationInput,
+  type RecordedInputs,
   type RouteOption,
   type TripEvaluation,
 } from '@/api/routeService';
@@ -68,10 +71,16 @@ interface TripPlannerValue {
   baselineModelOptions: RouteOption[];
   baselineNotice: string | null;
   trafficNote: string | null;
+  /** The recorded inputs of the window the routes were planned on ("Inputs used" panel). */
+  recordedInputs: RecordedInputs | null;
   tripEvaluation: TripEvaluation | null;
   tripEvaluationError: string;
   tripMetricRows: ComparisonMetricRow[];
   hasPlannedTrip: boolean;
+
+  // Simulation mode: plan on a chosen recorded window instead of the departure time's own.
+  simulationWindow: string | null;
+  setSimulationWindow: (window: string | null) => void;
 
   // Selection
   selectedModelTab: ModelTab;
@@ -120,6 +129,8 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
   // Why the baseline has no route for this trip, when it has none (a result, not an error).
   const [baselineNotice, setBaselineNotice] = useState<string | null>(null);
   const [trafficNote, setTrafficNote] = useState<string | null>(null);
+  const [recordedInputs, setRecordedInputs] = useState<RecordedInputs | null>(null);
+  const [simulationWindow, setSimulationWindowState] = useState<string | null>(null);
   const [tripEvaluation, setTripEvaluation] = useState<TripEvaluation | null>(null);
   const [tripEvaluationError, setTripEvaluationError] = useState('');
 
@@ -153,7 +164,31 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
     setBaselineModelOptions([]);
     setBaselineNotice(null);
     setTrafficNote(null);
+    setRecordedInputs(null);
   }, []);
+
+  // Simulation shows the chosen day's overlays (cameras, incidents, weather, flood) as soon as
+  // the window is picked, before any route is planned; a planned trip then replaces them with
+  // the same window's inputs from the plan itself.
+  useEffect(() => {
+    if (simulationWindow === null) return;
+    let cancelled = false;
+    getRecordedInputs(simulationWindow)
+      .then((inputs) => !cancelled && setRecordedInputs(inputs))
+      .catch(() => !cancelled && setRecordedInputs(null));
+    return () => {
+      cancelled = true;
+    };
+  }, [simulationWindow]);
+
+  // Routes were planned on one recorded window; a different one needs new routes.
+  const setSimulationWindow = useCallback(
+    (window: string | null) => {
+      setSimulationWindowState(window);
+      clearRouteResults();
+    },
+    [clearRouteResults]
+  );
 
   const runPlacesSearch = useCallback(
     (field: ActiveField, text: string) => {
@@ -308,7 +343,8 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
       originToUse: string,
       originCoordsToUse: Coordinates | null,
       destinationsToUse: DestinationEntry[],
-      departAtToUse: Date | null
+      departAtToUse: Date | null,
+      recordedWindowToUse: string | null = null
     ) => {
       const cleaned: DestinationInput[] = destinationsToUse
         .map((d) => ({
@@ -333,9 +369,20 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
       setTripEvaluationError('');
       try {
         const [antResult, baselineResult, evaluationResult] = await Promise.allSettled([
-          planRoute(originToUse.trim(), cleaned, originCoordsToUse, 'antroute', departAtToUse),
-          planRoute(originToUse.trim(), cleaned, originCoordsToUse, 'baseline', departAtToUse),
-          getTripEvaluation(originToUse.trim(), cleaned, originCoordsToUse, departAtToUse),
+          planRoute(originToUse.trim(), cleaned, originCoordsToUse, 'antroute', departAtToUse, recordedWindowToUse),
+          planRoute(originToUse.trim(), cleaned, originCoordsToUse, 'baseline', departAtToUse, recordedWindowToUse),
+          // Simulated trips have no Google Maps travel times to be evaluated against.
+          recordedWindowToUse
+            ? Promise.resolve<TripEvaluation>({
+                status: 'not_evaluated',
+                message:
+                  'Simulation mode: this trip is planned on a recorded window and is not part of the Google Maps evaluation.',
+                tripId: null,
+                baselineName: 'Improved ACO (Cheng 2023)',
+                routeOptimality: null,
+                metrics: [],
+              })
+            : getTripEvaluation(originToUse.trim(), cleaned, originCoordsToUse, departAtToUse),
         ]);
 
         if (evaluationResult.status === 'fulfilled') {
@@ -362,6 +409,7 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
         setBaselineModelOptions(baselinePlan.routes);
         setBaselineNotice(baselinePlan.notice);
         setTrafficNote(antPlan.trafficNote);
+        setRecordedInputs(antPlan.recordedInputs);
         setSelectedIndex(0);
       } catch (error: any) {
         setRouteError(error?.message || 'Something went wrong. Please try again.');
@@ -380,9 +428,9 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
       setDestinations(remaining);
       // Rerouting means leaving now, whatever the trip was originally planned for.
       setDepartAt(null);
-      return planTrip('Current location', from, remaining, null);
+      return planTrip('Current location', from, remaining, null, simulationWindow);
     },
-    [planTrip]
+    [planTrip, simulationWindow]
   );
 
   const findRoutes = useCallback(() => {
@@ -390,8 +438,8 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
     if (nonEmpty.length !== destinations.length) {
       setDestinations(nonEmpty.length > 0 ? nonEmpty : [{ name: '', coords: null }]);
     }
-    return planTrip(origin, originCoords, nonEmpty, departAt);
-  }, [destinations, origin, originCoords, departAt, planTrip]);
+    return planTrip(origin, originCoords, nonEmpty, departAt, simulationWindow);
+  }, [destinations, origin, originCoords, departAt, simulationWindow, planTrip]);
 
   const currentModelOptions =
     selectedModelTab === 'baseline' ? baselineModelOptions : antRouteOptions;
@@ -438,10 +486,14 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
     baselineModelOptions,
     baselineNotice,
     trafficNote,
+    recordedInputs,
     tripEvaluation,
     tripEvaluationError,
     tripMetricRows,
     hasPlannedTrip: antRouteOptions.length > 0 || baselineModelOptions.length > 0,
+
+    simulationWindow,
+    setSimulationWindow,
 
     selectedModelTab,
     setSelectedModelTab,

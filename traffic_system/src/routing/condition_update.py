@@ -19,6 +19,10 @@ Both are measured under C_after -- the conditions the driver actually meets:
                           neither route can avoid
     route length          metres, descriptive only
 
+and how much the route changed: route_changed (any difference) and shared_length_fraction,
+the share of the old route's length that the recalculated route still uses (1 = unchanged,
+0 = no road in common).
+
 and the improvement is old minus recalculated, so a positive number means recalculating
 helped. Paired over trips, the exposures are tested with significance.compare_paired, the
 recalculated route in the "proposed" role and the old route in the "baseline" role
@@ -57,6 +61,19 @@ def measure(wg_after: WeightedGraph, impact_after: Optional[np.ndarray], path: S
                                 event_exposure(wg_after, impact_after, path, stops=ends))
 
 
+def shared_length_fraction(wg: WeightedGraph, old_path: Sequence[int], new_path: Sequence[int]) -> float:
+    """Share of the old route's length that the new route also uses (edge by edge)."""
+    def edges(path):
+        idx = [wg.index_of(int(v)) for v in path]
+        return {wg.edge_id(u, v) for u, v in zip(idx, idx[1:])}
+
+    old_edges, new_edges = edges(old_path), edges(new_path)
+    old_length = float(wg.distance[list(old_edges)].sum())
+    if old_length <= 0:
+        return 1.0
+    return float(wg.distance[list(old_edges & new_edges)].sum()) / old_length if old_edges & new_edges else 0.0
+
+
 def compare_update(
     wg_after: WeightedGraph,
     impact_after: Optional[np.ndarray],
@@ -73,7 +90,10 @@ def compare_update(
     if (old_path[0], old_path[-1]) != (new_path[0], new_path[-1]):
         raise ValueError("the old and recalculated routes must join the same origin and destination")
     old, new = measure(wg_after, impact_after, old_path), measure(wg_after, impact_after, new_path)
-    row = {"route_changed": list(map(int, old_path)) != list(map(int, new_path))}
+    row = {
+        "route_changed": list(map(int, old_path)) != list(map(int, new_path)),
+        "shared_length_fraction": shared_length_fraction(wg_after, old_path, new_path),
+    }
     for name, value in asdict(old).items():
         row[f"old_{name}"] = value
     for name, value in asdict(new).items():

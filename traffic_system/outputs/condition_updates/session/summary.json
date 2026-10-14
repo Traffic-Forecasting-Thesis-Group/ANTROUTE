@@ -1,0 +1,472 @@
+{
+  "harness": "plan under conditions A, apply an update, recalculate, compare",
+  "update": "session",
+  "sampling": "uniform road points 2.0-12.0 km apart; t1 = same clock time, nearest other recorded day's same session",
+  "scope": "Metro Manila, whole-city graph",
+  "split": "test",
+  "update_minutes": null,
+  "intersection": null,
+  "lanes": 2,
+  "event_age_minutes": 0.0,
+  "event_active_minutes": 60.0,
+  "systems": [
+    "antroute",
+    "baseline"
+  ],
+  "antroute_colony": {
+    "n_ants": 8,
+    "n_iterations": 15,
+    "alpha": 1.0,
+    "beta": 2.0,
+    "evaporation": 0.5,
+    "initial_pheromone": 1.0,
+    "max_steps": null,
+    "n_alternatives": 3,
+    "seed": 0
+  },
+  "baseline_colony": {
+    "n_ants": 8,
+    "n_iterations": 15,
+    "alpha": 1.0,
+    "beta": 5.0,
+    "rho": 0.3,
+    "xi": 0.3,
+    "q0": 0.7,
+    "q": 1.0,
+    "initial_pheromone": 1.0,
+    "max_steps": null,
+    "dead_end_recovery": true,
+    "invert_eq9": false,
+    "reset_on_replan": false,
+    "seed": 0
+  },
+  "baseline_corridor_margin": 0.2,
+  "response_time_definition": "seconds from conditions B being loaded (window risk and baseline observations cached) to the new route: applying the incidents plus the search; both systems on the same machine in one run",
+  "shared_length_fraction_definition": "share of the old route's length the recalculated route still uses",
+  "quality_definition": "congestion and event exposure of the old route under conditions B vs the recalculated route, both measured with ANTROUTE's risk tiers and Event-Aware layer at B; improvement = old - recalculated; route length descriptive",
+  "warm_start": true,
+  "machine": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel",
+    "cpu_count": 12,
+    "python": "3.12.10"
+  },
+  "lambda": 2.0,
+  "event_layer": {
+    "enabled": true,
+    "cost_term": "W = dist * (1 + lambda * Risk) * (1 + mu * Event)",
+    "mu": 1.0,
+    "strength": {
+      "base_impact_by_lanes_occupied": {
+        "1": 0.5,
+        "2": 1.0,
+        "3": 1.0
+      },
+      "edges_affected": "every edge touching the incident's intersection",
+      "overlap": "strongest live incident, not the sum; Event in [0, 1]"
+    },
+    "decay": {
+      "shape": "linear from the base impact at the report time to 0",
+      "ttl_minutes": 60.0
+    },
+    "matching": "configs/event_landmarks.csv -> intersection; unmatched alerts are dropped"
+  },
+  "model": {
+    "checkpoint": "/content/drive/MyDrive/MMDA_CHECKPOINTS/stgnn_edge_v8.pt",
+    "use_text": true,
+    "context": true,
+    "context_drop": [],
+    "flood_hazard": true
+  },
+  "by_system": {
+    "antroute": {
+      "n_trips": 30,
+      "response_time_s": {
+        "n": 30,
+        "median": 0.4188760498072952,
+        "p95": 0.6025430400157346,
+        "mean": 0.4200276067014784,
+        "max": 0.7569256001152098
+      },
+      "route_changes": {
+        "n_changed": 4,
+        "share_changed": 0.13333333333333333,
+        "shared_length_fraction_all": {
+          "n": 30,
+          "median": 1.0,
+          "p95": 1.0000000000000002,
+          "mean": 0.9870313756777337,
+          "max": 1.0000000000000002
+        },
+        "shared_length_fraction_changed": {
+          "n": 4,
+          "median": 0.8972957042971703,
+          "p95": 0.9492105435237416,
+          "mean": 0.9027353175830014,
+          "max": 0.9569348556697554
+        }
+      },
+      "route_quality_all_trips": {
+        "congestion_exposure": {
+          "metric": "congestion_exposure",
+          "n": 30,
+          "proposed_mean": 72.64858456883972,
+          "proposed_sd": 26.246254000472103,
+          "baseline_mean": 72.13123540044536,
+          "baseline_sd": 26.38366405617503,
+          "mean_difference": -0.5173491683943804,
+          "sd_difference": 1.9663274306735115,
+          "relative_difference_pct": -0.717233200737841,
+          "shapiro_w": 0.45776674129358574,
+          "shapiro_p": 1.9706288187467365e-09,
+          "normal": false,
+          "wilcoxon_w": 1.0,
+          "wilcoxon_p": 0.14412703481601533,
+          "t_value": null,
+          "t_p": null,
+          "significant": false,
+          "wilcoxon_p_holm": null,
+          "significant_holm": null
+        },
+        "event_exposure": {
+          "metric": "event_exposure",
+          "n": 30,
+          "proposed_mean": 0.0,
+          "proposed_sd": 0.0,
+          "baseline_mean": 0.0,
+          "baseline_sd": 0.0,
+          "mean_difference": 0.0,
+          "sd_difference": 0.0,
+          "relative_difference_pct": NaN,
+          "shapiro_w": NaN,
+          "shapiro_p": NaN,
+          "normal": false,
+          "wilcoxon_w": NaN,
+          "wilcoxon_p": NaN,
+          "t_value": null,
+          "t_p": null,
+          "significant": false,
+          "wilcoxon_p_holm": null,
+          "significant_holm": null
+        },
+        "avoidable_event_exposure": {
+          "metric": "avoidable_event_exposure",
+          "n": 30,
+          "proposed_mean": 0.0,
+          "proposed_sd": 0.0,
+          "baseline_mean": 0.0,
+          "baseline_sd": 0.0,
+          "mean_difference": 0.0,
+          "sd_difference": 0.0,
+          "relative_difference_pct": NaN,
+          "shapiro_w": NaN,
+          "shapiro_p": NaN,
+          "normal": false,
+          "wilcoxon_w": NaN,
+          "wilcoxon_p": NaN,
+          "t_value": null,
+          "t_p": null,
+          "significant": false,
+          "wilcoxon_p_holm": null,
+          "significant_holm": null
+        },
+        "distance_m_change": {
+          "mean": -0.2637538722502844
+        }
+      },
+      "route_quality_changed_trips": {
+        "congestion_exposure": {
+          "metric": "congestion_exposure",
+          "n": 4,
+          "proposed_mean": 66.95281115238426,
+          "proposed_sd": 4.408508888566967,
+          "baseline_mean": 63.0726923894264,
+          "baseline_sd": 3.6071859311010805,
+          "mean_difference": -3.880118762957853,
+          "sd_difference": 4.46971594088014,
+          "relative_difference_pct": -6.151820409062362,
+          "shapiro_w": 0.7298853638737264,
+          "shapiro_p": 0.02456981324184184,
+          "normal": false,
+          "wilcoxon_w": 1.0,
+          "wilcoxon_p": 0.25,
+          "t_value": null,
+          "t_p": null,
+          "significant": false,
+          "wilcoxon_p_holm": null,
+          "significant_holm": null
+        },
+        "event_exposure": {
+          "metric": "event_exposure",
+          "n": 4,
+          "proposed_mean": 0.0,
+          "proposed_sd": 0.0,
+          "baseline_mean": 0.0,
+          "baseline_sd": 0.0,
+          "mean_difference": 0.0,
+          "sd_difference": 0.0,
+          "relative_difference_pct": NaN,
+          "shapiro_w": NaN,
+          "shapiro_p": NaN,
+          "normal": false,
+          "wilcoxon_w": NaN,
+          "wilcoxon_p": NaN,
+          "t_value": null,
+          "t_p": null,
+          "significant": false,
+          "wilcoxon_p_holm": null,
+          "significant_holm": null
+        },
+        "avoidable_event_exposure": {
+          "metric": "avoidable_event_exposure",
+          "n": 4,
+          "proposed_mean": 0.0,
+          "proposed_sd": 0.0,
+          "baseline_mean": 0.0,
+          "baseline_sd": 0.0,
+          "mean_difference": 0.0,
+          "sd_difference": 0.0,
+          "relative_difference_pct": NaN,
+          "shapiro_w": NaN,
+          "shapiro_p": NaN,
+          "normal": false,
+          "wilcoxon_w": NaN,
+          "wilcoxon_p": NaN,
+          "t_value": null,
+          "t_p": null,
+          "significant": false,
+          "wilcoxon_p_holm": null,
+          "significant_holm": null
+        },
+        "distance_m_change": {
+          "mean": -1.9781540418771328
+        }
+      },
+      "warm_start": {
+        "n": 30,
+        "converged_at_cold": {
+          "n": 30,
+          "median": 1.0,
+          "p95": 1.0,
+          "mean": 1.0,
+          "max": 1.0
+        },
+        "converged_at_warm": {
+          "n": 30,
+          "median": 1.0,
+          "p95": 1.0,
+          "mean": 1.0,
+          "max": 1.0
+        },
+        "seconds_cold": {
+          "n": 30,
+          "median": 0.4188760498072952,
+          "p95": 0.6025430400157346,
+          "mean": 0.4200276067014784,
+          "max": 0.7569256001152098
+        },
+        "seconds_warm": {
+          "n": 30,
+          "median": 0.24786514998413622,
+          "p95": 0.40489344487432377,
+          "mean": 0.2565978633084645,
+          "max": 0.48843829985708
+        },
+        "same_route_as_cold": 1.0,
+        "cost_ratio_warm_to_cold": {
+          "n": 30,
+          "median": 1.0,
+          "p95": 1.0,
+          "mean": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    "baseline": {
+      "n_trips": 30,
+      "response_time_s": {
+        "n": 30,
+        "median": 0.1741959499195218,
+        "p95": 1.0573526801308606,
+        "mean": 0.3244296166735391,
+        "max": 1.4304456999525428
+      },
+      "route_changes": {
+        "n_changed": 16,
+        "share_changed": 0.5333333333333333,
+        "shared_length_fraction_all": {
+          "n": 30,
+          "median": 0.7836789325882284,
+          "p95": 1.0000000000000002,
+          "mean": 0.7089319221381651,
+          "max": 1.0000000000000002
+        },
+        "shared_length_fraction_changed": {
+          "n": 16,
+          "median": 0.410424745229925,
+          "p95": 0.7500291363936756,
+          "mean": 0.4542473540090597,
+          "max": 0.850978524977334
+        }
+      },
+      "route_quality_all_trips": {
+        "congestion_exposure": {
+          "metric": "congestion_exposure",
+          "n": 30,
+          "proposed_mean": 120.83722589860248,
+          "proposed_sd": 52.810799250956855,
+          "baseline_mean": 118.50996801217079,
+          "baseline_sd": 49.77280439650521,
+          "mean_difference": -2.3272578864316915,
+          "sd_difference": 18.531193158900503,
+          "relative_difference_pct": -1.9637655173383304,
+          "shapiro_w": 0.8355552229223979,
+          "shapiro_p": 0.0003135592231671148,
+          "normal": false,
+          "wilcoxon_w": 62.0,
+          "wilcoxon_p": 0.7563688628810696,
+          "t_value": null,
+          "t_p": null,
+          "significant": false,
+          "wilcoxon_p_holm": null,
+          "significant_holm": null
+        },
+        "event_exposure": {
+          "metric": "event_exposure",
+          "n": 30,
+          "proposed_mean": 0.0,
+          "proposed_sd": 0.0,
+          "baseline_mean": 0.0,
+          "baseline_sd": 0.0,
+          "mean_difference": 0.0,
+          "sd_difference": 0.0,
+          "relative_difference_pct": NaN,
+          "shapiro_w": NaN,
+          "shapiro_p": NaN,
+          "normal": false,
+          "wilcoxon_w": NaN,
+          "wilcoxon_p": NaN,
+          "t_value": null,
+          "t_p": null,
+          "significant": false,
+          "wilcoxon_p_holm": null,
+          "significant_holm": null
+        },
+        "avoidable_event_exposure": {
+          "metric": "avoidable_event_exposure",
+          "n": 30,
+          "proposed_mean": 0.0,
+          "proposed_sd": 0.0,
+          "baseline_mean": 0.0,
+          "baseline_sd": 0.0,
+          "mean_difference": 0.0,
+          "sd_difference": 0.0,
+          "relative_difference_pct": NaN,
+          "shapiro_w": NaN,
+          "shapiro_p": NaN,
+          "normal": false,
+          "wilcoxon_w": NaN,
+          "wilcoxon_p": NaN,
+          "t_value": null,
+          "t_p": null,
+          "significant": false,
+          "wilcoxon_p_holm": null,
+          "significant_holm": null
+        },
+        "distance_m_change": {
+          "mean": 106.4967159453001
+        }
+      },
+      "route_quality_changed_trips": {
+        "congestion_exposure": {
+          "metric": "congestion_exposure",
+          "n": 16,
+          "proposed_mean": 149.12199894753513,
+          "proposed_sd": 47.23886287584971,
+          "baseline_mean": 144.7583904104757,
+          "baseline_sd": 43.39142113477141,
+          "mean_difference": -4.363608537059422,
+          "sd_difference": 25.581992473281577,
+          "relative_difference_pct": -3.014408024768735,
+          "shapiro_w": 0.927662419928514,
+          "shapiro_p": 0.22380492679949682,
+          "normal": true,
+          "wilcoxon_w": 62.0,
+          "wilcoxon_p": 0.781951904296875,
+          "t_value": -0.6822937723270579,
+          "t_p": 0.5054537522717633,
+          "significant": false,
+          "wilcoxon_p_holm": null,
+          "significant_holm": null
+        },
+        "event_exposure": {
+          "metric": "event_exposure",
+          "n": 16,
+          "proposed_mean": 0.0,
+          "proposed_sd": 0.0,
+          "baseline_mean": 0.0,
+          "baseline_sd": 0.0,
+          "mean_difference": 0.0,
+          "sd_difference": 0.0,
+          "relative_difference_pct": NaN,
+          "shapiro_w": NaN,
+          "shapiro_p": NaN,
+          "normal": false,
+          "wilcoxon_w": NaN,
+          "wilcoxon_p": NaN,
+          "t_value": null,
+          "t_p": null,
+          "significant": false,
+          "wilcoxon_p_holm": null,
+          "significant_holm": null
+        },
+        "avoidable_event_exposure": {
+          "metric": "avoidable_event_exposure",
+          "n": 16,
+          "proposed_mean": 0.0,
+          "proposed_sd": 0.0,
+          "baseline_mean": 0.0,
+          "baseline_sd": 0.0,
+          "mean_difference": 0.0,
+          "sd_difference": 0.0,
+          "relative_difference_pct": NaN,
+          "shapiro_w": NaN,
+          "shapiro_p": NaN,
+          "normal": false,
+          "wilcoxon_w": NaN,
+          "wilcoxon_p": NaN,
+          "t_value": null,
+          "t_p": null,
+          "significant": false,
+          "wilcoxon_p_holm": null,
+          "significant_holm": null
+        },
+        "distance_m_change": {
+          "mean": 199.68134239743767
+        }
+      }
+    }
+  },
+  "response_time_antroute_vs_baseline": {
+    "metric": "recalculation_seconds",
+    "n": 30,
+    "proposed_mean": 0.4200276067014784,
+    "proposed_sd": 0.12608430429102221,
+    "baseline_mean": 0.3244296166735391,
+    "baseline_sd": 0.3401501520832869,
+    "mean_difference": -0.09559799002793928,
+    "sd_difference": 0.31846620789966346,
+    "relative_difference_pct": -29.466480590807414,
+    "shapiro_w": 0.8204627373427066,
+    "shapiro_p": 0.00015839540910709459,
+    "normal": false,
+    "wilcoxon_w": 123.0,
+    "wilcoxon_p": 0.023410143330693245,
+    "t_value": null,
+    "t_p": null,
+    "significant": true,
+    "wilcoxon_p_holm": null,
+    "significant_holm": null
+  },
+  "google_reference": null
+}

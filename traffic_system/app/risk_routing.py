@@ -788,6 +788,7 @@ def _risk_fields(net: _Network, wg: WeightedGraph, m: PathMetrics) -> dict:
     sources = risk_sources(wg, m.nodes)
     coverage = sources.get(OBSERVED, 0.0) + sources.get(PROPAGATED, 0.0)
     level, note = _congestion_label(net, m.mean_risk, coverage)
+    from app import recorded       # imported here: recorded.py imports this module
     return {
         "duration_min": _duration_min(net, wg, m),
         "duration_note": DURATION_NOTE,
@@ -797,6 +798,7 @@ def _risk_fields(net: _Network, wg: WeightedGraph, m: PathMetrics) -> dict:
         "mean_risk": round(m.mean_risk, 4),
         "risk_coverage": round(coverage, 3),
         "risk_sources": sources or None,
+        "inputs": recorded.route_inputs(net, wg, m.nodes),
     }
 
 

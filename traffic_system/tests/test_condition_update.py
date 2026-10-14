@@ -38,3 +38,13 @@ def test_an_unchanged_route_shows_no_improvement():
 def test_routes_for_different_trips_cannot_be_compared():
     with pytest.raises(ValueError, match="same origin"):
         compare_update(weighted_risky_direct(), None, [100, 101], DETOUR)
+
+
+def test_shared_length_is_the_share_of_the_old_route_the_new_one_keeps():
+    from src.routing.condition_update import shared_length_fraction
+
+    wg = weighted_risky_direct()
+    assert shared_length_fraction(wg, DETOUR, DETOUR) == pytest.approx(1.0)
+    assert shared_length_fraction(wg, DIRECT, DETOUR) == 0.0
+    assert shared_length_fraction(wg, DETOUR, [100, 101, 102, 103]) == pytest.approx(1.0)
+    assert compare_update(wg, None, DIRECT, DETOUR)["shared_length_fraction"] == 0.0
