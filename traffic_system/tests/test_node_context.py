@@ -95,7 +95,7 @@ def event(at, intersection="C2", lanes=2):
 # ---------------------------------------------------------------- the context itself
 def test_every_source_has_its_columns():
     assert N_FEATURES == len(FEATURES) == sum(len(v) for v in GROUPS.values())
-    assert set(GROUPS) == {"weather", "flood", "events", "temporal", "spatial"}
+    assert set(GROUPS) == {"weather", "flood", "events", "temporal", "spatial", "text_prior"}
 
 
 def test_weather_is_daily_and_per_grid_cell(city):
@@ -309,7 +309,9 @@ def test_trained_on_camera_edges_the_model_moves_risk_off_camera_for_every_sourc
 
     batch, _ = sample(b=16)
     result = source_sensitivity(model, batch, a_hat, cams, edge_index, cam_edges)
-    for source in SOURCES:
+    # These batches carry no tweets (text_mask all False), so the text source has nothing to
+    # remove here; test_silencing_text_changes_the_risk_only_where_there_was_text covers it.
+    for source in (s for s in SOURCES if s not in ("text", "text_prior")):
         assert result[source]["other_mean"] > 0.005, f"{source} barely moves non-camera roads: {result[source]}"
         assert result[source]["other_moved"] > 0.5, f"{source} moves too few non-camera roads: {result[source]}"
 
@@ -317,3 +319,20 @@ def test_trained_on_camera_edges_the_model_moves_risk_off_camera_for_every_sourc
     with torch.no_grad():
         risk = torch.cat([torch.sigmoid(model(sample(b=8)[0], a_hat, cams, edge_index)) for _ in range(3)])
     assert constant_edges(risk, cam_edges) == 0.0
+
+
+def test_silencing_text_changes_the_risk_only_where_there_was_text(city):
+    a_hat, cams, edge_index, cam_edges = graph_args(city)
+    model = tiny_model(city).eval()
+    ctx = build(city).window(DAY + timedelta(days=1), "AM", 0)
+    quiet = make_batch(city, ctx)                                  # no tweets anywhere
+    assert torch.equal(perturb(quiet, "text")["text_mask"], quiet["text_mask"])
+    loud = make_batch(city, ctx)
+    loud["text"] = torch.randn(loud["text"].shape, generator=torch.Generator().manual_seed(0))
+    loud["text_mask"][:] = True
+    silenced = perturb(loud, "text")
+    assert not silenced["text_mask"].any() and loud["text_mask"].all()      # a copy, not in place
+    result = source_sensitivity(model, loud, a_hat, cams, edge_index, cam_edges, sources=("text",))
+    assert result["text"]["camera_mean"] > 0                              # untrained: a path exists
+    still = source_sensitivity(model, quiet, a_hat, cams, edge_index, cam_edges, sources=("text",))
+    assert still["text"]["camera_max"] == 0                               # nothing to remove, no change

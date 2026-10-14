@@ -6,11 +6,15 @@ predicted risk moves, separately on camera edges (where the model is supervised)
 other edges (where, before the node context, nothing but the nearby cameras could move it):
 
   cctv      every camera goes offline (visual_mask all False)
+  text      the event text goes silent (text_mask all False): the DistilBERT tweet embeddings
+            are replaced by the model's learned "no text" vector, as for a minute with no tweets
   weather   every node's day becomes the wettest, most humid training day (scaled 1.0)
   flood     every node becomes Project NOAH level 3, with the batch's own rainfall
   events    a fresh two-lane incident at every fifth node, for the whole window
   temporal  the clock moves ten hours (AM peak -> PM peak) and three weekdays on
   spatial   the road attributes are shuffled between nodes
+  text_prior  the year of traffic posts per road is removed (its columns zeroed), for a
+            checkpoint trained with it
 
 constant_edges() is the dataset-level check: the share of non-camera edges whose risk is the
 same in every window, which was ~89% for the CCTV-only checkpoint.
@@ -25,7 +29,9 @@ import torch
 
 from src.data.node_context import COLUMN, GROUPS
 
-SOURCES = ("cctv", "weather", "flood", "events", "temporal", "spatial")
+SOURCES = ("cctv", "text", "weather", "flood", "events", "temporal", "spatial", "text_prior")
+# Sources outside the node context: they are perturbed through their own masks.
+MASKED = {"cctv": "visual_mask", "text": "text_mask"}
 MOVED = 1e-3  # an edge counts as responding when its risk moves by more than this
 
 
@@ -37,8 +43,11 @@ def _rotate(sin: torch.Tensor, cos: torch.Tensor, fraction: float):
 def perturb(batch: Dict[str, torch.Tensor], source: str, seed: int = 0) -> Dict[str, torch.Tensor]:
     """A copy of `batch` with one source changed (see the module docstring)."""
     out = {k: v.clone() for k, v in batch.items()}
-    if source == "cctv":
-        out["visual_mask"] = torch.zeros_like(out["visual_mask"])
+    if source in MASKED:
+        key = MASKED[source]
+        if key not in out:
+            raise ValueError(f"source {source!r} needs {key!r}, which this batch does not have")
+        out[key] = torch.zeros_like(out[key])
         return out
     if "context" not in out:
         raise ValueError(f"source {source!r} lives in the node context, which this batch does not have")
@@ -58,6 +67,11 @@ def perturb(batch: Dict[str, torch.Tensor], source: str, seed: int = 0) -> Dict[
         ctx[..., COLUMN["minute_sin"]], ctx[..., COLUMN["minute_cos"]] = s, c
         s, c = _rotate(ctx[..., COLUMN["weekday_sin"]], ctx[..., COLUMN["weekday_cos"]], 3 / 7)
         ctx[..., COLUMN["weekday_sin"]], ctx[..., COLUMN["weekday_cos"]] = s, c
+    elif source == "text_prior":
+        cols = [COLUMN[name] for name in GROUPS["text_prior"]]
+        if ctx.shape[-1] <= max(cols):
+            raise ValueError("this checkpoint's context has no text prior columns")
+        ctx[..., cols] = 0.0
     elif source == "spatial":
         cols = [COLUMN[name] for name in GROUPS["spatial"]]
         order = torch.randperm(ctx.shape[2], generator=torch.Generator().manual_seed(seed))
@@ -87,7 +101,11 @@ def source_sensitivity(
     other[camera_edges] = False
     result = {}
     for source in sources:
-        if source != "cctv" and "context" not in batch:
+        if source in MASKED and MASKED[source] not in batch:
+            continue
+        if source not in MASKED and "context" not in batch:
+            continue
+        if source == "text_prior" and batch["context"].shape[-1] <= COLUMN["text_reports"]:
             continue
         changed = torch.sigmoid(model(perturb(batch, source), a_hat, camera_index, edge_index).float())
         delta = (changed - base).abs()

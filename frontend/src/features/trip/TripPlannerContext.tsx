@@ -105,9 +105,6 @@ export function useTripPlanner(): TripPlannerValue {
   return value;
 }
 
-/** The six rows the trip evaluation always shows, in order. */
-const TRIP_METRICS = ['Route Optimality', 'MAE', 'RMSE', 'MSE', 'MAPE', 'R²'];
-
 export function TripPlannerProvider({ children }: { children: ReactNode }) {
   const [origin, setOrigin] = useState('');
   const [originCoords, setOriginCoords] = useState<Coordinates | null>(null);
@@ -403,23 +400,13 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
   const baselineTop = baselineModelOptions[0];
 
   /**
-   * This trip's evaluation metrics, always in the same six rows; a metric the trip has no
-   * value for (not timed in Apple Maps, or R-squared on a single-leg trip) shows a dash.
+   * This trip's evaluation metrics, exactly the rows the server computed. The backend omits
+   * a metric it cannot score for this trip rather than sending a placeholder, so there is no
+   * fixed row list to pad against -- an unevaluated trip simply has none, and the panel shows
+   * tripEvaluation.message instead.
    */
   const tripMetricRows: ComparisonMetricRow[] = useMemo(
-    () =>
-      TRIP_METRICS.map(
-        (metric) =>
-          tripEvaluation?.metrics.find((m) => m.metric === metric) ?? {
-            metric,
-            antroute: '–',
-            baseline: '–',
-            improvementPct: null,
-            higherIsBetter: metric === 'Route Optimality' || metric === 'R²',
-            pValue: null,
-            significant: null,
-          }
-      ),
+    () => tripEvaluation?.metrics ?? [],
     [tripEvaluation]
   );
 

@@ -69,6 +69,109 @@ def fetch_ws_historical_chunk(lat: float, lon: float, start: date, end: date, ap
     return rows
 
 
+HOURLY_COLUMNS = ["date", "hour", "grid_cell", "ws_temp_c", "ws_precip_mm", "ws_humidity_pct",
+                  "ws_wind_kph", "ws_visibility_km", "ws_cloudcover_pct", "ws_weather_code",
+                  "ws_description", "ws_location", "ws_utc_offset"]
+
+
+def fetch_ws_hourly_range(lat: float, lon: float, start: date, end: date, api_key: str) -> list[dict]:
+    """
+    The hourly observations of every day from `start` to `end` (inclusive, at most 60 days) at
+    one point (WeatherStack historical, interval=1). One HTTP request; WeatherStack still counts
+    each day toward the monthly quota.
+
+    WeatherStack reports hourly `time` as "0", "100", ... "2300" in the location's local time
+    (Asia/Manila, UTC+8, recorded per row as ws_utc_offset). `precip` is millimetres in that
+    hour -- not comparable with the daily file's figure, which is for the whole day.
+    """
+    resp = requests.get("https://api.weatherstack.com/historical", params={
+        "access_key": api_key, "query": f"{lat},{lon}",
+        "historical_date_start": start.isoformat(), "historical_date_end": end.isoformat(),
+        "hourly": 1, "interval": 1,
+    }, timeout=120)
+    resp.raise_for_status()
+    data = resp.json()
+    if "error" in data:
+        raise ValueError(data["error"].get("info", "unknown WeatherStack error"))
+    location = data.get("location", {})
+    rows = []
+    for day_str, day_data in data.get("historical", {}).items():
+        for h in day_data.get("hourly", []):
+            rows.append({
+                "date": day_str,
+                "hour": int(h.get("time", "0")) // 100,
+                "ws_temp_c": h.get("temperature"),
+                "ws_precip_mm": h.get("precip"),
+                "ws_humidity_pct": h.get("humidity"),
+                "ws_wind_kph": h.get("wind_speed"),
+                "ws_visibility_km": h.get("visibility"),
+                "ws_cloudcover_pct": h.get("cloudcover"),
+                "ws_weather_code": h.get("weather_code"),
+                "ws_description": "; ".join(h.get("weather_descriptions") or []),
+                "ws_location": location.get("name"),
+                "ws_utc_offset": location.get("utc_offset"),
+            })
+    return rows
+
+
+def contiguous_chunks(days: list[date], max_days: int = 60) -> list[tuple[date, date]]:
+    """Sorted `days` as (start, end) runs of consecutive dates, each at most `max_days` long."""
+    chunks: list[tuple[date, date]] = []
+    for day in sorted(days):
+        if chunks and day == chunks[-1][1] + timedelta(days=1) and (day - chunks[-1][0]).days < max_days:
+            chunks[-1] = (chunks[-1][0], day)
+        else:
+            chunks.append((day, day))
+    return chunks
+
+
+def fetch_hourly(grid_points: pd.DataFrame, days: list[date], save_path: Path, api_key: str,
+                 sleep_s: float = 0.3) -> pd.DataFrame:
+    """
+    Hourly weather for every grid cell on every day in `days`, requested in runs of up to 60
+    consecutive days per cell.
+
+    Resumable: a (cell, day) already in `save_path` is not requested again, and each response is
+    appended to the file as soon as it arrives. Stops on the first error WeatherStack returns
+    (bad key, plan without historical access, monthly quota used up) -- rerun to continue.
+    """
+    have: set = set()
+    if save_path.exists():
+        done = pd.read_csv(save_path, usecols=["date", "grid_cell"], dtype=str)
+        have = set(zip(done["grid_cell"], done["date"]))
+    requests_todo = []
+    for _, r in grid_points.iterrows():
+        missing = [d for d in days if (str(r["grid_cell"]), d.isoformat()) not in have]
+        requests_todo.extend((r, start, end) for start, end in contiguous_chunks(missing))
+    n_days = sum((end - start).days + 1 for _, start, end in requests_todo)
+    log.info(f"{len(grid_points)} cells x {len(days)} days: {len(have):,} cell-days saved; "
+             f"{n_days:,} to fetch in {len(requests_todo)} request(s)")
+    for n, (r, start, end) in enumerate(requests_todo, start=1):
+        try:
+            got = fetch_ws_hourly_range(r["lat"], r["lon"], start, end, api_key)
+        except ValueError as e:
+            raise SystemExit(f"WeatherStack refused the request ({r['grid_cell']}, {start} to {end}): {e}. "
+                             "Everything fetched so far is saved; rerun to continue.") from None
+        except requests.RequestException as e:
+            log.warning(f"request failed for {r['grid_cell']} {start} to {end}: {e}; skipped (rerun to retry)")
+            continue
+        expected = ((end - start).days + 1) * 24
+        if len(got) != expected:
+            log.warning(f"{r['grid_cell']} {start} to {end}: {len(got)} hourly rows, expected {expected}")
+        frame = pd.DataFrame([{**row, "grid_cell": r["grid_cell"]} for row in got], columns=HOURLY_COLUMNS)
+        frame.to_csv(save_path, mode="a", header=not save_path.exists(), index=False)
+        if n % 10 == 0 or n == len(requests_todo):
+            log.info(f"{n}/{len(requests_todo)} requests done")
+        time.sleep(sleep_s)
+    return pd.read_csv(save_path, dtype={"grid_cell": str})
+
+
+def recorded_days(risk_edges_csv: Path) -> list[date]:
+    """The days with recorded camera sessions: the only days the risk model needs weather for."""
+    days = pd.read_csv(risk_edges_csv, usecols=["day"])["day"].unique()
+    return sorted(date.fromisoformat(str(d)) for d in days)
+
+
 def date_chunks(start: date, end: date, max_days: int = 60):
     chunk_start = start
     while chunk_start <= end:
@@ -162,15 +265,45 @@ def run(data_dir: Path, date_start: date = DATE_START, date_end: date = DATE_END
     log.info(f"Saved sequence_norm_weather.npy and sequence_norm_labels.csv to {temporal_proc_dir}")
 
 
+def run_hourly(data_dir: Path, days: list[date]) -> None:
+    """Hourly WeatherStack data for `days` -> data/processed/temporal/weatherstack_hourly.csv."""
+    full_nodes_csv = data_dir / "processed" / "spatial" / "full_network_static_features.csv"
+    save_path = data_dir / "processed" / "temporal" / "weatherstack_hourly.csv"
+    save_path.parent.mkdir(parents=True, exist_ok=True)
+    df = fetch_hourly(build_grid_points(full_nodes_csv), days, save_path, get_api_key())
+    df = df.drop_duplicates(["grid_cell", "date", "hour"], keep="last")
+    per = df.groupby(["grid_cell", "date"]).size()
+    log.info(f"{save_path}: {len(df):,} rows, {df['grid_cell'].nunique()} cells x {df['date'].nunique()} days "
+             f"({df['date'].min()} to {df['date'].max()}); "
+             f"{int((per != 24).sum())} (cell, day) pair(s) without all 24 hours")
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Fetch WeatherStack history and build normalized sequences.")
     parser.add_argument("--data-dir", type=Path, default=Path("data"))
     parser.add_argument("--date-start", type=lambda s: date.fromisoformat(s), default=DATE_START)
     parser.add_argument("--date-end", type=lambda s: date.fromisoformat(s), default=DATE_END)
     parser.add_argument("--window", type=int, default=WINDOW)
+    parser.add_argument("--hourly", action="store_true",
+                        help="fetch hourly weather instead (weatherstack_hourly.csv): every day from "
+                             "--date-start to --date-end, or only --days, or --recorded-days-only")
+    parser.add_argument("--days", type=lambda s: [date.fromisoformat(x) for x in s.split(",")], default=None,
+                        help="--hourly: comma-separated dates, e.g. 2026-05-04,2026-05-06")
+    parser.add_argument("--recorded-days-only", action="store_true",
+                        help="--hourly: only the days with recorded camera sessions in --risk-edges")
+    parser.add_argument("--risk-edges", type=Path, default=Path("data/processed/risk_scores/risk_edges.csv"))
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     args = parse_args()
-    run(data_dir=args.data_dir, date_start=args.date_start, date_end=args.date_end, window=args.window)
+    if args.hourly:
+        if args.days:
+            days = args.days
+        elif args.recorded_days_only:
+            days = recorded_days(args.risk_edges)
+        else:
+            days = [args.date_start + timedelta(days=i) for i in range((args.date_end - args.date_start).days + 1)]
+        run_hourly(args.data_dir, days)
+    else:
+        run(data_dir=args.data_dir, date_start=args.date_start, date_end=args.date_end, window=args.window)

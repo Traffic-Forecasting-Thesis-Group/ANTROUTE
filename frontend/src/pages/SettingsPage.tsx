@@ -93,7 +93,8 @@ export default function SettingsPage() {
             <p className="mt-3 text-sm leading-relaxed text-slate-600">
               ANTRoute is benchmarked against a baseline Ant Colony model using only path
               length, travel time, and traffic flow. The Comparison page shows Route
-              Optimality and ETA accuracy (MAE, RMSE, MSE, R&sup2;) for both.
+              Optimality &mdash; both routes timed in Google Maps &mdash; alongside congestion
+              and event exposure. Travel time itself is an estimate and is never scored.
             </p>
           </Section>
 

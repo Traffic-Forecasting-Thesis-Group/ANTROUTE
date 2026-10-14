@@ -86,8 +86,9 @@ async def comparison_metrics():
 async def trip_evaluation(payload: RoutePlanRequest):
     """
     The routing evaluation of the trip in `payload` (the same body as /routes/plan; `model`
-    is ignored): its own Route Optimality and ETA errors when its stops and departure time
-    match one of the test trips scored against Apple Maps, otherwise a status saying why not.
+    is ignored): its own Route Optimality and congestion and event exposure when its stops and
+    departure time match one of the test trips timed in Google Maps, otherwise a status saying
+    why not.
     """
     if not risk_routing.available():
         raise HTTPException(status_code=503, detail="Routing data isn't loaded on the server.")

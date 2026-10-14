@@ -62,10 +62,11 @@ export default function MetricsTable({
 export function MetricsFootnote() {
   return (
     <p className="mt-3 text-xs leading-relaxed text-slate-500">
-      Lower is better for MAE, RMSE, MSE, MAPE. Higher is better for Route Optimality and
-      R&sup2;. Route Optimality is the mean over trips; the ETA errors pool every leg.
-      Improvement is the relative difference &Delta;% (Equations 7&ndash;8): positive means
-      ANTRoute is better. * significant, Wilcoxon signed-rank p &lt; 0.05.
+      Higher is better for Route Optimality; lower is better for the exposures. Route
+      Optimality times both routes in Google Maps. Route length is descriptive only and is
+      not tested. Improvement is the relative difference &Delta;% (Equations 7&ndash;8):
+      positive means ANTRoute is better. * significant, Wilcoxon signed-rank p &lt; 0.05.
+      Travel time is not a thesis metric and is never scored here.
     </p>
   );
 }

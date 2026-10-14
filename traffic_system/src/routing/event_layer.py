@@ -1,26 +1,38 @@
 """
-Event-Aware layer: turns MMDA incident reports into a routing penalty.
-
-NOT PART OF THE THESIS METHOD. In the thesis, event text reaches routing only through the
-learned pathway (cleaning -> MarianMT -> DistilBERT -> CNN+LSTM -> RADR STGNN -> MLP decoder
--> Congestion Risk Score) and the cost is W = distance * (1 + lambda * Risk). This rule-based
-layer adds an extra (1 + mu * Event) factor, so it is disabled by default (app setting
-EVENT_MU = 0) and is never used by scripts/evaluate_routing.py. Kept only as an optional
-demo extension; documenting it in the thesis is required before reporting any result with it.
+Event-Aware layer: turns MMDA incident reports into a routing penalty. Part of the method.
 
 The RADR STGNN predicts *recurring* congestion from what the cameras see. It cannot
 predict a crash that happened ten minutes ago, because nothing in its training signal
-represents one. This module covers that second, complementary signal: the unstructured
-MMDA feed reports incidents ("Road crash incident at EDSA Ortigas NB ... Two lanes
-occupied"), which are parsed here, matched to intersections of the road graph, and
-turned into a per-edge impact that the Dynamic Weight Engine multiplies into its cost:
+represents one. This module covers that second, complementary signal, and it is what the
+"road-event conditions" of the second research question rest on: the unstructured MMDA feed
+reports incidents ("Road crash incident at EDSA Ortigas NB ... Two lanes occupied"), which
+are parsed here, matched to intersections of the road graph, and turned into a per-edge
+impact that the Dynamic Weight Engine multiplies into its cost.
+
+Cost term:
 
     W(u, v) = dist(u, v) * (1 + lambda * Risk(u, v)) * (1 + mu * Event(u, v))
 
-Event(u, v) is in [0, 1] and decays to zero over EVENT_TTL_MINUTES, so an incident
-stops diverting traffic once it has been cleared long enough. mu scales how strongly
-the router avoids incidents, exactly as lambda scales how strongly it avoids predicted
-congestion (mu = 0 reproduces the risk-only behaviour).
+Strength. Each incident has a base impact by how much of the road it takes out
+(LANES_IMPACT: one lane 0.5, two or more 1.0). It affects every edge touching its
+intersection; overlapping incidents at one place take the strongest, not the sum, so
+Event(u, v) stays in [0, 1].
+
+Decay. An incident's impact falls linearly from its base value at the time it was reported
+to zero after EVENT_TTL_MINUTES (60):
+
+    Event(u, v) = max over live incidents i at u or v of  base_i * (1 - age_i / 60 min)
+
+mu (DEFAULT_MU = 1.0) scales how strongly the router avoids incidents, exactly as lambda
+scales how strongly it avoids predicted congestion: at mu = 1 a fresh two-lane incident
+doubles the cost of the edges at its intersection; mu = 0 reproduces risk-only routing,
+which is the ablation. In the app mu is EVENT_MU (app/config.py); scripts/evaluate_routing.py
+and scripts/evaluate_condition_updates.py apply it to ANTROUTE and record it with their results
+(describe_event_layer).
+
+The same parsed incidents are also one of the RADR STGNN's per-node inputs
+(src/data/node_context.py), so they reach the risk score too; this layer is the part that
+acts within the hour, before a learned score could reflect them.
 
 Matching is deliberately conservative: an alert only counts when its location text
 names a landmark in configs/event_landmarks.csv, which maps landmark phrases to graph
@@ -209,6 +221,46 @@ def event_impact(
         impact[touching] = np.maximum(impact[touching], strength)
 
     return np.clip(impact, 0.0, 1.0)
+
+
+def describe_event_layer(mu: float) -> dict:
+    """The Event-Aware layer's settings, for recording beside any result that used it."""
+    return {
+        "enabled": bool(mu > 0),
+        "cost_term": "W = dist * (1 + lambda * Risk) * (1 + mu * Event)",
+        "mu": float(mu),
+        "strength": {
+            "base_impact_by_lanes_occupied": {str(k): v for k, v in LANES_IMPACT.items()},
+            "edges_affected": "every edge touching the incident's intersection",
+            "overlap": "strongest live incident, not the sum; Event in [0, 1]",
+        },
+        "decay": {
+            "shape": "linear from the base impact at the report time to 0",
+            "ttl_minutes": EVENT_TTL_MINUTES,
+        },
+        "matching": "configs/event_landmarks.csv -> intersection; unmatched alerts are dropped",
+    }
+
+
+def event_exposure(
+    wg: WeightedGraph, impact: Optional[np.ndarray], path: Sequence[int], stops: Sequence[int] = ()
+) -> float:
+    """
+    Event exposure of a route: the sum of Event(u, v) over its edges, under the conditions
+    `impact` describes -- the incident counterpart of Route Risk Exposure. 0 when no incident
+    is in force.
+
+    With `stops` (road-network node ids: the trip's origin, any intermediate stops and its
+    destination) it is the AVOIDABLE event exposure: edges touching one of those stops are left
+    out, because an incident at a trip's own origin or destination penalises those edges and no
+    route can avoid them. That part is identical for every route of the trip, so it says nothing
+    about the router; what remains is exactly what routing could have avoided.
+    """
+    if impact is None:
+        return 0.0
+    indices = [wg.index_of(v) for v in path]
+    skip = {wg.index_of(v) for v in stops}
+    return float(sum(impact[wg.edge_id(u, v)] for u, v in zip(indices, indices[1:]) if not ({u, v} & skip)))
 
 
 def apply_events(wg: WeightedGraph, impact: np.ndarray, mu: float = DEFAULT_MU) -> WeightedGraph:

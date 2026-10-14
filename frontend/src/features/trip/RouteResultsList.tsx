@@ -1,6 +1,6 @@
 import { Clock, Info } from 'lucide-react';
 
-import type { RouteOption } from '@/api/routeService';
+import { DURATION_NOTE, type RouteOption } from '@/api/routeService';
 import { cn } from '@/lib/cn';
 import { CONGESTION_COLORS, CONGESTION_WIDTH } from '@/lib/theme';
 import { getArrivalTime } from '@/lib/time';
@@ -54,7 +54,11 @@ function RouteCard({
         )}
       </div>
 
-      <p className="mt-1 truncate text-sm text-slate-600">Via {route.via}</p>
+      <p className="mt-0.5 text-[11px] italic text-slate-400">
+        {route.duration_note ?? DURATION_NOTE}
+      </p>
+
+      <p className="mt-1.5 truncate text-sm text-slate-600">Via {route.via}</p>
       <p className="mt-0.5 text-xs text-slate-400">
         Arrive about {getArrivalTime(route.duration_min, departAt)}
       </p>
@@ -72,6 +76,10 @@ function RouteCard({
         </span>
         <span className="text-xs font-medium capitalize text-slate-600">{level}</span>
       </div>
+
+      {route.congestion_note && (
+        <p className="mt-1 text-[11px] italic text-slate-400">{route.congestion_note}</p>
+      )}
 
       {route.event_note && <InfoNote>{route.event_note}</InfoNote>}
       {route.fallback_reason && <InfoNote>{route.fallback_reason}</InfoNote>}

@@ -4,7 +4,7 @@ Builds the CNN + LSTM training data from the three real sources:
   frames   <frames_root>/manifest.csv        (extract_frames.py)
   labels   <frames_root>/auto_labels.csv + labels.csv   (autolabel + label_viewer)
   text     data/processed/embeddings.pt + data/raw/twitter (createdAt per tweet)
-  weather  data/processed/temporal/weatherstack_historical.csv
+  weather  data/processed/temporal/weatherstack_hourly.csv (or the daily weatherstack_historical.csv)
 
 and hands them to alignment.build_sessions. Only the visual regime is built
 (sessions that have CCTV frames), since the congestion labels come from frames.
@@ -21,6 +21,8 @@ import torch
 
 from src.data.tweet_geocode import (
     cameras_by_intersection,
+    cameras_within,
+    intersection_coordinates,
     load_camera_map,
     load_label_locations,
     place,
@@ -78,10 +80,70 @@ def load_frames_table(frames_roots, allow_estimated: bool = False) -> pd.DataFra
     return merged.drop_duplicates(["camera_id", "timestamp"], keep="first").reset_index(drop=True)
 
 
+def weather_resolution(csv_path: Path) -> str:
+    """"hourly" for weatherstack_hourly.csv (it has an `hour` column), else "daily"."""
+    return "hourly" if "hour" in pd.read_csv(csv_path, nrows=0).columns else "daily"
+
+
+# How text reaches the cameras in new training (build_training_records' own defaults are the
+# original rules, 0 km and 1 minute, which every checkpoint up to v9 used). 2 km and 60 minutes
+# take the share of camera-minutes with text from 0.2% to ~14% on the recorded sessions; 60
+# minutes matches the Event-Aware layer's incident lifetime (event_layer.EVENT_TTL_MINUTES).
+TEXT_DEFAULTS = {"text_radius_km": 2.0, "text_active_minutes": 60}
+
+TEMPORAL_DIR = Path(__file__).resolve().parents[2] / "data/processed/temporal"
+WEATHER_FILES = {"hourly": TEMPORAL_DIR / "weatherstack_hourly.csv", "daily": TEMPORAL_DIR / "weatherstack_historical.csv"}
+
+
+def default_weather_csv(resolution: Optional[str] = None) -> Path:
+    """The weather file for `resolution`; with none, hourly when it has been collected, else daily."""
+    if resolution is not None:
+        return WEATHER_FILES[resolution]
+    return WEATHER_FILES["hourly"] if WEATHER_FILES["hourly"].exists() else WEATHER_FILES["daily"]
+
+
+def check_weather_resolution(cfg: dict, weather_csv: Path) -> None:
+    """
+    Refuse to feed a checkpoint weather of another resolution than it was trained on: hourly
+    rainfall is mm per hour and daily is the day's total, so the checkpoint's scaling would read
+    one as the other. A checkpoint without "weather_resolution" was trained on daily weather.
+    """
+    trained = cfg.get("weather_resolution", "daily")
+    given = weather_resolution(weather_csv)
+    if given != trained:
+        raise ValueError(f"this checkpoint was trained on {trained} weather but {weather_csv} is {given}; "
+                         f"pass --weather-csv {WEATHER_FILES[trained]}")
+
+
 def load_weather_daily(csv_path: Path) -> pd.DataFrame:
-    """One row per date: mean over that date's grid cells (no per-camera geocoding exists)."""
+    """
+    The city-wide weather the CNN+LSTM sees: the mean over grid cells (no per-camera geocoding
+    exists), one row per date -- or per date and hour when `csv_path` is the hourly file.
+    """
+    if weather_resolution(csv_path) == "hourly":
+        df = pd.read_csv(csv_path, usecols=["date", "hour"] + WEATHER_COLUMNS)
+        return df.groupby(["date", "hour"], as_index=False)[WEATHER_COLUMNS].mean()
     df = pd.read_csv(csv_path, usecols=["date"] + WEATHER_COLUMNS)
     return df.groupby("date", as_index=False)[WEATHER_COLUMNS].mean()
+
+
+def read_tweet_walk(raw_twitter_root: Path):
+    """
+    (createdAt, text, id) of every post, in sorted(rglob('tweets_*.json')) order -- the order
+    embeddings.pt was written in, so row i of it is the i-th post here. Nothing is filtered or
+    deduplicated: that would shift every later embedding onto the wrong post.
+    """
+    created, texts, ids = [], [], []
+    for path in sorted(Path(raw_twitter_root).rglob("tweets_*.json")):
+        with path.open(encoding="utf-8") as f:
+            content = json.load(f)
+        tweets = content.get("data", content) if isinstance(content, dict) else content
+        for tweet in tweets:
+            is_dict = isinstance(tweet, dict)
+            created.append(tweet.get("createdAt") if is_dict else None)
+            texts.append((tweet.get("text") or tweet.get("full_text") or "") if is_dict else "")
+            ids.append(str(tweet.get("id") or "") if is_dict else "")
+    return created, texts, ids
 
 
 def load_tweets_table(
@@ -92,6 +154,7 @@ def load_tweets_table(
     camera_map: Optional[Dict[str, str]] = None,
     landmarks: Optional[Dict[str, str]] = None,
     locations: Optional[Dict[str, str]] = None,
+    radius_km: float = 0.0,
 ) -> pd.DataFrame:
     """
     created_at + embedding per tweet, at the camera the tweet is about.
@@ -109,16 +172,7 @@ def load_tweets_table(
     `locations` maps tweet id -> a hand-read location phrase (from
     data/labels/tweet_training_window.csv) for the posts no rule can place.
     """
-    created, texts, ids = [], [], []
-    for path in sorted(Path(raw_twitter_root).rglob("tweets_*.json")):
-        with path.open(encoding="utf-8") as f:
-            content = json.load(f)
-        tweets = content.get("data", content) if isinstance(content, dict) else content
-        for tweet in tweets:
-            is_dict = isinstance(tweet, dict)
-            created.append(tweet.get("createdAt") if is_dict else None)
-            texts.append((tweet.get("text") or tweet.get("full_text") or "") if is_dict else "")
-            ids.append(str(tweet.get("id") or "") if is_dict else "")
+    created, texts, ids = read_tweet_walk(raw_twitter_root)
 
     payload = torch.load(embeddings_path, map_location="cpu")
     embeddings = (payload["embeddings"] if isinstance(payload, dict) else payload).float().numpy()
@@ -147,6 +201,8 @@ def load_tweets_table(
     by_intersection = cameras_by_intersection(
         camera_ids, load_camera_map() if camera_map is None else camera_map
     )
+    if radius_km > 0:
+        by_intersection = cameras_within(by_intersection, intersection_coordinates(), radius_km)
     cameras_per_tweet = place(
         kept_texts,
         load_landmarks(LANDMARKS_CSV) if landmarks is None else landmarks,
@@ -299,9 +355,17 @@ def build_training_records(
     visual_split: Optional[Dict[tuple, str]] = None,
     camera_map: Optional[Dict[str, str]] = None,
     locations: Optional[Dict[str, str]] = None,
+    text_radius_km: float = 0.0,
+    text_active_minutes: int = 1,
 ):
     """
     Sessions for every camera on the visual-regime days. Text is skipped if no paths are given.
+
+    `text_radius_km` attaches a tweet to every camera within that distance of the intersection it
+    names (0: only that intersection's own cameras); `text_active_minutes` keeps a tweet in the
+    text input for that many minutes after it was posted (1: only its own minute). The defaults
+    are the original rules, which older checkpoints were trained with; a checkpoint records the
+    values it used (TEXT_DEFAULTS are what new training uses).
 
     `camera_map` (camera id -> intersection) and `locations` (tweet id -> hand-read location)
     steer where a tweet lands; both default to the project's own configs. See
@@ -315,7 +379,7 @@ def build_training_records(
 
     if raw_twitter_root is not None and embeddings_path is not None:
         tweets = load_tweets_table(raw_twitter_root, embeddings_path, camera_ids, days,
-                                   camera_map=camera_map, locations=locations)
+                                   camera_map=camera_map, locations=locations, radius_km=text_radius_km)
     else:
         tweets = empty_tweets()
 
@@ -323,6 +387,7 @@ def build_training_records(
     return build_sessions(
         frames, tweets, load_weather_daily(weather_csv), camera_ids, WEATHER_COLUMNS,
         nonvisual_start=BUFFER_START, buffer_start=BUFFER_START, visual_split=visual_split,
+        text_active_minutes=text_active_minutes,
     )
 
 
@@ -383,7 +448,7 @@ class LabeledWindowDataset(ANTROUTEWindowDataset):
         super().__init__(records, split, regime="visual", image_size=image_size,
                          target_fn=make_target_fn(lookup))
         self.time_features = time_features
-        self.temporal_dim = (len(records[0].weather) if len(records) else 0) + (TIME_FEATURES if time_features else 0)
+        self.temporal_dim = (records[0].weather.shape[-1] if len(records) else 0) + (TIME_FEATURES if time_features else 0)
         self.index = [
             (i, s) for i, s in self.index
             if any(records[i].frame_paths[s + j] in lookup for j in range(WINDOW_STEPS)
@@ -411,7 +476,7 @@ class InferenceWindowDataset(ANTROUTEWindowDataset):
             if any(p is not None for p in r.frame_paths[s:s + WINDOW_STEPS])
         ]
         self.time_features = time_features
-        self.temporal_dim = (len(records[0].weather) if len(records) else 0) + (TIME_FEATURES if time_features else 0)
+        self.temporal_dim = (records[0].weather.shape[-1] if len(records) else 0) + (TIME_FEATURES if time_features else 0)
 
     def __getitem__(self, i: int) -> dict:
         item = super().__getitem__(i)

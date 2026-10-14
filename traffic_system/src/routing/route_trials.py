@@ -1,5 +1,5 @@
 """
-Turn ACO routes and their Apple Maps travel times into the trial records src.routing.metrics scores.
+Turn routes and their Google Maps travel times into the trial records src.routing.metrics scores.
 
 Scenarios follow the thesis (Section 3.8, Appendices 1-3):
 
@@ -9,35 +9,42 @@ Scenarios follow the thesis (Section 3.8, Appendices 1-3):
     incident_exposed   like recommended, but origin and destination are chosen so that a
                        reported incident lies on the INTERIOR of the risk-only route
 
-The fourth exists because the first three cannot measure RQ2. They draw origins and
-destinations from the CCTV intersections, and the Event-Aware layer matches incidents to
-those same intersections through the shared gazetteer, so an incident lands on the trip's
-own endpoint: over 120 legs it did so on 8 of the 10 that met one, and no router can avoid
-its own destination. The layer changed no route, which measured the sampling, not the layer.
-Reported as its own scenario and never merged into the others: selecting trips that can
-exercise a mechanism is what makes an ablation informative, but pooling them with trips
-drawn uniformly would overstate how often the mechanism bites in ordinary use.
+The fourth exists because the first three cannot measure the road-event conditions of RQ2.
+They draw origins and destinations from the CCTV intersections, and the Event-Aware layer
+matches incidents to those same intersections through the shared gazetteer, so an incident
+lands on the trip's own endpoint: over 120 legs it did so on 8 of the 10 that met one, and
+no router can avoid its own destination. Reported as its own scenario and never merged into
+the others: selecting trips that can exercise a mechanism is what makes an ablation
+informative, but pooling them with trips drawn uniformly would overstate how often the
+mechanism bites in ordinary use.
 
-Route Optimality (Equation 1) uses travel time as the cost, with Apple Maps as the oracle
-on both sides so it measures route quality rather than how optimistic a system's ETA is:
+Google Maps is the reference. Route Optimality (Equation 1) uses travel time as the cost,
+with Google Maps timing both sides, so it measures route quality and nothing else:
 
-    C_optimal    Apple Maps time of Apple's own route (summed over legs)
-    C_predicted  Apple Maps time of the route the system chose (entered via waypoints)
+    C_optimal    Google Maps time of Google's own route (summed over legs)
+    C_predicted  Google Maps time of the route the system chose (entered via waypoints)
 
-The ETA metrics (Equations 2-6) compare the system's predicted time for its route with
-Apple's time for that same route, per leg, as Appendix 2's note specifies.
+Beside it, measured on the road graph under the window's conditions:
+
+    congestion_exposure        sum of predicted Risk(u, v) over the route (RADR eq. 5)
+    event_exposure             sum of Event(u, v), the Event-Aware layer's incident impact
+    avoidable_event_exposure   the same, leaving out edges at the trip's own stops, which no
+                               route can avoid -- what routing could actually have avoided
+    distance_m           route length, descriptive only
+
+ETA is not a research question or metric here: no system's own travel-time estimate is scored.
 
 Two systems are scored the same way:
 
-    antroute   ACO on the risk-weighted graph (lambda > 0), risk-aware ETA (gamma > 0)
-    baseline   the comparison ACO without event-derived risk (see evaluate_routing.py)
+    antroute   ACO on the risk-weighted graph (lambda > 0) with the Event-Aware layer (mu > 0)
+    baseline   Improved ACO (Cheng 2023) on observed camera congestion (see evaluate_routing.py)
 """
 
 from __future__ import annotations
 from typing import List, Optional, Sequence
 import numpy as np
 from src.routing.dynamic_weight import WeightedGraph
-from src.routing.eta_engine import path_eta_seconds
+from src.routing.event_layer import event_exposure
 
 ANTROUTE = "antroute"
 BASELINE = "baseline"
@@ -49,11 +56,15 @@ MULTI_DESTINATION = "multi_destination"
 INCIDENT_EXPOSED = "incident_exposed"
 SCENARIOS = (RECOMMENDED, ALTERNATIVE, MULTI_DESTINATION, INCIDENT_EXPOSED)
 
+# How each Google Maps time was obtained. Every scored row of a lookup sheet records all four,
+# and metrics.json summarises them (scripts/evaluate_routing.py reference_record).
+REFERENCE_FIELDS = ("google_access_method", "google_departure_date", "google_queried_on", "google_traffic_model")
+
 
 def pick_waypoints(wg: WeightedGraph, nodes: Sequence[int], n: int) -> List[int]:
     """
     Up to `n` intermediate nodes spaced evenly by distance along the route, to enter as
-    Apple Maps stops so Apple measures this route rather than substituting its own.
+    Google Maps waypoints so Google measures this route rather than substituting its own.
     """
     if n <= 0 or len(nodes) <= 2:
         return []
@@ -72,55 +83,42 @@ def pick_waypoints(wg: WeightedGraph, nodes: Sequence[int], n: int) -> List[int]
 def _positive(name: str, values: Sequence[float]) -> List[float]:
     out = [float(v) for v in values]
     if not out or not all(np.isfinite(v) and v > 0 for v in out):
-        raise ValueError(f"Apple Maps travel time {name} must be finite and > 0, received {out}")
+        raise ValueError(f"Google Maps travel time {name} must be finite and > 0, received {out}")
     return out
 
 
 def score_trip(
     wg: WeightedGraph,
     legs: Sequence[Sequence[int]],
-    free_flow_seconds: np.ndarray,
-    gamma: float,
     system: str,
     scenario_type: str,
-    apple_eta_optimal: Sequence[float],
-    apple_eta_route: Sequence[float],
+    reference_optimal: Sequence[float],
+    reference_route: Sequence[float],
     trip_id: Optional[str] = None,
-    predicted_eta: Optional[Sequence[float]] = None,
+    impact: Optional[np.ndarray] = None,
 ) -> dict:
     """
     One system's route for one trip, as a compute_metrics_by_scenario trial.
 
     `legs` holds the route's node ids per leg (one leg unless multi-destination);
-    `apple_eta_optimal` / `apple_eta_route` are Apple's per-leg times for its own route and
-    for this one. `gamma` is the system's ETA risk sensitivity.
-
-    `predicted_eta` supplies the system's own per-leg travel-time estimate when it does not
-    come from ANTROUTE's ETA engine -- the baseline (Improved ACO) predicts with the observed
-    travel times its own cost function is built from. Left out, the estimate is computed from
-    `wg` and `gamma` as before. Note that `wg` still measures distance and risk for every
-    system, so those stay on one yardstick.
+    `reference_optimal` / `reference_route` are Google Maps' per-leg times for its own route
+    and for this one. `wg` measures distance and congestion risk, and `impact` ([E], aligned
+    to `wg`) the incidents in force, for every system alike -- one yardstick for both.
     """
     if not legs or any(len(leg) < 2 for leg in legs):
         raise ValueError("every leg needs at least two nodes")
-    if not (len(apple_eta_optimal) == len(apple_eta_route) == len(legs)):
+    if not (len(reference_optimal) == len(reference_route) == len(legs)):
         raise ValueError(
-            f"{len(legs)} leg(s) but {len(apple_eta_optimal)} optimal and {len(apple_eta_route)} route times"
+            f"{len(legs)} leg(s) but {len(reference_optimal)} optimal and {len(reference_route)} route times"
         )
     for a, b in zip(legs, legs[1:]):
         if a[-1] != b[0]:
             raise ValueError(f"leg ending at {a[-1]} does not continue into a leg starting at {b[0]}")
-    optimal = _positive("apple_eta_optimal", apple_eta_optimal)
-    measured = _positive("apple_eta_route", apple_eta_route)
+    optimal = _positive("reference_optimal", reference_optimal)
+    measured = _positive("reference_route", reference_route)
 
     path = [int(v) for v in legs[0]] + [int(v) for leg in legs[1:] for v in leg[1:]]
-    metrics = wg.evaluate_path(path)
-    if predicted_eta is None:
-        predicted = [path_eta_seconds(wg, free_flow_seconds, leg, gamma) for leg in legs]
-    else:
-        predicted = _positive("predicted_eta", predicted_eta)
-        if len(predicted) != len(legs):
-            raise ValueError(f"{len(legs)} leg(s) but {len(predicted)} predicted travel time(s)")
+    metrics = wg.evaluate_path(path, impact)
     return {
         "trip_id": trip_id,
         "system": system,
@@ -130,10 +128,12 @@ def score_trip(
         "path": path,
         "c_optimal": float(sum(optimal)),
         "c_predicted": float(sum(measured)),
-        "actual_eta": measured,
-        "predicted_eta": predicted,
+        "reference_route_seconds": measured,
         "hops": metrics.n_edges,
         "distance_m": metrics.distance_m,
-        "risk_exposure": metrics.risk_exposure,
-        "eta_minutes": float(sum(predicted)) / 60.0,
+        "congestion_exposure": metrics.risk_exposure,
+        "event_exposure": metrics.event_exposure,
+        "avoidable_event_exposure": event_exposure(
+            wg, impact, path, stops=[int(leg[0]) for leg in legs] + [int(legs[-1][-1])]
+        ),
     }

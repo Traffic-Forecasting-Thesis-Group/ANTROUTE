@@ -224,6 +224,78 @@ def geocode(landmark: str, cache: Dict[str, Optional[dict]]) -> Optional[Tuple[f
     return None
 
 
+SPATIAL_DIR = REPO_ROOT / "data" / "processed" / "spatial"
+EDSA_KEYS = ("edsa", "epifaniodelossantos")
+# Words that position a point along EDSA ("before Kalayaan") or name the kind of road; the
+# junction itself is what can be found on the graph.
+_POSITION_WORDS = {"before", "after", "near", "corner", "cor", "fronting", "infront", "front", "of"}
+_ROAD_WORDS = {"avenue", "ave", "street", "st", "road", "rd", "boulevard", "blvd", "drive", "dr",
+               "footbridge", "exit", "entry", "flyover", "underpass", "intersection"}
+MAX_JUNCTION_GAP_M = 150.0   # an EDSA node and a cross-street node this close count as one junction
+
+
+def _road_index():
+    """(node -> set of canonical road names touching it, node -> (lat, lon)), from the road graph."""
+    import pandas as pd
+
+    edges = pd.read_csv(SPATIAL_DIR / "full_network_edge_features.csv",
+                        usecols=["source_node_id", "target_node_id", "name"]).dropna(subset=["name"])
+    names: Dict[int, set] = defaultdict(set)
+    for u, v, name in zip(edges["source_node_id"], edges["target_node_id"], edges["name"]):
+        key = canonical_key(str(name))
+        names[int(u)].add(key)
+        names[int(v)].add(key)
+    nodes = pd.read_csv(SPATIAL_DIR / "full_network_static_features.csv", usecols=["node_id", "lat", "lon"])
+    coords = {int(n): (float(a), float(b)) for n, a, b in zip(nodes["node_id"], nodes["lat"], nodes["lon"])}
+    return names, coords
+
+
+def _metres(a: Tuple[float, float], b: Tuple[float, float]) -> float:
+    import math
+    (la1, lo1), (la2, lo2) = a, b
+    p1, p2 = math.radians(la1), math.radians(la2)
+    h = math.sin((p2 - p1) / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(math.radians(lo2 - lo1) / 2) ** 2
+    return 2 * 6371000.0 * math.asin(math.sqrt(h))
+
+
+def road_graph_junction(landmark: str, index) -> Optional[Tuple[float, float]]:
+    """
+    Where EDSA meets the cross street a landmark names, found on the project's own road graph
+    (OSM edge names), for the 'edsa <cross street>' phrases Nominatim cannot place. The centre
+    of the graph nodes touching both an EDSA edge and an edge named like the cross street; failing
+    that, of the closest EDSA / cross-street node pair within MAX_JUNCTION_GAP_M. None when the
+    phrase is not 'edsa ...' or no such junction exists (a building or business name, say).
+    Requiring the junction to be on EDSA is what keeps 'Harrison' or 'New York' from landing on
+    a same-named street elsewhere in the city.
+    """
+    words = [w for w in re.split(r"[^a-z0-9]+", landmark.lower()) if w]
+    if not words or words[0] != "edsa":
+        return None
+    cross_words = [w for w in words[1:] if w not in _POSITION_WORDS and w not in _ROAD_WORDS]
+    if not cross_words:
+        return None
+    cross = canonical_key(" ".join(cross_words))
+    if len(cross) < 4:
+        return None
+    names, coords = index
+    on_edsa = [n for n, keys in names.items() if any(k.startswith(EDSA_KEYS) or "edsa" in k for k in keys)]
+    on_cross = [n for n, keys in names.items() if any(cross in k for k in keys if not any(e in k for e in EDSA_KEYS))]
+    both = [n for n in on_edsa if any(cross in k for k in names[n] if not any(e in k for e in EDSA_KEYS))]
+    if not both:
+        cross_points = [coords[n] for n in on_cross if n in coords]
+        pairs = [(  _metres(coords[e], c), e, c) for e in on_edsa if e in coords for c in cross_points]
+        pairs = [p for p in pairs if p[0] <= MAX_JUNCTION_GAP_M]
+        if not pairs:
+            return None
+        _, e, c = min(pairs)
+        lat, lon = (coords[e][0] + c[0]) / 2, (coords[e][1] + c[1]) / 2
+    else:
+        pts = [coords[n] for n in both if n in coords]
+        lat, lon = sum(p[0] for p in pts) / len(pts), sum(p[1] for p in pts) / len(pts)
+    lat_min, lat_max, lon_min, lon_max = MM_BOUNDS
+    return (lat, lon) if lat_min <= lat <= lat_max and lon_min <= lon <= lon_max else None
+
+
 def _append_rows(path: Path, fieldnames: List[str], rows: List[dict]) -> None:
     exists = path.exists()
     with path.open("a", encoding="utf-8", newline="") as f:
@@ -269,6 +341,7 @@ def main() -> None:
             existing_intersections = {row["intersection"] for row in csv.DictReader(f)}
 
     cache = _load_cache()
+    road_index = _road_index() if (SPATIAL_DIR / "full_network_edge_features.csv").exists() else None
     new_landmarks: List[dict] = []
     new_intersections: List[dict] = []
     failed: List[str] = []
@@ -277,20 +350,22 @@ def main() -> None:
         for i, (representative, spellings, count) in enumerate(targets, start=1):
             label = intersection_label(representative)
             print(f"[{i}/{len(targets)}] {representative} ({count} alerts) -> {label}")
-            point = geocode(representative, cache)
+            point, source = geocode(representative, cache), "nominatim"
+            if point is None and road_index is not None:
+                point, source = road_graph_junction(representative, road_index), "road_graph"
             if point is None:
                 failed.append(representative)
                 print("    ! no usable geocode")
                 continue
             lat, lon = point
-            print(f"    ok {lat:.6f}, {lon:.6f}")
+            print(f"    ok {lat:.6f}, {lon:.6f} ({source})")
             # Every spelling of the place points at the one intersection.
             for spelling in spellings:
                 new_landmarks.append({"landmark": spelling, "intersection": label})
             if label not in existing_intersections:
                 existing_intersections.add(label)
                 new_intersections.append({"intersection": label, "lat": f"{lat:.7f}",
-                                          "lon": f"{lon:.7f}", "source": "nominatim"})
+                                          "lon": f"{lon:.7f}", "source": source})
     finally:
         # Geocoding is slow and rate-limited; never lose it to a late failure.
         _save_cache(cache)

@@ -2,6 +2,8 @@
 
 ANTROUTE is an automated traffic data ingestion, preprocessing, and routing intelligence system targeting Metro Manila traffic conditions.
 
+**Scope and evaluation.** Routing covers the whole Metro Manila road graph (59,521 nodes). Congestion risk is given for every road in three tiers: **observed** (the camera subgraph, predicted by the RADR STGNN), **propagated** (within 1.5 km of it), and **assumed** (farther away, estimated from weather, flood hazard, reported incidents, clock and road class). The Event-Aware layer is part of the method. Routes are evaluated against **Google Maps** on Route Optimality, congestion exposure and event exposure, with route length as a descriptive extra. ETA is not evaluated; durations in the app are labelled "estimated, not evaluated". See [traffic_system/docs/evaluation_protocol.md](traffic_system/docs/evaluation_protocol.md).
+
 ## 📂 Repository Structure
 
 Our repository follows a reproducible layout suitable for standard machine learning and data engineering projects:
@@ -26,9 +28,9 @@ ANTROUTE/
 │   │   ├── labels/                 # Human-annotated tweet labels
 │   │   ├── raw/                    # Immutable raw data (tweets, OSM graph, flood hazard maps)
 │   │   └── processed/              # Cleaned tweets, embeddings, spatial/temporal features
-│   ├── docs/                       # Project documentation
+│   ├── docs/                       # Project documentation (evaluation_protocol.md)
 │   ├── notebooks/                  # Colab notebook for training and risk scoring
-│   ├── outputs/                    # Routing evaluation results and Apple Maps lookup sheets
+│   ├── outputs/                    # Routing evaluation results and Google Maps lookup sheets
 │   ├── scripts/                    # CLI tools: frame extraction, training, scoring, evaluation
 │   ├── src/                        # Core source code
 │   │   ├── data/                   # Dataset alignment, graph data, training windows, metrics

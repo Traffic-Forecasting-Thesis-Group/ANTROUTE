@@ -15,8 +15,9 @@ then applied unchanged to val and test, the way the model itself is:
   calibrated model       the model's own scores through an affine map fitted on train
                          (src/models/risk_calibration.py), monotone, so rankings unchanged
 
-These are comparisons of edge-risk regression only. They say nothing about routes or ETAs,
-which scripts/evaluate_routing.py measures against the Improved ACO baseline and Apple Maps.
+These are comparisons of edge-risk regression only. They say nothing about routes, which
+scripts/evaluate_routing.py compares against the Improved ACO baseline with Google Maps as the
+reference.
 """
 
 from __future__ import annotations

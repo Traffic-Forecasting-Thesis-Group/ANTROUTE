@@ -8,9 +8,12 @@ the graph only through the cameras, and a 2-layer GCN carries that two hops, so 
 scored edges had the same risk in every window. This module gives each node its own
 non-visual inputs, at the resolution the data actually has:
 
-  weather   daily, per 0.05-degree WeatherStack grid cell (the node's own cell): temperature,
-            precipitation, humidity, min-max scaled on the training days. Daily, because that
-            is what weatherstack_historical.csv holds -- nothing here pretends to be hourly.
+  weather   per 0.05-degree WeatherStack grid cell (the node's own cell): temperature,
+            precipitation, humidity, min-max scaled on the training days. Hourly when built from
+            weatherstack_hourly.csv (each minute gets its own hour), daily from
+            weatherstack_historical.csv. A checkpoint records which ("weather_resolution"):
+            hourly rainfall is millimetres per hour, daily is the day's total, so the two scales
+            must never be mixed between training and prediction.
   flood     Project NOAH 5-year hazard level as an ordinal (level / 3), and its interaction
             with that day's rainfall in the node's cell (hazard only matters when it rains).
             Ordinal rather than one-hot: the camera nodes, the only supervised ones, sit on
@@ -64,13 +67,19 @@ FEATURES: List[str] = [
     "minute_sin", "minute_cos", "weekday_sin", "weekday_cos",
     # spatial
     "in_degree", "out_degree", "mean_speed", "max_speed", "is_camera", "camera_hops",
+    # text prior (per hour bucket): a year of traffic posts about this node (src/data/text_prior.py)
+    "text_reports", "text_incidents", *[f"text_pc{i + 1}" for i in range(8)],
 ]
+# The inputs every checkpoint up to v9 was trained with. New columns are only ever appended, so a
+# checkpoint's own list is always a prefix of FEATURES and its context is FEATURES[:len(list)].
+FEATURES_V1: List[str] = FEATURES[:17]
 GROUPS: Dict[str, List[str]] = {
     "weather": ["temp", "precip", "humidity"],
     "flood": ["flood_level", "flood_x_precip"],
     "events": ["event_impact", "event_count"],
     "temporal": ["minute_sin", "minute_cos", "weekday_sin", "weekday_cos"],
     "spatial": ["in_degree", "out_degree", "mean_speed", "max_speed", "is_camera", "camera_hops"],
+    "text_prior": ["text_reports", "text_incidents", *[f"text_pc{i + 1}" for i in range(8)]],
 }
 N_FEATURES = len(FEATURES)
 COLUMN = {name: i for i, name in enumerate(FEATURES)}
@@ -111,12 +120,15 @@ class NodeContext:
     static: np.ndarray                                  # [N, len(FEATURES)], spatial + flood level filled
     flood: np.ndarray                                   # [N] ordinal in [0, 1]
     cells: np.ndarray                                   # [N] grid cell id per node
-    weather: Dict[Tuple[date, str], np.ndarray]         # (day, cell) -> scaled [3]
+    weather: Dict[tuple, np.ndarray]                    # (day, cell), or (day, hour, cell) when hourly -> scaled [3]
     weather_min: np.ndarray                             # [3] from the training days
     weather_max: np.ndarray
     events: Dict[int, List[Tuple[datetime, float]]] = field(default_factory=dict)  # node -> (time, impact)
     drop: Tuple[str, ...] = ()                          # groups zeroed for ablation
     missing_weather: set = field(default_factory=set)   # days asked for that have no weather row
+    hourly: bool = False                                # weather keyed by hour as well as day
+    text_prior: Optional[object] = None                 # text_prior.TextPrior, or None (columns stay 0)
+    feature_names: List[str] = field(default_factory=lambda: list(FEATURES))  # columns returned
 
     # ------------------------------------------------------------------ build
     @classmethod
@@ -132,6 +144,8 @@ class NodeContext:
         weather_min: Optional[np.ndarray] = None,
         weather_max: Optional[np.ndarray] = None,
         drop: Sequence[str] = (),
+        text_prior: Optional[object] = None,
+        feature_names: Optional[Sequence[str]] = None,
     ) -> "NodeContext":
         """
         `events` are event_layer.TrafficEvent (already placed at an intersection label);
@@ -154,6 +168,7 @@ class NodeContext:
             static[:, COLUMN[name]] = values
 
         weather, w_min, w_max = load_cell_weather(weather_csv, train_days, weather_min, weather_max)
+        hourly = bool(weather) and len(next(iter(weather))) == 3
         by_node: Dict[int, List[Tuple[datetime, float]]] = {}
         for event in events:
             node = (event_nodes or {}).get(event.intersection)
@@ -161,7 +176,11 @@ class NodeContext:
                 continue
             at = event.at.replace(tzinfo=None) if event.at.tzinfo else event.at
             by_node.setdefault(int(node), []).append((at, float(event.base_impact)))
-        return cls(static, flood.astype(np.float32), grid_cell(lat, lon), weather, w_min, w_max, by_node, tuple(drop))
+        names = list(FEATURES if feature_names is None else feature_names)
+        if names != FEATURES[:len(names)]:
+            raise ValueError("the context features are not a prefix of node_context.FEATURES (columns moved)")
+        return cls(static, flood.astype(np.float32), grid_cell(lat, lon), weather, w_min, w_max, by_node, tuple(drop),
+                   hourly=hourly, text_prior=text_prior, feature_names=names)
 
     # ------------------------------------------------------------------ query
     def at_times(self, times: Sequence[datetime]) -> torch.Tensor:
@@ -169,9 +188,17 @@ class NodeContext:
         t_count, n = len(times), self.static.shape[0]
         out = np.broadcast_to(self.static, (t_count, n, N_FEATURES)).copy()
 
-        weather = self.node_weather(times[0].date())
-        out[:, :, [COLUMN[c] for c in GROUPS["weather"]]] = weather[None]
-        out[:, :, COLUMN["flood_x_precip"]] = (self.flood * weather[:, PRECIP_COLUMN])[None]
+        if self.hourly:
+            per_hour = {}
+            for t in times:
+                per_hour.setdefault((t.date(), t.hour), None)
+            for key in per_hour:
+                per_hour[key] = self.node_weather(*key)
+            weather = np.stack([per_hour[(t.date(), t.hour)] for t in times])          # [T, N, 3]
+        else:
+            weather = np.broadcast_to(self.node_weather(times[0].date())[None], (t_count, n, len(WEATHER_COLUMNS)))
+        out[:, :, [COLUMN[c] for c in GROUPS["weather"]]] = weather
+        out[:, :, COLUMN["flood_x_precip"]] = self.flood[None, :] * weather[:, :, PRECIP_COLUMN]
         out[:, :, [COLUMN[c] for c in GROUPS["temporal"]]] = clock_features(times)[:, None, :]
 
         ttl = timedelta(minutes=EVENT_TTL_MINUTES)
@@ -185,19 +212,38 @@ class NodeContext:
                         out[step, node, COLUMN["event_count"]] += 1.0
         out[:, :, COLUMN["event_count"]] = np.log1p(out[:, :, COLUMN["event_count"]])
 
+        if self.text_prior is not None:
+            cols = [COLUMN[c] for c in GROUPS["text_prior"]]
+            per_bucket = {}
+            for step, when in enumerate(times):
+                b = when.hour + (24 if when.weekday() >= 5 else 0)
+                if b not in per_bucket:
+                    per_bucket[b] = self.text_prior.values[:, b, :]
+                out[step][:, cols] = per_bucket[b]          # basic index first: a view, then the columns
+
         if self.drop:
             out[:, :, group_columns(self.drop)] = 0.0
-        return torch.from_numpy(out)
+        return torch.from_numpy(np.ascontiguousarray(out[:, :, :len(self.feature_names)]))
 
     def window(self, day: date, session: str, start: int, steps: int = WINDOW_STEPS) -> torch.Tensor:
         """[steps, N, N_FEATURES] for the window starting `start` minutes into a session."""
         begin = session_start(day, session).to_pydatetime() + timedelta(minutes=int(start) * STEP_MINUTES)
         return self.at_times([begin + timedelta(minutes=i * STEP_MINUTES) for i in range(steps)])
 
-    def node_weather(self, day: date) -> np.ndarray:
-        """[N, 3] scaled daily weather of each node's cell; the day's citywide mean for a cell
-        without a row, and mid-range (0.5) when the day has no weather at all."""
-        rows = [self.weather.get((day, c)) for c in self.cells]
+    def node_weather(self, day: date, hour: Optional[int] = None) -> np.ndarray:
+        """
+        [N, 3] scaled weather of each node's cell: at `hour` when the weather is hourly, else
+        for the day. A cell without a row takes the citywide mean of that hour (or day); an hour
+        with no row anywhere takes the day's mean over its hours; mid-range (0.5) when the day
+        has no weather at all, which is recorded in missing_weather.
+        """
+        if self.hourly and hour is not None:
+            rows = [self.weather.get((day, int(hour), c)) for c in self.cells]
+            if not any(r is not None for r in rows):
+                same_day = [v for k, v in self.weather.items() if k[0] == day]
+                rows = [None] * len(self.cells) if not same_day else [np.mean(same_day, axis=0)] * len(self.cells)
+        else:
+            rows = [self.weather.get((day, c)) for c in self.cells]
         known = [r for r in rows if r is not None]
         if not known:
             self.missing_weather.add(day)
@@ -208,10 +254,13 @@ class NodeContext:
     def config(self) -> dict:
         """What a checkpoint must keep to rebuild the same context at prediction time."""
         return {
-            "context_features": FEATURES,
+            "context_features": list(self.feature_names),
+            **({"text_prior_before": self.text_prior.before.isoformat(),
+                "text_prior": self.text_prior.describe()} if self.text_prior is not None else {}),
             "context_weather_min": self.weather_min.tolist(),
             "context_weather_max": self.weather_max.tolist(),
             "context_drop": list(self.drop),
+            "weather_resolution": "hourly" if self.hourly else "daily",
         }
 
 
@@ -268,12 +317,65 @@ def edge_speed_kmh(graph: GraphData, spatial_dir: Path) -> np.ndarray:
     return np.where(seconds > 0, length / np.maximum(seconds, 1e-9) * 3.6, 25.0)
 
 
-def edge_features(graph: GraphData, spatial_dir: Path) -> torch.Tensor:
-    """[E, 2] per-edge road attributes for the decoder: log length and free-flow speed."""
+# Per-edge road attributes the decoder can take. A checkpoint records the list it was trained
+# with (config "edge_feature_names"); one without that key used EDGE_FEATURES_V1.
+EDGE_FEATURES_V1 = ["log_length", "free_flow_speed"]
+EDGE_FEATURES_V2 = EDGE_FEATURES_V1 + ["lanes", "road_class"]
+MAX_LANES = 6
+
+# Road type as an ordinal of how much through-traffic it carries (OSM `highway`); a link road
+# sits just below its parent class. Anything unlisted counts as a minor road.
+ROAD_CLASS = {
+    "motorway": 1.0, "motorway_link": 0.95, "trunk": 0.85, "trunk_link": 0.8,
+    "primary": 0.7, "primary_link": 0.65, "secondary": 0.55, "secondary_link": 0.5,
+    "tertiary": 0.4, "tertiary_link": 0.35, "unclassified": 0.25, "residential": 0.15,
+    "living_street": 0.05, "service": 0.05,
+}
+MINOR_ROAD_CLASS = 0.15
+
+
+def road_attributes(graph: GraphData, spatial_dir: Path) -> Dict[str, np.ndarray]:
+    """
+    Lane count and road class per edge (graph.edge_index order), from
+    full_network_edge_features.csv (src/ingestion/spatial_topology.py --edge-attributes-only).
+    Raises FileNotFoundError when that file has not been built.
+    """
+    path = Path(spatial_dir) / "full_network_edge_features.csv"
+    table = pd.read_csv(path, usecols=["source_node_id", "target_node_id", "lanes", "road_type"])
+    # Named, not positional: usecols keeps the file's column order, not the order listed above.
+    by_pair = {(int(u), int(v)): (lanes, road) for u, v, lanes, road in zip(
+        table["source_node_id"], table["target_node_id"], table["lanes"], table["road_type"])}
+    src, dst = _endpoints(graph)
+    node_ids = np.asarray(graph.node_ids)
+    lanes = np.ones(src.size)
+    road = np.full(src.size, MINOR_ROAD_CLASS)
+    for e, (u, v) in enumerate(zip(node_ids[src], node_ids[dst])):
+        found = by_pair.get((int(u), int(v)))
+        if found is not None:
+            lanes[e] = float(found[0]) if pd.notna(found[0]) else 1.0
+            road[e] = ROAD_CLASS.get(str(found[1]), MINOR_ROAD_CLASS)
+    return {"lanes": np.clip(lanes, 1, MAX_LANES) / MAX_LANES, "road_class": road}
+
+
+def edge_features(graph: GraphData, spatial_dir: Path, names: Sequence[str] = tuple(EDGE_FEATURES_V1)) -> torch.Tensor:
+    """
+    [E, len(names)] per-edge road attributes for the decoder, from EDGE_FEATURES_V2:
+    log length, free-flow speed (the speed limit, posted or assumed by road type), lane count
+    (/ MAX_LANES) and road class. The default is the two a checkpoint without
+    "edge_feature_names" was trained with.
+    """
+    unknown = set(names) - set(EDGE_FEATURES_V2)
+    if unknown:
+        raise ValueError(f"unknown edge feature(s) {sorted(unknown)}; choose from {EDGE_FEATURES_V2}")
     src, dst = _endpoints(graph)
     length = np.asarray(graph.adjacency[src, dst]).ravel()
-    speed = edge_speed_kmh(graph, spatial_dir)
-    return torch.tensor(np.stack([np.log1p(length) / math.log(1000), speed / 100.0], axis=1), dtype=torch.float32)
+    columns = {
+        "log_length": np.log1p(length) / math.log(1000),
+        "free_flow_speed": edge_speed_kmh(graph, spatial_dir) / 100.0,
+    }
+    if {"lanes", "road_class"} & set(names):
+        columns.update(road_attributes(graph, spatial_dir))
+    return torch.tensor(np.stack([columns[n] for n in names], axis=1), dtype=torch.float32)
 
 
 def load_cell_weather(
@@ -282,7 +384,10 @@ def load_cell_weather(
     weather_min: Optional[np.ndarray] = None,
     weather_max: Optional[np.ndarray] = None,
 ) -> Tuple[Dict[Tuple[date, str], np.ndarray], np.ndarray, np.ndarray]:
-    """(day, cell) -> min-max scaled weather, scaled on the training days unless min/max given."""
+    """
+    (day, cell) -> min-max scaled weather -- or (day, hour, cell) when `weather_csv` is the hourly
+    file -- scaled on the training days (all their hours) unless min/max are given.
+    """
     if weather_csv is None or not Path(weather_csv).exists():
         zeros = np.zeros(len(WEATHER_COLUMNS))
         return {}, zeros if weather_min is None else np.asarray(weather_min), np.ones(len(WEATHER_COLUMNS)) if weather_max is None else np.asarray(weather_max)
@@ -299,7 +404,10 @@ def load_cell_weather(
     span = np.where(weather_max > weather_min, weather_max - weather_min, 1.0)
     # Not clipped, like alignment.MinMaxScaler: a wetter day than any in training stays visible.
     scaled = ((df[WEATHER_COLUMNS].to_numpy(dtype=np.float64) - weather_min) / span).astype(np.float32)
-    table = {(d, str(c)): row for d, c, row in zip(df["date"], df["grid_cell"], scaled)}
+    if "hour" in df.columns:
+        table = {(d, int(h), str(c)): row for d, h, c, row in zip(df["date"], df["hour"], df["grid_cell"], scaled)}
+    else:
+        table = {(d, str(c)): row for d, c, row in zip(df["date"], df["grid_cell"], scaled)}
     return table, weather_min, weather_max
 
 

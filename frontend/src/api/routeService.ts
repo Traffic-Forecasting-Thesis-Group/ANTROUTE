@@ -12,12 +12,19 @@ export type RouteModel = 'antroute' | 'baseline';
  */
 export type RouteAlgorithm = 'antroute' | 'iaco' | 'shortest_distance' | 'mixed';
 
+/** Caption for every travel time the app shows: ETA is not a thesis metric and was never scored. */
+export const DURATION_NOTE = 'estimated, not evaluated';
+
 export interface RouteOption {
   label: string;
   via: string;
+  /** The ETA engine's travel time -- estimated, not evaluated (see duration_note). */
   duration_min: number;
+  duration_note?: string;
   distance_km: number;
   congestion_level: CongestionLevel;
+  /** "Estimated from weather, road type and traffic reports" when the level rests mostly on roads far from any camera. */
+  congestion_note?: string | null;
   event_note?: string | null;
   path?: Coordinates[];
   algorithm?: RouteAlgorithm | null;
@@ -25,10 +32,13 @@ export interface RouteOption {
   fallback_reason?: string | null;
   /** Mean predicted congestion risk (0-1) along the route, measured the same way for both models. */
   mean_risk?: number | null;
-  /** Share of the route's length with a risk prediction of any kind; below 0.5 congestion_level is 'unknown'. */
+  /** Share of the route's length in the observed or propagated risk tier; below 0.5 congestion_level is 'unknown'. */
   risk_coverage?: number | null;
-  /** Share of the route's length by where its risk came from: camera model, borrowed nearby, non-visual model, or none. */
-  risk_sources?: { predicted: number; borrowed: number; nonvisual: number; unavailable: number } | null;
+  /**
+   * Share of the route's length per risk tier: observed (camera subgraph, model prediction),
+   * propagated (within 1.5 km of it), assumed (farther: weather, flood, incidents, clock, road class).
+   */
+  risk_sources?: { observed: number; propagated: number; assumed: number } | null;
 }
 
 export interface Coordinates {
@@ -63,8 +73,9 @@ export interface RouteOptimalitySummary {
 
 /**
  * The thesis routing evaluation (Section 3.9, Appendix 3): ANTRoute against the baseline
- * Improved ACO on Route Optimality and ETA MAE, RMSE, MSE, MAPE and R², scored against Apple
- * Maps by scripts/evaluate_routing.py. Δ% follows Equations 7-8 (positive = ANTRoute better).
+ * Improved ACO on Route Optimality (both routes timed in Google Maps), congestion exposure and
+ * event exposure, with route length as a descriptive extra, by scripts/evaluate_routing.py.
+ * Δ% follows Equations 7-8 (positive = ANTRoute better). ETA is not evaluated.
  */
 export interface ComparisonMetrics {
   source: 'routing' | 'forecast';
@@ -75,8 +86,6 @@ export interface ComparisonMetrics {
   routeOptimality: RouteOptimalitySummary | null;
   /** The same table per scenario: "overall" (every trip) first, then each scenario. */
   scenarios: ScenarioEvaluation[];
-  /** True when each system's predicted ETA was calibrated before scoring (leave-one-trip-out scale). */
-  etaCalibrated: boolean;
 }
 
 export interface ScenarioEvaluation {
@@ -87,8 +96,8 @@ export interface ScenarioEvaluation {
 }
 
 /**
- * The routing evaluation of one planned trip. Only the test trips were timed in Apple Maps,
- * so 'evaluated' carries that trip's own Route Optimality and ETA errors; 'other_time' means
+ * The routing evaluation of one planned trip. Only the test trips were timed in Google Maps,
+ * so 'evaluated' carries that trip's own Route Optimality and exposures; 'other_time' means
  * the same stops were evaluated at another departure time; 'not_evaluated' means no test trip
  * has these stops. `message` says which, in words for the user.
  */
@@ -99,7 +108,6 @@ export interface TripEvaluation {
   baselineName: string;
   routeOptimality: { antroute: number; baseline: number } | null;
   metrics: ComparisonMetricRow[];
-  etaCalibrated: boolean;
 }
 
 interface TripEvaluationResponse {
@@ -109,7 +117,6 @@ interface TripEvaluationResponse {
   baseline_name: string;
   route_optimality?: { antroute: number; baseline: number } | null;
   metrics: ComparisonMetricsResponse['metrics'];
-  eta_calibrated?: boolean;
 }
 
 export interface RoutePlan {
@@ -143,7 +150,6 @@ interface ComparisonMetricsResponse {
   }[];
   route_optimality?: { antroute: number; baseline: number; n_trials: number } | null;
   scenarios?: { scenario: string; label: string; n_trials: number; metrics: MetricRowResponse[] }[];
-  eta_calibrated?: boolean;
 }
 
 type MetricRowResponse = ComparisonMetricsResponse['metrics'][number];
@@ -218,7 +224,7 @@ export async function planRoute(
 
 /**
  * POST /routes/trip-evaluation — the evaluation of this trip (same stops and departure as
- * planRoute): its own metrics when it is one of the test trips timed in Apple Maps.
+ * planRoute): its own metrics when it is one of the test trips timed in Google Maps.
  */
 export async function getTripEvaluation(
   origin: string,
@@ -251,7 +257,6 @@ export async function getTripEvaluation(
         pValue: m.p_value ?? null,
         significant: m.significant ?? null,
       })),
-      etaCalibrated: data.eta_calibrated ?? false,
     };
   } catch (error: any) {
     if (error.response) {
@@ -280,7 +285,6 @@ export async function getComparisonMetrics(): Promise<ComparisonMetrics> {
         nTrials: sc.n_trials,
         metrics: sc.metrics.map(toMetricRow),
       })),
-      etaCalibrated: data.eta_calibrated ?? false,
       routeOptimality: data.route_optimality
         ? {
             antroute: data.route_optimality.antroute,

@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { Route as RouteIcon } from 'lucide-react';
 
-import type { RouteOption } from '@/api/routeService';
+import { DURATION_NOTE, type RouteOption } from '@/api/routeService';
 import PageHeader from '@/app/PageHeader';
 import { Button, Card, EmptyState, Spinner } from '@/components/ui';
-import MetricsTable from '@/features/metrics/MetricsTable';
+import MetricsTable, { MetricsFootnote } from '@/features/metrics/MetricsTable';
 import { useTripPlanner } from '@/features/trip/TripPlannerContext';
 import { baselineMethodLabel } from '@/lib/routeLabels';
 import { ANT_COLOR, BASELINE_COLOR } from '@/lib/theme';
@@ -43,9 +43,12 @@ function ModelCard({
       {route ? (
         <dl className="grid grid-cols-2 gap-4">
           <div>
-            <dt className="text-xs font-medium text-slate-500">ETA</dt>
+            <dt className="text-xs font-medium text-slate-500">Travel time</dt>
             <dd className="mt-0.5 text-2xl font-bold text-slate-900">
               {route.duration_min} <span className="text-base font-medium">min</span>
+            </dd>
+            <dd className="mt-0.5 text-[11px] italic text-slate-400">
+              {route.duration_note ?? DURATION_NOTE}
             </dd>
           </div>
           <div>
@@ -68,9 +71,9 @@ function ModelCard({
  * ANTRoute against the baseline for the trip planned on the Dashboard. The planner state
  * lives above the router, so switching to this page does not re-plan anything.
  *
- * The metrics here are this trip's own evaluation against Apple Maps: only trips that were
- * timed in Apple Maps have one, and any other trip shows dashes rather than borrowing
- * another trip's numbers. The whole-test-set evaluation is on the Evaluation page.
+ * The metrics here are this trip's own evaluation against Google Maps: only trips that were
+ * timed there have one, and any other trip gets none at all rather than borrowing another
+ * trip's numbers. The whole-test-set evaluation is on the Evaluation page.
  */
 export default function ComparisonPage() {
   const {
@@ -135,18 +138,15 @@ export default function ComparisonPage() {
               <div className="flex justify-center py-10">
                 <Spinner className="h-7 w-7 text-brand" />
               </div>
-            ) : (
+            ) : tripMetricRows.length > 0 ? (
               <Card className="p-5">
-                <MetricsTable
-                  rows={tripMetricRows}
-                  baselineName={tripEvaluation.baselineName}
-                />
-                <p className="mt-3 text-xs leading-relaxed text-slate-500">
-                  {tripEvaluation.status === 'evaluated'
-                    ? 'Lower is better for MAE, RMSE, MSE, MAPE. Higher is better for Route Optimality and R².'
-                    : tripEvaluation.message}
-                </p>
+                <MetricsTable rows={tripMetricRows} baselineName={tripEvaluation.baselineName} />
+                <MetricsFootnote />
               </Card>
+            ) : (
+              <p className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
+                {tripEvaluation.message}
+              </p>
             )}
           </div>
         )}

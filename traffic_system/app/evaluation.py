@@ -2,17 +2,17 @@
 ANTROUTE-vs-baseline numbers, read from the evaluation outputs rather than typed in by hand.
 
   GET /routes/comparison-metrics   the thesis evaluation (Section 3.9, Appendix 3 Table 6):
-      outputs/routing_eval/metrics.json from scripts/evaluate_routing.py --apple-maps --
-      ANTROUTE against the baseline Improved ACO (Cheng 2023) on Route Optimality (Equation 1)
-      and ETA MAE, RMSE, MSE, MAPE and R² (Equations 2-6) against Apple Maps typical traffic,
-      with Δ% by Equations 7-8 and the Wilcoxon signed-rank p-value. Until that file exists it
-      says so; it never substitutes another table.
+      outputs/routing_eval/metrics.json from scripts/evaluate_routing.py --google-maps --
+      ANTROUTE against the baseline Improved ACO (Cheng 2023) on Route Optimality (Equation 1,
+      both routes timed by Google Maps), congestion exposure and event exposure, with route
+      length as a descriptive extra, Δ% by Equations 7-8 and the Wilcoxon signed-rank p-value.
+      ETA is not a metric. Until that file exists it says so; it never substitutes another table.
 
   GET /routes/forecast-metrics     diagnostics of the Congestion Risk Score itself:
       risk_edges.csv's held-out TEST split against the human Light/Medium/Heavy labels, against
       a constant at the training labels' mean, after a train-split calibration
       (src/models/risk_calibration.py), with the uncalibrated MAE beside it. This scores the
-      model, not routes or ETAs, and is not part of the routing comparison.
+      model, not routes, and is not part of the routing comparison.
 
 Both are cached until the file they read changes.
 """
@@ -38,56 +38,17 @@ from src.routing.significance import relative_difference
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 ROUTING_METRICS = REPO_ROOT / "outputs/routing_eval/metrics.json"
-# Where evaluate_routing.py writes the same evaluation with each system's ETA calibrated
-# (src/routing/eta_calibration.py), relative to ROUTING_METRICS.
-CALIBRATED_SUBDIR = "eta_calibrated"
 
-
-def _metrics_file() -> Path:
-    """
-    The evaluation the app shows: the ETA-calibrated one when evaluate_routing.py wrote it
-    beside the raw metrics.json, else the raw one. Calibration scales each system's predicted
-    ETA by a factor fitted on every other trip, so no trip is scored by a factor that saw its
-    own Apple Maps time; routes, and so Route Optimality, are the same in both.
-    """
-    calibrated = ROUTING_METRICS.parent / CALIBRATED_SUBDIR / ROUTING_METRICS.name
-    return calibrated if calibrated.exists() else ROUTING_METRICS
-
-
-def _is_calibrated(report: dict) -> bool:
-    return bool((report.get("eta_calibration") or {}).get("applied"))
-
-
-def eta_display_scale() -> float:
-    """
-    The factor the app multiplies its ETA engine's times by, so the time on a route card is
-    on Apple Maps' scale: ANTROUTE's ETA scale fitted on every test trip. Both systems' cards
-    are timed by that one engine (risk_routing._duration_min), so one factor serves both and
-    two routes on the same road still show the same time. 1.0 without a calibrated evaluation.
-    """
-    path = ROUTING_METRICS.parent / CALIBRATED_SUBDIR / ROUTING_METRICS.name
-    if not path.exists():
-        return 1.0
-    return _cached(path, _display_scale)
-
-
-def _display_scale(path: Path) -> float:
-    report = json.loads(path.read_text(encoding="utf-8"))
-    scale = _finite(((report.get("eta_calibration") or {}).get("scale_all_trips") or {}).get("antroute"))
-    return scale if scale is not None and scale > 0 else 1.0
-
-# (key in metrics.json, label, higher is better)
-# (key in metrics.json, label, higher is better, display scale, unit) -- the thesis's
-# evaluation metrics (Section 3.9, Appendix 3 Table 6). metrics.json keeps ETA errors in
-# seconds; they are shown in minutes (MSE in min^2) as the app's design does.
+# (key in metrics.json, label, higher is better, display scale, unit) -- the thesis's routing
+# metrics (Section 3.9, Appendix 3 Table 6), each paired per trip and tested. ETA is not one.
 ROUTING_ROWS = [
     ("route_optimality", "Route Optimality", True, 1.0, "%"),
-    ("mae", "MAE", False, 1 / 60, " min"),
-    ("rmse", "RMSE", False, 1 / 60, " min"),
-    ("mse", "MSE", False, 1 / 3600, " min²"),
-    ("mape", "MAPE", False, 1.0, "%"),
-    ("r_squared", "R²", True, 1.0, ""),
+    ("congestion_exposure", "Congestion exposure", False, 1.0, ""),
+    ("event_exposure", "Event exposure", False, 1.0, ""),
+    ("avoidable_event_exposure", "Avoidable event exposure", False, 1.0, ""),
 ]
+# Shown beside them, never tested: route length (metres in metrics.json, shown in km).
+DESCRIPTIVE_ROWS = [("distance_m", "Route length (descriptive)", 1 / 1000, " km")]
 
 
 class MetricsUnavailableError(Exception):
@@ -130,6 +91,8 @@ def _show(value: float, unit: str) -> str:
         return f"{value:.1f}%"
     if unit == "":
         return f"{value:.2f}"
+    if unit == " km":
+        return f"{value:.2f} km"
     return f"{value:,.1f}{unit}" if abs(value) < 1000 else f"{value:,.0f}{unit}"
 
 
@@ -144,31 +107,21 @@ SCENARIO_LABELS = [
 
 def _scenario_rows(report: dict, scenario: str) -> Tuple[List[ComparisonMetricRow], int, Optional[RouteOptimalitySummary]]:
     """
-    One scenario's table: per metric ANTROUTE, the Improved ACO baseline, Δ% by Equation 7
-    (MAE, RMSE, MSE, MAPE) or Equation 8 (Route Optimality, R²), and the Wilcoxon p-value.
+    One scenario's table: per tested metric ANTROUTE, the Improved ACO baseline, Δ% by
+    Equation 8 (Route Optimality) or Equation 7 (the exposures), and the Wilcoxon p-value;
+    then route length, descriptive only (no Δ%, no test). Every value is the mean over trips.
     """
     paired_rows = {r["metric"]: r for r in report.get("significance", []) if r.get("scenario_type") == scenario}
-    pooled = {s: (report.get("pooled", {}).get(s) or {}).get(scenario) or {} for s in ("antroute", "baseline")}
     rows: List[ComparisonMetricRow] = []
     n_trials = 0
     optimality = None
     for key, label, higher, scale, unit in ROUTING_ROWS:
         r = paired_rows.get(key) or {}
-        if key == "route_optimality" or not pooled["antroute"]:
-            # Route Optimality is a per-trip ratio, so its mean over trips is the figure.
-            ant, base = _finite(r.get("proposed_mean")), _finite(r.get("baseline_mean"))
-        else:
-            # ETA errors over every evaluated leg pooled (Equations 2-6 over the test set). A
-            # mean of per-trip values is not the same number, and per-trip R² over a trip's
-            # one to three legs is meaningless -- averaged, it reached -22.
-            ant, base = _finite(pooled["antroute"].get(key)), _finite(pooled["baseline"].get(key))
+        ant, base = _finite(r.get("proposed_mean")), _finite(r.get("baseline_mean"))
         if ant is None or base is None:
             continue
         n_trials = max(n_trials, int(r.get("n") or 0))
         delta = relative_difference(base, ant, higher_is_better=higher)
-        # The Wilcoxon test pairs the two systems trip by trip; R² has no per-trip value to
-        # pair, so it carries no p-value.
-        paired = key != "r_squared" and r
         rows.append(
             ComparisonMetricRow(
                 metric=label,
@@ -176,22 +129,52 @@ def _scenario_rows(report: dict, scenario: str) -> Tuple[List[ComparisonMetricRo
                 baseline=_show(base * scale, unit),
                 improvement_pct=round(delta, 1) if math.isfinite(delta) else None,
                 higher_is_better=higher,
-                p_value=_finite(r.get("wilcoxon_p")) if paired else None,
-                significant=bool(r.get("significant")) if paired else None,
+                p_value=_finite(r.get("wilcoxon_p_holm")) if r.get("wilcoxon_p_holm") is not None else _finite(r.get("wilcoxon_p")),
+                significant=bool(r["significant_holm"]) if r.get("significant_holm") is not None else bool(r.get("significant")),
             )
         )
         if key == "route_optimality":
             optimality = RouteOptimalitySummary(antroute=round(ant, 1), baseline=round(base, 1), n_trials=int(r.get("n") or 0))
+    if rows:
+        means = (report.get("per_trial_mean_sd") or {}).get(scenario) or {}
+        for key, label, scale, unit in DESCRIPTIVE_ROWS:
+            m = means.get(key) or {}
+            ant, base = _finite((m.get("antroute") or {}).get("mean")), _finite((m.get("baseline") or {}).get("mean"))
+            if ant is not None and base is not None:
+                rows.append(ComparisonMetricRow(metric=label, antroute=_show(ant * scale, unit),
+                                                baseline=_show(base * scale, unit)))
     return rows, n_trials, optimality
+
+
+def _reference_text(report: dict) -> str:
+    """How the Google Maps reference was obtained, from metrics.json -- or that it was not recorded."""
+    ref = report.get("reference") or {}
+    if not ref.get("access_methods"):
+        return "How the reference times were obtained is not recorded in this evaluation."
+    dates = ref.get("departure_dates") or {}
+    queried = ref.get("queried_on") or {}
+    return (
+        f"Reference: Google Maps ({'; '.join(ref['access_methods'])}), traffic model "
+        f"{'; '.join(ref.get('traffic_models') or ['not recorded'])}, departure slots "
+        f"{', '.join(ref.get('departure_slots') or [])} on dates {dates.get('first')} to {dates.get('last')}, "
+        f"looked up {queried.get('first')} to {queried.get('last')}."
+    )
+
+
+def _model_text(report: dict) -> str:
+    model = report.get("model") or {}
+    if not model.get("checkpoint"):
+        return "The checkpoint behind these risk scores is not recorded."
+    text = "on" if model.get("use_text") else "off"
+    return f"Risk scores from {Path(str(model['checkpoint'])).name} (text branch {text})."
 
 
 def _routing_metrics(path: Path) -> ComparisonMetricsResponse:
     """
-    The thesis evaluation (Appendix 3, Table 6) from scripts/evaluate_routing.py --apple-maps:
+    The thesis evaluation (Appendix 3, Table 6) from scripts/evaluate_routing.py --google-maps:
     every paired test trip ("overall"), and the same table for each scenario.
     """
     report = json.loads(path.read_text(encoding="utf-8"))
-    calibrated = _is_calibrated(report)
     rows, n_trials, optimality = _scenario_rows(report, "overall")
     if not rows:
         raise MetricsUnavailableError(f"{path.name} has no paired results yet.")
@@ -205,22 +188,17 @@ def _routing_metrics(path: Path) -> ComparisonMetricsResponse:
         title="Evaluation Metrics",
         baseline_name="Improved ACO (Cheng 2023)",
         description=(
-            f"{n_trials} paired test trips: both models routed on the same origin-destination "
-            "pairs and departure windows, scored against Apple Maps typical traffic. Route "
-            "Optimality is the mean over trips; the ETA errors pool every leg. Lower is better for "
-            "MAE, RMSE, MSE and MAPE; higher is better for Route Optimality and R²."
-            + (
-                " Each system's predicted ETA is calibrated by one scale factor fitted on every "
-                "other trip (leave-one-trip-out), so no trip is scored by a factor fitted on its "
-                "own Apple Maps time."
-                if calibrated
-                else ""
-            )
+            f"{n_trials} paired test trips in Metro Manila: both models routed on the same "
+            "origin-destination pairs and departure windows. Route Optimality times both routes in "
+            "Google Maps against Google's own route (higher is better); congestion and event exposure "
+            "sum the predicted risk and the reported-incident impact along each route (lower is "
+            "better; avoidable event exposure leaves out incidents at a trip's own stops, which no route "
+            "can avoid); route length is descriptive. All are means over trips. ETA is not evaluated. "
+            f"{_reference_text(report)} {_model_text(report)}"
         ),
         metrics=rows,
         route_optimality=optimality,
         scenarios=scenarios,
-        eta_calibrated=calibrated,
     )
 
 
@@ -322,23 +300,21 @@ def _risk_edges_file() -> Path:
 
 def get_comparison_metrics() -> ComparisonMetricsResponse:
     """
-    The Comparison page's metrics: the routing evaluation only (Route Optimality and ETA
-    accuracy against Apple Maps, Section 3.9). Raises MetricsUnavailableError -- never a
-    substitute table -- until scripts/evaluate_routing.py --apple-maps has written it.
+    The Comparison page's metrics: the routing evaluation only (Route Optimality against Google
+    Maps, congestion and event exposure; Section 3.9). Raises MetricsUnavailableError -- never a
+    substitute table -- until scripts/evaluate_routing.py --google-maps has written it.
     """
-    path = _metrics_file()
-    if path.exists():
-        return _cached(path, _routing_metrics)
+    if ROUTING_METRICS.exists():
+        return _cached(ROUTING_METRICS, _routing_metrics)
     raise MetricsUnavailableError(
         "The routing evaluation hasn't been run yet. Route the test trips with "
-        "scripts/evaluate_routing.py --template, fill in the Apple Maps travel times, then score "
-        "them with --apple-maps to produce outputs/routing_eval/metrics.json."
+        "scripts/evaluate_routing.py --template, fill in the Google Maps travel times and how they "
+        "were obtained, then score them with --google-maps to produce outputs/routing_eval/metrics.json."
     )
 
 
-def _per_trip(path: Path) -> Tuple[List[dict], bool]:
-    report = json.loads(path.read_text(encoding="utf-8"))
-    return report.get("per_trip", []), _is_calibrated(report)
+def _per_trip(path: Path) -> List[dict]:
+    return json.loads(path.read_text(encoding="utf-8")).get("per_trip", [])
 
 
 def _clock(window: str) -> str:
@@ -347,13 +323,13 @@ def _clock(window: str) -> str:
 
 
 def _trip_rows(row: dict) -> Tuple[List[ComparisonMetricRow], Optional[RouteOptimalitySummary]]:
-    """One evaluated trip's metrics, formatted like the test-set table (ETA errors in minutes)."""
+    """One evaluated trip's metrics, formatted like the test-set table."""
     rows: List[ComparisonMetricRow] = []
     optimality = None
     for key, label, higher, scale, unit in ROUTING_ROWS:
         ant, base = _finite(row.get(f"{key}_antroute")), _finite(row.get(f"{key}_baseline"))
         if ant is None or base is None:
-            continue  # R² is undefined on a single-leg trip
+            continue
         delta = relative_difference(base, ant, higher_is_better=higher)
         rows.append(
             ComparisonMetricRow(
@@ -366,6 +342,11 @@ def _trip_rows(row: dict) -> Tuple[List[ComparisonMetricRow], Optional[RouteOpti
         )
         if key == "route_optimality":
             optimality = RouteOptimalitySummary(antroute=round(ant, 1), baseline=round(base, 1), n_trials=1)
+    for key, label, scale, unit in DESCRIPTIVE_ROWS:
+        ant, base = _finite(row.get(f"{key}_antroute")), _finite(row.get(f"{key}_baseline"))
+        if ant is not None and base is not None:
+            rows.append(ComparisonMetricRow(metric=label, antroute=_show(ant * scale, unit),
+                                            baseline=_show(base * scale, unit)))
     return rows, optimality
 
 
@@ -373,23 +354,22 @@ def get_trip_evaluation(stops: List[int], window: Optional[str]) -> TripEvaluati
     """
     The evaluation of the trip the user planned: the test trip with the same stops (graph
     nodes, origin first) and the same departure time of day as `window`, the recorded window
-    the app routed on. Only test trips have Apple Maps travel times, so a trip that is not
+    the app routed on. Only test trips have Google Maps travel times, so a trip that is not
     one gets no metrics -- never another trip's, and never the test-set mean in their place.
     """
-    path = _metrics_file()
-    if not path.exists():
+    if not ROUTING_METRICS.exists():
         raise MetricsUnavailableError(
-            "The routing evaluation hasn't been run yet, so no trip has Apple Maps results."
+            "The routing evaluation hasn't been run yet, so no trip has Google Maps results."
         )
-    per_trip, calibrated = _cached(path, _per_trip)
+    per_trip = _cached(ROUTING_METRICS, _per_trip)
     trips = [r for r in per_trip if r.get("stop_nodes")]
     same_stops = [r for r in trips if [int(v) for v in str(r["stop_nodes"]).split()] == list(stops)]
     if not same_stops:
         return TripEvaluationResponse(
             status="not_evaluated",
             message=(
-                f"This trip isn't one of the {len(trips)} test trips timed in Apple Maps, so it has "
-                "no Route Optimality or ETA error to report. Plan a test trip to see its evaluation."
+                f"This trip isn't one of the {len(trips)} test trips timed in Google Maps, so it has "
+                "no evaluation to report. Plan a test trip to see its evaluation."
             ),
         )
     minute = (lambda w: (pd.Timestamp(w).hour, pd.Timestamp(w).minute))
@@ -411,15 +391,14 @@ def get_trip_evaluation(stops: List[int], window: Optional[str]) -> TripEvaluati
         status="evaluated",
         message=(
             f"Trip {match['trip_id']} ({str(match.get('scenario_type', '')).replace('_', ' ')}), "
-            f"departing {_clock(match['window'])}: both models' routes timed in Apple Maps "
-            "typical traffic against Apple's own route."
+            f"departing {_clock(match['window'])}: both models' routes timed in Google Maps against "
+            "Google's own route, with each route's congestion and event exposure."
         ),
         trip_id=match["trip_id"],
         scenario_type=match.get("scenario_type"),
         evaluated_window=match["window"],
         route_optimality=optimality,
         metrics=rows,
-        eta_calibrated=calibrated,
     )
 
 

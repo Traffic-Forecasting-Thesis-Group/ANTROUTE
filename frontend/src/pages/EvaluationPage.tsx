@@ -8,8 +8,9 @@ import { cn } from '@/lib/cn';
 import MetricsTable, { MetricsFootnote } from '@/features/metrics/MetricsTable';
 
 /**
- * The thesis routing evaluation over every test trip timed in Apple Maps (Section 3.9,
- * Appendix 3): ANTRoute against the baseline Improved ACO, overall and per scenario.
+ * The thesis routing evaluation over every test trip timed in Google Maps (Section 3.9,
+ * Appendix 3): ANTRoute against the baseline Improved ACO on Route Optimality and the
+ * congestion and event exposures, overall and per scenario. Travel time is not among them.
  * A single trip's own evaluation is on the Comparison page.
  */
 export default function EvaluationPage() {
@@ -90,11 +91,8 @@ export default function EvaluationPage() {
             </h2>
             <p className="mb-5 mt-1 text-sm leading-relaxed text-slate-500">
               ANTRoute against the baseline ({data?.baselineName}) on {shown.nTrials} test
-              trips, both routed on the same stops and departure times and timed in Apple Maps
-              typical traffic.
-              {data?.etaCalibrated
-                ? " ETAs calibrated: each model's predicted ETA is scaled by one factor fitted on the other test trips."
-                : ''}
+              trips, both routed on the same stops and departure times and both timed in
+              Google Maps.
             </p>
 
             <MetricsTable rows={shown.metrics} baselineName={data?.baselineName} />

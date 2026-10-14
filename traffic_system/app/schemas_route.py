@@ -29,9 +29,15 @@ class PathPoint(BaseModel):
 class RouteOption(BaseModel):
     label: str
     via: str
+    # The ETA engine's travel time. Not a thesis metric and never scored against a reference,
+    # so it always travels with duration_note ("estimated, not evaluated").
     duration_min: int
+    duration_note: str = "estimated, not evaluated"
     distance_km: float
     congestion_level: str
+    # "Estimated from weather, road type and traffic reports" when most of the route is in the assumed risk tier,
+    # so the level comes from the non-visual estimate rather than the camera-fed model.
+    congestion_note: Optional[str] = None
     event_note: Optional[str] = None
     path: List[PathPoint] = []
     # Which algorithm produced this route: "antroute", or for the baseline "iaco",
@@ -41,13 +47,12 @@ class RouteOption(BaseModel):
     fallback_reason: Optional[str] = None
     # Mean predicted congestion risk along the route, on one yardstick for both systems.
     mean_risk: Optional[float] = None
-    # Share of the route's length whose risk came from the model (predicted on the road, or on a
-    # predicted road within 1.5 km); the rest is the window's median. Below 0.5 the
-    # congestion_level is "unknown" rather than a level read off that median.
+    # Share of the route's length in the observed or propagated risk tier, i.e. whose risk traces
+    # back to the camera-fed decoder. Below 0.5 the congestion_level comes with congestion_note.
     risk_coverage: Optional[float] = None
-    # Share of the route's length by where its risk came from: "predicted" (camera model),
-    # "borrowed" (within 1.5 km of a predicted road), "nonvisual" (weather, flood, incidents and
-    # clock only) and "unavailable" (no prediction of any kind).
+    # Share of the route's length per risk tier (src/routing/dynamic_weight.py TIERS):
+    # "observed" (camera subgraph, decoder prediction), "propagated" (within 1.5 km of it) and
+    # "assumed" (farther: estimated from weather, flood, incidents, clock and road class).
     risk_sources: Optional[Dict[str, float]] = None
 
 
@@ -90,8 +95,9 @@ class ScenarioEvaluation(BaseModel):
 class TripEvaluationResponse(BaseModel):
     """
     The routing evaluation for one planned trip (POST /routes/trip-evaluation): its own
-    Route Optimality and ETA errors against Apple Maps, when it is one of the evaluated test
-    trips. Only those have Apple Maps travel times, so any other trip has no evaluation.
+    Route Optimality against Google Maps and its congestion and event exposure, when it is one
+    of the evaluated test trips. Only those have Google Maps travel times, so any other trip
+    has no evaluation.
     """
     # "evaluated": this trip, at this departure time, is a test trip; metrics are its own.
     # "other_time": the same stops were evaluated, but departing at evaluated_window's time.
@@ -104,8 +110,6 @@ class TripEvaluationResponse(BaseModel):
     baseline_name: str = "Improved ACO (Cheng 2023)"
     route_optimality: Optional[RouteOptimalitySummary] = None
     metrics: List[ComparisonMetricRow] = []
-    # True when the ETA errors come from the calibrated evaluation (see app/evaluation.py).
-    eta_calibrated: bool = False
 
 
 class ComparisonMetricsResponse(BaseModel):
@@ -120,5 +124,3 @@ class ComparisonMetricsResponse(BaseModel):
     route_optimality: Optional[RouteOptimalitySummary] = None
     # The same table per scenario of Section 3.9, "overall" first; routing evaluation only.
     scenarios: List[ScenarioEvaluation] = []
-    # True when the ETA errors come from the calibrated evaluation (see app/evaluation.py).
-    eta_calibrated: bool = False

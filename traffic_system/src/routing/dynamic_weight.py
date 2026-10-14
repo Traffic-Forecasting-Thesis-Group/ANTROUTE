@@ -110,6 +110,7 @@ class PathMetrics:
     risk_exposure: float       # sum of edge risks (RADR eq. 5)
     dynamic_cost: float        # sum of W, what the router minimises
     mean_risk: float           # risk_exposure / n_edges, comparable across route lengths
+    event_exposure: float = 0.0   # sum of edge event impact (event_layer); 0 when no incident is in force
 
 
 @dataclass
@@ -182,9 +183,10 @@ class WeightedGraph:
             window=self.window,
         )
 
-    def evaluate_path(self, path: Sequence[int]) -> PathMetrics:
+    def evaluate_path(self, path: Sequence[int], impact: Optional[np.ndarray] = None) -> PathMetrics:
         """
-        Score a route given as road-network node ids.
+        Score a route given as road-network node ids. `impact` ([E], aligned to this graph, from
+        event_layer) adds the route's event exposure: the sum of edge event impact.
 
         Raises if two consecutive nodes are not joined by an arc, so an infeasible route
         can never be reported as a cheap one.
@@ -203,6 +205,7 @@ class WeightedGraph:
             risk_exposure=risk_exposure,
             dynamic_cost=float(self.weight[edges].sum()),
             mean_risk=risk_exposure / len(edges),
+            event_exposure=0.0 if impact is None else float(np.asarray(impact)[edges].sum()),
         )
 
     def to_networkx(self):
@@ -343,8 +346,22 @@ def scored_mask(graph: GraphData, frame: pd.DataFrame) -> np.ndarray:
 
 # How far, by road, an unscored edge may be from a scored one and still borrow its risk.
 # Congestion spills along a corridor for a few blocks; past ~1.5 km the nearest scored road
-# says nothing specific about this one, so the window's median stands in instead.
+# says nothing specific about this one, so it is estimated from the non-visual inputs instead.
 MAX_FILL_M = 1500.0
+
+# Where an edge's congestion risk comes from. Risk is given for every edge of the whole-city
+# graph (59,521 nodes), in three tiers:
+#
+#   observed     on the camera subgraph (k-hop around the CCTV intersections): the RADR STGNN
+#                -> MLP decoder's own prediction, with camera observations among its inputs
+#   propagated   off the subgraph but within MAX_FILL_M by road of an observed edge: that
+#                edge's risk for the same window, carried along the corridor
+#   assumed      farther than that: no camera signal reaches it, so the risk is estimated from
+#                the other inputs alone -- weather, flood hazard, reported incidents, clock and
+#                road class (src/routing/context_risk.py), or the window's median when that
+#                estimate is unavailable
+OBSERVED, PROPAGATED, ASSUMED = "observed", "propagated", "assumed"
+TIERS = (OBSERVED, PROPAGATED, ASSUMED)
 
 
 @dataclass
@@ -375,12 +392,23 @@ class NearestScored:
         return cls(np.asarray(source), np.asarray(dist))
 
 
+def risk_tiers(
+    graph: GraphData, scored: np.ndarray, nearest: NearestScored, max_m: float = MAX_FILL_M
+) -> np.ndarray:
+    """[E] OBSERVED / PROPAGATED / ASSUMED per edge, by the rule fill_unscored_risk applies."""
+    src, dst = graph.edge_index[0].numpy(), graph.edge_index[1].numpy()
+    scored = np.asarray(scored, dtype=bool)
+    near = np.minimum(nearest.distance_m[src], nearest.distance_m[dst]) <= max_m
+    return np.where(scored, OBSERVED, np.where(near, PROPAGATED, ASSUMED)).astype(object)
+
+
 def fill_unscored_risk(
     graph: GraphData,
     risk: np.ndarray,
     scored: np.ndarray,
     nearest: NearestScored,
     max_m: float = MAX_FILL_M,
+    assumed: Optional[np.ndarray] = None,
 ) -> Tuple[np.ndarray, Dict[str, int]]:
     """
     Risk for the edges the decoder did not score, instead of a flat DEFAULT_MISSING_RISK.
@@ -389,15 +417,23 @@ def fill_unscored_risk(
     prefers roads with *no data* over roads with data -- on Metro Manila, where the decoder
     scores ~2% of edges around the cameras, ANTROUTE steered off EDSA onto side streets for
     exactly that reason. Instead an unscored edge within `max_m` of a scored road (by road
-    distance, from its nearer endpoint) takes that road's risk for this window, and anything
-    farther takes the window's median: unknown is treated as typical, not as empty.
+    distance, from its nearer endpoint) takes that road's risk for this window (PROPAGATED),
+    and anything farther is ASSUMED: it takes `assumed` -- a per-edge estimate from the
+    non-visual inputs (context_risk.ContextRiskModel), [E] in [0, 1] -- or, without one, the
+    window's median. Unknown is treated as typical, never as empty.
 
-    Returns the filled risk and how many edges each rule covered.
+    Returns the filled risk and how many edges fell in each tier.
     """
     risk = np.asarray(risk, dtype=np.float64).copy()
     scored = np.asarray(scored, dtype=bool)
     if not scored.any():
-        return risk, {"scored": 0, "nearest": 0, "median": 0}
+        return risk, {OBSERVED: 0, PROPAGATED: 0, ASSUMED: 0}
+    if assumed is not None:
+        assumed = np.asarray(assumed, dtype=np.float64)
+        if assumed.shape != risk.shape:
+            raise ValueError(f"assumed must have shape {risk.shape}, received {assumed.shape}")
+        if not np.all(np.isfinite(assumed)) or np.any((assumed < 0) | (assumed > 1)):
+            raise ValueError("every assumed risk must be finite and within [0, 1]")
     src, dst = graph.edge_index[0].numpy(), graph.edge_index[1].numpy()
     n = graph.n_nodes
 
@@ -415,12 +451,12 @@ def fill_unscored_risk(
     edge_value = np.where(use_src, borrowed[src], borrowed[dst])
     edge_distance = np.minimum(nearest.distance_m[src], nearest.distance_m[dst])
 
-    median = float(np.median(risk[scored]))
     missing = ~scored
     near = missing & (edge_distance <= max_m) & np.isfinite(edge_value)
+    far = missing & ~near
     risk[near] = edge_value[near]
-    risk[missing & ~near] = median
-    return risk, {"scored": int(scored.sum()), "nearest": int(near.sum()), "median": int((missing & ~near).sum())}
+    risk[far] = assumed[far] if assumed is not None else float(np.median(risk[scored]))
+    return risk, {OBSERVED: int(scored.sum()), PROPAGATED: int(near.sum()), ASSUMED: int(far.sum())}
 
 
 def weighted_graph_from_risk_file(
