@@ -66,14 +66,16 @@ def test_human_label_overrides_auto_and_can_be_cleared(tmp_path):
         save_human_label(root, "d/c/0.jpg", "Gridlock")
 
 
-@pytest.fixture
+@pytest.fixture(autouse=True)
 def restore_main_module():
-    """Streamlit's AppTest swaps sys.modules['__main__'] for the app script; worker processes
-    spawned by later tests would re-run that script, so put the real one back."""
+    """Streamlit's AppTest swaps sys.modules['__main__'] (and sys.argv) for the app script; worker
+    processes spawned by later tests would re-run that script, so put the real ones back. Autouse,
+    so no AppTest in this file can leak them."""
     import sys
-    saved = sys.modules.get("__main__")
+    saved, argv = sys.modules.get("__main__"), list(sys.argv)
     yield
     sys.modules["__main__"] = saved
+    sys.argv[:] = argv
 
 
 def test_camera_mapping_page_saves_the_chosen_intersections(tmp_path, restore_main_module):
