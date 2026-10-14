@@ -13,7 +13,7 @@ ANTROUTE/
 ├── docker-compose.yml              # PostGIS + Redis + backend API
 ├── pipeline_context.md             # NLP data preprocessing context and schema logs
 ├── SESSION_HANDOFF.md              # Project status notes (training results, known issues)
-├── frontend/                       # React Native (Expo) mobile app
+├── frontend/                       # React web app (Vite + React Router)
 │   ├── App.js / index.js           # Entry point -> src/navigation/AppNavigator.tsx
 │   └── src/
 │       ├── api/                    # Axios client + auth/places/route services for the backend
@@ -108,9 +108,18 @@ pip install -r requirements.txt
 
 ### Frontend
 
-- **Framework:** React Native (Expo)
-- **Styling:** TailwindCSS
+- **Framework:** React 19 (Vite), React Router
+- **Styling:** Tailwind CSS
+- **Maps:** Google Maps JavaScript API via `@vis.gl/react-google-maps`
 - **Language:** TypeScript
+
+The frontend is a desktop browser app. The Expo / React Native mobile build was retired;
+`git tag pre-web-rewrite` marks the last commit that still contained it.
+
+Copy `frontend/.env.example` to `frontend/.env.local` and set `VITE_API_URL`,
+`VITE_GOOGLE_MAPS_API_KEY` and `VITE_GOOGLE_MAPS_MAP_ID`. The maps key must have the **Maps
+JavaScript API** enabled with an HTTP-referrer restriction that covers the dev server; a key
+restricted to the native Android/iOS SDKs renders a grey box.
 
 ## Setup and Run Instructions
 
@@ -147,14 +156,14 @@ pip install -r requirements.txt
    ```bash
    cd frontend
    npm install
-   npx expo start
+   npm run dev          # http://localhost:5173
    ```
 
 ### New Contributor Run Order
 
 1. Start Docker with `docker-compose up -d`.
 2. Start the backend server with Uvicorn.
-3. Start the Expo frontend with `npm start`.
+3. Start the frontend with `npm run dev` and open http://localhost:5173.
 
 ### Existing Developer Run Flow
 
@@ -173,5 +182,5 @@ If you already have the project cloned and dependencies installed, use this shor
 
 3. Start the frontend from the `frontend` directory:
    ```bash
-   npm start
+   npm run dev
    ```
