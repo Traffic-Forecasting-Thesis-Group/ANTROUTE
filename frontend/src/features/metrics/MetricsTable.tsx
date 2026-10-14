@@ -65,8 +65,9 @@ export function MetricsFootnote() {
       Higher is better for Route Optimality; lower is better for the exposures. Route
       Optimality times both routes in Google Maps. Route length is descriptive only and is
       not tested. Improvement is the relative difference &Delta;% (Equations 7&ndash;8):
-      positive means ANTRoute is better. * significant, Wilcoxon signed-rank p &lt; 0.05.
-      Travel time is not a thesis metric and is never scored here.
+      positive means ANTRoute is better. * significant at &alpha; = 0.05, Wilcoxon
+      signed-rank with Holm correction within each test family. Travel time is not a thesis
+      metric and is never scored here.
     </p>
   );
 }
