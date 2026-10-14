@@ -459,8 +459,10 @@ area.
   date (`outputs/appendix/lookups*.csv`), kept as evaluation evidence. Route geometry, place
   content and map tiles are not stored or republished. The Maps Platform terms limit caching and
   storing Google content, so confirm this use against the current Terms of Service before the
-  lookup files go into a public repository or the paper's appendix. The files are committed
-  nowhere until that is confirmed.
+  lookup files go into a public repository or the paper's appendix. These files are already in the
+  repository (`outputs/appendix/lookups*.csv`, and the durations inside `outputs/routing_eval/trials.csv`);
+  the ablation's raw lookups (`outputs/ablation/google_lookups.csv`) are kept out of git until the terms are
+  confirmed, and the repository should stay private until then.
 - **Holm correction:** the Q3 family, congestion exposure and event exposure, is corrected
   together (`significance.holm_adjust`, `Q3_FAMILY`); `wilcoxon_p_holm` and `significant_holm`
   are in `appendix3_significance.csv`, and the app's Evaluation tab shows the adjusted values.
@@ -515,3 +517,131 @@ of `risk_edges.csv` and the files beside it (`app/recorded.py`).
   checkpoint (PyTorch and the frames) on the app server is not done.
 - **Hourly weather:** `weatherstack_hourly.csv` (June 2025 – May 2026) and `node_context.py` read it;
   the next retrain on Colab uses it. The retrained scores are not produced yet.
+
+## 12. Does the risk score mean something, and is it just distance?
+
+### Risk validation on the held-out windows (`scripts/evaluate_risk_baselines.py`, `outputs/risk_eval/v8_validation.json`)
+
+Camera edges with a human label; every reference is fitted on the train split only. Test = May 25 (1,123 rows).
+
+| Test (May 25) | MAE | RMSE | R² | Spearman |
+|---|---|---|---|---|
+| **Model (v8)** | 0.318 | 0.357 | 0.01 | 0.10 |
+| Constant 0.5 | 0.390 | 0.441 | −0.51 | – |
+| Train mean | 0.326 | 0.362 | −0.01 | – |
+| Nearest-camera propagation (same window) | 0.308 | 0.475 | −0.74 | 0.07 |
+| Edge × AM/PM history | **0.280** | **0.329** | **0.16** | **0.42** |
+
+- Mean model score per label (test): Light 0.728, Medium 0.739, Heavy 0.740. A Heavy row scores
+  above a Light one 61% of the time (validation 73%, train 76%; 50% is chance).
+- 94% of the model's risk variance is between time windows and 4% between roads: it mostly moves
+  every road together.
+- Per camera, the model's Spearman on test ranges from −0.24 to +0.23.
+
+Reading: the score beats the constant forecasters and nearest-camera propagation on squared error and
+ranks better than chance, so it is not noise. But it is weakly discriminating on the held-out day, and a
+per-road time-of-day average beats it on every measure. That limits how much the risk term can steer
+routes (next table).
+
+### Source sensitivity
+
+`source_sensitivity.py` was run on v8 (`outputs/google_eval/stgnn_edge_v8.sources_with_text.json`; the
+What-if page): time of day moves risk most (0.11–0.12 mean), then weather (0.07) and flood (0.06–0.08),
+cameras on camera roads (0.09), incidents (0.01), text ~0.
+
+### Routing ablation (`scripts/evaluate_ablation.py`, `outputs/ablation/`)
+
+The 145 evaluation trips, every variant routed on the whole-city graph with the app's colony and measured
+with one yardstick (ANTROUTE's risk tiers and Event-Aware layer at the trip's window). Each variant vs
+ANTROUTE: paired Wilcoxon, Holm across variants.
+
+| Variant | Length (km) | Congestion exposure (Σ risk) | Risk per km | Length on top-tercile roads | Event exposure | Route differs from ANTROUTE |
+|---|---|---|---|---|---|---|
+| **ANTROUTE (λ 2, μ 1)** | 9.70 | 57.5 | 0.689 | 10.0% | 0.108 | – |
+| Distance only (λ 0, μ 0) | 9.70 | 56.1 (p = 0.01) | 0.692 (p < 0.001) | 12.4% (p < 0.001) | 0.146 (n.s.) | 68% |
+| λ 0 + events (μ 1) | 9.70 | 56.1 (p = 0.02) | 0.692 (p < 0.001) | 12.4% (p < 0.001) | 0.108 | 65% |
+| Risk only (λ 2, μ 0) | 9.70 | 57.4 (n.s.) | 0.689 | 10.0% | 0.108 | 5% |
+| Fill 0 | 10.66 (p < 0.001) | 77.3 (p < 0.001) | 0.693 (p < 0.001) | 11.1% (p < 0.001) | 0.108 | 74% |
+| Fill median | 9.70 | 57.2 (n.s.) | 0.690 (p < 0.001) | 10.8% (p < 0.001) | 0.108 | 21% |
+| Fill nearest, any distance | 9.70 | 57.4 (n.s.) | 0.690 (p < 0.001) | 10.7% (p < 0.001) | 0.108 | 21% |
+| Baseline (Improved ACO) | 14.53 (p < 0.001) | 88.3 (p < 0.001) | 0.695 (p < 0.001) | 13.3% (p < 0.001) | 0.121 (n.s.) | 92% |
+
+Reading, for "it is just distance":
+
+- The risk term does change routes: 68% of trips route differently from distance only, at no extra
+  length (9.70 km both). ANTROUTE puts less of its length on the highest-risk roads (10.0% vs 12.4%)
+  and has slightly lower risk per km.
+- The effect is small, because the scores differ little between roads (validation above). Summed
+  congestion exposure is not lower than distance only (57.5 vs 56.1): ANTROUTE's routes use more,
+  shorter edges.
+- ANTROUTE's large congestion-exposure advantage over the baseline (57.5 vs 88.3) is mostly the
+  baseline's 50% longer routes: per km the gap is 0.689 vs 0.695. Report risk per km and the
+  high-risk share beside the summed exposure.
+- The incident layer, not the risk, is what avoids incidents (event exposure 0.146 with distance only,
+  0.108 with μ = 1; the difference is not significant over these trips, but section 6's injected
+  incidents show it).
+- Fill rule: filling unscored roads with 0 is clearly wrong (74% of routes change, 10% longer, exposure
+  +34%). Median, nearest-at-any-distance and the method's tiers give near-identical routes (21% differ,
+  only slightly).
+
+### Route Optimality of the ablation variants (`scripts/ablation_google.py`, `outputs/ablation/route_optimality.csv`)
+
+Every variant's route timed in Google Maps like the evaluation (six via points per leg, the evaluation's
+departure date and slot per trip, BEST_GUESS; 380 lookups on 2026-10-15); the baseline keeps its
+evaluated times. Route Optimality = Google's own time / the route's time.
+
+| Variant | Route Optimality | vs ANTROUTE (Holm) |
+|---|---|---|
+| **ANTROUTE (λ 2, μ 1)** | 79.0% | – |
+| Distance only (λ 0, μ 0) | 80.3% | n.s. (p = 0.66) |
+| λ 0 + events | 80.4% | n.s. (p = 0.63) |
+| Risk only (λ 2, μ 0) | 79.0% | identical routes |
+| Fill 0 | 64.4% | p < 0.001 |
+| Fill median | 78.5% | n.s. (p = 0.08) |
+| Fill nearest, any distance | 78.5% | p = 0.03 |
+| Baseline (Improved ACO) | 69.0% | p < 0.001 |
+
+By Google's clock, the risk term neither helps nor hurts travel time: distance-only routes are as fast
+(80.3% vs 79.0%, not significant). ANTROUTE's 10-point lead over the baseline is shared by a plain
+shortest-distance router. Filling unscored roads with 0 costs 15 points.
+
+### Leave-one-camera-out (`scripts/run_loco.py`, `scripts/evaluate_loco.py`)
+
+Built and tested; the retrains have not been run, as they need a GPU (one full training per camera).
+
+- `train_stgnn_edge.py --hold-out-camera <intersection>` drops that intersection's cameras entirely:
+  no frames, no labels, not a camera in the node context. Scoring reads the reduced camera list from
+  the checkpoint and skips those frames too. The checkpoint and `risk_summary.json` record
+  `held_out_cameras`.
+- `run_loco.py` (on Colab) trains the control (none held out) and one run per intersection (nine),
+  each with v8's own settings: daily weather, `--edge-features v1`, text 0 km / 1 minute, no text prior,
+  8 epochs, `configs/visual_split_v8.json`, seed 0. It resumes after a disconnect.
+- `evaluate_loco.py --reference <control>/risk_edges.csv --runs <loco_*>` scores each held-out
+  camera's labelled edges: the LOCO model (camera never seen), the control (camera seen), the other
+  cameras' train mean, and nearest-camera propagation; MAE, RMSE and Spearman per split and pooled.
+
+## 13. Retraining (v10): one split for every input
+
+`notebooks/train_and_score_colab.ipynb` trains v10 and scores every session. It uses the repo defaults, which differ
+from v8 in four inputs: hourly weather, lane count and road type, tweets within 2 km kept active 60 minutes, and the road
+text history. (v8's own settings are reproduced by `scripts/run_loco.py` for the leave-one-camera-out runs.)
+
+**The split is 70 / 15 / 15 by whole dates, and every input follows it.** The notebook builds it from the human labels
+(`assign_day_splits`: nine labelled dates, 17 sessions of at least 100 labels), saves it to Drive, trains with
+`--split-file`, and checks the finished checkpoint recorded that same split. On the current labels it is identical to v8's:
+train 6 dates (11 sessions), validation 2 (May 20, 22), test 1 (May 25). Whole dates cannot hit 70/15/15 exactly: the shares
+are 65 / 24 / 12 by sessions and 75 / 13 / 12 by labelled frames, each within 10 points (the notebook stops otherwise).
+
+| Source | How it follows the split |
+|---|---|
+| CCTV frames and human labels | by the session's date |
+| Hourly weather | each window reads its own date and hour; the min-max scaling is fitted on training dates only |
+| Tweets and incident reports | looked up by the window's own time; a post stays active 60 minutes, so a session sees at most the hour before it, never another date |
+| Road text history (`text_reports`, `text_incidents`, `text_pc1..8`) | built only from posts before 1 May 2026, earlier than every session. Training refuses to start if `--text-prior-before` is after the first session |
+| Roads, lane counts, road types, flood hazard map | static properties of the city, the same in every split |
+| Fitted references (calibration, baselines, the assumed-tier estimate) | fitted on the train split only |
+
+`split_report.split_table` prints what each source puts in each split, and `source_problems` is the guard; both run in the
+notebook before training. Fixes made for Colab: the road text history is now built from the `--embeddings` and tweets the run
+was given (the repo's `embeddings.pt` is a 168-row stub, and the old code read it); scoring and `verify_crs_sources.py` do the same;
+and with `--no-text` the history is skipped instead of failing.

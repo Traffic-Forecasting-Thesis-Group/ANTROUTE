@@ -76,7 +76,7 @@ def main() -> None:
         text_active_minutes=cfg.get("text_active_minutes", 1),
     )
     context = build_context(cfg, graph, a.spatial_dir, a.weather_csv, camera_index,
-                            a.raw_twitter, a.landmarks_csv, a.event_intersections_csv)
+                            a.raw_twitter, a.landmarks_csv, a.event_intersections_csv, a.raw_twitter, a.embeddings)
     base = InferenceWindowDataset(records, cfg["image_size"], cfg.get("time_features", False), None)
     dataset = GraphWindowDataset(records, "infer", {}, cfg["node_labels"], cfg["camera_map"], cfg["image_size"],
                                  time_features=cfg.get("time_features", False), base=base, context=context)

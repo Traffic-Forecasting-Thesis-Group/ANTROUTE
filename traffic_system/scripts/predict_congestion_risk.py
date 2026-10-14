@@ -88,7 +88,8 @@ def build_model(cfg: dict, device, graph=None, spatial_dir: Path = REPO_ROOT / "
 
 def build_context(cfg: dict, graph, spatial_dir: Path, weather_csv: Path, camera_index,
                   events_root: Optional[Path], landmarks_csv: Optional[Path],
-                  intersections_csv: Optional[Path]) -> Optional[NodeContext]:
+                  intersections_csv: Optional[Path], raw_twitter_root: Optional[Path] = None,
+                  embeddings_path: Optional[Path] = None) -> Optional[NodeContext]:
     """The node context a checkpoint was trained with, scaled exactly as in training."""
     if not cfg.get("context"):
         return None
@@ -98,7 +99,9 @@ def build_context(cfg: dict, graph, spatial_dir: Path, weather_csv: Path, camera
         from datetime import date
 
         from src.data.text_prior import build_text_prior
-        prior = build_text_prior(graph, before=date.fromisoformat(cfg["text_prior_before"]))
+        corpus = {k: v for k, v in (("raw_twitter_root", raw_twitter_root), ("embeddings_path", embeddings_path))
+                  if v is not None}        # the run's own posts and embeddings (Colab: the Drive copy)
+        prior = build_text_prior(graph, before=date.fromisoformat(cfg["text_prior_before"]), **corpus)
     return NodeContext.build(
         graph, spatial_dir, weather_csv,
         load_events(events_root, landmarks_csv), event_node_index(graph, spatial_dir, intersections_csv),
@@ -181,7 +184,8 @@ def predict(
     )
     lookup = load_label_lookup(frames_roots, human_only=True) if with_labels else None
     node_context = build_context(
-        cfg, graph, spatial_dir, weather_csv, camera_index, events_root, landmarks_csv, intersections_csv
+        cfg, graph, spatial_dir, weather_csv, camera_index, events_root, landmarks_csv, intersections_csv,
+        raw_twitter_root, embeddings_path,
     )
     base = InferenceWindowDataset(records, cfg["image_size"], cfg.get("time_features", False), lookup or None)
     dataset = GraphWindowDataset(
@@ -272,6 +276,8 @@ def predict(
         "flood_hazard": bool(cfg.get("flood_hazard")) or bool(cfg.get("context")),
         "context": bool(cfg.get("context")),
         "context_drop": list(cfg.get("context_drop", [])),
+        # leave-one-camera-out runs: these intersections were not cameras for this checkpoint
+        "held_out_cameras": list(cfg.get("held_out_cameras", [])),
         "missing_weather_days": sorted(d.isoformat() for d in node_context.missing_weather) if node_context else [],
         "splits": summarise(rows),
     }

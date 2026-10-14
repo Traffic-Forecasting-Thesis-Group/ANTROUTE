@@ -91,3 +91,60 @@ def test_the_context_encoder_gets_its_own_learning_rate():
     assert [g["lr"] for g in tuned] == [1e-4, 1e-3, 1e-4]
     n_params = sum(1 for _ in model.parameters())
     assert sum(len(g["params"]) for g in tuned) == n_params           # every parameter in exactly one group
+
+
+def two_camera_toy():
+    """Cameras A (node 1) and B (node 3); A Heavy, B Light, every window; the model ranks them right."""
+    from src.models.risk_baselines import Cameras
+
+    rows = []
+    for split, day in (("train", "2026-05-04"), ("test", "2026-05-25")):
+        for k in range(4):
+            w = f"{day}T17:{k * 5:02d}:00"
+            rows.append([day, "PM", w, 1, 2, 0.8, True, split, 1.0])
+            rows.append([day, "PM", w, 3, 4, 0.3, True, split, 0.0])
+    cameras = Cameras({1: "A", 3: "B"}, {"A": (14.60, 121.00), "B": (14.61, 121.00)})
+    return frame(rows), cameras
+
+
+def test_spearman_and_nearest_camera_propagation_are_in_the_table():
+    from src.models.risk_baselines import NEAREST
+
+    f, cameras = two_camera_toy()
+    test = baseline_table(f, cameras)[lambda t: t["split"] == "test"].set_index("predictor")
+    assert test.loc["model", "spearman"] == pytest.approx(1.0)
+    assert np.isnan(test.loc["train mean", "spearman"])                 # a constant ranks nothing
+    # A's nearest other camera is B (always Light) and vice versa: propagation is always wrong here
+    assert test.loc[NEAREST, "mae"] == pytest.approx(1.0)
+
+
+def test_class_means_rise_with_the_label_and_count_ranked_pairs():
+    from src.models.risk_baselines import class_means
+
+    f, _ = two_camera_toy()
+    test = class_means(f).set_index("split").loc["test"]
+    assert test["Light_mean_risk"] == pytest.approx(0.3) and test["Heavy_mean_risk"] == pytest.approx(0.8)
+    assert test["heavy_above_light"] == pytest.approx(1.0)
+
+
+def test_the_per_camera_breakdown_needs_the_cameras():
+    f, cameras = two_camera_toy()
+    per = breakdown(f, "camera", cameras)
+    assert set(per["camera"]) == {"A", "B"} and "model_spearman" in per.columns
+    with pytest.raises(ValueError, match="cameras"):
+        breakdown(f, "camera")
+
+
+def test_loco_scores_the_held_out_camera_against_the_reference_labels():
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+    from evaluate_loco import loco_table
+
+    reference, cameras = two_camera_toy()
+    loco = reference[["window_start", "source_node_id", "target_node_id"]].copy()
+    loco["risk"] = 0.5                                                   # the LOCO model knows nothing
+    table = pd.DataFrame(loco_table(loco, reference, cameras, "A")).set_index(["split", "predictor"])
+    assert table.loc[("test", "LOCO model"), "mae"] == pytest.approx(0.5)            # A is always Heavy
+    assert table.loc[("test", "full model (camera seen)"), "mae"] == pytest.approx(0.2)
+    assert table.loc[("test", "train mean (other cameras)"), "mae"] == pytest.approx(1.0)   # B is Light
+    assert set(table.index.get_level_values("split")) == {"train", "test", "all"}
