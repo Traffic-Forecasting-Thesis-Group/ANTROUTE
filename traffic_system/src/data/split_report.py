@@ -22,6 +22,7 @@ import numpy as np
 import pandas as pd
 
 from src.data.alignment import SESSION_STEPS, STEP_MINUTES, session_start, window_starts
+from src.data.text_prior import DEFAULT_BEFORE as TEXT_PRIOR_BEFORE, LIVE_MINUTES
 from src.data.node_context import EVENT_TTL_MINUTES, load_events
 from src.data.training_data import load_frames_table, split_days_overlap
 
@@ -66,6 +67,7 @@ def split_table(
     landmarks_csv: Optional[Path] = None,
     graph=None,
     spatial_dir: Optional[Path] = None,
+    text_prior_before=TEXT_PRIOR_BEFORE,
 ) -> pd.DataFrame:
     """Rows: what each modality puts in each split. Columns: train / val / test / note."""
     rows = []
@@ -95,13 +97,17 @@ def split_table(
                                         for s in SPLITS})
 
     if weather_csv is not None and Path(weather_csv).exists():
-        weather = pd.read_csv(weather_csv, usecols=["date", "grid_cell"])
+        header = pd.read_csv(weather_csv, nrows=0).columns
+        hourly = "hour" in header
+        weather = pd.read_csv(weather_csv, usecols=["date", "grid_cell"] + (["hour"] if hourly else []))
         weather["date"] = pd.to_datetime(weather["date"]).dt.date
         day_split = {d: v for (d, _), v in split.items()}
         weather["split"] = weather["date"].map(day_split)
-        add("daily weather", "dates with weather", weather.dropna(subset=["split"]).groupby("split")["date"].nunique().to_dict(),
-            "scaling fitted on train dates only")
-        add("daily weather", "grid-cell x date rows", weather["split"].value_counts().to_dict())
+        kind = "hourly weather" if hourly else "daily weather"
+        add(kind, "dates with weather", weather.dropna(subset=["split"]).groupby("split")["date"].nunique().to_dict(),
+            "min-max scaling fitted on train dates only")
+        add(kind, "grid-cell x " + ("hour" if hourly else "date") + " rows", weather["split"].value_counts().to_dict(),
+            "each window reads its own date" + (" and hour" if hourly else ""))
 
     tweet_times = _tweet_times(raw_twitter_root)
     tweet_where = _in_sessions(tweet_times, split)
@@ -112,6 +118,20 @@ def split_table(
         event_where = _in_sessions(at, split, lead=timedelta(minutes=EVENT_TTL_MINUTES))
         add("event / text", "MMDA incidents in force (placeable)", event_where[event_where != ""].value_counts().to_dict(),
             f"incl. reports up to {EVENT_TTL_MINUTES:.0f} min before a session")
+
+    if text_prior_before is not None:
+        # The road text history (text_reports, text_incidents, text_pc1..8) is built from posts
+        # created before `text_prior_before`; none may fall on or after a split date.
+        earliest = min(day for (day, _), _ in split.items())
+        by_date = tweet_times.dt.date.map({d: v for (d, _), v in split.items()})
+        entering = tweet_times.dt.date < text_prior_before
+        add("road text history", "posts that enter it, by the split of their own date",
+            by_date[entering].value_counts().to_dict(),
+            f"built from posts before {text_prior_before}; the first split date is {earliest}"
+            + ("" if text_prior_before <= earliest else " -- LEAK: the cutoff is after it"))
+        add("live road text", "posts counted before a session starts",
+            {s: int(((tweet_where == "") & _near_session_start(tweet_times, split, s)).sum()) for s in SPLITS},
+            f"each window sees posts of its own last {LIVE_MINUTES:.0f} min only")
 
     if graph is not None:
         nodes, edges = int(graph.n_nodes), int(graph.edge_index.shape[1])
@@ -124,6 +144,36 @@ def split_table(
             add("flood hazard", "nodes with hazard level 1-3", {s: int((levels > 0).sum()) for s in SPLITS},
                 "static map; enters each window x that date's rain")
     return pd.DataFrame(rows)
+
+
+def _near_session_start(times: pd.Series, split: Dict[tuple, str], name: str,
+                        lead: timedelta = timedelta(minutes=LIVE_MINUTES)) -> pd.Series:
+    """Posts in the `lead` just before a `name` session: still active when it starts."""
+    out = pd.Series(False, index=times.index)
+    for who, start, _ in _session_bounds(split):
+        if who == name:
+            out |= (times >= start - lead) & (times < start)
+    return out
+
+
+def source_problems(split: Dict[tuple, str], text_prior_before=TEXT_PRIOR_BEFORE) -> list:
+    """
+    Problems with how the non-visual sources meet the split, [] when clean. Each source follows
+    the split by looking everything up by the window's own time; the two that are built BEFORE
+    training need a guard:
+
+      road text history   built from posts before `text_prior_before`; that date must not be after
+                          the earliest session of any split, or posts from a held-out date would
+                          shape the model's inputs
+      weather scaling     fitted on train dates only (alignment.build_sessions, NodeContext.build)
+    """
+    problems = []
+    if text_prior_before is not None and split:
+        earliest = min(day for (day, _) in split)
+        if text_prior_before > earliest:
+            problems.append(f"the road text history uses posts before {text_prior_before}, but the first "
+                            f"session is {earliest}: posts from split dates would leak into the inputs")
+    return problems
 
 
 def split_shares(split: Dict[tuple, str], weights: Optional[Dict[tuple, float]] = None) -> Dict[str, float]:

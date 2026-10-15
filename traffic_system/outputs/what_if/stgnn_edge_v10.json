@@ -1,0 +1,110 @@
+{
+  "model": "stgnn_edge_v10",
+  "windows": 24,
+  "note": "Precomputed from the real checkpoint: each case changes one input in real batches and measures how far the Congestion Risk Score moves (mean absolute change, 0-1 scale). Offline re-inference, not a live run.",
+  "text_present_share": 0.11682098765432099,
+  "cases": [
+    {
+      "key": "weather",
+      "label": "Heavy rain",
+      "description": "Every node gets the wettest, most humid day the model trained on.",
+      "camera_mean": 0.02052449497083823,
+      "camera_max": 0.10087424516677856,
+      "other_mean": 0.015029903190831343,
+      "other_max": 0.11662858724594116,
+      "other_moved": 0.9515982866287231
+    },
+    {
+      "key": "flood",
+      "label": "Flood level 3",
+      "description": "Every node becomes Project NOAH flood hazard level 3, with the batch's own rainfall.",
+      "camera_mean": 0.02045840723440051,
+      "camera_max": 0.09069216251373291,
+      "other_mean": 0.024386960081756115,
+      "other_max": 0.14196068048477173,
+      "other_moved": 0.8853728175163269
+    },
+    {
+      "key": "events",
+      "label": "New incidents",
+      "description": "A fresh two-lane incident at every fifth node, for the whole window.",
+      "camera_mean": 0.0022043149025800326,
+      "camera_max": 0.02436673641204834,
+      "other_mean": 0.0015948859509080648,
+      "other_max": 0.04949462413787842,
+      "other_moved": 0.43744155764579773
+    },
+    {
+      "key": "cctv",
+      "label": "Cameras off",
+      "description": "Every camera goes offline: the visual input is masked.",
+      "camera_mean": 0.04215296854575475,
+      "camera_max": 0.21951594948768616,
+      "other_mean": 0.001256244528728227,
+      "other_max": 0.15150117874145508,
+      "other_moved": 0.04575736323992411
+    },
+    {
+      "key": "text",
+      "label": "No traffic posts",
+      "description": "The tweet text goes silent, as for a minute with no posts.",
+      "camera_mean": 0.0006993802526267245,
+      "camera_max": 0.060885846614837646,
+      "other_mean": 2.272314721570486e-05,
+      "other_max": 0.03889119625091553,
+      "other_moved": 0.004733520346538474
+    },
+    {
+      "key": "temporal",
+      "label": "Time of day moves",
+      "description": "The clock moves ten hours (AM peak to PM peak) and three weekdays on.",
+      "camera_mean": 0.10269136230150859,
+      "camera_max": 0.3417656421661377,
+      "other_mean": 0.12265523274739583,
+      "other_max": 0.38410496711730957,
+      "other_moved": 0.9885460337003072
+    },
+    {
+      "key": "spatial",
+      "label": "Road attributes shuffled",
+      "description": "A control: speed, lanes and road class are shuffled between nodes.",
+      "camera_mean": 0.009774947461361686,
+      "camera_max": 0.05753779411315918,
+      "other_mean": 0.005792765878140926,
+      "other_max": 0.08190411329269409,
+      "other_moved": 0.8272995352745056
+    },
+    {
+      "key": "text_prior",
+      "label": "Text history removed",
+      "description": "The year of traffic posts per road is removed (checkpoints trained with it).",
+      "camera_mean": 0.0879116461922725,
+      "camera_max": 0.28285008668899536,
+      "other_mean": 0.047239311039447784,
+      "other_max": 0.35513973236083984,
+      "other_moved": 0.7746464510758718
+    }
+  ],
+  "route_effect": {
+    "update": "event",
+    "n_trips": 30,
+    "lanes": 2,
+    "active_minutes": 60.0,
+    "systems": {
+      "antroute": {
+        "routes_changed_share": 0.7666666666666667,
+        "event_exposure_old": 2.0,
+        "event_exposure_recalculated": 0.5333333333333333,
+        "congestion_exposure_old": 53.5117793833986,
+        "congestion_exposure_recalculated": 54.852569177608856
+      },
+      "baseline": {
+        "routes_changed_share": 0.0,
+        "event_exposure_old": 1.1333333333333333,
+        "event_exposure_recalculated": 1.1333333333333333,
+        "congestion_exposure_old": 73.3995390607003,
+        "congestion_exposure_recalculated": 73.3995390607003
+      }
+    }
+  }
+}

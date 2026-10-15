@@ -39,6 +39,7 @@ from src.data.node_context import (  # noqa: E402
     event_node_index,
     load_events,
 )
+from src.data.split_report import source_problems  # noqa: E402
 from src.data.text_prior import DEFAULT_BEFORE as TEXT_PRIOR_BEFORE, build_text_prior  # noqa: E402
 from src.models.cnn_lstm_fusion import CNNLSTMFusion  # noqa: E402
 from src.models.mlp_decoder import MLPDecoder  # noqa: E402
@@ -164,6 +165,8 @@ def train(
     text_active_minutes: int = TEXT_DEFAULTS["text_active_minutes"],
     text_prior: bool = True,
     text_prior_before: date = TEXT_PRIOR_BEFORE,
+    hold_out_cameras: tuple = (),
+    edge_features: str = "auto",
 ) -> dict:
     """
     context=True (the default) gives every graph node its own weather, flood, event, clock
@@ -232,6 +235,17 @@ def train(
         )
     if not camera_map:
         raise ValueError("No camera could be mapped to a graph intersection; fill configs/camera_nodes.csv.")
+    if hold_out_cameras:
+        # Leave-one-camera-out: the held-out intersection's cameras are dropped entirely -- no
+        # frames, no labels, not marked as a camera in the node context -- so its roads are like
+        # any road without a camera. Scoring reads the reduced camera_map from the checkpoint and
+        # skips those frames too; scripts/evaluate_loco.py scores its edges against v8's labels.
+        unknown = set(hold_out_cameras) - set(camera_map.values())
+        if unknown:
+            raise ValueError(f"--hold-out-camera {sorted(unknown)} is not a mapped intersection; "
+                             f"choose from {sorted(set(camera_map.values()))}")
+        camera_map = {c: label for c, label in camera_map.items() if label not in hold_out_cameras}
+        print(f"leave-one-camera-out: holding out {sorted(hold_out_cameras)}")
     node_labels = sorted(set(camera_map.values()))
     camera_index = torch.tensor(
         [graph.camera_nodes[label] for label in node_labels], dtype=torch.long, device=device
@@ -245,10 +259,19 @@ def train(
         events = load_events(events_root, landmarks_csv)
         event_nodes = event_node_index(graph, spatial_dir, intersections_csv)
         prior = None
-        if text_prior:
+        if text_prior and (raw_twitter_root is None or embeddings_path is None):
+            print("text prior: skipped, because the text input is off (--no-text); the model trains without it")
+        elif text_prior:
             # A year of traffic posts about each road, from before the first camera session --
-            # src/data/text_prior.py. Every session (train, val, test) is in May 2026.
-            prior = build_text_prior(graph, before=text_prior_before)
+            # src/data/text_prior.py. Every session (train, val, test) is in May 2026, so the
+            # cutoff must not be after the first of them: refuse to train otherwise.
+            leaks = source_problems({(r.day, r.session): r.split for r in records}, text_prior_before)
+            if leaks:
+                raise ValueError("; ".join(leaks))
+            # The posts and embeddings given to this run (on Colab the repo's embeddings.pt is a
+            # stub; the real file is on Drive), not the repo's own paths.
+            prior = build_text_prior(graph, before=text_prior_before,
+                                     raw_twitter_root=raw_twitter_root, embeddings_path=embeddings_path)
             print(f"text prior: {prior.describe()}")
         node_context = NodeContext.build(
             graph, spatial_dir, weather_csv, events, event_nodes, camera_index.cpu().tolist(),
@@ -301,6 +324,10 @@ def train(
         # (spatial_topology.py --edge-attributes-only).
         has_road_table = (Path(spatial_dir) / "full_network_edge_features.csv").exists()
         edge_feature_names = EDGE_FEATURES_V2 if has_road_table else EDGE_FEATURES_V1
+        if edge_features == "v1":          # reproduce a checkpoint trained before lanes and road type (v8)
+            edge_feature_names = EDGE_FEATURES_V1
+        elif edge_features == "v2" and not has_road_table:
+            raise ValueError("--edge-features v2 needs full_network_edge_features.csv")
         if not has_road_table:
             print("WARNING: full_network_edge_features.csv not built; training without lane count and road type")
         edge_attr = road_edge_features(graph, spatial_dir, edge_feature_names)
@@ -341,6 +368,7 @@ def train(
         "weather_resolution": weather_resolution(weather_csv),
         "node_labels": node_labels,
         "camera_map": camera_map,
+        "held_out_cameras": sorted(hold_out_cameras),
         "graph_node_ids": graph.node_ids,
     }
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -472,6 +500,12 @@ def main():
     p.add_argument("--landmarks-csv", type=Path, default=REPO_ROOT / "configs/event_landmarks.csv")
     p.add_argument("--event-intersections-csv", type=Path, default=REPO_ROOT / "configs/event_intersections.csv")
     p.add_argument("--graph-sizes", action="store_true")
+    p.add_argument("--hold-out-camera", action="append", default=[],
+                   help="leave-one-camera-out: drop this intersection's cameras (frames and labels) from "
+                        "training, e.g. --hold-out-camera EDSA-Shaw; repeatable")
+    p.add_argument("--edge-features", choices=["auto", "v1", "v2"], default="auto",
+                   help="road attributes in the decoder: v1 = length and speed (as v8), v2 = plus lanes and "
+                        "road type; auto = v2 when the road table is built")
     a = p.parse_args()
     a.weather_csv = a.weather_csv or default_weather_csv()
     print(f"weather: {a.weather_csv} ({weather_resolution(a.weather_csv)})")
@@ -517,6 +551,8 @@ def main():
         text_active_minutes=a.text_active_minutes,
         text_prior=not a.no_text_prior,
         text_prior_before=a.text_prior_before,
+        hold_out_cameras=tuple(a.hold_out_camera),
+        edge_features=a.edge_features,
     )
 
 

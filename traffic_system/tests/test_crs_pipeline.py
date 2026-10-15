@@ -15,7 +15,7 @@ import pandas as pd
 import pytest
 import torch
 
-from src.data.node_context import FEATURES, N_FEATURES
+from src.data.node_context import FEATURES, FEATURES_V1, N_FEATURES
 from test_node_context import SIDE, city  # noqa: F401  (the 6x6 road grid, flood levels, weather cells)
 
 SCRIPTS = Path(__file__).resolve().parents[1] / "scripts"
@@ -101,7 +101,8 @@ def test_the_multimodal_checkpoint_records_everything_needed_to_rebuild_its_inpu
     assert all(np.isfinite(h["train_loss"]) for h in result["history"])
     cfg = torch.load(out, map_location="cpu", weights_only=False)["config"]
     assert cfg["context"] and cfg["edge_features"] and not cfg["flood_hazard"]   # flood now rides in the context
-    assert cfg["context_features"] == FEATURES and len(cfg["context_weather_min"]) == 3
+    # no tweets or embeddings in this run: the text input is off, and so is the road text history
+    assert cfg["context_features"] == FEATURES_V1 and not cfg["use_text"] and len(cfg["context_weather_min"]) == 3
     assert cfg["context_drop"] == []
 
 
@@ -184,3 +185,15 @@ def test_a_checkpoint_scores_only_on_the_graph_it_was_trained_on(data, tmp_path)
     with pytest.raises(ValueError, match="context features"):
         score(data, tmp_path / "ckpt" / "stale.pt", tmp_path / "risk_stale")
     assert N_FEATURES == len(FEATURES)
+
+
+def test_leave_one_camera_out_drops_that_camera_from_training_and_scoring(data, tmp_path):
+    out = tmp_path / "ckpt" / "loco.pt"
+    train(data, out, hold_out_cameras=("C3",))
+    cfg = torch.load(out, map_location="cpu", weights_only=False)["config"]
+    assert cfg["held_out_cameras"] == ["C3"] and cfg["node_labels"] == ["C0"]
+    assert set(cfg["camera_map"].values()) == {"C0"}                     # CAM_B (at C3) is gone
+    summary = score(data, out, tmp_path / "risk_loco")
+    assert summary["held_out_cameras"] == ["C3"]
+    with pytest.raises(ValueError, match="hold-out-camera"):
+        train(data, tmp_path / "ckpt" / "bad.pt", hold_out_cameras=("NOT-A-CAMERA",))
