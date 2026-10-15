@@ -1,105 +1,32 @@
-import { Camera, Clock, Info } from 'lucide-react';
+import { useState } from 'react';
+import { Clock, Info } from 'lucide-react';
 
 import { DURATION_NOTE, type RouteOption } from '@/api/routeService';
 import { cn } from '@/lib/cn';
-import { CONGESTION_COLORS, CONGESTION_WIDTH } from '@/lib/theme';
-import { getArrivalTime } from '@/lib/time';
 
-import { weatherLine } from './RecordedInputsPanel';
+import RouteInformationModal from './RouteInformationModal';
 import { useTripPlanner } from './TripPlannerContext';
 
-function InfoNote({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="mt-2 flex items-start gap-1.5 rounded-md bg-blue-50 px-2 py-1.5 text-xs text-slate-600">
-      <Info size={13} className="mt-0.5 shrink-0 text-blue-500" aria-hidden />
-      <span>{children}</span>
-    </p>
-  );
-}
-
-const TIER_LABEL = {
-  observed: 'Observed',
-  propagated: 'Propagated',
-  assumed: 'Assumed',
+const CONGESTION_TEXT = {
+  clear: 'text-emerald-600',
+  moderate: 'text-amber-600',
+  heavy: 'text-red-600',
+  unknown: 'text-slate-400',
 } as const;
-const TIER_COLOR = { observed: '#1d4ed8', propagated: '#60a5fa', assumed: '#cbd5e1' } as const;
 
-/**
- * What this route is made of, so alternatives can be compared: where its risk comes from, the
- * cameras and incidents on it, the weather and flood along it. Recorded, not live.
- */
-function RouteFacts({ route }: { route: RouteOption }) {
-  const inputs = route.inputs;
-  const sources = route.risk_sources;
-  if (!inputs && !sources) return null;
-
+function Figure({
+  value,
+  label,
+  className,
+}: {
+  value: string;
+  label: string;
+  className?: string;
+}) {
   return (
-    <div className="mt-3 border-t border-slate-200 pt-2.5 text-[11px] text-slate-600">
-      {sources && (
-        <div className="mb-2">
-          <div className="flex h-1.5 overflow-hidden rounded-full bg-slate-200" aria-hidden>
-            {(Object.keys(TIER_LABEL) as (keyof typeof TIER_LABEL)[]).map((tier) => (
-              <span
-                key={tier}
-                style={{ width: `${Math.round((sources[tier] ?? 0) * 100)}%`, backgroundColor: TIER_COLOR[tier] }}
-              />
-            ))}
-          </div>
-          <p className="mt-1 text-slate-500">
-            Risk from{' '}
-            {(Object.keys(TIER_LABEL) as (keyof typeof TIER_LABEL)[])
-              .map((tier) => `${TIER_LABEL[tier].toLowerCase()} ${Math.round((sources[tier] ?? 0) * 100)}%`)
-              .join(' · ')}
-          </p>
-        </div>
-      )}
-
-      {inputs && (
-        <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1">
-          <dt className="flex items-center gap-1 text-slate-400">
-            <Camera size={11} aria-hidden /> Cameras
-          </dt>
-          <dd>
-            {inputs.cameras.length === 0
-              ? 'none within 200 m'
-              : inputs.cameras
-                  .map(
-                    (c) =>
-                      `${c.camera}${c.human_label ? ` (${c.human_label.toLowerCase()}` : ' ('}${
-                        c.vehicle_count != null ? `${c.human_label ? ', ' : ''}${c.vehicle_count} veh` : ''
-                      })`
-                  )
-                  .join('; ')}
-          </dd>
-
-          <dt className="text-slate-400">Incidents</dt>
-          <dd>
-            {inputs.incidents.length === 0
-              ? 'none on the route'
-              : inputs.incidents
-                  .map((i) => `${i.location} (${i.lanes} lane${i.lanes === 1 ? '' : 's'}, ${i.minutes_ago ?? '?'} min ago)`)
-                  .join('; ')}
-          </dd>
-
-          <dt className="text-slate-400">Weather</dt>
-          <dd>{weatherLine(inputs.weather)}</dd>
-
-          <dt className="text-slate-400">Flood</dt>
-          <dd>
-            {inputs.flood.share_of_route_flood_prone
-              ? `${Math.round(inputs.flood.share_of_route_flood_prone * 100)}% of the route flood-prone (up to level ${inputs.flood.max_level ?? 0})`
-              : 'no flood-prone roads'}
-          </dd>
-
-          {inputs.vehicle_count_mean != null && (
-            <>
-              <dt className="text-slate-400">Vehicles</dt>
-              <dd>{inputs.vehicle_count_mean} per frame at its cameras</dd>
-            </>
-          )}
-        </dl>
-      )}
-      {inputs && <p className="mt-1.5 text-[10px] italic text-slate-400">Recorded data, not a live feed.</p>}
+    <div className="flex-1 px-1 text-center">
+      <p className={cn('text-sm font-bold', className ?? 'text-slate-900')}>{value}</p>
+      <p className="mt-0.5 text-[11px] text-slate-500">{label}</p>
     </div>
   );
 }
@@ -108,74 +35,76 @@ function RouteCard({
   route,
   index,
   isSelected,
-  departAt,
   onSelect,
+  onViewDetails,
 }: {
   route: RouteOption;
   index: number;
   isSelected: boolean;
-  departAt: Date | null;
   onSelect: () => void;
+  onViewDetails: () => void;
 }) {
-  const level = route.congestion_level;
-
   return (
-    <button
-      type="button"
+    <div
       onClick={onSelect}
       className={cn(
-        'w-full rounded-xl border p-4 text-left transition-colors',
+        'flex cursor-pointer flex-col rounded-xl border p-4 transition-colors',
         isSelected
-          ? 'border-brand bg-brand-light shadow-card'
+          ? 'border-brand bg-brand-light/40 shadow-card'
           : 'border-slate-200 bg-white hover:border-brand/50'
       )}
     >
-      <div className="flex items-baseline justify-between gap-3">
-        <span className="flex items-baseline gap-2">
-          <span className="text-xl font-bold text-slate-900">{route.duration_min} min</span>
-          <span className="text-sm text-slate-500">{route.distance_km} km</span>
+      {index === 0 ? (
+        <span className="mb-2 self-start rounded-full bg-brand-light px-2.5 py-1 text-[11px] font-semibold text-brand">
+          Recommended Route
         </span>
-        {index === 0 && (
-          <span className="rounded-full bg-brand px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
-            Recommended
-          </span>
-        )}
+      ) : (
+        <span className="mb-2 h-[26px]" aria-hidden />
+      )}
+
+      <h4 className="mb-3 truncate font-semibold text-slate-900" title={route.via}>
+        Via {route.via}
+      </h4>
+
+      <div className="mb-1 flex divide-x divide-slate-200">
+        <Figure value={`${route.duration_min} min`} label="Travel Time" />
+        <Figure value={`${route.distance_km} km`} label="Distance" />
+        <Figure
+          value={route.congestion_level}
+          label="Congestion"
+          className={cn('capitalize', CONGESTION_TEXT[route.congestion_level])}
+        />
       </div>
 
-      <p className="mt-0.5 text-[11px] italic text-slate-400">
+      {/* The SOP does not score travel time, so it never appears without this caption. */}
+      <p className="mb-3 text-center text-[10px] italic text-slate-400">
         {route.duration_note ?? DURATION_NOTE}
       </p>
 
-      <p className="mt-1.5 truncate text-sm text-slate-600">Via {route.via}</p>
-      <p className="mt-0.5 text-xs text-slate-400">
-        Arrive about {getArrivalTime(route.duration_min, departAt)}
-      </p>
-
-      <div className="mt-3 flex items-center gap-2">
-        <span className="text-xs text-slate-500">Congestion</span>
-        <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-200">
-          <span
-            className="block h-full rounded-full"
-            style={{
-              width: CONGESTION_WIDTH[level],
-              backgroundColor: CONGESTION_COLORS[level],
-            }}
-          />
-        </span>
-        <span className="text-xs font-medium capitalize text-slate-600">{level}</span>
-      </div>
-
-      {route.congestion_note && (
-        <p className="mt-1 text-[11px] italic text-slate-400">{route.congestion_note}</p>
-      )}
-
-      {route.event_note && <InfoNote>{route.event_note}</InfoNote>}
-      {route.fallback_reason && <InfoNote>{route.fallback_reason}</InfoNote>}
-      <RouteFacts route={route} />
-    </button>
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          onViewDetails();
+        }}
+        className={cn(
+          'mt-auto w-full rounded-lg border px-4 py-2 text-sm font-semibold transition-colors',
+          isSelected
+            ? 'border-brand bg-brand text-white hover:bg-brand-darker'
+            : 'border-brand bg-white text-brand hover:bg-brand-light'
+        )}
+      >
+        View Details
+      </button>
+    </div>
   );
 }
 
+/**
+ * The route options, below the map: the recommended one first, then the alternatives. The
+ * card carries only what fits at a glance; everything else -- the leg breakdown and the
+ * recorded inputs along the route -- is in the Route Information modal.
+ */
 export default function RouteResultsList() {
   const {
     antRouteOptions,
@@ -186,67 +115,73 @@ export default function RouteResultsList() {
     setSelectedModelTab,
     selectedIndex,
     setSelectedIndex,
-    departAt,
-    simulationWindow,
     hasPlannedTrip,
   } = useTripPlanner();
+
+  const [detailsFor, setDetailsFor] = useState<RouteOption | null>(null);
 
   if (!hasPlannedTrip) return null;
 
   const options = selectedModelTab === 'baseline' ? baselineModelOptions : antRouteOptions;
 
   return (
-    <section className="mt-6">
-      <div className="mb-3 inline-flex rounded-lg border border-slate-300 bg-white p-0.5">
-        <button
-          type="button"
-          onClick={() => setSelectedModelTab('antroute')}
-          className={cn(
-            'rounded-md px-4 py-1.5 text-xs font-semibold transition-colors',
-            selectedModelTab === 'antroute'
-              ? 'bg-brand text-white'
-              : 'text-slate-600 hover:bg-slate-50'
+    <section className="rounded-xl border border-slate-200 bg-white p-5 shadow-card">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h3 className="font-semibold text-slate-900">
+            {selectedModelTab === 'baseline'
+              ? 'Route by Baseline Model (Improved ACO)'
+              : 'Alternative Route by ANTROUTE'}
+          </h3>
+          {trafficNote && (
+            <p className="mt-1 flex items-center gap-1.5 text-xs text-slate-400">
+              <Clock size={12} aria-hidden />
+              {trafficNote}
+            </p>
           )}
-        >
-          ANTRoute
-        </button>
-        <button
-          type="button"
-          onClick={() => setSelectedModelTab('baseline')}
-          className={cn(
-            'rounded-md px-4 py-1.5 text-xs font-semibold transition-colors',
-            selectedModelTab === 'baseline'
-              ? 'bg-brand text-white'
-              : 'text-slate-600 hover:bg-slate-50'
-          )}
-        >
-          Baseline
-        </button>
+        </div>
+
+        <div className="inline-flex rounded-lg border border-slate-300 bg-white p-0.5">
+          <button
+            type="button"
+            onClick={() => setSelectedModelTab('antroute')}
+            className={cn(
+              'rounded-md px-4 py-1.5 text-xs font-semibold transition-colors',
+              selectedModelTab === 'antroute'
+                ? 'bg-brand text-white'
+                : 'text-slate-600 hover:bg-slate-50'
+            )}
+          >
+            ANTRoute
+          </button>
+          <button
+            type="button"
+            onClick={() => setSelectedModelTab('baseline')}
+            className={cn(
+              'rounded-md px-4 py-1.5 text-xs font-semibold transition-colors',
+              selectedModelTab === 'baseline'
+                ? 'bg-brand text-white'
+                : 'text-slate-600 hover:bg-slate-50'
+            )}
+          >
+            Baseline
+          </button>
+        </div>
       </div>
 
-      <h3 className="mb-1 text-sm font-semibold text-brand">
-        {selectedModelTab === 'baseline'
-          ? 'Route by Baseline Model (Improved ACO)'
-          : 'Alternative Routes by ANTRoute Model'}
-      </h3>
-
-      {trafficNote && (
-        <p className="mb-3 flex items-center gap-1.5 text-xs text-slate-400">
-          <Clock size={12} aria-hidden />
-          {trafficNote}
-        </p>
-      )}
-
       {options.length > 0 ? (
-        <div className="flex flex-col gap-2">
+        <div className="grid grid-cols-3 gap-4">
           {options.map((route, index) => (
             <RouteCard
               key={index}
               route={route}
               index={index}
               isSelected={index === selectedIndex}
-              departAt={simulationWindow ? new Date(simulationWindow) : departAt}
               onSelect={() => setSelectedIndex(index)}
+              onViewDetails={() => {
+                setSelectedIndex(index);
+                setDetailsFor(route);
+              }}
             />
           ))}
         </div>
@@ -256,6 +191,8 @@ export default function RouteResultsList() {
           {baselineNotice ?? 'The baseline has no route for this trip.'}
         </p>
       )}
+
+      <RouteInformationModal route={detailsFor} onClose={() => setDetailsFor(null)} />
     </section>
   );
 }

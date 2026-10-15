@@ -151,6 +151,29 @@ class PathPoint(BaseModel):
     lng: float
 
 
+class RouteLeg(BaseModel):
+    """
+    One stretch of a route on a single named road, for the Route Information table. Split
+    where the road name changes; very short runs are merged into the one before them, so a
+    leg is a stretch a driver would actually recognise as "stay on X until Y".
+
+    Everything here is measured exactly as the whole route's fields are, on the same window:
+    the congestion level from the same thresholds, the time from the same ETA engine
+    (estimated, never scored), and the inputs from the same recorded tables -- just over this
+    leg's nodes instead of the route's.
+    """
+    index: int                               # 1-based, in travel order
+    road: str                                # the named road this leg runs on ("local roads" if unnamed)
+    from_name: str                           # where this leg starts: the previous road, or "Start"
+    to_name: str                             # where it ends: the next road, or "Destination"
+    distance_km: float
+    duration_min: int                        # same ETA engine as the route: estimated, not evaluated
+    congestion_level: str
+    # The recorded inputs along THIS leg: the cameras and incidents on it, and the weather and
+    # flood where it runs. None without a recorded window.
+    inputs: Optional[RouteInputs] = None
+
+
 class RouteOption(BaseModel):
     label: str
     via: str
@@ -181,6 +204,144 @@ class RouteOption(BaseModel):
     risk_sources: Optional[Dict[str, float]] = None
     # The recorded inputs along this route (cameras, incidents, weather, flood, vehicle counts).
     inputs: Optional[RouteInputs] = None
+    # The route broken into stretches on one named road each, for the Route Information table.
+    # Empty when road names are not loaded.
+    legs: List[RouteLeg] = []
+
+
+class ConditionUpdateSpread(BaseModel):
+    """A measured distribution from the harness (seconds, or a fraction)."""
+    n: int
+    median: Optional[float] = None
+    p95: Optional[float] = None
+    mean: Optional[float] = None
+    max: Optional[float] = None
+
+
+class ConditionUpdateCase(BaseModel):
+    """One test trip replanned after a condition update (research question 2)."""
+    trip_id: str
+    system: str
+    window_before: str
+    window_after: str
+    # For the "event" update: the gazetteer intersection the incident was injected at.
+    injected_intersection: Optional[str] = None
+    incidents_in_force_after: int = 0
+    # RQ2a: measured with perf_counter in the harness, not estimated.
+    recalculation_seconds: Optional[float] = None
+    # RQ2b: whether the route changed, and how much of the old one it still uses.
+    route_changed: bool = False
+    shared_length_fraction: Optional[float] = None
+    # RQ2c: both routes measured under the conditions AFTER the update.
+    old_congestion_exposure: Optional[float] = None
+    recalculated_congestion_exposure: Optional[float] = None
+    congestion_exposure_improvement: Optional[float] = None
+    old_event_exposure: Optional[float] = None
+    recalculated_event_exposure: Optional[float] = None
+    event_exposure_improvement: Optional[float] = None
+    # Descriptive only, like route length everywhere else in this app.
+    old_distance_km: Optional[float] = None
+    recalculated_distance_km: Optional[float] = None
+
+
+class ConditionUpdateSummary(BaseModel):
+    """One update kind's results over every trip, for one system."""
+    update: str
+    update_label: str
+    system: str
+    n_trips: int
+    response_time_s: Optional[ConditionUpdateSpread] = None
+    n_route_changed: int = 0
+    share_route_changed: Optional[float] = None
+    shared_length_fraction: Optional[ConditionUpdateSpread] = None
+    # The harness's own wording for what each number means, shown with the results.
+    response_time_definition: str = ""
+    shared_length_definition: str = ""
+    quality_definition: str = ""
+    sampling: str = ""
+    machine: str = ""
+
+
+class ConditionUpdatesResponse(BaseModel):
+    available_updates: List[str] = []
+    summary: ConditionUpdateSummary
+    cases: List[ConditionUpdateCase] = []
+
+
+class ConditionUpdateDetail(BaseModel):
+    """One case with both routes drawn, for the before/after maps."""
+    case: ConditionUpdateCase
+    old_path: List[PathPoint] = []
+    recalculated_path: List[PathPoint] = []
+    # The app's own estimator over the stored paths -- estimated, never scored (DURATION_NOTE).
+    old_duration_min: Optional[int] = None
+    recalculated_duration_min: Optional[int] = None
+    incidents: List[Dict[str, Any]] = []
+
+
+class ComparisonTripSystem(BaseModel):
+    """One system's result on one evaluated trip."""
+    route_optimality: Optional[float] = None       # % against Google Maps (higher is better)
+    congestion_exposure: Optional[float] = None    # lower is better
+    event_exposure: Optional[float] = None
+    avoidable_event_exposure: Optional[float] = None
+    distance_km: Optional[float] = None            # descriptive, never tested
+
+
+class ComparisonTripRow(BaseModel):
+    trip_id: str
+    scenario_type: str
+    window: str
+    stops: str
+    antroute: Optional[ComparisonTripSystem] = None
+    baseline: Optional[ComparisonTripSystem] = None
+
+
+class ComparisonProvenance(BaseModel):
+    """How the evaluation was obtained -- shown instead of a filter that cannot filter."""
+    scope: str = ""
+    reference: str = ""
+    access_methods: List[str] = []
+    reference_departure_first: Optional[str] = None
+    reference_departure_last: Optional[str] = None
+    reference_queried_first: Optional[str] = None
+    reference_queried_last: Optional[str] = None
+    recorded_window_first: Optional[str] = None
+    recorded_window_last: Optional[str] = None
+    n_trips: int = 0
+    baseline_name: str = "Improved ACO (Cheng 2023)"
+
+
+class ResponseTimeComparison(BaseModel):
+    """
+    Recalculation response time for both systems (RQ3b), measured by the condition-update
+    harness. `faster` names whichever system actually was; it is reported as measured.
+    """
+    update: str
+    n: int = 0
+    antroute_median_s: Optional[float] = None
+    baseline_median_s: Optional[float] = None
+    antroute_p95_s: Optional[float] = None
+    baseline_p95_s: Optional[float] = None
+    faster: str = ""
+    relative_difference_pct: Optional[float] = None
+    p_value: Optional[float] = None
+    significant: Optional[bool] = None
+    definition: str = ""
+
+
+class ComparisonTripsResponse(BaseModel):
+    scenario: str
+    trips: List[ComparisonTripRow] = []
+    provenance: ComparisonProvenance
+    response_time: Optional[ResponseTimeComparison] = None
+    available_updates: List[str] = []
+
+
+class ComparisonTripDetail(BaseModel):
+    trip: ComparisonTripRow
+    antroute_path: List[PathPoint] = []
+    baseline_path: List[PathPoint] = []
 
 
 class RoutePlanResponse(BaseModel):

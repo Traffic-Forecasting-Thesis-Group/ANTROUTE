@@ -1,3 +1,9 @@
+import {
+  SIMULATION_DATE,
+  SIMULATION_DEFAULT_HOUR,
+  SIMULATION_DEFAULT_MINUTE,
+} from './constants';
+
 /** Clock and departure-time helpers, extracted from the old HomeScreen. */
 
 export function formatClock(date: Date): string {
@@ -32,15 +38,23 @@ export function currentMinute(): Date {
   return d;
 }
 
-/** Keep a planned departure between now and the last minute of tomorrow. */
-export function clampDeparture(date: Date): Date {
-  const earliest = currentMinute();
-  const latest = startOfDay(new Date());
-  latest.setDate(latest.getDate() + 2);
-  latest.setMinutes(-1);
-  if (date < earliest) return earliest;
-  if (date > latest) return latest;
-  return date;
+/**
+ * Pins a departure to the simulation day, keeping its time of day. Routes are planned on
+ * recorded traffic, so the date is not the user's to choose -- only the hour and minute are.
+ */
+export function clampToSimulationDay(date: Date): Date {
+  const next = new Date(date);
+  next.setFullYear(SIMULATION_DATE.year, SIMULATION_DATE.month - 1, SIMULATION_DATE.day);
+  next.setSeconds(0, 0);
+  return next;
+}
+
+/** The departure the picker starts on: the simulation day at the default hour. */
+export function defaultDeparture(): Date {
+  const d = new Date();
+  d.setFullYear(SIMULATION_DATE.year, SIMULATION_DATE.month - 1, SIMULATION_DATE.day);
+  d.setHours(SIMULATION_DEFAULT_HOUR, SIMULATION_DEFAULT_MINUTE, 0, 0);
+  return d;
 }
 
 export function formatDeparture(date: Date): string {

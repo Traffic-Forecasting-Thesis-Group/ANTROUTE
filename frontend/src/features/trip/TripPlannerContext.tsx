@@ -21,7 +21,7 @@ import {
   type TripEvaluation,
 } from '@/api/routeService';
 import { searchPlaces, type PlaceSuggestion } from '@/api/placesService';
-import { clampDeparture, currentMinute } from '@/lib/time';
+import { clampToSimulationDay, defaultDeparture } from '@/lib/time';
 
 export interface DestinationEntry {
   name: string;
@@ -45,16 +45,17 @@ interface TripPlannerValue {
   origin: string;
   originCoords: Coordinates | null;
   destinations: DestinationEntry[];
-  departAt: Date | null;
+  /** Always set: routes are planned on the recorded simulation day, never "now". */
+  departAt: Date;
   setOriginText: (text: string) => void;
   setOriginFromCoords: (coords: Coordinates, label: string) => void;
   updateDestination: (index: number, value: string) => void;
   addDestination: () => void;
   removeDestination: (index: number) => void;
   reorderDestination: (index: number) => void;
-  changeDeparture: (next: Date | null) => void;
+  /** Sets the departure; the date is pinned to the simulation day whatever is passed. */
+  changeDeparture: (next: Date) => void;
   setDepartureTime: (time: Date) => void;
-  setDepartureDay: (dayOffset: number) => void;
 
   // Place search
   activeField: ActiveField;
@@ -62,7 +63,12 @@ interface TripPlannerValue {
   isSearchingPlaces: boolean;
   runPlacesSearch: (field: ActiveField, text: string) => void;
   selectSuggestion: (suggestion: PlaceSuggestion) => void;
-  closeSuggestions: () => void;
+  /**
+   * Closes the suggestion list. Pass the field that is closing it (a blur handler should)
+   * and it is ignored when another field has since become active -- otherwise clicking from
+   * the origin straight into a destination wipes the list that field just opened.
+   */
+  closeSuggestions: (field?: ActiveField) => void;
 
   // Results
   isLoading: boolean;
@@ -120,7 +126,7 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
   const [destinations, setDestinations] = useState<DestinationEntry[]>([
     { name: '', coords: null },
   ]);
-  const [departAt, setDepartAt] = useState<Date | null>(null); // null = leave now
+  const [departAt, setDepartAt] = useState<Date>(defaultDeparture);
 
   const [isLoading, setIsLoading] = useState(false);
   const [routeError, setRouteError] = useState('');
@@ -138,6 +144,9 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
   const [selectedModelTab, setSelectedModelTabState] = useState<ModelTab>('antroute');
 
   const [activeField, setActiveField] = useState<ActiveField>(null);
+  // Mirrors activeField for handlers that fire on a timer, after a render has moved on.
+  const activeFieldRef = useRef<ActiveField>(null);
+  activeFieldRef.current = activeField;
   const [suggestions, setSuggestions] = useState<PlaceSuggestion[]>([]);
   const [isSearchingPlaces, setIsSearchingPlaces] = useState(false);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -216,7 +225,9 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
     [originCoords]
   );
 
-  const closeSuggestions = useCallback(() => {
+  const closeSuggestions = useCallback((field?: ActiveField) => {
+    // A blur that has been overtaken by another field must not close that field's list.
+    if (field !== undefined && activeFieldRef.current !== field) return;
     setSuggestions([]);
     setActiveField(null);
   }, []);
@@ -300,29 +311,18 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
 
   // Routes were planned for one departure time; a new one needs new routes.
   const changeDeparture = useCallback(
-    (next: Date | null) => {
-      setDepartAt(next ? clampDeparture(next) : null);
+    (next: Date) => {
+      setDepartAt(clampToSimulationDay(next));
       clearRouteResults();
     },
     [clearRouteResults]
   );
 
-  /** A time on the departure's current day. A time already past today means tomorrow. */
+  /** A time of day on the simulation day. */
   const setDepartureTime = useCallback(
     (time: Date) => {
-      const next = new Date(departAt ?? currentMinute());
+      const next = new Date(departAt);
       next.setHours(time.getHours(), time.getMinutes(), 0, 0);
-      if (next < currentMinute()) next.setDate(next.getDate() + 1);
-      changeDeparture(next);
-    },
-    [departAt, changeDeparture]
-  );
-
-  const setDepartureDay = useCallback(
-    (dayOffset: number) => {
-      const next = new Date(departAt ?? currentMinute());
-      const today = new Date();
-      next.setFullYear(today.getFullYear(), today.getMonth(), today.getDate() + dayOffset);
       changeDeparture(next);
     },
     [departAt, changeDeparture]
@@ -426,11 +426,11 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
       setOrigin('Current location');
       setOriginCoords(from);
       setDestinations(remaining);
-      // Rerouting means leaving now, whatever the trip was originally planned for.
-      setDepartAt(null);
-      return planTrip('Current location', from, remaining, null, simulationWindow);
+      // The departure stays the simulation moment: a reroute is still part of the same
+      // recorded scenario, so it must be planned on the same recorded traffic.
+      return planTrip('Current location', from, remaining, departAt, simulationWindow);
     },
-    [planTrip, simulationWindow]
+    [planTrip, simulationWindow, departAt]
   );
 
   const findRoutes = useCallback(() => {
@@ -471,7 +471,6 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
     reorderDestination,
     changeDeparture,
     setDepartureTime,
-    setDepartureDay,
 
     activeField,
     suggestions,

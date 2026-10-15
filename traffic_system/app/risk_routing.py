@@ -734,6 +734,91 @@ def _via_roads(net: _Network, wg: WeightedGraph, nodes: List[int], max_roads: in
     return ", ".join(name for name in distance if name in main) or None
 
 
+# A run shorter than this is merged into the leg before it: a route crosses dozens of named
+# roads, but only the stretches long enough to drive are worth a row in the table.
+MIN_LEG_M = 400.0
+MAX_LEGS = 12
+
+
+def _road_runs(net: "_Network", wg: WeightedGraph, nodes: List[int]) -> List[List[int]]:
+    """
+    The route's nodes split into consecutive runs on one named road, as lists of node ids.
+    Runs shorter than MIN_LEG_M are merged into the previous one, and if that still leaves
+    more than MAX_LEGS the shortest are merged away until it does not.
+    """
+    indices = [wg.index_of(n) for n in nodes]
+    # (road name, first node position, last node position, metres)
+    runs: List[List] = []
+    for k, (u, v) in enumerate(zip(indices, indices[1:])):
+        e = wg.edge_id(u, v)
+        name = net.edge_names[e] if net.edge_names is not None else ""
+        name = str(name) if name else ""
+        length = float(wg.distance[e])
+        if runs and runs[-1][0] == name:
+            runs[-1][2] = k + 1
+            runs[-1][3] += length
+        else:
+            runs.append([name, k, k + 1, length])
+
+    def merge_into_previous(i: int) -> None:
+        runs[i - 1][2] = runs[i][2]
+        runs[i - 1][3] += runs[i][3]
+        del runs[i]
+
+    i = 1
+    while i < len(runs):
+        if runs[i][3] < MIN_LEG_M:
+            merge_into_previous(i)
+        else:
+            i += 1
+    while len(runs) > MAX_LEGS:
+        shortest = min(range(1, len(runs)), key=lambda j: runs[j][3])
+        merge_into_previous(shortest)
+
+    return [nodes[start:end + 1] for _, start, end, _ in runs]
+
+
+def _legs(net: "_Network", wg: WeightedGraph, nodes: List[int]) -> List[dict]:
+    """
+    The route as stretches on one named road each, for the app's Route Information table.
+
+    Every field is measured the way the whole route's equivalent is -- the same congestion
+    thresholds, the same ETA engine (estimated, never scored) and the same recorded tables --
+    only over the leg's own nodes, so a leg's numbers always add up to the route's.
+    """
+    if net.edge_names is None or len(nodes) < 2:
+        return []
+    from app import recorded       # imported here: recorded.py imports this module
+
+    runs = _road_runs(net, wg, nodes)
+    if not runs:
+        return []
+
+    def road_of(run: List[int]) -> str:
+        e = wg.edge_id(wg.index_of(run[0]), wg.index_of(run[1]))
+        name = net.edge_names[e] if net.edge_names is not None else ""
+        return str(name) if name else "local roads"
+
+    names = [road_of(run) for run in runs]
+    legs: List[dict] = []
+    for i, run in enumerate(runs):
+        m = wg.evaluate_path(run)
+        sources = risk_sources(wg, run)
+        coverage = sources.get(OBSERVED, 0.0) + sources.get(PROPAGATED, 0.0)
+        level, _ = _congestion_label(net, m.mean_risk, coverage)
+        legs.append({
+            "index": i + 1,
+            "road": names[i],
+            "from_name": "Start" if i == 0 else names[i - 1],
+            "to_name": "Destination" if i == len(runs) - 1 else names[i + 1],
+            "distance_km": round(m.distance_m / 1000, 2),
+            "duration_min": _duration_min(net, wg, m),
+            "congestion_level": level,
+            "inputs": recorded.route_inputs(net, wg, run),
+        })
+    return legs
+
+
 def _duration_min(net: _Network, wg: WeightedGraph, m: PathMetrics) -> int:
     """
     Travel time of a route by the app's one ETA engine, whichever system chose the route --
@@ -799,6 +884,7 @@ def _risk_fields(net: _Network, wg: WeightedGraph, m: PathMetrics) -> dict:
         "risk_coverage": round(coverage, 3),
         "risk_sources": sources or None,
         "inputs": recorded.route_inputs(net, wg, m.nodes),
+        "legs": _legs(net, wg, m.nodes),
     }
 
 

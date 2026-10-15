@@ -135,7 +135,7 @@ export default function MapCard() {
   const { incidents } = useIncidents({ at: departAt });
 
   return (
-    <div className="relative h-full min-h-[560px] overflow-hidden rounded-xl border border-slate-200 bg-white shadow-card">
+    <div className="relative h-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-card">
       {hasMapsKey ? (
         <>
           <Map
@@ -200,7 +200,7 @@ function MapContent({
       {/* Chrome floats over the map; the wrapper must not swallow map gestures. */}
       <div className="pointer-events-none absolute inset-0 p-3">
         <div className="flex h-full flex-col justify-between gap-3">
-          <div className="flex items-start justify-between gap-3">
+          <div className="flex min-h-0 items-start justify-between gap-3">
             {nav.isNavigating ? (
               <NavigationBanner nav={nav} />
             ) : (

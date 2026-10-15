@@ -21,7 +21,7 @@ function RouteSwatch({ color, dashed }: { color: string; dashed: boolean }) {
  */
 export default function MapLegend() {
   return (
-    <div className="pointer-events-auto max-h-[calc(100%-4rem)] overflow-y-auto rounded-lg border border-slate-200 bg-white/95 px-3 py-2.5 shadow-panel backdrop-blur">
+    <div className="pointer-events-auto max-h-[22rem] overflow-y-auto rounded-lg border border-slate-200 bg-white/95 px-3 py-2.5 shadow-panel backdrop-blur">
       <ul className="flex flex-col gap-1.5 text-[11px] text-slate-700">
         {ROUTE_LEGEND.map((entry) => (
           <li key={entry.label} className="flex items-center gap-2">

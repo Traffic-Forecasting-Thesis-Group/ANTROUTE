@@ -44,7 +44,7 @@ function OriginField() {
         <input
           value={origin}
           onChange={(e) => setOriginText(e.target.value)}
-          onBlur={() => window.setTimeout(closeSuggestions, 120)}
+          onBlur={() => window.setTimeout(() => closeSuggestions('origin'), 120)}
           placeholder="Current location"
           aria-label="Starting point"
           className="min-w-0 flex-1 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none"
@@ -102,7 +102,7 @@ function DestinationRow({ index, total }: { index: number; total: number }) {
         <input
           value={entry.name}
           onChange={(e) => updateDestination(index, e.target.value)}
-          onBlur={() => window.setTimeout(closeSuggestions, 120)}
+          onBlur={() => window.setTimeout(() => closeSuggestions(index), 120)}
           placeholder={total > 1 ? `Stop ${index + 1}` : 'Choose destination'}
           aria-label={total > 1 ? `Stop ${index + 1}` : 'Destination'}
           className="min-w-0 flex-1 bg-transparent text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none"

@@ -41,6 +41,29 @@ export interface RouteOption {
   risk_sources?: { observed: number; propagated: number; assumed: number } | null;
   /** The recorded inputs along this route: cameras, incidents, weather, flood, vehicle counts. */
   inputs?: RouteInputs | null;
+  /** The route split into stretches on one named road each. Empty when road names aren't loaded. */
+  legs?: RouteLeg[];
+}
+
+/**
+ * One stretch of a route on a single named road, for the Route Information table. The server
+ * splits where the road name changes and merges very short runs, so a leg reads as "stay on X
+ * until Y". Every field is measured exactly as the whole route's equivalent is, over this
+ * leg's nodes, so the legs add up to the route.
+ */
+export interface RouteLeg {
+  index: number;
+  road: string;
+  /** Where the leg starts: the previous road, or "Start". */
+  from_name: string;
+  /** Where it ends: the next road, or "Destination". */
+  to_name: string;
+  distance_km: number;
+  /** Same ETA engine as the route: estimated, never scored. */
+  duration_min: number;
+  congestion_level: CongestionLevel;
+  /** The recorded cameras, incidents, weather and flood along THIS leg. */
+  inputs?: RouteInputs | null;
 }
 
 export interface CameraReading {
@@ -472,5 +495,242 @@ export async function getComparisonMetrics(): Promise<ComparisonMetrics> {
       throw new Error('Could not reach the server. Check your connection and try again.');
     }
     throw new Error('Could not load comparison metrics.');
+  }
+}
+/* ---------------------------------------------------------------------------------------
+ * Dynamic adaptability (research question 2)
+ *
+ * Read from the offline condition-update harness: nothing is replanned in the request, and
+ * the response times were measured there with perf_counter on one machine in one run.
+ * ------------------------------------------------------------------------------------- */
+
+export type ConditionUpdateKind = 'traffic' | 'event' | 'session';
+
+export interface ConditionUpdateSpread {
+  n: number;
+  median: number | null;
+  p95: number | null;
+  mean: number | null;
+  max: number | null;
+}
+
+export interface ConditionUpdateCase {
+  trip_id: string;
+  system: string;
+  window_before: string;
+  window_after: string;
+  injected_intersection?: string | null;
+  incidents_in_force_after: number;
+  /** RQ2a, measured not estimated. */
+  recalculation_seconds: number | null;
+  /** RQ2b. */
+  route_changed: boolean;
+  /** Share of the old route's length the recalculated route still uses. */
+  shared_length_fraction: number | null;
+  /** RQ2c: both routes measured under the conditions AFTER the update. */
+  old_congestion_exposure: number | null;
+  recalculated_congestion_exposure: number | null;
+  congestion_exposure_improvement: number | null;
+  old_event_exposure: number | null;
+  recalculated_event_exposure: number | null;
+  event_exposure_improvement: number | null;
+  old_distance_km: number | null;
+  recalculated_distance_km: number | null;
+}
+
+export interface ConditionUpdateSummary {
+  update: ConditionUpdateKind;
+  update_label: string;
+  system: string;
+  n_trips: number;
+  response_time_s: ConditionUpdateSpread | null;
+  n_route_changed: number;
+  share_route_changed: number | null;
+  shared_length_fraction: ConditionUpdateSpread | null;
+  response_time_definition: string;
+  shared_length_definition: string;
+  quality_definition: string;
+  sampling: string;
+  machine: string;
+}
+
+export interface ConditionUpdatesResponse {
+  available_updates: ConditionUpdateKind[];
+  summary: ConditionUpdateSummary;
+  cases: ConditionUpdateCase[];
+}
+
+export interface ConditionUpdateIncident {
+  kind: string;
+  location: string;
+  lat: number | null;
+  lon: number | null;
+  reported_at: string | null;
+  in_force_after: number;
+}
+
+export interface ConditionUpdateDetail {
+  case: ConditionUpdateCase;
+  old_path: Coordinates[];
+  recalculated_path: Coordinates[];
+  /** The app's own estimator over the stored paths -- estimated, never scored. */
+  old_duration_min: number | null;
+  recalculated_duration_min: number | null;
+  incidents: ConditionUpdateIncident[];
+}
+
+function toPath(points: { lat: number; lng: number }[] | undefined): Coordinates[] {
+  return (points ?? []).map((p) => ({ latitude: p.lat, longitude: p.lng }));
+}
+
+/** GET /routes/condition-updates -- the summary and every case for one update kind. */
+export async function getConditionUpdates(
+  update: ConditionUpdateKind = 'event',
+  system = 'antroute'
+): Promise<ConditionUpdatesResponse> {
+  try {
+    const { data } = await apiClient.get<ConditionUpdatesResponse>('/routes/condition-updates', {
+      params: { update, system },
+    });
+    return data;
+  } catch (error: any) {
+    if (error.response) {
+      throw new Error(error.response.data?.detail || 'Could not load the condition-update results.');
+    }
+    throw new Error('Could not reach the server. Check your connection and try again.');
+  }
+}
+
+/** GET /routes/condition-updates/{trip_id} -- one case with both routes drawn. */
+export async function getConditionUpdateDetail(
+  tripId: string,
+  update: ConditionUpdateKind = 'event',
+  system = 'antroute'
+): Promise<ConditionUpdateDetail> {
+  try {
+    const { data } = await apiClient.get<
+      Omit<ConditionUpdateDetail, 'old_path' | 'recalculated_path'> & {
+        old_path: { lat: number; lng: number }[];
+        recalculated_path: { lat: number; lng: number }[];
+      }
+    >(`/routes/condition-updates/${encodeURIComponent(tripId)}`, { params: { update, system } });
+    return {
+      ...data,
+      old_path: toPath(data.old_path),
+      recalculated_path: toPath(data.recalculated_path),
+    };
+  } catch (error: any) {
+    if (error.response) {
+      throw new Error(error.response.data?.detail || 'Could not load this case.');
+    }
+    throw new Error('Could not reach the server. Check your connection and try again.');
+  }
+}
+
+/* ---------------------------------------------------------------------------------------
+ * Trip-by-trip comparison (research question 3)
+ * ------------------------------------------------------------------------------------- */
+
+export interface ComparisonTripSystem {
+  route_optimality: number | null;
+  congestion_exposure: number | null;
+  event_exposure: number | null;
+  avoidable_event_exposure: number | null;
+  /** Descriptive, never tested. */
+  distance_km: number | null;
+}
+
+export interface ComparisonTripRow {
+  trip_id: string;
+  scenario_type: string;
+  window: string;
+  stops: string;
+  antroute: ComparisonTripSystem | null;
+  baseline: ComparisonTripSystem | null;
+}
+
+export interface ComparisonProvenance {
+  scope: string;
+  reference: string;
+  access_methods: string[];
+  reference_departure_first: string | null;
+  reference_departure_last: string | null;
+  reference_queried_first: string | null;
+  reference_queried_last: string | null;
+  recorded_window_first: string | null;
+  recorded_window_last: string | null;
+  n_trips: number;
+  baseline_name: string;
+}
+
+/**
+ * Recalculation response time for both systems. `faster` names whichever actually was --
+ * the baseline searches on distance and flow alone, so it is the quicker of the two.
+ */
+export interface ResponseTimeComparison {
+  update: ConditionUpdateKind;
+  n: number;
+  antroute_median_s: number | null;
+  baseline_median_s: number | null;
+  antroute_p95_s: number | null;
+  baseline_p95_s: number | null;
+  faster: string;
+  relative_difference_pct: number | null;
+  p_value: number | null;
+  significant: boolean | null;
+  definition: string;
+}
+
+export interface ComparisonTripsResponse {
+  scenario: string;
+  trips: ComparisonTripRow[];
+  provenance: ComparisonProvenance;
+  response_time: ResponseTimeComparison | null;
+  available_updates: ConditionUpdateKind[];
+}
+
+export interface ComparisonTripDetail {
+  trip: ComparisonTripRow;
+  antroute_path: Coordinates[];
+  baseline_path: Coordinates[];
+}
+
+/** GET /routes/comparison-trips */
+export async function getComparisonTrips(
+  scenario = 'overall',
+  update: ConditionUpdateKind = 'event'
+): Promise<ComparisonTripsResponse> {
+  try {
+    const { data } = await apiClient.get<ComparisonTripsResponse>('/routes/comparison-trips', {
+      params: { scenario, update },
+    });
+    return data;
+  } catch (error: any) {
+    if (error.response) {
+      throw new Error(error.response.data?.detail || 'Could not load the comparison.');
+    }
+    throw new Error('Could not reach the server. Check your connection and try again.');
+  }
+}
+
+/** GET /routes/comparison-trips/{trip_id} -- both systems' routes for one trip. */
+export async function getComparisonTripDetail(tripId: string): Promise<ComparisonTripDetail> {
+  try {
+    const { data } = await apiClient.get<
+      Omit<ComparisonTripDetail, 'antroute_path' | 'baseline_path'> & {
+        antroute_path: { lat: number; lng: number }[];
+        baseline_path: { lat: number; lng: number }[];
+      }
+    >(`/routes/comparison-trips/${encodeURIComponent(tripId)}`);
+    return {
+      trip: data.trip,
+      antroute_path: toPath(data.antroute_path),
+      baseline_path: toPath(data.baseline_path),
+    };
+  } catch (error: any) {
+    if (error.response) {
+      throw new Error(error.response.data?.detail || 'Could not load this trip.');
+    }
+    throw new Error('Could not reach the server. Check your connection and try again.');
   }
 }

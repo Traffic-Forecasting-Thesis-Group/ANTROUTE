@@ -979,6 +979,12 @@ def write_reports(a, graph, trials: List[dict], provenance: dict) -> dict:
     scenario_of = {t["trip_id"]: t["scenario_type"] for t in trials}
     groups = {"overall": trip_ids}
     groups.update({sc: [i for i in trip_ids if scenario_of[i] == sc] for sc in SCENARIOS})
+    # Research question 1 asks about single- and multi-destination trips, which cut across the
+    # scenario types: a multi-destination trip has more than one leg, every other trip has one.
+    # "multi_destination" is already a scenario; this is its complement, scored the same way.
+    single = [i for i in trip_ids if scenario_of[i] != "multi_destination"]
+    if single:
+        groups["single_destination"] = single
     groups = {k: v for k, v in groups.items() if v}
 
     out = a.out_dir

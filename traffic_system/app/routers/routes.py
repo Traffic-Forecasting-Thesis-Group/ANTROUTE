@@ -24,6 +24,10 @@ from app.what_if import WhatIfUnavailableError, load_what_if
 from app.routers.places import _get_results
 from app.schemas_route import (
     ComparisonMetricsResponse,
+    ComparisonTripDetail,
+    ComparisonTripsResponse,
+    ConditionUpdateDetail,
+    ConditionUpdatesResponse,
     RecordedInputs,
     RecordedSessionsResponse,
     RoutePlanRequest,
@@ -137,6 +141,49 @@ async def what_if():
     try:
         return await run_in_threadpool(load_what_if)
     except WhatIfUnavailableError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+
+
+@router.get("/comparison-trips", response_model=ComparisonTripsResponse)
+async def comparison_trips(scenario: str = "overall", update: str = "event"):
+    """
+    ANTRoute against the Improved ACO baseline trip by trip (research question 3), with how
+    the evaluation was obtained and the measured recalculation response time of both systems.
+    """
+    try:
+        return await run_in_threadpool(cmp.get_comparison_trips, scenario, update)
+    except cmp.ComparisonUnavailableError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+
+
+@router.get("/comparison-trips/{trip_id}", response_model=ComparisonTripDetail)
+async def comparison_trip_detail(trip_id: str):
+    """One evaluated trip with both systems' routes drawn."""
+    try:
+        return await run_in_threadpool(cmp.get_comparison_trip_detail, trip_id)
+    except cmp.ComparisonUnavailableError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+
+
+@router.get("/condition-updates", response_model=ConditionUpdatesResponse)
+async def condition_updates(update: str = "event", system: str = "antroute"):
+    """
+    Dynamic adaptability (research question 2) for one update kind: recalculation response
+    time, how often and how much the route changed, and route quality before and after the
+    update. Read from the offline harness -- nothing is replanned in the request.
+    """
+    try:
+        return await run_in_threadpool(cu.get_condition_updates, update, system)
+    except cu.ConditionUpdatesUnavailableError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+
+
+@router.get("/condition-updates/{trip_id}", response_model=ConditionUpdateDetail)
+async def condition_update_detail(trip_id: str, update: str = "event", system: str = "antroute"):
+    """One case with the original and recalculated routes drawn, for the before/after maps."""
+    try:
+        return await run_in_threadpool(cu.get_condition_update_detail, update, trip_id, system)
+    except cu.ConditionUpdatesUnavailableError as exc:
         raise HTTPException(status_code=404, detail=str(exc))
 
 

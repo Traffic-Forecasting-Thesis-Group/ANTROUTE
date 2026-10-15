@@ -19,6 +19,7 @@ Both are cached until the file they read changes.
 
 import json
 import math
+from dataclasses import asdict
 from pathlib import Path
 from typing import List, Optional, Tuple
 
@@ -34,7 +35,7 @@ from app.schemas_route import (
     TripEvaluationResponse,
 )
 from src.models import risk_calibration
-from src.routing.significance import relative_difference
+from src.routing.significance import Q3_FAMILY, compare_paired, holm_adjust, relative_difference
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 ROUTING_METRICS = REPO_ROOT / "outputs/routing_eval/metrics.json"
@@ -99,10 +100,60 @@ def _show(value: float, unit: str) -> str:
 # The scenarios of Section 3.9, in the order the app lists them; "overall" pools all trips.
 SCENARIO_LABELS = [
     ("overall", "All scenarios"),
-    ("recommended", "Recommended"),
+    ("single_destination", "Single destination"),
     ("multi_destination", "Multi-destination"),
+    ("recommended", "Recommended"),
     ("incident_exposed", "Incident-exposed"),
 ]
+
+# Research question 1 asks about single- and multi-destination trips. "multi_destination" is a
+# scenario type in its own right; "single_destination" is its complement, which newer evaluation
+# runs record directly (scripts/evaluate_routing.py). Older metrics.json files predate it, so it
+# is derived from per_trip below with the same paired test and Holm families the script uses --
+# never re-averaged from the other scenarios' means, which would not be a valid pooling.
+DERIVED_SCENARIOS = {
+    "single_destination": lambda row: row.get("scenario_type") != "multi_destination",
+}
+
+
+def _derived_significance(report: dict, scenario: str) -> List[dict]:
+    """Significance rows for a scenario this evaluation file does not carry, scored from per_trip."""
+    predicate = DERIVED_SCENARIOS.get(scenario)
+    if predicate is None:
+        return []
+    rows = [r for r in report.get("per_trip", []) if predicate(r)]
+    if not rows:
+        return []
+    tested = {}
+    for key, _label, _higher, _scale, _unit in ROUTING_ROWS:
+        proposed = [_finite(r.get(f"{key}_antroute")) for r in rows]
+        baseline = [_finite(r.get(f"{key}_baseline")) for r in rows]
+        pairs = [(p, b) for p, b in zip(proposed, baseline) if p is not None and b is not None]
+        if not pairs:
+            continue
+        tested[key] = compare_paired(key, [p for p, _ in pairs], [b for _, b in pairs])
+    if not tested:
+        return []
+    # The same three Holm families the evaluation script applies.
+    holm_adjust([tested[m] for m in Q3_FAMILY if m in tested])
+    holm_adjust([c for m, c in tested.items() if m not in Q3_FAMILY and m != "avoidable_event_exposure"])
+    holm_adjust([tested[m] for m in ("avoidable_event_exposure",) if m in tested])
+    return [{"scenario_type": scenario, **asdict(c)} for c in tested.values()]
+
+
+def _derived_means(report: dict, scenario: str) -> dict:
+    """Descriptive means (route length) for a derived scenario, straight from its per_trip rows."""
+    predicate = DERIVED_SCENARIOS.get(scenario)
+    if predicate is None:
+        return {}
+    rows = [r for r in report.get("per_trip", []) if predicate(r)]
+    means: dict = {}
+    for key, _label, _scale, _unit in DESCRIPTIVE_ROWS:
+        for system in ("antroute", "baseline"):
+            values = [v for v in (_finite(r.get(f"{key}_{system}")) for r in rows) if v is not None]
+            if values:
+                means.setdefault(key, {})[system] = {"mean": float(np.mean(values))}
+    return means
 
 
 def _scenario_rows(report: dict, scenario: str) -> Tuple[List[ComparisonMetricRow], int, Optional[RouteOptimalitySummary]]:
@@ -111,7 +162,10 @@ def _scenario_rows(report: dict, scenario: str) -> Tuple[List[ComparisonMetricRo
     Equation 8 (Route Optimality) or Equation 7 (the exposures), and the Wilcoxon p-value;
     then route length, descriptive only (no Δ%, no test). Every value is the mean over trips.
     """
-    paired_rows = {r["metric"]: r for r in report.get("significance", []) if r.get("scenario_type") == scenario}
+    significance = [r for r in report.get("significance", []) if r.get("scenario_type") == scenario]
+    if not significance:
+        significance = _derived_significance(report, scenario)
+    paired_rows = {r["metric"]: r for r in significance}
     rows: List[ComparisonMetricRow] = []
     n_trials = 0
     optimality = None
@@ -136,7 +190,7 @@ def _scenario_rows(report: dict, scenario: str) -> Tuple[List[ComparisonMetricRo
         if key == "route_optimality":
             optimality = RouteOptimalitySummary(antroute=round(ant, 1), baseline=round(base, 1), n_trials=int(r.get("n") or 0))
     if rows:
-        means = (report.get("per_trial_mean_sd") or {}).get(scenario) or {}
+        means = (report.get("per_trial_mean_sd") or {}).get(scenario) or _derived_means(report, scenario)
         for key, label, scale, unit in DESCRIPTIVE_ROWS:
             m = means.get(key) or {}
             ant, base = _finite((m.get("antroute") or {}).get("mean")), _finite((m.get("baseline") or {}).get("mean"))

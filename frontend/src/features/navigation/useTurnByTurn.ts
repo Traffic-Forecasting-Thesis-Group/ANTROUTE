@@ -53,7 +53,6 @@ export function useTurnByTurn(): TurnByTurnState {
     selectedRoute,
     destinations,
     setGpsCoords,
-    changeDeparture,
     closeSuggestions,
     replanFrom,
   } = useTripPlanner();
@@ -147,9 +146,6 @@ export function useTurnByTurn(): TurnByTurnState {
       return;
     }
     setError('');
-    // Starting means leaving now: arrival times should count from now, not from the
-    // departure the routes were planned for.
-    changeDeparture(null);
     closeSuggestions();
     setIsNavigating(true);
     setArrived(false);
@@ -162,7 +158,7 @@ export function useTurnByTurn(): TurnByTurnState {
     startWatching(onFix, () => {
       setError('Could not get your location. Check that location access is allowed.');
     });
-  }, [selectedRoute, changeDeparture, closeSuggestions, startWatching, onFix]);
+  }, [selectedRoute, closeSuggestions, startWatching, onFix]);
 
   const stop = useCallback(() => {
     stopWatching();
