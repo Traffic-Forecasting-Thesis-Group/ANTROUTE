@@ -1,0 +1,66 @@
+{
+  "checkpoint": "/content/drive/MyDrive/MMDA_CHECKPOINTS/stgnn_edge_v10.pt",
+  "context": true,
+  "windows": 24,
+  "constant_non_camera_edges": 0.0,
+  "use_text": true,
+  "text_present_share": 0.11682098765432099,
+  "sources": {
+    "cctv": {
+      "camera_mean": 0.04215296854575475,
+      "camera_max": 0.21951594948768616,
+      "other_mean": 0.001256244528728227,
+      "other_max": 0.15150117874145508,
+      "other_moved": 0.04575736323992411
+    },
+    "text": {
+      "camera_mean": 0.0006993802526267245,
+      "camera_max": 0.060885846614837646,
+      "other_mean": 2.272314721570486e-05,
+      "other_max": 0.03889119625091553,
+      "other_moved": 0.004733520346538474
+    },
+    "weather": {
+      "camera_mean": 0.02052449497083823,
+      "camera_max": 0.10087424516677856,
+      "other_mean": 0.015029903190831343,
+      "other_max": 0.11662858724594116,
+      "other_moved": 0.9515982866287231
+    },
+    "flood": {
+      "camera_mean": 0.02045840723440051,
+      "camera_max": 0.09069216251373291,
+      "other_mean": 0.024386960081756115,
+      "other_max": 0.14196068048477173,
+      "other_moved": 0.8853728175163269
+    },
+    "events": {
+      "camera_mean": 0.0022043149025800326,
+      "camera_max": 0.02436673641204834,
+      "other_mean": 0.0015948859509080648,
+      "other_max": 0.04949462413787842,
+      "other_moved": 0.43744155764579773
+    },
+    "temporal": {
+      "camera_mean": 0.10269136230150859,
+      "camera_max": 0.3417656421661377,
+      "other_mean": 0.12265523274739583,
+      "other_max": 0.38410496711730957,
+      "other_moved": 0.9885460337003072
+    },
+    "spatial": {
+      "camera_mean": 0.009774947461361686,
+      "camera_max": 0.05753779411315918,
+      "other_mean": 0.005792765878140926,
+      "other_max": 0.08190411329269409,
+      "other_moved": 0.8272995352745056
+    },
+    "text_prior": {
+      "camera_mean": 0.0879116461922725,
+      "camera_max": 0.28285008668899536,
+      "other_mean": 0.047239311039447784,
+      "other_max": 0.35513973236083984,
+      "other_moved": 0.7746464510758718
+    }
+  }
+}
