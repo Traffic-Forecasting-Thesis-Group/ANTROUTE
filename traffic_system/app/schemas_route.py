@@ -169,6 +169,11 @@ class RouteLeg(BaseModel):
     distance_km: float
     duration_min: int                        # same ETA engine as the route: estimated, not evaluated
     congestion_level: str
+    # Where this leg's risk came from, as shares that add to 1: "cctv" (the camera-fed
+    # decoder's own prediction, which cannot be split further), then the assumed tier's ridge
+    # model decomposed into "events", "weather", "flood" and "others" (clock, road class,
+    # text reports). Empty when no window or no fitted model.
+    risk_factors: Dict[str, float] = {}
     # The recorded inputs along THIS leg: the cameras and incidents on it, and the weather and
     # flood where it runs. None without a recorded window.
     inputs: Optional[RouteInputs] = None

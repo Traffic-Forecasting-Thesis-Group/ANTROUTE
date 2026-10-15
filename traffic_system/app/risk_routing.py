@@ -851,6 +851,85 @@ def risk_sources(wg: WeightedGraph, nodes: List[int]) -> Dict[str, float]:
     return {t: round(float(length[tiers[edges] == t].sum()) / total, 3) for t in TIERS}
 
 
+# How the assumed-tier model's inputs group for the Route Information table. The ridge
+# regression is linear, so each feature's contribution is coefficient x standardised value and
+# the groups add up -- this is the model's own arithmetic, not an attribution heuristic.
+# flood_x_precip is the flood-rain interaction and counts with flood.
+RISK_FACTOR_GROUPS = {
+    "weather": ("precip", "temp", "humidity"),
+    "flood": ("flood_level", "flood_x_precip"),
+    "events": ("event_impact",),
+    "others": ("minute_sin", "minute_cos", "weekday_sin", "weekday_cos",
+               "free_flow_speed", "log_length", "lanes", "road_class",
+               "text_reports", "text_incidents", "live_text_reports", "live_text_incidents"),
+}
+RISK_FACTOR_KEYS = ("cctv", "events", "weather", "flood", "others")
+
+
+def risk_factors(wg: WeightedGraph, nodes: List[int]) -> Dict[str, float]:
+    """
+    Where one stretch's congestion risk came from, as shares that add to 1.
+
+    "cctv" is the share of the stretch's length whose risk the camera-fed decoder produced --
+    the observed tier, plus the propagated tier that carries a nearby camera road's value. That
+    part is a neural prediction and cannot be split into inputs, so it is reported whole.
+
+    The rest is the assumed tier, estimated by a ridge regression on the non-visual inputs
+    every road has (src/routing/context_risk.py). Being linear, it decomposes exactly: each
+    feature contributes coefficient x standardised value, and those are grouped into events,
+    weather, flood and others (clock, road class and text reports). Groups are compared by the
+    size of their contribution, length-weighted over the stretch's assumed edges, so a share
+    says how much of what moved this risk came from that input -- never its sign.
+
+    Empty when there is no window or no fitted model; the caller then shows nothing rather
+    than a made-up split.
+    """
+    if wg.window is None:
+        return {}
+    indices = [wg.index_of(n) for n in nodes]
+    if len(indices) < 2:
+        return {}
+    edges = np.array([wg.edge_id(u, v) for u, v in zip(indices, indices[1:])], dtype=np.int64)
+    length = wg.distance[edges].astype(np.float64)
+    total = float(length.sum())
+    if total <= 0:
+        return {}
+
+    tiers = _edge_tiers(wg.window)[edges]
+    camera_len = float(length[(tiers == OBSERVED) | (tiers == PROPAGATED)].sum())
+    assumed = tiers == ASSUMED
+    assumed_len = float(length[assumed].sum())
+
+    shares = {k: 0.0 for k in RISK_FACTOR_KEYS}
+    shares["cctv"] = camera_len / total
+    if assumed_len <= 0:
+        return {k: round(v, 4) for k, v in shares.items()}
+
+    fitted = _context_model()
+    if fitted is None:
+        # No fitted model: the assumed tier is a flat median, which no input explains.
+        shares["others"] = assumed_len / total
+        return {k: round(v, 4) for k, v in shares.items()}
+
+    context, model = fitted
+    x = context.features(_window_time(wg.window), _window_impact(wg.window))[edges[assumed]]
+    scale = np.where(model.scale == 0, 1.0, model.scale)
+    contribution = np.abs((x - model.mean) / scale * model.coef)   # [n_assumed, n_features]
+    weights = length[assumed]
+    by_feature = dict(zip(FEATURES, (contribution * weights[:, None]).sum(axis=0)))
+
+    group_mass = {g: float(sum(by_feature.get(f, 0.0) for f in fs))
+                  for g, fs in RISK_FACTOR_GROUPS.items()}
+    mass = sum(group_mass.values())
+    assumed_share = assumed_len / total
+    if mass <= 0:
+        shares["others"] = assumed_share
+    else:
+        for group, value in group_mass.items():
+            shares[group] = assumed_share * (value / mass)
+    return {k: round(v, 4) for k, v in shares.items()}
+
+
 def risk_coverage(wg: WeightedGraph, nodes: List[int]) -> float:
     """
     Share of a route's length whose risk traces back to the camera-fed decoder: the observed

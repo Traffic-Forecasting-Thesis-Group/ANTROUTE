@@ -5,6 +5,8 @@ from zoneinfo import ZoneInfo
 from fastapi import APIRouter, HTTPException
 from starlette.concurrency import run_in_threadpool
 
+from app import comparison as cmp
+from app import condition_updates as cu
 from app import recorded, risk_routing
 from app.evaluation import (
     MetricsUnavailableError,
