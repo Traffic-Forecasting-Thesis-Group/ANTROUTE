@@ -1,17 +1,15 @@
 import { useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 
-import { DURATION_NOTE, type RouteOption } from '@/api/routeService';
+import {
+  DURATION_NOTE,
+  RISK_FACTOR_KEYS,
+  type RiskFactorKey,
+  type RouteOption,
+} from '@/api/routeService';
 import { cn } from '@/lib/cn';
 
-import {
-  cameraLabel,
-  eventCell,
-  floodCell,
-  isRainy,
-  levelChipClass,
-  weatherCell,
-} from './formatInputs';
+import { eventCell, isRainy, weatherCell } from './formatInputs';
 
 function Stat({
   value,
@@ -45,14 +43,6 @@ function Stat({
   );
 }
 
-function Chip({ text, className }: { text: string; className: string }) {
-  return (
-    <span className={cn('inline-block rounded-full px-2 py-0.5 text-xs font-medium', className)}>
-      {text}
-    </span>
-  );
-}
-
 const CONGESTION_TONE = {
   clear: 'good',
   moderate: 'warn',
@@ -60,13 +50,44 @@ const CONGESTION_TONE = {
   unknown: 'muted',
 } as const;
 
+const CONGESTION_DOT = {
+  clear: 'bg-emerald-500',
+  moderate: 'bg-amber-500',
+  heavy: 'bg-red-500',
+  unknown: 'bg-slate-300',
+} as const;
+
+const FACTOR_HEADS: Record<RiskFactorKey, string> = {
+  cctv: 'CCTV',
+  events: 'Events',
+  weather: 'Weather',
+  flood: 'Flood',
+  others: 'Others',
+};
+
+/** A share as a plain percentage. Nothing measured means 0, never a blank. */
+function Share({ value }: { value: number | undefined }) {
+  const pct = (value ?? 0) * 100;
+  const zero = pct < 0.05;
+  return (
+    <span
+      className={cn('tabular-nums', zero ? 'text-slate-300' : 'font-medium text-slate-800')}
+      title={zero ? 'Nothing from this input on this stretch' : undefined}
+    >
+      {zero ? '0%' : `${pct.toFixed(1)}%`}
+    </span>
+  );
+}
+
 /**
- * Route Information: the route's headline numbers and then its stretches, one row each.
+ * Route Information: the route's headline numbers, then its stretches one row each.
  *
- * Every per-leg figure comes from the server's `legs`, measured over that leg's own nodes
- * with the same thresholds, ETA engine and recorded tables as the whole route -- so the rows
- * add up to the totals above them. Nothing here is derived in the browser, and nothing is a
- * live feed: the cameras, incidents, weather and flood are all recorded.
+ * The input columns are shares of that stretch's congestion risk, so each row adds to 100%.
+ * "CCTV" is the part the camera-fed decoder produced -- a neural prediction, reported whole
+ * because it cannot be split into inputs. The rest is the assumed tier, whose model is a
+ * ridge regression and so decomposes exactly into its input groups; "Others" collects clock,
+ * road class and text reports. Everything comes from the server's `legs`, measured over each
+ * leg's own nodes with the same thresholds and tables as the whole route.
  */
 export default function RouteInformationModal({
   route,
@@ -84,7 +105,6 @@ export default function RouteInformationModal({
       if (e.key === 'Escape') onClose();
     };
     document.addEventListener('keydown', onKey);
-    // The page behind must not scroll while the dialog is open.
     const previous = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     return () => {
@@ -110,7 +130,7 @@ export default function RouteInformationModal({
         aria-modal="true"
         aria-label="Route information"
         onClick={(e) => e.stopPropagation()}
-        className="flex max-h-[85vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl"
+        className="flex max-h-[85vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl"
       >
         <header className="flex shrink-0 items-center justify-between border-b border-slate-200 px-7 py-5">
           <h2 className="text-xl font-bold text-slate-900">Route Information</h2>
@@ -165,73 +185,59 @@ export default function RouteInformationModal({
                       <th className="px-3 py-2.5 font-semibold">From &rarr; To</th>
                       <th className="px-3 py-2.5 text-right font-semibold">Length (km)</th>
                       <th className="px-3 py-2.5 text-right font-semibold">Est. Time</th>
-                      <th className="px-3 py-2.5 font-semibold">CCTV Congestion</th>
-                      <th className="px-3 py-2.5 font-semibold">Events</th>
-                      <th className="px-3 py-2.5 font-semibold">Weather</th>
-                      <th className="px-3 py-2.5 font-semibold">Flood</th>
+                      {RISK_FACTOR_KEYS.map((key) => (
+                        <th key={key} className="px-3 py-2.5 text-right font-semibold">
+                          {FACTOR_HEADS[key]}
+                        </th>
+                      ))}
                     </tr>
                   </thead>
                   <tbody>
-                    {legs.map((leg) => {
-                      const camera = cameraLabel(leg.inputs);
-                      const legEvents = eventCell(leg.inputs);
-                      return (
-                        <tr key={leg.index} className="border-t border-slate-200 align-top">
-                          <td className="px-3 py-2.5 text-slate-500">{leg.index}</td>
-                          <td className="px-3 py-2.5">
-                            <span className="block text-slate-800">
-                              {leg.from_name} &rarr; {leg.to_name}
-                            </span>
-                            <span className="block text-xs text-slate-400">via {leg.road}</span>
-                          </td>
-                          <td className="px-3 py-2.5 text-right tabular-nums text-slate-700">
-                            {leg.distance_km}
-                          </td>
-                          <td className="px-3 py-2.5 text-right tabular-nums text-slate-700">
-                            {leg.duration_min} min
-                          </td>
-                          <td className="px-3 py-2.5">
-                            {camera ? (
-                              <Chip text={camera} className={levelChipClass(camera)} />
-                            ) : (
-                              <Chip
-                                text={leg.congestion_level}
-                                className={levelChipClass(leg.congestion_level)}
-                              />
-                            )}
-                          </td>
-                          <td className="px-3 py-2.5">
-                            {legEvents ? (
-                              <span className="font-medium text-red-600">{legEvents}</span>
-                            ) : (
-                              <span className="text-slate-400">&ndash;</span>
-                            )}
-                          </td>
-                          <td className="px-3 py-2.5">
-                            <Chip
-                              text={weatherCell(leg.inputs?.weather)}
-                              className={
-                                isRainy(leg.inputs?.weather)
-                                  ? 'bg-sky-100 text-sky-700'
-                                  : 'bg-slate-100 text-slate-500'
-                              }
+                    {legs.map((leg) => (
+                      <tr key={leg.index} className="border-t border-slate-200 align-top">
+                        <td className="px-3 py-2.5 text-slate-500">{leg.index}</td>
+                        <td className="px-3 py-2.5">
+                          <span className="block text-slate-800">
+                            {leg.from_name} &rarr; {leg.to_name}
+                          </span>
+                          <span className="mt-0.5 flex items-center gap-1.5 text-xs text-slate-400">
+                            <span
+                              className={cn(
+                                'inline-block h-1.5 w-1.5 shrink-0 rounded-full',
+                                CONGESTION_DOT[leg.congestion_level]
+                              )}
+                              aria-hidden
                             />
+                            {leg.congestion_level} &middot; via {leg.road}
+                          </span>
+                        </td>
+                        <td className="px-3 py-2.5 text-right tabular-nums text-slate-700">
+                          {leg.distance_km}
+                        </td>
+                        <td className="px-3 py-2.5 text-right tabular-nums text-slate-700">
+                          {leg.duration_min} min
+                        </td>
+                        {RISK_FACTOR_KEYS.map((key) => (
+                          <td key={key} className="px-3 py-2.5 text-right">
+                            <Share value={leg.risk_factors?.[key]} />
                           </td>
-                          <td className="px-3 py-2.5 text-slate-600">{floodCell(leg.inputs)}</td>
-                        </tr>
-                      );
-                    })}
+                        ))}
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
 
               <p className="mt-3 text-xs leading-relaxed text-slate-500">
                 A leg is one stretch on a named road; very short stretches are merged into the
-                one before them. CCTV congestion is the recorded human label at the cameras on
-                that leg, falling back to the model&rsquo;s level where no camera covers it.
-                Est. time comes from the same estimator as the route total &mdash; estimated,
-                not evaluated. Cameras, incidents, weather and flood are recorded data for the
-                planned window, not a live feed.
+                one before them. The last five columns are that stretch&rsquo;s congestion risk
+                by where it came from, so each row adds to 100%. <strong>CCTV</strong> is the
+                share the camera-fed model predicted &mdash; a neural prediction, so it is not
+                broken down further. The remainder is estimated from the inputs every road has,
+                with <strong>Others</strong> covering time of day, road class and traffic
+                reports. Est. time comes from the same estimator as the route total &mdash;
+                estimated, not evaluated. All of it is recorded data for the planned window,
+                not a live feed.
               </p>
             </>
           ) : (

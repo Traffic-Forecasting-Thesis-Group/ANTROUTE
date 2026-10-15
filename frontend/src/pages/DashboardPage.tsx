@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { CarFront, Search } from 'lucide-react';
 
 import { Button, ErrorText, Spinner } from '@/components/ui';
@@ -7,21 +8,47 @@ import RouteResultsList from '@/features/trip/RouteResultsList';
 import TripDetailsPanel from '@/features/trip/TripDetailsPanel';
 import { useTripPlanner } from '@/features/trip/TripPlannerContext';
 import UploadFilePanel from '@/features/upload/UploadFilePanel';
+import { parseInputFeaturesCsv } from '@/features/upload/parseInputFeaturesCsv';
+import type { UploadStatus } from '@/types/upload';
 
 export default function DashboardPage() {
-  const { findRoutes, isLoading, routeError } = useTripPlanner();
+  const { findRoutes, isLoading, routeError, setUploadedIncidents } = useTripPlanner();
+  const [uploadStatus, setUploadStatus] = useState<UploadStatus>('idle');
+  const [uploadMessage, setUploadMessage] = useState<string | null>(null);
 
   return (
     <div className="flex flex-1 bg-white">
       {/* Control column */}
       <aside className="flex w-[300px] shrink-0 flex-col gap-5 border-r border-slate-200 px-6 py-6">
         <UploadFilePanel
-          onFileAccepted={(dataset) => {
-            // TODO(csv-branch): parse the file and feed the routing inputs once the input
-            // features are finalized. Nothing has read its contents yet.
-            console.info('[ANTRoute] CSV selected, not yet parsed:', dataset.name);
+          status={uploadStatus}
+          statusMessage={uploadMessage}
+          onClear={() => {
+            setUploadedIncidents([]);
+            setUploadStatus('idle');
+            setUploadMessage(null);
           }}
-          statusMessage="Parsing is not wired up yet."
+          onFileAccepted={async (dataset) => {
+            setUploadStatus('validating');
+            setUploadMessage(null);
+            try {
+              const { incidents, summary, problems } = await parseInputFeaturesCsv(dataset.file);
+              setUploadedIncidents(incidents);
+              setUploadStatus(incidents.length > 0 ? 'ready' : 'error');
+              setUploadMessage(
+                incidents.length > 0
+                  ? (summary ?? `${incidents.length} on the map.`) +
+                      (problems.length > 0 ? ` ${problems.length} could not be placed.` : '')
+                  : (problems[0] ?? 'No input features could be read from this file.')
+              );
+              // The rows that could not be placed are named, not swallowed.
+              if (problems.length > 0) console.warn('[ANTRoute] input features CSV:', problems);
+            } catch (error: any) {
+              setUploadedIncidents([]);
+              setUploadStatus('error');
+              setUploadMessage(error?.message || 'Could not read this file.');
+            }
+          }}
         />
 
         <TripDetailsPanel />

@@ -14,6 +14,7 @@ import type { Coordinates } from '@/api/routeService';
 export type IncidentKind =
   | 'accident' // "Accident / Event"
   | 'road_closure'
+  | 'traffic' // a segment the recorded data has in the heavy band
   | 'weather_rain' // "Weather (Rain)"
   | 'flood'
   | 'camera'; // "Camera (CCTV)"

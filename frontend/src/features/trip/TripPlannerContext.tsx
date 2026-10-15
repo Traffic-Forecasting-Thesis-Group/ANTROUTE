@@ -21,6 +21,7 @@ import {
   type TripEvaluation,
 } from '@/api/routeService';
 import { searchPlaces, type PlaceSuggestion } from '@/api/placesService';
+import type { MapIncident } from '@/types/markers';
 import { clampToSimulationDay, defaultDeparture } from '@/lib/time';
 
 export interface DestinationEntry {
@@ -105,6 +106,10 @@ interface TripPlannerValue {
   cameraTarget: CameraTarget | null;
   requestCamera: (coords: Coordinates) => void;
 
+  /** Events read from an uploaded CSV, drawn on the map. They do not affect routing. */
+  uploadedIncidents: MapIncident[];
+  setUploadedIncidents: (incidents: MapIncident[]) => void;
+
   // GPS
   gpsCoords: Coordinates | null;
   setGpsCoords: (coords: Coordinates) => void;
@@ -152,6 +157,7 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const searchRequestRef = useRef(0);
 
+  const [uploadedIncidents, setUploadedIncidents] = useState<MapIncident[]>([]);
   const [cameraTarget, setCameraTarget] = useState<CameraTarget | null>(null);
   const cameraNonce = useRef(0);
   const [gpsCoords, setGpsCoordsState] = useState<Coordinates | null>(null);
@@ -504,6 +510,9 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
 
     findRoutes,
     replanFrom,
+
+    uploadedIncidents,
+    setUploadedIncidents,
 
     cameraTarget,
     requestCamera,

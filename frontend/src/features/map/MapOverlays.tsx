@@ -8,6 +8,8 @@ import { remainingPath, type RouteProgress } from '@/lib/guidance';
 import { useTripPlanner } from '@/features/trip/TripPlannerContext';
 import type { MapIncident } from '@/types/markers';
 
+import { isInForce } from '@/features/upload/parseInputFeaturesCsv';
+
 import { alternativeColor } from './legend';
 import { INCIDENT_LEGEND } from './legend';
 import { useFitBounds, usePanTo } from './useFitBounds';
@@ -131,22 +133,33 @@ export function StopMarkers() {
  * src/data/incidentSource.ts) so nothing renders; the glyphs come from the same legend
  * map the legend panel uses, so wiring a real feed needs no change here.
  */
-export function IncidentMarkers({ incidents }: { incidents: MapIncident[] }) {
+export function IncidentMarkers({
+  incidents,
+  at,
+}: {
+  incidents: MapIncident[];
+  /** When the trip departs; an event outside its own window is dimmed, not hidden. */
+  at?: Date | null;
+}) {
   return (
     <>
       {incidents.map((incident) => {
         const entry = INCIDENT_LEGEND[incident.kind];
         const Icon = entry.icon;
+        const live = at ? isInForce(incident, at) : true;
         return (
           <AdvancedMarker
             key={incident.id}
             position={{ lat: incident.position.latitude, lng: incident.position.longitude }}
             anchorPoint={AdvancedMarkerAnchorPoint.CENTER}
-            title={incident.description ? `${incident.title} — ${incident.description}` : incident.title}
+            title={
+              (incident.description ? `${incident.title} — ${incident.description}` : incident.title) +
+              (live ? '' : ' (not in force at the planned departure)')
+            }
           >
             <span
               className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-white shadow-md"
-              style={{ backgroundColor: entry.color }}
+              style={{ backgroundColor: entry.color, opacity: live ? 1 : 0.35 }}
             >
               <Icon size={13} color="#fff" aria-hidden />
             </span>

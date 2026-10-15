@@ -30,6 +30,8 @@ from app.schemas_route import (
     ComparisonTripsResponse,
     ConditionUpdateDetail,
     ConditionUpdatesResponse,
+    NodeCoordinatesResponse,
+    PathPoint,
     RecordedInputs,
     RecordedSessionsResponse,
     RoutePlanRequest,
@@ -144,6 +146,33 @@ async def what_if():
         return await run_in_threadpool(load_what_if)
     except WhatIfUnavailableError as exc:
         raise HTTPException(status_code=404, detail=str(exc))
+
+
+@router.get("/node-coordinates", response_model=NodeCoordinatesResponse)
+async def node_coordinates(ids: str):
+    """
+    Latitude and longitude for graph node ids, so an uploaded events file -- which locates
+    each event by a "source>target" segment of node ids -- can be put on the map. Ids the
+    graph does not have are left out rather than guessed at; the caller reports them.
+    """
+    try:
+        wanted = [int(v) for v in ids.split(",") if v.strip()]
+    except ValueError:
+        raise HTTPException(status_code=422, detail="ids must be a comma-separated list of node ids.")
+    if not wanted:
+        return NodeCoordinatesResponse(nodes={})
+    if not risk_routing.available():
+        raise HTTPException(status_code=503, detail="The road network isn't loaded on the server.")
+
+    def lookup() -> dict:
+        coords = risk_routing._network().node_coords
+        return {
+            str(n): PathPoint(lat=coords[n][0], lng=coords[n][1])
+            for n in wanted
+            if n in coords
+        }
+
+    return NodeCoordinatesResponse(nodes=await run_in_threadpool(lookup))
 
 
 @router.get("/comparison-trips", response_model=ComparisonTripsResponse)

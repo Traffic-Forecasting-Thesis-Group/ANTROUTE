@@ -25,7 +25,7 @@ export type UploadStatus = 'idle' | 'validating' | 'ready' | 'error';
 export interface UploadFilePanelProps {
   /** Extensions, with the dot. Defaults to ['.csv']. */
   accept?: string[];
-  /** Defaults to 10 MB. */
+  /** Defaults to 20 MB. */
   maxSizeBytes?: number;
   disabled?: boolean;
   /** THE SEAM: the only call a data branch has to implement. */

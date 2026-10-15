@@ -70,6 +70,7 @@ from src.routing.baseline_router import (
     plan_baseline,
 )
 from src.routing.context_risk import (
+    FEATURES,
     ContextRiskModel,
     EdgeContext,
     evenly,
@@ -79,6 +80,7 @@ from src.routing.context_risk import (
 )
 from src.routing.departure_window import match_recorded_window
 from src.routing.dynamic_weight import (
+    ASSUMED,
     DEFAULT_LAMBDA,
     DEFAULT_MISSING_RISK,
     OBSERVED,
@@ -814,6 +816,7 @@ def _legs(net: "_Network", wg: WeightedGraph, nodes: List[int]) -> List[dict]:
             "distance_km": round(m.distance_m / 1000, 2),
             "duration_min": _duration_min(net, wg, m),
             "congestion_level": level,
+            "risk_factors": risk_factors(wg, run),
             "inputs": recorded.route_inputs(net, wg, run),
         })
     return legs

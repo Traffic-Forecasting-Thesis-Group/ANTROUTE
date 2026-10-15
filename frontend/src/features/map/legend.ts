@@ -3,6 +3,7 @@ import {
   Camera,
   CircleX,
   CloudRain,
+  Gauge,
   Waves,
   type LucideIcon,
 } from 'lucide-react';
@@ -24,6 +25,9 @@ export interface LegendEntry {
 export const INCIDENT_LEGEND: Record<IncidentKind, LegendEntry> = {
   accident: { label: 'Accident / Event', color: '#ef4444', icon: AlertTriangle },
   road_closure: { label: 'Road Closure', color: '#dc2626', icon: CircleX },
+  // A segment the uploaded data records in the heavy band, as opposed to the route-colour
+  // bands below, which read live traffic.
+  traffic: { label: 'Heavy Traffic Segment', color: CONGESTION_COLORS.heavy, icon: Gauge },
   weather_rain: { label: 'Weather (Rain)', color: '#0ea5e9', icon: CloudRain },
   flood: { label: 'Flood', color: '#2563eb', icon: Waves },
   camera: { label: 'Camera (CCTV)', color: '#1d4ed8', icon: Camera },

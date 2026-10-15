@@ -284,6 +284,11 @@ class ConditionUpdateDetail(BaseModel):
     incidents: List[Dict[str, Any]] = []
 
 
+class NodeCoordinatesResponse(BaseModel):
+    """Graph node id -> coordinates, for placing an uploaded events file on the map."""
+    nodes: Dict[str, PathPoint] = {}
+
+
 class ComparisonTripSystem(BaseModel):
     """One system's result on one evaluated trip."""
     route_optimality: Optional[float] = None       # % against Google Maps (higher is better)

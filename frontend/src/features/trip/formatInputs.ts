@@ -34,20 +34,6 @@ export function isRainy(w: WeatherReading | undefined | null): boolean {
   return Boolean(w?.available && (w.precip_mm ?? 0) > 0);
 }
 
-/**
- * The worst human congestion label among the cameras on a stretch. The human label is the
- * recorded ground truth at the camera, not the model's prediction.
- */
-export function cameraLabel(inputs: RouteInputs | undefined | null): string | null {
-  const labels = (inputs?.cameras ?? [])
-    .map((c) => c.human_label)
-    .filter((l): l is 'Light' | 'Medium' | 'Heavy' => Boolean(l));
-  if (labels.length === 0) return null;
-  if (labels.includes('Heavy')) return 'Heavy';
-  if (labels.includes('Medium')) return 'Medium';
-  return 'Light';
-}
-
 /** The incidents on a stretch, as one cell: the kinds reported there. */
 export function eventCell(inputs: RouteInputs | undefined | null): string | null {
   const incidents = inputs?.incidents ?? [];
@@ -57,29 +43,3 @@ export function eventCell(inputs: RouteInputs | undefined | null): string | null
   return kinds.join(', ');
 }
 
-/** Flood level along a stretch as a word. The server reports 0 when none was recorded. */
-export function floodCell(inputs: RouteInputs | undefined | null): string {
-  const level = inputs?.flood?.max_level;
-  if (level == null) return '–';
-  if (level <= 0) return 'None';
-  if (level === 1) return 'Low';
-  if (level === 2) return 'Moderate';
-  return 'High';
-}
-
-/** Tailwind classes for a congestion / camera label chip. */
-export function levelChipClass(label: string | null): string {
-  switch (label) {
-    case 'Heavy':
-    case 'heavy':
-      return 'bg-red-100 text-red-700';
-    case 'Medium':
-    case 'moderate':
-      return 'bg-amber-100 text-amber-700';
-    case 'Light':
-    case 'clear':
-      return 'bg-emerald-100 text-emerald-700';
-    default:
-      return 'bg-slate-100 text-slate-500';
-  }
-}

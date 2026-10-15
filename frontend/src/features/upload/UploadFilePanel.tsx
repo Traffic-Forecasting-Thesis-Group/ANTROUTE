@@ -9,7 +9,7 @@ import type {
 } from '@/types/upload';
 
 const DEFAULT_ACCEPT = ['.csv'];
-const DEFAULT_MAX_BYTES = 10 * 1024 * 1024;
+const DEFAULT_MAX_BYTES = 20 * 1024 * 1024;
 
 function formatSize(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;

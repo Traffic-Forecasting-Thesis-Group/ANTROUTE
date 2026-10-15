@@ -62,9 +62,20 @@ export interface RouteLeg {
   /** Same ETA engine as the route: estimated, never scored. */
   duration_min: number;
   congestion_level: CongestionLevel;
+  /**
+   * Where this leg's risk came from, as shares that add to 1. "cctv" is the part the
+   * camera-fed decoder produced (observed + propagated tiers), which is a neural prediction
+   * and cannot be split further; the rest is the assumed tier's ridge model decomposed into
+   * its input groups. Empty when the server has no window or no fitted model.
+   */
+  risk_factors?: Partial<Record<RiskFactorKey, number>>;
   /** The recorded cameras, incidents, weather and flood along THIS leg. */
   inputs?: RouteInputs | null;
 }
+
+/** The input groups the Route Information table reports a share for. */
+export type RiskFactorKey = 'cctv' | 'events' | 'weather' | 'flood' | 'others';
+export const RISK_FACTOR_KEYS: RiskFactorKey[] = ['cctv', 'events', 'weather', 'flood', 'others'];
 
 export interface CameraReading {
   camera: string;

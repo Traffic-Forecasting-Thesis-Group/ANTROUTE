@@ -131,8 +131,9 @@ function MissingKeyNotice() {
 export default function MapCard() {
   const [mapType, setMapType] = useState<MapType>('roadmap');
   const [trafficEnabled, setTrafficEnabled] = useState(true);
-  const { departAt } = useTripPlanner();
+  const { departAt, uploadedIncidents } = useTripPlanner();
   const { incidents } = useIncidents({ at: departAt });
+  const allIncidents = [...incidents, ...uploadedIncidents];
 
   return (
     <div className="relative h-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-card">
@@ -148,7 +149,7 @@ export default function MapCard() {
             gestureHandling="greedy"
             className="h-full w-full"
           >
-            <IncidentMarkers incidents={incidents} />
+            <IncidentMarkers incidents={allIncidents} at={departAt} />
             <RecordedMarkers />
             <TrafficLayerBinding enabled={trafficEnabled} />
 
