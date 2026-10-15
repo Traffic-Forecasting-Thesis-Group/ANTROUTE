@@ -21,6 +21,7 @@ import {
   type TripEvaluation,
 } from '@/api/routeService';
 import { searchPlaces, type PlaceSuggestion } from '@/api/placesService';
+import { toRecordedInputs, type UploadedInputs } from '@/lib/inputFeatures';
 import { clampDeparture, currentMinute } from '@/lib/time';
 
 export interface DestinationEntry {
@@ -81,6 +82,9 @@ interface TripPlannerValue {
   // Simulation mode: plan on a chosen recorded window instead of the departure time's own.
   simulationWindow: string | null;
   setSimulationWindow: (window: string | null) => void;
+  /** The uploaded input-features CSV, when one is loaded; its window then fills the inputs panel. */
+  uploadedInputs: UploadedInputs | null;
+  setUploadedInputs: (upload: UploadedInputs | null) => void;
 
   // Selection
   selectedModelTab: ModelTab;
@@ -131,6 +135,7 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
   const [trafficNote, setTrafficNote] = useState<string | null>(null);
   const [recordedInputs, setRecordedInputs] = useState<RecordedInputs | null>(null);
   const [simulationWindow, setSimulationWindowState] = useState<string | null>(null);
+  const [uploadedInputs, setUploadedInputsState] = useState<UploadedInputs | null>(null);
   const [tripEvaluation, setTripEvaluation] = useState<TripEvaluation | null>(null);
   const [tripEvaluationError, setTripEvaluationError] = useState('');
 
@@ -172,6 +177,12 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
   // the same window's inputs from the plan itself.
   useEffect(() => {
     if (simulationWindow === null) return;
+    // An uploaded file that covers this window supplies the inputs itself.
+    const uploaded = uploadedInputs ? toRecordedInputs(uploadedInputs, simulationWindow) : null;
+    if (uploaded) {
+      setRecordedInputs(uploaded);
+      return;
+    }
     let cancelled = false;
     getRecordedInputs(simulationWindow)
       .then((inputs) => !cancelled && setRecordedInputs(inputs))
@@ -179,7 +190,12 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
     return () => {
       cancelled = true;
     };
-  }, [simulationWindow]);
+  }, [simulationWindow, uploadedInputs]);
+
+  const setUploadedInputs = useCallback((upload: UploadedInputs | null) => {
+    setUploadedInputsState(upload);
+    if (!upload) setRecordedInputs(null);
+  }, []);
 
   // Routes were planned on one recorded window; a different one needs new routes.
   const setSimulationWindow = useCallback(
@@ -409,7 +425,10 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
         setBaselineModelOptions(baselinePlan.routes);
         setBaselineNotice(baselinePlan.notice);
         setTrafficNote(antPlan.trafficNote);
-        setRecordedInputs(antPlan.recordedInputs);
+        // With an uploaded file covering the window, its inputs stay on show; otherwise the server's.
+        const uploaded =
+          uploadedInputs && recordedWindowToUse ? toRecordedInputs(uploadedInputs, recordedWindowToUse) : null;
+        setRecordedInputs(uploaded ?? antPlan.recordedInputs);
         setSelectedIndex(0);
       } catch (error: any) {
         setRouteError(error?.message || 'Something went wrong. Please try again.');
@@ -417,7 +436,7 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
         setIsLoading(false);
       }
     },
-    []
+    [uploadedInputs]
   );
 
   /** Replans from where the driver is now to the stops still ahead. */
@@ -494,6 +513,8 @@ export function TripPlannerProvider({ children }: { children: ReactNode }) {
 
     simulationWindow,
     setSimulationWindow,
+    uploadedInputs,
+    setUploadedInputs,
 
     selectedModelTab,
     setSelectedModelTab,

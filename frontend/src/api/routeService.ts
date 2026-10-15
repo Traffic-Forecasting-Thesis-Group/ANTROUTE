@@ -113,6 +113,9 @@ export interface WindowInfo {
 /** The "Inputs used" panel: every recorded input of the window the routes were planned on. */
 export interface RecordedInputs {
   recorded: boolean;
+  /** 'uploaded' when the inputs come from the user's CSV rather than the server's recorded data. */
+  source?: 'recorded' | 'uploaded';
+  source_name?: string;
   matched_window: WindowInfo;
   cameras: CameraReading[];
   incidents: IncidentReading[];

@@ -67,12 +67,16 @@ export default function RecordedInputsPanel() {
       <div className="mb-3 flex items-center justify-between gap-2">
         <h3 className="text-sm font-semibold text-slate-800">Inputs used</h3>
         <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-slate-500">
-          Recorded
+          {recordedInputs.source === 'uploaded' ? 'Uploaded' : 'Recorded'}
         </span>
       </div>
 
       <p className="mb-3 text-xs text-slate-600">
-        {simulationWindow ? 'Simulated window: ' : 'Matched window: '}
+        {recordedInputs.source === 'uploaded'
+          ? `From ${recordedInputs.source_name}: `
+          : simulationWindow
+            ? 'Simulated window: '
+            : 'Matched window: '}
         <span className="font-semibold">{w.label}</span>
         {w.held_out && (
           <span className="ml-1.5 rounded-full bg-amber-100 px-1.5 py-0.5 text-[10px] font-semibold text-amber-800">
