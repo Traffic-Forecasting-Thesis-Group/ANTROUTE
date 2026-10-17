@@ -1,5 +1,7 @@
 # ANTROUTE: ACO System Architecture
 
+Download the architecture diagram: [PNG](aco_system_architecture.png) | [JPG](aco_system_architecture.jpg). Both exports use a monochrome academic flowchart layout at 3600 × 4500 pixels and reflect the implemented codebase. Regenerate them with `python scripts/render_architecture.py` from `traffic_system`.
+
 Scope: San Juan, Manila, Mandaluyong, Makati, and Pasig. Period: **June 1, 2025–May 31, 2026**, hourly. The user permits documented estimates. The release is a historical-period routing model, not a fully observed traffic archive.
 
 ```mermaid

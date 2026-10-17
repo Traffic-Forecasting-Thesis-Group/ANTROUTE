@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { APIProvider, AdvancedMarker, Map, Pin, useMap, useMapsLibrary } from '@vis.gl/react-google-maps';
-import type { BoundaryGeometry, RoadSelection, StudyNode } from '../../api/routeService';
+import type { BoundaryGeometry, RoadSelection, StudyNode, DatasetMap } from '../../api/routeService';
 
 interface MapProps {
   geometry: [number, number][];
@@ -10,6 +10,7 @@ interface MapProps {
   closures: RoadSelection[];
   onPick: (latitude: number, longitude: number) => void;
   disabled: boolean;
+  datasetMap?: DatasetMap | null;
 }
 
 function rings(geometry: BoundaryGeometry): number[][][] {
@@ -17,9 +18,18 @@ function rings(geometry: BoundaryGeometry): number[][][] {
     : (geometry.coordinates as number[][][][]).map(polygon => polygon[0]);
 }
 
-function Overlays({ geometry, boundaries, closures }: Pick<MapProps, 'geometry' | 'boundaries' | 'closures'>) {
+function Overlays({ geometry, boundaries, closures, datasetMap }: Pick<MapProps, 'geometry' | 'boundaries' | 'closures' | 'datasetMap'>) {
   const map = useMap();
   const maps = useMapsLibrary('maps');
+  useEffect(() => {
+    if (!map || !maps || !datasetMap) return;
+    const layer = new maps.Data({ map });
+    layer.addGeoJson({ type: 'FeatureCollection', features: datasetMap.bands.filter(band => band.lines.length).map(band => ({
+      type: 'Feature', properties: { color: band.color }, geometry: { type: 'MultiLineString', coordinates: band.lines },
+    })) });
+    layer.setStyle(feature => ({ strokeColor: feature.getProperty('color') as string, strokeWeight: 2, strokeOpacity: .7, clickable: false, zIndex: 1 }));
+    return () => layer.setMap(null);
+  }, [datasetMap, map, maps]);
   useEffect(() => {
     if (!map || !maps) return;
     const polygons = Object.values(boundaries).flatMap(boundary => {
@@ -51,7 +61,7 @@ function Overlays({ geometry, boundaries, closures }: Pick<MapProps, 'geometry' 
   return null;
 }
 
-function NetworkPreview({ geometry, boundaries, origin, destination, closures, onPick, disabled }: MapProps) {
+function NetworkPreview({ geometry, boundaries, origin, destination, closures, datasetMap, onPick, disabled }: MapProps) {
   const coordinates = Object.values(boundaries).flatMap(boundary => rings(boundary).flat());
   const west = coordinates.length ? Math.min(...coordinates.map(point => point[0])) - .005 : 120.94;
   const east = coordinates.length ? Math.max(...coordinates.map(point => point[0])) + .005 : 121.14;
@@ -72,6 +82,7 @@ function NetworkPreview({ geometry, boundaries, origin, destination, closures, o
     }}>
     <rect width="800" height="620" fill="#eef3f8" />
     {Object.entries(boundaries).flatMap(([city, boundary]) => rings(boundary).map((ring, index) => <polygon key={`${city}-${index}`} points={points(ring)} fill="#dfe8fa" stroke="#8ba0cb" strokeWidth="1.5"><title>{city}</title></polygon>))}
+    {datasetMap?.bands.map(band => <path key={band.label} d={band.lines.map(line => line.map((point, index) => `${index ? 'L' : 'M'}${project(point).map(value => value.toFixed(2)).join(',')}`).join('')).join(' ')} fill="none" stroke={band.color} strokeWidth=".8" opacity=".8" />)}
     {closures.map(road => <polyline key={road.id} points={points(road.geometry)} fill="none" stroke="#dc2626" strokeWidth="5" />)}
     <polyline points={points(geometry)} fill="none" stroke="#4475f2" strokeWidth="4" />
     {[origin, destination].map((node, index) => node && <g key={index} transform={`translate(${project([node.longitude, node.latitude]).join(',')})`}>

@@ -39,9 +39,10 @@ def test_stale_artifact_hash_blocks_release(monkeypatch, tmp_path):
     (tmp_path / "data/processed").mkdir(parents=True)
     (tmp_path / "configs/historical_study.json").write_text(json.dumps(policy))
     from src.routing.network import CITIES
-    artifacts = {name: "wrong-hash" for name in ["data/processed/study_network.json", "data/processed/historical_weather.json", "configs/study_assumptions.json", "configs/historical_study.json"]}
+    artifacts = {name: "wrong-hash" for name in study_policy.RELEASE_ARTIFACTS}
     for name in artifacts:
         if name != "configs/historical_study.json":
+            (tmp_path / name).parent.mkdir(parents=True, exist_ok=True)
             (tmp_path / name).write_text("{}")
     manifest = {"mode": "historical_period_with_estimates", "period": policy,
                 "hours_per_city": dict.fromkeys(CITIES, 8760), "artifacts": artifacts}

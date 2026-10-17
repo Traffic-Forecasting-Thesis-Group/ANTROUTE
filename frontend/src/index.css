@@ -59,6 +59,11 @@ summary { cursor: pointer; }
 .attribution { font-size: 11px; color: #64748b; }
 a { color: #334eb5; text-decoration: underline; }
 .source-details { margin-top: 18px; }
+.settings-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
+.settings-grid label { margin-bottom: 4px; }
+.dataset-actions { display: flex; flex-wrap: wrap; align-items: end; gap: 16px; margin-top: 20px; }
+.dataset-actions label { min-width: 200px; margin: 0; }
+.dataset-actions button { width: auto; margin: 0; }
 .source-details li { margin: 8px 0 8px 18px; list-style: disc; color: #64748b; }
 pre { max-height: 300px; overflow: auto; padding: 12px; background: #f8fafc; border-radius: 8px; font-size: 11px; }
 button:disabled { cursor: default; opacity: .6; }

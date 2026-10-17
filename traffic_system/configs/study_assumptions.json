@@ -1,7 +1,7 @@
 {
   "status": "Uncalibrated, source-documented estimates; not recorded historical traffic",
   "capacity_note": "c = directional lanes * 1900 * effective green ratio. Green ratio is assumed 0.5 at mapped downstream signals and 1 elsewhere. Unsignalized use is a rough proxy, not a validated link-capacity model.",
-  "traffic_note": "Hourly V/C ratios, road-type demand factors, and weekend multiplier are project scenario assumptions. BPR is published; these demand inputs are not measured.",
+  "traffic_note": "Traffic is estimated, not observed and not counted: an assumed hourly demand-to-capacity index (hourly profile x road-type factor x weekend factor x repeatable variation) is converted to congestion and travel-time factors with the published BPR function. Preprocessed into data/processed/temporal/traffic_hourly.csv.",
   "weather_scenarios": {
     "clear": {
       "cost": 0,
@@ -109,7 +109,7 @@
   "saturation_flow_vph_per_lane": 1900,
   "assumed_effective_green_ratio": 0.5,
   "weekend_demand_factor": 0.75,
-  "hourly_volume_capacity_ratio": [
+  "hourly_demand_capacity_ratio": [
     0.25,
     0.2,
     0.18,
@@ -135,6 +135,13 @@
     0.45,
     0.3
   ],
+  "traffic_variation": {
+    "seed": 42,
+    "strength": 0.6,
+    "day_coefficient": 0.2,
+    "location_hour_coefficient": 0.25,
+    "note": "Repeatable daily (per city) and three-hour (per city and road type) variation. Uncalibrated scenario coefficients, not measurements."
+  },
   "peak_hours": [
     7,
     8,

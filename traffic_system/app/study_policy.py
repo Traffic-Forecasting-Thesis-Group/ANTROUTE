@@ -11,6 +11,9 @@ from fastapi import HTTPException
 from src.routing.network import CITIES
 
 ROOT = Path(__file__).resolve().parents[1]
+RELEASE_ARTIFACTS = ("data/processed/study_network.json", "data/processed/historical_weather.json",
+                     "data/processed/temporal/traffic_hourly.csv",
+                     "configs/study_assumptions.json", "configs/historical_study.json")
 
 
 @lru_cache(maxsize=8)
@@ -30,8 +33,7 @@ def study_status():
             raise ValueError("Release mode or period does not match the authorized policy")
         if manifest["hours_per_city"] != {city: hours for city in CITIES}:
             raise ValueError("Incomplete provider-weather hour coverage")
-        required = {"data/processed/study_network.json", "data/processed/historical_weather.json", "configs/study_assumptions.json", "configs/historical_study.json"}
-        if set(manifest["artifacts"]) != required:
+        if set(manifest["artifacts"]) != set(RELEASE_ARTIFACTS):
             raise ValueError("Release artifact set is incomplete")
         for name, expected in manifest["artifacts"].items():
             path = ROOT / name

@@ -9,8 +9,8 @@ The executable settings are in [study_assumptions.json](../configs/study_assumpt
 | Feature | Basis and computation | What is assumed or uncertain |
 |---|---|---|
 | Distance | WGS84 geodesic polyline length using PyProj. OSMnx single-segment endpoint geometry follows its conversion convention. | September 2026 mapped geometry is used as a static surrogate throughout the study year. It is not a surveyed historical length. |
-| Traffic Congestion | BPR-derived slowdown index `1 - t0/t`, where `t/t0 = 1 + 0.15*(V/C)^4`. | All V/C values are assumed demand scenarios; there are no measured traffic volumes or historical congestion records. |
-| Travel Time | `t0 = length / (speed_kph/3.6)`, followed by the BPR factor and the weather multiplier. | Posted OSM speed is a free-flow proxy. Missing speeds use the explicit road-type table. Neither is observed vehicle speed. |
+| Traffic Congestion | Read from the hourly traffic table (`traffic_hourly.csv`) by date, hour, city and road type: `1 - t0/t`, where `t/t0 = 1 + 0.15*x^4` and `x` is an assumed demand-to-capacity index. | All `x` values are assumed demand scenarios; there are no vehicle counts or historical congestion records. |
+| Travel Time | `t0 = length / (speed_kph/3.6)`, multiplied by the table's `travel_time_factor` and the weather multiplier. | Posted OSM speed is a free-flow proxy. Missing speeds use the explicit road-type table. Neither is observed vehicle speed. |
 | Number of Intersections | Count entered mapped nodes with street count at least three; exclude the origin. | Graph topology is held constant across the year and may omit physical junction details. |
 | Traffic Signal | OSM `traffic_signals` node tags. | Untagged signals are assumed absent; absence is not verified. Historical installations/removals are unknown. |
 | Road Type | OSM highway classifications. | Types are held constant. The categorical cost table is an objective preference, not a measured road property. |
@@ -21,7 +21,7 @@ The executable settings are in [study_assumptions.json](../configs/study_assumpt
 
 ## Published functional forms
 
-**BPR travel time.** The implementation uses `t = t0 * (1 + alpha*(V/C)^beta)`, with reference coefficients `alpha=0.15`, `beta=4`. This supplies a functional form, not evidence for our assumed demand. [FHWA reference](https://www.fhwa.dot.gov/Environment/air_quality/conformity/research/sample_methodologies/emismeth03.cfm).
+**BPR travel time.** The implementation uses `t = t0 * (1 + alpha*x^beta)`, where `x` is the assumed demand-to-capacity index, with reference coefficients `alpha=0.15`, `beta=4`. This supplies a functional form, not evidence for our assumed demand. [FHWA reference](https://www.fhwa.dot.gov/Environment/air_quality/conformity/research/sample_methodologies/emismeth03.cfm).
 
 **Signalized capacity.** The reference relationship is `c = s * g/C`. The model uses `s = 1900` passenger-car-equivalent vehicles/hour/lane, assumes `g/C=0.5` at a mapped downstream signal, and otherwise uses 1. It does not model detailed lane movements, vehicle mix, or signal plans. Applying this simplified proxy to unsignalized links is a project extrapolation. [Capacity relationship](https://ops.fhwa.dot.gov/publications/fhwahop08024/chapter3.htm) · [Saturation-flow reference](https://ops.fhwa.dot.gov/publications/fhwahop09008/chapter3.htm).
 
@@ -31,7 +31,7 @@ Weather scenarios have categorical costs 0, 0.4, and 0.8. Historical precipitati
 
 ## Project assumptions without empirical calibration
 
-The configuration records all 24 hourly V/C values. Each is multiplied by a road-type factor; weekend requests multiply demand by 0.75. These numbers are scenario parameters chosen for the implementation, not reported Metro Manila traffic statistics. They must remain labeled as such.
+The configuration records all 24 hourly demand-to-capacity index values (`hourly_demand_capacity_ratio`). Each is multiplied by a road-type factor; weekend hours multiply demand by 0.75; repeatable daily and three-hour variation (`traffic_variation`) is applied per city and road type. `scripts/preprocess_traffic.py` evaluates this once for all 8,760 hours into `traffic_hourly.csv`. These numbers are scenario parameters chosen for the implementation, not reported Metro Manila traffic statistics. They must remain labeled as such.
 
 Road-type fallback speeds, fallback lanes, categorical road costs, the assumed effective green ratio, the peak-hours list, and the equal ten-feature weights are also provisional choices. Directional lane tags are preferred; two-way total lane tags are split between directions; otherwise the configured fallback is used. Unknown signals are assumed absent and reported as unrecorded.
 

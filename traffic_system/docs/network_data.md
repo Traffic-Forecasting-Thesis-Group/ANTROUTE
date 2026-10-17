@@ -2,7 +2,7 @@
 
 Period: `[2025-06-01T00:00:00+08:00, 2026-06-01T00:00:00+08:00)`, hourly. Estimates are explicitly allowed and must carry source/method disclosures.
 
-Build the local release with `python -m scripts.build_study_network`. It uses the retained road graph, five-city boundaries, NOAH polygons, historical provider weather CSV, and explicit assumption settings. No paid traffic API or live-weather request is required.
+Build the local release with `python -m scripts.preprocess_road_features`, `python -m scripts.preprocess_traffic`, then `python -m scripts.build_study_network` (see [feature_preprocessing.md](feature_preprocessing.md)). The build reads only the preprocessed feature tables, the hourly traffic table, the historical provider weather CSV, five-city boundaries and explicit assumption settings. No paid traffic API or live-weather request is required.
 
 Generated files:
 

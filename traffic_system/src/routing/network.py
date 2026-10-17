@@ -57,7 +57,8 @@ class Road(StudyModel):
     name: str = ""
     feature_sources: dict[str, str] = Field(default_factory=dict)
     free_flow_time_s: Positive | None = None
-    volume_capacity_ratio: list[Annotated[float, Field(ge=0)]] | None = Field(default=None, min_length=24, max_length=24)
+    # Key into the hourly traffic table (city x road type); None uses the 24-hour profiles above.
+    traffic_location: str | None = None
 
 
 class CostConfig(StudyModel):

@@ -51,6 +51,23 @@ export interface Conditions {
   closed_road_ids: string[];
 }
 
+export interface AcoSettings {
+  n_ants: number; max_iterations: number; max_steps: number; seed: number;
+  alpha: number; beta: number; evaporation: number; tolerance: number; patience: number; goal_bias: number;
+}
+
+export interface DatasetInfo {
+  nodes: number; directed_segments: number; segments_by_city: Record<string, number>; traffic_locations: number;
+  largest_strongly_connected_nodes: number; strongly_connected_components: number;
+  hours: number; potential_segment_hour_rows: number;
+  retained_weather_grids: number; assigned_weather_grids: number; note: string;
+}
+
+export interface DatasetMap {
+  bands: { label: string; color: string; lines: [number, number][][] }[];
+  segment_count: number;
+}
+
 export interface RouteResult {
   route: { node_ids: string[]; road_ids: string[]; geometry: [number, number][]; road_names: string[]; feature_sources: Record<string, Record<string, string>> };
   conditions: Conditions;
@@ -89,9 +106,24 @@ export const snapNode = (latitude: number, longitude: number) => request<StudyNo
 export const snapRoad = (latitude: number, longitude: number) => request<RoadSelection>(`/roads/nearest?latitude=${latitude}&longitude=${longitude}`);
 export const loadWeather = (departureDate: string, hour: number, signal?: AbortSignal) => request<WeatherSnapshot>(`/conditions/weather?departure_date=${departureDate}&time_of_day=${hour}`, { signal });
 export const refreshWeather = () => request<WeatherSnapshot>('/conditions/weather/refresh', { method: 'POST' });
-export const planRoute = (origin: string, destination: string, conditions: Conditions, signal: AbortSignal) =>
+export const loadDatasetInfo = (signal: AbortSignal) => request<DatasetInfo>('/dataset/info', { signal });
+export const loadDatasetMap = (conditions: Conditions, city: string | null, signal: AbortSignal) =>
+  request<DatasetMap>('/dataset/map', { method: 'POST', signal, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ conditions, city }) });
+export async function downloadSnapshot(conditions: Conditions, city: string | null, signal: AbortSignal) {
+  const response = await fetch(`${baseURL}/dataset/export`, { method: 'POST', signal,
+    headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ conditions, city }) });
+  if (!response.ok) throw new Error('Could not export the snapshot. Check the study date and settings.');
+  const blob = await response.blob();
+  if (signal.aborted) return;
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url; link.download = `antroute_${conditions.departure_date}_${conditions.time_of_day}.csv`;
+  link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+export const planRoute = (origin: string, destination: string, conditions: Conditions, signal: AbortSignal,
+  aco?: AcoSettings) =>
   request<RouteResult>('/routes/plan', {
     method: 'POST', signal,
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ origin, destination, conditions }),
+    body: JSON.stringify({ origin, destination, conditions, aco }),
   });

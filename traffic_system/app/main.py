@@ -4,9 +4,11 @@ from functools import lru_cache
 from pathlib import Path
 from datetime import date
 from time import perf_counter
+from itertools import chain, islice
 
 from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 from pydantic import Field, ValidationError
 from dotenv import load_dotenv
 
@@ -15,10 +17,12 @@ from app.study_policy import require_historical_release, study_status
 
 from src.routing.aco_routing import AntColonyConfig, NoFeasibleRoute, SearchExhausted, ant_colony_route
 from src.routing.condition_update import Conditions, validate_conditions
-from src.routing.dynamic_weight import prepare_graph
+from src.routing.dynamic_weight import prepare_graph, segment_values
+from src.routing.datasets import coverage, snapshot_rows, csv_chunks
 from src.routing.metrics import evaluate
-from src.routing.network import CITIES, FEATURES, RoadNetwork, StudyModel, load_network
+from src.routing.network import CITIES, FEATURES, City, RoadNetwork, StudyModel, load_network
 from src.routing.historical_weather import historical_snapshot
+from src.routing.historical_traffic import traffic_for
 
 load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 app = FastAPI(title="ANTROUTE ACO Study")
@@ -54,6 +58,65 @@ class RouteRequest(StudyModel):
     destination: str = Field(min_length=1)
     conditions: Conditions
     aco: AntColonyConfig = Field(default_factory=AntColonyConfig)
+
+
+class SnapshotRequest(StudyModel):
+    conditions: Conditions
+    city: City | None = None
+
+
+TRAFFIC_DISCLOSURE = {"classification": "estimated_not_measured",
+                      "source": "data/processed/temporal/traffic_hourly.csv",
+                      "note": "Hourly congestion and travel-time factors per city and road type from an assumed demand index and the BPR function. No vehicle counts."}
+
+
+@app.get("/dataset/info", dependencies=[Depends(require_historical_release)])
+def dataset_info():
+    return {**coverage(get_network()), "traffic": TRAFFIC_DISCLOSURE,
+            "features": FEATURES, "period": study_status()["requirements"]}
+
+
+@app.post("/dataset/snapshot", dependencies=[Depends(require_historical_release)])
+def dataset_snapshot(request: SnapshotRequest, offset: int = Query(default=0, ge=0),
+                        limit: int = Query(default=100, ge=1, le=1000)):
+    network = get_network()
+    try:
+        rows = list(islice(snapshot_rows(network, request.conditions, request.city), offset, offset + limit))
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)) from exc
+    cities = {node.id: node.city for node in network.nodes}
+    total = sum(1 for road in network.roads if request.city is None or cities[road.source] == request.city)
+    return {"rows": rows, "total": total, "offset": offset, "limit": limit,
+            "traffic": TRAFFIC_DISCLOSURE}
+
+
+@app.post("/dataset/export", dependencies=[Depends(require_historical_release)])
+def dataset_export(request: SnapshotRequest):
+    try:
+        rows = iter(snapshot_rows(get_network(), request.conditions, request.city))
+        first = next(rows, None)  # Validate inputs and weather before sending response headers.
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)) from exc
+    filename = f"antroute_{request.conditions.departure_date}_{request.conditions.time_of_day:02d}.csv"
+    return StreamingResponse(csv_chunks(chain([] if first is None else [first], rows)),
+                             media_type="text/csv", headers={"Content-Disposition": f'attachment; filename="{filename}"'})
+
+
+@app.post("/dataset/map", dependencies=[Depends(require_historical_release)])
+def dataset_map(request: SnapshotRequest):
+    network = get_network()
+    roads = {road.id: road for road in network.roads}
+    bands = [{"label": label, "color": color, "lines": []} for label, color in [
+        ("0–0.1", "#16865b"), ("0.1–0.3", "#75a83b"), ("0.3–0.5", "#d79922"),
+        ("0.5–0.7", "#df6535"), ("0.7–1", "#a32935"), ("Closed", "#111827")]]
+    try:
+        for row in snapshot_rows(network, request.conditions, request.city):
+            band = 5 if row["closed"] else sum(row["traffic_congestion"] >= threshold for threshold in (.1, .3, .5, .7))
+            bands[band]["lines"].append(roads[row["road_id"]].geometry)
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)) from exc
+    return {"bands": bands, "segment_count": sum(len(band["lines"]) for band in bands),
+            "classification": "Estimated congestion index from the hourly traffic table, not observed traffic", "traffic": TRAFFIC_DISCLOSURE}
 
 
 @app.get("/health")
@@ -130,10 +193,14 @@ def plan_route(request: RouteRequest, _historical_release: None = Depends(requir
             weather_by_city, observation = historical_snapshot(request.conditions.departure_date, request.conditions.time_of_day, network)
         except (OSError, ValueError, KeyError):
             raise HTTPException(503, "Historical weather snapshot is unavailable") from None
+    try:
+        traffic = traffic_for(network, request.conditions)
+    except (OSError, ValueError):
+        raise HTTPException(503, "Hourly traffic table is unavailable") from None
     # Data loading/validation is input collection. Timed work begins with graph preparation.
     started = perf_counter()
     try:
-        graph = prepare_graph(network, request.conditions, weather_by_city)
+        graph = prepare_graph(network, request.conditions, weather_by_city, traffic)
         positions = {node.id: (node.longitude, node.latitude) for node in network.nodes}
         result = ant_colony_route(graph, request.origin, request.destination, request.aco, positions)
     except NoFeasibleRoute as exc:
@@ -144,6 +211,7 @@ def plan_route(request: RouteRequest, _historical_release: None = Depends(requir
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     elapsed_ms = (perf_counter() - started) * 1000
     coordinates = []
+    nodes = {node.id: node for node in network.nodes}
     for edge in result.roads:
         geometry = edge.road.geometry
         coordinates.extend(geometry if not coordinates else geometry[1:])
@@ -154,6 +222,10 @@ def plan_route(request: RouteRequest, _historical_release: None = Depends(requir
             "geometry": coordinates,
             "road_names": [edge.road.name or edge.road.id for edge in result.roads],
             "feature_sources": {edge.road.id: edge.road.feature_sources for edge in result.roads},
+            "segment_features": [{"road_id": edge.road.id, "path_cost": edge.cost,
+                "features": segment_values(network, edge.road, request.conditions,
+                    nodes, weather_by_city, traffic)[0]}
+                for edge in result.roads],
         },
         "conditions": request.conditions.model_dump(mode="json"),
         "aco": request.aco.model_dump(),
@@ -161,4 +233,5 @@ def plan_route(request: RouteRequest, _historical_release: None = Depends(requir
         "weather_observation": observation,
         "data_quality": network.provenance.get("mode", "supplied_feature_data"),
         "estimation_registry": network.provenance.get("estimation_registry", {}),
+        "traffic": TRAFFIC_DISCLOSURE,
     }

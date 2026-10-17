@@ -1,0 +1,70 @@
+{
+  "static": {
+    "generated_at": "2026-10-17T14:57:18.773951+00:00",
+    "nodes": 12398,
+    "segments": 30511,
+    "segments_by_city": {
+      "Manila": 12757,
+      "Mandaluyong": 2430,
+      "Makati": 5486,
+      "Pasig": 7933,
+      "San Juan": 1905
+    },
+    "segments_by_road_type": {
+      "secondary": 2952,
+      "trunk": 183,
+      "primary": 1242,
+      "trunk_link": 128,
+      "residential": 19643,
+      "unclassified": 1143,
+      "tertiary": 4773,
+      "secondary_link": 140,
+      "primary_link": 169,
+      "motorway_link": 39,
+      "tertiary_link": 60,
+      "living_street": 16,
+      "motorway": 23
+    },
+    "intersection_nodes": 10699,
+    "signal_nodes": 655,
+    "excluded_source_edges": {
+      "endpoint_outside_five_cities": 117877,
+      "not_public_driving": 84,
+      "geometry_outside_or_invalid": 11
+    },
+    "value_sources": {
+      "osm_maxspeed": 10034,
+      "osm_lanes": 21166,
+      "osm_endpoint_segment_osmnx_convention": 13470,
+      "osm_polyline": 17041,
+      "road_type_default_speed": 20477,
+      "road_type_default_lanes": 9345
+    },
+    "flood_classes": {
+      "1": 9756,
+      "3": 1297,
+      "0": 9063,
+      "2": 10395
+    },
+    "checks": {
+      "unique_node_ids": true,
+      "unique_road_ids": true,
+      "segment_endpoints_exist": true,
+      "positive_distance_speed_capacity": true,
+      "known_road_types": true,
+      "flood_row_per_segment": true,
+      "flood_class_0_to_3": true,
+      "all_five_cities_present": true
+    }
+  },
+  "traffic": {
+    "generated_at": "2026-10-17T14:58:22.166824+00:00",
+    "table": "data/processed/temporal/traffic_hourly.csv",
+    "classification": "estimated_not_observed",
+    "rows": 455520,
+    "locations": 52,
+    "hours_per_location": 8760,
+    "no_duplicates": true,
+    "values_in_range": true
+  }
+}

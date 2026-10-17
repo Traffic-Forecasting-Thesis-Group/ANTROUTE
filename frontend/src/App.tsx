@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
 import { loadNetwork, loadStudyStatus, loadWeather, planRoute, snapNode, snapRoad } from './api/routeService';
 import type { HistoricalStudyStatus as StudyStatus, NetworkInfo, RoadSelection, RouteResult, StudyNode, WeatherSnapshot } from './api/routeService';
 import RouteMap from './features/map/RouteMap';
 import PlaceInput from './features/trip/PlaceInput';
 import HistoricalStudyStatus from './features/study/HistoricalStudyStatus';
+import DatasetExplorer from './features/study/DatasetExplorer';
+import type { AcoSettings, DatasetMap } from './api/routeService';
 
 const features = ['Distance', 'Traffic Congestion', 'Travel Time', 'Number of Intersections', 'Traffic Signal', 'Road Type', 'Time of Day', 'Weather', 'Flood Risk', 'Road Capacity'];
 const cities = ['San Juan', 'Manila', 'Mandaluyong', 'Makati', 'Pasig'];
@@ -50,6 +52,11 @@ export default function App() {
   const [picking, setPicking] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [aco, setAco] = useState<AcoSettings>({ n_ants: 20, max_iterations: 60, max_steps: 10000, seed: 0,
+    alpha: 1, beta: 2, evaporation: .5, tolerance: .0001, patience: 10, goal_bias: 4 });
+  const [datasetMap, setDatasetMap] = useState<DatasetMap | null>(null);
+  const conditions = useMemo(() => ({ departure_date: departureDate, time_of_day: hour, weather,
+    closed_road_ids: closures.map(road => road.id) }), [departureDate, hour, weather, closures]);
   const activeRequest = useRef<AbortController | null>(null);
 
   useEffect(() => {
@@ -92,7 +99,7 @@ export default function App() {
     try {
       const next = await planRoute(origin.id, destination.id, {
         departure_date: departureDate, time_of_day: hour, weather, closed_road_ids: closures.map(road => road.id),
-      }, controller.signal);
+      }, controller.signal, aco);
       setResult(next);
     } catch (reason) {
       if (reason instanceof Error && reason.name !== 'AbortError') setError(reason.message);
@@ -159,6 +166,19 @@ export default function App() {
               <label className="checkbox"><input type="checkbox" checked={bothDirections} onChange={event => setBothDirections(event.target.checked)} />Close both mapped directions</label>
               <ul className="closure-list">{closures.map(road => <li key={road.id}><span>{road.name}</span><button type="button" aria-label={`Reopen ${road.name}`} onClick={() => { setClosures(previous => previous.filter(item => item.id !== road.id)); invalidate(); }}>Reopen</button></li>)}</ul>
               {!closures.length && <p className="muted">No closures entered.</p>}
+              <p className="muted">Traffic congestion and travel time are read from the hourly traffic table for the selected date and hour. They are estimated per city and road type, not measured.</p>
+              <details className="source-details"><summary>ACO search settings</summary>
+                <p className="muted">Higher ant, iteration and step limits allow a larger search and require more computation. ACO seed controls repeatable search choices.</p>
+                <div className="settings-grid">{([
+                  ['n_ants', 'Ants', 1, 200, 1], ['max_iterations', 'Maximum iterations', 1, 1000, 1],
+                  ['max_steps', 'Steps per ant', 1, 100000, 1], ['seed', 'ACO seed', -2147483648, 2147483647, 1],
+                  ['alpha', 'Pheromone influence', 0, 5, .1], ['beta', 'Cost influence', 0, 10, .1],
+                  ['goal_bias', 'Destination bias', 0, 10, .1], ['evaporation', 'Evaporation', .01, .99, .01],
+                  ['tolerance', 'Convergence tolerance', 0, .99, .0001], ['patience', 'Convergence patience', 1, 1000, 1],
+                ] as [keyof AcoSettings, string, number, number, number][]).map(([key, label, min, max, step]) =>
+                  <label key={key}>{label}<input type="number" required min={min} max={max} step={step} value={aco[key]} onChange={event => { setAco({ ...aco, [key]: Number(event.target.value) }); invalidate(); }} /></label>)}
+                </div>
+              </details>
               <button type="submit">{busy ? 'Running ACO…' : 'Calculate route'}</button>
             </fieldset>
           </form>
@@ -168,11 +188,13 @@ export default function App() {
           <h2>Route within the study area</h2>
           <div className="map-toolbar" role="group" aria-label="Map selection mode">{(['origin', 'destination', 'closure'] as const).map(mode => <button type="button" key={mode} disabled={disabled} aria-pressed={pickMode === mode} onClick={() => setPickMode(mode)}>{mode === 'closure' ? 'Close road' : `Set ${mode}`}</button>)}</div>
           <p className="muted" role="status">{picking ? 'Finding the nearest study road…' : `Click the map to ${pickMode === 'closure' ? 'enter a road closure' : `choose the ${pickMode}`}.`}</p>
-          <div className="map"><RouteMap geometry={result?.route.geometry ?? emptyGeometry} boundaries={network?.boundaries ?? emptyBoundaries} origin={origin} destination={destination} closures={closures} onPick={pickPoint} disabled={disabled} /></div>
+          <div className="map"><RouteMap geometry={result?.route.geometry ?? emptyGeometry} boundaries={network?.boundaries ?? emptyBoundaries} origin={origin} destination={destination} closures={closures} datasetMap={datasetMap} onPick={pickPoint} disabled={disabled} /></div>
+          {datasetMap && <><p className="muted">{datasetMap.segment_count.toLocaleString()} segments colored by the estimated congestion index for this hour.</p><div className="feature-list">{datasetMap.bands.map(band => <span key={band.label} style={{ color: band.color }}>{band.label}: {band.lines.length.toLocaleString()}</span>)}</div></>}
           <p className="muted">{result ? `${result.route.road_ids.length} road segments in the best route found by ACO.` : 'Search road names or select points on the map.'} Blue boundaries mark the study area; red segments are closed.</p>
           <p className="attribution">Roads and boundaries © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap contributors</a>. Flood hazard source: Project NOAH.</p>
         </section>
       </div>
+      {network && <DatasetExplorer conditions={conditions} onMap={setDatasetMap} disabled={disabled} />}
       <section className="card evaluation">
         <h2>Evaluation</h2>
         {evaluation && convergence ? <>

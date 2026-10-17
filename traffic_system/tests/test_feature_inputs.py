@@ -9,7 +9,7 @@ from shapely.geometry import LineString, box, mapping
 
 from app import places, weather_service
 from app.main import app
-from scripts.build_study_network import directional_lanes, road_geometry
+from scripts.preprocess_road_features import directional_lanes, road_geometry
 from src.routing.condition_update import Conditions
 from src.routing.dynamic_weight import prepare_graph
 from src.routing.network import CITIES, RoadNetwork
@@ -25,11 +25,11 @@ def weather_snapshot(age=0):
 
 
 @pytest.mark.parametrize("data,expected,source", [
-    ({"lanes": "4", "oneway": "False"}, 2, "estimated_capacity_from_osm_lanes"),
-    ({"lanes": "3", "oneway": "True"}, 3, "estimated_capacity_from_osm_lanes"),
-    ({"lanes:forward": "2", "lanes": "3"}, 2, "estimated_capacity_from_osm_directional_lanes"),
-    ({"lanes:backward": "1", "reversed": "True"}, 1, "estimated_capacity_from_osm_directional_lanes"),
-    ({}, 1, "estimated_capacity_from_road_type_lanes"),
+    ({"lanes": "4", "oneway": "False"}, 2, "osm_lanes"),
+    ({"lanes": "3", "oneway": "True"}, 3, "osm_lanes"),
+    ({"lanes:forward": "2", "lanes": "3"}, 2, "osm_directional_lanes"),
+    ({"lanes:backward": "1", "reversed": "True"}, 1, "osm_directional_lanes"),
+    ({}, 1, "road_type_default_lanes"),
 ])
 def test_directional_capacity_estimates_are_labeled(data, expected, source):
     assert directional_lanes(data, 1) == (expected, source)
@@ -136,16 +136,35 @@ def test_builder_uses_mapped_flood_and_labels_estimates(tmp_path):
     flood_path.write_text(json.dumps({"type": "FeatureCollection", "features": [
         {"properties": {"Var": 3}, "geometry": mapping(box(121, 14.50, 121.01, 14.51))}
     ]}), encoding="utf-8")
-    assumptions = {"hourly_congestion": [0.2] * 24, "capacity_per_lane_vph": 1500,
+    from scripts import preprocess_road_features as static
+    from src.routing.historical_traffic import FIELDS, bpr, table_rows
+    assumptions = {"saturation_flow_vph_per_lane": 1500, "assumed_effective_green_ratio": .5, "peak_hours": [8],
         "road_types": {"residential": {"speed_kph": 20, "lanes": 1, "cost": 0.7, "traffic_factor": 0.5}},
-        "weather_scenarios": {"clear": {"cost": 0, "travel_time_multiplier": 1}}}
+        "weather_scenarios": {"clear": {"cost": 0, "travel_time_multiplier": 1}},
+        "bpr_alpha": .15, "bpr_beta": 4, "weekend_demand_factor": .75, "hourly_demand_capacity_ratio": [1] * 24,
+        "traffic_variation": {"seed": 1, "strength": 0, "day_coefficient": .2, "location_hour_coefficient": .25},
+        "sources": dict.fromkeys(["map", "bpr", "rain", "flood", "capacity"], "test")}
     assumptions_path = tmp_path / "assumptions.json"
     assumptions_path.write_text(json.dumps(assumptions), encoding="utf-8")
-    network = build(boundary_path, graph_path, flood_path, assumptions_path)
-    assert network.roads[0].flood_risk == 1
-    assert network.roads[0].road_capacity_vph == 1500
-    assert network.roads[0].traffic_congestion == [0.1] * 24
-    assert network.roads[0].distance_m > 100
+    nodes, segments, floods, excluded, _ = static.preprocess(boundary_path, graph_path, flood_path, assumptions)
+    features = tmp_path / "features"
+    features.mkdir()
+    static.write_csv(features / "road_nodes.csv", static.NODE_FIELDS, nodes)
+    static.write_csv(features / "road_segments.csv", static.SEGMENT_FIELDS, segments)
+    static.write_csv(features / "segment_flood.csv", static.FLOOD_FIELDS, floods)
+    assert segments[0]["traffic_location"] == "san_juan__residential"
+    assert "lanes_source" in segments[0] and not any("volume" in field for field in static.SEGMENT_FIELDS + FIELDS)
+    traffic_path = tmp_path / "traffic.csv"
+    location = (segments[0]["traffic_location"], "San Juan", "residential")
+    static.write_csv(traffic_path, FIELDS, table_rows([location], assumptions, hours=48))
+    network = build(features, boundary_path, assumptions_path, traffic_path)
+    road = network.roads[0]
+    assert road.flood_risk == 1
+    assert road.road_capacity_vph == 1500  # two-way lanes=2 is one lane per direction; no signal at b
+    factor, congestion = bpr(.5, assumptions)
+    assert road.traffic_congestion == pytest.approx([congestion] * 24, abs=1e-6)
+    assert road.travel_time_s[0] == pytest.approx(road.free_flow_time_s * factor, rel=1e-5)
+    assert road.distance_m > 100
     assert network.nodes[0].traffic_signal
-    assert "estimated" in network.roads[0].feature_sources["road_capacity"]
-    assert network.provenance["mode"] == "mapped_network_with_labeled_estimates"
+    assert "estimated" in road.feature_sources["road_capacity"]
+    assert network.provenance["mode"] == "historical_period_with_estimates"

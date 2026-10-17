@@ -6,7 +6,7 @@ The system uses exactly the requested ten features: distance, traffic congestion
 
 **This is not a fully measured historical traffic archive.** Traffic/capacity/travel-time/weather effects are modeled. Historical provider weather has 8,760 timestamps for each assigned city grid. The September 2026 road inventory and static NOAH hazards are temporal proxies. Missing signal tags are assumed absent. All caveats are visible in the app.
 
-Read [estimation methods and sources](traffic_system/docs/estimation_methods.md), [architecture](traffic_system/docs/aco_system_architecture.md), and [network/API contract](traffic_system/docs/network_data.md). The executable parameters and literature links are in [study_assumptions.json](traffic_system/configs/study_assumptions.json). Formulas from published references are distinguished from manually chosen, uncalibrated inputs.
+Read [input feature preprocessing](traffic_system/docs/feature_preprocessing.md), [estimation methods and sources](traffic_system/docs/estimation_methods.md), [architecture](traffic_system/docs/aco_system_architecture.md), and [network/API contract](traffic_system/docs/network_data.md). The executable parameters and literature links are in [study_assumptions.json](traffic_system/configs/study_assumptions.json). Formulas from published references are distinguished from manually chosen, uncalibrated inputs.
 
 ## Build and run
 
@@ -14,6 +14,8 @@ From `traffic_system` with the Python environment installed:
 
 ```powershell
 .\venv\Scripts\python -m pip install -r requirements.txt
+.\venv\Scripts\python -m scripts.preprocess_road_features
+.\venv\Scripts\python -m scripts.preprocess_traffic
 .\venv\Scripts\python -m scripts.build_study_network
 .\venv\Scripts\python -m scripts.audit_historical_inputs
 .\venv\Scripts\python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
