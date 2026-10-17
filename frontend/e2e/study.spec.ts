@@ -1,0 +1,79 @@
+import { expect, test } from '@playwright/test';
+
+test('plan a real cross-city route, change time and weather, close and reopen a road', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByText('Historical routing with documented estimates', { exact: true })).toBeVisible();
+  await page.getByRole('combobox', { name: 'Origin', exact: true }).fill('Manila');
+  await page.getByRole('listbox', { name: 'Origin suggestions' }).getByRole('option').first().click();
+  await page.getByRole('combobox', { name: 'Destination', exact: true }).fill('Makati');
+  await page.getByRole('listbox', { name: 'Destination suggestions' }).getByRole('option').first().click();
+  await page.getByLabel('Weather Conditions', { exact: true }).selectOption('historical');
+  await page.getByLabel('Time of Day (Asia/Manila)', { exact: true }).selectOption('8');
+
+  const calculate = async () => {
+    const response = page.waitForResponse(response => response.url().endsWith('/routes/plan'));
+    await page.getByRole('button', { name: 'Calculate route', exact: true }).click();
+    const actual = await response;
+    expect(actual.status()).toBe(200);
+    const body = await actual.json();
+    await expect(page.getByText('Best path cost by iteration', { exact: true })).toBeVisible();
+    return body;
+  };
+  const baseline = await calculate();
+  expect(baseline.evaluation.distance_travel_m).toBeGreaterThan(0);
+  expect(baseline.weather_observation.cities.Manila.localtime).toContain('2025-06-01');
+  await page.getByLabel('Study date', { exact: true }).fill('2025-06-02');
+  const weekday = await calculate();
+  expect(weekday.conditions.departure_date).toBe('2025-06-02');
+  expect(weekday.weather_observation.cities.Manila.localtime).toContain('2025-06-02');
+  await page.getByLabel('Time of Day (Asia/Manila)', { exact: true }).selectOption('3');
+  await expect(page.getByText('Best path cost by iteration', { exact: true })).toHaveCount(0);
+  const offPeak = await calculate();
+  expect(offPeak.conditions.time_of_day).toBe(3);
+  expect(offPeak.evaluation.path_cost).not.toBe(baseline.evaluation.path_cost);
+  await page.getByLabel('Weather Conditions', { exact: true }).selectOption('rain');
+  const rain = await calculate();
+  expect(rain.conditions.weather).toBe('rain');
+
+  await page.getByRole('button', { name: 'Close road', exact: true }).click();
+  const coordinate = rain.route.geometry[Math.floor(rain.route.geometry.length / 2)] as [number, number];
+  const preview = page.locator('.network-preview');
+  const bounds = await preview.evaluate(element => {
+    const rect = element.getBoundingClientRect();
+    const svg = element as SVGElement;
+    return { width: rect.width, height: rect.height, west: Number(svg.dataset.west), east: Number(svg.dataset.east), south: Number(svg.dataset.south), north: Number(svg.dataset.north) };
+  });
+  const scale = Math.min(bounds.width / 800, bounds.height / 620);
+  const x = (bounds.width - scale * 800) / 2 + (coordinate[0] - bounds.west) / (bounds.east - bounds.west) * 800 * scale;
+  const y = (bounds.height - scale * 620) / 2 + (bounds.north - coordinate[1]) / (bounds.north - bounds.south) * 620 * scale;
+  const closureResponse = page.waitForResponse(response => response.url().includes('/roads/nearest?'));
+  await preview.click({ position: { x, y } });
+  expect((await closureResponse).status()).toBe(200);
+  await expect(page.getByRole('button', { name: /^Reopen / }).first()).toBeVisible();
+  const closed = await calculate();
+  expect(closed.conditions.closed_road_ids.length).toBeGreaterThan(0);
+  for (const id of closed.conditions.closed_road_ids) expect(closed.route.road_ids).not.toContain(id);
+  while (await page.getByRole('button', { name: /^Reopen / }).count()) {
+    await page.getByRole('button', { name: /^Reopen / }).first().click();
+  }
+  await expect(page.getByText('No closures entered.', { exact: true })).toBeVisible();
+  await calculate();
+  await page.getByText('Where each feature and estimate comes from', { exact: true }).click();
+  await expect(page.locator('.source-details table tbody tr')).toHaveCount(10);
+  await page.getByText('Where each feature and estimate comes from', { exact: true }).click();
+  await page.screenshot({ path: 'test-results/aco-desktop.png', fullPage: true });
+});
+
+test('mobile layout fits and an out-of-scope map point is rejected', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  await expect(page.getByText('Historical routing with documented estimates', { exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Set origin', exact: true })).toBeEnabled();
+  const response = page.waitForResponse(response => response.url().includes('/places/nearest?'));
+  await page.locator('.network-preview').click({ position: { x: 4, y: 4 } });
+  expect((await response).status()).toBe(422);
+  await expect(page.getByRole('alert')).toContainText('outside the five-city study area');
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+  expect(overflow).toBe(false);
+  await page.screenshot({ path: 'test-results/aco-mobile.png', fullPage: true });
+});

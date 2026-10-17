@@ -1,0 +1,14 @@
+{
+  "start_inclusive": "2025-06-01T00:00:00+08:00",
+  "end_exclusive": "2026-06-01T00:00:00+08:00",
+  "display_period": "June 1, 2025 through May 31, 2026, inclusive",
+  "timezone": "Asia/Manila",
+  "dynamic_resolution": "hourly",
+  "allow_estimates": true,
+  "allow_imputation": false,
+  "allow_synthetic_profiles": true,
+  "data_status": "documented_estimation_release",
+  "static_features": "September 2026 OSM inventory used as an explicitly estimated static surrogate for this period; historical road changes are not reconstructed.",
+  "dynamic_features": "Historical provider weather records plus date/hour-specific traffic estimates; not 8760 independent traffic observations.",
+  "flood_risk": "Static mapped NOAH hazard exposure proxy, not observed hourly flooding."
+}

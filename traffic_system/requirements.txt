@@ -1,63 +1,15 @@
-# ANTROUTE Traffic System Dependencies
-# Generated for reproducibility in local and Colab environments
-
-# --- Data Engineering & Core ---
-numpy==2.1.0
-pandas==2.2.2
-python-dotenv==1.0.0
-requests==2.32.3
-pytz==2024.1
-
-# -- Preprocessing
-langdetect
-
-# --- Machine Learning / Deep Learning Framework ---
-# Note: In Colab, PyTorch is often pre-installed, but pinned here for strict reproducibility.
-torch==2.14.0
-torchvision==0.29.0
-
-# --- Natural Language Processing (NLP) ---
-transformers==5.7.0
-sentencepiece==0.2.1
-sacremoses==0.2.0
-
-# --- Computer Vision ---
-opencv-python==5.0.0.93
-ffmpeg-python==0.2.0
-Pillow
-ultralytics   # YOLO vehicle detection for congestion pseudo-labels
-
-# --- Labeling / Viewer ---
-streamlit==1.56.0
-
-# --- Graph Learning & Routing ---
-osmnx==2.0.1
-networkx==3.6.1
-geopandas==1.0.1
-shapely==2.0.6
-scipy==1.14.1
-
-# --- Evaluation, Metrics & Experiments ---
-scikit-learn==1.7.1
-matplotlib==3.9.2
-tqdm==4.67.3
-
-# --- Testing & Notebooks ---
-pytest==7.4.0
-ipykernel==6.29.5
-
-# --- Backend API (frontend app server) ---
+# ACO routing service and study-area geometry validation
 fastapi==0.115.0
 uvicorn[standard]==0.30.6
-sqlalchemy[asyncio]==2.0.35
-asyncpg==0.29.0
-geoalchemy2==0.15.2
-alembic==1.13.2
-pydantic[email]==2.9.2
-pydantic-settings==2.5.2
-python-jose[cryptography]==3.3.0
-passlib[bcrypt]==1.7.4
-bcrypt==4.0.1
-redis==5.0.8
-python-multipart==0.0.9
+pydantic==2.9.2
+shapely==2.0.6
+
+# Road graph preparation (offline GraphML import)
+networkx==3.6.1
+requests==2.32.3
+python-dotenv==1.0.0
+pyproj>=3.6,<4
+
+# Verification
+pytest==7.4.0
 httpx==0.27.2

@@ -1,0 +1,380 @@
+{
+  "network_built_at": "2026-10-17T13:35:56.282397+00:00",
+  "representative_nodes": {
+    "San Juan": "257010696",
+    "Manila": "3198395473",
+    "Mandaluyong": "8577362558",
+    "Makati": "243204561",
+    "Pasig": "123437780"
+  },
+  "runs": [
+    {
+      "case": "San Juan to Manila",
+      "conditions": {
+        "departure_date": "2025-06-01",
+        "time_of_day": 8,
+        "weather": "clear",
+        "closed_road_ids": []
+      },
+      "evaluation": {
+        "distance_travel_m": 11362.775,
+        "path_cost": 33.464760769358456,
+        "computational_time_ms": 1103.7042000025394,
+        "convergence_rule": {
+          "tolerance": 0.0001,
+          "patience": 10,
+          "max_iterations": 60,
+          "iterations": 16,
+          "converged": true,
+          "stop_reason": "convergence_rule",
+          "best_cost_by_iteration": [
+            40.49951409761132,
+            39.6736323838028,
+            39.6736323838028,
+            39.6736323838028,
+            37.623341802072915,
+            33.464760769358456,
+            33.464760769358456,
+            33.464760769358456,
+            33.464760769358456,
+            33.464760769358456,
+            33.464760769358456,
+            33.464760769358456,
+            33.464760769358456,
+            33.464760769358456,
+            33.464760769358456,
+            33.464760769358456
+          ]
+        }
+      }
+    },
+    {
+      "case": "Manila to Mandaluyong",
+      "conditions": {
+        "departure_date": "2025-06-01",
+        "time_of_day": 8,
+        "weather": "clear",
+        "closed_road_ids": []
+      },
+      "evaluation": {
+        "distance_travel_m": 15633.557,
+        "path_cost": 43.931661858911255,
+        "computational_time_ms": 1645.2524999986053,
+        "convergence_rule": {
+          "tolerance": 0.0001,
+          "patience": 10,
+          "max_iterations": 60,
+          "iterations": 19,
+          "converged": true,
+          "stop_reason": "convergence_rule",
+          "best_cost_by_iteration": [
+            48.98607980769403,
+            48.98607980769403,
+            46.72844527158963,
+            46.72844527158963,
+            46.66645701677573,
+            46.379766467645425,
+            46.379766467645425,
+            46.24624552531132,
+            43.931661858911255,
+            43.931661858911255,
+            43.931661858911255,
+            43.931661858911255,
+            43.931661858911255,
+            43.931661858911255,
+            43.931661858911255,
+            43.931661858911255,
+            43.931661858911255,
+            43.931661858911255,
+            43.931661858911255
+          ]
+        }
+      }
+    },
+    {
+      "case": "Mandaluyong to Makati",
+      "conditions": {
+        "departure_date": "2025-06-01",
+        "time_of_day": 8,
+        "weather": "clear",
+        "closed_road_ids": []
+      },
+      "evaluation": {
+        "distance_travel_m": 7397.326,
+        "path_cost": 26.70445666171255,
+        "computational_time_ms": 560.510900002555,
+        "convergence_rule": {
+          "tolerance": 0.0001,
+          "patience": 10,
+          "max_iterations": 60,
+          "iterations": 11,
+          "converged": true,
+          "stop_reason": "convergence_rule",
+          "best_cost_by_iteration": [
+            26.70445666171255,
+            26.70445666171255,
+            26.70445666171255,
+            26.70445666171255,
+            26.70445666171255,
+            26.70445666171255,
+            26.70445666171255,
+            26.70445666171255,
+            26.70445666171255,
+            26.70445666171255,
+            26.70445666171255
+          ]
+        }
+      }
+    },
+    {
+      "case": "Makati to Pasig",
+      "conditions": {
+        "departure_date": "2025-06-01",
+        "time_of_day": 8,
+        "weather": "clear",
+        "closed_road_ids": []
+      },
+      "evaluation": {
+        "distance_travel_m": 12673.82,
+        "path_cost": 31.790222969242613,
+        "computational_time_ms": 1177.4360999988858,
+        "convergence_rule": {
+          "tolerance": 0.0001,
+          "patience": 10,
+          "max_iterations": 60,
+          "iterations": 19,
+          "converged": true,
+          "stop_reason": "convergence_rule",
+          "best_cost_by_iteration": [
+            34.42786286433309,
+            34.42786286433309,
+            34.42786286433309,
+            34.42786286433309,
+            34.174236200227426,
+            34.174236200227426,
+            34.174236200227426,
+            34.174236200227426,
+            31.790222969242613,
+            31.790222969242613,
+            31.790222969242613,
+            31.790222969242613,
+            31.790222969242613,
+            31.790222969242613,
+            31.790222969242613,
+            31.790222969242613,
+            31.790222969242613,
+            31.790222969242613,
+            31.790222969242613
+          ]
+        }
+      }
+    },
+    {
+      "case": "Pasig to San Juan",
+      "conditions": {
+        "departure_date": "2025-06-01",
+        "time_of_day": 8,
+        "weather": "clear",
+        "closed_road_ids": []
+      },
+      "evaluation": {
+        "distance_travel_m": 9740.143,
+        "path_cost": 25.042589585641547,
+        "computational_time_ms": 906.6934999937075,
+        "convergence_rule": {
+          "tolerance": 0.0001,
+          "patience": 10,
+          "max_iterations": 60,
+          "iterations": 21,
+          "converged": true,
+          "stop_reason": "convergence_rule",
+          "best_cost_by_iteration": [
+            31.198922866446697,
+            29.909799248460132,
+            25.3637448867436,
+            25.3637448867436,
+            25.3637448867436,
+            25.3637448867436,
+            25.3637448867436,
+            25.3637448867436,
+            25.3637448867436,
+            25.3637448867436,
+            25.042589585641547,
+            25.042589585641547,
+            25.042589585641547,
+            25.042589585641547,
+            25.042589585641547,
+            25.042589585641547,
+            25.042589585641547,
+            25.042589585641547,
+            25.042589585641547,
+            25.042589585641547,
+            25.042589585641547
+          ]
+        }
+      }
+    },
+    {
+      "case": "Manila to Makati off peak",
+      "conditions": {
+        "departure_date": "2025-06-01",
+        "time_of_day": 3,
+        "weather": "clear",
+        "closed_road_ids": []
+      },
+      "evaluation": {
+        "distance_travel_m": 13576.363,
+        "path_cost": 24.446724276593912,
+        "computational_time_ms": 960.0829999981215,
+        "convergence_rule": {
+          "tolerance": 0.0001,
+          "patience": 10,
+          "max_iterations": 60,
+          "iterations": 14,
+          "converged": true,
+          "stop_reason": "convergence_rule",
+          "best_cost_by_iteration": [
+            27.438078030380925,
+            26.71192097658305,
+            26.21466827368364,
+            24.446724276593912,
+            24.446724276593912,
+            24.446724276593912,
+            24.446724276593912,
+            24.446724276593912,
+            24.446724276593912,
+            24.446724276593912,
+            24.446724276593912,
+            24.446724276593912,
+            24.446724276593912,
+            24.446724276593912
+          ]
+        }
+      }
+    },
+    {
+      "case": "Manila to Makati rain",
+      "conditions": {
+        "departure_date": "2025-06-01",
+        "time_of_day": 8,
+        "weather": "rain",
+        "closed_road_ids": []
+      },
+      "evaluation": {
+        "distance_travel_m": 12757.469000000001,
+        "path_cost": 39.874566539712795,
+        "computational_time_ms": 634.4083000003593,
+        "convergence_rule": {
+          "tolerance": 0.0001,
+          "patience": 10,
+          "max_iterations": 60,
+          "iterations": 17,
+          "converged": true,
+          "stop_reason": "convergence_rule",
+          "best_cost_by_iteration": [
+            47.52361376586353,
+            41.60263654810562,
+            41.60263654810562,
+            41.60263654810562,
+            41.60263654810562,
+            41.60263654810562,
+            39.874566539712795,
+            39.874566539712795,
+            39.874566539712795,
+            39.874566539712795,
+            39.874566539712795,
+            39.874566539712795,
+            39.874566539712795,
+            39.874566539712795,
+            39.874566539712795,
+            39.874566539712795,
+            39.874566539712795
+          ]
+        }
+      }
+    },
+    {
+      "case": "Manila to Makati historical provider weather",
+      "conditions": {
+        "departure_date": "2025-06-01",
+        "time_of_day": 20,
+        "weather": "historical",
+        "closed_road_ids": []
+      },
+      "evaluation": {
+        "distance_travel_m": 12726.956,
+        "path_cost": 28.53399318922859,
+        "computational_time_ms": 561.3756999955513,
+        "convergence_rule": {
+          "tolerance": 0.0001,
+          "patience": 10,
+          "max_iterations": 60,
+          "iterations": 16,
+          "converged": true,
+          "stop_reason": "convergence_rule",
+          "best_cost_by_iteration": [
+            28.977998516725965,
+            28.977998516725965,
+            28.977998516725965,
+            28.763836757448903,
+            28.763836757448903,
+            28.53399318922859,
+            28.53399318922859,
+            28.53399318922859,
+            28.53399318922859,
+            28.53399318922859,
+            28.53399318922859,
+            28.53399318922859,
+            28.53399318922859,
+            28.53399318922859,
+            28.53399318922859,
+            28.53399318922859
+          ]
+        }
+      }
+    },
+    {
+      "case": "Manila to Makati road closure",
+      "conditions": {
+        "departure_date": "2025-06-01",
+        "time_of_day": 8,
+        "weather": "clear",
+        "closed_road_ids": [
+          "4044961289:4044961292:0"
+        ]
+      },
+      "evaluation": {
+        "distance_travel_m": 12622.596,
+        "path_cost": 34.37587830480712,
+        "computational_time_ms": 1074.3264999982785,
+        "convergence_rule": {
+          "tolerance": 0.0001,
+          "patience": 10,
+          "max_iterations": 60,
+          "iterations": 17,
+          "converged": true,
+          "stop_reason": "convergence_rule",
+          "best_cost_by_iteration": [
+            35.34959040992383,
+            35.34959040992383,
+            35.34959040992383,
+            35.34959040992383,
+            35.34959040992383,
+            35.34959040992383,
+            34.37587830480712,
+            34.37587830480712,
+            34.37587830480712,
+            34.37587830480712,
+            34.37587830480712,
+            34.37587830480712,
+            34.37587830480712,
+            34.37587830480712,
+            34.37587830480712,
+            34.37587830480712,
+            34.37587830480712
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "status": "provisional estimates; calibrate before research claims",
+  "capacity_per_lane_vph": 1500,
+  "capacity_note": "Uniform urban lane capacity assumption, not measured road throughput; directional lane tags are preferred.",
+  "traffic_note": "Synthetic hourly congestion scenarios, not historical or real-time traffic observations.",
+  "hourly_congestion": [0.05, 0.04, 0.04, 0.05, 0.08, 0.15, 0.30, 0.48, 0.55, 0.42, 0.28, 0.30, 0.35, 0.32, 0.30, 0.35, 0.45, 0.60, 0.65, 0.52, 0.35, 0.24, 0.15, 0.09],
+  "weather_scenarios": {
+    "clear": {"cost": 0.0, "travel_time_multiplier": 1.0},
+    "rain": {"cost": 0.4, "travel_time_multiplier": 1.15},
+    "heavy_rain": {"cost": 0.8, "travel_time_multiplier": 1.35}
+  },
+  "weather_note": "Weather costs and multipliers are scenario assumptions, not calibrated weather-to-speed models. Current conditions select one of these effects from Weatherstack precipitation/description.",
+  "road_types": {
+    "motorway": {"speed_kph": 80, "lanes": 2, "cost": 0.1, "traffic_factor": 1.1},
+    "motorway_link": {"speed_kph": 40, "lanes": 1, "cost": 0.2, "traffic_factor": 1.0},
+    "trunk": {"speed_kph": 60, "lanes": 2, "cost": 0.2, "traffic_factor": 1.1},
+    "trunk_link": {"speed_kph": 35, "lanes": 1, "cost": 0.3, "traffic_factor": 1.0},
+    "primary": {"speed_kph": 50, "lanes": 2, "cost": 0.3, "traffic_factor": 1.0},
+    "primary_link": {"speed_kph": 30, "lanes": 1, "cost": 0.4, "traffic_factor": 1.0},
+    "secondary": {"speed_kph": 40, "lanes": 1, "cost": 0.4, "traffic_factor": 0.9},
+    "secondary_link": {"speed_kph": 25, "lanes": 1, "cost": 0.5, "traffic_factor": 0.9},
+    "tertiary": {"speed_kph": 30, "lanes": 1, "cost": 0.5, "traffic_factor": 0.8},
+    "tertiary_link": {"speed_kph": 25, "lanes": 1, "cost": 0.6, "traffic_factor": 0.8},
+    "residential": {"speed_kph": 20, "lanes": 1, "cost": 0.7, "traffic_factor": 0.5},
+    "living_street": {"speed_kph": 10, "lanes": 1, "cost": 0.9, "traffic_factor": 0.4},
+    "unclassified": {"speed_kph": 25, "lanes": 1, "cost": 0.65, "traffic_factor": 0.6},
+    "service": {"speed_kph": 15, "lanes": 1, "cost": 0.85, "traffic_factor": 0.4}
+  }
+}

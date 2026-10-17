@@ -1,0 +1,111 @@
+{
+  "audited_at": "2026-10-17T13:37:42.871947+00:00",
+  "ready": true,
+  "period": {
+    "start_inclusive": "2025-06-01T00:00:00+08:00",
+    "end_exclusive": "2026-06-01T00:00:00+08:00",
+    "display_period": "June 1, 2025 through May 31, 2026, inclusive",
+    "timezone": "Asia/Manila",
+    "dynamic_resolution": "hourly",
+    "allow_estimates": true,
+    "allow_imputation": false,
+    "allow_synthetic_profiles": true,
+    "data_status": "documented_estimation_release",
+    "static_features": "September 2026 OSM inventory used as an explicitly estimated static surrogate for this period; historical road changes are not reconstructed.",
+    "dynamic_features": "Historical provider weather records plus date/hour-specific traffic estimates; not 8760 independent traffic observations.",
+    "flood_risk": "Static mapped NOAH hazard exposure proxy, not observed hourly flooding."
+  },
+  "cities": [
+    "San Juan",
+    "Manila",
+    "Mandaluyong",
+    "Makati",
+    "Pasig"
+  ],
+  "required_hours_per_entity": 8760,
+  "feature_audit": {
+    "distance": {
+      "status": "calculated",
+      "local_evidence": "WGS84 geodesic length of OSM geometry; 2026 map is a temporal surrogate.",
+      "reference": "https://www.openstreetmap.org/copyright",
+      "required_evidence": "Estimates authorized; not independently validated historical measurements"
+    },
+    "traffic_congestion": {
+      "status": "estimated",
+      "local_evidence": "1 - 1/(1 + alpha*(V/C)^beta). V/C profiles, road-type factors and weekend factor are project assumptions, not measurements.",
+      "reference": "https://www.fhwa.dot.gov/Environment/air_quality/conformity/research/sample_methodologies/emismeth03.cfm",
+      "required_evidence": "Estimates authorized; not independently validated historical measurements"
+    },
+    "travel_time": {
+      "status": "estimated",
+      "local_evidence": "t = (length / free-flow speed) * (1 + 0.15*(V/C)^4) / (1 - rain speed reduction). Posted speed is only a free-flow proxy; fallback speeds are assumptions.",
+      "reference": "https://www.fhwa.dot.gov/Environment/air_quality/conformity/research/sample_methodologies/emismeth03.cfm",
+      "required_evidence": "Estimates authorized; not independently validated historical measurements"
+    },
+    "number_of_intersections": {
+      "status": "calculated",
+      "local_evidence": "Count traversed nodes with OSM street_count >= 3; exclude origin; current topology is a temporal surrogate.",
+      "reference": "https://www.openstreetmap.org/copyright",
+      "required_evidence": "Estimates authorized; not independently validated historical measurements"
+    },
+    "traffic_signal": {
+      "status": "mapped_or_estimated",
+      "local_evidence": "OSM traffic_signals tags; missing tags are assumed absent, not confirmed absent. Historical installations are unknown.",
+      "reference": "https://www.openstreetmap.org/copyright",
+      "required_evidence": "Estimates authorized; not independently validated historical measurements"
+    },
+    "road_type": {
+      "status": "mapped",
+      "local_evidence": "OSM highway category; category costs and temporal stability are project assumptions.",
+      "reference": "https://www.openstreetmap.org/copyright",
+      "required_evidence": "Estimates authorized; not independently validated historical measurements"
+    },
+    "time_of_day": {
+      "status": "calculated",
+      "local_evidence": "Exact Asia/Manila request hour. A separate binary peak-hours cost uses assumed hours 07,08,17,18,19; it is not copied from congestion.",
+      "reference": "Project policy in configs/study_assumptions.json (no empirical peak-hour validation)",
+      "required_evidence": "Estimates authorized; not independently validated historical measurements"
+    },
+    "weather": {
+      "status": "historical_provider_record_with_estimated_effect",
+      "local_evidence": "Nearest 0.05-degree provider grid to each city representative point; source measurement provenance is unverified. Rain speed reductions 7.5%/11.5% are reference-range midpoints, not local calibration.",
+      "reference": "https://ops.fhwa.dot.gov/weather/roadimpact.htm",
+      "required_evidence": "Estimates authorized; not independently validated historical measurements"
+    },
+    "flood_risk": {
+      "status": "estimated_hazard_proxy",
+      "local_evidence": "Maximum NOAH class intersecting the road / 3. No mapped overlap is not proof of safety; no hourly flood observations or bridge elevation correction.",
+      "reference": "https://noah.up.edu.ph/know-your-hazards",
+      "required_evidence": "Estimates authorized; not independently validated historical measurements"
+    },
+    "road_capacity": {
+      "status": "estimated",
+      "local_evidence": "c = directional lanes * 1900 * g/C. Assume g/C=0.5 at a tagged downstream signal, otherwise 1. Lane fallbacks and signal timings are unmeasured; unsignalized use is a proxy.",
+      "reference": "https://ops.fhwa.dot.gov/publications/fhwahop08024/chapter3.htm",
+      "required_evidence": "Estimates authorized; not independently validated historical measurements"
+    }
+  },
+  "weather_files": {
+    "weatherstack_historical.csv": {
+      "available": true,
+      "rows": 12409,
+      "first_date": "2025-06-01",
+      "last_date": "2026-05-31",
+      "distinct_dates": 365,
+      "distinct_hours": 0,
+      "grid_cells": 34,
+      "source_type_and_station_provenance_verified": false
+    },
+    "weatherstack_hourly.csv": {
+      "available": true,
+      "rows": 297840,
+      "first_date": "2025-06-01",
+      "last_date": "2026-05-31",
+      "distinct_dates": 365,
+      "distinct_hours": 8760,
+      "grid_cells": 34,
+      "source_type_and_station_provenance_verified": false
+    }
+  },
+  "note": "Release readiness means the disclosed estimation pipeline is operational, not that historical traffic was measured or estimates calibrated."
+}

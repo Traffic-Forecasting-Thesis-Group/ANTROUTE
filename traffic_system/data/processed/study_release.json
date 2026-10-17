@@ -1,0 +1,30 @@
+{
+  "mode": "historical_period_with_estimates",
+  "period": {
+    "start_inclusive": "2025-06-01T00:00:00+08:00",
+    "end_exclusive": "2026-06-01T00:00:00+08:00",
+    "display_period": "June 1, 2025 through May 31, 2026, inclusive",
+    "timezone": "Asia/Manila",
+    "dynamic_resolution": "hourly",
+    "allow_estimates": true,
+    "allow_imputation": false,
+    "allow_synthetic_profiles": true,
+    "data_status": "documented_estimation_release",
+    "static_features": "September 2026 OSM inventory used as an explicitly estimated static surrogate for this period; historical road changes are not reconstructed.",
+    "dynamic_features": "Historical provider weather records plus date/hour-specific traffic estimates; not 8760 independent traffic observations.",
+    "flood_risk": "Static mapped NOAH hazard exposure proxy, not observed hourly flooding."
+  },
+  "hours_per_city": {
+    "San Juan": 8760,
+    "Manila": 8760,
+    "Mandaluyong": 8760,
+    "Makati": 8760,
+    "Pasig": 8760
+  },
+  "artifacts": {
+    "data/processed/study_network.json": "c295fc3589c58e82b6360c97a169518f1e5b2a80b612cccef6a18210eba505a6",
+    "data/processed/historical_weather.json": "c59338051bde20d8f140aef74242d3a666b70c7f18859891de671372b661c807",
+    "configs/study_assumptions.json": "7678aa34b9e28a58a8b6cf1aa0329e8a944ea8fec457f7ddeab0485ec63a7dde",
+    "configs/historical_study.json": "41ec1db4ddc962f5b27ead76c9df121314d0d34e8a454151c98ccf7d555c161d"
+  }
+}

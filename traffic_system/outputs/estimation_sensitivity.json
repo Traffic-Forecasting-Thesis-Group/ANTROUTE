@@ -1,0 +1,114 @@
+{
+  "conditions": {
+    "departure_date": "2025-06-02",
+    "time_of_day": 8,
+    "weather": "historical",
+    "closed_road_ids": []
+  },
+  "origin": "3198395473",
+  "destination": "243204561",
+  "note": "Illustrative sensitivity to unmeasured demand assumptions, not empirical validation. ACO seed held fixed.",
+  "runs": [
+    {
+      "assumed_demand_multiplier": 0.8,
+      "evaluation": {
+        "distance_travel_m": 12980.404,
+        "path_cost": 39.922542514487084,
+        "computational_time_ms": 561.0277000014321,
+        "convergence_rule": {
+          "tolerance": 0.0001,
+          "patience": 10,
+          "max_iterations": 60,
+          "iterations": 16,
+          "converged": true,
+          "stop_reason": "convergence_rule",
+          "best_cost_by_iteration": [
+            47.69624019600646,
+            41.763539746381845,
+            41.763539746381845,
+            41.763539746381845,
+            40.8510774193099,
+            39.922542514487084,
+            39.922542514487084,
+            39.922542514487084,
+            39.922542514487084,
+            39.922542514487084,
+            39.922542514487084,
+            39.922542514487084,
+            39.922542514487084,
+            39.922542514487084,
+            39.922542514487084,
+            39.922542514487084
+          ]
+        }
+      }
+    },
+    {
+      "assumed_demand_multiplier": 1.0,
+      "evaluation": {
+        "distance_travel_m": 12732.68,
+        "path_cost": 40.045303690029165,
+        "computational_time_ms": 956.2059000018053,
+        "convergence_rule": {
+          "tolerance": 0.0001,
+          "patience": 10,
+          "max_iterations": 60,
+          "iterations": 14,
+          "converged": true,
+          "stop_reason": "convergence_rule",
+          "best_cost_by_iteration": [
+            48.64849996575484,
+            40.96421774525801,
+            40.96421774525801,
+            40.045303690029165,
+            40.045303690029165,
+            40.045303690029165,
+            40.045303690029165,
+            40.045303690029165,
+            40.045303690029165,
+            40.045303690029165,
+            40.045303690029165,
+            40.045303690029165,
+            40.045303690029165,
+            40.045303690029165
+          ]
+        }
+      }
+    },
+    {
+      "assumed_demand_multiplier": 1.2,
+      "evaluation": {
+        "distance_travel_m": 12633.524,
+        "path_cost": 40.703007657437546,
+        "computational_time_ms": 602.2210999944946,
+        "convergence_rule": {
+          "tolerance": 0.0001,
+          "patience": 10,
+          "max_iterations": 60,
+          "iterations": 17,
+          "converged": true,
+          "stop_reason": "convergence_rule",
+          "best_cost_by_iteration": [
+            45.782866925795645,
+            45.782866925795645,
+            45.782866925795645,
+            44.955628936589385,
+            42.53927402691174,
+            42.53927402691174,
+            40.703007657437546,
+            40.703007657437546,
+            40.703007657437546,
+            40.703007657437546,
+            40.703007657437546,
+            40.703007657437546,
+            40.703007657437546,
+            40.703007657437546,
+            40.703007657437546,
+            40.703007657437546,
+            40.703007657437546
+          ]
+        }
+      }
+    }
+  ]
+}

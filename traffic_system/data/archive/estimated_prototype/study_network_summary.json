@@ -1,0 +1,522 @@
+{
+  "nodes": 12398,
+  "roads": 30511,
+  "cities": {
+    "Pasig": 3306,
+    "Makati": 2247,
+    "Manila": 5059,
+    "San Juan": 780,
+    "Mandaluyong": 1006
+  },
+  "signals": 655,
+  "provenance": {
+    "built_at": "2026-10-17T12:43:13.772140+00:00",
+    "mode": "mapped_network_with_labeled_estimates",
+    "boundaries": [
+      {
+        "city": "San Juan",
+        "source": "OpenStreetMap via Nominatim",
+        "osm_type": "relation",
+        "osm_id": 2284210,
+        "display_name": "San Juan, Eastern Manila District, Metro Manila, Philippines",
+        "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+        "retrieved_at": "2026-10-17T12:39:53.474016+00:00"
+      },
+      {
+        "city": "Manila",
+        "source": "OpenStreetMap via Nominatim",
+        "osm_type": "relation",
+        "osm_id": 103703,
+        "display_name": "Manila, Capital District, Metro Manila, Philippines",
+        "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+        "retrieved_at": "2026-10-17T12:39:55.663561+00:00"
+      },
+      {
+        "city": "Mandaluyong",
+        "source": "OpenStreetMap via Nominatim",
+        "osm_type": "relation",
+        "osm_id": 2284209,
+        "display_name": "Mandaluyong, Eastern Manila District, Metro Manila, Philippines",
+        "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+        "retrieved_at": "2026-10-17T12:39:56.990870+00:00"
+      },
+      {
+        "city": "Makati",
+        "source": "OpenStreetMap via Nominatim",
+        "osm_type": "relation",
+        "osm_id": 103716,
+        "display_name": "Makati, Southern Manila District, Metro Manila, Philippines",
+        "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+        "retrieved_at": "2026-10-17T12:39:58.493670+00:00"
+      },
+      {
+        "city": "Pasig",
+        "source": "OpenStreetMap via Nominatim",
+        "osm_type": "relation",
+        "osm_id": 131703,
+        "display_name": "Pasig, Eastern Manila District, Metro Manila, Philippines",
+        "licence": "Data \u00a9 OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+        "retrieved_at": "2026-10-17T12:40:01.105211+00:00"
+      }
+    ],
+    "graph_created_at": "2026-09-14 08:47:08",
+    "graph_source": "OpenStreetMap via OSMnx",
+    "flood_source": "retained Project NOAH Metro Manila five-year flood hazard polygons; Var/3; maximum road intersection",
+    "assumptions": {
+      "status": "provisional estimates; calibrate before research claims",
+      "capacity_per_lane_vph": 1500,
+      "capacity_note": "Uniform urban lane capacity assumption, not measured road throughput; directional lane tags are preferred.",
+      "traffic_note": "Synthetic hourly congestion scenarios, not historical or real-time traffic observations.",
+      "hourly_congestion": [
+        0.05,
+        0.04,
+        0.04,
+        0.05,
+        0.08,
+        0.15,
+        0.3,
+        0.48,
+        0.55,
+        0.42,
+        0.28,
+        0.3,
+        0.35,
+        0.32,
+        0.3,
+        0.35,
+        0.45,
+        0.6,
+        0.65,
+        0.52,
+        0.35,
+        0.24,
+        0.15,
+        0.09
+      ],
+      "weather_scenarios": {
+        "clear": {
+          "cost": 0.0,
+          "travel_time_multiplier": 1.0
+        },
+        "rain": {
+          "cost": 0.4,
+          "travel_time_multiplier": 1.15
+        },
+        "heavy_rain": {
+          "cost": 0.8,
+          "travel_time_multiplier": 1.35
+        }
+      },
+      "weather_note": "Weather costs and multipliers are scenario assumptions, not calibrated weather-to-speed models. Current conditions select one of these effects from Weatherstack precipitation/description.",
+      "road_types": {
+        "motorway": {
+          "speed_kph": 80,
+          "lanes": 2,
+          "cost": 0.1,
+          "traffic_factor": 1.1
+        },
+        "motorway_link": {
+          "speed_kph": 40,
+          "lanes": 1,
+          "cost": 0.2,
+          "traffic_factor": 1.0
+        },
+        "trunk": {
+          "speed_kph": 60,
+          "lanes": 2,
+          "cost": 0.2,
+          "traffic_factor": 1.1
+        },
+        "trunk_link": {
+          "speed_kph": 35,
+          "lanes": 1,
+          "cost": 0.3,
+          "traffic_factor": 1.0
+        },
+        "primary": {
+          "speed_kph": 50,
+          "lanes": 2,
+          "cost": 0.3,
+          "traffic_factor": 1.0
+        },
+        "primary_link": {
+          "speed_kph": 30,
+          "lanes": 1,
+          "cost": 0.4,
+          "traffic_factor": 1.0
+        },
+        "secondary": {
+          "speed_kph": 40,
+          "lanes": 1,
+          "cost": 0.4,
+          "traffic_factor": 0.9
+        },
+        "secondary_link": {
+          "speed_kph": 25,
+          "lanes": 1,
+          "cost": 0.5,
+          "traffic_factor": 0.9
+        },
+        "tertiary": {
+          "speed_kph": 30,
+          "lanes": 1,
+          "cost": 0.5,
+          "traffic_factor": 0.8
+        },
+        "tertiary_link": {
+          "speed_kph": 25,
+          "lanes": 1,
+          "cost": 0.6,
+          "traffic_factor": 0.8
+        },
+        "residential": {
+          "speed_kph": 20,
+          "lanes": 1,
+          "cost": 0.7,
+          "traffic_factor": 0.5
+        },
+        "living_street": {
+          "speed_kph": 10,
+          "lanes": 1,
+          "cost": 0.9,
+          "traffic_factor": 0.4
+        },
+        "unclassified": {
+          "speed_kph": 25,
+          "lanes": 1,
+          "cost": 0.65,
+          "traffic_factor": 0.6
+        },
+        "service": {
+          "speed_kph": 15,
+          "lanes": 1,
+          "cost": 0.85,
+          "traffic_factor": 0.4
+        }
+      }
+    },
+    "assumptions_sha256": "473721b151ab287c1f56e7e7705721d2d9829f7f2f3beb42c451db6511b38af9",
+    "source_counts": {
+      "osm_endpoint_segment_osmnx_convention": 13470,
+      "estimated_hourly_scenario": 61022,
+      "estimated_free_flow_from_posted_osm_speed": 10034,
+      "osm_highway_tag": 30511,
+      "weatherstack_observation_with_estimated_effects": 30511,
+      "noah_mapped_hazard_exposure": 21448,
+      "estimated_capacity_from_osm_lanes": 21166,
+      "osm_polyline": 17041,
+      "estimated_free_flow_from_road_type": 20477,
+      "no_mapped_hazard_not_verified_safe": 9063,
+      "estimated_capacity_from_road_type_lanes": 9345
+    },
+    "excluded_roads": {
+      "outside_endpoints": 117877,
+      "not_public_driving": 84,
+      "geometry_outside_or_invalid": 11
+    },
+    "weather": {
+      "source": "Weatherstack",
+      "cities": {
+        "San Juan": {
+          "retrieved_at": "2026-10-17T12:40:02.431009+00:00",
+          "query_coordinates": [
+            121.03928704126196,
+            14.602300499999998
+          ],
+          "location": {
+            "name": "Mandaluyong City",
+            "country": "Philippines",
+            "region": "Negros Oriental",
+            "lat": "14.583",
+            "lon": "121.041",
+            "timezone_id": "Asia/Manila",
+            "localtime": "2026-10-17 20:40",
+            "localtime_epoch": 1792269600,
+            "utc_offset": "8.0"
+          },
+          "current": {
+            "observation_time": "12:40 PM",
+            "temperature": 28,
+            "weather_code": 122,
+            "weather_icons": [
+              "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0004_black_low_cloud.png"
+            ],
+            "weather_descriptions": [
+              "Overcast "
+            ],
+            "astro": {
+              "sunrise": "05:48 AM",
+              "sunset": "05:35 PM",
+              "moonrise": "11:17 AM",
+              "moonset": "10:37 PM",
+              "moon_phase": "Waxing Crescent",
+              "moon_illumination": 34
+            },
+            "air_quality": {
+              "co": "311",
+              "no2": "9.1",
+              "o3": "34",
+              "so2": "6.4",
+              "pm2_5": "6.1",
+              "pm10": "8.2",
+              "us-epa-index": "1",
+              "gb-defra-index": "1"
+            },
+            "wind_speed": 14,
+            "wind_degree": 96,
+            "wind_dir": "E",
+            "pressure": 1013,
+            "precip": 0,
+            "humidity": 72,
+            "cloudcover": 95,
+            "feelslike": 32,
+            "uv_index": 0,
+            "visibility": 10,
+            "is_day": "no"
+          }
+        },
+        "Manila": {
+          "retrieved_at": "2026-10-17T12:40:03.024648+00:00",
+          "query_coordinates": [
+            120.90918485802834,
+            14.59521255
+          ],
+          "location": {
+            "name": "Binondo",
+            "country": "Philippines",
+            "region": "Manila",
+            "lat": "14.600",
+            "lon": "120.967",
+            "timezone_id": "Asia/Manila",
+            "localtime": "2026-10-17 20:40",
+            "localtime_epoch": 1792269600,
+            "utc_offset": "8.0"
+          },
+          "current": {
+            "observation_time": "12:40 PM",
+            "temperature": 29,
+            "weather_code": 122,
+            "weather_icons": [
+              "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0004_black_low_cloud.png"
+            ],
+            "weather_descriptions": [
+              "Overcast "
+            ],
+            "astro": {
+              "sunrise": "05:48 AM",
+              "sunset": "05:35 PM",
+              "moonrise": "11:17 AM",
+              "moonset": "10:38 PM",
+              "moon_phase": "Waxing Crescent",
+              "moon_illumination": 34
+            },
+            "air_quality": {
+              "co": "311",
+              "no2": "20.7",
+              "o3": "25",
+              "so2": "11.4",
+              "pm2_5": "15.2",
+              "pm10": "17.9",
+              "us-epa-index": "1",
+              "gb-defra-index": "1"
+            },
+            "wind_speed": 14,
+            "wind_degree": 96,
+            "wind_dir": "E",
+            "pressure": 1013,
+            "precip": 0,
+            "humidity": 72,
+            "cloudcover": 95,
+            "feelslike": 32,
+            "uv_index": 0,
+            "visibility": 10,
+            "is_day": "no"
+          }
+        },
+        "Mandaluyong": {
+          "retrieved_at": "2026-10-17T12:40:03.597614+00:00",
+          "query_coordinates": [
+            121.0399556390598,
+            14.5845775
+          ],
+          "location": {
+            "name": "Mandaluyong City",
+            "country": "Philippines",
+            "region": "Negros Oriental",
+            "lat": "14.583",
+            "lon": "121.041",
+            "timezone_id": "Asia/Manila",
+            "localtime": "2026-10-17 20:40",
+            "localtime_epoch": 1792269600,
+            "utc_offset": "8.0"
+          },
+          "current": {
+            "observation_time": "12:40 PM",
+            "temperature": 28,
+            "weather_code": 122,
+            "weather_icons": [
+              "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0004_black_low_cloud.png"
+            ],
+            "weather_descriptions": [
+              "Overcast "
+            ],
+            "astro": {
+              "sunrise": "05:48 AM",
+              "sunset": "05:35 PM",
+              "moonrise": "11:17 AM",
+              "moonset": "10:37 PM",
+              "moon_phase": "Waxing Crescent",
+              "moon_illumination": 34
+            },
+            "air_quality": {
+              "co": "311",
+              "no2": "9.1",
+              "o3": "34",
+              "so2": "6.4",
+              "pm2_5": "6.1",
+              "pm10": "8.2",
+              "us-epa-index": "1",
+              "gb-defra-index": "1"
+            },
+            "wind_speed": 14,
+            "wind_degree": 96,
+            "wind_dir": "E",
+            "pressure": 1013,
+            "precip": 0,
+            "humidity": 72,
+            "cloudcover": 95,
+            "feelslike": 32,
+            "uv_index": 0,
+            "visibility": 10,
+            "is_day": "no"
+          }
+        },
+        "Makati": {
+          "retrieved_at": "2026-10-17T12:40:04.244724+00:00",
+          "query_coordinates": [
+            121.02145948711515,
+            14.55452995
+          ],
+          "location": {
+            "name": "Culiculi",
+            "country": "Philippines",
+            "region": "Rizal",
+            "lat": "14.550",
+            "lon": "121.017",
+            "timezone_id": "Asia/Manila",
+            "localtime": "2026-10-17 20:40",
+            "localtime_epoch": 1792269600,
+            "utc_offset": "8.0"
+          },
+          "current": {
+            "observation_time": "12:40 PM",
+            "temperature": 28,
+            "weather_code": 122,
+            "weather_icons": [
+              "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0004_black_low_cloud.png"
+            ],
+            "weather_descriptions": [
+              "Overcast "
+            ],
+            "astro": {
+              "sunrise": "05:48 AM",
+              "sunset": "05:35 PM",
+              "moonrise": "11:17 AM",
+              "moonset": "10:38 PM",
+              "moon_phase": "Waxing Crescent",
+              "moon_illumination": 34
+            },
+            "air_quality": {
+              "co": "311",
+              "no2": "9.1",
+              "o3": "34",
+              "so2": "6.4",
+              "pm2_5": "6.1",
+              "pm10": "8.2",
+              "us-epa-index": "1",
+              "gb-defra-index": "1"
+            },
+            "wind_speed": 14,
+            "wind_degree": 96,
+            "wind_dir": "E",
+            "pressure": 1013,
+            "precip": 0,
+            "humidity": 72,
+            "cloudcover": 95,
+            "feelslike": 32,
+            "uv_index": 0,
+            "visibility": 10,
+            "is_day": "no"
+          }
+        },
+        "Pasig": {
+          "retrieved_at": "2026-10-17T12:40:04.806812+00:00",
+          "query_coordinates": [
+            121.08195668063178,
+            14.5784943
+          ],
+          "location": {
+            "name": "Ogongo",
+            "country": "Philippines",
+            "region": "Rizal",
+            "lat": "14.583",
+            "lon": "121.083",
+            "timezone_id": "Asia/Manila",
+            "localtime": "2026-10-17 20:40",
+            "localtime_epoch": 1792269600,
+            "utc_offset": "8.0"
+          },
+          "current": {
+            "observation_time": "12:40 PM",
+            "temperature": 28,
+            "weather_code": 122,
+            "weather_icons": [
+              "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0004_black_low_cloud.png"
+            ],
+            "weather_descriptions": [
+              "Overcast "
+            ],
+            "astro": {
+              "sunrise": "05:47 AM",
+              "sunset": "05:35 PM",
+              "moonrise": "11:16 AM",
+              "moonset": "10:37 PM",
+              "moon_phase": "Waxing Crescent",
+              "moon_illumination": 34
+            },
+            "air_quality": {
+              "co": "562",
+              "no2": "9.1",
+              "o3": "34",
+              "so2": "6.4",
+              "pm2_5": "6.1",
+              "pm10": "8.2",
+              "us-epa-index": "1",
+              "gb-defra-index": "1"
+            },
+            "wind_speed": 14,
+            "wind_degree": 96,
+            "wind_dir": "E",
+            "pressure": 1013,
+            "precip": 0,
+            "humidity": 72,
+            "cloudcover": 95,
+            "feelslike": 32,
+            "uv_index": 0,
+            "visibility": 10,
+            "is_day": "no"
+          }
+        }
+      }
+    },
+    "limitations": [
+      "Congestion and time-of-day profiles are provisional scenarios, not sensor measurements.",
+      "Capacity and travel time are estimates, including on roads with OSM lane/speed tags.",
+      "Unrecorded signals are treated as absent; OSM signal coverage is incomplete.",
+      "Flood exposure is a mapped hazard class, not measured water depth or current passability; bridges may be elevated.",
+      "Weather effects are scenario assumptions; current observations carry their original timestamps.",
+      "Time-of-day and congestion use the same provisional profile; equal weights double-count this influence until calibrated.",
+      "The source graph does not encode turn restrictions in this node-edge routing model."
+    ]
+  }
+}

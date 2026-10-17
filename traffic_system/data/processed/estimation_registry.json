@@ -1,0 +1,52 @@
+{
+  "distance": {
+    "classification": "calculated",
+    "basis": "WGS84 geodesic length of OSM geometry; 2026 map is a temporal surrogate.",
+    "source": "https://www.openstreetmap.org/copyright"
+  },
+  "traffic_congestion": {
+    "classification": "estimated",
+    "basis": "1 - 1/(1 + alpha*(V/C)^beta). V/C profiles, road-type factors and weekend factor are project assumptions, not measurements.",
+    "source": "https://www.fhwa.dot.gov/Environment/air_quality/conformity/research/sample_methodologies/emismeth03.cfm"
+  },
+  "travel_time": {
+    "classification": "estimated",
+    "basis": "t = (length / free-flow speed) * (1 + 0.15*(V/C)^4) / (1 - rain speed reduction). Posted speed is only a free-flow proxy; fallback speeds are assumptions.",
+    "source": "https://www.fhwa.dot.gov/Environment/air_quality/conformity/research/sample_methodologies/emismeth03.cfm"
+  },
+  "number_of_intersections": {
+    "classification": "calculated",
+    "basis": "Count traversed nodes with OSM street_count >= 3; exclude origin; current topology is a temporal surrogate.",
+    "source": "https://www.openstreetmap.org/copyright"
+  },
+  "traffic_signal": {
+    "classification": "mapped_or_estimated",
+    "basis": "OSM traffic_signals tags; missing tags are assumed absent, not confirmed absent. Historical installations are unknown.",
+    "source": "https://www.openstreetmap.org/copyright"
+  },
+  "road_type": {
+    "classification": "mapped",
+    "basis": "OSM highway category; category costs and temporal stability are project assumptions.",
+    "source": "https://www.openstreetmap.org/copyright"
+  },
+  "time_of_day": {
+    "classification": "calculated",
+    "basis": "Exact Asia/Manila request hour. A separate binary peak-hours cost uses assumed hours 07,08,17,18,19; it is not copied from congestion.",
+    "source": "Project policy in configs/study_assumptions.json (no empirical peak-hour validation)"
+  },
+  "weather": {
+    "classification": "historical_provider_record_with_estimated_effect",
+    "basis": "Nearest 0.05-degree provider grid to each city representative point; source measurement provenance is unverified. Rain speed reductions 7.5%/11.5% are reference-range midpoints, not local calibration.",
+    "source": "https://ops.fhwa.dot.gov/weather/roadimpact.htm"
+  },
+  "flood_risk": {
+    "classification": "estimated_hazard_proxy",
+    "basis": "Maximum NOAH class intersecting the road / 3. No mapped overlap is not proof of safety; no hourly flood observations or bridge elevation correction.",
+    "source": "https://noah.up.edu.ph/know-your-hazards"
+  },
+  "road_capacity": {
+    "classification": "estimated",
+    "basis": "c = directional lanes * 1900 * g/C. Assume g/C=0.5 at a tagged downstream signal, otherwise 1. Lane fallbacks and signal timings are unmeasured; unsignalized use is a proxy.",
+    "source": "https://ops.fhwa.dot.gov/publications/fhwahop08024/chapter3.htm"
+  }
+}

@@ -1,188 +1,51 @@
 # ANTROUTE
 
-ANTROUTE is an automated traffic data ingestion, preprocessing, and routing intelligence system targeting Metro Manila traffic conditions.
+ACO routing for **San Juan, Manila, Mandaluyong, Makati, and Pasig**, with hourly modeled snapshots during **June 1, 2025–May 31, 2026**. Estimates are permitted and explicitly disclosed.
 
-**Scope and evaluation.** Routing covers the whole Metro Manila road graph (59,521 nodes). Congestion risk is given for every road in three tiers: **observed** (the camera subgraph, predicted by the RADR STGNN), **propagated** (within 1.5 km of it), and **assumed** (farther away, estimated from weather, flood hazard, reported incidents, clock and road class). The Event-Aware layer is part of the method. Routes are evaluated against **Google Maps** on Route Optimality, congestion exposure and event exposure, with route length as a descriptive extra. ETA is not evaluated; durations in the app are labelled "estimated, not evaluated". See [traffic_system/docs/evaluation_protocol.md](traffic_system/docs/evaluation_protocol.md).
+The system uses exactly the requested ten features: distance, traffic congestion, travel time, number of intersections, traffic signal, road type, time of day, weather, flood risk, and road capacity. Dynamics are time of day, manual road-closure scenarios, and weather. Evaluations are distance traveled, path cost, computational time, and convergence rule.
 
-## 📂 Repository Structure
+**This is not a fully measured historical traffic archive.** Traffic/capacity/travel-time/weather effects are modeled. Historical provider weather has 8,760 timestamps for each assigned city grid. The September 2026 road inventory and static NOAH hazards are temporal proxies. Missing signal tags are assumed absent. All caveats are visible in the app.
 
-Our repository follows a reproducible layout suitable for standard machine learning and data engineering projects:
+Read [estimation methods and sources](traffic_system/docs/estimation_methods.md), [architecture](traffic_system/docs/aco_system_architecture.md), and [network/API contract](traffic_system/docs/network_data.md). The executable parameters and literature links are in [study_assumptions.json](traffic_system/configs/study_assumptions.json). Formulas from published references are distinguished from manually chosen, uncalibrated inputs.
 
-```
-ANTROUTE/
-├── .github/
-│   └── pull_request_template.md    # Standard PR template
-├── docker-compose.yml              # PostGIS + Redis + backend API
-├── pipeline_context.md             # NLP data preprocessing context and schema logs
-├── SESSION_HANDOFF.md              # Project status notes (training results, known issues)
-├── frontend/                       # React web app (Vite + React Router)
-│   ├── App.js / index.js           # Entry point -> src/navigation/AppNavigator.tsx
-│   └── src/
-│       ├── api/                    # Axios client + auth/places/route services for the backend
-│       ├── navigation/             # Navigator and turn-by-turn guidance helpers
-│       └── screens/                # App screens
-├── traffic_system/
-│   ├── app/                        # FastAPI backend (auth, places, risk-aware routing, evaluation)
-│   ├── configs/                    # Camera/intersection mappings, gazetteers, .env template
-│   ├── data/
-│   │   ├── labels/                 # Human-annotated tweet labels
-│   │   ├── raw/                    # Immutable raw data (tweets, OSM graph, flood hazard maps)
-│   │   └── processed/              # Cleaned tweets, embeddings, spatial/temporal features
-│   ├── docs/                       # Project documentation (evaluation_protocol.md)
-│   ├── notebooks/                  # Colab notebook for training and risk scoring
-│   ├── outputs/                    # Routing evaluation results and Google Maps lookup sheets
-│   ├── scripts/                    # CLI tools: frame extraction, training, scoring, evaluation
-│   ├── src/                        # Core source code
-│   │   ├── data/                   # Dataset alignment, graph data, training windows, metrics
-│   │   ├── ingestion/              # Twitter scraper, OSM road graph, weather collectors
-│   │   ├── preprocessing/          # Text cleaner, MarianMT translation, DistilBERT embedding
-│   │   ├── models/                 # CNN+LSTM fusion, RADR STGNN, MLP decoder, risk baselines
-│   │   ├── routing/                # ACO routing, dynamic weights, ETA, baselines, metrics
-│   │   ├── text/                   # Tweet corpus loading for labeling/gazetteer tools
-│   │   └── vision/                 # Frame extraction, patch embedder, YOLO auto-labels
-│   ├── tests/                      # Unit and integration tests (pytest)
-│   ├── main.py                     # Builds data/processed/embeddings.pt from raw tweets
-│   ├── pipeline_runner.py          # Cleans + translates + embeds raw tweets into data/processed/x
-│   └── requirements.txt            # Python dependencies
-└── README.md                       # This file
+## Build and run
+
+From `traffic_system` with the Python environment installed:
+
+```powershell
+.\venv\Scripts\python -m pip install -r requirements.txt
+.\venv\Scripts\python -m scripts.build_study_network
+.\venv\Scripts\python -m scripts.audit_historical_inputs
+.\venv\Scripts\python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
----
+The build works offline with the retained road/flood inputs, sourced city boundaries, historical weather CSV, and assumption settings. It writes a scoped network, date-indexed provider weather, estimation registry, summary, and release manifest. Large generated network/weather bundles are gitignored and already exist locally. Rebuild after changing policy or assumption files; hash mismatches block routing.
 
-## 🌿 Branching Strategy & Workflow
+In a second terminal:
 
-To maintain code quality and stability, we use a strict **Feature Branch Workflow** and require PR reviews before merging into the main branch.
-
-### 1. Main Branch Protection
-- The `main` branch is **protected**. Direct pushes to `main` are disabled.
-- All code changes must be integrated via a Pull Request (PR).
-- PRs require at least **one approving review** before merging.
-- Continuous Integration (CI) status checks (e.g., tests) must pass before a merge is allowed.
-
-### 2. Issue and Ticket ID Requirement
-All work must trace back to a tracking issue or Jira ticket.
-- **Branch Naming**: Prefix your branch name with the ticket ID.
-  * Format: `<ticket-id>/<short-description>` or `<type>/<ticket-id>-<short-description>`
-  * Example: `ANT-123/add-cctv-extractor` or `feat/ANT-456-patch-embedder`
-- **PR Title**: Must include the ticket ID (e.g., `[ANT-123] Implement CNN+LSTM DataLoader`).
-
-### 3. Workflow Steps
-Follow this pipeline for any change:
-
-1. **Feature Branch**: Create a new branch from `dev` matching the naming convention.
-   ```bash
-   git checkout dev
-   git pull origin dev
-   git checkout -b feature/ANT-001-setup-repo
-   ```
-2. **Develop & Commit**: Make your changes. Write unit tests for new features. Commit with descriptive messages.
-3. **Pull Request**: Push your branch to the remote repository and open a Pull Request against `dev`.
-4. **Review**: Ensure the PR description satisfies the **Pull Request Template**. Request a review from a team member.
-5. **Test**: Wait for CI checks/tests to pass. Address any reviewer feedback.
-6. **Merge**: Once approved and tests pass, squash and merge into `dev`.
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Python 3.11+
-- `ffmpeg` (Required for video preprocessing in the vision pipeline)
-- PyTorch & Transformers
-
-### Installation
-```bash
-git clone <repo-url>
-cd ANTROUTE/traffic_system
-python -m venv .venv
-source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
-pip install -r requirements.txt
+```powershell
+cd frontend
+npm ci
+if (-not (Test-Path .env.local)) { Copy-Item .env.example .env.local }
+npm run dev -- --host 127.0.0.1
 ```
 
-## Tech Stack
+Open **http://127.0.0.1:5173/**. The frontend connects to the backend on port 8000. Existing Maps credentials are preserved; a key-free boundary/route preview is available. No TomTom, HERE, or new weather API requests are required to use the prepared release.
 
-### Backend
+Choose an origin and destination, a study date, local hour, and historical weather or an explicit scenario. Optional map-selected closures are hypothetical conditions, not verified historical closure records. Calculate the ACO route, inspect the four evaluation items, and expand **Where each feature and estimate comes from** for the full basis.
 
-- **Framework:** Python, FastAPI
-- **Database:** PostgreSQL (with PostGIS/GeoAlchemy2 for spatial data), AsyncPG
-- **Caching/Queue:** Redis
-- **Server:** Uvicorn
+## Verify
 
-### Frontend
+```powershell
+cd traffic_system
+.\venv\Scripts\python -m pytest tests -q
+.\venv\Scripts\python -m scripts.validate_system
+.\venv\Scripts\python -m scripts.estimate_sensitivity
+cd ../frontend
+npm run build
+npm run test:e2e
+```
 
-- **Framework:** React 19 (Vite), React Router
-- **Styling:** Tailwind CSS
-- **Maps:** Google Maps JavaScript API via `@vis.gl/react-google-maps`
-- **Language:** TypeScript
+Real-network functional results and demand sensitivity appear under `traffic_system/outputs/`. The latter varies assumed demand by -20%, baseline, and +20%, keeping the ACO seed fixed. Neither report establishes empirical historical accuracy or global route optimality. No evaluation metrics beyond the requested four are introduced.
 
-The frontend is a desktop browser app. The Expo / React Native mobile build was retired;
-`git tag pre-web-rewrite` marks the last commit that still contained it.
-
-Copy `frontend/.env.example` to `frontend/.env.local` and set `VITE_API_URL`,
-`VITE_GOOGLE_MAPS_API_KEY` and `VITE_GOOGLE_MAPS_MAP_ID`. The maps key must have the **Maps
-JavaScript API** enabled with an HTTP-referrer restriction that covers the dev server; a key
-restricted to the native Android/iOS SDKs renders a grey box.
-
-## Setup and Run Instructions
-
-### Prerequisites
-
-- Docker and Docker Compose
-- Node.js and npm (for frontend local development)
-- Python 3.12+ (for backend local development)
-
-### Running with Docker (Recommended)
-
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd ANTROUTE
-   ```
-2. Start the supporting services using Docker Compose:
-
-   ```bash
-   docker-compose up -d
-   ```
-
-   This starts PostgreSQL and Redis (and a containerised backend on port 8000). To run the backend
-   locally instead, stop the `backend` service and use the next step.
-
-3. Start the backend in a separate terminal:
-
-   ```bash
-   cd traffic_system
-   uvicorn app.main:app --reload
-   ```
-
-4. Start the frontend in another terminal:
-   ```bash
-   cd frontend
-   npm install
-   npm run dev          # http://localhost:5173
-   ```
-
-### New Contributor Run Order
-
-1. Start Docker with `docker-compose up -d`.
-2. Start the backend server with Uvicorn.
-3. Start the frontend with `npm run dev` and open http://localhost:5173.
-
-### Existing Developer Run Flow
-
-If you already have the project cloned and dependencies installed, use this shorter flow:
-
-1. Start the supporting services:
-   ```bash
-   docker-compose up -d
-   ```
-2. Start the backend from the `traffic_system` directory:
-
-   ```bash
-   cd traffic_system
-   uvicorn app.main:app --reload
-   ```
-
-3. Start the frontend from the `frontend` directory:
-   ```bash
-   npm run dev
-   ```
+The active release is rebuilt with documented estimation methods; the earlier prototype remains archived. The previously required five-year, estimates-prohibited policy is superseded by the current one-year estimation authorization.

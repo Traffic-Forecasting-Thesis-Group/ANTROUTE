@@ -1,0 +1,153 @@
+{
+  "status": "Uncalibrated, source-documented estimates; not recorded historical traffic",
+  "capacity_note": "c = directional lanes * 1900 * effective green ratio. Green ratio is assumed 0.5 at mapped downstream signals and 1 elsewhere. Unsignalized use is a rough proxy, not a validated link-capacity model.",
+  "traffic_note": "Hourly V/C ratios, road-type demand factors, and weekend multiplier are project scenario assumptions. BPR is published; these demand inputs are not measured.",
+  "weather_scenarios": {
+    "clear": {
+      "cost": 0,
+      "travel_time_multiplier": 1
+    },
+    "rain": {
+      "cost": 0.4,
+      "travel_time_multiplier": 1.081081081081081
+    },
+    "heavy_rain": {
+      "cost": 0.8,
+      "travel_time_multiplier": 1.1299435028248588
+    }
+  },
+  "weather_note": "Rain speed reductions use midpoints of FHWA reference ranges (light: 2?13%, heavy: 6?17%). Transfer to Philippine urban roads is uncalibrated; categorical weather costs are project assumptions.",
+  "road_types": {
+    "motorway": {
+      "speed_kph": 80,
+      "lanes": 2,
+      "cost": 0.1,
+      "traffic_factor": 1.1
+    },
+    "motorway_link": {
+      "speed_kph": 40,
+      "lanes": 1,
+      "cost": 0.2,
+      "traffic_factor": 1.0
+    },
+    "trunk": {
+      "speed_kph": 60,
+      "lanes": 2,
+      "cost": 0.2,
+      "traffic_factor": 1.1
+    },
+    "trunk_link": {
+      "speed_kph": 35,
+      "lanes": 1,
+      "cost": 0.3,
+      "traffic_factor": 1.0
+    },
+    "primary": {
+      "speed_kph": 50,
+      "lanes": 2,
+      "cost": 0.3,
+      "traffic_factor": 1.0
+    },
+    "primary_link": {
+      "speed_kph": 30,
+      "lanes": 1,
+      "cost": 0.4,
+      "traffic_factor": 1.0
+    },
+    "secondary": {
+      "speed_kph": 40,
+      "lanes": 1,
+      "cost": 0.4,
+      "traffic_factor": 0.9
+    },
+    "secondary_link": {
+      "speed_kph": 25,
+      "lanes": 1,
+      "cost": 0.5,
+      "traffic_factor": 0.9
+    },
+    "tertiary": {
+      "speed_kph": 30,
+      "lanes": 1,
+      "cost": 0.5,
+      "traffic_factor": 0.8
+    },
+    "tertiary_link": {
+      "speed_kph": 25,
+      "lanes": 1,
+      "cost": 0.6,
+      "traffic_factor": 0.8
+    },
+    "residential": {
+      "speed_kph": 20,
+      "lanes": 1,
+      "cost": 0.7,
+      "traffic_factor": 0.5
+    },
+    "living_street": {
+      "speed_kph": 10,
+      "lanes": 1,
+      "cost": 0.9,
+      "traffic_factor": 0.4
+    },
+    "unclassified": {
+      "speed_kph": 25,
+      "lanes": 1,
+      "cost": 0.65,
+      "traffic_factor": 0.6
+    },
+    "service": {
+      "speed_kph": 15,
+      "lanes": 1,
+      "cost": 0.85,
+      "traffic_factor": 0.4
+    }
+  },
+  "traffic_model": "bpr",
+  "bpr_alpha": 0.15,
+  "bpr_beta": 4.0,
+  "saturation_flow_vph_per_lane": 1900,
+  "assumed_effective_green_ratio": 0.5,
+  "weekend_demand_factor": 0.75,
+  "hourly_volume_capacity_ratio": [
+    0.25,
+    0.2,
+    0.18,
+    0.18,
+    0.25,
+    0.45,
+    0.7,
+    1.05,
+    1.15,
+    0.9,
+    0.75,
+    0.8,
+    0.85,
+    0.8,
+    0.8,
+    0.9,
+    1.05,
+    1.25,
+    1.3,
+    1.1,
+    0.85,
+    0.65,
+    0.45,
+    0.3
+  ],
+  "peak_hours": [
+    7,
+    8,
+    17,
+    18,
+    19
+  ],
+  "sources": {
+    "bpr": "https://www.fhwa.dot.gov/Environment/air_quality/conformity/research/sample_methodologies/emismeth03.cfm",
+    "capacity": "https://ops.fhwa.dot.gov/publications/fhwahop08024/chapter3.htm",
+    "saturation_flow": "https://ops.fhwa.dot.gov/publications/fhwahop09008/chapter3.htm",
+    "rain": "https://ops.fhwa.dot.gov/weather/roadimpact.htm",
+    "map": "https://www.openstreetmap.org/copyright",
+    "flood": "https://noah.up.edu.ph/know-your-hazards"
+  }
+}
