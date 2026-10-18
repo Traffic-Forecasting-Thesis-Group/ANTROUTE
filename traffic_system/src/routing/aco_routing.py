@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import math
 import random
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from pydantic import Field
 
@@ -37,6 +37,8 @@ class ColonyResult:
     roads: list[WeightedRoad]
     best_cost_by_iteration: list[float | None]
     converged: bool
+    pheromone: dict[str, float] = field(default_factory=dict)
+    best_found_at: int = 0  # Iteration that first found the final best route: iterations to convergence.
 
 
 def _reachable(adjacency: dict[str, list[WeightedRoad]], destination: str) -> set[str]:
@@ -55,8 +57,9 @@ def _reachable(adjacency: dict[str, list[WeightedRoad]], destination: str) -> se
 
 def ant_colony_route(
     adjacency: dict[str, list[WeightedRoad]], origin: str, destination: str, config: AntColonyConfig,
-    positions: dict[str, tuple[float, float]] | None = None,
+    positions: dict[str, tuple[float, float]] | None = None, pheromone: dict[str, float] | None = None,
 ) -> ColonyResult:
+    """pheromone: warm start for re-planning; roads without a value start at 1."""
     if origin not in adjacency or destination not in adjacency:
         raise ValueError("Origin and destination must be nodes in the study network")
     if origin == destination:
@@ -73,12 +76,13 @@ def ant_colony_route(
         longitude_scale = math.cos(math.radians(latitude))
         goal_distance = {node: math.hypot((point[0] - longitude) * longitude_scale, point[1] - latitude) * 111195
                          for node, point in positions.items()}
-    pheromone = {edge.road.id: 1.0 for roads in adjacency.values() for edge in roads}
+    pheromone = {edge.road.id: (pheromone or {}).get(edge.road.id, 1.0) for roads in adjacency.values() for edge in roads}
     best: list[WeightedRoad] | None = None
     best_cost = math.inf
+    best_found_at = 0
     history: list[float | None] = []
     stable = 0
-    for _ in range(config.max_iterations):
+    for iteration in range(1, config.max_iterations + 1):
         previous_cost = best_cost
         completed: list[tuple[list[WeightedRoad], float]] = []
         for _ in range(config.n_ants):
@@ -116,8 +120,8 @@ def ant_colony_route(
             if current == destination:
                 cost = sum(edge.cost for edge in route)
                 completed.append((route, cost))
-                if cost < best_cost:
-                    best, best_cost = route[:], cost
+                if cost < best_cost - 1e-12:
+                    best, best_cost, best_found_at = route[:], cost, iteration
         for edge_id in pheromone:
             pheromone[edge_id] = max(pheromone[edge_id] * (1 - config.evaporation), 1e-12)
         for route, cost in completed:
@@ -128,7 +132,7 @@ def ant_colony_route(
             improvement = (previous_cost - best_cost) / max(abs(previous_cost), 1e-12)
             stable = stable + 1 if improvement <= config.tolerance else 0
             if stable >= config.patience:
-                return ColonyResult(best, history, True)
+                return ColonyResult(best, history, True, pheromone, best_found_at)
     if best is None:
         raise SearchExhausted("ACO found no route within its search limits; connectivity is not disproved")
-    return ColonyResult(best, history, False)
+    return ColonyResult(best, history, False, pheromone, best_found_at)

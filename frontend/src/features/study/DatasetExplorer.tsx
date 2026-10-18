@@ -41,7 +41,7 @@ export default function DatasetExplorer({ conditions, onMap, disabled }: Props) 
   };
   return <section className="card">
     <h2>Network dataset</h2>
-    <p>Inspect every retained road segment, rather than only the selected route. The map and CSV use the date, hour, weather and closures above.</p>
+    <p className="muted">Inspect every retained road segment, rather than only the selected route. The map and CSV use the date, hour, weather and closures above.</p>
     {info && <>
       <p><strong>{info.directed_segments.toLocaleString()} segments · {info.hours.toLocaleString()} hours · {info.potential_segment_hour_rows.toLocaleString()} possible segment-hour rows</strong></p>
       <p className="muted">{info.retained_weather_grids} retained weather grids; {info.assigned_weather_grids} assigned to road locations. {info.traffic_locations} hourly traffic locations (city × road type). Largest mutually reachable component: {info.largest_strongly_connected_nodes.toLocaleString()} of {info.nodes.toLocaleString()} nodes. Map completeness has not been verified.</p>
@@ -51,8 +51,8 @@ export default function DatasetExplorer({ conditions, onMap, disabled }: Props) 
       <label>Dataset / map coverage<select value={city} onChange={event => setCity(event.target.value)}>
         <option value="">All five cities</option>{['San Juan', 'Manila', 'Mandaluyong', 'Makati', 'Pasig'].map(name => <option key={name}>{name}</option>)}
       </select></label>
-      <button type="button" disabled={disabled || busy} onClick={() => run('map')}>Show network congestion on map</button>
-      <button type="button" disabled={disabled || busy} onClick={() => run('export')}>Download hourly snapshot CSV</button>
+      <button type="button" className="secondary" disabled={disabled || busy} onClick={() => run('map')}>Show network congestion on map</button>
+      <button type="button" className="secondary" disabled={disabled || busy} onClick={() => run('export')}>Download hourly snapshot CSV</button>
     </div>
     {busy && <p role="status">Preparing the selected network snapshot…</p>}
     {error && <p role="alert" className="error">{error}</p>}

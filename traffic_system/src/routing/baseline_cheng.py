@@ -22,14 +22,17 @@ Inputs and adaptations, stated so results are not over-read:
   - Ants: the paper uses 1.5 x nodes (18,597 here); 20, ANTROUTE's default, keeps run time comparable.
   - Dead ends: as in ANTROUTE, ants only enter nodes that can still reach D and step back from
     dead ends. The paper's test networks have none; under the literal tabu rule ants die on real roads.
-  - Eq. 9 (pheromone rescaling when traffic updates mid-trip) never triggers: each request is
-    one date/hour snapshot.
+  - Eq. 9 (pheromone rescaling when road information changes) runs in simulated trips
+    (dynamic_trip.py), where the hour, weather or closures change at a node. It is applied as
+    printed, so a road that becomes slower gains pheromone. A single /routes/baseline request is
+    one date/hour snapshot, where it never triggers. Traffic updates hourly here, not every
+    5-15 minutes as in the paper.
 """
 from __future__ import annotations
 
 import math
 import random
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from pydantic import Field
 
@@ -72,6 +75,7 @@ class BaselineResult:
     roads: list[WeightedRoad]
     best_cost_by_iteration: list[float | None]
     best_found_at: int
+    pheromone: dict[str, float] = field(default_factory=dict)
 
 
 def ahp(matrix=JUDGMENT) -> Ahp:
@@ -102,6 +106,13 @@ def comprehensive_costs(criteria: list[tuple[float, float, float]], weights=None
 def cheng_graph(network: RoadNetwork, conditions: Conditions, weather_by_city: dict[str, WeatherEffect] | None = None,
                 traffic: dict[str, tuple[float, float]] | None = None) -> dict[str, list[WeightedRoad]]:
     """Open roads weighted by the comprehensive cost s_ij instead of the ten-feature cost."""
+    return cheng_snapshot(network, conditions, weather_by_city, traffic)[0]
+
+
+def cheng_snapshot(network: RoadNetwork, conditions: Conditions, weather_by_city: dict[str, WeatherEffect] | None = None,
+                   traffic: dict[str, tuple[float, float]] | None = None
+                   ) -> tuple[dict[str, list[WeightedRoad]], dict[str, float]]:
+    """The cost graph and each open road's travel time (s), which eq. 9 compares between snapshots."""
     validate_conditions(network, conditions)
     assumptions = network.provenance.get("assumptions", {})
     bpr_alpha, bpr_beta = assumptions.get("bpr_alpha", 0.15), assumptions.get("bpr_beta", 4.0)
@@ -117,11 +128,33 @@ def cheng_graph(network: RoadNetwork, conditions: Conditions, weather_by_city: d
     adjacency: dict[str, list[WeightedRoad]] = {node.id: [] for node in network.nodes}
     for road, cost in zip(roads, comprehensive_costs(criteria)):
         adjacency[road.source].append(WeightedRoad(road, cost))
-    return adjacency
+    return adjacency, {road.id: row[1] for road, row in zip(roads, criteria)}
+
+
+def rescale_pheromone(pheromone: dict[str, float], old_time: dict[str, float], new_time: dict[str, float],
+                      initial: float = 1.0) -> list[str]:
+    """Eq. 9 as written: tau(t+1) = t_(t+1) / t_t * tau(t). Returns the roads whose time changed.
+
+    As printed, a road that becomes slower gains pheromone. Closed roads lose their pheromone and
+    reopened roads start again from the initial value.
+    """
+    changed = []
+    for road_id in list(pheromone):
+        if road_id not in new_time:
+            del pheromone[road_id]
+            changed.append(road_id)
+        elif abs(new_time[road_id] - old_time[road_id]) > 1e-9 * old_time[road_id]:
+            pheromone[road_id] *= new_time[road_id] / old_time[road_id]
+            changed.append(road_id)
+    for road_id in new_time.keys() - old_time.keys():
+        pheromone[road_id] = initial
+        changed.append(road_id)
+    return changed
 
 
 def cheng_route(adjacency: dict[str, list[WeightedRoad]], origin: str, destination: str, config: ChengConfig,
-                positions: dict[str, tuple[float, float]]) -> BaselineResult:
+                positions: dict[str, tuple[float, float]], pheromone: dict[str, float] | None = None) -> BaselineResult:
+    """pheromone: the colony's pheromone after eq. 9, for a re-search; roads without a value start at 1."""
     if origin not in adjacency or destination not in adjacency:
         raise ValueError("Origin and destination must be nodes in the study network")
     if origin == destination:
@@ -138,7 +171,7 @@ def cheng_route(adjacency: dict[str, list[WeightedRoad]], origin: str, destinati
     # Eq. 8 depends only on the edge and D, so eta^beta is fixed for the search.
     eta_beta = {edge.road.id: (1 / max(edge.cost + goal[edge.road.target], 1e-12)) ** config.beta
                 for roads in adjacency.values() for edge in roads}
-    pheromone = dict.fromkeys(eta_beta, 1.0)
+    pheromone = {road_id: (pheromone or {}).get(road_id, 1.0) for road_id in eta_beta}
     best: list[WeightedRoad] | None = None
     best_cost, best_found_at = math.inf, 0
     history: list[float | None] = []
@@ -194,4 +227,4 @@ def cheng_route(adjacency: dict[str, list[WeightedRoad]], origin: str, destinati
         history.append(None if best is None else best_cost)
     if best is None:
         raise SearchExhausted("The baseline found no route within its search limits; connectivity is not disproved")
-    return BaselineResult(best, history, best_found_at)
+    return BaselineResult(best, history, best_found_at, pheromone)

@@ -13,12 +13,12 @@ Read [input feature preprocessing](traffic_system/docs/feature_preprocessing.md)
 From `traffic_system` with the Python environment installed:
 
 ```powershell
-.\venv\Scripts\python -m pip install -r requirements.txt
-.\venv\Scripts\python -m scripts.preprocess_road_features
-.\venv\Scripts\python -m scripts.preprocess_traffic
-.\venv\Scripts\python -m scripts.build_study_network
-.\venv\Scripts\python -m scripts.audit_historical_inputs
-.\venv\Scripts\python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+.\.venv\Scripts\python -m pip install -r requirements.txt
+.\.venv\Scripts\python -m scripts.preprocess_road_features
+.\.venv\Scripts\python -m scripts.preprocess_traffic
+.\.venv\Scripts\python -m scripts.build_study_network
+.\.venv\Scripts\python -m scripts.audit_historical_inputs
+.\.venv\Scripts\python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
 The build works offline with the retained road/flood inputs, sourced city boundaries, historical weather CSV, and assumption settings. It writes a scoped network, date-indexed provider weather, estimation registry, summary, and release manifest. Large generated network/weather bundles are gitignored and already exist locally. Rebuild after changing policy or assumption files; hash mismatches block routing.
@@ -36,13 +36,31 @@ Open **http://127.0.0.1:5173/**. The frontend connects to the backend on port 80
 
 Choose an origin and destination, a study date, local hour, and historical weather or an explicit scenario. Optional map-selected closures are hypothetical conditions, not verified historical closure records. Calculate the ACO route, inspect the four evaluation items, and expand **Where each feature and estimate comes from** for the full basis.
 
+## Algorithms and dynamic experiment
+
+- `POST /routes/plan`: ANTROUTE ACO on the ten features with CRITIC weights, one date/hour snapshot.
+- `POST /routes/baseline`: Cheng (2023) improved ACO baseline on the same snapshot.
+- `POST /routes/trip`: a simulated trip with `algorithm` = `antroute` (proposed) or `cheng` (baseline). Conditions change as the trip crosses into the next hour, and `events` can close/reopen roads or change the weather at a given minute.
+
+Answer the statement of the problem (writes `outputs/sop_runs.csv`, `outputs/sop_results.json` and the readable `outputs/sop_report.md`):
+
+```powershell
+.\.venv\Scripts\python -m scripts.evaluate_sop --trips 10 --seeds 2
+```
+
+- SOP 1: distance travelled and path cost under five traffic conditions (off-peak, morning and evening peak onset, road closure, heavy-rain onset).
+- SOP 2: computational time, initial routing time, dynamic re-routing time, and convergence rate (iterations until the initial search first found its final best route).
+- SOP 3: ANTROUTE vs Cheng on distance, path cost, computational time and convergence rate, paired by trip and condition; Shapiro–Wilk selects a paired t-test or Wilcoxon signed-rank test (α = 0.05).
+
+See [architecture](traffic_system/docs/aco_system_architecture.md#algorithms) for how the three differ.
+
 ## Verify
 
 ```powershell
 cd traffic_system
-.\venv\Scripts\python -m pytest tests -q
-.\venv\Scripts\python -m scripts.validate_system
-.\venv\Scripts\python -m scripts.estimate_sensitivity
+.\.venv\Scripts\python -m pytest tests -q
+.\.venv\Scripts\python -m scripts.validate_system
+.\.venv\Scripts\python -m scripts.estimate_sensitivity
 cd ../frontend
 npm run build
 npm run test:e2e

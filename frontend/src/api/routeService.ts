@@ -88,18 +88,45 @@ export interface RouteResult {
   };
 }
 
-export interface BaselineResult {
-  route: RouteResult['route'];
-  baseline: { name: string; doi: string; citation: string; comprehensive_cost: number;
-    ahp_weights: Record<string, number>; ahp_consistency_ratio: number };
+export type Algorithm = 'antroute' | 'cheng';
+
+export interface TripEvent {
+  at_minute: number;
+  close_road_ids?: string[];
+  weather?: string;
+}
+
+export interface TripSearch {
+  kind: 'initial' | 'reroute';
+  at_node: string;
+  at_minute: number;
+  trigger: string;
+  affected_roads: number;
+  iterations: number;
+  iterations_to_convergence: number;
+  stop_reason: string;
+  route_cost: number;
+  routing_time_ms: number;
+  best_cost_by_iteration: (number | null)[];
+}
+
+export interface TripResult {
+  algorithm: { name: Algorithm; description: string };
+  route: { node_ids: string[]; road_ids: string[]; geometry: [number, number][]; road_names: string[] };
+  trip: { departure: string; travel_time_s: number; stops: string[]; stop_arrival_minutes: number[];
+    changes_without_replanning: { at_minute: number; change: string }[] };
   evaluation: {
     distance_travel_m: number;
     path_cost: number;
     computational_time_ms: number;
-    convergence_rule: { rule: string; iterations: number; max_iterations: number; best_found_at_iteration: number;
-      stop_reason: string; best_cost_by_iteration: (number | null)[] };
+    initial_routing_time_ms: number;
+    dynamic_rerouting_time_ms: number;
+    reroutes: number;
+    mean_rerouting_time_ms: number | null;
+    convergence: { iterations_to_convergence: number; mean_iterations_to_convergence: number; searches: TripSearch[] };
   };
 }
+
 
 const baseURL =(import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000').replace(/\/$/, '');
 
@@ -107,7 +134,12 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${baseURL}${path}`, init);
   const body = await response.json();
   if (!response.ok) {
-    throw new Error(typeof body.detail === 'string' ? body.detail : 'Invalid route inputs. Check the selected nodes and conditions.');
+    if (typeof body.detail === 'string') throw new Error(body.detail);
+    // Request-format errors list each problem; show them instead of a generic message.
+    const problems = Array.isArray(body.detail)
+      ? body.detail.map((item: { loc?: (string | number)[]; msg?: string }) => `${item.loc?.slice(1).join('.') || 'request'}: ${item.msg}`).join('; ')
+      : '';
+    throw new Error(`Invalid route inputs${problems ? ` (${problems})` : ''}. If the backend was started before the app was updated, restart it.`);
   }
   return body as T;
 }
@@ -140,9 +172,10 @@ export const planRoute = (origin: string, destination: string, conditions: Condi
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ origin, destination, conditions, aco }),
   });
-export const planBaseline = (origin: string, destination: string, conditions: Conditions, signal: AbortSignal) =>
-  request<BaselineResult>('/routes/baseline', {
+export const planTrip = (algorithm: Algorithm, origin: string, destinations: string[], conditions: Conditions,
+  departureMinute: number, events: TripEvent[], signal: AbortSignal, aco?: AcoSettings) =>
+  request<TripResult>('/routes/trip', {
     method: 'POST', signal,
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ origin, destination, conditions }),
+    body: JSON.stringify({ algorithm, origin, destinations, conditions, departure_minute: departureMinute, events, aco }),
   });

@@ -30,6 +30,7 @@ def test_aco_route_and_exact_four_evaluation_items(network):
     assert metrics["distance_travel_m"] == 200
     assert metrics["path_cost"] == pytest.approx(2 * (0.1 * 0.1 + 0.1 * 10 / 600))
     assert metrics["computational_time_ms"] == 2.5
+    assert 1 <= metrics["convergence_rule"]["iterations_to_convergence"] <= metrics["convergence_rule"]["iterations"]
 
 
 def test_closure_reroutes_and_does_not_mutate_network(network):

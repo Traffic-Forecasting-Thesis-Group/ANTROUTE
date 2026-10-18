@@ -7,7 +7,7 @@ interface MapProps {
   baselineGeometry: [number, number][];
   boundaries: Record<string, BoundaryGeometry>;
   origin: StudyNode | null;
-  destination: StudyNode | null;
+  destinations: StudyNode[];
   closures: RoadSelection[];
   onPick: (latitude: number, longitude: number) => void;
   disabled: boolean;
@@ -70,7 +70,7 @@ function Overlays({ geometry, baselineGeometry, boundaries, closures, datasetMap
   return null;
 }
 
-function NetworkPreview({ geometry, baselineGeometry, boundaries, origin, destination, closures, datasetMap, onPick, disabled }: MapProps) {
+function NetworkPreview({ geometry, baselineGeometry, boundaries, origin, destinations, closures, datasetMap, onPick, disabled }: MapProps) {
   const coordinates = Object.values(boundaries).flatMap(boundary => rings(boundary).flat());
   const west = coordinates.length ? Math.min(...coordinates.map(point => point[0])) - .005 : 120.94;
   const east = coordinates.length ? Math.max(...coordinates.map(point => point[0])) + .005 : 121.14;
@@ -95,8 +95,10 @@ function NetworkPreview({ geometry, baselineGeometry, boundaries, origin, destin
     {closures.map(road => <polyline key={road.id} points={points(road.geometry)} fill="none" stroke="#dc2626" strokeWidth="5" />)}
     <polyline points={points(baselineGeometry)} fill="none" stroke={BASELINE_COLOR} strokeWidth="7" />
     <polyline points={points(geometry)} fill="none" stroke={ROUTE_COLOR} strokeWidth="4" />
-    {[origin, destination].map((node, index) => node && <g key={index} transform={`translate(${project([node.longitude, node.latitude]).join(',')})`}>
-      <circle r="9" fill={index === 0 ? '#15803d' : '#be123c'} stroke="white" strokeWidth="2" /><text y="-15" textAnchor="middle" fontSize="13" fontWeight="700">{index === 0 ? 'Origin' : 'Destination'}</text>
+    {[origin, ...destinations].map((node, index) => node && <g key={index} transform={`translate(${project([node.longitude, node.latitude]).join(',')})`}>
+      <circle r="9" fill={index === 0 ? '#15803d' : '#be123c'} stroke="white" strokeWidth="2" />
+      {index > 0 && <text y="4" textAnchor="middle" fontSize="10" fontWeight="700" fill="white">{index}</text>}
+      <text y="-15" textAnchor="middle" fontSize="13" fontWeight="700">{index === 0 ? 'Start' : `Destination ${index}`}</text>
     </g>)}
     <text x="16" y="600" fontSize="12" fill="#475569">Study boundaries and route · © OpenStreetMap contributors · map preview</text>
   </svg>;
@@ -109,7 +111,7 @@ export default function RouteMap(props: MapProps) {
       if (!props.disabled && event.detail.latLng) props.onPick(event.detail.latLng.lat, event.detail.latLng.lng);
     }}>
     <Overlays {...props} />
-    {props.origin && <AdvancedMarker position={{ lat: props.origin.latitude, lng: props.origin.longitude }} title="Origin"><Pin background="#15803d" borderColor="#166534" glyphColor="white" glyph="A" /></AdvancedMarker>}
-    {props.destination && <AdvancedMarker position={{ lat: props.destination.latitude, lng: props.destination.longitude }} title="Destination"><Pin background="#be123c" borderColor="#9f1239" glyphColor="white" glyph="B" /></AdvancedMarker>}
+    {props.origin && <AdvancedMarker position={{ lat: props.origin.latitude, lng: props.origin.longitude }} title="Start location"><Pin background="#15803d" borderColor="#166534" glyphColor="white" /></AdvancedMarker>}
+    {props.destinations.map((stop, index) => <AdvancedMarker key={`${index}-${stop.id}`} position={{ lat: stop.latitude, lng: stop.longitude }} title={`Destination ${index + 1}`}><Pin background="#be123c" borderColor="#9f1239" glyphColor="white" glyph={String(index + 1)} /></AdvancedMarker>)}
   </Map></APIProvider>;
 }

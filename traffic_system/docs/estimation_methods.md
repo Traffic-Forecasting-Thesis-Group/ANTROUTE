@@ -33,9 +33,15 @@ Weather scenarios have categorical costs 0, 0.4, and 0.8. Historical precipitati
 
 The configuration records all 24 hourly demand-to-capacity index values (`hourly_demand_capacity_ratio`). Each is multiplied by a road-type factor; weekend hours multiply demand by 0.75; repeatable daily and three-hour variation (`traffic_variation`) is applied per city and road type. `scripts/preprocess_traffic.py` evaluates this once for all 8,760 hours into `traffic_hourly.csv`. These numbers are scenario parameters chosen for the implementation, not reported Metro Manila traffic statistics. They must remain labeled as such.
 
-Road-type fallback speeds, fallback lanes, categorical road costs, the assumed effective green ratio, the peak-hours list, and the equal ten-feature weights are also provisional choices. Directional lane tags are preferred; two-way total lane tags are split between directions; otherwise the configured fallback is used. Unknown signals are assumed absent and reported as unrecorded.
+Road-type fallback speeds, fallback lanes, categorical road costs, the assumed effective green ratio, and the peak-hours list are also provisional choices. Directional lane tags are preferred; two-way total lane tags are split between directions; otherwise the configured fallback is used. Unknown signals are assumed absent and reported as unrecorded.
 
-The objective normalizes distance against 1,000 m, travel time against 600 s, and capacity against 4,000 equivalent vehicles/hour; it caps normalized values at one. These references and 10% feature weights are software settings, not measured input statistics. Correlated inputs can overlap in the objective.
+The objective normalizes distance against 1,000 m, travel time against 600 s, and capacity against 4,000 equivalent vehicles/hour; it caps normalized values at one. These references are software settings, not measured input statistics.
+
+## Feature weights (CRITIC)
+
+The ten feature weights come from CRITIC (Diakoulaki, Mavrotas and Papayannakis, 1995, https://doi.org/10.1016/0305-0548(94)00059-H), computed by `scripts/build_study_network.py` and stored in the network's `cost_config.weights`, with the full statistics in `provenance.weighting`. Alternatives are all segments at every hour of every 15th day from 2025-06-01 (600 hours, historical provider weather; the 15-day step moves the weekday by one, so all weekdays and weekends are covered). For each feature, contrast is the standard deviation after min-max scaling over those alternatives, conflict is the sum of (1 − correlation) with the other features, and the weight is contrast × conflict, normalized to sum to one.
+
+CRITIC weights are objective with respect to the estimated feature values; they are not calibrated against observed route choices. Because they reward spread across alternatives, binary and categorical features (time of day, flood risk, intersections, signals) receive more weight than continuous features whose normalized values are concentrated near zero (travel time, distance). Time of day is identical for every road in a given hour, so within one routing snapshot it acts as a per-segment charge rather than a preference between roads.
 
 ## Historical coverage and provenance
 

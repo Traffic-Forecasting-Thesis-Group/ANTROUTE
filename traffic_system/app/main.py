@@ -1,15 +1,16 @@
 """Route requests use a fresh, consistent snapshot of the three dynamic inputs."""
+import json
 import os
 from functools import lru_cache
 from pathlib import Path
-from datetime import date
+from datetime import date, datetime, time
 from time import perf_counter
 from itertools import chain, islice
 
 from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
-from pydantic import Field, ValidationError
+from pydantic import Field, ValidationError, model_validator
 from dotenv import load_dotenv
 
 from app import places
@@ -17,6 +18,7 @@ from app.study_policy import require_historical_release, study_status
 
 from src.routing.aco_routing import AntColonyConfig, NoFeasibleRoute, SearchExhausted, ant_colony_route
 from src.routing.baseline_cheng import REFERENCE, ChengConfig, ahp, cheng_graph, cheng_route
+from src.routing.dynamic_trip import Algorithm, ReplanConfig, TripEvent, simulate_trip
 from src.routing.condition_update import Conditions, validate_conditions
 from src.routing.dynamic_weight import prepare_graph, segment_values
 from src.routing.datasets import coverage, snapshot_rows, csv_chunks
@@ -66,6 +68,35 @@ class BaselineRequest(StudyModel):
     destination: str = Field(min_length=1)
     conditions: Conditions
     baseline: ChengConfig = Field(default_factory=ChengConfig)
+
+
+class TripRequest(StudyModel):
+    origin: str = Field(min_length=1)
+    destination: str | None = Field(default=None, min_length=1)
+    destinations: list[str] = Field(default_factory=list, max_length=5)  # Stops visited in order.
+    conditions: Conditions
+    departure_minute: int = Field(default=0, ge=0, le=59, strict=True)
+    events: list[TripEvent] = Field(default_factory=list, max_length=50)
+    algorithm: Algorithm = "antroute"
+    aco: AntColonyConfig = Field(default_factory=AntColonyConfig)
+    baseline: ChengConfig = Field(default_factory=ChengConfig)
+    replan: ReplanConfig = Field(default_factory=ReplanConfig)
+
+    @model_validator(mode="after")
+    def one_way_to_give_stops(self):
+        if bool(self.destination) == bool(self.destinations):
+            raise ValueError("Give either destination or a non-empty destinations list")
+        return self
+
+    @property
+    def stops(self) -> list[str]:
+        return self.destinations or [self.destination]
+
+
+ALGORITHMS = {
+    "antroute": "ANTROUTE: CRITIC-weighted ten-feature ACO, re-planned from fresh pheromone when conditions change",
+    "cheng": "Cheng (2023) improved ACO baseline with eq. 9 dynamic optimization",
+}
 
 
 class SnapshotRequest(StudyModel):
@@ -135,6 +166,17 @@ def health():
 @app.get("/study/status")
 def historical_study_status():
     return study_status()
+
+
+@app.get("/study/results")
+def sop_results():
+    """Latest SOP experiment summary written by scripts.evaluate_sop (per-run rows omitted)."""
+    path = Path(__file__).resolve().parents[1] / "outputs/sop_results.json"
+    if not path.exists():
+        raise HTTPException(404, "No SOP results yet. From traffic_system run: python -m scripts.evaluate_sop")
+    results = json.loads(path.read_text(encoding="utf-8"))
+    results.pop("runs", None)
+    return results
 
 
 @app.get("/network")
@@ -283,7 +325,44 @@ def plan_baseline_route(request: BaselineRequest, _historical_release: None = De
                     "max_iterations": request.baseline.max_iterations,
                     "iterations": len(result.best_cost_by_iteration),
                     "best_found_at_iteration": result.best_found_at,
+                    "iterations_to_convergence": result.best_found_at,
                     "stop_reason": "iteration_limit",
                     "best_cost_by_iteration": result.best_cost_by_iteration,
                 },
             }}
+
+
+@app.post("/routes/trip")
+def simulate_route_trip(request: TripRequest, _historical_release: None = Depends(require_historical_release)):
+    """Plan, drive and re-plan as the hour, weather or closures change during the trip."""
+    network = get_network()
+    _route_inputs(network, request.conditions)  # Rejects invalid departure conditions before simulating.
+    departure = datetime.combine(request.conditions.departure_date,
+                                 time(request.conditions.time_of_day, request.departure_minute))
+    result = _search(lambda: simulate_trip(
+        network, request.origin, request.stops, departure, request.conditions.weather,
+        request.conditions.closed_road_ids, request.events, request.algorithm, request.aco, request.baseline, request.replan))
+    coordinates = []
+    for road in result.roads:
+        coordinates.extend(road.geometry if not coordinates else road.geometry[1:])
+    return {
+        "algorithm": {"name": request.algorithm, "description": ALGORITHMS[request.algorithm],
+                      "aco": request.aco.model_dump(), "baseline": request.baseline.model_dump(),
+                      "replan": request.replan.model_dump()},
+        "route": {
+            "node_ids": [request.origin] + [road.target for road in result.roads],
+            "road_ids": [road.id for road in result.roads],
+            "geometry": coordinates,
+            "road_names": [road.name or road.id for road in result.roads],
+            "segments": [{"road_id": road.id, "entered_at_minute": entered / 60, "travel_time_s": seconds, "path_cost": cost}
+                         for road, entered, seconds, cost in zip(result.roads, result.entered_at_s, result.travel_time_s, result.path_costs)],
+        },
+        "trip": {"departure": departure.isoformat(), "travel_time_s": sum(result.travel_time_s),
+                 "stops": request.stops, "stop_arrival_minutes": [seconds / 60 for seconds in result.stop_arrivals_s],
+                 "events": [event.model_dump(mode="json") for event in request.events],
+                 "changes_without_replanning": result.unsearched_changes},
+        "conditions": request.conditions.model_dump(mode="json"),
+        "evaluation": result.evaluation(),
+        "data_quality": network.provenance.get("mode", "supplied_feature_data"),
+        "traffic": TRAFFIC_DISCLOSURE,
+    }

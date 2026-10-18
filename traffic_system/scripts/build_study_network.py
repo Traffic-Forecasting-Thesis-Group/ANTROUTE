@@ -6,19 +6,24 @@ import csv
 import hashlib
 import json
 from collections import Counter, defaultdict
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 from shapely import wkt
 from shapely.geometry import mapping, shape
 
 from app.study_policy import RELEASE_ARTIFACTS
+from src.routing.condition_update import Conditions
+from src.routing.critic import CriticAccumulator
+from src.routing.dynamic_weight import segment_values
 from src.routing.estimation import estimation_registry
-from src.routing.historical_traffic import TABLE as TRAFFIC_TABLE
-from src.routing.historical_weather import build_weather
-from src.routing.network import CITIES, RoadNetwork
+from src.routing.historical_traffic import TABLE as TRAFFIC_TABLE, traffic_snapshot
+from src.routing.historical_weather import build_weather, historical_snapshot
+from src.routing.network import CITIES, FEATURES, CostConfig, RoadNetwork
 
 ROOT = Path(__file__).resolve().parents[1]
+# Every 15th day moves the weekday by one, so the sample covers each weekday and weekends.
+CRITIC_DAY_STEP = 15
 
 
 def read_csv(path):
@@ -115,13 +120,44 @@ def build(features_dir, boundary_path, assumption_path, traffic_path, quality_pa
                 "Unrecorded signals are treated as absent; OSM signal coverage is incomplete.",
                 "Flood exposure is a mapped hazard class, not measured water depth or current passability; bridges may be elevated.",
                 "Weather effects are scenario assumptions applied to historical provider records.",
-                "The time-of-day peak policy is distinct from congestion but correlated; objective weights are uncalibrated.",
+                "The time-of-day peak policy is distinct from congestion but correlated. Feature weights come from CRITIC over estimated feature values; they are not calibrated against observed route choices.",
                 "September 2026 geometry, signals and classifications are held constant as an estimated surrogate for June 2025–May 2026.",
                 "Historical weather grid assignment and speed effects are estimates, not road-level weather measurements.",
                 "The source graph does not encode turn restrictions in this node-edge routing model.",
             ],
         },
     })
+
+
+def critic_sample_hours():
+    day = date(2025, 6, 1)
+    while day <= date(2026, 5, 31):
+        for hour in range(24):
+            yield day, hour
+        day += timedelta(days=CRITIC_DAY_STEP)
+
+
+def apply_critic(network: RoadNetwork) -> None:
+    """Replace the provisional equal weights with CRITIC weights over the sampled segment-hours."""
+    nodes = {node.id: node for node in network.nodes}
+    accumulator = CriticAccumulator(FEATURES)
+    hours = list(critic_sample_hours())
+    for index, (day, hour) in enumerate(hours, 1):
+        conditions = Conditions(departure_date=day, time_of_day=hour, weather="historical")
+        weather, traffic = historical_snapshot(day, hour, network)[0], traffic_snapshot(day, hour)
+        accumulator.add([[features[name] for name in FEATURES] for _, features, _ in
+                         (segment_values(network, road, conditions, nodes, weather, traffic) for road in network.roads)])
+        if index % 100 == 0 or index == len(hours):
+            print(f"CRITIC sample: {index}/{len(hours)} hours", flush=True)
+    result = accumulator.result()
+    network.cost_config = CostConfig(**{**network.cost_config.model_dump(), "weights": result["weights"]})
+    network.provenance["weighting"] = {
+        "method": "CRITIC (Diakoulaki, Mavrotas and Papayannakis, 1995)",
+        "reference": "https://doi.org/10.1016/0305-0548(94)00059-H",
+        "sample": f"All {len(network.roads)} segments at every hour of every {CRITIC_DAY_STEP}th day from 2025-06-01 "
+                  f"({len(hours)} hours), historical provider weather",
+        **result,
+    }
 
 
 def main():
@@ -132,6 +168,7 @@ def main():
     weather_bundle = build_weather(network.boundaries, weather_path, network.nodes)
     network.provenance["historical_weather"] = {key: value for key, value in weather_bundle.items()
                                                if key not in {"records", "records_by_grid", "node_grid_assignment"}}
+    apply_critic(network)
     path = output / "study_network.json"
     temporary = path.with_suffix(".tmp")
     temporary.write_text(network.model_dump_json(), encoding="utf-8")
