@@ -4,6 +4,7 @@ import type { BoundaryGeometry, RoadSelection, StudyNode, DatasetMap } from '../
 
 interface MapProps {
   geometry: [number, number][];
+  baselineGeometry: [number, number][];
   boundaries: Record<string, BoundaryGeometry>;
   origin: StudyNode | null;
   destination: StudyNode | null;
@@ -13,12 +14,16 @@ interface MapProps {
   datasetMap?: DatasetMap | null;
 }
 
+export const ROUTE_COLOR = '#4475f2';
+// Purple stays distinct from the green-to-red congestion bands of the network layer.
+export const BASELINE_COLOR = '#a855f7';
+
 function rings(geometry: BoundaryGeometry): number[][][] {
   return geometry.type === 'Polygon' ? [geometry.coordinates[0] as number[][]]
     : (geometry.coordinates as number[][][][]).map(polygon => polygon[0]);
 }
 
-function Overlays({ geometry, boundaries, closures, datasetMap }: Pick<MapProps, 'geometry' | 'boundaries' | 'closures' | 'datasetMap'>) {
+function Overlays({ geometry, baselineGeometry, boundaries, closures, datasetMap }: Pick<MapProps, 'geometry' | 'baselineGeometry' | 'boundaries' | 'closures' | 'datasetMap'>) {
   const map = useMap();
   const maps = useMapsLibrary('maps');
   useEffect(() => {
@@ -50,18 +55,22 @@ function Overlays({ geometry, boundaries, closures, datasetMap }: Pick<MapProps,
     return () => lines.forEach(line => line.setMap(null));
   }, [closures, map, maps]);
   useEffect(() => {
-    if (!map || !maps || geometry.length < 2) return;
-    const path = geometry.map(([lng, lat]) => ({ lat, lng }));
-    const line = new maps.Polyline({ map, path, strokeColor: '#4475F2', strokeWeight: 5, zIndex: 20 });
+    if (!map || !maps) return;
+    // The wider baseline line sits under the ACO route so shared roads show both colors.
+    const lines = ([[baselineGeometry, BASELINE_COLOR, 8, 15], [geometry, ROUTE_COLOR, 5, 20]] as const)
+      .filter(([coordinates]) => coordinates.length >= 2)
+      .map(([coordinates, strokeColor, strokeWeight, zIndex]) => new maps.Polyline({ map, strokeColor, strokeWeight, zIndex,
+        path: coordinates.map(([lng, lat]) => ({ lat, lng })) }));
+    if (!lines.length) return;
     const bounds = new google.maps.LatLngBounds();
-    path.forEach(point => bounds.extend(point));
+    lines.forEach(line => line.getPath().forEach(point => { bounds.extend(point); }));
     map.fitBounds(bounds, 48);
-    return () => line.setMap(null);
-  }, [geometry, map, maps]);
+    return () => lines.forEach(line => line.setMap(null));
+  }, [geometry, baselineGeometry, map, maps]);
   return null;
 }
 
-function NetworkPreview({ geometry, boundaries, origin, destination, closures, datasetMap, onPick, disabled }: MapProps) {
+function NetworkPreview({ geometry, baselineGeometry, boundaries, origin, destination, closures, datasetMap, onPick, disabled }: MapProps) {
   const coordinates = Object.values(boundaries).flatMap(boundary => rings(boundary).flat());
   const west = coordinates.length ? Math.min(...coordinates.map(point => point[0])) - .005 : 120.94;
   const east = coordinates.length ? Math.max(...coordinates.map(point => point[0])) + .005 : 121.14;
@@ -84,7 +93,8 @@ function NetworkPreview({ geometry, boundaries, origin, destination, closures, d
     {Object.entries(boundaries).flatMap(([city, boundary]) => rings(boundary).map((ring, index) => <polygon key={`${city}-${index}`} points={points(ring)} fill="#dfe8fa" stroke="#8ba0cb" strokeWidth="1.5"><title>{city}</title></polygon>))}
     {datasetMap?.bands.map(band => <path key={band.label} d={band.lines.map(line => line.map((point, index) => `${index ? 'L' : 'M'}${project(point).map(value => value.toFixed(2)).join(',')}`).join('')).join(' ')} fill="none" stroke={band.color} strokeWidth=".8" opacity=".8" />)}
     {closures.map(road => <polyline key={road.id} points={points(road.geometry)} fill="none" stroke="#dc2626" strokeWidth="5" />)}
-    <polyline points={points(geometry)} fill="none" stroke="#4475f2" strokeWidth="4" />
+    <polyline points={points(baselineGeometry)} fill="none" stroke={BASELINE_COLOR} strokeWidth="7" />
+    <polyline points={points(geometry)} fill="none" stroke={ROUTE_COLOR} strokeWidth="4" />
     {[origin, destination].map((node, index) => node && <g key={index} transform={`translate(${project([node.longitude, node.latitude]).join(',')})`}>
       <circle r="9" fill={index === 0 ? '#15803d' : '#be123c'} stroke="white" strokeWidth="2" /><text y="-15" textAnchor="middle" fontSize="13" fontWeight="700">{index === 0 ? 'Origin' : 'Destination'}</text>
     </g>)}

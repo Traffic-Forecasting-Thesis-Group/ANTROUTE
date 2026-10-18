@@ -88,7 +88,20 @@ export interface RouteResult {
   };
 }
 
-const baseURL = (import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000').replace(/\/$/, '');
+export interface BaselineResult {
+  route: RouteResult['route'];
+  baseline: { name: string; doi: string; citation: string; comprehensive_cost: number;
+    ahp_weights: Record<string, number>; ahp_consistency_ratio: number };
+  evaluation: {
+    distance_travel_m: number;
+    path_cost: number;
+    computational_time_ms: number;
+    convergence_rule: { rule: string; iterations: number; max_iterations: number; best_found_at_iteration: number;
+      stop_reason: string; best_cost_by_iteration: (number | null)[] };
+  };
+}
+
+const baseURL =(import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000').replace(/\/$/, '');
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${baseURL}${path}`, init);
@@ -126,4 +139,10 @@ export const planRoute = (origin: string, destination: string, conditions: Condi
     method: 'POST', signal,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ origin, destination, conditions, aco }),
+  });
+export const planBaseline = (origin: string, destination: string, conditions: Conditions, signal: AbortSignal) =>
+  request<BaselineResult>('/routes/baseline', {
+    method: 'POST', signal,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ origin, destination, conditions }),
   });

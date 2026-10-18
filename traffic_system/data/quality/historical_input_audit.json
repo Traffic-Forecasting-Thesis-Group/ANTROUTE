@@ -1,5 +1,5 @@
 {
-  "audited_at": "2026-10-17T13:37:42.871947+00:00",
+  "audited_at": "2026-10-17T23:52:11.218410+00:00",
   "ready": true,
   "period": {
     "start_inclusive": "2025-06-01T00:00:00+08:00",
@@ -32,13 +32,13 @@
     },
     "traffic_congestion": {
       "status": "estimated",
-      "local_evidence": "1 - 1/(1 + alpha*(V/C)^beta). V/C profiles, road-type factors and weekend factor are project assumptions, not measurements.",
+      "local_evidence": "Hourly traffic table (data/processed/temporal/traffic_hourly.csv) per city and road type: 1 - 1/(1 + 0.15*x^4), where x is an assumed demand-to-capacity index (hourly profile, road-type factor, weekend factor, repeatable daily/three-hour variation). These are project assumptions, not measurements or vehicle counts.",
       "reference": "https://www.fhwa.dot.gov/Environment/air_quality/conformity/research/sample_methodologies/emismeth03.cfm",
       "required_evidence": "Estimates authorized; not independently validated historical measurements"
     },
     "travel_time": {
       "status": "estimated",
-      "local_evidence": "t = (length / free-flow speed) * (1 + 0.15*(V/C)^4) / (1 - rain speed reduction). Posted speed is only a free-flow proxy; fallback speeds are assumptions.",
+      "local_evidence": "t = (length / free-flow speed) * travel_time_factor from the hourly traffic table / (1 - rain speed reduction). Posted OSM speed is only a free-flow proxy; fallback speeds are assumptions.",
       "reference": "https://www.fhwa.dot.gov/Environment/air_quality/conformity/research/sample_methodologies/emismeth03.cfm",
       "required_evidence": "Estimates authorized; not independently validated historical measurements"
     },

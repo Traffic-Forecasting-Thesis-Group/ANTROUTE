@@ -16,6 +16,7 @@ from app import places
 from app.study_policy import require_historical_release, study_status
 
 from src.routing.aco_routing import AntColonyConfig, NoFeasibleRoute, SearchExhausted, ant_colony_route
+from src.routing.baseline_cheng import REFERENCE, ChengConfig, ahp, cheng_graph, cheng_route
 from src.routing.condition_update import Conditions, validate_conditions
 from src.routing.dynamic_weight import prepare_graph, segment_values
 from src.routing.datasets import coverage, snapshot_rows, csv_chunks
@@ -58,6 +59,13 @@ class RouteRequest(StudyModel):
     destination: str = Field(min_length=1)
     conditions: Conditions
     aco: AntColonyConfig = Field(default_factory=AntColonyConfig)
+
+
+class BaselineRequest(StudyModel):
+    origin: str = Field(min_length=1)
+    destination: str = Field(min_length=1)
+    conditions: Conditions
+    baseline: ChengConfig = Field(default_factory=ChengConfig)
 
 
 class SnapshotRequest(StudyModel):
@@ -180,58 +188,102 @@ def weather_refresh():
     raise HTTPException(410, "Live weather is outside June 2025–May 2026. Select a historical date/hour to load the archived provider records.")
 
 
-@app.post("/routes/plan")
-def plan_route(request: RouteRequest, _historical_release: None = Depends(require_historical_release)):
-    network = get_network()
+def _route_inputs(network: RoadNetwork, conditions: Conditions):
     try:
-        validate_conditions(network, request.conditions)
+        validate_conditions(network, conditions)
     except ValueError as exc:
         raise HTTPException(422, str(exc)) from exc
     weather_by_city, observation = None, None
-    if request.conditions.weather == "historical":
+    if conditions.weather == "historical":
         try:
-            weather_by_city, observation = historical_snapshot(request.conditions.departure_date, request.conditions.time_of_day, network)
+            weather_by_city, observation = historical_snapshot(conditions.departure_date, conditions.time_of_day, network)
         except (OSError, ValueError, KeyError):
             raise HTTPException(503, "Historical weather snapshot is unavailable") from None
     try:
-        traffic = traffic_for(network, request.conditions)
+        traffic = traffic_for(network, conditions)
     except (OSError, ValueError):
         raise HTTPException(503, "Hourly traffic table is unavailable") from None
-    # Data loading/validation is input collection. Timed work begins with graph preparation.
-    started = perf_counter()
+    return weather_by_city, observation, traffic
+
+
+def _search(solve):
     try:
-        graph = prepare_graph(network, request.conditions, weather_by_city, traffic)
-        positions = {node.id: (node.longitude, node.latitude) for node in network.nodes}
-        result = ant_colony_route(graph, request.origin, request.destination, request.aco, positions)
+        return solve()
     except NoFeasibleRoute as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
-    except SearchExhausted as exc:
+    except (SearchExhausted, ValueError) as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
-    except ValueError as exc:
-        raise HTTPException(status_code=422, detail=str(exc)) from exc
-    elapsed_ms = (perf_counter() - started) * 1000
+
+
+def _route_response(network, roads, origin, conditions, weather_by_city, observation, traffic):
+    """Route geometry and features. path_cost is always the ten-feature cost, for any algorithm."""
     coordinates = []
     nodes = {node.id: node for node in network.nodes}
-    for edge in result.roads:
-        geometry = edge.road.geometry
-        coordinates.extend(geometry if not coordinates else geometry[1:])
+    for road in roads:
+        coordinates.extend(road.geometry if not coordinates else road.geometry[1:])
+    segments = [segment_values(network, road, conditions, nodes, weather_by_city, traffic) for road in roads]
     return {
         "route": {
-            "node_ids": [request.origin] + [edge.road.target for edge in result.roads],
-            "road_ids": [edge.road.id for edge in result.roads],
+            "node_ids": [origin] + [road.target for road in roads],
+            "road_ids": [road.id for road in roads],
             "geometry": coordinates,
-            "road_names": [edge.road.name or edge.road.id for edge in result.roads],
-            "feature_sources": {edge.road.id: edge.road.feature_sources for edge in result.roads},
-            "segment_features": [{"road_id": edge.road.id, "path_cost": edge.cost,
-                "features": segment_values(network, edge.road, request.conditions,
-                    nodes, weather_by_city, traffic)[0]}
-                for edge in result.roads],
+            "road_names": [road.name or road.id for road in roads],
+            "feature_sources": {road.id: road.feature_sources for road in roads},
+            "segment_features": [{"road_id": road.id, "path_cost": cost, "features": features}
+                                 for road, (_, features, cost) in zip(roads, segments)],
         },
-        "conditions": request.conditions.model_dump(mode="json"),
-        "aco": request.aco.model_dump(),
-        "evaluation": evaluate(result, request.aco, elapsed_ms),
+        "conditions": conditions.model_dump(mode="json"),
         "weather_observation": observation,
         "data_quality": network.provenance.get("mode", "supplied_feature_data"),
         "estimation_registry": network.provenance.get("estimation_registry", {}),
         "traffic": TRAFFIC_DISCLOSURE,
     }
+
+
+@app.post("/routes/plan")
+def plan_route(request: RouteRequest, _historical_release: None = Depends(require_historical_release)):
+    network = get_network()
+    weather_by_city, observation, traffic = _route_inputs(network, request.conditions)
+    # Data loading/validation is input collection. Timed work begins with graph preparation.
+    started = perf_counter()
+    positions = {node.id: (node.longitude, node.latitude) for node in network.nodes}
+    result = _search(lambda: ant_colony_route(prepare_graph(network, request.conditions, weather_by_city, traffic),
+                                              request.origin, request.destination, request.aco, positions))
+    elapsed_ms = (perf_counter() - started) * 1000
+    return {**_route_response(network, [edge.road for edge in result.roads], request.origin, request.conditions,
+                              weather_by_city, observation, traffic),
+            "aco": request.aco.model_dump(),
+            "evaluation": evaluate(result, request.aco, elapsed_ms)}
+
+
+@app.post("/routes/baseline")
+def plan_baseline_route(request: BaselineRequest, _historical_release: None = Depends(require_historical_release)):
+    """Cheng (2023) on the same graph, closures, traffic and weather as /routes/plan."""
+    network = get_network()
+    weather_by_city, observation, traffic = _route_inputs(network, request.conditions)
+    started = perf_counter()
+    positions = {node.id: (node.longitude, node.latitude) for node in network.nodes}
+    result = _search(lambda: cheng_route(cheng_graph(network, request.conditions, weather_by_city, traffic),
+                                         request.origin, request.destination, request.baseline, positions))
+    elapsed_ms = (perf_counter() - started) * 1000
+    response = _route_response(network, [edge.road for edge in result.roads], request.origin, request.conditions,
+                               weather_by_city, observation, traffic)
+    weights = ahp()
+    return {**response,
+            "baseline": {**REFERENCE, "settings": request.baseline.model_dump(),
+                         "ahp_weights": dict(zip(("path_length", "travel_time", "traffic_flow"), weights.weights)),
+                         "ahp_consistency_ratio": weights.consistency_ratio,
+                         "comprehensive_cost": sum(edge.cost for edge in result.roads)},
+            "evaluation": {
+                "distance_travel_m": sum(edge.road.distance_m for edge in result.roads),
+                "path_cost": sum(segment["path_cost"] for segment in response["route"]["segment_features"]),
+                "computational_time_ms": elapsed_ms,
+                "convergence_rule": {
+                    "rule": "fixed_iterations",
+                    "max_iterations": request.baseline.max_iterations,
+                    "iterations": len(result.best_cost_by_iteration),
+                    "best_found_at_iteration": result.best_found_at,
+                    "stop_reason": "iteration_limit",
+                    "best_cost_by_iteration": result.best_cost_by_iteration,
+                },
+            }}
