@@ -150,6 +150,20 @@ button:disabled { cursor: default; opacity: .6; }
 .map-legend li { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
 .map-legend .line { width: 18px; height: 4px; border-radius: 2px; }
 .map-legend .dot { width: 10px; height: 10px; border-radius: 50%; margin: 0 4px; }
+.map-legend .line.dashed { height: 0; border-radius: 0; border-top: 4px dashed; }
+.route-explanation { margin-top: 16px; }
+.route-explanation h3 { margin: 0 0 6px; font-size: 14px; }
+.stretch-list { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 10px; }
+.stretch-list li { display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border: 1px solid var(--line); border-left: 4px solid; border-radius: 10px; font-size: 12.5px; }
+.stretch-list p { margin: 4px 0 0; color: #475569; line-height: 1.5; }
+.stretch-letter { flex: none; display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; color: white; font-weight: 700; font-size: 11px; }
+.stretch-info { max-width: 360px; font-size: 12px; line-height: 1.45; }
+.stretch-card table { width: 100%; margin: 8px 0; border-collapse: collapse; font-size: 12px; font-variant-numeric: tabular-nums; }
+.stretch-card th, .stretch-card td { padding: 3px 8px 3px 0; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+.stretch-card thead th { color: #475569; font-weight: 600; }
+.stretch-card tbody th { color: #64748b; font-weight: 500; white-space: nowrap; }
+.stretch-card td.worse { color: #b91c1c; font-weight: 600; }
+.stretch-card p { margin: 6px 0 0; color: #334155; }
 .legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; vertical-align: middle; }
 .attribution { font-size: 11px; color: var(--muted); margin-bottom: 0; }
 
@@ -192,6 +206,10 @@ pre { max-height: 300px; overflow: auto; padding: 12px; background: var(--soft);
 .audit-table thead th { background: var(--soft); font-size: 12px; font-weight: 600; color: #475569; }
 .audit-table tbody th { font-weight: 600; color: #334155; white-space: nowrap; }
 .audit-table tbody td { font-variant-numeric: tabular-nums; }
+.cost-breakdown .share { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+.cost-breakdown .share-bar { display: inline-block; height: 8px; border-radius: 4px; max-width: 60%; opacity: .8; }
+.cost-breakdown details summary { cursor: pointer; font-size: 12px; color: #475569; }
+.cost-breakdown details p { margin: 4px 0; max-width: 42ch; }
 .evaluation h3 { margin-top: 22px; }
 
 /* Network dataset */

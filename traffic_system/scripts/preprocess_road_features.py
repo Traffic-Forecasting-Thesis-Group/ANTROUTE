@@ -173,7 +173,7 @@ def preprocess(boundary_path, graph_path, flood_path, assumptions):
             "free_flow_time_s": round(distance / (speed / 3.6), 6), "signal_at_target": int(signal),
             "road_capacity_vph": capacity,
             "capacity_source": "estimated_" + lanes_source + ("_signal_green_ratio" if signal else ""),
-            "traffic_location": location_id(city, road_type),
+            "traffic_location": road_id,  # Each segment has its own hourly traffic series.
             "geometry_wkt": line.wkt,
         })
         floods.append({"road_id": road_id, "noah_hazard_class": hazard, "flood_risk": round(hazard / 3, 6),
@@ -188,11 +188,6 @@ def preprocess(boundary_path, graph_path, flood_path, assumptions):
                       "street_count": street_count, "is_intersection": int(street_count >= 3), "traffic_signal": int(signal),
                       "signal_source": "osm_traffic_signals_tag" if signal else "signal_not_recorded_in_osm"})
     return nodes, segments, floods, excluded, fallbacks
-
-
-def location_id(city, road_type):
-    """Traffic table key; segments share hourly traffic with their city and road type."""
-    return f"{city.lower().replace(' ', '_')}__{road_type}"
 
 
 def validate(nodes, segments, floods, types):

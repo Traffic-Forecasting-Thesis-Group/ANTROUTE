@@ -5,20 +5,21 @@ import pytest
 
 from src.routing.condition_update import Conditions, validate_conditions
 from src.routing.estimation import estimation_registry
-from src.routing.historical_traffic import bpr, demand_index
+from src.routing.historical_traffic import bpr, demand_indices
 from src.routing.network import CITIES, FEATURES
 
 
 def test_bpr_reference_formula_and_weekend_assumption():
     assumptions = {"bpr_alpha": .15, "bpr_beta": 4, "weekend_demand_factor": .75, "hourly_demand_capacity_ratio": [1] * 24,
                    "road_types": {"primary": {"traffic_factor": 1}},
-                   "traffic_variation": {"seed": 0, "strength": 0, "day_coefficient": .2, "location_hour_coefficient": .25}}
+                   "traffic_variation": {"seed": 0, "strength": 0, "day_coefficient": .2, "area_coefficient": .25,
+                                         "road_coefficient": .35, "location_hour_coefficient": .25}}
     factor, congestion = bpr(1, assumptions)
     assert factor == pytest.approx(1.15)
     assert congestion == pytest.approx(1 - 1 / 1.15)
-    weekday = demand_index("x", "Manila", "primary", date(2025, 6, 2), 8, assumptions)
-    weekend = demand_index("x", "Manila", "primary", date(2025, 6, 1), 8, assumptions)
-    assert weekday == 1 and weekend == .75
+    road = {"road_id": "x", "city": "Manila", "road_type": "primary", "longitude": 121, "latitude": 14.6}
+    index = {(day, hour): x[0] for day, hour, x in demand_indices([road], assumptions, hours=48)}
+    assert index[(date(2025, 6, 2), 8)] == 1 and index[(date(2025, 6, 1), 8)] == .75
 
 
 @pytest.mark.parametrize("day", [date(2025, 5, 31), date(2026, 6, 1)])

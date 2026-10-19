@@ -39,11 +39,15 @@ def segment_values(network, road, conditions, nodes, weather_by_city=None, traff
         congestion, factor = traffic[road.traffic_location]
         travel_time = road.free_flow_time_s * factor
     target = nodes[road.target]
+    flood = road.flood_risk if weather.flood_risk is None else weather.flood_risk
+    share = config.weather_flood_exposure_share
     raw = {"distance": road.distance_m, "traffic_congestion": congestion,
            "travel_time": travel_time * weather.travel_time_multiplier,
            "number_of_intersections": int(target.is_intersection), "traffic_signal": int(target.traffic_signal),
-           "road_type": road.road_type, "time_of_day": hour, "weather": weather.cost,
-           "flood_risk": road.flood_risk if weather.flood_risk is None else weather.flood_risk,
+           "road_type": road.road_type, "time_of_day": hour,
+           # Rain costs more on flood-prone roads, so the weather feature differs between roads.
+           "weather": weather.cost * ((1 - share) + share * flood),
+           "flood_risk": flood,
            "road_capacity": road.road_capacity_vph}
     features = {**raw,
                 "distance": min(raw["distance"] / config.distance_scale_m, 1),

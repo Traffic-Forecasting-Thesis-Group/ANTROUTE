@@ -39,6 +39,8 @@ class ColonyResult:
     converged: bool
     pheromone: dict[str, float] = field(default_factory=dict)
     best_found_at: int = 0  # Iteration that first found the final best route: iterations to convergence.
+    visits: dict[str, int] = field(default_factory=dict)  # Completed ant routes that used each road.
+    ant_routes: int = 0  # Completed ant routes over the whole search.
 
 
 def _reachable(adjacency: dict[str, list[WeightedRoad]], destination: str) -> set[str]:
@@ -82,6 +84,8 @@ def ant_colony_route(
     best_found_at = 0
     history: list[float | None] = []
     stable = 0
+    visits: dict[str, int] = {}
+    ant_routes = 0
     for iteration in range(1, config.max_iterations + 1):
         previous_cost = best_cost
         completed: list[tuple[list[WeightedRoad], float]] = []
@@ -120,6 +124,9 @@ def ant_colony_route(
             if current == destination:
                 cost = sum(edge.cost for edge in route)
                 completed.append((route, cost))
+                ant_routes += 1
+                for edge in route:
+                    visits[edge.road.id] = visits.get(edge.road.id, 0) + 1
                 if cost < best_cost - 1e-12:
                     best, best_cost, best_found_at = route[:], cost, iteration
         for edge_id in pheromone:
@@ -132,7 +139,7 @@ def ant_colony_route(
             improvement = (previous_cost - best_cost) / max(abs(previous_cost), 1e-12)
             stable = stable + 1 if improvement <= config.tolerance else 0
             if stable >= config.patience:
-                return ColonyResult(best, history, True, pheromone, best_found_at)
+                return ColonyResult(best, history, True, pheromone, best_found_at, visits, ant_routes)
     if best is None:
         raise SearchExhausted("ACO found no route within its search limits; connectivity is not disproved")
-    return ColonyResult(best, history, False, pheromone, best_found_at)
+    return ColonyResult(best, history, False, pheromone, best_found_at, visits, ant_routes)

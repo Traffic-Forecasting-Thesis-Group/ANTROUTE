@@ -33,6 +33,71 @@ def test_aco_route_and_exact_four_evaluation_items(network):
     assert 1 <= metrics["convergence_rule"]["iterations_to_convergence"] <= metrics["convergence_rule"]["iterations"]
 
 
+def test_contributions_add_up_to_path_cost_and_name_sources(network):
+    from src.routing.contributions import route_contributions
+    from src.routing.dynamic_weight import segment_values
+    network.provenance["estimation_registry"] = {"distance": {"classification": "calculated", "basis": "OSM length", "source": "osm"}}
+    network.roads[0].feature_sources = {"distance": "osm_polyline"}
+    result = solve(network)
+    roads = [edge.road for edge in result.roads]
+    nodes = {node.id: node for node in network.nodes}
+    segments = [segment_values(network, road, conditions(), nodes)[:2] for road in roads]
+    records = route_contributions(network, roads, segments)
+    assert [record["feature"] for record in records] == list(FEATURES)
+    assert sum(record["contribution"] for record in records) == pytest.approx(sum(edge.cost for edge in result.roads))
+    assert sum(record["share"] for record in records) == pytest.approx(1)
+    distance = records[0]
+    assert distance["route_value"] == 200 and distance["unit"] == "m"
+    assert distance["classification"] == "calculated" and distance["data_sources"] == {"osm_polyline": 1, "not_recorded": 1}
+
+
+def test_explanation_separates_costlier_roads_from_search_misses(network_data):
+    from src.routing.aco_routing import ColonyResult
+    from src.routing.dynamic_weight import segment_values
+    from src.routing.explanation import explain
+    # The direct road a->d is shorter (150 m vs 200 m) but fully flood-exposed.
+    direct = next(road for road in network_data["roads"] if road["id"] == "ad")
+    direct.update(distance_m=150, flood_risk=1)
+    network = RoadNetwork.model_validate(network_data)
+    network.cost_config.weights = {**network.cost_config.weights, "flood_risk": .5}
+    graph = prepare_graph(network, conditions())
+    nodes = {node.id: node for node in network.nodes}
+    edges = {edge.road.id: edge for roads in graph.values() for edge in roads}
+
+    def run(chosen, visits):
+        colony = ColonyResult([edges[road] for road in chosen], [1.0], True, visits=visits, ant_routes=10)
+        return explain(network, graph, colony.roads, colony, "a", "d", lambda road: segment_values(network, road, conditions(), nodes))
+
+    avoided = run(["ab", "bd"], {"ab": 10, "bd": 10})
+    stretch = avoided["stretches"][0]
+    assert avoided["references"]["shortest_distance"]["distance_m"] == 150
+    assert avoided["references"]["lowest_cost"]["same_as_chosen"]
+    assert stretch["verdict"] == "costlier_alternative" and stretch["distance_saved_m"] == 50
+    assert next(iter(stretch["feature_differences"])) == "flood_risk" and stretch["cost_difference"] > 0
+    assert tuple(stretch["alternative"]["geometry"][0]) == (nodes["a"].longitude, nodes["a"].latitude)
+
+    direct["flood_risk"] = 0  # Now a->d is shorter and cheaper: taking a-b-d is a search miss.
+    network = RoadNetwork.model_validate(network_data)
+    graph = prepare_graph(network, conditions())
+    edges = {edge.road.id: edge for roads in graph.values() for edge in roads}
+    missed = run(["ab", "bd"], {"ab": 10, "bd": 10})["stretches"][0]
+    assert missed["verdict"] == "missed_by_search" and missed["ant_routes_using_alternative"] == 0
+    assert run(["ad"], {"ad": 10})["stretches"] == []
+
+
+def test_rain_costs_more_on_flood_prone_roads(network_data):
+    from src.routing.dynamic_weight import segment_values
+    for road in network_data["roads"]:
+        road["weather"]["storm"] = {"cost": .8, "travel_time_multiplier": 1}
+        road["flood_risk"] = 1 if road["id"] == "ab" else 0
+    network = RoadNetwork.model_validate(network_data)
+    nodes = {node.id: node for node in network.nodes}
+    weather = {road.id: segment_values(network, road, conditions(weather="storm"), nodes)[0]["weather"] for road in network.roads}
+    assert weather["ab"] == pytest.approx(.8) and weather["bd"] == pytest.approx(.4)  # Half of the rain cost scales with flood risk.
+    clear = {road.id: segment_values(network, road, conditions(), nodes)[0]["weather"] for road in network.roads}
+    assert set(clear.values()) == {0}
+
+
 def test_closure_reroutes_and_does_not_mutate_network(network):
     rerouted = solve(network, conditions(closed_road_ids={"ab"}))
     assert [edge.road.id for edge in rerouted.roads] == ["ad"]

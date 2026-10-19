@@ -1,5 +1,5 @@
 {
-  "audited_at": "2026-10-18T04:57:35.814448+00:00",
+  "audited_at": "2026-10-19T11:11:20.343606+00:00",
   "ready": true,
   "period": {
     "start_inclusive": "2025-06-01T00:00:00+08:00",
@@ -32,7 +32,7 @@
     },
     "traffic_congestion": {
       "status": "estimated",
-      "local_evidence": "Hourly traffic table (data/processed/temporal/traffic_hourly.csv) per city and road type: 1 - 1/(1 + 0.15*x^4), where x is an assumed demand-to-capacity index (hourly profile, road-type factor, weekend factor, repeatable daily/three-hour variation). These are project assumptions, not measurements or vehicle counts.",
+      "local_evidence": "Hourly traffic table (data/processed/temporal/traffic_hourly.csv) per road segment: 1 - 1/(1 + 0.15*x^4), where x is an assumed demand-to-capacity index (hourly profile, road-type factor, weekend factor, repeatable daily per-city, three-hour per-area, static per-road and three-hour per-road variation). These are project assumptions, not measurements or vehicle counts.",
       "reference": "https://www.fhwa.dot.gov/Environment/air_quality/conformity/research/sample_methodologies/emismeth03.cfm",
       "required_evidence": "Estimates authorized; not independently validated historical measurements"
     },
@@ -62,13 +62,13 @@
     },
     "time_of_day": {
       "status": "calculated",
-      "local_evidence": "Exact Asia/Manila request hour. A separate binary peak-hours cost uses assumed hours 07,08,17,18,19; it is not copied from congestion.",
-      "reference": "Project policy in configs/study_assumptions.json (no empirical peak-hour validation)",
+      "local_evidence": "How busy this type of road typically is at the request hour (Asia/Manila): assumed hourly demand profile / its daily maximum x road-type traffic factor / the largest factor, 0-1. Uses the same assumptions as the traffic estimate without date-specific variation, so it is correlated with congestion.",
+      "reference": "Project assumptions in configs/study_assumptions.json (no empirical hourly profile validation)",
       "required_evidence": "Estimates authorized; not independently validated historical measurements"
     },
     "weather": {
       "status": "historical_provider_record_with_estimated_effect",
-      "local_evidence": "Nearest 0.05-degree provider grid to each city representative point; source measurement provenance is unverified. Rain speed reductions 7.5%/11.5% are reference-range midpoints, not local calibration.",
+      "local_evidence": "Nearest 0.05-degree provider grid to each road; source measurement provenance is unverified. Cost per road = rain scenario cost x (0.5 + 0.5 x NOAH flood risk): half applies to every road, half scales with mapped flood hazard (assumed split). Rain speed reductions 7.5%/11.5% are reference-range midpoints, not local calibration.",
       "reference": "https://ops.fhwa.dot.gov/weather/roadimpact.htm",
       "required_evidence": "Estimates authorized; not independently validated historical measurements"
     },

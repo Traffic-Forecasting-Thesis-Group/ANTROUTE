@@ -1,12 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
-import { loadNetwork, loadStudyStatus, loadWeather, planTrip, snapNode, snapRoad } from './api/routeService';
+import { explainRoute, loadNetwork, loadStudyStatus, loadWeather, planTrip, snapNode, snapRoad } from './api/routeService';
 import type { HistoricalStudyStatus as StudyStatus, NetworkInfo, RoadSelection, StudyNode, TripEvent, TripResult, WeatherSnapshot } from './api/routeService';
 import RouteMap, { BASELINE_COLOR, ROUTE_COLOR } from './features/map/RouteMap';
 import PlaceInput from './features/trip/PlaceInput';
+import CostBreakdown from './features/trip/CostBreakdown';
 import HistoricalStudyStatus from './features/study/HistoricalStudyStatus';
 import DatasetExplorer from './features/study/DatasetExplorer';
-import type { AcoSettings, DatasetMap } from './api/routeService';
+import type { DatasetMap, RouteExplanation } from './api/routeService';
+import RouteExplanationPanel, { COSTLIER_COLOR, MISSED_COLOR } from './features/map/RouteExplanation';
 
 const features = ['Distance', 'Traffic Congestion', 'Travel Time', 'Number of Intersections', 'Traffic Signal', 'Road Type', 'Time of Day', 'Weather', 'Flood Risk', 'Road Capacity'];
 const cities = ['San Juan', 'Manila', 'Mandaluyong', 'Makati', 'Pasig'];
@@ -72,8 +74,6 @@ export default function App() {
   const [picking, setPicking] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [aco, setAco] = useState<AcoSettings>({ n_ants: 20, max_iterations: 60, max_steps: 10000, seed: 0,
-    alpha: 1, beta: 2, evaporation: .5, tolerance: .0001, patience: 10, goal_bias: 4 });
   const [datasetMap, setDatasetMap] = useState<DatasetMap | null>(null);
   const conditions = useMemo(() => ({ departure_date: departureDate, time_of_day: hour, weather,
     closed_road_ids: closures.map(road => road.id) }), [departureDate, hour, weather, closures]);
@@ -81,6 +81,9 @@ export default function App() {
   const [baseline, setBaseline] = useState<TripResult | null>(null);
   const [baselineBusy, setBaselineBusy] = useState(false);
   const [baselineError, setBaselineError] = useState('');
+  const [explanation, setExplanation] = useState<RouteExplanation | null>(null);
+  const [explanationNote, setExplanationNote] = useState('');
+  const [focusedStretch, setFocusedStretch] = useState<number | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -112,7 +115,7 @@ export default function App() {
 
   const invalidate = () => {
     activeRequest.current?.abort(); activeRequest.current = null;
-    setResult(null); setError(''); setBaseline(null); setBaselineError(''); setBusy(false); setBaselineBusy(false);
+    setResult(null); setError(''); setBaseline(null); setBaselineError(''); setBusy(false); setBaselineBusy(false); setExplanation(null); setFocusedStretch(null);
   };
   // Both algorithms drive the same trip. The baseline runs after ANTROUTE rather than alongside
   // it, so the two never compete for the server and computational times stay comparable.
@@ -133,7 +136,7 @@ export default function App() {
     if (weatherChange) events.push({ at_minute: weatherChangeMinute, weather: weatherChange });
     setBusy(true);
     try {
-      setResult(await planTrip('antroute', origin.id, destinationIds, tripConditions, departureMinute, events, controller.signal, aco));
+      setResult(await planTrip('antroute', origin.id, destinationIds, tripConditions, departureMinute, events, controller.signal));
     } catch (reason) {
       if (reason instanceof Error && reason.name !== 'AbortError') setError(reason.message);
       return;
@@ -147,6 +150,14 @@ export default function App() {
       if (reason instanceof Error && reason.name !== 'AbortError') setBaselineError(reason.message);
     } finally {
       if (!controller.signal.aborted) setBaselineBusy(false);
+    }
+    // Explains the departure plan of the first leg, after both timed runs so it never competes with them.
+    try {
+      setExplanation(await explainRoute(origin.id, destinationIds[0], tripConditions, controller.signal));
+      setExplanationNote(destinationIds.length > 1 || events.length
+        ? 'This explains the plan made at departure for the first destination; later legs and mid-trip re-routing are not compared.' : '');
+    } catch {
+      setExplanation(null);
     }
   };
 
@@ -258,18 +269,6 @@ export default function App() {
                   <label>At minute<input type="number" min={0} max={1440} step={1} required disabled={closureMinute === null} value={closureMinute ?? 0} onChange={event => { setClosureMinute(Number(event.target.value)); invalidate(); }} /></label>
                 </div>}
               </div>
-              <details className="source-details form-section"><summary>ACO search settings</summary>
-                <p className="muted">Higher ant, iteration and step limits allow a larger search and require more computation. ACO seed controls repeatable search choices.</p>
-                <div className="field-row settings">{([
-                  ['n_ants', 'Ants', 1, 200, 1], ['max_iterations', 'Maximum iterations', 1, 1000, 1],
-                  ['max_steps', 'Steps per ant', 1, 100000, 1], ['seed', 'ACO seed', -2147483648, 2147483647, 1],
-                  ['alpha', 'Pheromone influence', 0, 5, .1], ['beta', 'Cost influence', 0, 10, .1],
-                  ['goal_bias', 'Destination bias', 0, 10, .1], ['evaporation', 'Evaporation', .01, .99, .01],
-                  ['tolerance', 'Convergence tolerance', 0, .99, .0001], ['patience', 'Convergence patience', 1, 1000, 1],
-                ] as [keyof AcoSettings, string, number, number, number][]).map(([key, label, min, max, step]) =>
-                  <label key={key}>{label}<input type="number" required min={min} max={max} step={step} value={aco[key]} onChange={event => { setAco({ ...aco, [key]: Number(event.target.value) }); invalidate(); }} /></label>)}
-                </div>
-              </details>
               <button type="submit">{busy ? 'Running ANTROUTE…' : baselineBusy ? 'Running baseline…' : 'Calculate route'}</button>
             </fieldset>
           </form>
@@ -277,24 +276,26 @@ export default function App() {
         </aside>
       <main className="content">
         <div className="page-title"><div><h1>ROUTE PLANNER</h1><p>{cities.join(' · ')}</p></div><span className="badge">Five-city study</span></div>
-        <section className="card map-card">
+        <section className="card map-card" id="route-map">
           <div className="map-head">
             <h2>Route within the study area</h2>
             <div className="map-toolbar" role="group" aria-label="Map selection mode">{(['origin', 'destination', 'closure'] as const).map(mode => <button type="button" key={mode} disabled={disabled} aria-pressed={pickMode === mode} onClick={() => setPickMode(mode)}>{mode === 'closure' ? 'Close road' : `Set ${mode}`}</button>)}</div>
           </div>
           <p className="muted" role="status">{picking ? 'Finding the nearest study road…' : `Click the map to ${pickMode === 'closure' ? 'enter a road closure' : `choose the ${pickMode}`}.`}</p>
           <div className="map">
-            <RouteMap geometry={result?.route.geometry ?? emptyGeometry} baselineGeometry={baseline?.route.geometry ?? emptyGeometry} boundaries={network?.boundaries ?? emptyBoundaries} origin={origin} destinations={chosenStops} closures={closures} datasetMap={datasetMap} onPick={pickPoint} disabled={disabled} />
+            <RouteMap geometry={result?.route.geometry ?? emptyGeometry} baselineGeometry={baseline?.route.geometry ?? emptyGeometry} boundaries={network?.boundaries ?? emptyBoundaries} origin={origin} destinations={chosenStops} closures={closures} datasetMap={datasetMap} explanation={explanation} focusedStretch={focusedStretch} onFocusStretch={setFocusedStretch} onPick={pickPoint} disabled={disabled} />
             <ul className="map-legend" aria-label="Map legend">
               <li><i className="line" style={{ background: ROUTE_COLOR }} />ANTROUTE route{result ? ` · ${(result.evaluation.distance_travel_m / 1000).toFixed(2)} km` : ''}</li>
               <li><i className="line" style={{ background: BASELINE_COLOR }} />Baseline IACO{baseline ? ` · ${(baseline.evaluation.distance_travel_m / 1000).toFixed(2)} km` : baselineBusy ? ' · running…' : ''}</li>
               <li><i className="line" style={{ background: '#dc2626' }} />Road closure</li>
               <li><i className="dot" style={{ background: '#15803d' }} />Start location</li>
               <li><i className="dot" style={{ background: '#be123c' }} />Destinations, in order</li>
+              {explanation && explanation.stretches.length > 0 && <><li><i className="line dashed" style={{ borderColor: MISSED_COLOR }} />Better road the ants never found</li><li><i className="line dashed" style={{ borderColor: COSTLIER_COLOR }} />Shorter road, worse on the ten features</li></>}
             </ul>
           </div>
-          {datasetMap && <><p className="muted">{datasetMap.segment_count.toLocaleString()} segments colored by the estimated congestion index for this hour.</p><div className="feature-list">{datasetMap.bands.map(band => <span key={band.label} style={{ color: band.color }}>{band.label}: {band.lines.length.toLocaleString()}</span>)}</div></>}
+          {datasetMap && <><p className="muted">{datasetMap.segment_count.toLocaleString()} road segments included in the study area, colored by city.</p><div className="feature-list">{datasetMap.bands.map(band => <span key={band.label} style={{ color: band.color }}>{band.label}: {band.lines.length.toLocaleString()}</span>)}</div></>}
           <p className="muted">{result ? `${result.route.road_ids.length} road segments driven by ANTROUTE, including any re-routing.` : 'Search road names or select points on the map.'} Blue boundaries mark the study area; red segments are closed.</p>
+          {explanation && <RouteExplanationPanel explanation={explanation} note={explanationNote} hour={hour} onShow={index => { setFocusedStretch(index); document.getElementById('route-map')?.scrollIntoView({ behavior: 'smooth' }); }} />}
           <p className="attribution">Roads and boundaries © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap contributors</a>. Flood hazard source: Project NOAH.</p>
         </section>
       {runs.length > 0 && <section className="card route-summary">
@@ -323,16 +324,12 @@ export default function App() {
               ['Distance travelled', trip => `${(trip.evaluation.distance_travel_m / 1000).toFixed(3)} km`],
               ['Path cost', trip => trip.evaluation.path_cost.toFixed(4)],
               ['Computational time', trip => seconds(trip.evaluation.computational_time_ms)],
-              ['Initial routing time', trip => seconds(trip.evaluation.initial_routing_time_ms)],
-              ['Dynamic re-routing time', trip => trip.evaluation.reroutes
-                ? `${seconds(trip.evaluation.dynamic_rerouting_time_ms)} (${trip.evaluation.reroutes} re-route${trip.evaluation.reroutes > 1 ? 's' : ''}, ${seconds(trip.evaluation.mean_rerouting_time_ms ?? 0)} each)`
-                : 'No re-routing needed'],
               ['Convergence rate', trip => `${trip.evaluation.convergence.iterations_to_convergence} iteration${trip.evaluation.convergence.iterations_to_convergence === 1 ? '' : 's'} (all searches: ${trip.evaluation.convergence.mean_iterations_to_convergence.toFixed(1)})`],
-              ['Trip travel time', trip => `${(trip.trip.travel_time_s / 60).toFixed(1)} min`],
             ] as [string, (trip: TripResult) => string][]).map(([name, show]) => <tr key={name}><th scope="row">{name}</th>
               {runs.map(run => <td key={run.name}>{show(run.trip)}</td>)}{!baseline && <td>{baselineBusy ? 'Running…' : '–'}</td>}</tr>)}
           </tbody></table></div>
           {baselineError && <p className="error" role="alert">Baseline: {baselineError}</p>}
+          <CostBreakdown runs={runs} />
           <div className="chart-pair">{runs.map(run => <CostHistory key={run.name} caption={`${run.name}: initial search`} color={run.color}
             values={run.trip.evaluation.convergence.searches[0].best_cost_by_iteration} marker={run.trip.evaluation.convergence.iterations_to_convergence} />)}</div>
           <h3>Routing and re-routing log</h3>
@@ -343,7 +340,7 @@ export default function App() {
           </tbody></table></div>
           {runs.some(run => run.trip.trip.changes_without_replanning.length > 0) && <p className="muted">Changes that did not require re-routing: {runs.map(run => run.trip.trip.changes_without_replanning.map(change => `${run.name} at minute ${change.at_minute.toFixed(1)} (${change.change})`).join('; ')).filter(Boolean).join('; ')}.</p>}
           {result && <details><summary>Roads driven by ANTROUTE</summary><p>{result.route.road_names.filter((name, index, array) => index === 0 || name !== array[index - 1]).join(' → ')}</p></details>}
-        </> : <p className="muted">Distance travelled, path cost, computational time, initial routing time, dynamic re-routing time and convergence rate appear for both algorithms after a completed trip.</p>}
+        </> : <p className="muted">Distance travelled, path cost, computational time and convergence rate appear for both algorithms after a completed trip.</p>}
       </section>
       <section className="card" id="features"><h2>Routing features</h2><div className="feature-list">{features.map(feature => <span key={feature}>{feature}</span>)}</div>
         <details className="source-details"><summary>Where each feature and estimate comes from</summary>

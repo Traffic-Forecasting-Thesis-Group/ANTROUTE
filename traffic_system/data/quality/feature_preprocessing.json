@@ -1,6 +1,6 @@
 {
   "static": {
-    "generated_at": "2026-10-17T14:57:18.773951+00:00",
+    "generated_at": "2026-10-19T07:33:33.504072+00:00",
     "nodes": 12398,
     "segments": 30511,
     "segments_by_city": {
@@ -58,12 +58,14 @@
     }
   },
   "traffic": {
-    "generated_at": "2026-10-17T14:58:22.166824+00:00",
+    "generated_at": "2026-10-19T07:39:55.591225+00:00",
     "table": "data/processed/temporal/traffic_hourly.csv",
     "classification": "estimated_not_observed",
-    "rows": 455520,
-    "locations": 52,
-    "hours_per_location": 8760,
+    "rows": 267276360,
+    "road_segments": 30511,
+    "hours_per_segment": 8760,
+    "bytes": 16191122063,
+    "sha256": "36f445b2c0b929d2d572a58e183461f26d8a57a950ec152da47889ac517b68a8",
     "no_duplicates": true,
     "values_in_range": true
   }

@@ -8,17 +8,26 @@ from pathlib import Path
 
 from fastapi import HTTPException
 
+from src.routing.historical_traffic import INDEX as TRAFFIC_INDEX, table_index
 from src.routing.network import CITIES
 
 ROOT = Path(__file__).resolve().parents[1]
+# The multi-gigabyte traffic table is covered by its index, which records the table's size and SHA-256.
 RELEASE_ARTIFACTS = ("data/processed/study_network.json", "data/processed/historical_weather.json",
-                     "data/processed/temporal/traffic_hourly.csv",
-                     "configs/study_assumptions.json", "configs/historical_study.json")
+                     TRAFFIC_INDEX, "configs/study_assumptions.json", "configs/historical_study.json")
+
+
+def file_sha256(path):
+    digest = hashlib.sha256()
+    with Path(path).open("rb") as stream:
+        for block in iter(lambda: stream.read(1 << 20), b""):
+            digest.update(block)
+    return digest.hexdigest()
 
 
 @lru_cache(maxsize=8)
 def _hash(path, modified_ns, size):
-    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+    return file_sha256(path)
 
 
 def study_status():
@@ -40,6 +49,7 @@ def study_status():
             stat = path.stat()
             if _hash(str(path), stat.st_mtime_ns, stat.st_size) != expected:
                 raise ValueError("Release artifact changed; rebuild the estimation release")
+        table_index()
         configured = Path(os.getenv("STUDY_NETWORK_PATH", str(ROOT / "data/processed/study_network.json"))).resolve()
         if configured != (ROOT / "data/processed/study_network.json").resolve():
             raise ValueError("Configured network is not the verified estimation release")

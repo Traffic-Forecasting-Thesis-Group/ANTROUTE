@@ -17,6 +17,8 @@ from app import places
 from app.study_policy import require_historical_release, study_status
 
 from src.routing.aco_routing import AntColonyConfig, NoFeasibleRoute, SearchExhausted, ant_colony_route
+from src.routing.contributions import route_contributions
+from src.routing.explanation import explain
 from src.routing.baseline_cheng import REFERENCE, ChengConfig, ahp, cheng_graph, cheng_route
 from src.routing.dynamic_trip import Algorithm, ReplanConfig, TripEvent, simulate_trip
 from src.routing.condition_update import Conditions, validate_conditions
@@ -56,11 +58,14 @@ def get_network() -> RoadNetwork:
         ) from exc
 
 
+# ACO parameters are fixed by the study, not set per request.
+ACO = AntColonyConfig()
+
+
 class RouteRequest(StudyModel):
     origin: str = Field(min_length=1)
     destination: str = Field(min_length=1)
     conditions: Conditions
-    aco: AntColonyConfig = Field(default_factory=AntColonyConfig)
 
 
 class BaselineRequest(StudyModel):
@@ -78,7 +83,6 @@ class TripRequest(StudyModel):
     departure_minute: int = Field(default=0, ge=0, le=59, strict=True)
     events: list[TripEvent] = Field(default_factory=list, max_length=50)
     algorithm: Algorithm = "antroute"
-    aco: AntColonyConfig = Field(default_factory=AntColonyConfig)
     baseline: ChengConfig = Field(default_factory=ChengConfig)
     replan: ReplanConfig = Field(default_factory=ReplanConfig)
 
@@ -141,21 +145,26 @@ def dataset_export(request: SnapshotRequest):
                              media_type="text/csv", headers={"Content-Disposition": f'attachment; filename="{filename}"'})
 
 
-@app.post("/dataset/map", dependencies=[Depends(require_historical_release)])
-def dataset_map(request: SnapshotRequest):
+# One color per study city for the coverage map; distinct from the route, baseline and explanation colors.
+CITY_COLORS = {"Manila": "#0f766e", "San Juan": "#65a30d", "Mandaluyong": "#b45309", "Makati": "#db2777", "Pasig": "#6366f1"}
+
+
+class CoverageRequest(StudyModel):
+    city: City | None = None
+
+
+@app.post("/dataset/map")
+def dataset_map(request: CoverageRequest):
+    """Every road segment included in the study, grouped by the city it starts in."""
     network = get_network()
-    roads = {road.id: road for road in network.roads}
-    bands = [{"label": label, "color": color, "lines": []} for label, color in [
-        ("0–0.1", "#16865b"), ("0.1–0.3", "#75a83b"), ("0.3–0.5", "#d79922"),
-        ("0.5–0.7", "#df6535"), ("0.7–1", "#a32935"), ("Closed", "#111827")]]
-    try:
-        for row in snapshot_rows(network, request.conditions, request.city):
-            band = 5 if row["closed"] else sum(row["traffic_congestion"] >= threshold for threshold in (.1, .3, .5, .7))
-            bands[band]["lines"].append(roads[row["road_id"]].geometry)
-    except ValueError as exc:
-        raise HTTPException(422, str(exc)) from exc
-    return {"bands": bands, "segment_count": sum(len(band["lines"]) for band in bands),
-            "classification": "Estimated congestion index from the hourly traffic table, not observed traffic", "traffic": TRAFFIC_DISCLOSURE}
+    nodes = {node.id: node for node in network.nodes}
+    bands = {city: {"label": city, "color": CITY_COLORS[city], "lines": []} for city in CITIES
+             if request.city is None or city == request.city}
+    for road in network.roads:
+        city = nodes[road.source].city
+        if city in bands:
+            bands[city]["lines"].append(road.geometry)
+    return {"bands": list(bands.values()), "segment_count": sum(len(band["lines"]) for band in bands.values())}
 
 
 @app.get("/health")
@@ -274,6 +283,7 @@ def _route_response(network, roads, origin, conditions, weather_by_city, observa
             "segment_features": [{"road_id": road.id, "path_cost": cost, "features": features}
                                  for road, (_, features, cost) in zip(roads, segments)],
         },
+        "contributions": route_contributions(network, roads, [(raw, features) for raw, features, _ in segments]),
         "conditions": conditions.model_dump(mode="json"),
         "weather_observation": observation,
         "data_quality": network.provenance.get("mode", "supplied_feature_data"),
@@ -290,12 +300,25 @@ def plan_route(request: RouteRequest, _historical_release: None = Depends(requir
     started = perf_counter()
     positions = {node.id: (node.longitude, node.latitude) for node in network.nodes}
     result = _search(lambda: ant_colony_route(prepare_graph(network, request.conditions, weather_by_city, traffic),
-                                              request.origin, request.destination, request.aco, positions))
+                                              request.origin, request.destination, ACO, positions))
     elapsed_ms = (perf_counter() - started) * 1000
     return {**_route_response(network, [edge.road for edge in result.roads], request.origin, request.conditions,
                               weather_by_city, observation, traffic),
-            "aco": request.aco.model_dump(),
-            "evaluation": evaluate(result, request.aco, elapsed_ms)}
+            "aco": ACO.model_dump(),
+            "evaluation": evaluate(result, ACO, elapsed_ms)}
+
+
+@app.post("/routes/explain")
+def explain_route(request: RouteRequest, _historical_release: None = Depends(require_historical_release)):
+    """Why the departure plan left out shorter or cheaper roads (reference routes explain, never plan)."""
+    network = get_network()
+    weather_by_city, _, traffic = _route_inputs(network, request.conditions)
+    positions = {node.id: (node.longitude, node.latitude) for node in network.nodes}
+    nodes = {node.id: node for node in network.nodes}
+    graph = prepare_graph(network, request.conditions, weather_by_city, traffic)
+    colony = _search(lambda: ant_colony_route(graph, request.origin, request.destination, ACO, positions))
+    return explain(network, graph, colony.roads, colony, request.origin, request.destination,
+                   lambda road: segment_values(network, road, request.conditions, nodes, weather_by_city, traffic))
 
 
 @app.post("/routes/baseline")
@@ -341,13 +364,13 @@ def simulate_route_trip(request: TripRequest, _historical_release: None = Depend
                                  time(request.conditions.time_of_day, request.departure_minute))
     result = _search(lambda: simulate_trip(
         network, request.origin, request.stops, departure, request.conditions.weather,
-        request.conditions.closed_road_ids, request.events, request.algorithm, request.aco, request.baseline, request.replan))
+        request.conditions.closed_road_ids, request.events, request.algorithm, ACO, request.baseline, request.replan))
     coordinates = []
     for road in result.roads:
         coordinates.extend(road.geometry if not coordinates else road.geometry[1:])
     return {
         "algorithm": {"name": request.algorithm, "description": ALGORITHMS[request.algorithm],
-                      "aco": request.aco.model_dump(), "baseline": request.baseline.model_dump(),
+                      "aco": ACO.model_dump(), "baseline": request.baseline.model_dump(),
                       "replan": request.replan.model_dump()},
         "route": {
             "node_ids": [request.origin] + [road.target for road in result.roads],
@@ -363,6 +386,7 @@ def simulate_route_trip(request: TripRequest, _historical_release: None = Depend
                  "changes_without_replanning": result.unsearched_changes},
         "conditions": request.conditions.model_dump(mode="json"),
         "evaluation": result.evaluation(),
+        "contributions": route_contributions(network, result.roads, result.segment_features),
         "data_quality": network.provenance.get("mode", "supplied_feature_data"),
         "traffic": TRAFFIC_DISCLOSURE,
     }

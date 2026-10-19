@@ -21,10 +21,11 @@ export default function DatasetExplorer({ conditions, onMap, disabled }: Props) 
     });
     return () => controller.abort();
   }, []);
+  // The coverage map depends only on the city choice; the CSV uses the current conditions when downloaded.
   useEffect(() => {
     active.current?.abort(); setBusy(false); onMap(null); setError('');
     return () => active.current?.abort();
-  }, [conditions, city, onMap]);
+  }, [city, onMap]);
 
   const run = async (task: 'map' | 'export') => {
     active.current?.abort();
@@ -32,7 +33,7 @@ export default function DatasetExplorer({ conditions, onMap, disabled }: Props) 
     setBusy(true); setError('');
     try {
       if (task === 'map') {
-        const map = await loadDatasetMap(conditions, city || null, controller.signal);
+        const map = await loadDatasetMap(city || null, controller.signal);
         if (!controller.signal.aborted) onMap(map);
       } else await downloadSnapshot(conditions, city || null, controller.signal);
     } catch (reason) {
@@ -41,20 +42,20 @@ export default function DatasetExplorer({ conditions, onMap, disabled }: Props) 
   };
   return <section className="card">
     <h2>Network dataset</h2>
-    <p className="muted">Inspect every retained road segment, rather than only the selected route. The map and CSV use the date, hour, weather and closures above.</p>
+    <p className="muted">See every road segment included in the study for the selected city or all five cities. The CSV download uses the date, hour, weather and closures above.</p>
     {info && <>
       <p><strong>{info.directed_segments.toLocaleString()} segments · {info.hours.toLocaleString()} hours · {info.potential_segment_hour_rows.toLocaleString()} possible segment-hour rows</strong></p>
-      <p className="muted">{info.retained_weather_grids} retained weather grids; {info.assigned_weather_grids} assigned to road locations. {info.traffic_locations} hourly traffic locations (city × road type). Largest mutually reachable component: {info.largest_strongly_connected_nodes.toLocaleString()} of {info.nodes.toLocaleString()} nodes. Map completeness has not been verified.</p>
+      <p className="muted">{info.retained_weather_grids} retained weather grids; {info.assigned_weather_grids} assigned to road locations. {info.traffic_locations.toLocaleString()} hourly traffic series (one per road segment). Largest mutually reachable component: {info.largest_strongly_connected_nodes.toLocaleString()} of {info.nodes.toLocaleString()} nodes. Map completeness has not been verified.</p>
       <div className="feature-list">{Object.entries(info.segments_by_city).map(([name, count]) => <span key={name}>{name}: {count.toLocaleString()} segments</span>)}</div>
     </>}
     <div className="dataset-actions">
-      <label>Dataset / map coverage<select value={city} onChange={event => setCity(event.target.value)}>
+      <label>City<select value={city} onChange={event => setCity(event.target.value)}>
         <option value="">All five cities</option>{['San Juan', 'Manila', 'Mandaluyong', 'Makati', 'Pasig'].map(name => <option key={name}>{name}</option>)}
       </select></label>
-      <button type="button" className="secondary" disabled={disabled || busy} onClick={() => run('map')}>Show network congestion on map</button>
+      <button type="button" className="secondary" disabled={disabled || busy} onClick={() => run('map')}>Show included segments on map</button>
       <button type="button" className="secondary" disabled={disabled || busy} onClick={() => run('export')}>Download hourly snapshot CSV</button>
     </div>
-    {busy && <p role="status">Preparing the selected network snapshot…</p>}
+    {busy && <p role="status">Preparing…</p>}
     {error && <p role="alert" className="error">{error}</p>}
     <p className="muted">CSV rows contain all ten feature values, segment IDs, estimated path costs, and the weather grid and traffic location each segment reads. Full-year hourly CSVs are available through the dataset export script. Traffic values are estimated, not measured traffic.</p>
   </section>;

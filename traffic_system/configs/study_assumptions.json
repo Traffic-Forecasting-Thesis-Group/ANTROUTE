@@ -1,7 +1,7 @@
 {
   "status": "Uncalibrated, source-documented estimates; not recorded historical traffic",
   "capacity_note": "c = directional lanes * 1900 * effective green ratio. Green ratio is assumed 0.5 at mapped downstream signals and 1 elsewhere. Unsignalized use is a rough proxy, not a validated link-capacity model.",
-  "traffic_note": "Traffic is estimated, not observed and not counted: an assumed hourly demand-to-capacity index (hourly profile x road-type factor x weekend factor x repeatable variation) is converted to congestion and travel-time factors with the published BPR function. Preprocessed into data/processed/temporal/traffic_hourly.csv.",
+  "traffic_note": "Traffic is estimated, not observed and not counted: an assumed hourly demand-to-capacity index per road segment (hourly profile x road-type factor x weekend factor x repeatable city, area and road variation) is converted to congestion and travel-time factors with the published BPR function. Preprocessed into data/processed/temporal/traffic_hourly.csv, one row per segment per hour.",
   "weather_scenarios": {
     "clear": {
       "cost": 0,
@@ -16,7 +16,7 @@
       "travel_time_multiplier": 1.1299435028248588
     }
   },
-  "weather_note": "Rain speed reductions use midpoints of FHWA reference ranges (light: 2?13%, heavy: 6?17%). Transfer to Philippine urban roads is uncalibrated; categorical weather costs are project assumptions.",
+  "weather_note": "Weather per road = scenario cost x ((1 - share) + share x NOAH flood risk): part of the rain cost applies to every road (wet pavement), the rest scales with mapped flood hazard. Share is an uncalibrated assumption.",
   "road_types": {
     "motorway": {
       "speed_kph": 80,
@@ -139,16 +139,11 @@
     "seed": 42,
     "strength": 0.6,
     "day_coefficient": 0.2,
+    "area_coefficient": 0.25,
+    "road_coefficient": 0.35,
     "location_hour_coefficient": 0.25,
-    "note": "Repeatable daily (per city) and three-hour (per city and road type) variation. Uncalibrated scenario coefficients, not measurements."
+    "note": "Repeatable variation per road segment: daily (per city), three-hour (per ~1.1 km area, shared by neighbouring roads), static (per road) and three-hour (per road). Uncalibrated scenario coefficients, not measurements."
   },
-  "peak_hours": [
-    7,
-    8,
-    17,
-    18,
-    19
-  ],
   "sources": {
     "bpr": "https://www.fhwa.dot.gov/Environment/air_quality/conformity/research/sample_methodologies/emismeth03.cfm",
     "capacity": "https://ops.fhwa.dot.gov/publications/fhwahop08024/chapter3.htm",
@@ -156,5 +151,7 @@
     "rain": "https://ops.fhwa.dot.gov/weather/roadimpact.htm",
     "map": "https://www.openstreetmap.org/copyright",
     "flood": "https://noah.up.edu.ph/know-your-hazards"
-  }
+  },
+  "time_of_day_note": "Time of day per road = hourly_demand_capacity_ratio[hour] / its daily maximum x road_types.traffic_factor / the largest traffic_factor: how busy this type of road typically is at this hour (0-1). Same assumed profile as the traffic table, without the date-specific variation or the BPR curve.",
+  "weather_flood_exposure_share": 0.5
 }

@@ -33,4 +33,4 @@ Omitted dates default to June 1, 2025; the response echoes the actual date. Date
 
 `GET /study/status` reports release readiness and authorized estimation mode. `GET /conditions/weather?departure_date=2025-06-02&time_of_day=8` shows the provider snapshot and spatial-assignment caveat. Live-weather refresh remains disabled for the historical study.
 
-Cost calculation uses ten features; the time-of-day peak policy is distinct from congestion. Road inventories/flood maps remain static surrogates. See [estimation_methods.md](estimation_methods.md) before interpreting results as historical evidence.
+Cost calculation uses ten features; time of day (hourly profile × road-type factor) is correlated with, but distinct from, the date-specific congestion estimate. Road inventories/flood maps remain static surrogates. See [estimation_methods.md](estimation_methods.md) before interpreting results as historical evidence.

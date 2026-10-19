@@ -13,15 +13,17 @@ Read [input feature preprocessing](traffic_system/docs/feature_preprocessing.md)
 From `traffic_system` with the Python environment installed:
 
 ```powershell
-.\.venv\Scripts\python -m pip install -r requirements.txt
-.\.venv\Scripts\python -m scripts.preprocess_road_features
-.\.venv\Scripts\python -m scripts.preprocess_traffic
-.\.venv\Scripts\python -m scripts.build_study_network
-.\.venv\Scripts\python -m scripts.audit_historical_inputs
-.\.venv\Scripts\python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+.\venv\Scripts\python -m pip install -r requirements.txt
+.\venv\Scripts\python -m scripts.preprocess_road_features
+.\venv\Scripts\python -m scripts.preprocess_traffic          # per-road hourly traffic, ~16 GB, ~6 min
+.\venv\Scripts\python -m scripts.build_study_network
+.\venv\Scripts\python -m scripts.audit_historical_inputs
+.\venv\Scripts\python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-The build works offline with the retained road/flood inputs, sourced city boundaries, historical weather CSV, and assumption settings. It writes a scoped network, date-indexed provider weather, estimation registry, summary, and release manifest. Large generated network/weather bundles are gitignored and already exist locally. Rebuild after changing policy or assumption files; hash mismatches block routing.
+The build works offline with the retained road/flood inputs, sourced city boundaries, historical weather CSV, and assumption settings. It writes a scoped network, date-indexed provider weather, the per-road hourly traffic table (`traffic_hourly.csv`, 30,511 segments × 8,760 hours) with its index, estimation registry, summary, and release manifest. Large generated files are gitignored and must be rebuilt on a fresh checkout. Rebuild after changing policy or assumption files; hash mismatches block routing.
+
+Place search covers road names plus 4,006 named OSM places (barangays, malls, schools, stations, landmarks) in `data/raw/study/places_gazetteer.csv`. To refresh it, download `https://download.geofabrik.de/asia/philippines-latest.osm.pbf` and run `.\venv\Scripts\python -m scripts.fetch_places --extract <path to .pbf>`.
 
 In a second terminal:
 
@@ -45,7 +47,7 @@ Choose an origin and destination, a study date, local hour, and historical weath
 Answer the statement of the problem (writes `outputs/sop_runs.csv`, `outputs/sop_results.json` and the readable `outputs/sop_report.md`):
 
 ```powershell
-.\.venv\Scripts\python -m scripts.evaluate_sop --trips 10 --seeds 2
+.env\Scripts\python -m scripts.evaluate_sop --trips 10 --seeds 2
 ```
 
 - SOP 1: distance travelled and path cost under five traffic conditions (off-peak, morning and evening peak onset, road closure, heavy-rain onset).
@@ -58,9 +60,9 @@ See [architecture](traffic_system/docs/aco_system_architecture.md#algorithms) fo
 
 ```powershell
 cd traffic_system
-.\.venv\Scripts\python -m pytest tests -q
-.\.venv\Scripts\python -m scripts.validate_system
-.\.venv\Scripts\python -m scripts.estimate_sensitivity
+.env\Scripts\python -m pytest tests -q
+.env\Scripts\python -m scripts.validate_system
+.env\Scripts\python -m scripts.estimate_sensitivity
 cd ../frontend
 npm run build
 npm run test:e2e

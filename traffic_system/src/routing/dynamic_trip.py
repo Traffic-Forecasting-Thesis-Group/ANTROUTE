@@ -73,6 +73,7 @@ class TripResult:
     entered_at_s: list[float] = field(default_factory=list)
     travel_time_s: list[float] = field(default_factory=list)
     path_costs: list[float] = field(default_factory=list)
+    segment_features: list[tuple[dict, dict]] = field(default_factory=list)  # (raw, normalized) when entered.
     searches: list[SearchRecord] = field(default_factory=list)
     unsearched_changes: list[dict] = field(default_factory=list)
     monitoring_time_ms: float = 0.0  # Condition checks that did not lead to re-routing.
@@ -226,11 +227,12 @@ def simulate_trip(network: RoadNetwork, origin: str, destination: str | Sequence
                 plan, pheromone = search(graph, current, trigger, affected, visited, pheromone, check_ms)
             road = plan.pop(0)
             weather_by_city, traffic = snapshot_inputs(conditions)
-            raw, _, cost = segment_values(network, road, conditions, nodes, weather_by_city, traffic)
+            raw, features, cost = segment_values(network, road, conditions, nodes, weather_by_city, traffic)
             result.roads.append(road)
             result.entered_at_s.append((clock - departure).total_seconds())
             result.travel_time_s.append(raw["travel_time"])
             result.path_costs.append(cost)
+            result.segment_features.append((raw, features))
             clock += timedelta(seconds=raw["travel_time"])
             current = road.target
             visited.append(current)

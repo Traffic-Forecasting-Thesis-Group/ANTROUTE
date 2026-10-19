@@ -6,7 +6,7 @@ The operational release combines historical provider-weather records with modele
 
 See [estimation methods and sources](estimation_methods.md) for all ten feature definitions, formulas, published references, project assumptions, and limitations. The active settings are `configs/historical_study.json` and `configs/study_assumptions.json`.
 
-Weather timestamps are checked for completeness in each city's assigned grid. Provider measurement provenance and road-level representativeness are not independently verified. Missing weather records are rejected rather than silently filled. Traffic profiles, free-flow speeds, capacity, peak-hours policies, and weather effects are explicitly estimated.
+Weather timestamps are checked for completeness in each city's assigned grid. Provider measurement provenance and road-level representativeness are not independently verified. Missing weather records are rejected rather than silently filled. Traffic profiles, free-flow speeds, capacity, the time-of-day profile, and weather effects are explicitly estimated.
 
 Road geometry and inventories from September 2026 are held constant as an estimated temporal surrogate. NOAH hazard maps are static exposure proxies, not hourly flood observations. User-selected closures and weather overrides are counterfactual scenarios.
 

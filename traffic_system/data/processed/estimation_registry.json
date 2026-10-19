@@ -6,7 +6,7 @@
   },
   "traffic_congestion": {
     "classification": "estimated",
-    "basis": "Hourly traffic table (data/processed/temporal/traffic_hourly.csv) per city and road type: 1 - 1/(1 + 0.15*x^4), where x is an assumed demand-to-capacity index (hourly profile, road-type factor, weekend factor, repeatable daily/three-hour variation). These are project assumptions, not measurements or vehicle counts.",
+    "basis": "Hourly traffic table (data/processed/temporal/traffic_hourly.csv) per road segment: 1 - 1/(1 + 0.15*x^4), where x is an assumed demand-to-capacity index (hourly profile, road-type factor, weekend factor, repeatable daily per-city, three-hour per-area, static per-road and three-hour per-road variation). These are project assumptions, not measurements or vehicle counts.",
     "source": "https://www.fhwa.dot.gov/Environment/air_quality/conformity/research/sample_methodologies/emismeth03.cfm"
   },
   "travel_time": {
@@ -31,12 +31,12 @@
   },
   "time_of_day": {
     "classification": "calculated",
-    "basis": "Exact Asia/Manila request hour. A separate binary peak-hours cost uses assumed hours 07,08,17,18,19; it is not copied from congestion.",
-    "source": "Project policy in configs/study_assumptions.json (no empirical peak-hour validation)"
+    "basis": "How busy this type of road typically is at the request hour (Asia/Manila): assumed hourly demand profile / its daily maximum x road-type traffic factor / the largest factor, 0-1. Uses the same assumptions as the traffic estimate without date-specific variation, so it is correlated with congestion.",
+    "source": "Project assumptions in configs/study_assumptions.json (no empirical hourly profile validation)"
   },
   "weather": {
     "classification": "historical_provider_record_with_estimated_effect",
-    "basis": "Nearest 0.05-degree provider grid to each city representative point; source measurement provenance is unverified. Rain speed reductions 7.5%/11.5% are reference-range midpoints, not local calibration.",
+    "basis": "Nearest 0.05-degree provider grid to each road; source measurement provenance is unverified. Cost per road = rain scenario cost x (0.5 + 0.5 x NOAH flood risk): half applies to every road, half scales with mapped flood hazard (assumed split). Rain speed reductions 7.5%/11.5% are reference-range midpoints, not local calibration.",
     "source": "https://ops.fhwa.dot.gov/weather/roadimpact.htm"
   },
   "flood_risk": {

@@ -15,3 +15,6 @@ data/processed/historical_weather.json
 data/archive/estimated_prototype/study_network.json
 data/processed/simulation/
 data/processed/segment_hours/
+# Per-road hourly traffic table (~16 GB); reproducible with scripts.preprocess_traffic. Its index is tracked.
+data/processed/temporal/traffic_hourly.csv
+data/processed/temporal/traffic_hourly.tmp

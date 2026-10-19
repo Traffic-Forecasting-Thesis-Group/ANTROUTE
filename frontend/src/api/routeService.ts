@@ -51,11 +51,6 @@ export interface Conditions {
   closed_road_ids: string[];
 }
 
-export interface AcoSettings {
-  n_ants: number; max_iterations: number; max_steps: number; seed: number;
-  alpha: number; beta: number; evaporation: number; tolerance: number; patience: number; goal_bias: number;
-}
-
 export interface DatasetInfo {
   nodes: number; directed_segments: number; segments_by_city: Record<string, number>; traffic_locations: number;
   largest_strongly_connected_nodes: number; strongly_connected_components: number;
@@ -110,8 +105,16 @@ export interface TripSearch {
   best_cost_by_iteration: (number | null)[];
 }
 
+/** One feature's part of a route's path cost; contributions across the ten features sum to the path cost. */
+export interface FeatureContribution {
+  feature: string; weight: number; contribution: number; share: number; normalized_mean: number;
+  route_value: number | number[] | { mean: number; max: number } | Record<string, number>; unit: string;
+  classification: string; basis: string; reference: string; data_sources: Record<string, number>;
+}
+
 export interface TripResult {
   algorithm: { name: Algorithm; description: string };
+  contributions: FeatureContribution[];
   route: { node_ids: string[]; road_ids: string[]; geometry: [number, number][]; road_names: string[] };
   trip: { departure: string; travel_time_s: number; stops: string[]; stop_arrival_minutes: number[];
     changes_without_replanning: { at_minute: number; change: string }[] };
@@ -152,8 +155,9 @@ export const snapRoad = (latitude: number, longitude: number) => request<RoadSel
 export const loadWeather = (departureDate: string, hour: number, signal?: AbortSignal) => request<WeatherSnapshot>(`/conditions/weather?departure_date=${departureDate}&time_of_day=${hour}`, { signal });
 export const refreshWeather = () => request<WeatherSnapshot>('/conditions/weather/refresh', { method: 'POST' });
 export const loadDatasetInfo = (signal: AbortSignal) => request<DatasetInfo>('/dataset/info', { signal });
-export const loadDatasetMap = (conditions: Conditions, city: string | null, signal: AbortSignal) =>
-  request<DatasetMap>('/dataset/map', { method: 'POST', signal, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ conditions, city }) });
+/** Every road segment included in the study, grouped by city; it does not depend on date, hour or weather. */
+export const loadDatasetMap = (city: string | null, signal: AbortSignal) =>
+  request<DatasetMap>('/dataset/map', { method: 'POST', signal, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ city }) });
 export async function downloadSnapshot(conditions: Conditions, city: string | null, signal: AbortSignal) {
   const response = await fetch(`${baseURL}/dataset/export`, { method: 'POST', signal,
     headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ conditions, city }) });
@@ -165,17 +169,51 @@ export async function downloadSnapshot(conditions: Conditions, city: string | nu
   link.href = url; link.download = `antroute_${conditions.departure_date}_${conditions.time_of_day}.csv`;
   link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
-export const planRoute = (origin: string, destination: string, conditions: Conditions, signal: AbortSignal,
-  aco?: AcoSettings) =>
+// ACO parameters are fixed by the study; the server's defaults always apply.
+export const planRoute = (origin: string, destination: string, conditions: Conditions, signal: AbortSignal) =>
   request<RouteResult>('/routes/plan', {
     method: 'POST', signal,
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ origin, destination, conditions, aco }),
+    body: JSON.stringify({ origin, destination, conditions }),
   });
+export interface StretchFacts {
+  distance_m: number; cost: number; roads: number; intersections: number; signals: number;
+  travel_time_s: number; max_flood_risk: number; road_names: string[];
+  /** Length-weighted averages over the stretch. */
+  flood_risk: number; congestion: number; capacity_vph: number; weather_cost: number; time_of_day_load: number;
+  road_types: string[];
+}
+
+/** One place where a reference route leaves ANTROUTE's route and rejoins it. */
+export interface RouteStretch {
+  reference: 'shortest_distance' | 'lowest_cost';
+  verdict: 'costlier_alternative' | 'missed_by_search';
+  chosen: StretchFacts & { geometry: [number, number][] };
+  alternative: StretchFacts & { geometry: [number, number][] };
+  marker: [number, number];
+  distance_saved_m: number; cost_difference: number;
+  feature_differences: Record<string, number>;
+  ant_routes_using_alternative: number; ant_routes_using_first_road: number;
+}
+
+export interface RouteExplanation {
+  chosen: StretchFacts; ant_routes: number;
+  references: Partial<Record<RouteStretch['reference'], StretchFacts & { same_as_chosen: boolean }>>;
+  stretches: RouteStretch[];
+}
+
+/** Explains ANTROUTE's departure plan for one leg; reference routes are for comparison only. */
+export const explainRoute = (origin: string, destination: string, conditions: Conditions, signal: AbortSignal) =>
+  request<RouteExplanation>('/routes/explain', {
+    method: 'POST', signal,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ origin, destination, conditions }),
+  });
+
 export const planTrip = (algorithm: Algorithm, origin: string, destinations: string[], conditions: Conditions,
-  departureMinute: number, events: TripEvent[], signal: AbortSignal, aco?: AcoSettings) =>
+  departureMinute: number, events: TripEvent[], signal: AbortSignal) =>
   request<TripResult>('/routes/trip', {
     method: 'POST', signal,
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ algorithm, origin, destinations, conditions, departure_minute: departureMinute, events, aco }),
+    body: JSON.stringify({ algorithm, origin, destinations, conditions, departure_minute: departureMinute, events }),
   });

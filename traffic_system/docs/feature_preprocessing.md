@@ -8,7 +8,7 @@ Run from `traffic_system`:
 
 ```powershell
 .\venv\Scripts\python.exe -m scripts.preprocess_road_features   # OSM + NOAH  -> data/processed/features/*.csv
-.\venv\Scripts\python.exe -m scripts.preprocess_traffic         # -> data/processed/temporal/traffic_hourly.csv
+.\venv\Scripts\python.exe -m scripts.preprocess_traffic         # -> data/processed/temporal/traffic_hourly.csv (~16 GB, ~6 min)
 .\venv\Scripts\python.exe -m scripts.build_study_network        # tables + weather -> study_network.json, release manifest
 ```
 
@@ -20,7 +20,7 @@ Each preprocessing step validates its output and writes a summary to `data/quali
 |---|---|---|---|
 | Distance | OSM road graph (OSMnx) | `features/road_segments.csv` | `distance_m` |
 | Traffic Congestion | Estimated (no observed source) | `temporal/traffic_hourly.csv` | `traffic_congestion` |
-| Travel Time | OSM speed + traffic table + weather | `road_segments.csv` × `traffic_hourly.csv` | `free_flow_time_s` × `travel_time_factor` |
+| Travel Time | OSM speed + traffic table + weather | `temporal/traffic_hourly.csv` | `travel_time_s` (= `free_flow_time_s` × `travel_time_factor`, before weather) |
 | Number of Intersections | OSM graph | `features/road_nodes.csv` | `is_intersection` (street count ≥ 3) |
 | Traffic Signal | OSM `traffic_signals` tags | `features/road_nodes.csv`, `road_segments.csv` | `traffic_signal`, `signal_at_target` |
 | Road Type | OSM `highway` tag | `features/road_segments.csv` | `road_type` |
@@ -42,7 +42,7 @@ No table contains vehicle volume or vehicle counts. Volume is not a study featur
 5. **Lanes:** directional `lanes:forward|backward`, else `lanes` (split in half on two-way roads), else the road-type default.
 6. **Capacity:** `lanes × 1900 × g/C`, with `g/C = 0.5` when the downstream node has a mapped signal and 1 otherwise.
 7. **Flood:** the highest NOAH class (0–3) that the segment's geometry intersects; `flood_risk = class / 3`.
-8. **Traffic location:** each segment is tagged `<city>__<road_type>`, the key into the hourly traffic table, much as each node is assigned its nearest weather grid.
+8. **Traffic location:** each segment's `traffic_location` is its own `road_id`, the key into the hourly traffic table, so every segment has its own hourly series.
 
 Every value has a `*_source` column (for example `osm_maxspeed` vs `road_type_default_speed`), so defaults are never presented as mapped data. Checks: unique IDs, endpoints exist, positive distance/speed/capacity, known road types, one flood row per segment, classes in 0–3, all five cities present.
 
@@ -53,22 +53,26 @@ Current output: 12,398 nodes, 30,511 directed segments. 117,877 source edges wer
 This table is laid out like `weatherstack_hourly.csv`, but its values are **estimated**: no observed hourly traffic exists for these cities and this period. TomTom Traffic Stats (historical speeds, access through a partner trial) or MMDA counts (FOI request) could replace this step later without changing the rest of the pipeline.
 
 ```
-date,hour,location_id,city,road_type,day_type,traffic_congestion,travel_time_factor,source
-2025-06-02,8,makati__primary,Makati,primary,weekday,0.169...,1.20...,estimated_bpr_assumed_demand
+date,hour,road_id,traffic_congestion,travel_time_factor,travel_time_s
+2025-06-02,8,12067330:6621954486:0,0.251640,1.336256,19.471
 ```
 
-One row per location (52 city × road-type combinations) per hour: 455,520 rows. For each row:
+One row per **road segment** per hour: 30,511 segments × 8,760 hours = **267,276,360 rows (about 16 GB)**. Rows are ordered by date, hour, then `road_id`. For each row:
 
-- `x` = assumed hourly demand-to-capacity index × road-type factor × weekend factor (0.75) × repeatable variation `exp(0.6 × (0.20 × day_noise[city] + 0.25 × three_hour_noise[location]))`. The noise values are stable hashes of seed 42 and the key. `x` is a demand index, not a vehicle count, and it is not stored.
-- `travel_time_factor = 1 + 0.15 x⁴` (BPR); `traffic_congestion = 1 − 1 / travel_time_factor`.
+- `x` = assumed hourly demand-to-capacity index × road-type factor × weekend factor (0.75) × repeatable variation
+  `exp(0.6 × (0.20 × day[city] + 0.25 × area[~1.1 km cell, 3-hour] + 0.35 × road[segment] + 0.25 × road[segment, 3-hour]))`.
+  Each term is a uniform value in [−1, 1] from a seeded random stream (seed 42). Three-hour values are interpolated linearly, so traffic changes smoothly from hour to hour. Neighbouring roads share the area term, so congestion is spatially coherent; the per-road terms make each segment distinct. `x` is a demand index, not a vehicle count, and it is not stored.
+- `travel_time_factor = 1 + 0.15 x⁴` (BPR); `traffic_congestion = 1 − 1 / travel_time_factor`; `travel_time_s = free_flow_time_s × travel_time_factor` (weather is applied at routing time).
 
-Checks: every location has all 8,760 hours, no duplicates, congestion in [0, 1), factor ≥ 1. All parameters are in `configs/study_assumptions.json` (`hourly_demand_capacity_ratio`, `road_types.*.traffic_factor`, `weekend_demand_factor`, `traffic_variation`).
+`traffic_hourly.index.json` records the byte offset of every hour, the row count and the table's SHA-256, so routing reads one hour (about 1.9 MB) instead of the whole file. The CSV is gitignored and reproducible; the index is part of the release, and routing is blocked if the CSV's size no longer matches it.
+
+Checks: every segment has all 8,760 hours, no duplicates, congestion in [0, 1), factor ≥ 1. All parameters are in `configs/study_assumptions.json` (`hourly_demand_capacity_ratio`, `road_types.*.traffic_factor`, `weekend_demand_factor`, `traffic_variation`).
 
 ## How routing reads the tables
 
 For a request date and hour, the API loads the matching rows of the weather and traffic tables. For each segment:
 
-- `traffic_congestion` = the table value for the segment's location.
+- `traffic_congestion` = the table value for the segment.
 - `travel_time` = `free_flow_time_s × travel_time_factor × weather travel-time multiplier`.
 - The remaining eight features come from the static tables and the request.
 

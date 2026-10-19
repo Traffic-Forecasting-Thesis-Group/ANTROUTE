@@ -36,7 +36,7 @@ export default function PlaceInput({ label, value, onSelect, placeholder, marker
       {actions && <div className="place-actions">{actions}</div>}
     </div>
     {open && results.length > 0 && <ul id={`${id}-results`} className="place-results" role="listbox" aria-label={`${label} suggestions`}>
-      {results.map(place => <li key={place.id}><button role="option" aria-selected={place.id === value?.id} type="button" onClick={() => { onSelect(place); setQuery(place.label); setOpen(false); }}>{place.label}</button></li>)}
+      {results.map(place => <li key={`${place.id}|${place.label}`}><button role="option" aria-selected={place.id === value?.id} type="button" onClick={() => { onSelect(place); setQuery(place.label); setOpen(false); }}>{place.label}</button></li>)}
     </ul>}
     {error && <small role="status">{error}</small>}
   </div>;

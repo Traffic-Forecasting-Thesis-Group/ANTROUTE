@@ -62,10 +62,13 @@ class Road(StudyModel):
 
 
 class CostConfig(StudyModel):
-    weights: dict[str, Positive] = Field(default_factory=lambda: dict.fromkeys(FEATURES, 0.1))
+    # Zero is allowed: within-hour CRITIC gives no weight to a feature that is constant within every hour.
+    weights: dict[str, Unit] = Field(default_factory=lambda: dict.fromkeys(FEATURES, 0.1))
     distance_scale_m: Positive = 1000
     travel_time_scale_s: Positive = 600
     capacity_scale_vph: Positive = 4000
+    # Share of the weather cost that scales with the road's flood risk; the rest applies to every road.
+    weather_flood_exposure_share: Unit = 0.5
     road_type_costs: dict[str, Unit] = Field(min_length=1)
 
     @model_validator(mode="after")

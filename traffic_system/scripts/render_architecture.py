@@ -1,89 +1,87 @@
-"""Render the implemented architecture in a monochrome academic flowchart style."""
+"""Render the ANTROUTE system architecture: six stages from data preparation to evaluation."""
 from pathlib import Path
 
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
+from matplotlib.patches import FancyArrowPatch, Rectangle
 from PIL import Image
 
 OUT = Path(__file__).resolve().parents[1] / "docs"
+# (title, fill, edge, top, bottom) of each stage panel, in diagram units.
+STAGES = [
+    ("DATA PREPARATION", "#dae8fc", "#6c8ebf", 139, 111),
+    ("USER ROUTE REQUEST", "#e8e8f8", "#6c6c9f", 107, 84),
+    ("ROUTING FACTOR WEIGHTING AND COST COMPUTATION", "#d5e8d4", "#82b366", 80, 40),
+    ("ROUTE OPTIMIZATION", "#ffe6cc", "#d79b00", 36, 24),
+    ("DYNAMIC ROUTE OUTPUT", "#fff2cc", "#d6b656", 20, 6.5),
+    ("PERFORMANCE EVALUATION", "#e1d5e7", "#9673a6", 2.5, -9),
+]
 
 
 def render():
-    fig, ax = plt.subplots(figsize=(12, 15))
+    fig, ax = plt.subplots(figsize=(9, 18))
     fig.patch.set_facecolor("white")
-    ax.set(xlim=(0, 100), ylim=(0, 106))
+    ax.set(xlim=(0, 100), ylim=(-10, 140))
     ax.axis("off")
-    fig.subplots_adjust(left=.025, right=.975, bottom=.015, top=.985)
+    fig.subplots_adjust(left=.01, right=.99, bottom=.01, top=.99)
 
-    def text(x, y, value, size=10, bold=False):
-        ax.text(x, y, value, ha="center", va="center", fontsize=size,
-                fontfamily="DejaVu Sans", weight="bold" if bold else "normal",
-                linespacing=1.4, color="#111111")
+    def text(x, y, value, size=9, bold=False):
+        ax.text(x, y, value, ha="center", va="center", fontsize=size, fontfamily="DejaVu Sans",
+                weight="bold" if bold else "normal", linespacing=1.35, color="#111111", zorder=4)
 
-    def box(x, y, w, h, title, detail="", size=10):
-        ax.add_patch(FancyBboxPatch((x-w/2, y-h/2), w, h,
-                     boxstyle="round,pad=0.2,rounding_size=.8",
-                     facecolor="white", edgecolor="#555555", linewidth=1.0, zorder=2))
+    def box(x, y, w, h, title, detail=""):
+        ax.add_patch(Rectangle((x - w / 2, y - h / 2), w, h, facecolor="white", edgecolor="#222222", linewidth=.9, zorder=2))
         if detail:
-            text(x, y+h*.22, title, size, True)
-            text(x, y-h*.18, detail, size-1)
+            lines = detail.count("\n") + 1
+            text(x, y + 1.1 * lines / 2 + .3, title, 9, True)
+            text(x, y - .9, detail, 8.3)
         else:
-            text(x, y, title, size, True)
+            text(x, y, title, 9, True)
 
-    def arrow(points, dashed=False):
-        # Use explicit bends to keep connectors away from unrelated boxes.
+    def arrow(points):
         for start, end in zip(points[:-2], points[1:-1]):
-            ax.plot([start[0], end[0]], [start[1], end[1]],
-                    color="#444444", linewidth=.95,
-                    linestyle="--" if dashed else "-", zorder=1)
-        ax.add_patch(FancyArrowPatch(points[-2], points[-1], arrowstyle="-|>",
-                     mutation_scale=11, linewidth=.95, color="#444444",
-                     linestyle="--" if dashed else "-", zorder=1,
-                     shrinkA=0, shrinkB=2))
+            ax.plot([start[0], end[0]], [start[1], end[1]], color="#222222", linewidth=.9, zorder=1)
+        ax.add_patch(FancyArrowPatch(points[-2], points[-1], arrowstyle="-|>", mutation_scale=10,
+                                     linewidth=.9, color="#222222", zorder=3, shrinkA=0, shrinkB=0))
 
-    text(50, 103.4, "System Architecture of the Proposed ANTROUTE Model", 16)
-    text(50, 100.6, "San Juan · Manila · Mandaluyong · Makati · Pasig", 10)
+    for title, fill, edge, top, bottom in STAGES:
+        ax.add_patch(Rectangle((2, bottom), 81, top - bottom, facecolor=fill, edgecolor=edge, linewidth=1, zorder=0))
+        text(42.5, top - 2, title, 9.5, True)
 
-    box(17, 94, 28, 7, "Spatial Data", "OSM road network and boundaries\nProject NOAH flood-hazard polygons")
-    box(50, 94, 28, 7, "Temporal Data", "Weatherstack historical hourly records\nJune 2025 – May 2026")
-    box(83, 94, 28, 7, "Estimation Configuration", "Published reference models\nDocumented assumptions and settings")
+    box(22, 131, 34, 6, "Temporal Data", "Historical Weather and Traffic Estimates")
+    box(63, 131, 34, 6, "Spatial Data", "Road Network and Flood-Hazard Data")
+    box(42.5, 117.5, 75, 6, "Data Validation and Preprocessing", "Validates, cleans, and standardizes data for routing.")
+    arrow([(22, 128), (22, 120.5)])
+    arrow([(63, 128), (63, 120.5)])
+    arrow([(42.5, 111), (42.5, 107)])
 
-    box(17, 82, 28, 8, "Graph and Feature Preparation", "Five-city filtering; directed topology\nDistance, intersections, signals, road type\nFlood-hazard exposure")
-    box(50, 82, 28, 8, "Hourly Weather Preparation", "Validate 8,760 hourly timestamps\nAssign weather grids to cities\nPreserve provider-source provenance")
-    box(83, 82, 28, 8, "Estimation Rules", "BPR congestion and travel time\nLane / capacity and peak-hour rules\nRain effects; feature weights")
-    for x in (17, 50, 83):
-        arrow([(x, 90.3), (x, 86.2)])
-        arrow([(x, 77.8), (x, 74.2)])
+    box(42.5, 98.5, 75, 6, "User Route Request", "Origin, Destination(s), Date and Time")
+    box(42.5, 88.5, 75, 6, "Condition Snapshot", "Traffic, Weather, Flood Risk and Road Closures")
+    arrow([(42.5, 95.5), (42.5, 91.5)])
+    arrow([(42.5, 84), (42.5, 80)])
 
-    box(50, 71, 94, 6, "Prepared Study Release", "Road graph + hourly weather + feature provenance registry + integrity manifest")
-    arrow([(50, 67.8), (50, 63.2)])
+    box(42.5, 72, 75, 7, "Ten Routing Factors", "Distance, congestion, travel time, intersections, signals, road type,\ntime of day, weather, flood risk, road capacity")
+    box(42.5, 62, 75, 6, "Factor Normalization", "Each factor scaled to 0–1")
+    box(42.5, 53, 75, 6, "Weight Calculation (CRITIC Method)", "Calculates weights for the ten routing factors.")
+    box(42.5, 44, 75, 7, "Weighted Edge Cost Calculation", "Calculates each road segment's cost\nRoad cost = Σ (CRITIC weight × normalized factor)")
+    arrow([(42.5, 68.5), (42.5, 65)])
+    arrow([(42.5, 59), (42.5, 56)])
+    arrow([(42.5, 50), (42.5, 47.5)])
+    arrow([(42.5, 40), (42.5, 36)])
 
-    box(17, 59, 28, 8, "User Route Request", "React web interface\nOrigin, destination, departure date / hour\nPlace search and map selection")
-    box(50, 59, 28, 8, "FastAPI Validation", "Verify release and study period\nValidate endpoints and conditions\nPOST /routes/plan")
-    box(83, 59, 28, 8, "Dynamic Conditions", "Time of Day\nRoad Closure: manual scenario\nWeather Conditions: historical / scenario")
-    arrow([(31.2, 59), (35.8, 59)])
-    arrow([(50, 54.8), (50, 51.2)])
-    arrow([(83, 54.8), (83, 51.2)])
+    box(42.5, 28.5, 75, 6, "Ant Colony Optimization", "Find optimal route using heuristic guidance, pheromone updates,\nand convergence-based stopping.")
+    arrow([(42.5, 24), (42.5, 20)])
 
-    box(50, 48, 94, 6, "Date / Hour Condition Snapshot", "Resolve modeled traffic and weather effects; exclude closed road segments")
-    arrow([(50, 44.8), (50, 42.2)])
-    box(50, 37.5, 94, 9, "Ten Input Features", "Distance · Traffic Congestion · Travel Time · Number of Intersections · Traffic Signal\nRoad Type · Time of Day · Weather · Flood Risk · Road Capacity", 11)
+    box(21, 11.5, 34, 6, "Recommended Optimal Route", "Route, distance and path cost")
+    box(63, 11.5, 34, 6, "Dynamic Condition Change Detection", "Time of day, weather or road closure,\nchecked at each intersection")
+    arrow([(38, 11.5), (46, 11.5)])
+    arrow([(80, 11.5), (92, 11.5), (92, 44), (80, 44)])
+    ax.text(93, 28, "Update Edge Cost", rotation=90, ha="left", va="center", fontsize=8.5, fontfamily="DejaVu Sans", zorder=4)
+    arrow([(21, 8.5), (21, 2.5)])
 
-    arrow([(50, 32.8), (50, 30.2)])
-    box(50, 27, 48, 6, "Dynamic Weighted Graph", "Normalize features and calculate\nweighted segment costs")
-    arrow([(50, 23.8), (50, 21.7)])
+    box(42.5, -4, 75, 6, "Distance Travel, Path Cost, Computational Time, Convergence Rate")
 
-    box(50, 17, 48, 9, "Ant Colony Optimization (ACO)", "Construct feasible routes; update pheromones\nCost and destination-distance heuristics\nStop by convergence rule or iteration limit")
-    box(87, 17, 22, 10, "Evaluation", "Distance Travel\nPath Cost\nComputational Time\nConvergence Rule", 9.5)
-    arrow([(74.2, 17), (75.8, 17)])
-    arrow([(50, 12.3), (50, 10.2)])
-    box(50, 6.5, 62, 7, "Best Feasible Route Found", "Web map, route details and convergence history\nEvaluation results and disclosed feature sources / estimates")
-    arrow([(87, 11.8), (87, 6.5), (81.2, 6.5)])
-
-    text(50, .5, "June 1, 2025 – May 31, 2026 · Hourly, Asia/Manila · Historical routing with documented estimates", 9)
-    text(50, -1.2, "2026 road map and static flood exposure are temporal proxies; historical traffic is modeled. ACO does not guarantee global optimality.", 8)
     png = OUT / "aco_system_architecture.png"
     jpg = OUT / "aco_system_architecture.jpg"
     fig.savefig(png, dpi=300, facecolor="white")

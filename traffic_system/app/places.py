@@ -1,9 +1,12 @@
-"""Local road-name search and in-scope snapping; no external Places queries."""
+"""Local place and road-name search and in-scope snapping; no external Places queries."""
+import csv
 import math
 import threading
 from dataclasses import dataclass
+from pathlib import Path
 
 import networkx as nx
+import numpy as np
 from fastapi import HTTPException
 from shapely.geometry import LineString, Point, shape
 from shapely.ops import transform, unary_union
@@ -15,6 +18,7 @@ from src.routing.network import RoadNetwork
 
 LOCK = threading.Lock()
 CACHED = None
+GAZETTEER = Path(__file__).resolve().parents[1] / "data/raw/study/places_gazetteer.csv"
 
 
 @dataclass
@@ -40,14 +44,36 @@ def index_for(network: RoadNetwork) -> NetworkIndex:
         connected = max(nx.strongly_connected_components(graph), key=len)
         project = Transformer.from_crs("EPSG:4326", "EPSG:32651", always_xy=True).transform
         order = list(network.roads)
+        roads_search = [(node_info(node), f"{node.label} {node.city} {node.id}".casefold())
+                        for node in network.nodes if node.id in connected]
         index = NetworkIndex(
             nodes, roads, connected,
             prep(unary_union([shape(geometry) for geometry in network.boundaries.values()])),
-            [(node, f"{node.label} {node.city} {node.id}".casefold()) for node in network.nodes if node.id in connected],
+            place_entries([nodes[node_id] for node_id in sorted(connected)]) + roads_search,
             STRtree([transform(project, LineString(road.geometry)) for road in order]), order, project,
         )
         CACHED = (network, index)
         return index
+
+
+def place_entries(candidates):
+    """Named OSM places (barangays, malls, schools, ...) as aliases of their nearest connected road node."""
+    path = GAZETTEER
+    if not path.exists() or not candidates:
+        return []
+    with path.open(encoding="utf-8") as stream:
+        places = list(csv.DictReader(stream))
+    latitude = np.array([node.latitude for node in candidates])
+    longitude = np.array([node.longitude for node in candidates])
+    entries = []
+    for place in places:
+        lat, lon = float(place["latitude"]), float(place["longitude"])
+        distance = np.hypot((longitude - lon) * math.cos(math.radians(lat)), latitude - lat)
+        node = candidates[int(distance.argmin())]
+        label = f"{place['name']} · {place['category'].title()} · {place['city']}"
+        entries.append(({**node_info(node), "label": label, "kind": "place"},
+                         f"{place['name']} {place['category']} {place['city']}".casefold()))
+    return entries
 
 
 def node_info(node):
@@ -56,21 +82,21 @@ def node_info(node):
 
 
 def search_nodes(network, query, limit=12):
-    tokens = query.strip().casefold().split()
+    """Matches at a word start before other matches; within each, places before roads."""
+    query = query.strip()
+    tokens = query.casefold().split()
     if not tokens:
         return []
-    results, seen = [], set()
-    for node, text in index_for(network).search:
+    matches, seen = [], set()
+    for order, (info, text) in enumerate(index_for(network).search):
         if all(token in text for token in tokens):
             # Keep suggestions distinct while allowing precise ID lookup.
-            label = node.label or node.id
-            if label in seen and query != node.id:
+            if info["label"] in seen and query != info["id"]:
                 continue
-            seen.add(label)
-            results.append(node_info(node))
-            if len(results) >= limit:
-                break
-    return results
+            seen.add(info["label"])
+            starts = text.startswith(tokens[0]) or f" {tokens[0]}" in text
+            matches.append((not starts, info.get("kind") != "place", order, info))
+    return [{key: value for key, value in info.items() if key != "kind"} for *_, info in sorted(matches, key=lambda m: m[:3])[:limit]]
 
 
 def checked_point(index, latitude, longitude):

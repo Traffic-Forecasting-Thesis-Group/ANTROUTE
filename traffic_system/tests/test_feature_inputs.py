@@ -118,6 +118,25 @@ def test_local_places_and_scope_aware_snapping(network_data, monkeypatch):
         assert client.get("/network?include_nodes=false").json()["nodes"] == []
 
 
+def test_named_places_snap_to_the_nearest_connected_node(network_data, tmp_path, monkeypatch):
+    from app import places
+    for road in list(network_data["roads"]):
+        network_data["roads"].append({**road, "id": road["id"] + "-reverse", "source": road["target"], "target": road["source"],
+                                      "geometry": road["geometry"][::-1]})
+    network_data["nodes"][1]["label"] = "Mall Road · San Juan"
+    gazetteer = tmp_path / "places.csv"
+    gazetteer.write_text("name,category,city,latitude,longitude,osm_element,osm_id\n"
+                         "Test Mall,mall,Manila,0.5,1.15,node,1\nOld Mall Chapel,place_of_worship,San Juan,0.5,0.25,node,2\n",
+                         encoding="utf-8")
+    monkeypatch.setattr(places, "GAZETTEER", gazetteer)
+    monkeypatch.setattr(places, "CACHED", None)
+    results = places.search_nodes(RoadNetwork.model_validate(network_data), "mall")
+    # Word-start matches first (places before roads), then the rest; each place resolves to a road node.
+    assert [(item["label"], item["id"]) for item in results] == [
+        ("Test Mall · Mall · Manila", "d"), ("Old Mall Chapel · Place_Of_Worship · San Juan", "a"),
+        ("Mall Road · San Juan", "b")]
+
+
 def test_builder_uses_mapped_flood_and_labels_estimates(tmp_path):
     import networkx as nx
     from scripts.build_study_network import build
@@ -137,12 +156,13 @@ def test_builder_uses_mapped_flood_and_labels_estimates(tmp_path):
         {"properties": {"Var": 3}, "geometry": mapping(box(121, 14.50, 121.01, 14.51))}
     ]}), encoding="utf-8")
     from scripts import preprocess_road_features as static
-    from src.routing.historical_traffic import FIELDS, bpr, table_rows
+    from src.routing.historical_traffic import FIELDS, bpr
     assumptions = {"saturation_flow_vph_per_lane": 1500, "assumed_effective_green_ratio": .5, "peak_hours": [8],
         "road_types": {"residential": {"speed_kph": 20, "lanes": 1, "cost": 0.7, "traffic_factor": 0.5}},
         "weather_scenarios": {"clear": {"cost": 0, "travel_time_multiplier": 1}},
         "bpr_alpha": .15, "bpr_beta": 4, "weekend_demand_factor": .75, "hourly_demand_capacity_ratio": [1] * 24,
-        "traffic_variation": {"seed": 1, "strength": 0, "day_coefficient": .2, "location_hour_coefficient": .25},
+        "traffic_variation": {"seed": 1, "strength": 0, "day_coefficient": .2, "area_coefficient": .25,
+                              "road_coefficient": .35, "location_hour_coefficient": .25},
         "sources": dict.fromkeys(["map", "bpr", "rain", "flood", "capacity"], "test")}
     assumptions_path = tmp_path / "assumptions.json"
     assumptions_path.write_text(json.dumps(assumptions), encoding="utf-8")
@@ -152,12 +172,9 @@ def test_builder_uses_mapped_flood_and_labels_estimates(tmp_path):
     static.write_csv(features / "road_nodes.csv", static.NODE_FIELDS, nodes)
     static.write_csv(features / "road_segments.csv", static.SEGMENT_FIELDS, segments)
     static.write_csv(features / "segment_flood.csv", static.FLOOD_FIELDS, floods)
-    assert segments[0]["traffic_location"] == "san_juan__residential"
+    assert segments[0]["traffic_location"] == segments[0]["road_id"]
     assert "lanes_source" in segments[0] and not any("volume" in field for field in static.SEGMENT_FIELDS + FIELDS)
-    traffic_path = tmp_path / "traffic.csv"
-    location = (segments[0]["traffic_location"], "San Juan", "residential")
-    static.write_csv(traffic_path, FIELDS, table_rows([location], assumptions, hours=48))
-    network = build(features, boundary_path, assumptions_path, traffic_path)
+    network = build(features, boundary_path, assumptions_path)
     road = network.roads[0]
     assert road.flood_risk == 1
     assert road.road_capacity_vph == 1500  # two-way lanes=2 is one lane per direction; no signal at b
