@@ -159,7 +159,8 @@ export default function App() {
         setClosures(previous => [...new Map([...previous, ...selected].map(item => [item.id, item])).values()]);
       } else {
         const node = await snapNode(latitude, longitude);
-        if (pickMode === 'origin') { setOrigin(node); setPickMode('destination'); }
+        // The map stays in the mode the user chose; only the toolbar changes it.
+        if (pickMode === 'origin') setOrigin(node);
         else setStops(previous => {
           // A map click fills the first empty destination, or adds one while there is room.
           const empty = previous.findIndex(stop => !stop.node);
