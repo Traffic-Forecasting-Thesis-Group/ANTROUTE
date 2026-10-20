@@ -98,7 +98,8 @@ export interface TripSearch {
   trigger: string;
   affected_roads: number;
   iterations: number;
-  iterations_to_convergence: number;
+  iterations_to_convergence: number | null;  // N_conv; null when the iteration limit came first.
+  best_found_at: number;
   stop_reason: string;
   route_cost: number;
   routing_time_ms: number;
@@ -126,10 +127,24 @@ export interface TripResult {
     dynamic_rerouting_time_ms: number;
     reroutes: number;
     mean_rerouting_time_ms: number | null;
-    convergence: { iterations_to_convergence: number; mean_iterations_to_convergence: number; searches: TripSearch[] };
+    convergence: { iterations_to_convergence: number | null; converged: boolean; mean_iterations_to_convergence: number | null;
+      searches_not_converged: number; searches: TripSearch[] };
   };
 }
 
+// One measure of one family in scripts/evaluate_sop.py: d = baseline − ANTROUTE, Wilcoxon signed-rank, Holm-adjusted.
+export interface SopTest {
+  n: number; test: string; proposed_mean?: number; baseline_mean?: number; mean_difference?: number;
+  n_nonzero?: number; pairs_excluded_not_converged?: number; W_plus?: number; W_minus?: number; W?: number; p: number | null; p_holm: number | null; significant: boolean | null;
+}
+export interface SopResults {
+  generated_at: string; trips: number; seeds: number; alpha: number;
+  scenarios: Record<string, string>;
+  measures: Record<string, { label: string; unit: string; scale: number }>;
+  sop_measures: Record<string, string[]>;
+  sop3: Record<string, Record<string, SopTest>>;
+  not_converged?: Record<string, Record<'antroute' | 'cheng', number>>;
+}
 
 const baseURL =(import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000').replace(/\/$/, '');
 
@@ -149,6 +164,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 
 export const loadNetwork = (signal: AbortSignal) => request<NetworkInfo>('/network?include_nodes=false', { signal });
 export const loadStudyStatus = (signal: AbortSignal) => request<HistoricalStudyStatus>('/study/status', { signal });
+export const loadSopResults = (signal: AbortSignal) => request<SopResults>('/study/results', { signal });
 export const searchPlaces = (query: string, signal: AbortSignal) => request<{ results: StudyNode[] }>(`/places/search?query=${encodeURIComponent(query)}`, { signal });
 export const snapNode = (latitude: number, longitude: number) => request<StudyNode>(`/places/nearest?latitude=${latitude}&longitude=${longitude}`);
 export const snapRoad = (latitude: number, longitude: number) => request<RoadSelection>(`/roads/nearest?latitude=${latitude}&longitude=${longitude}`);

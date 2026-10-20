@@ -12,7 +12,8 @@ def evaluate(result: ColonyResult, config: AntColonyConfig, elapsed_ms: float) -
             "patience": config.patience,
             "max_iterations": config.max_iterations,
             "iterations": len(result.best_cost_by_iteration),
-            "iterations_to_convergence": result.best_found_at,
+            "iterations_to_convergence": result.converged_at,  # N_conv; None when not converged.
+            "best_found_at_iteration": result.best_found_at,
             "converged": result.converged,
             "stop_reason": "convergence_rule" if result.converged else "iteration_limit",
             "best_cost_by_iteration": result.best_cost_by_iteration,

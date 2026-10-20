@@ -8,17 +8,25 @@
          cost, computational time and convergence rate.
 
 Both algorithms drive the same trips, departures, events and seeds through dynamic_trip.py. Path
-cost is the CRITIC ten-feature cost of each road when entered, for both. Convergence rate is the
-iteration at which the initial search first found its final best route (fewer = faster).
+cost is the CRITIC ten-feature cost of each road when entered, for both. Convergence rate is N_conv,
+the iteration at which the initial search's best path cost had not improved for 20 consecutive
+iterations (Aadil et al., 2016; fewer = faster). Both algorithms stop on this rule; a run that reaches
+the iteration limit first is recorded as not converged, summarised by count, and its pair is left out
+of the convergence-rate test.
 
-SOP 3 compares paired results per trip and scenario, averaged over seeds. For each measure the
-paired differences are tested for normality (Shapiro-Wilk); if normal (p >= 0.05) a paired t-test
-is used, otherwise the Wilcoxon signed-rank test. alpha = 0.05.
+SOP 3 follows the statistical treatment (Table 5). Results are paired per trip and scenario,
+averaged over seeds, and the paired difference is d_i = C_baseline,i - C_ANTROUTE,i, so a positive
+difference favours ANTROUTE for every measure. Each measure is tested with the two-sided Wilcoxon
+signed-rank test (zero differences excluded, tied absolute differences given average ranks,
+W = min(W+, W-)). The four p-values of each family (all conditions, and each traffic condition) are
+Holm-adjusted, p_adj,(i) = min(1, max_{j<=i} (m - j + 1) p_(j)) with m = 4, and a difference is
+significant when p_adj < alpha = 0.05.
 
 Closures are placed on the shortest-distance route, which neither algorithm routes by; the closed
 stretch is the one nearest the route's middle that still leaves a route from origin to destination.
 
 Usage: python -m scripts.evaluate_sop [--trips 10] [--seeds 2]
+       python -m scripts.evaluate_sop --from-runs   (re-analyse outputs/sop_runs.csv without re-running trips)
 Writes outputs/sop_runs.csv, outputs/sop_results.json and outputs/sop_report.md.
 """
 import argparse
@@ -37,7 +45,7 @@ from scipy import stats
 
 from app.main import get_network
 from app.study_policy import require_historical_release
-from src.routing.aco_routing import AntColonyConfig
+from src.routing.aco_routing import CONVERGENCE_PATIENCE, AntColonyConfig
 from src.routing.baseline_cheng import ChengConfig
 from src.routing.dynamic_trip import TripEvent, simulate_trip
 
@@ -146,31 +154,35 @@ def describe(values):
 
 
 def compare(proposed, baseline):
-    """Paired test of proposed - baseline: Shapiro-Wilk on the differences, then paired t or Wilcoxon."""
-    differences = [a - b for a, b in zip(proposed, baseline)]
+    """Wilcoxon signed-rank test on the paired differences d_i = baseline_i - proposed_i."""
+    differences = [b - a for a, b in zip(proposed, baseline)]
     result = {"n": len(differences), "proposed_mean": statistics.fmean(proposed), "baseline_mean": statistics.fmean(baseline),
               "mean_difference": statistics.fmean(differences), "median_difference": statistics.median(differences)}
+    nonzero = [difference for difference in differences if difference != 0]
     if len(differences) < 3:
-        return {**result, "test": "not tested (fewer than 3 pairs)", "p": None, "significant": None}
-    if all(abs(difference) < 1e-12 for difference in differences):
-        return {**result, "test": "not tested (no differences)", "p": 1.0, "significant": False}
-    normal_p = float(stats.shapiro(differences).pvalue)
-    if normal_p >= ALPHA:
-        test = stats.ttest_rel(proposed, baseline)
-        sd = statistics.stdev(differences)
-        effect = {"cohens_dz": result["mean_difference"] / sd if sd else None}
-        name, statistic = "paired t-test", {"t": float(test.statistic), "df": len(differences) - 1}
-    else:
-        test = stats.wilcoxon(proposed, baseline)
-        ranks = stats.rankdata([abs(difference) for difference in differences if difference])
-        signed = [difference for difference in differences if difference]
-        positive = sum(rank for rank, difference in zip(ranks, signed) if difference > 0)
-        negative = sum(rank for rank, difference in zip(ranks, signed) if difference < 0)
-        effect = {"rank_biserial": (positive - negative) / (positive + negative)}
-        name, statistic = "Wilcoxon signed-rank", {"W": float(test.statistic)}
-    p = float(test.pvalue)
-    return {**result, "normality_shapiro_p": normal_p, "test": name, **statistic, "p": p,
-            "significant": p < ALPHA, **effect}
+        return {**result, "test": "not tested (fewer than 3 pairs)", "p": None}
+    if not nonzero:
+        return {**result, "test": "not tested (no differences)", "n_nonzero": 0, "p": 1.0}
+    # Zero differences excluded; tied absolute differences share their average rank.
+    ranks = stats.rankdata([abs(difference) for difference in nonzero])
+    positive = float(sum(rank for rank, difference in zip(ranks, nonzero) if difference > 0))
+    negative = float(sum(rank for rank, difference in zip(ranks, nonzero) if difference < 0))
+    test = stats.wilcoxon(differences, zero_method="wilcox", alternative="two-sided")
+    return {**result, "test": "Wilcoxon signed-rank", "n_nonzero": len(nonzero), "W_plus": positive, "W_minus": negative,
+            "W": min(positive, negative), "p": float(test.pvalue),
+            "rank_biserial": (positive - negative) / (positive + negative)}
+
+
+def holm(tests):
+    """Holm step-down adjustment of one family: p_adj,(i) = min(1, max_{j<=i} (m - j + 1) p_(j))."""
+    tested = sorted((test for test in tests if test["p"] is not None), key=lambda test: test["p"])
+    running = 0.0
+    for j, test in enumerate(tested, start=1):
+        running = max(running, (len(tested) - j + 1) * test["p"])
+        test["p_holm"] = min(1.0, running)
+    for test in tests:
+        test.setdefault("p_holm", None)
+        test["significant"] = None if test["p_holm"] is None else test["p_holm"] < ALPHA
 
 
 def number(value, scale=1, digits=2):
@@ -188,29 +200,39 @@ def report(results):
         for measure in SOP[number_]:
             label, unit, scale = MEASURES[measure]
             lines += [f"### {label}{f' ({unit})' if unit else ''}", "",
-                      "| Traffic condition | ANTROUTE mean ± SD | Cheng mean ± SD |", "|---|---|---|"]
+                      "| Traffic condition | ANTROUTE mean ± SD [min–max] | Cheng mean ± SD [min–max] |", "|---|---|---|"]
             for scenario in (*SCENARIOS, "all"):
                 cells = []
                 for algorithm in ALGORITHMS:
                     d = results["descriptive"][scenario][algorithm][measure]
-                    cells.append("–" if not d["n"] else f"{number(d['mean'], scale)} ± {number(d['sd'], scale)} (n={d['n']})")
+                    cells.append("–" if not d["n"] else f"{number(d['mean'], scale)} ± {number(d['sd'], scale)} "
+                                                        f"[{number(d['min'], scale)}–{number(d['max'], scale)}] (n={d['n']})")
                 lines.append(f"| {SCENARIOS.get(scenario, 'All conditions')} | {cells[0]} | {cells[1]} |")
+            if measure == "iterations_to_convergence":
+                counts = results["not_converged"]["all"]
+                lines += ["", f"Runs that reached the iteration limit without converging (not included above): "
+                              f"ANTROUTE {counts['antroute']}, Cheng {counts['cheng']}."]
             lines.append("")
     lines += ["## SOP 3. Significant difference between ANTROUTE and the baseline", "",
-              f"Paired by trip and traffic condition (seeds averaged). Difference = ANTROUTE − Cheng; negative favours ANTROUTE for every measure. α = {ALPHA}.", ""]
+              f"Paired by trip and traffic condition (seeds averaged). d = Cheng − ANTROUTE; positive favours ANTROUTE for every measure. "
+              f"Two-sided Wilcoxon signed-rank test, W = min(W+, W−); the four p-values of each condition are Holm-adjusted. "
+              f"Significant when the Holm-adjusted p < α = {ALPHA}.", ""]
+    p_text = lambda p: "–" if p is None else "< 0.0001" if p < 0.0001 else f"{p:.4f}"
     for scenario in ("all", *SCENARIOS):
         lines += [f"### {SCENARIOS.get(scenario, 'All conditions')}", "",
-                  "| Measure | n | ANTROUTE | Cheng | Mean difference | Test | Statistic | p | Significant |",
-                  "|---|---|---|---|---|---|---|---|---|"]
+                  "| Measure | n | ANTROUTE mean | Cheng mean | Mean d | W+ | W− | W | p | Holm p | Significant |",
+                  "|---|---|---|---|---|---|---|---|---|---|---|"]
         for measure in SOP[3]:
             label, unit, scale = MEASURES[measure]
             t = results["sop3"][scenario][measure]
-            statistic = (f"t({t['df']}) = {t['t']:.2f}" if "t" in t else f"W = {t['W']:.1f}" if "W" in t else "–")
+            ranks = [f"{t[key]:.1f}" if key in t else "–" for key in ("W_plus", "W_minus", "W")]
             significant = {True: "**Yes**", False: "No", None: "–"}[t["significant"]]
-            p = "–" if t["p"] is None else "< 0.0001" if t["p"] < 0.0001 else f"{t['p']:.4f}"
             lines.append(f"| {label.split(':')[0]} | {t['n']} | {number(t.get('proposed_mean'), scale)} | "
                          f"{number(t.get('baseline_mean'), scale)} | {number(t.get('mean_difference'), scale)} | "
-                         f"{t['test']} | {statistic} | {p} | {significant} |")
+                         f"{' | '.join(ranks)} | {p_text(t['p'])} | {p_text(t['p_holm'])} | {significant} |")
+        excluded = results["sop3"][scenario]["iterations_to_convergence"].get("pairs_excluded_not_converged")
+        if excluded:
+            lines += ["", f"Convergence rate: {excluded} pair(s) excluded because a run did not converge."]
         lines.append("")
     failed = [row for row in results["runs"] if row["status"] != "ok"]
     lines += ["## Runs that failed", "", "None." if not failed else
@@ -233,20 +255,50 @@ def analyse(rows):
     for scenario in ("all", *SCENARIOS):
         sop3[scenario] = {}
         for measure in SOP[3]:
-            proposed, baseline = [], []
+            proposed, baseline, excluded = [], [], 0
             for (trip, unit_scenario), sides in sorted(units.items()):
                 if scenario in ("all", unit_scenario) and all(sides.get(algorithm) for algorithm in ALGORITHMS):
-                    proposed.append(statistics.fmean(row[measure] for row in sides["antroute"]))
-                    baseline.append(statistics.fmean(row[measure] for row in sides["cheng"]))
-            sop3[scenario][measure] = compare(proposed, baseline) if proposed else {"n": 0, "test": "no pairs", "p": None, "significant": None}
-    return descriptive, sop3
+                    # A run that did not converge has no N_conv; a pair missing either side is excluded.
+                    values = [[row[measure] for row in sides[algorithm] if row[measure] is not None] for algorithm in ALGORITHMS]
+                    if not all(values):
+                        excluded += 1
+                        continue
+                    proposed.append(statistics.fmean(values[0]))
+                    baseline.append(statistics.fmean(values[1]))
+            test = compare(proposed, baseline) if proposed else {"n": 0, "test": "no pairs", "p": None}
+            sop3[scenario][measure] = {**test, "pairs_excluded_not_converged": excluded}
+        holm(list(sop3[scenario].values()))
+    not_converged = {scenario: {algorithm: sum(1 for row in ok if row["algorithm"] == algorithm and scenario in ("all", row["scenario"])
+                                                and row["iterations_to_convergence"] is None) for algorithm in ALGORITHMS}
+                     for scenario in (*SCENARIOS, "all")}
+    return descriptive, sop3, not_converged
+
+
+def load_runs(path):
+    """Rows of a previous sop_runs.csv with their numbers restored."""
+    with path.open(newline="", encoding="utf-8") as stream:
+        rows = list(csv.DictReader(stream))
+    for row in rows:
+        row["trip"], row["seed"] = int(row["trip"]), int(row["seed"])
+        for key in (*MEASURES, "straight_line_km", "travel_time_s"):
+            row[key] = float(row[key]) if row.get(key) else None
+    return rows
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--trips", type=int, default=10)
     parser.add_argument("--seeds", type=int, default=2)
+    parser.add_argument("--from-runs", action="store_true", help="re-analyse outputs/sop_runs.csv instead of running trips")
     args = parser.parse_args()
+    output = ROOT / "outputs"
+    if args.from_runs:
+        rows = load_runs(output / "sop_runs.csv")
+        previous = output / "sop_results.json"
+        built_at = json.loads(previous.read_text(encoding="utf-8")).get("network_built_at") if previous.exists() else None
+        write(output, rows, len({row["trip"] for row in rows}), len({row["seed"] for row in rows}), built_at or "unknown",
+              save_runs=False)
+        return
     require_historical_release()
     network = get_network()
     rows = []
@@ -270,28 +322,35 @@ def main():
                     rows.append(row)
                     print(f"trip {trip} {scenario:20} seed {seed} {algorithm:8} {row['status'][:40]:40} "
                           f"{perf_counter() - started:6.1f} s", flush=True)
-    descriptive, sop3 = analyse(rows)
+    write(output, rows, args.trips, args.seeds, network.provenance["built_at"])
+
+
+def write(output, rows, trips, seeds, network_built_at, save_runs=True):
+    descriptive, sop3, not_converged = analyse(rows)
     results = {"generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-               "network_built_at": network.provenance["built_at"], "trips": args.trips, "seeds": args.seeds,
-               "alpha": ALPHA, "scenarios": SCENARIOS, "algorithms": NAMES,
+               "network_built_at": network_built_at, "trips": trips, "seeds": seeds,
+               "alpha": ALPHA, "test": "Wilcoxon signed-rank (two-sided), Holm-adjusted per condition",
+               "difference": "baseline - ANTROUTE", "scenarios": SCENARIOS, "algorithms": NAMES,
                "measures": {measure: {"label": label, "unit": unit, "scale": scale} for measure, (label, unit, scale) in MEASURES.items()},
                "sop_measures": SOP,
                "note": "Path cost is the CRITIC ten-feature cost of each road when entered, for both algorithms. "
-                       "Convergence rate = iterations until the initial search first found its final best route. "
+                       f"Convergence rate = N_conv, the iteration at which the initial search's best path cost had not "
+                       f"improved for {CONVERGENCE_PATIENCE} consecutive iterations (Aadil et al., 2016); both algorithms stop "
+                       f"on this rule, and a run that reaches the iteration limit first is recorded as not converged. "
                        "Traffic is modeled, not measured. Lower is better for every measure.",
-               "descriptive": descriptive, "sop3": sop3, "runs": rows}
-    output = ROOT / "outputs"
+               "descriptive": descriptive, "not_converged": not_converged, "sop3": sop3, "runs": rows}
     output.mkdir(exist_ok=True)
-    fields = list(rows[0])
-    for row in rows:
-        fields += [key for key in row if key not in fields]
-    with (output / "sop_runs.csv").open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=fields)
-        writer.writeheader()
-        writer.writerows(rows)
+    if save_runs:
+        fields = list(rows[0])
+        for row in rows:
+            fields += [key for key in row if key not in fields]
+        with (output / "sop_runs.csv").open("w", newline="", encoding="utf-8") as stream:
+            writer = csv.DictWriter(stream, fieldnames=fields)
+            writer.writeheader()
+            writer.writerows(rows)
     (output / "sop_results.json").write_text(json.dumps(results, indent=2), encoding="utf-8")
     (output / "sop_report.md").write_text(report(results), encoding="utf-8")
-    print(f"Saved {len(rows)} runs: outputs/sop_runs.csv, outputs/sop_results.json, outputs/sop_report.md")
+    print(f"Saved {len(rows)} runs{': outputs/sop_runs.csv,' if save_runs else ' (re-analysed):'} outputs/sop_results.json, outputs/sop_report.md")
 
 
 if __name__ == "__main__":

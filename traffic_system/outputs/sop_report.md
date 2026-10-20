@@ -1,169 +1,171 @@
 # SOP results: ANTROUTE vs Cheng (2023)
 
-Generated 2026-10-18T06:36:54+00:00 · 10 trips × 5 scenarios × 2 seeds · network built 2026-10-18T04:21:15.615515+00:00
+Generated 2026-10-20T07:36:04+00:00 · 10 trips × 5 scenarios × 2 seeds · network built 2026-10-19T13:40:54.159873+00:00
 
-Path cost is the CRITIC ten-feature cost of each road when entered, for both algorithms. Convergence rate = iterations until the initial search first found its final best route. Traffic is modeled, not measured. Lower is better for every measure.
+Path cost is the CRITIC ten-feature cost of each road when entered, for both algorithms. Convergence rate = N_conv, the iteration at which the initial search's best path cost had not improved for 20 consecutive iterations (Aadil et al., 2016); both algorithms stop on this rule, and a run that reaches the iteration limit first is recorded as not converged. Traffic is modeled, not measured. Lower is better for every measure.
 
 ## SOP 1. Routing performance under selected traffic conditions
 
 ### Distance travelled (km)
 
-| Traffic condition | ANTROUTE mean ± SD | Cheng mean ± SD |
+| Traffic condition | ANTROUTE mean ± SD [min–max] | Cheng mean ± SD [min–max] |
 |---|---|---|
-| Off-peak, no change (Tue 10:10, historical weather) | 8.83 ± 3.31 (n=20) | 10.47 ± 4.25 (n=20) |
-| Morning peak begins during the trip (Tue 06:50) | 8.83 ± 3.39 (n=20) | 13.15 ± 7.35 (n=20) |
-| Evening peak begins during the trip (Tue 16:50) | 8.84 ± 3.26 (n=20) | 11.29 ± 5.30 (n=20) |
-| Road closure 2 min into the trip (Tue 08:10) | 9.00 ± 3.22 (n=20) | 12.46 ± 6.16 (n=20) |
-| Clear to heavy rain 3 min into the trip (Tue 08:10) | 8.98 ± 3.47 (n=20) | 12.04 ± 6.35 (n=20) |
-| All conditions | 8.89 ± 3.26 (n=100) | 11.88 ± 5.93 (n=100) |
+| Off-peak, no change (Tue 10:10, historical weather) | 8.89 ± 3.38 [4.62–15.63] (n=20) | 11.12 ± 5.47 [5.14–25.45] (n=20) |
+| Morning peak begins during the trip (Tue 06:50) | 8.86 ± 3.44 [4.57–15.63] (n=20) | 11.03 ± 4.67 [4.74–21.64] (n=20) |
+| Evening peak begins during the trip (Tue 16:50) | 8.97 ± 3.34 [4.62–15.63] (n=20) | 11.66 ± 6.00 [4.53–24.74] (n=20) |
+| Road closure 2 min into the trip (Tue 08:10) | 9.54 ± 4.15 [4.90–19.33] (n=20) | 14.60 ± 7.00 [5.91–32.71] (n=20) |
+| Clear to heavy rain 3 min into the trip (Tue 08:10) | 9.03 ± 3.46 [4.64–15.67] (n=20) | 13.27 ± 7.14 [4.54–32.71] (n=20) |
+| All conditions | 9.06 ± 3.50 [4.57–19.33] (n=100) | 12.34 ± 6.16 [4.53–32.71] (n=100) |
 
 ### Path cost
 
-| Traffic condition | ANTROUTE mean ± SD | Cheng mean ± SD |
+| Traffic condition | ANTROUTE mean ± SD [min–max] | Cheng mean ± SD [min–max] |
 |---|---|---|
-| Off-peak, no change (Tue 10:10, historical weather) | 28.70 ± 9.06 (n=20) | 42.40 ± 13.51 (n=20) |
-| Morning peak begins during the trip (Tue 06:50) | 35.59 ± 14.77 (n=20) | 76.81 ± 44.00 (n=20) |
-| Evening peak begins during the trip (Tue 16:50) | 30.93 ± 12.25 (n=20) | 55.09 ± 28.37 (n=20) |
-| Road closure 2 min into the trip (Tue 08:10) | 47.53 ± 15.21 (n=20) | 77.76 ± 28.36 (n=20) |
-| Clear to heavy rain 3 min into the trip (Tue 08:10) | 48.34 ± 16.35 (n=20) | 80.83 ± 32.47 (n=20) |
-| All conditions | 38.22 ± 15.84 (n=100) | 66.58 ± 33.91 (n=100) |
+| Off-peak, no change (Tue 10:10, historical weather) | 32.73 ± 9.64 [19.39–51.69] (n=20) | 51.76 ± 19.78 [28.44–101.84] (n=20) |
+| Morning peak begins during the trip (Tue 06:50) | 33.84 ± 11.56 [19.16–58.22] (n=20) | 52.90 ± 19.09 [26.79–89.89] (n=20) |
+| Evening peak begins during the trip (Tue 16:50) | 33.41 ± 11.46 [19.00–56.20] (n=20) | 53.25 ± 24.80 [24.19–107.87] (n=20) |
+| Road closure 2 min into the trip (Tue 08:10) | 39.01 ± 13.45 [21.49–64.17] (n=20) | 77.17 ± 30.83 [28.88–135.78] (n=20) |
+| Clear to heavy rain 3 min into the trip (Tue 08:10) | 38.06 ± 12.72 [20.95–59.76] (n=20) | 75.15 ± 33.86 [28.25–145.36] (n=20) |
+| All conditions | 35.41 ± 11.88 [19.00–64.17] (n=100) | 62.05 ± 28.29 [24.19–145.36] (n=100) |
 
 ## SOP 2. Computational performance
 
 ### Computational time (s)
 
-| Traffic condition | ANTROUTE mean ± SD | Cheng mean ± SD |
+| Traffic condition | ANTROUTE mean ± SD [min–max] | Cheng mean ± SD [min–max] |
 |---|---|---|
-| Off-peak, no change (Tue 10:10, historical weather) | 3.13 ± 2.57 (n=20) | 6.72 ± 4.85 (n=20) |
-| Morning peak begins during the trip (Tue 06:50) | 4.06 ± 2.73 (n=20) | 13.78 ± 7.57 (n=20) |
-| Evening peak begins during the trip (Tue 16:50) | 4.45 ± 2.27 (n=20) | 12.94 ± 5.77 (n=20) |
-| Road closure 2 min into the trip (Tue 08:10) | 6.85 ± 8.30 (n=20) | 14.46 ± 9.23 (n=20) |
-| Clear to heavy rain 3 min into the trip (Tue 08:10) | 5.20 ± 3.25 (n=20) | 11.73 ± 4.70 (n=20) |
-| All conditions | 4.74 ± 4.53 (n=100) | 11.93 ± 7.08 (n=100) |
+| Off-peak, no change (Tue 10:10, historical weather) | 2.01 ± 0.72 [0.68–3.76] (n=20) | 2.58 ± 1.04 [1.17–5.37] (n=20) |
+| Morning peak begins during the trip (Tue 06:50) | 3.17 ± 1.74 [0.66–7.27] (n=20) | 3.60 ± 1.16 [1.18–5.80] (n=20) |
+| Evening peak begins during the trip (Tue 16:50) | 3.26 ± 1.72 [0.62–7.67] (n=20) | 3.70 ± 1.18 [1.84–6.20] (n=20) |
+| Road closure 2 min into the trip (Tue 08:10) | 5.18 ± 4.40 [1.20–17.22] (n=20) | 4.03 ± 1.68 [1.98–8.57] (n=20) |
+| Clear to heavy rain 3 min into the trip (Tue 08:10) | 3.79 ± 1.63 [1.70–7.90] (n=20) | 4.24 ± 1.85 [1.95–8.17] (n=20) |
+| All conditions | 3.48 ± 2.56 [0.62–17.22] (n=100) | 3.63 ± 1.50 [1.17–8.57] (n=100) |
 
 ### Initial routing time (s)
 
-| Traffic condition | ANTROUTE mean ± SD | Cheng mean ± SD |
+| Traffic condition | ANTROUTE mean ± SD [min–max] | Cheng mean ± SD [min–max] |
 |---|---|---|
-| Off-peak, no change (Tue 10:10, historical weather) | 3.13 ± 2.57 (n=20) | 6.72 ± 4.85 (n=20) |
-| Morning peak begins during the trip (Tue 06:50) | 2.37 ± 1.77 (n=20) | 7.76 ± 4.19 (n=20) |
-| Evening peak begins during the trip (Tue 16:50) | 2.64 ± 1.05 (n=20) | 7.78 ± 3.67 (n=20) |
-| Road closure 2 min into the trip (Tue 08:10) | 2.46 ± 1.13 (n=20) | 7.66 ± 4.49 (n=20) |
-| Clear to heavy rain 3 min into the trip (Tue 08:10) | 2.57 ± 1.60 (n=20) | 6.27 ± 2.98 (n=20) |
-| All conditions | 2.64 ± 1.70 (n=100) | 7.24 ± 4.05 (n=100) |
+| Off-peak, no change (Tue 10:10, historical weather) | 2.01 ± 0.72 [0.68–3.76] (n=20) | 2.45 ± 0.79 [1.17–4.00] (n=20) |
+| Morning peak begins during the trip (Tue 06:50) | 2.01 ± 0.86 [0.66–3.94] (n=20) | 2.21 ± 0.73 [1.18–3.79] (n=20) |
+| Evening peak begins during the trip (Tue 16:50) | 1.96 ± 0.80 [0.62–3.88] (n=20) | 2.29 ± 0.88 [0.76–4.33] (n=20) |
+| Road closure 2 min into the trip (Tue 08:10) | 2.10 ± 0.97 [0.65–4.39] (n=20) | 2.28 ± 0.84 [1.21–4.19] (n=20) |
+| Clear to heavy rain 3 min into the trip (Tue 08:10) | 2.02 ± 0.97 [0.58–4.51] (n=20) | 2.30 ± 0.83 [1.11–4.45] (n=20) |
+| All conditions | 2.02 ± 0.85 [0.58–4.51] (n=100) | 2.31 ± 0.80 [0.76–4.45] (n=100) |
 
 ### Dynamic re-routing time (per re-route) (s)
 
-| Traffic condition | ANTROUTE mean ± SD | Cheng mean ± SD |
+| Traffic condition | ANTROUTE mean ± SD [min–max] | Cheng mean ± SD [min–max] |
 |---|---|---|
-| Off-peak, no change (Tue 10:10, historical weather) | – | – |
-| Morning peak begins during the trip (Tue 06:50) | 1.99 ± 1.53 (n=17) | 5.46 ± 2.59 (n=20) |
-| Evening peak begins during the trip (Tue 16:50) | 2.01 ± 1.48 (n=18) | 5.16 ± 2.59 (n=20) |
-| Road closure 2 min into the trip (Tue 08:10) | 4.38 ± 7.66 (n=20) | 5.79 ± 2.80 (n=20) |
-| Clear to heavy rain 3 min into the trip (Tue 08:10) | 2.63 ± 1.83 (n=20) | 5.06 ± 2.47 (n=20) |
-| All conditions | 2.80 ± 4.24 (n=75) | 5.37 ± 2.58 (n=80) |
+| Off-peak, no change (Tue 10:10, historical weather) | – | 1.32 ± 0.07 [1.27–1.37] (n=2) |
+| Morning peak begins during the trip (Tue 06:50) | 1.55 ± 0.85 [0.54–3.70] (n=15) | 1.46 ± 0.42 [0.69–2.06] (n=19) |
+| Evening peak begins during the trip (Tue 16:50) | 1.74 ± 0.80 [0.81–3.79] (n=15) | 1.48 ± 0.36 [0.82–2.13] (n=19) |
+| Road closure 2 min into the trip (Tue 08:10) | 3.08 ± 4.08 [0.55–15.16] (n=20) | 1.54 ± 0.43 [0.77–2.19] (n=20) |
+| Clear to heavy rain 3 min into the trip (Tue 08:10) | 1.77 ± 0.71 [0.60–3.39] (n=20) | 1.55 ± 0.53 [0.56–2.53] (n=20) |
+| All conditions | 2.09 ± 2.32 [0.54–15.16] (n=70) | 1.51 ± 0.43 [0.56–2.53] (n=80) |
 
 ### Dynamic re-routing time (per trip) (s)
 
-| Traffic condition | ANTROUTE mean ± SD | Cheng mean ± SD |
+| Traffic condition | ANTROUTE mean ± SD [min–max] | Cheng mean ± SD [min–max] |
 |---|---|---|
-| Off-peak, no change (Tue 10:10, historical weather) | 0.00 ± 0.00 (n=20) | 0.00 ± 0.00 (n=20) |
-| Morning peak begins during the trip (Tue 06:50) | 1.69 ± 1.58 (n=20) | 6.02 ± 4.45 (n=20) |
-| Evening peak begins during the trip (Tue 16:50) | 1.81 ± 1.53 (n=20) | 5.16 ± 2.59 (n=20) |
-| Road closure 2 min into the trip (Tue 08:10) | 4.38 ± 7.66 (n=20) | 6.79 ± 5.16 (n=20) |
-| Clear to heavy rain 3 min into the trip (Tue 08:10) | 2.63 ± 1.83 (n=20) | 5.47 ± 2.64 (n=20) |
-| All conditions | 2.10 ± 3.86 (n=100) | 4.69 ± 4.17 (n=100) |
+| Off-peak, no change (Tue 10:10, historical weather) | 0.00 ± 0.00 [0.00–0.00] (n=20) | 0.13 ± 0.41 [0.00–1.37] (n=20) |
+| Morning peak begins during the trip (Tue 06:50) | 1.16 ± 1.01 [0.00–3.70] (n=20) | 1.39 ± 0.52 [0.00–2.06] (n=20) |
+| Evening peak begins during the trip (Tue 16:50) | 1.31 ± 1.04 [0.00–3.79] (n=20) | 1.41 ± 0.48 [0.00–2.13] (n=20) |
+| Road closure 2 min into the trip (Tue 08:10) | 3.08 ± 4.08 [0.55–15.16] (n=20) | 1.75 ± 0.89 [0.77–4.38] (n=20) |
+| Clear to heavy rain 3 min into the trip (Tue 08:10) | 1.77 ± 0.71 [0.60–3.39] (n=20) | 1.93 ± 1.10 [0.56–4.14] (n=20) |
+| All conditions | 1.46 ± 2.17 [0.00–15.16] (n=100) | 1.32 ± 0.96 [0.00–4.38] (n=100) |
 
 ### Re-routes per trip
 
-| Traffic condition | ANTROUTE mean ± SD | Cheng mean ± SD |
+| Traffic condition | ANTROUTE mean ± SD [min–max] | Cheng mean ± SD [min–max] |
 |---|---|---|
-| Off-peak, no change (Tue 10:10, historical weather) | 0.00 ± 0.00 (n=20) | 0.00 ± 0.00 (n=20) |
-| Morning peak begins during the trip (Tue 06:50) | 0.85 ± 0.37 (n=20) | 1.05 ± 0.22 (n=20) |
-| Evening peak begins during the trip (Tue 16:50) | 0.90 ± 0.31 (n=20) | 1.00 ± 0.00 (n=20) |
-| Road closure 2 min into the trip (Tue 08:10) | 1.00 ± 0.00 (n=20) | 1.10 ± 0.31 (n=20) |
-| Clear to heavy rain 3 min into the trip (Tue 08:10) | 1.00 ± 0.00 (n=20) | 1.10 ± 0.31 (n=20) |
-| All conditions | 0.75 ± 0.44 (n=100) | 0.85 ± 0.48 (n=100) |
+| Off-peak, no change (Tue 10:10, historical weather) | 0.00 ± 0.00 [0.00–0.00] (n=20) | 0.10 ± 0.31 [0.00–1.00] (n=20) |
+| Morning peak begins during the trip (Tue 06:50) | 0.75 ± 0.44 [0.00–1.00] (n=20) | 0.95 ± 0.22 [0.00–1.00] (n=20) |
+| Evening peak begins during the trip (Tue 16:50) | 0.75 ± 0.44 [0.00–1.00] (n=20) | 0.95 ± 0.22 [0.00–1.00] (n=20) |
+| Road closure 2 min into the trip (Tue 08:10) | 1.00 ± 0.00 [1.00–1.00] (n=20) | 1.10 ± 0.31 [1.00–2.00] (n=20) |
+| Clear to heavy rain 3 min into the trip (Tue 08:10) | 1.00 ± 0.00 [1.00–1.00] (n=20) | 1.20 ± 0.41 [1.00–2.00] (n=20) |
+| All conditions | 0.70 ± 0.46 [0.00–1.00] (n=100) | 0.86 ± 0.49 [0.00–2.00] (n=100) |
 
 ### Convergence rate: iterations to convergence (initial search) (iterations)
 
-| Traffic condition | ANTROUTE mean ± SD | Cheng mean ± SD |
+| Traffic condition | ANTROUTE mean ± SD [min–max] | Cheng mean ± SD [min–max] |
 |---|---|---|
-| Off-peak, no change (Tue 10:10, historical weather) | 5.35 ± 3.12 (n=20) | 5.70 ± 2.54 (n=20) |
-| Morning peak begins during the trip (Tue 06:50) | 4.65 ± 3.05 (n=20) | 4.65 ± 2.18 (n=20) |
-| Evening peak begins during the trip (Tue 16:50) | 4.90 ± 3.13 (n=20) | 6.10 ± 2.20 (n=20) |
-| Road closure 2 min into the trip (Tue 08:10) | 5.90 ± 2.99 (n=20) | 4.85 ± 1.95 (n=20) |
-| Clear to heavy rain 3 min into the trip (Tue 08:10) | 4.80 ± 3.30 (n=20) | 4.85 ± 1.95 (n=20) |
-| All conditions | 5.12 ± 3.09 (n=100) | 5.23 ± 2.21 (n=100) |
+| Off-peak, no change (Tue 10:10, historical weather) | 25.70 ± 4.76 [21.00–37.00] (n=20) | 25.70 ± 3.06 [23.00–34.00] (n=20) |
+| Morning peak begins during the trip (Tue 06:50) | 24.70 ± 2.79 [21.00–29.00] (n=20) | 25.05 ± 1.32 [23.00–28.00] (n=20) |
+| Evening peak begins during the trip (Tue 16:50) | 25.55 ± 5.20 [21.00–39.00] (n=20) | 23.90 ± 1.55 [21.00–26.00] (n=20) |
+| Road closure 2 min into the trip (Tue 08:10) | 25.50 ± 4.48 [21.00–35.00] (n=20) | 25.10 ± 1.97 [22.00–28.00] (n=20) |
+| Clear to heavy rain 3 min into the trip (Tue 08:10) | 25.20 ± 3.74 [21.00–33.00] (n=20) | 25.10 ± 1.97 [22.00–28.00] (n=20) |
+| All conditions | 25.33 ± 4.20 [21.00–39.00] (n=100) | 24.97 ± 2.11 [21.00–34.00] (n=100) |
+
+Runs that reached the iteration limit without converging (not included above): ANTROUTE 0, Cheng 0.
 
 ### Iterations to convergence (all searches) (iterations)
 
-| Traffic condition | ANTROUTE mean ± SD | Cheng mean ± SD |
+| Traffic condition | ANTROUTE mean ± SD [min–max] | Cheng mean ± SD [min–max] |
 |---|---|---|
-| Off-peak, no change (Tue 10:10, historical weather) | 5.35 ± 3.12 (n=20) | 5.70 ± 2.54 (n=20) |
-| Morning peak begins during the trip (Tue 06:50) | 3.88 ± 2.18 (n=20) | 2.84 ± 1.10 (n=20) |
-| Evening peak begins during the trip (Tue 16:50) | 4.00 ± 3.20 (n=20) | 3.55 ± 1.10 (n=20) |
-| Road closure 2 min into the trip (Tue 08:10) | 5.22 ± 1.86 (n=20) | 2.95 ± 1.07 (n=20) |
-| Clear to heavy rain 3 min into the trip (Tue 08:10) | 4.70 ± 2.64 (n=20) | 2.88 ± 1.01 (n=20) |
-| All conditions | 4.63 ± 2.67 (n=100) | 3.58 ± 1.82 (n=100) |
+| Off-peak, no change (Tue 10:10, historical weather) | 25.70 ± 4.76 [21.00–37.00] (n=20) | 25.55 ± 3.18 [22.50–34.00] (n=20) |
+| Morning peak begins during the trip (Tue 06:50) | 24.15 ± 2.88 [21.00–32.00] (n=20) | 23.18 ± 0.85 [22.00–25.00] (n=20) |
+| Evening peak begins during the trip (Tue 16:50) | 24.68 ± 3.84 [21.00–36.00] (n=20) | 22.57 ± 1.09 [21.00–26.00] (n=20) |
+| Road closure 2 min into the trip (Tue 08:10) | 25.20 ± 3.13 [21.00–31.50] (n=20) | 22.98 ± 0.95 [21.50–24.50] (n=20) |
+| Clear to heavy rain 3 min into the trip (Tue 08:10) | 25.00 ± 2.88 [21.00–31.50] (n=20) | 22.92 ± 0.94 [21.50–24.50] (n=20) |
+| All conditions | 24.95 ± 3.54 [21.00–37.00] (n=100) | 23.44 ± 1.95 [21.00–34.00] (n=100) |
 
 ## SOP 3. Significant difference between ANTROUTE and the baseline
 
-Paired by trip and traffic condition (seeds averaged). Difference = ANTROUTE − Cheng; negative favours ANTROUTE for every measure. α = 0.05.
+Paired by trip and traffic condition (seeds averaged). d = Cheng − ANTROUTE; positive favours ANTROUTE for every measure. Two-sided Wilcoxon signed-rank test, W = min(W+, W−); the four p-values of each condition are Holm-adjusted. Significant when the Holm-adjusted p < α = 0.05.
 
 ### All conditions
 
-| Measure | n | ANTROUTE | Cheng | Mean difference | Test | Statistic | p | Significant |
-|---|---|---|---|---|---|---|---|---|
-| Distance travelled | 50 | 8.89 | 11.88 | -2.99 | Wilcoxon signed-rank | W = 9.0 | < 0.0001 | **Yes** |
-| Path cost | 50 | 38.22 | 66.58 | -28.36 | Wilcoxon signed-rank | W = 0.0 | < 0.0001 | **Yes** |
-| Computational time | 50 | 4.74 | 11.93 | -7.19 | Wilcoxon signed-rank | W = 48.0 | < 0.0001 | **Yes** |
-| Convergence rate | 50 | 5.12 | 5.23 | -0.11 | Wilcoxon signed-rank | W = 568.0 | 0.5086 | No |
+| Measure | n | ANTROUTE mean | Cheng mean | Mean d | W+ | W− | W | p | Holm p | Significant |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Distance travelled | 50 | 9.06 | 12.34 | 3.28 | 1269.0 | 6.0 | 6.0 | < 0.0001 | < 0.0001 | **Yes** |
+| Path cost | 50 | 35.41 | 62.05 | 26.64 | 1275.0 | 0.0 | 0.0 | < 0.0001 | < 0.0001 | **Yes** |
+| Computational time | 50 | 3.48 | 3.63 | 0.15 | 962.0 | 313.0 | 313.0 | 0.0014 | 0.0028 | **Yes** |
+| Convergence rate | 50 | 25.33 | 24.97 | -0.36 | 631.0 | 594.0 | 594.0 | 0.8537 | 0.8537 | No |
 
 ### Off-peak, no change (Tue 10:10, historical weather)
 
-| Measure | n | ANTROUTE | Cheng | Mean difference | Test | Statistic | p | Significant |
-|---|---|---|---|---|---|---|---|---|
-| Distance travelled | 10 | 8.83 | 10.47 | -1.64 | paired t-test | t(9) = -4.24 | 0.0022 | **Yes** |
-| Path cost | 10 | 28.70 | 42.40 | -13.70 | paired t-test | t(9) = -6.87 | < 0.0001 | **Yes** |
-| Computational time | 10 | 3.13 | 6.72 | -3.59 | paired t-test | t(9) = -2.66 | 0.0261 | **Yes** |
-| Convergence rate | 10 | 5.35 | 5.70 | -0.35 | paired t-test | t(9) = -0.35 | 0.7330 | No |
+| Measure | n | ANTROUTE mean | Cheng mean | Mean d | W+ | W− | W | p | Holm p | Significant |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Distance travelled | 10 | 8.89 | 11.12 | 2.23 | 54.0 | 1.0 | 1.0 | 0.0039 | 0.0117 | **Yes** |
+| Path cost | 10 | 32.73 | 51.76 | 19.04 | 55.0 | 0.0 | 0.0 | 0.0020 | 0.0078 | **Yes** |
+| Computational time | 10 | 2.01 | 2.58 | 0.57 | 51.0 | 4.0 | 4.0 | 0.0137 | 0.0273 | **Yes** |
+| Convergence rate | 10 | 25.70 | 25.70 | 0.00 | 32.5 | 22.5 | 22.5 | 0.6445 | 0.6445 | No |
 
 ### Morning peak begins during the trip (Tue 06:50)
 
-| Measure | n | ANTROUTE | Cheng | Mean difference | Test | Statistic | p | Significant |
-|---|---|---|---|---|---|---|---|---|
-| Distance travelled | 10 | 8.83 | 13.15 | -4.32 | Wilcoxon signed-rank | W = 0.0 | 0.0020 | **Yes** |
-| Path cost | 10 | 35.59 | 76.81 | -41.22 | Wilcoxon signed-rank | W = 0.0 | 0.0020 | **Yes** |
-| Computational time | 10 | 4.06 | 13.78 | -9.73 | Wilcoxon signed-rank | W = 0.0 | 0.0020 | **Yes** |
-| Convergence rate | 10 | 4.65 | 4.65 | 0.00 | paired t-test | t(9) = 0.00 | 1.0000 | No |
+| Measure | n | ANTROUTE mean | Cheng mean | Mean d | W+ | W− | W | p | Holm p | Significant |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Distance travelled | 10 | 8.86 | 11.03 | 2.17 | 55.0 | 0.0 | 0.0 | 0.0020 | 0.0078 | **Yes** |
+| Path cost | 10 | 33.84 | 52.90 | 19.06 | 55.0 | 0.0 | 0.0 | 0.0020 | 0.0078 | **Yes** |
+| Computational time | 10 | 3.17 | 3.60 | 0.43 | 40.0 | 15.0 | 15.0 | 0.2324 | 0.4648 | No |
+| Convergence rate | 10 | 24.70 | 25.05 | 0.35 | 33.5 | 21.5 | 21.5 | 0.5801 | 0.5801 | No |
 
 ### Evening peak begins during the trip (Tue 16:50)
 
-| Measure | n | ANTROUTE | Cheng | Mean difference | Test | Statistic | p | Significant |
-|---|---|---|---|---|---|---|---|---|
-| Distance travelled | 10 | 8.84 | 11.29 | -2.45 | paired t-test | t(9) = -3.51 | 0.0066 | **Yes** |
-| Path cost | 10 | 30.93 | 55.09 | -24.16 | paired t-test | t(9) = -4.39 | 0.0017 | **Yes** |
-| Computational time | 10 | 4.45 | 12.94 | -8.49 | Wilcoxon signed-rank | W = 0.0 | 0.0020 | **Yes** |
-| Convergence rate | 10 | 4.90 | 6.10 | -1.20 | paired t-test | t(9) = -1.12 | 0.2901 | No |
+| Measure | n | ANTROUTE mean | Cheng mean | Mean d | W+ | W− | W | p | Holm p | Significant |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Distance travelled | 10 | 8.97 | 11.66 | 2.70 | 52.0 | 3.0 | 3.0 | 0.0098 | 0.0293 | **Yes** |
+| Path cost | 10 | 33.41 | 53.25 | 19.84 | 55.0 | 0.0 | 0.0 | 0.0020 | 0.0078 | **Yes** |
+| Computational time | 10 | 3.26 | 3.70 | 0.43 | 41.0 | 14.0 | 14.0 | 0.1934 | 0.3867 | No |
+| Convergence rate | 10 | 25.55 | 23.90 | -1.65 | 20.0 | 35.0 | 20.0 | 0.4707 | 0.4707 | No |
 
 ### Road closure 2 min into the trip (Tue 08:10)
 
-| Measure | n | ANTROUTE | Cheng | Mean difference | Test | Statistic | p | Significant |
-|---|---|---|---|---|---|---|---|---|
-| Distance travelled | 10 | 9.00 | 12.46 | -3.45 | Wilcoxon signed-rank | W = 1.0 | 0.0039 | **Yes** |
-| Path cost | 10 | 47.53 | 77.76 | -30.23 | paired t-test | t(9) = -4.92 | 0.0008 | **Yes** |
-| Computational time | 10 | 6.85 | 14.46 | -7.61 | paired t-test | t(9) = -2.37 | 0.0420 | **Yes** |
-| Convergence rate | 10 | 5.90 | 4.85 | 1.05 | paired t-test | t(9) = 0.96 | 0.3612 | No |
+| Measure | n | ANTROUTE mean | Cheng mean | Mean d | W+ | W− | W | p | Holm p | Significant |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Distance travelled | 10 | 9.54 | 14.60 | 5.07 | 55.0 | 0.0 | 0.0 | 0.0020 | 0.0078 | **Yes** |
+| Path cost | 10 | 39.01 | 77.17 | 38.15 | 55.0 | 0.0 | 0.0 | 0.0020 | 0.0078 | **Yes** |
+| Computational time | 10 | 5.18 | 4.03 | -1.15 | 31.0 | 24.0 | 24.0 | 0.7695 | 1.0000 | No |
+| Convergence rate | 10 | 25.50 | 25.10 | -0.40 | 25.5 | 29.5 | 25.5 | 0.8691 | 1.0000 | No |
 
 ### Clear to heavy rain 3 min into the trip (Tue 08:10)
 
-| Measure | n | ANTROUTE | Cheng | Mean difference | Test | Statistic | p | Significant |
-|---|---|---|---|---|---|---|---|---|
-| Distance travelled | 10 | 8.98 | 12.04 | -3.07 | Wilcoxon signed-rank | W = 1.0 | 0.0039 | **Yes** |
-| Path cost | 10 | 48.34 | 80.83 | -32.50 | paired t-test | t(9) = -4.82 | 0.0009 | **Yes** |
-| Computational time | 10 | 5.20 | 11.73 | -6.53 | paired t-test | t(9) = -10.65 | < 0.0001 | **Yes** |
-| Convergence rate | 10 | 4.80 | 4.85 | -0.05 | paired t-test | t(9) = -0.04 | 0.9683 | No |
+| Measure | n | ANTROUTE mean | Cheng mean | Mean d | W+ | W− | W | p | Holm p | Significant |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Distance travelled | 10 | 9.03 | 13.27 | 4.24 | 55.0 | 0.0 | 0.0 | 0.0020 | 0.0078 | **Yes** |
+| Path cost | 10 | 38.06 | 75.15 | 37.09 | 55.0 | 0.0 | 0.0 | 0.0020 | 0.0078 | **Yes** |
+| Computational time | 10 | 3.79 | 4.24 | 0.45 | 42.0 | 13.0 | 13.0 | 0.1602 | 0.3203 | No |
+| Convergence rate | 10 | 25.20 | 25.10 | -0.10 | 24.5 | 20.5 | 20.5 | 0.8398 | 0.8398 | No |
 
 ## Runs that failed
 

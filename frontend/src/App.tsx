@@ -7,6 +7,7 @@ import PlaceInput from './features/trip/PlaceInput';
 import CostBreakdown from './features/trip/CostBreakdown';
 import HistoricalStudyStatus from './features/study/HistoricalStudyStatus';
 import DatasetExplorer from './features/study/DatasetExplorer';
+import StatisticalComparison from './features/study/StatisticalComparison';
 import type { DatasetMap, RouteExplanation } from './api/routeService';
 import RouteExplanationPanel, { COSTLIER_COLOR, MISSED_COLOR } from './features/map/RouteExplanation';
 
@@ -15,6 +16,15 @@ const cities = ['San Juan', 'Manila', 'Mandaluyong', 'Makati', 'Pasig'];
 const emptyGeometry: [number, number][] = [];
 const emptyBoundaries = {};
 const seconds = (milliseconds: number) => `${(milliseconds / 1000).toFixed(2)} s`;
+// Paired difference of the statistical treatment, d = C_baseline − C_ANTROUTE; lower is better, so d > 0 favours ANTROUTE.
+const pairedDifference = (proposed: number | null, baseline: number | null, show: (value: number) => string) => {
+  if (proposed === null || baseline === null) return 'Not paired: a run did not converge';
+  const difference = baseline - proposed;
+  if (difference === 0) return 'd = 0 · no difference';
+  return `d = ${difference > 0 ? '+' : '−'}${show(Math.abs(difference))} · favours ${difference > 0 ? 'ANTROUTE' : 'baseline'}`;
+};
+const convergenceText = ({ iterations_to_convergence: n, mean_iterations_to_convergence: mean, searches_not_converged: missed }: TripResult['evaluation']['convergence']) =>
+  `${n === null ? 'Not converged (iteration limit)' : `${n} iteration${n === 1 ? '' : 's'}`}${mean === null ? '' : ` (all searches: ${mean.toFixed(1)})`}${missed ? ` · ${missed} search${missed === 1 ? '' : 'es'} not converged` : ''}`;
 const pad = (value: number) => String(value).padStart(2, '0');
 const MAX_STOPS = 5;
 const closeIcon = <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>;
@@ -27,7 +37,7 @@ const mainRoad = (trip: TripResult) => {
   return [...counts].sort((a, b) => b[1] - a[1])[0]?.[0] ?? 'unnamed roads';
 };
 
-function CostHistory({ values, caption, color, marker }: { values: (number | null)[]; caption: string; color: string; marker: number }) {
+function CostHistory({ values, caption, color, marker }: { values: (number | null)[]; caption: string; color: string; marker: number | null }) {
   const costs = values.filter((value): value is number => value !== null);
   if (!costs.length) return null;
   const high = Math.max(...costs), low = Math.min(...costs);
@@ -35,12 +45,12 @@ function CostHistory({ values, caption, color, marker }: { values: (number | nul
   const points = values.flatMap((value, i) => value === null ? [] : [`${x(i)},${110 - (value - low) / (high - low || 1) * 90}`]).join(' ');
   return <figure>
     <figcaption>{caption}</figcaption>
-    <svg viewBox="0 0 600 140" role="img" aria-label={`${caption}: best cost over ${values.length} iterations, final best first found at iteration ${marker}`}>
+    <svg viewBox="0 0 600 140" role="img" aria-label={`${caption}: best cost over ${values.length} iterations, ${marker === null ? 'not converged' : `converged at iteration ${marker}`}`}>
       <path d="M20 15V115H585" fill="none" stroke="#cbd5e1" />
-      <line x1={x(marker - 1)} x2={x(marker - 1)} y1="15" y2="115" stroke={color} strokeDasharray="4 4" />
+      {marker !== null && <line x1={x(marker - 1)} x2={x(marker - 1)} y1="15" y2="115" stroke={color} strokeDasharray="4 4" />}
       <polyline points={points} fill="none" stroke={color} strokeWidth="3" />
       <text x="20" y="135" fontSize="11">Iteration 1</text>
-      <text x={Math.min(x(marker - 1) + 4, 470)} y="28" fontSize="11">Converged at {marker}</text>
+      <text x={marker === null ? 380 : Math.min(x(marker - 1) + 4, 470)} y="28" fontSize="11">{marker === null ? 'Not converged (iteration limit)' : `Converged at ${marker}`}</text>
       <text x="510" y="135" fontSize="11">Iteration {values.length}</text>
     </svg>
     <p className="muted">Best cost (own objective): {low.toFixed(4)} – {high.toFixed(4)}</p>
@@ -318,15 +328,16 @@ export default function App() {
       <section className="card evaluation" id="evaluation">
         <h2>Evaluation of this trip</h2>
         {runs.length ? <>
-          <p className="muted" id="trip-measures">Both algorithms drive the same trip, departure and mid-trip changes. Path cost is the CRITIC ten-feature cost of each road when entered, for both. Convergence rate is the iteration at which the initial search first found its final best route (fewer = faster). Lower is better for every measure.</p>
-          <div className="audit-table"><table><thead><tr><th>Measure</th>{runs.map(run => <th key={run.name}><span className="legend-dot" style={{ background: run.color }} />{run.name}</th>)}{!baseline && <th>Baseline IACO</th>}</tr></thead><tbody>
+          <p className="muted" id="trip-measures">Both algorithms drive the same trip, departure and mid-trip changes. Path cost is the CRITIC ten-feature cost of each road when entered, for both. Convergence rate is N<sub>conv</sub>, the iteration at which the initial search's best path cost had not improved for 20 consecutive iterations (Aadil et al., 2016; fewer = faster). Both algorithms stop on this rule; reaching the iteration limit first is recorded as not converged. Lower is better for every measure.</p>
+          <div className="audit-table"><table><thead><tr><th>Measure</th>{runs.map(run => <th key={run.name}><span className="legend-dot" style={{ background: run.color }} />{run.name}</th>)}{!baseline && <th>Baseline IACO</th>}<th>Paired difference (baseline − ANTROUTE)</th></tr></thead><tbody>
             {([
-              ['Distance travelled', trip => `${(trip.evaluation.distance_travel_m / 1000).toFixed(3)} km`],
-              ['Path cost', trip => trip.evaluation.path_cost.toFixed(4)],
-              ['Computational time', trip => seconds(trip.evaluation.computational_time_ms)],
-              ['Convergence rate', trip => `${trip.evaluation.convergence.iterations_to_convergence} iteration${trip.evaluation.convergence.iterations_to_convergence === 1 ? '' : 's'} (all searches: ${trip.evaluation.convergence.mean_iterations_to_convergence.toFixed(1)})`],
-            ] as [string, (trip: TripResult) => string][]).map(([name, show]) => <tr key={name}><th scope="row">{name}</th>
-              {runs.map(run => <td key={run.name}>{show(run.trip)}</td>)}{!baseline && <td>{baselineBusy ? 'Running…' : '–'}</td>}</tr>)}
+              ['Distance travelled', trip => `${(trip.evaluation.distance_travel_m / 1000).toFixed(3)} km`, trip => trip.evaluation.distance_travel_m, value => `${(value / 1000).toFixed(3)} km`],
+              ['Path cost', trip => trip.evaluation.path_cost.toFixed(4), trip => trip.evaluation.path_cost, value => value.toFixed(4)],
+              ['Computational time', trip => seconds(trip.evaluation.computational_time_ms), trip => trip.evaluation.computational_time_ms, seconds],
+              ['Convergence rate', trip => convergenceText(trip.evaluation.convergence), trip => trip.evaluation.convergence.iterations_to_convergence, value => `${value} iteration${value === 1 ? '' : 's'}`],
+            ] as [string, (trip: TripResult) => string, (trip: TripResult) => number | null, (value: number) => string][]).map(([name, show, value, unit]) => <tr key={name}><th scope="row">{name}</th>
+              {runs.map(run => <td key={run.name}>{show(run.trip)}</td>)}{!baseline && <td>{baselineBusy ? 'Running…' : '–'}</td>}
+              <td>{result && baseline ? pairedDifference(value(result), value(baseline), unit) : '–'}</td></tr>)}
           </tbody></table></div>
           {baselineError && <p className="error" role="alert">Baseline: {baselineError}</p>}
           <CostBreakdown runs={runs} />
@@ -336,12 +347,13 @@ export default function App() {
           <div className="audit-table"><table><thead><tr><th>Algorithm</th><th>Trip minute</th><th>Reason</th><th>Roads affected</th><th>Iterations to convergence</th><th>Routing time</th></tr></thead><tbody>
             {runs.flatMap(run => run.trip.evaluation.convergence.searches.map((search, index) => <tr key={`${run.name}-${index}`}>
               <td>{run.name}</td><td>{search.at_minute.toFixed(1)}</td><td>{search.trigger === 'departure' ? 'Initial routing at departure' : search.kind === 'initial' ? `Initial routing: ${search.trigger.replace(/^leg/, 'Leg')}` : search.trigger}</td>
-              <td>{search.affected_roads ? search.affected_roads.toLocaleString() : '–'}</td><td>{search.iterations_to_convergence} of {search.iterations}</td><td>{seconds(search.routing_time_ms)}</td></tr>))}
+              <td>{search.affected_roads ? search.affected_roads.toLocaleString() : '–'}</td><td>{search.iterations_to_convergence === null ? `Not converged (${search.iterations} iterations)` : `${search.iterations_to_convergence} of ${search.iterations}`}</td><td>{seconds(search.routing_time_ms)}</td></tr>))}
           </tbody></table></div>
           {runs.some(run => run.trip.trip.changes_without_replanning.length > 0) && <p className="muted">Changes that did not require re-routing: {runs.map(run => run.trip.trip.changes_without_replanning.map(change => `${run.name} at minute ${change.at_minute.toFixed(1)} (${change.change})`).join('; ')).filter(Boolean).join('; ')}.</p>}
           {result && <details><summary>Roads driven by ANTROUTE</summary><p>{result.route.road_names.filter((name, index, array) => index === 0 || name !== array[index - 1]).join(' → ')}</p></details>}
         </> : <p className="muted">Distance travelled, path cost, computational time and convergence rate appear for both algorithms after a completed trip.</p>}
       </section>
+      <StatisticalComparison />
       <section className="card" id="features"><h2>Routing features</h2><div className="feature-list">{features.map(feature => <span key={feature}>{feature}</span>)}</div>
         <details className="source-details"><summary>Where each feature and estimate comes from</summary>
           <div className="audit-table"><table><thead><tr><th>Feature</th><th>Classification</th><th>Basis and assumptions</th><th>Reference</th></tr></thead><tbody>

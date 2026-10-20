@@ -164,8 +164,9 @@ def test_convergence_is_online_and_resets(network):
     result = solve(network, patience=2, max_iterations=20)
     assert result.converged
     assert len(result.best_cost_by_iteration) == 3
+    assert result.converged_at == 3
     limited = solve(network, patience=10, max_iterations=2)
-    assert not limited.converged
+    assert not limited.converged and limited.converged_at is None
     assert len(limited.best_cost_by_iteration) == 2
     assert evaluate(limited, AntColonyConfig(max_iterations=2), 1)["convergence_rule"]["stop_reason"] == "iteration_limit"
 

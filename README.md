@@ -51,8 +51,8 @@ Answer the statement of the problem (writes `outputs/sop_runs.csv`, `outputs/sop
 ```
 
 - SOP 1: distance travelled and path cost under five traffic conditions (off-peak, morning and evening peak onset, road closure, heavy-rain onset).
-- SOP 2: computational time, initial routing time, dynamic re-routing time, and convergence rate (iterations until the initial search first found its final best route).
-- SOP 3: ANTROUTE vs Cheng on distance, path cost, computational time and convergence rate, paired by trip and condition; Shapiro–Wilk selects a paired t-test or Wilcoxon signed-rank test (α = 0.05).
+- SOP 2: computational time, initial routing time, dynamic re-routing time, and convergence rate (N_conv: the iteration at which the best path cost had not improved for 20 consecutive iterations; both algorithms stop on this rule, and reaching the iteration limit first is recorded as not converged).
+- SOP 3: ANTROUTE vs Cheng on distance, path cost, computational time and convergence rate, paired by trip and condition with d = baseline − ANTROUTE; two-sided Wilcoxon signed-rank test (W = min(W⁺, W⁻)) with Holm-adjusted p-values across the four measures (α = 0.05). Add `--from-runs` to re-analyse `outputs/sop_runs.csv` without re-running trips.
 
 See [architecture](traffic_system/docs/aco_system_architecture.md#algorithms) for how the three differ.
 

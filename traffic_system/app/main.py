@@ -344,12 +344,13 @@ def plan_baseline_route(request: BaselineRequest, _historical_release: None = De
                 "path_cost": sum(segment["path_cost"] for segment in response["route"]["segment_features"]),
                 "computational_time_ms": elapsed_ms,
                 "convergence_rule": {
-                    "rule": "fixed_iterations",
+                    "patience": request.baseline.patience,
                     "max_iterations": request.baseline.max_iterations,
                     "iterations": len(result.best_cost_by_iteration),
                     "best_found_at_iteration": result.best_found_at,
-                    "iterations_to_convergence": result.best_found_at,
-                    "stop_reason": "iteration_limit",
+                    "iterations_to_convergence": result.converged_at,
+                    "converged": result.converged,
+                    "stop_reason": "convergence_rule" if result.converged else "iteration_limit",
                     "best_cost_by_iteration": result.best_cost_by_iteration,
                 },
             }}

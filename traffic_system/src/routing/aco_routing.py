@@ -10,6 +10,10 @@ from pydantic import Field
 from .dynamic_weight import WeightedRoad
 from .network import StudyModel
 
+# Convergence rule of the study (Aadil et al., 2016), shared by ANTROUTE and the baseline: converged when the
+# best path cost has not improved for 20 consecutive iterations; N_conv is the iteration that first meets it.
+CONVERGENCE_PATIENCE = 20
+
 
 class AntColonyConfig(StudyModel):
     n_ants: int = Field(default=20, ge=1, le=200, strict=True)
@@ -17,8 +21,8 @@ class AntColonyConfig(StudyModel):
     alpha: float = Field(default=1, ge=0, le=5)
     beta: float = Field(default=2, ge=0, le=10)
     evaporation: float = Field(default=0.5, gt=0, lt=1)
-    tolerance: float = Field(default=0.0001, ge=0, lt=1)
-    patience: int = Field(default=10, ge=1, le=1000, strict=True)
+    tolerance: float = Field(default=0, ge=0, lt=1)  # 0: any decrease in best cost counts as an improvement.
+    patience: int = Field(default=CONVERGENCE_PATIENCE, ge=1, le=1000, strict=True)
     max_steps: int = Field(default=10000, ge=1, le=100000, strict=True)
     seed: int = Field(default=0, strict=True)
     goal_bias: float = Field(default=4, ge=0, le=10)
@@ -38,7 +42,8 @@ class ColonyResult:
     best_cost_by_iteration: list[float | None]
     converged: bool
     pheromone: dict[str, float] = field(default_factory=dict)
-    best_found_at: int = 0  # Iteration that first found the final best route: iterations to convergence.
+    best_found_at: int = 0  # Iteration that first found the final best route.
+    converged_at: int | None = None  # N_conv: iteration that first met the convergence rule; None if not converged.
     visits: dict[str, int] = field(default_factory=dict)  # Completed ant routes that used each road.
     ant_routes: int = 0  # Completed ant routes over the whole search.
 
@@ -139,7 +144,7 @@ def ant_colony_route(
             improvement = (previous_cost - best_cost) / max(abs(previous_cost), 1e-12)
             stable = stable + 1 if improvement <= config.tolerance else 0
             if stable >= config.patience:
-                return ColonyResult(best, history, True, pheromone, best_found_at, visits, ant_routes)
+                return ColonyResult(best, history, True, pheromone, best_found_at, iteration, visits, ant_routes)
     if best is None:
         raise SearchExhausted("ACO found no route within its search limits; connectivity is not disproved")
-    return ColonyResult(best, history, False, pheromone, best_found_at, visits, ant_routes)
+    return ColonyResult(best, history, False, pheromone, best_found_at, None, visits, ant_routes)

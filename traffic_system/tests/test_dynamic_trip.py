@@ -52,7 +52,8 @@ def test_closure_mid_trip_reroutes_from_the_current_node(loop_network):
         evaluation["initial_routing_time_ms"] + evaluation["dynamic_rerouting_time_ms"] + result.monitoring_time_ms)
     convergence = evaluation["convergence"]
     assert convergence["iterations_to_convergence"] == result.searches[0].iterations_to_convergence
-    assert 1 <= convergence["iterations_to_convergence"] <= result.searches[0].iterations
+    assert convergence["converged"]
+    assert convergence["iterations_to_convergence"] == result.searches[0].best_found_at + 20 == result.searches[0].iterations
 
 
 def test_cheng_reroutes_with_eq9_after_closure_and_reopening(loop_network):
@@ -60,7 +61,7 @@ def test_cheng_reroutes_with_eq9_after_closure_and_reopening(loop_network):
     result = simulate_trip(loop_network, "a", "d", DEPARTURE, "clear", frozenset({"ad"}), events, "cheng")
     assert [road.id for road in result.roads] == ["ab", "ba", "ad"]
     assert result.searches[1].affected_roads == 2  # bd closed, ad reopened
-    assert result.searches[1].stop_reason == "iteration_limit"
+    assert result.searches[1].stop_reason == "convergence_rule"  # Same 20-iteration rule as ANTROUTE.
 
 
 def test_weather_change_triggers_replanning(network):

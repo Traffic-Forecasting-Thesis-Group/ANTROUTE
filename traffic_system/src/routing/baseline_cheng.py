@@ -10,7 +10,7 @@ routes with the paper's own cost and search rules:
   - Eq. 8: heuristic eta_ij = 1 / (s_ij + d_jD), d_jD the straight-line distance from j to D.
   - Eq. 10-11: with probability q0 take the best edge, otherwise sample by tau^alpha * eta^beta.
   - Eq. 12-14: local update from every ant's tour, global update from the iteration's best tour.
-  - Step 7: a fixed NC_max iterations, with no early stop.
+  - Step 7: up to NC_max iterations.
 
 Inputs and adaptations, stated so results are not over-read:
   - Traffic flow: the study has no vehicle counts. Flow is estimated as demand-to-capacity
@@ -20,6 +20,9 @@ Inputs and adaptations, stated so results are not over-read:
     d_jD share one scale as the A*-style sum in eq. 7 requires. The paper does not give it.
   - xi (global evaporation) is not given in the paper; 0.3, equal to rho.
   - Ants: the paper uses 1.5 x nodes (18,597 here); 20, ANTROUTE's default, keeps run time comparable.
+  - Stopping: Cheng runs all NC_max iterations. Here the search stops on the study's convergence rule,
+    the same as ANTROUTE (best path cost not improved for 20 consecutive iterations), so both algorithms
+    run under the same experimental settings; NC_max stays the limit, and reaching it is "not converged".
   - Dead ends: as in ANTROUTE, ants only enter nodes that can still reach D and step back from
     dead ends. The paper's test networks have none; under the literal tabu rule ants die on real roads.
   - Eq. 9 (pheromone rescaling when road information changes) runs in simulated trips
@@ -36,7 +39,7 @@ from dataclasses import dataclass, field
 
 from pydantic import Field
 
-from .aco_routing import NoFeasibleRoute, SearchExhausted, _reachable
+from .aco_routing import CONVERGENCE_PATIENCE, NoFeasibleRoute, SearchExhausted, _reachable
 from .condition_update import Conditions, validate_conditions
 from .dynamic_weight import WeightedRoad, segment_values
 from .network import RoadNetwork, StudyModel, WeatherEffect
@@ -53,6 +56,7 @@ RANDOM_INDEX = (0, 0, 0.58, 0.90, 1.12, 1.24, 1.32, 1.41, 1.45, 1.49)
 class ChengConfig(StudyModel):
     n_ants: int = Field(default=20, ge=1, le=200, strict=True)
     max_iterations: int = Field(default=60, ge=1, le=1000, strict=True)
+    patience: int = Field(default=CONVERGENCE_PATIENCE, ge=1, le=1000, strict=True)
     alpha: float = Field(default=1, ge=0, le=5)  # Sec. 5.1.2 (3)
     beta: float = Field(default=5, ge=0, le=10)  # Sec. 5.1.2 (4)
     rho: float = Field(default=0.3, gt=0, lt=1)  # Sec. 5.1.2 (5)
@@ -76,6 +80,11 @@ class BaselineResult:
     best_cost_by_iteration: list[float | None]
     best_found_at: int
     pheromone: dict[str, float] = field(default_factory=dict)
+    converged_at: int | None = None  # N_conv: iteration that first met the convergence rule; None if not converged.
+
+    @property
+    def converged(self) -> bool:
+        return self.converged_at is not None
 
 
 def ahp(matrix=JUDGMENT) -> Ahp:
@@ -175,7 +184,9 @@ def cheng_route(adjacency: dict[str, list[WeightedRoad]], origin: str, destinati
     best: list[WeightedRoad] | None = None
     best_cost, best_found_at = math.inf, 0
     history: list[float | None] = []
+    stable = 0
     for iteration in range(1, config.max_iterations + 1):
+        previous_cost = best_cost
         completed: list[tuple[list[WeightedRoad], float]] = []
         for _ in range(config.n_ants):
             current = origin
@@ -225,6 +236,11 @@ def cheng_route(adjacency: dict[str, list[WeightedRoad]], origin: str, destinati
             if cost < best_cost - 1e-12:
                 best, best_cost, best_found_at = route[:], cost, iteration
         history.append(None if best is None else best_cost)
+        # Same convergence rule as ANTROUTE, counted once a route exists.
+        if math.isfinite(previous_cost) and best is not None:
+            stable = stable + 1 if best_cost >= previous_cost else 0
+            if stable >= config.patience:
+                return BaselineResult(best, history, best_found_at, pheromone, iteration)
     if best is None:
         raise SearchExhausted("The baseline found no route within its search limits; connectivity is not disproved")
     return BaselineResult(best, history, best_found_at, pheromone)

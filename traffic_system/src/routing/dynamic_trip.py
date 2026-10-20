@@ -60,7 +60,8 @@ class SearchRecord:
     trigger: str
     affected_roads: int
     iterations: int
-    iterations_to_convergence: int  # Iteration that first found this search's final best route.
+    iterations_to_convergence: int | None  # N_conv: iteration that first met the convergence rule; None if not converged.
+    best_found_at: int  # Iteration that first found this search's final best route.
     stop_reason: str
     route_cost: float  # In the algorithm's own objective.
     routing_time_ms: float  # Graph build, change handling and search for this routing.
@@ -84,9 +85,11 @@ class TripResult:
 
         Initial routing time = planning each leg when it starts (one leg: the routing at departure).
         Computational time = initial routing + dynamic re-routing + condition checks without a re-route.
-        Convergence rate is measured as iterations to convergence of the routing at departure.
+        Convergence rate is N_conv of the routing at departure: the iteration at which the best path cost
+        had not improved for 20 consecutive iterations; None (not converged) if the iteration limit came first.
         """
         initial = self.searches[0]
+        converged = [search.iterations_to_convergence for search in self.searches if search.iterations_to_convergence is not None]
         reroutes = [search for search in self.searches if search.kind == "reroute"]
         planning = sum(search.routing_time_ms for search in self.searches if search.kind == "initial")
         rerouting = sum(search.routing_time_ms for search in reroutes)
@@ -100,7 +103,9 @@ class TripResult:
             "mean_rerouting_time_ms": rerouting / len(reroutes) if reroutes else None,
             "convergence": {
                 "iterations_to_convergence": initial.iterations_to_convergence,
-                "mean_iterations_to_convergence": sum(search.iterations_to_convergence for search in self.searches) / len(self.searches),
+                "converged": initial.iterations_to_convergence is not None,
+                "mean_iterations_to_convergence": sum(converged) / len(converged) if converged else None,
+                "searches_not_converged": len(self.searches) - len(converged),
                 "searches": [asdict(search) for search in self.searches],
             },
         }
@@ -174,10 +179,10 @@ def simulate_trip(network: RoadNetwork, origin: str, destination: str | Sequence
                 raise
             found = run(graph)  # Only a route back through driven nodes remains.
         elapsed = (perf_counter() - started) * 1000
-        stop = "iteration_limit" if algorithm == "cheng" or not found.converged else "convergence_rule"
+        stop = "convergence_rule" if found.converged else "iteration_limit"
         result.searches.append(SearchRecord(
             kind, start, (clock - departure).total_seconds() / 60,
-            trigger, affected, len(found.best_cost_by_iteration), found.best_found_at, stop,
+            trigger, affected, len(found.best_cost_by_iteration), found.converged_at, found.best_found_at, stop,
             sum(edge.cost for edge in found.roads), preparation_ms + elapsed, found.best_cost_by_iteration))
         return [edge.road for edge in found.roads], found.pheromone
 

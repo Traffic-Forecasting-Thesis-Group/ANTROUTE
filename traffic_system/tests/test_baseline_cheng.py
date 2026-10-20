@@ -67,8 +67,15 @@ def test_finds_least_comprehensive_cost_path_on_paper_network(seed):
     # Sec. 5.1.2: 23 ants for 15 nodes; Sec. 4.2.1: q0 = 0.2 for a small network.
     result = cheng_route(adjacency, "O", "D", ChengConfig(n_ants=23, max_iterations=100, q0=0.2, seed=seed), positions)
     assert sum(edge.cost for edge in result.roads) == pytest.approx(optimum)
-    assert len(result.best_cost_by_iteration) == 100  # Step 7: a fixed NC_max, no early stop
-    assert 1 <= result.best_found_at <= 100
+    # The study's convergence rule: stop once the best cost has not improved for 20 consecutive iterations.
+    assert result.converged_at == result.best_found_at + 20 == len(result.best_cost_by_iteration)
+
+
+def test_reaching_the_iteration_limit_is_not_converged():
+    adjacency, positions = paper_network()
+    result = cheng_route(adjacency, "O", "D", ChengConfig(n_ants=23, max_iterations=10, q0=0.2), positions)
+    assert not result.converged and result.converged_at is None
+    assert len(result.best_cost_by_iteration) == 10
 
 
 def test_flow_estimate_inverts_the_bpr_congestion():
