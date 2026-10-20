@@ -10,6 +10,8 @@
   },
   "signal_nodes": 655,
   "mode": "historical_period_with_estimates",
+  "contract_version": 2,
+  "calibration_id": "34441311a3786007dbaed9f0fe4eab9f8cd83207278b7348dad71d3e87554d22",
   "weather_hours_per_city": {
     "San Juan": 8760,
     "Manila": 8760,
@@ -29,6 +31,22 @@
     "data_status": "documented_estimation_release",
     "static_features": "September 2026 OSM inventory used as an explicitly estimated static surrogate for this period; historical road changes are not reconstructed.",
     "dynamic_features": "Historical provider weather records plus date/hour-specific traffic estimates; not 8760 independent traffic observations.",
-    "flood_risk": "Static mapped NOAH hazard exposure proxy, not observed hourly flooding."
+    "flood_risk": "Static mapped NOAH hazard exposure proxy, not observed hourly flooding.",
+    "calibration_split": {
+      "development": {
+        "start": "2025-06-01",
+        "end": "2025-12-31"
+      },
+      "tuning": {
+        "start": "2026-01-01",
+        "end": "2026-02-28"
+      },
+      "test": {
+        "start": "2026-03-01",
+        "end": "2026-05-31"
+      },
+      "note": "Declare chronological, non-overlapping ISO dates within the study period. Weights, scales, class summaries and profiles are fitted on development only; tuning freezes search budgets; test is held out for the comparison. Unset boundaries block calibration and routing.",
+      "declared_by": "study team, 2026-10-20"
+    }
   }
 }

@@ -54,7 +54,8 @@ def release(tmp_path, policy, artifacts=None, **manifest_changes):
 
 
 def test_undeclared_split_blocks_calibration_and_routing(monkeypatch, tmp_path):
-    policy = json.loads((study_policy.ROOT / "configs/historical_study.json").read_text())
+    unset = {name: {"start": None, "end": None} for name in ("development", "tuning", "test")}
+    policy = {**json.loads((study_policy.ROOT / "configs/historical_study.json").read_text()), "calibration_split": unset}
     release(tmp_path, policy)
     monkeypatch.setattr(study_policy, "ROOT", tmp_path)
     status = study_policy.study_status()

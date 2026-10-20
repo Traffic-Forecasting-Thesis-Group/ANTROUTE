@@ -1,5 +1,6 @@
 {
   "mode": "historical_period_with_estimates",
+  "contract_version": 2,
   "period": {
     "start_inclusive": "2025-06-01T00:00:00+08:00",
     "end_exclusive": "2026-06-01T00:00:00+08:00",
@@ -12,8 +13,26 @@
     "data_status": "documented_estimation_release",
     "static_features": "September 2026 OSM inventory used as an explicitly estimated static surrogate for this period; historical road changes are not reconstructed.",
     "dynamic_features": "Historical provider weather records plus date/hour-specific traffic estimates; not 8760 independent traffic observations.",
-    "flood_risk": "Static mapped NOAH hazard exposure proxy, not observed hourly flooding."
+    "flood_risk": "Static mapped NOAH hazard exposure proxy, not observed hourly flooding.",
+    "calibration_split": {
+      "development": {
+        "start": "2025-06-01",
+        "end": "2025-12-31"
+      },
+      "tuning": {
+        "start": "2026-01-01",
+        "end": "2026-02-28"
+      },
+      "test": {
+        "start": "2026-03-01",
+        "end": "2026-05-31"
+      },
+      "note": "Declare chronological, non-overlapping ISO dates within the study period. Weights, scales, class summaries and profiles are fitted on development only; tuning freezes search budgets; test is held out for the comparison. Unset boundaries block calibration and routing.",
+      "declared_by": "study team, 2026-10-20"
+    }
   },
+  "code_commit": "60fa17e537b794f836fd8c8847a96dbbd5e4b61b",
+  "calibration_id": "34441311a3786007dbaed9f0fe4eab9f8cd83207278b7348dad71d3e87554d22",
   "hours_per_city": {
     "San Juan": 8760,
     "Manila": 8760,
@@ -22,10 +41,11 @@
     "Pasig": 8760
   },
   "artifacts": {
-    "data/processed/study_network.json": "df52759d7d19a960430ea137280eaee24e2528d51613d314399d7515a8ffbb56",
+    "data/processed/study_network.json": "d44e1659c44a3b22baefc8668da97b85fbd00dd8bf007d48e2351de73ea3e011",
     "data/processed/historical_weather.json": "323efba295bbeb644e041053c5be968a0fa948027a9564b54ff106f88f51967a",
+    "data/processed/calibration.json": "34441311a3786007dbaed9f0fe4eab9f8cd83207278b7348dad71d3e87554d22",
     "data/processed/temporal/traffic_hourly.index.json": "129363b42cf0777e65cafaaba39048a1a861823b0d98bdec0a6e6a28fb10c552",
-    "configs/study_assumptions.json": "9f45a131e9884a300b186c365b4c4fc97dc8e5c53d4fb1edd1a86855e3f64f91",
-    "configs/historical_study.json": "41ec1db4ddc962f5b27ead76c9df121314d0d34e8a454151c98ccf7d555c161d"
+    "configs/study_assumptions.json": "b02ca6ec0ce625fa5a5847d8b6b966e6260a01660407ddbc3c66a1883d95b549",
+    "configs/historical_study.json": "7f4bb2085e4bac37736c63272987e319cb163b0fcce9738866351b48b7c0822c"
   }
 }

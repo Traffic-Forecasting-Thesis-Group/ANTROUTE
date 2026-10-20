@@ -13,17 +13,18 @@
   "flood_risk": "Static mapped NOAH hazard exposure proxy, not observed hourly flooding.",
   "calibration_split": {
     "development": {
-      "start": null,
-      "end": null
+      "start": "2025-06-01",
+      "end": "2025-12-31"
     },
     "tuning": {
-      "start": null,
-      "end": null
+      "start": "2026-01-01",
+      "end": "2026-02-28"
     },
     "test": {
-      "start": null,
-      "end": null
+      "start": "2026-03-01",
+      "end": "2026-05-31"
     },
-    "note": "Declare chronological, non-overlapping ISO dates within the study period. Weights, scales, class summaries and profiles are fitted on development only; tuning freezes search budgets; test is held out for the comparison. Unset boundaries block calibration and routing."
+    "note": "Declare chronological, non-overlapping ISO dates within the study period. Weights, scales, class summaries and profiles are fitted on development only; tuning freezes search budgets; test is held out for the comparison. Unset boundaries block calibration and routing.",
+    "declared_by": "study team, 2026-10-20"
   }
 }

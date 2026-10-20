@@ -206,6 +206,10 @@ def preprocess(boundary_path, graph_path, flood_path, assumptions):
         city = inside[source]
         road_id = f"{source}:{target}:{key}"
         portions, coverage = flood_portions(line, tree, levels, extent)
+        # distance_m is stored to the millimetre; keep the stored portions within the stored length (rounding only).
+        stored_km = round(distance, 3) / 1000
+        if sum(portions.values()) > stored_km:
+            portions = {hazard: km * stored_km / sum(portions.values()) for hazard, km in portions.items()}
         fallbacks.update([speed_source, lanes_source, geometry_source])
         segments.append({
             "road_id": road_id, "source_node": source, "target_node": target, "city": city,
@@ -222,7 +226,8 @@ def preprocess(boundary_path, graph_path, flood_path, assumptions):
             "traffic_location": road_id,  # Each segment has its own hourly traffic series.
             "geometry_wkt": line.wkt,
         })
-        floods.append({"road_id": road_id, **{f"flood_km_class{c}": round(portions.get(c, 0.0), 9) for c in (1, 2, 3)},
+        # Rounded down to the nanokilometre so the stored portions never add up to more than the stored length.
+        floods.append({"road_id": road_id, **{f"flood_km_class{c}": math.floor(portions.get(c, 0.0) * 1e9) / 1e9 for c in (1, 2, 3)},
                        "flood_coverage": coverage,
                        "flood_source": "noah_5yr_hazard_class_lengths" if portions else
                                        ("no_mapped_hazard_not_verified_safe" if coverage == "mapped" else "outside_hazard_dataset_extent")})
