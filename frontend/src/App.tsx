@@ -29,10 +29,6 @@ const STOP_REASONS: Record<string, string> = {
   converged: 'converged', iteration_limit: 'iteration limit reached (not converged)', time_limit: 'time budget reached (best route so far)',
   search_exhausted: 'search failed', no_feasible_route: 'no feasible route',
 };
-const DECISIONS: Record<string, string> = {
-  initial: 'Planned', adopted_incumbent_invalid: 'New route: current route no longer valid', adopted_better: 'New route: lower cost',
-  kept_incumbent: 'Kept current route: new one not better', kept_incumbent_search_failed: 'Kept current route: search failed',
-};
 // Paired difference of the statistical treatment, d = C_baseline − C_ANTROUTE; lower is better, so d > 0 favours ANTROUTE.
 const pairedDifference = (proposed: number | null, baseline: number | null, show: (value: number) => string) => {
   if (proposed === null || baseline === null) return 'Not paired: a run did not converge';
@@ -339,9 +335,7 @@ export default function App() {
                 <div><dt>Distance</dt><dd>{(run.trip.evaluation.distance_travel_m / 1000).toFixed(1)} km</dd></div>
                 <div><dt>Path cost</dt><dd>{run.trip.evaluation.path_cost.toFixed(2)}</dd></div>
               </dl>
-              {run.trip.evaluation.convergence.stop_reason === 'time_limit' && <p className="muted">Best route found within the search time budget.</p>}
-              <a className={index === 0 ? 'button' : 'button ghost'} href="#trip-measures">View details</a>
-            </article>)}
+              {run.trip.evaluation.convergence.stop_reason === 'time_limit' && <p className="muted">Best route found within the search time budget.</p>}            </article>)}
             {!baseline && <article className="route-card pending"><span className="route-badge" style={{ color: BASELINE_COLOR }}>Baseline route</span><h4>Baseline IACO</h4><p className="route-via">{baselineBusy ? 'Running on the same trip…' : baselineError ? 'Not available' : '–'}</p></article>}
           </div>
       </section>}
@@ -367,14 +361,6 @@ export default function App() {
           <CostBreakdown runs={runs} />
           <div className="chart-pair">{runs.map(run => <CostHistory key={run.name} caption={`${run.name}: initial search`} color={run.color}
             values={run.trip.evaluation.convergence.searches[0].best_cost_by_iteration} marker={run.trip.evaluation.convergence.iterations_to_convergence} />)}</div>
-          <h3>Routing and re-routing log</h3>
-          <div className="audit-table"><table><thead><tr><th>Algorithm</th><th>Trip minute</th><th>Reason</th><th>Roads affected</th><th>Search outcome</th><th>Decision</th><th>Search time</th><th>Recalculation time</th></tr></thead><tbody>
-            {runs.flatMap(run => run.trip.evaluation.convergence.searches.map((search, index) => <tr key={`${run.name}-${index}`}>
-              <td>{run.name}</td><td>{search.at_minute.toFixed(1)}</td><td>{search.trigger === 'departure' ? 'Initial routing at departure' : search.kind === 'initial' ? `Initial routing: ${search.trigger.replace(/^leg/, 'Leg')}` : search.trigger}</td>
-              <td>{search.affected_roads ? search.affected_roads.toLocaleString() : '–'}</td>
-              <td>{STOP_REASONS[search.stop_reason] ?? search.stop_reason}{search.iterations_to_convergence !== null ? ` at ${search.iterations_to_convergence} of ${search.iterations}` : search.iterations ? ` (${search.iterations} iterations)` : ''}</td>
-              <td>{DECISIONS[search.decision]}</td><td>{seconds(search.search_time_ms)}</td><td>{seconds(search.routing_time_ms)}</td></tr>))}
-          </tbody></table></div>
           {runs.some(run => run.trip.trip.changes_without_replanning.length > 0) && <p className="muted">Changes that did not require re-routing: {runs.map(run => run.trip.trip.changes_without_replanning.map(change => `${run.name} at minute ${change.at_minute.toFixed(1)} (${change.change})`).join('; ')).filter(Boolean).join('; ')}.</p>}
           {result && <details><summary>Roads driven by ANTROUTE</summary><p>{result.route.road_names.filter((name, index, array) => index === 0 || name !== array[index - 1]).join(' → ')}</p></details>}
         </> : <p className="muted">Distance travelled, path cost, ACO search time and convergence behavior appear for both algorithms after a completed trip.</p>}
