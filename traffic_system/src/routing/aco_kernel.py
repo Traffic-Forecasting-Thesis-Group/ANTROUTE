@@ -42,14 +42,20 @@ class SearchTimeLimit(SearchExhausted):
 
 
 class SearchConfig(StudyModel):
-    """Shared search settings of the controlled comparison (Cheng, 2023, Sec. 4.2.1 and 5.1.2 values)."""
+    """Shared search settings of the controlled comparison.
+
+    alpha, rho, xi and the colony size follow Cheng (2023, Sec. 5.1.2). q0, beta and the wall-time budget were frozen
+    by scripts/tune_search.py on the tuning period (outputs/search_tuning.json, calibration 34441311a378): the declared
+    grid q0 in {0, 0.3, 0.5, 0.7} x beta in {1, 2, 3, 5} chose q0 = 0, beta = 1 (lowest mean optimality gap over both
+    models); the budget is 2 x the longest tuning search, rounded up. Cheng's published q0 = 0.7, beta = 5 are not used.
+    """
     n_ants: int = Field(default=20, ge=1, le=200, strict=True)
     max_iterations: int = Field(default=60, ge=1, le=1000, strict=True)
     alpha: float = Field(default=1, ge=0, le=5)
-    beta: float = Field(default=5, ge=0, le=10)
+    beta: float = Field(default=1, ge=0, le=10)  # Tuned.
     rho: float = Field(default=0.3, gt=0, lt=1)  # Colony-stage evaporation.
     xi: float = Field(default=0.3, ge=0, lt=1)  # Iteration-best-stage evaporation.
-    q0: float = Field(default=0.7, ge=0, le=1)  # Exploitation probability for large networks.
+    q0: float = Field(default=0.0, ge=0, le=1)  # Exploitation probability; tuned.
     deposit: float = Field(default=1, gt=0)  # Q
     epsilon: float = Field(default=1e-9, gt=0)
     pheromone_floor: float = Field(default=1e-12, gt=0)
@@ -57,8 +63,8 @@ class SearchConfig(StudyModel):
     patience: int = Field(default=20, ge=1, le=1000, strict=True)
     abs_tol: float = Field(default=0, ge=0)
     rel_tol: float = Field(default=0, ge=0, lt=1)
-    # Provisional wall-time budget; to be frozen from development/tuning measurements (not yet declared).
-    wall_time_ms: float | None = Field(default=30000, gt=0)
+    # Frozen from the tuning period: 2 x the longest tuning search of the chosen setting (8.9 s), rounded up.
+    wall_time_ms: float | None = Field(default=18000, gt=0)
     deadline_check_steps: int = Field(default=256, ge=1, strict=True)
     max_steps: int = Field(default=10000, ge=1, le=100000, strict=True)
     seed: int = Field(default=0, strict=True)

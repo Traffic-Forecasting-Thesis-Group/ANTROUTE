@@ -8,7 +8,8 @@ with the paper's own edge cost:
   - Eq. 5-6: s_ij = 0.637 * length/L_ref + 0.258 * travel time/T_ref + 0.105 * flow/F_ref, with the declared
     rounded AHP weights of Table 3 and fixed development references (metres, seconds, veh/h). References never
     depend on which roads are open, so an unrelated closure leaves every remaining road's score unchanged.
-  - Eq. 8, 10-14 and Step 7: the shared kernel (aco_kernel.py) with Cheng's published q0, alpha, beta, rho, xi.
+  - Eq. 8, 10-14 and Step 7: the shared kernel (aco_kernel.py) with Cheng's published alpha, rho and xi; q0 and beta are
+    tuned for both models on the tuning period (q0 = 0, beta = 1 instead of the paper's 0.7 and 5).
 
 Inputs and adaptations, stated so results are not over-read:
   - Traffic flow: no vehicle counts or independent demand exist. Flow is a simulation adaptation: the assumed
