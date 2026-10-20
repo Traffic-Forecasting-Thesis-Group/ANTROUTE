@@ -1,6 +1,6 @@
 {
   "static": {
-    "generated_at": "2026-10-19T07:33:33.504072+00:00",
+    "generated_at": "2026-10-20T10:23:55.236860+00:00",
     "nodes": 12398,
     "segments": 30511,
     "segments_by_city": {
@@ -40,12 +40,16 @@
       "road_type_default_speed": 20477,
       "road_type_default_lanes": 9345
     },
-    "flood_classes": {
-      "1": 9756,
-      "3": 1297,
-      "0": 9063,
-      "2": 10395
+    "flood_km_by_class": {
+      "1": 737.259,
+      "2": 566.729,
+      "3": 61.677
     },
+    "flood_coverage": {
+      "mapped": 30511
+    },
+    "flood_method": "Line-polygon intersection per NOAH class; overlaps resolved to the highest class; WGS84 geodesic lengths. Mapped susceptibility, not current inundation or closures.",
+    "flood_source_sha256": "4b3280b14405f2a5d5723983298b3806b3cf24b0bf31d07a9f2dfce2b363ebee",
     "checks": {
       "unique_node_ids": true,
       "unique_road_ids": true,
@@ -53,7 +57,8 @@
       "positive_distance_speed_capacity": true,
       "known_road_types": true,
       "flood_row_per_segment": true,
-      "flood_class_0_to_3": true,
+      "flood_portions_within_road": true,
+      "flood_coverage_declared": true,
       "all_five_cities_present": true
     }
   },

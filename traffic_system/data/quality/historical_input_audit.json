@@ -1,6 +1,6 @@
 {
-  "audited_at": "2026-10-19T13:43:48.985152+00:00",
-  "ready": true,
+  "audited_at": "2026-10-20T10:24:11.271722+00:00",
+  "ready": false,
   "period": {
     "start_inclusive": "2025-06-01T00:00:00+08:00",
     "end_exclusive": "2026-06-01T00:00:00+08:00",
@@ -13,7 +13,22 @@
     "data_status": "documented_estimation_release",
     "static_features": "September 2026 OSM inventory used as an explicitly estimated static surrogate for this period; historical road changes are not reconstructed.",
     "dynamic_features": "Historical provider weather records plus date/hour-specific traffic estimates; not 8760 independent traffic observations.",
-    "flood_risk": "Static mapped NOAH hazard exposure proxy, not observed hourly flooding."
+    "flood_risk": "Static mapped NOAH hazard exposure proxy, not observed hourly flooding.",
+    "calibration_split": {
+      "development": {
+        "start": null,
+        "end": null
+      },
+      "tuning": {
+        "start": null,
+        "end": null
+      },
+      "test": {
+        "start": null,
+        "end": null
+      },
+      "note": "Declare chronological, non-overlapping ISO dates within the study period. Weights, scales, class summaries and profiles are fitted on development only; tuning freezes search budgets; test is held out for the comparison. Unset boundaries block calibration and routing."
+    }
   },
   "cities": [
     "San Juan",
@@ -26,61 +41,61 @@
   "feature_audit": {
     "distance": {
       "status": "calculated",
-      "local_evidence": "WGS84 geodesic length of OSM geometry; 2026 map is a temporal surrogate.",
+      "local_evidence": "L = WGS84 geodesic length of the OSM geometry in km; the 2026 map is a temporal surrogate.",
       "reference": "https://www.openstreetmap.org/copyright",
       "required_evidence": "Estimates authorized; not independently validated historical measurements"
     },
-    "traffic_congestion": {
-      "status": "estimated",
-      "local_evidence": "Hourly traffic table (data/processed/temporal/traffic_hourly.csv) per road segment: 1 - 1/(1 + 0.15*x^4), where x is an assumed demand-to-capacity index (hourly profile, road-type factor, weekend factor, repeatable daily per-city, three-hour per-area, static per-road and three-hour per-road variation). These are project assumptions, not measurements or vehicle counts.",
+    "congestion": {
+      "status": "assumed_congestion_scenario",
+      "local_evidence": "L x g, where g = 1 - 1/(1 + 0.15*x^4) per road segment and hour from data/processed/temporal/traffic_hourly.csv and x is a seeded, assumed demand-to-capacity index (hourly profile, road-type factor, weekend factor, repeatable daily per-city, three-hour per-area, static per-road and three-hour per-road variation). Project assumptions, not measurements, vehicle counts or independently estimated demand.",
       "reference": "https://www.fhwa.dot.gov/Environment/air_quality/conformity/research/sample_methodologies/emismeth03.cfm",
       "required_evidence": "Estimates authorized; not independently validated historical measurements"
     },
     "travel_time": {
-      "status": "estimated",
-      "local_evidence": "t = (length / free-flow speed) * travel_time_factor from the hourly traffic table / (1 - rain speed reduction). Posted OSM speed is only a free-flow proxy; fallback speeds are assumptions.",
+      "status": "assumed_congestion_scenario",
+      "local_evidence": "T (min) = free-flow time x BPR travel-time factor of the same assumed scenario x assumed weather multiplier. Posted OSM speed is only a free-flow proxy; fallback speeds are assumptions.",
       "reference": "https://www.fhwa.dot.gov/Environment/air_quality/conformity/research/sample_methodologies/emismeth03.cfm",
       "required_evidence": "Estimates authorized; not independently validated historical measurements"
     },
-    "number_of_intersections": {
+    "intersections": {
       "status": "calculated",
-      "local_evidence": "Count traversed nodes with OSM street_count >= 3; exclude origin; current topology is a temporal surrogate.",
+      "local_evidence": "I = 1 when the segment's downstream node has OSM street_count >= 3: one encounter per traversed approach; geometry vertices are not nodes. Current topology is a temporal surrogate.",
       "reference": "https://www.openstreetmap.org/copyright",
       "required_evidence": "Estimates authorized; not independently validated historical measurements"
     },
-    "traffic_signal": {
+    "signals": {
       "status": "mapped_or_estimated",
-      "local_evidence": "OSM traffic_signals tags; missing tags are assumed absent, not confirmed absent. Historical installations are unknown.",
+      "local_evidence": "S = 1 when the downstream node has an OSM traffic_signals tag: one encounter per traversed approach. Missing tags are assumed absent, not confirmed absent.",
       "reference": "https://www.openstreetmap.org/copyright",
       "required_evidence": "Estimates authorized; not independently validated historical measurements"
     },
     "road_type": {
-      "status": "mapped",
-      "local_evidence": "OSM highway category; category costs and temporal stability are project assumptions.",
+      "status": "assumed_preference",
+      "local_evidence": "L x p, p_k = 1 - median free-flow speed of OSM class k / the largest class median over development roads. A stated preference for faster classes, not a published penalty.",
       "reference": "https://www.openstreetmap.org/copyright",
       "required_evidence": "Estimates authorized; not independently validated historical measurements"
     },
-    "time_of_day": {
-      "status": "calculated",
-      "local_evidence": "How busy this type of road typically is at the request hour (Asia/Manila): assumed hourly demand profile / its daily maximum x road-type traffic factor / the largest factor, 0-1. Uses the same assumptions as the traffic estimate without date-specific variation, so it is correlated with congestion.",
-      "reference": "Project assumptions in configs/study_assumptions.json (no empirical hourly profile validation)",
+    "time_profile": {
+      "status": "fitted_on_assumed_scenario",
+      "local_evidence": "L x h, h = mean congestion of the road's group (city x road type) for the day category (weekday/weekend) and local hour over development dates only; falls back to road type, then all roads. The clock hour itself is not a penalty.",
+      "reference": "https://www.fhwa.dot.gov/Environment/air_quality/conformity/research/sample_methodologies/emismeth03.cfm",
       "required_evidence": "Estimates authorized; not independently validated historical measurements"
     },
     "weather": {
-      "status": "historical_provider_record_with_estimated_effect",
-      "local_evidence": "Nearest 0.05-degree provider grid to each road; source measurement provenance is unverified. Cost per road = rain scenario cost x (0.5 + 0.5 x NOAH flood risk): half applies to every road, half scales with mapped flood hazard (assumed split). Rain speed reductions 7.5%/11.5% are reference-range midpoints, not local calibration.",
+      "status": "historical_provider_record_with_assumed_effect",
+      "local_evidence": "L x a, a = assumed severity of the hourly category from the nearest 0.05-degree provider grid (1-hour precipitation: >= 7.5 mm heavy rain, > 0 rain). Kept separate from flood exposure. Severities and speed multipliers are assumptions, not calibrated.",
       "reference": "https://ops.fhwa.dot.gov/weather/roadimpact.htm",
       "required_evidence": "Estimates authorized; not independently validated historical measurements"
     },
-    "flood_risk": {
-      "status": "estimated_hazard_proxy",
-      "local_evidence": "Maximum NOAH class intersecting the road / 3. No mapped overlap is not proof of safety; no hourly flood observations or bridge elevation correction.",
+    "flood_exposure": {
+      "status": "mapped_hazard_with_assumed_severity",
+      "local_evidence": "Sum over portions of km inside each NOAH five-year hazard class x assumed class severity (class/3 scenario; alternatives equal and convex). Overlaps resolve to the highest class. Mapped susceptibility, not current inundation or closure; no bridge elevation correction.",
       "reference": "https://noah.up.edu.ph/know-your-hazards",
       "required_evidence": "Estimates authorized; not independently validated historical measurements"
     },
-    "road_capacity": {
-      "status": "estimated",
-      "local_evidence": "c = directional lanes * 1900 * g/C. Assume g/C=0.5 at a tagged downstream signal, otherwise 1. Lane fallbacks and signal timings are unmeasured; unsignalized use is a proxy.",
+    "capacity_burden": {
+      "status": "provisional_study_mapping",
+      "local_evidence": "L / K, K = directional lanes x assumed 1,900 veh/h/lane base saturation flow x g/C (0.5 assumed at a mapped signal, else 1). Inverse capacity is a provisional study mapping, not a universal published road penalty; lanes and signal timings are unvalidated.",
       "reference": "https://ops.fhwa.dot.gov/publications/fhwahop08024/chapter3.htm",
       "required_evidence": "Estimates authorized; not independently validated historical measurements"
     }
