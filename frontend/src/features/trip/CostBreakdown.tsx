@@ -2,21 +2,12 @@ import type { FeatureContribution, TripResult } from '../../api/routeService';
 
 const label = (text: string) => text.replaceAll('_', ' ');
 
-/** The route's raw value for one feature, in the unit a reader expects. */
+/** The route's additive criterion total and, for severity × length criteria, its length-weighted mean severity. */
 function routeValue(item: FeatureContribution): string {
   const value = item.route_value;
-  if (Array.isArray(value)) return `${value.map(hour => `${String(hour).padStart(2, '0')}:00`).join(', ')} · load avg ${item.normalized_mean.toFixed(2)}`;
-  if (typeof value === 'number') {
-    if (item.feature === 'distance') return `${(value / 1000).toFixed(2)} km`;
-    if (item.feature === 'travel_time') return `${(value / 60).toFixed(1)} min`;
-    return `${value} ${value === 1 ? item.unit.replace(/s$/, '') : item.unit}`;
-  }
-  if ('mean' in value && 'max' in value && Object.keys(value).length === 2) {
-    if (item.feature === 'road_capacity') return `avg ${Math.round(value.mean).toLocaleString()} veh/h`;
-    return `avg ${value.mean.toFixed(3)} · max ${value.max.toFixed(3)}`;
-  }
-  const mix = Object.entries(value as Record<string, number>);
-  return mix.slice(0, 3).map(([name, count]) => `${label(name)} ${count}`).join(', ') + (mix.length > 3 ? ', …' : '');
+  const total = item.unit === 'encounters' ? `${value} ${value === 1 ? 'encounter' : 'encounters'}`
+    : item.feature === 'capacity_burden' ? `${value.toExponential(2)} ${item.unit}` : `${value.toFixed(3)} ${item.unit}`;
+  return item.mean_severity === null ? total : `${total} · mean severity ${item.mean_severity.toFixed(3)}`;
 }
 
 function sources(item: FeatureContribution): string {
@@ -30,9 +21,11 @@ export default function CostBreakdown({ runs }: { runs: { name: string; color: s
   const [first] = withData;
   return <>
     <h3>What made up the path cost</h3>
-    <p className="muted">Path cost = Σ over the roads driven of (CRITIC weight × normalized feature value). Each row is one feature's part of that sum, so the
-      contributions add up to the path cost. Values are scored when each road is entered. Data sources count the roads (or road-end intersections) on the route that took each source.</p>
-    <div className="audit-table"><table className="cost-breakdown"><thead><tr><th>Feature</th><th>CRITIC weight</th>
+    <p className="muted">Path cost = Σ over the roads driven of Σ over the ten criteria of (fixed CRITIC weight × criterion ÷ development maximum).
+      Criteria are additive (distance in km, travel time in min, encounters, and severities times length), so each row's route value is a total and
+      each row's contribution is its part of the path cost; the contributions add up to the path cost. Values are scored when each road is entered,
+      and values above the development maximum are not capped. Data sources count the roads (or road-end intersections) on the route that took each source.</p>
+    <div className="audit-table"><table className="cost-breakdown"><thead><tr><th>Criterion</th><th>CRITIC weight</th>
       {withData.map(run => <th key={run.name}><span className="legend-dot" style={{ background: run.color }} />{run.name}: route value · contribution</th>)}
       <th>Where it came from</th></tr></thead><tbody>
       {first.trip.contributions.map((item, row) => <tr key={item.feature}>

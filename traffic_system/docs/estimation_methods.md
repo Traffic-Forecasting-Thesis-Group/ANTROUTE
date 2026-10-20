@@ -4,20 +4,24 @@ Period: **June 1, 2025 through May 31, 2026**, hourly, Asia/Manila. Scope: San J
 
 The executable settings are in [study_assumptions.json](../configs/study_assumptions.json). Every feature is disclosed in `data/processed/estimation_registry.json`, the network provenance, route responses, and the app's **Where each feature and estimate comes from** table.
 
-## Ten-feature basis
+## Ten-criterion basis (contract version 2)
 
-| Feature | Basis and computation | What is assumed or uncertain |
+The criteria, their formulas, units and encodings are defined once in [routing_contract.md](routing_contract.md) and
+`src/routing/criteria.py`. The per-criterion classification, basis and source are in `src/routing/estimation.py`
+(published as `data/processed/estimation_registry.json`). In short:
+
+| Criterion | Formula | What is assumed or uncertain |
 |---|---|---|
-| Distance | WGS84 geodesic polyline length using PyProj. OSMnx single-segment endpoint geometry follows its conversion convention. | September 2026 mapped geometry is used as a static surrogate throughout the study year. It is not a surveyed historical length. |
-| Traffic Congestion | Read from the hourly traffic table (`traffic_hourly.csv`) by date, hour and road segment: `1 - t0/t`, where `t/t0 = 1 + 0.15*x^4` and `x` is an assumed demand-to-capacity index. | All `x` values are assumed demand scenarios; there are no vehicle counts or historical congestion records. |
-| Travel Time | `t0 = length / (speed_kph/3.6)`, multiplied by the table's `travel_time_factor` and the weather multiplier. | Posted OSM speed is a free-flow proxy. Missing speeds use the explicit road-type table. Neither is observed vehicle speed. |
-| Number of Intersections | Count entered mapped nodes with street count at least three; exclude the origin. | Graph topology is held constant across the year and may omit physical junction details. |
-| Traffic Signal | OSM `traffic_signals` node tags. | Untagged signals are assumed absent; absence is not verified. Historical installations/removals are unknown. |
-| Road Type | OSM highway classifications. | Types are held constant. The categorical cost table is an objective preference, not a measured road property. |
-| Time of Day | How busy each road's type typically is at the selected hour: assumed hourly demand profile / its daily maximum × road-type traffic factor / the largest factor (0–1). Arterials score high at rush hour and low at night; residential streets stay lower. | Same assumed hourly profile and road-type factors as the traffic estimate, without the date-specific variation or the BPR curve, so it is correlated with congestion. No empirical hourly profile validation. |
-| Weather | Actual dated rows from the retained Weatherstack hourly CSV. Choose the nearest 0.05-degree grid to each city's representative point. | The city-grid assignment is a spatial approximation, and the provider's original measurement/model provenance is not independently verified. Speed effects are transferred reference estimates. |
-| Flood Risk | Maximum intersected NOAH hazard class divided by three. | Static modeled hazard exposure, not an hourly flooding probability or observed depth. No overlap is not proof of safety; bridge elevation is not corrected. |
-| Road Capacity | Directional lane estimate multiplied by saturation flow and effective green ratio. | Lane defaults, signal timing, traffic composition, and unsignalized capacity are unmeasured. This is a capacity proxy, not observed throughput. |
+| Distance | L (km), WGS84 geodesic length | September 2026 geometry used as a static surrogate for the study year. |
+| Congestion | L × g, g from the hourly table | An assumed, seeded congestion scenario (BPR on an assumed demand index); not observed or independently estimated demand. |
+| Travel time | T (min) = free-flow time × BPR factor × assumed weather multiplier | Posted OSM speed is a free-flow proxy; fallback speeds are assumptions. |
+| Intersections | I = 1 per traversed approach to a node with street count ≥ 3 | Topology held constant; geometry vertices never count. |
+| Signals | S = 1 per traversed approach to a tagged signal | Untagged signals are assumed absent. |
+| Road type | L × p, p from class median speeds | An assumed preference mapping, not a measured penalty. |
+| Time profile | L × h, h fitted by road group, day category and hour on development dates | Fitted on the assumed scenario, so it is correlated with congestion. |
+| Weather | L × a, a = assumed severity of the hourly category | Severities and speed multipliers are assumptions; kept separate from flood exposure. |
+| Flood exposure | Σ km in each NOAH class × assumed class severity | Mapped susceptibility, not inundation or closure; class/3 severity is an assumed scenario with declared alternatives. |
+| Capacity burden | L / K | A provisional study mapping; K uses an assumed 1,900 veh/h/lane base saturation flow. |
 
 ## Published functional forms
 
@@ -37,17 +41,19 @@ Road-type fallback speeds, fallback lanes, categorical road costs, the assumed e
 
 The objective normalizes distance against 1,000 m, travel time against 600 s, and capacity against 4,000 equivalent vehicles/hour; it caps normalized values at one. These references are software settings, not measured input statistics.
 
-## Feature weights (CRITIC)
+## Criterion weights (hourly CRITIC)
 
-The ten feature weights come from CRITIC (Diakoulaki, Mavrotas and Papayannakis, 1995, https://doi.org/10.1016/0305-0548(94)00059-H), computed by `scripts/build_study_network.py` and stored in the network's `cost_config.weights`, with the summary in `provenance.weighting`.
+The ten weights come from CRITIC (Diakoulaki, Mavrotas and Papayannakis, 1995, https://doi.org/10.1016/0305-0548(94)00059-H)
+computed by `scripts/build_study_network.py` over development hours only (see [routing_contract.md](routing_contract.md#calibration-development-data-only)).
 
-**CRITIC is computed within each hour.** Routing always compares roads inside one date/hour snapshot, so CRITIC compares the same alternatives: for each sampled hour (every hour of every 15th day from 2025-06-01, 600 hours, historical provider weather; the 15-day step moves the weekday by one, so all weekdays and weekends are covered), the alternatives are all road segments at that hour. For each feature, contrast is the standard deviation after min-max scaling over those segments, conflict is the sum of (1 − correlation) with the other features, and the hour's weight is contrast × conflict, normalized to sum to one. The final weights are the mean of the per-hour weights; `provenance.weighting.hourly_weight_range` records each feature's lowest and highest hourly weight.
-
-Consequences, stated so results are not over-read:
-
-- **Every dynamic feature differs between roads within an hour.** Time of day depends on the road type, and weather on the road's flood hazard (half of the rain cost applies to every road, half scales with NOAH flood risk). Earlier versions gave both features one value for every road in an hour, so they could not change which road was chosen; time of day received no within-hour weight, and under pooled CRITIC it received the largest weight while acting only as a fixed charge per road segment.
-- **Each weight is averaged over the hours in which the feature varies between roads** (`provenance.weighting.active_hours`), then all weights are rescaled to sum to one. Weather varies only in rainy hours; averaging it over dry hours as well would dilute its weight by how rarely it rains, although in a dry hour it adds no cost anyway.
-- CRITIC weights are objective with respect to the estimated feature values; they are not calibrated against observed route choices.
+- In each sampled development hour, the alternatives are all road segments and the criteria are the ten additive criteria.
+  A criterion that is constant in that hour gets weight 0 and is left out of every correlation and conflict sum.
+- The fixed weight of each criterion is the mean of its hourly weights over one common valid-hour set, with zeros kept.
+  Earlier versions divided each criterion by the number of hours in which it varied, which inflated rarely varying
+  criteria (weather received 0.126 instead of about 0.064); that estimator is removed.
+- Hours in which CRITIC is undefined (every criterion constant, or perfectly concordant varying criteria) or whose
+  inputs are missing are excluded whole and logged in `data/processed/calibration.json`; equal weights are never invented.
+- CRITIC weights are objective with respect to the modeled criterion values; they are not calibrated against observed route choices.
 
 ## Historical coverage and provenance
 

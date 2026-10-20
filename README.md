@@ -36,7 +36,7 @@ npm run dev -- --host 127.0.0.1
 
 Open **http://127.0.0.1:5173/**. The frontend connects to the backend on port 8000. Existing Maps credentials are preserved; a key-free boundary/route preview is available. No TomTom, HERE, or new weather API requests are required to use the prepared release.
 
-Choose an origin and destination, a study date, local hour, and historical weather or an explicit scenario. Optional map-selected closures are hypothetical conditions, not verified historical closure records. Calculate the ACO route, inspect the four evaluation items, and expand **Where each feature and estimate comes from** for the full basis.
+Choose an origin and destination, a study date, local hour, and historical weather or an explicit scenario. Optional map-selected closures are hypothetical conditions, not verified historical closure records. Calculate the ACO route, inspect the evaluation (common path cost, ACO search time, convergence behavior), and expand **Where each feature and estimate comes from** for the full basis. The routing contract (criteria, calibration, search, evaluation) is in [routing_contract.md](traffic_system/docs/routing_contract.md).
 
 ## Algorithms and dynamic experiment
 
@@ -44,15 +44,19 @@ Choose an origin and destination, a study date, local hour, and historical weath
 - `POST /routes/baseline`: Cheng (2023) improved ACO baseline on the same snapshot.
 - `POST /routes/trip`: a simulated trip with `algorithm` = `antroute` (proposed) or `cheng` (baseline). Conditions change as the trip crosses into the next hour, and `events` can close/reopen roads or change the weather at a given minute.
 
-Answer the statement of the problem (writes `outputs/sop_runs.csv`, `outputs/sop_results.json` and the readable `outputs/sop_report.md`):
+Calibration is fitted on development dates only. Declare `calibration_split` (development, tuning, test) in
+`traffic_system/configs/historical_study.json` before building; until then `scripts.build_study_network` stops with
+`CalibrationBlocked` and routing reports why. Then freeze and run the comparison (writes `outputs/sop_runs.csv`,
+`outputs/sop_results.json` and `outputs/sop_report.md`):
 
 ```powershell
-.env\Scripts\python -m scripts.evaluate_sop --trips 10 --seeds 2
+.\venv\Scripts\python -m scripts.evaluate_sop freeze --requests 30 --seeds 5
+.\venv\Scripts\python -m scripts.evaluate_sop run --dynamic
 ```
 
-- SOP 1: distance travelled and path cost under five traffic conditions (off-peak, morning and evening peak onset, road closure, heavy-rain onset).
-- SOP 2: computational time, initial routing time, dynamic re-routing time, and convergence rate (N_conv: the iteration at which the best path cost had not improved for 20 consecutive iterations; both algorithms stop on this rule, and reaching the iteration limit first is recorded as not converged).
-- SOP 3: ANTROUTE vs Cheng on distance, path cost, computational time and convergence rate, paired by trip and condition with d = baseline − ANTROUTE; two-sided Wilcoxon signed-rank test (W = min(W⁺, W⁻)) with Holm-adjusted p-values across the four measures (α = 0.05). Add `--from-runs` to re-analyse `outputs/sop_runs.csv` without re-running trips.
+- Primary outcomes: common evaluation path cost and ACO search time, one unit per test-period request (median over a complete matched seed set), d = baseline − ANTROUTE, two-sided Wilcoxon signed-rank, Holm over the two outcomes (α = 0.05). Failures are reported, never counted as zero.
+- Secondary (descriptive): distance travelled, convergence behavior, and dynamic trips under peak onset, road closure and heavy-rain onset.
+- Historical outputs of earlier contracts are kept in `traffic_system/outputs/archive/`.
 
 See [architecture](traffic_system/docs/aco_system_architecture.md#algorithms) for how the three differ.
 

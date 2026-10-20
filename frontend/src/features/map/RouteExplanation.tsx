@@ -9,10 +9,10 @@ const metres = (value: number) => value >= 1000 ? `${(value / 1000).toFixed(2)} 
 const names = (facts: StretchFacts) => facts.road_names.length ? facts.road_names.slice(0, 3).join(', ') + (facts.road_names.length > 3 ? ', …' : '') : 'unnamed road';
 // What a higher cost on each feature means on the road, in words.
 const WORSE: Record<string, string> = {
-  distance: 'longer distance', traffic_congestion: 'heavier congestion', travel_time: 'longer travel time',
-  number_of_intersections: 'more intersections', traffic_signal: 'more traffic signals', road_type: 'a less preferred road type',
-  time_of_day: 'a busier road type at this hour',
-  weather: 'worse weather exposure', flood_risk: 'higher flood risk', road_capacity: 'lower road capacity',
+  distance: 'longer distance', congestion: 'more congested length', travel_time: 'longer travel time',
+  intersections: 'more intersections', signals: 'more traffic signals', road_type: 'more length on less preferred road classes',
+  time_profile: 'more length on roads that are usually busy at this hour',
+  weather: 'more length in bad weather', flood_exposure: 'more length in mapped flood hazard areas', capacity_burden: 'a higher capacity burden',
 };
 
 type Row = [string, (facts: StretchFacts) => string, ((road: StretchFacts, taken: StretchFacts) => boolean)?];
@@ -24,9 +24,9 @@ const ROWS: Row[] = [
   ['Intersections', facts => String(facts.intersections), (road, taken) => road.intersections > taken.intersections],
   ['Traffic signals', facts => String(facts.signals), (road, taken) => road.signals > taken.signals],
   ['Congestion', facts => facts.congestion.toFixed(3), (road, taken) => road.congestion > taken.congestion],
-  ['Weather', facts => facts.weather_cost.toFixed(2), (road, taken) => road.weather_cost > taken.weather_cost],
+  ['Weather', facts => facts.weather_severity.toFixed(2), (road, taken) => road.weather_severity > taken.weather_severity],
   ['Travel time', facts => `${(facts.travel_time_s / 60).toFixed(1)} min`, (road, taken) => road.travel_time_s > taken.travel_time_s],
-  ['Flood risk', facts => `${facts.flood_risk.toFixed(2)} (max ${facts.max_flood_risk.toFixed(2)})`, (road, taken) => road.flood_risk > taken.flood_risk],
+  ['Flood severity', facts => `${facts.flood_severity.toFixed(2)} (max ${facts.max_flood_severity.toFixed(2)})`, (road, taken) => road.flood_severity > taken.flood_severity],
   ['Capacity', facts => `${Math.round(facts.capacity_vph).toLocaleString()} veh/h`, (road, taken) => road.capacity_vph < taken.capacity_vph],
   ['Path cost', facts => facts.cost.toFixed(2), (road, taken) => road.cost > taken.cost],
 ];
@@ -34,8 +34,8 @@ const ROWS: Row[] = [
 const brief = (text: string) => text.replace(/ \(max [^)]*\)/, '');
 const WORSE_ROW: Record<string, string> = {
   Length: 'a longer length', Intersections: 'more intersections', 'Traffic signals': 'more traffic signals', Congestion: 'heavier congestion',
-  'Travel time': 'a longer travel time', 'Flood risk': 'higher average flood risk', Capacity: 'lower capacity',
-  Weather: 'a higher weather cost',
+  'Travel time': 'a longer travel time', 'Flood severity': 'a higher length-weighted flood severity', Capacity: 'lower capacity',
+  Weather: 'a higher weather severity',
 };
 
 export const roadName = (stretch: RouteStretch) => stretch.alternative.road_names[0] ?? 'Unnamed road';

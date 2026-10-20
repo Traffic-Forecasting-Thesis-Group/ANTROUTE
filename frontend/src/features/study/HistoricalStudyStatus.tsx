@@ -1,9 +1,9 @@
 import type { HistoricalStudyStatus as Status } from '../../api/routeService';
 
 const labels: Record<string, string> = {
-  distance: 'Distance', traffic_congestion: 'Traffic Congestion', travel_time: 'Travel Time',
-  number_of_intersections: 'Number of Intersections', traffic_signal: 'Traffic Signal', road_type: 'Road Type',
-  time_of_day: 'Time of Day', weather: 'Weather', flood_risk: 'Flood Risk', road_capacity: 'Road Capacity',
+  distance: 'Distance', congestion: 'Congestion', travel_time: 'Travel Time',
+  intersections: 'Intersections', signals: 'Traffic Signals', road_type: 'Road Type',
+  time_profile: 'Time Profile', weather: 'Weather', flood_exposure: 'Flood Exposure', capacity_burden: 'Capacity Burden',
 };
 
 export default function HistoricalStudyStatus({ status }: { status: Status }) {

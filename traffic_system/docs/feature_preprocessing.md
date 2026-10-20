@@ -24,10 +24,10 @@ Each preprocessing step validates its output and writes a summary to `data/quali
 | Number of Intersections | OSM graph | `features/road_nodes.csv` | `is_intersection` (street count ≥ 3) |
 | Traffic Signal | OSM `traffic_signals` tags | `features/road_nodes.csv`, `road_segments.csv` | `traffic_signal`, `signal_at_target` |
 | Road Type | OSM `highway` tag | `features/road_segments.csv` | `road_type` |
-| Time of Day | Request timestamp | (none needed) | selected hour, 0–23 |
+| Time profile | Hourly traffic table, development dates | fitted at build time | `time_profile` (weekday/weekend × 24) |
 | Weather | Weatherstack hourly | `temporal/weatherstack_hourly.csv` | `ws_precip_mm`, `ws_description`, … |
-| Flood Risk | Project NOAH 5-year hazard polygons | `features/segment_flood.csv` | `noah_hazard_class`, `flood_risk` |
-| Road Capacity | OSM lanes + signal tags | `features/road_segments.csv` | `road_capacity_vph` |
+| Flood exposure | Project NOAH 5-year hazard polygons | `features/segment_flood.csv` | `flood_km_class1..3`, `flood_coverage` |
+| Capacity burden | OSM lanes + signal tags | `features/road_segments.csv` | `road_capacity_vph`, `capacity_method`, `capacity_uncertainty` |
 
 No table contains vehicle volume or vehicle counts. Volume is not a study feature.
 
@@ -40,11 +40,11 @@ No table contains vehicle volume or vehicle counts. Volume is not a study featur
 3. **Geometry and distance:** the OSM polyline is used when present, otherwise the endpoint segment (OSMnx convention). Distance is the WGS84 geodesic length; zero-length edges are dropped.
 4. **Speed:** OSM `maxspeed` (mph converted), else the road-type default. `free_flow_time_s = distance / speed`.
 5. **Lanes:** directional `lanes:forward|backward`, else `lanes` (split in half on two-way roads), else the road-type default.
-6. **Capacity:** `lanes × 1900 × g/C`, with `g/C = 0.5` when the downstream node has a mapped signal and 1 otherwise.
-7. **Flood:** the highest NOAH class (0–3) that the segment's geometry intersects; `flood_risk = class / 3`.
+6. **Capacity:** `K = directional lanes × 1900 (assumed base saturation flow) × g/C`, with an assumed `g/C = 0.5` when the downstream node has a mapped signal and 1 otherwise; method and uncertainty are recorded per segment.
+7. **Flood:** the segment is intersected with each NOAH class; overlapping polygons resolve to the highest class, and the geodesic length (km) in each class is stored as `flood_km_class1..3`. `flood_coverage` is `mapped` inside the hazard dataset's extent and `unknown` outside it. The class severity is applied at scoring time (see [routing_contract.md](routing_contract.md)).
 8. **Traffic location:** each segment's `traffic_location` is its own `road_id`, the key into the hourly traffic table, so every segment has its own hourly series.
 
-Every value has a `*_source` column (for example `osm_maxspeed` vs `road_type_default_speed`), so defaults are never presented as mapped data. Checks: unique IDs, endpoints exist, positive distance/speed/capacity, known road types, one flood row per segment, classes in 0–3, all five cities present.
+Every value has a `*_source` column (for example `osm_maxspeed` vs `road_type_default_speed`), so defaults are never presented as mapped data. Checks: unique IDs, endpoints exist, positive distance/speed/capacity, known road types, one flood row per segment, flood portions nonnegative and no longer than the segment, declared coverage, all five cities present.
 
 Current output: 12,398 nodes, 30,511 directed segments. 117,877 source edges were outside the five cities, 84 were not public driving roads and 11 had invalid geometry.
 

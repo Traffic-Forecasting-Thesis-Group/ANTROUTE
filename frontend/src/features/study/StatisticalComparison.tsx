@@ -3,46 +3,42 @@ import { loadSopResults, type SopResults } from '../../api/routeService';
 
 const pValue = (p: number | null) => p === null ? '–' : p < 0.0001 ? '< 0.0001' : p.toFixed(4);
 const ranks = (value?: number) => value === undefined ? '–' : value.toFixed(1);
+const NAMES = { antroute: 'ANTROUTE', cheng: 'Baseline' } as const;
 
-/** SOP 3 from scripts/evaluate_sop.py: paired d = baseline − ANTROUTE, Wilcoxon signed-rank, Holm-adjusted p-values. */
+/** Primary comparison from scripts/evaluate_sop.py: paired d = baseline − ANTROUTE over request medians, Wilcoxon, Holm (m = 2). */
 export default function StatisticalComparison() {
   const [results, setResults] = useState<SopResults | null>(null);
   const [error, setError] = useState('');
-  const [family, setFamily] = useState('all');
   useEffect(() => {
     const controller = new AbortController();
     loadSopResults(controller.signal).then(setResults).catch(reason => { if (!controller.signal.aborted) setError(reason.message); });
     return () => controller.abort();
   }, []);
   if (error) return <section className="card" id="statistics"><h2>Statistical comparison</h2><p className="muted">{error}</p></section>;
-  if (!results) return null;
-  const tests = results.sop3[family];
+  if (!results?.analysis) return null;
+  const { analysis } = results;
   return <section className="card" id="statistics">
     <h2>Statistical comparison</h2>
-    <p className="muted">Paired by trip and traffic condition over {results.trips} trips × {Object.keys(results.scenarios).length} conditions × {results.seeds} seeds (seeds averaged).
-      Paired difference d<sub>i</sub> = C<sub>baseline,i</sub> − C<sub>ANTROUTE,i</sub>, so a positive d favours ANTROUTE. Two-sided Wilcoxon signed-rank test with
-      zero differences excluded and tied ranks averaged, W = min(W⁺, W⁻). The four p-values of each condition are Holm-adjusted; a difference is significant
-      when the adjusted p &lt; α = {results.alpha}. A single trip above cannot be tested on its own.</p>
-    <label>Traffic condition<select value={family} onChange={event => setFamily(event.target.value)}>
-      <option value="all">All conditions</option>
-      {Object.entries(results.scenarios).map(([key, name]) => <option key={key} value={key}>{name}</option>)}
-    </select></label>
-    <div className="audit-table"><table><thead><tr><th>Measure</th><th>n</th><th>ANTROUTE mean</th><th>Baseline mean</th><th>Mean d</th>
+    <p className="muted">Frozen experiment manifest of {analysis.requests} requests on held-out test-period snapshots; {analysis.complete_requests} have a route
+      from both algorithms on every seed ({analysis.seeds.join(', ')}) and form the pairs. Each request's value is the median over its seeds.
+      Paired difference d<sub>i</sub> = C<sub>baseline,i</sub> − C<sub>ANTROUTE,i</sub>, so a positive d favours ANTROUTE. Two-sided Wilcoxon signed-rank
+      (zero differences dropped, tied ranks averaged), W = min(W⁺, W⁻), Holm-adjusted over the two primary outcomes; significant when the adjusted
+      p &lt; α = {results.alpha}. Traffic is an assumed scenario: this is a modeled comparison, not empirical validation.</p>
+    <div className="audit-table"><table><thead><tr><th>Primary outcome</th><th>n</th><th>ANTROUTE median</th><th>Baseline median</th><th>Median d</th>
       <th>W⁺</th><th>W⁻</th><th>W</th><th>p</th><th>Holm p</th><th>Decision</th></tr></thead><tbody>
-      {results.sop_measures['3'].map(measure => {
-        const { label, unit, scale } = results.measures[measure];
-        const test = tests[measure];
-        const show = (value?: number) => value === undefined ? '–' : `${(value * scale).toFixed(unit === 'iterations' ? 2 : unit ? 3 : 4)}${unit && unit !== 'iterations' ? ` ${unit}` : ''}`;
-        return <tr key={measure}><th scope="row">{label.split(':')[0]}</th><td>{test.n}</td>
-          <td>{show(test.proposed_mean)}</td><td>{show(test.baseline_mean)}</td><td>{show(test.mean_difference)}</td>
+      {Object.entries(results.primary_measures).map(([measure, { label, unit }]) => {
+        const test = analysis.primary[measure];
+        const show = (value: number | null) => value === null ? '–' : `${value.toFixed(unit ? 2 : 4)}${unit ? ` ${unit}` : ''}`;
+        return <tr key={measure}><th scope="row">{label}</th><td>{test.n}</td>
+          <td>{show(test.proposed_median)}</td><td>{show(test.baseline_median)}</td><td>{show(test.median_difference)}</td>
           <td>{ranks(test.W_plus)}</td><td>{ranks(test.W_minus)}</td><td>{ranks(test.W)}</td>
           <td>{pValue(test.p)}</td><td>{pValue(test.p_holm)}</td>
           <td>{test.significant === null ? test.test : test.significant ? <strong>Significant · reject H₀</strong> : 'Not significant · fail to reject H₀'}</td></tr>;
       })}
     </tbody></table></div>
-    {results.not_converged && <p className="muted">Runs that reached the iteration limit without converging: ANTROUTE {results.not_converged[family].antroute},
-      baseline {results.not_converged[family].cheng}. {tests.iterations_to_convergence?.pairs_excluded_not_converged
-        ? `${tests.iterations_to_convergence.pairs_excluded_not_converged} pair(s) were left out of the convergence-rate test.` : ''}</p>}
-    <p className="muted">From outputs/sop_results.json, generated {new Date(results.generated_at).toLocaleString()}. Re-run with python -m scripts.evaluate_sop.</p>
+    <p className="muted">All requests by outcome: {(Object.keys(NAMES) as (keyof typeof NAMES)[]).map(algorithm =>
+      `${NAMES[algorithm]} ${Object.entries(analysis.outcomes[algorithm] ?? {}).map(([status, count]) => `${status.replaceAll('_', ' ')} ${count}`).join(', ')}`).join('; ')}.
+      Failures are reported, never counted as zero cost or time.</p>
+    <p className="muted">From outputs/sop_results.json, generated {new Date(results.generated_at).toLocaleString()} (scipy {results.scipy_version}).</p>
   </section>;
 }

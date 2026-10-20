@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
-import { explainRoute, loadNetwork, loadStudyStatus, loadWeather, planTrip, snapNode, snapRoad } from './api/routeService';
+import { RouteError, explainRoute, loadNetwork, loadStudyStatus, loadWeather, planTrip, snapNode, snapRoad } from './api/routeService';
 import type { HistoricalStudyStatus as StudyStatus, NetworkInfo, RoadSelection, StudyNode, TripEvent, TripResult, WeatherSnapshot } from './api/routeService';
 import RouteMap, { BASELINE_COLOR, ROUTE_COLOR } from './features/map/RouteMap';
 import PlaceInput from './features/trip/PlaceInput';
@@ -16,6 +16,23 @@ const cities = ['San Juan', 'Manila', 'Mandaluyong', 'Makati', 'Pasig'];
 const emptyGeometry: [number, number][] = [];
 const emptyBoundaries = {};
 const seconds = (milliseconds: number) => `${(milliseconds / 1000).toFixed(2)} s`;
+// Each search outcome in its own words; a time-limited search that found a route is a result, not an error.
+const failureText = (reason: Error) => {
+  const outcome = reason instanceof RouteError ? reason.outcome : '';
+  if (outcome === 'no_feasible_route') return 'No route exists under these conditions; the closures may disconnect the origin from the destination.';
+  if (outcome === 'search_time_limit') return 'The search reached its time budget before finding any route. Connectivity is not disproved; try again or simplify the trip.';
+  if (outcome === 'search_exhausted') return 'The search found no route within its limits. Connectivity is not disproved.';
+  if (outcome === 'data_unavailable') return `Required study data is unavailable: ${reason.message}`;
+  return reason.message;
+};
+const STOP_REASONS: Record<string, string> = {
+  converged: 'converged', iteration_limit: 'iteration limit reached (not converged)', time_limit: 'time budget reached (best route so far)',
+  search_exhausted: 'search failed', no_feasible_route: 'no feasible route',
+};
+const DECISIONS: Record<string, string> = {
+  initial: 'Planned', adopted_incumbent_invalid: 'New route: current route no longer valid', adopted_better: 'New route: lower cost',
+  kept_incumbent: 'Kept current route: new one not better', kept_incumbent_search_failed: 'Kept current route: search failed',
+};
 // Paired difference of the statistical treatment, d = C_baseline − C_ANTROUTE; lower is better, so d > 0 favours ANTROUTE.
 const pairedDifference = (proposed: number | null, baseline: number | null, show: (value: number) => string) => {
   if (proposed === null || baseline === null) return 'Not paired: a run did not converge';
@@ -23,8 +40,8 @@ const pairedDifference = (proposed: number | null, baseline: number | null, show
   if (difference === 0) return 'd = 0 · no difference';
   return `d = ${difference > 0 ? '+' : '−'}${show(Math.abs(difference))} · favours ${difference > 0 ? 'ANTROUTE' : 'baseline'}`;
 };
-const convergenceText = ({ iterations_to_convergence: n, mean_iterations_to_convergence: mean, searches_not_converged: missed }: TripResult['evaluation']['convergence']) =>
-  `${n === null ? 'Not converged (iteration limit)' : `${n} iteration${n === 1 ? '' : 's'}`}${mean === null ? '' : ` (all searches: ${mean.toFixed(1)})`}${missed ? ` · ${missed} search${missed === 1 ? '' : 'es'} not converged` : ''}`;
+const convergenceText = ({ iterations_to_convergence: n, stop_reason: stop, mean_iterations_to_convergence: mean, searches_not_converged: missed }: TripResult['evaluation']['convergence']) =>
+  `${n === null ? `Not converged: ${STOP_REASONS[stop] ?? stop}` : `Converged at ${n} iteration${n === 1 ? '' : 's'}`}${mean === null ? '' : ` (all searches: ${mean.toFixed(1)})`}${missed ? ` · ${missed} search${missed === 1 ? '' : 'es'} not converged` : ''}`;
 const pad = (value: number) => String(value).padStart(2, '0');
 const MAX_STOPS = 5;
 const closeIcon = <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>;
@@ -145,10 +162,12 @@ export default function App() {
     if (closureMinute !== null && closedIds.length) events.push({ at_minute: closureMinute, close_road_ids: closedIds });
     if (weatherChange) events.push({ at_minute: weatherChangeMinute, weather: weatherChange });
     setBusy(true);
+    let recommended: TripResult;
     try {
-      setResult(await planTrip('antroute', origin.id, destinationIds, tripConditions, departureMinute, events, controller.signal));
+      recommended = await planTrip('antroute', origin.id, destinationIds, tripConditions, departureMinute, events, controller.signal);
+      setResult(recommended);  // Shown while the baseline runs.
     } catch (reason) {
-      if (reason instanceof Error && reason.name !== 'AbortError') setError(reason.message);
+      if (reason instanceof Error && reason.name !== 'AbortError') setError(failureText(reason));
       return;
     } finally {
       if (!controller.signal.aborted) setBusy(false);
@@ -157,13 +176,13 @@ export default function App() {
     try {
       setBaseline(await planTrip('cheng', origin.id, destinationIds, tripConditions, departureMinute, events, controller.signal));
     } catch (reason) {
-      if (reason instanceof Error && reason.name !== 'AbortError') setBaselineError(reason.message);
+      if (reason instanceof Error && reason.name !== 'AbortError') setBaselineError(failureText(reason));
     } finally {
       if (!controller.signal.aborted) setBaselineBusy(false);
     }
-    // Explains the departure plan of the first leg, after both timed runs so it never competes with them.
+    // Explains the selected departure decision of the first leg on its own snapshot (no new search), after both timed runs.
     try {
-      setExplanation(await explainRoute(origin.id, destinationIds[0], tripConditions, controller.signal));
+      setExplanation(await explainRoute(recommended.decision.search_id, controller.signal));
       setExplanationNote(destinationIds.length > 1 || events.length
         ? 'This explains the plan made at departure for the first destination; later legs and mid-trip re-routing are not compared.' : '');
     } catch {
@@ -312,14 +331,15 @@ export default function App() {
         <h2>Route summary</h2>
           <div className="route-cards">
             {runs.map((run, index) => <article key={run.name} className={index === 0 ? 'route-card proposed' : 'route-card'}>
-              <span className="route-badge" style={{ color: run.color }}>{index === 0 ? 'Proposed route' : 'Baseline route'}</span>
+              <span className="route-badge" style={{ color: run.color }}>{index === 0 ? 'Recommended route' : 'Baseline route'}</span>
               <h4>{run.name}</h4>
               <p className="route-via">Via {mainRoad(run.trip)}</p>
               <dl>
                 <div><dt>Travel time</dt><dd>{(run.trip.trip.travel_time_s / 60).toFixed(0)} min</dd></div>
                 <div><dt>Distance</dt><dd>{(run.trip.evaluation.distance_travel_m / 1000).toFixed(1)} km</dd></div>
-                <div><dt>Path cost</dt><dd>{run.trip.evaluation.path_cost.toFixed(1)}</dd></div>
+                <div><dt>Path cost</dt><dd>{run.trip.evaluation.path_cost.toFixed(2)}</dd></div>
               </dl>
+              {run.trip.evaluation.convergence.stop_reason === 'time_limit' && <p className="muted">Best route found within the search time budget.</p>}
               <a className={index === 0 ? 'button' : 'button ghost'} href="#trip-measures">View details</a>
             </article>)}
             {!baseline && <article className="route-card pending"><span className="route-badge" style={{ color: BASELINE_COLOR }}>Baseline route</span><h4>Baseline IACO</h4><p className="route-via">{baselineBusy ? 'Running on the same trip…' : baselineError ? 'Not available' : '–'}</p></article>}
@@ -328,13 +348,17 @@ export default function App() {
       <section className="card evaluation" id="evaluation">
         <h2>Evaluation of this trip</h2>
         {runs.length ? <>
-          <p className="muted" id="trip-measures">Both algorithms drive the same trip, departure and mid-trip changes. Path cost is the CRITIC ten-feature cost of each road when entered, for both. Convergence rate is N<sub>conv</sub>, the iteration at which the initial search's best path cost had not improved for 20 consecutive iterations (Aadil et al., 2016; fewer = faster). Both algorithms stop on this rule; reaching the iteration limit first is recorded as not converged. Lower is better for every measure.</p>
+          <p className="muted" id="trip-measures">Both algorithms drive the same trip, departure and mid-trip changes with the same search kernel; only their edge costs and re-planning rules differ.
+            Path cost is the common evaluation cost: the CRITIC ten-criterion cost of each road when entered, for both. ACO search time is the search alone; response time is the whole request.
+            Convergence behavior: N<sub>conv</sub> is the iteration at which the best path cost had not improved over a 20-iteration window (Aadil et al., 2016); a search that hits its iteration limit or time budget first is reported as such.
+            Lower is better for every measure. One trip is a single pair; the significance test is in the statistical comparison below.</p>
           <div className="audit-table"><table><thead><tr><th>Measure</th>{runs.map(run => <th key={run.name}><span className="legend-dot" style={{ background: run.color }} />{run.name}</th>)}{!baseline && <th>Baseline IACO</th>}<th>Paired difference (baseline − ANTROUTE)</th></tr></thead><tbody>
             {([
               ['Distance travelled', trip => `${(trip.evaluation.distance_travel_m / 1000).toFixed(3)} km`, trip => trip.evaluation.distance_travel_m, value => `${(value / 1000).toFixed(3)} km`],
               ['Path cost', trip => trip.evaluation.path_cost.toFixed(4), trip => trip.evaluation.path_cost, value => value.toFixed(4)],
-              ['Computational time', trip => seconds(trip.evaluation.computational_time_ms), trip => trip.evaluation.computational_time_ms, seconds],
-              ['Convergence rate', trip => convergenceText(trip.evaluation.convergence), trip => trip.evaluation.convergence.iterations_to_convergence, value => `${value} iteration${value === 1 ? '' : 's'}`],
+              ['ACO search time', trip => seconds(trip.evaluation.search_time_ms), trip => trip.evaluation.search_time_ms, seconds],
+              ['Re-routing (recalculation) time', trip => seconds(trip.evaluation.recalculation_time_ms), trip => trip.evaluation.recalculation_time_ms, seconds],
+              ['Convergence behavior', trip => convergenceText(trip.evaluation.convergence), trip => trip.evaluation.convergence.iterations_to_convergence, value => `${value} iteration${value === 1 ? '' : 's'}`],
             ] as [string, (trip: TripResult) => string, (trip: TripResult) => number | null, (value: number) => string][]).map(([name, show, value, unit]) => <tr key={name}><th scope="row">{name}</th>
               {runs.map(run => <td key={run.name}>{show(run.trip)}</td>)}{!baseline && <td>{baselineBusy ? 'Running…' : '–'}</td>}
               <td>{result && baseline ? pairedDifference(value(result), value(baseline), unit) : '–'}</td></tr>)}
@@ -344,14 +368,16 @@ export default function App() {
           <div className="chart-pair">{runs.map(run => <CostHistory key={run.name} caption={`${run.name}: initial search`} color={run.color}
             values={run.trip.evaluation.convergence.searches[0].best_cost_by_iteration} marker={run.trip.evaluation.convergence.iterations_to_convergence} />)}</div>
           <h3>Routing and re-routing log</h3>
-          <div className="audit-table"><table><thead><tr><th>Algorithm</th><th>Trip minute</th><th>Reason</th><th>Roads affected</th><th>Iterations to convergence</th><th>Routing time</th></tr></thead><tbody>
+          <div className="audit-table"><table><thead><tr><th>Algorithm</th><th>Trip minute</th><th>Reason</th><th>Roads affected</th><th>Search outcome</th><th>Decision</th><th>Search time</th><th>Recalculation time</th></tr></thead><tbody>
             {runs.flatMap(run => run.trip.evaluation.convergence.searches.map((search, index) => <tr key={`${run.name}-${index}`}>
               <td>{run.name}</td><td>{search.at_minute.toFixed(1)}</td><td>{search.trigger === 'departure' ? 'Initial routing at departure' : search.kind === 'initial' ? `Initial routing: ${search.trigger.replace(/^leg/, 'Leg')}` : search.trigger}</td>
-              <td>{search.affected_roads ? search.affected_roads.toLocaleString() : '–'}</td><td>{search.iterations_to_convergence === null ? `Not converged (${search.iterations} iterations)` : `${search.iterations_to_convergence} of ${search.iterations}`}</td><td>{seconds(search.routing_time_ms)}</td></tr>))}
+              <td>{search.affected_roads ? search.affected_roads.toLocaleString() : '–'}</td>
+              <td>{STOP_REASONS[search.stop_reason] ?? search.stop_reason}{search.iterations_to_convergence !== null ? ` at ${search.iterations_to_convergence} of ${search.iterations}` : search.iterations ? ` (${search.iterations} iterations)` : ''}</td>
+              <td>{DECISIONS[search.decision]}</td><td>{seconds(search.search_time_ms)}</td><td>{seconds(search.routing_time_ms)}</td></tr>))}
           </tbody></table></div>
           {runs.some(run => run.trip.trip.changes_without_replanning.length > 0) && <p className="muted">Changes that did not require re-routing: {runs.map(run => run.trip.trip.changes_without_replanning.map(change => `${run.name} at minute ${change.at_minute.toFixed(1)} (${change.change})`).join('; ')).filter(Boolean).join('; ')}.</p>}
           {result && <details><summary>Roads driven by ANTROUTE</summary><p>{result.route.road_names.filter((name, index, array) => index === 0 || name !== array[index - 1]).join(' → ')}</p></details>}
-        </> : <p className="muted">Distance travelled, path cost, computational time and convergence rate appear for both algorithms after a completed trip.</p>}
+        </> : <p className="muted">Distance travelled, path cost, ACO search time and convergence behavior appear for both algorithms after a completed trip.</p>}
       </section>
       <StatisticalComparison />
       <section className="card" id="features"><h2>Routing features</h2><div className="feature-list">{features.map(feature => <span key={feature}>{feature}</span>)}</div>

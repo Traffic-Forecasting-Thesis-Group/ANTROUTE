@@ -1,4 +1,4 @@
-"""Exercise the real five-city system using only the four study evaluations."""
+"""Exercise the real five-city release end to end through the API (software verification, not empirical validation)."""
 import json
 from pathlib import Path
 
@@ -50,12 +50,16 @@ def main():
             assert body["route"]["node_ids"][-1] == destination
             assert not set(closures).intersection(body["route"]["road_ids"])
             assert len(body["route"]["node_ids"]) == len(set(body["route"]["node_ids"]))
-            result = {"case": label, "conditions": body["conditions"], "evaluation": body["evaluation"]}
+            assert body["decision"]["road_ids"] == body["route"]["road_ids"] and body["decision"]["contract_version"] == 2
+            contributions = sum(item["contribution"] for item in body["contributions"])
+            assert abs(contributions - body["decision"]["common_evaluation_cost"]) <= 1e-9 * max(1.0, contributions)
+            result = {"case": label, "conditions": body["conditions"], "evaluation": body["evaluation"], "decision": body["decision"]}
             results.append(result)
             print(f"Passed: {label} ({body['evaluation']['distance_travel_m'] / 1000:.2f} km)", flush=True)
     output = ROOT / "outputs/study_validation.json"
     output.parent.mkdir(exist_ok=True)
     output.write_text(json.dumps({"network_built_at": network.provenance["built_at"],
+                                  "calibration_id": network.cost_config.calibration_id,
                                   "representative_nodes": representatives, "runs": results}, indent=2), encoding="utf-8")
     print(f"Saved {len(results)} verified real-network runs to outputs/study_validation.json")
 
