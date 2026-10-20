@@ -14,6 +14,7 @@ and data/quality/feature_preprocessing.json (counts, exclusions, fallbacks, chec
 Run: python -m scripts.preprocess_road_features
 """
 import ast
+import hashlib
 import csv
 import json
 import math
@@ -25,7 +26,7 @@ from pathlib import Path
 import networkx as nx
 from pyproj import Geod
 from shapely import make_valid, wkt
-from shapely.geometry import LineString, Point, shape
+from shapely.geometry import LineString, Point, box, shape
 from shapely.ops import unary_union
 from shapely.prepared import prep
 from shapely.strtree import STRtree
@@ -38,8 +39,10 @@ GEOD = Geod(ellps="WGS84")
 NODE_FIELDS = ["node_id", "city", "latitude", "longitude", "street_count", "is_intersection", "traffic_signal", "signal_source"]
 SEGMENT_FIELDS = ["road_id", "source_node", "target_node", "city", "road_name", "road_type", "distance_m", "geometry_source",
                   "lanes", "lanes_source", "speed_kph", "speed_source", "free_flow_time_s", "signal_at_target",
-                  "road_capacity_vph", "capacity_source", "traffic_location", "geometry_wkt"]
-FLOOD_FIELDS = ["road_id", "noah_hazard_class", "flood_risk", "flood_source"]
+                  "road_capacity_vph", "capacity_source", "capacity_method", "capacity_uncertainty", "traffic_location", "geometry_wkt"]
+FLOOD_FIELDS = ["road_id", "flood_km_class1", "flood_km_class2", "flood_km_class3", "flood_coverage", "flood_source"]
+# Overlapping hazard polygons resolve to the highest class: a road portion inside classes 2 and 3 counts once, as class 3.
+FLOOD_PRECEDENCE = (3, 2, 1)
 
 
 def values(value):
@@ -94,18 +97,56 @@ def road_geometry(graph, source, target, data):
 
 
 def flood_index(path, area):
+    """Hazard polygon parts that touch the study area, their classes, and the dataset extent (its bounding box)."""
     data = json.loads(path.read_text(encoding="utf-8"))
-    polygons, levels = [], []
+    polygons, levels, bounds = [], [], []
     for feature in data["features"]:
         level = float(feature["properties"]["Var"])
         if level not in {1, 2, 3}:
             raise ValueError("Unexpected source flood hazard class")
         geometry = shape(feature["geometry"])
+        bounds.append(geometry.bounds)
         for part in geometry.geoms if geometry.geom_type == "MultiPolygon" else [geometry]:
             if area.intersects(part):
                 polygons.append(part if part.is_valid else make_valid(part))
                 levels.append(int(level))
-    return STRtree(polygons), levels
+    extent = box(min(b[0] for b in bounds), min(b[1] for b in bounds), max(b[2] for b in bounds), max(b[3] for b in bounds))
+    return STRtree(polygons), levels, extent
+
+
+def geodesic_km(geometry):
+    """WGS84 geodesic length (km) of the line parts of a geometry; points from boundary touches add nothing."""
+    if geometry.is_empty:
+        return 0.0
+    if geometry.geom_type == "LineString":
+        return abs(GEOD.geometry_length(geometry)) / 1000
+    if hasattr(geometry, "geoms"):
+        return sum(geodesic_km(part) for part in geometry.geoms)
+    return 0.0
+
+
+def flood_portions(line, tree, levels, extent):
+    """Length (km) of the line in each NOAH class, overlaps resolved by FLOOD_PRECEDENCE, and coverage status.
+
+    Coverage is "mapped" inside the hazard dataset's extent (no mapped class there means no mapped hazard, not
+    verified safety) and "unknown" outside it.
+    """
+    window = line.envelope.buffer(1e-6)
+    hits = tree.query(line, predicate="intersects")
+    portions, higher = {}, None
+    for hazard in FLOOD_PRECEDENCE:
+        parts = [tree.geometries[i].intersection(window) for i in hits if levels[i] == hazard]
+        if not parts:
+            continue
+        region = unary_union(parts)
+        kilometres = geodesic_km(line.intersection(region if higher is None else region.difference(higher)))
+        if kilometres > 0:
+            portions[hazard] = kilometres
+        higher = region if higher is None else higher.union(region)
+    total, length = sum(portions.values()), geodesic_km(line)
+    if total > length:  # Floating-point overlap at polygon edges; never longer than the road.
+        portions = {hazard: km * length / total for hazard, km in portions.items()}
+    return portions, "mapped" if extent.covers(line) else "unknown"
 
 
 def write_csv(path, fields, rows):
@@ -132,7 +173,7 @@ def preprocess(boundary_path, graph_path, flood_path, assumptions):
         point = Point(float(data["x"]), float(data["y"]))
         if area.covers(point):
             inside[str(node_id)] = next(city for city, polygon in cities.items() if polygon.covers(point))
-    tree, levels = flood_index(flood_path, area)
+    tree, levels, extent = flood_index(flood_path, area)
     segments, floods, used = [], [], set()
     excluded, fallbacks = Counter(), Counter()
     for source, target, key, data in graph.edges(keys=True, data=True):
@@ -159,11 +200,12 @@ def preprocess(boundary_path, graph_path, flood_path, assumptions):
         speed = speed or settings["speed_kph"]
         lanes, lanes_source = directional_lanes(data, settings["lanes"])
         signal = "traffic_signals" in values(graph.nodes[target].get("highway", ""))
-        # HCM-style approximation: c = lanes * saturation flow * g/C (g/C assumed at signals).
+        # K = directional lanes x assumed base saturation flow x g/C (g/C assumed at a signalised approach).
+        # Lanes are already per direction (directional_lanes), so they are not counted twice.
         capacity = lanes * assumptions["saturation_flow_vph_per_lane"] * (assumptions["assumed_effective_green_ratio"] if signal else 1)
         city = inside[source]
         road_id = f"{source}:{target}:{key}"
-        hazard = max((levels[int(index)] for index in tree.query(line, predicate="intersects")), default=0)
+        portions, coverage = flood_portions(line, tree, levels, extent)
         fallbacks.update([speed_source, lanes_source, geometry_source])
         segments.append({
             "road_id": road_id, "source_node": source, "target_node": target, "city": city,
@@ -173,11 +215,17 @@ def preprocess(boundary_path, graph_path, flood_path, assumptions):
             "free_flow_time_s": round(distance / (speed / 3.6), 6), "signal_at_target": int(signal),
             "road_capacity_vph": capacity,
             "capacity_source": "estimated_" + lanes_source + ("_signal_green_ratio" if signal else ""),
+            "capacity_method": "directional_lanes_x_assumed_base_saturation_flow_x_gC",
+            "capacity_uncertainty": "unvalidated: assumed base saturation flow; "
+                                    + ("lanes from OSM" if lanes_source != "road_type_default_lanes" else "lanes from road-type default")
+                                    + ("; assumed g/C" if signal else ""),
             "traffic_location": road_id,  # Each segment has its own hourly traffic series.
             "geometry_wkt": line.wkt,
         })
-        floods.append({"road_id": road_id, "noah_hazard_class": hazard, "flood_risk": round(hazard / 3, 6),
-                       "flood_source": "noah_mapped_hazard_exposure" if hazard else "no_mapped_hazard_not_verified_safe"})
+        floods.append({"road_id": road_id, **{f"flood_km_class{c}": round(portions.get(c, 0.0), 9) for c in (1, 2, 3)},
+                       "flood_coverage": coverage,
+                       "flood_source": "noah_5yr_hazard_class_lengths" if portions else
+                                       ("no_mapped_hazard_not_verified_safe" if coverage == "mapped" else "outside_hazard_dataset_extent")})
         used.update((source, target))
     nodes = []
     for node_id in sorted(used):
@@ -200,7 +248,11 @@ def validate(nodes, segments, floods, types):
         "positive_distance_speed_capacity": all(s["distance_m"] > 0 and s["speed_kph"] > 0 and s["road_capacity_vph"] > 0 for s in segments),
         "known_road_types": all(s["road_type"] in types for s in segments),
         "flood_row_per_segment": [f["road_id"] for f in floods] == ids,
-        "flood_class_0_to_3": all(f["noah_hazard_class"] in {0, 1, 2, 3} for f in floods),
+        "flood_portions_within_road": all(
+            min(f[f"flood_km_class{c}"] for c in (1, 2, 3)) >= 0
+            and sum(f[f"flood_km_class{c}"] for c in (1, 2, 3)) <= s["distance_m"] / 1000 * (1 + 1e-6) + 1e-6
+            for f, s in zip(floods, segments)),
+        "flood_coverage_declared": all(f["flood_coverage"] in {"mapped", "unknown"} for f in floods),
         "all_five_cities_present": {s["city"] for s in segments} == set(CITIES),
     }
     failed = [name for name, passed in checks.items() if not passed]
@@ -228,7 +280,11 @@ def main():
         "signal_nodes": sum(n["traffic_signal"] for n in nodes),
         "excluded_source_edges": dict(excluded),
         "value_sources": dict(fallbacks),
-        "flood_classes": dict(Counter(f["noah_hazard_class"] for f in floods)),
+        "flood_km_by_class": {c: round(sum(f[f"flood_km_class{c}"] for f in floods), 3) for c in (1, 2, 3)},
+        "flood_coverage": dict(Counter(f["flood_coverage"] for f in floods)),
+        "flood_method": "Line-polygon intersection per NOAH class; overlaps resolved to the highest class; WGS84 geodesic lengths. "
+                        "Mapped susceptibility, not current inundation or closures.",
+        "flood_source_sha256": hashlib.sha256((ROOT / "data/raw/spatial/flood_hazard.geojson").read_bytes()).hexdigest(),
         "checks": checks,
     }
     quality = ROOT / "data/quality/feature_preprocessing.json"

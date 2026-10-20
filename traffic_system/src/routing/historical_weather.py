@@ -36,7 +36,9 @@ def build_weather(boundaries, output, nodes=None):
             grid = row["grid_cell"]
             if key in grid_records[grid]:
                 raise ValueError(f"Duplicate weather record for {grid}: {key}")
-            record = {"precip_mm": float(row["ws_precip_mm"]), "description": row["ws_description"], "grid_cell": grid}
+            # A blank precipitation stays missing (None), never 0; weather_condition decides from the description or fails.
+            precip = row["ws_precip_mm"].strip()
+            record = {"precip_mm": float(precip) if precip else None, "description": row["ws_description"], "grid_cell": grid}
             grid_records[grid][key] = record
             for city, grid in selected.items():
                 if row["grid_cell"] == grid:

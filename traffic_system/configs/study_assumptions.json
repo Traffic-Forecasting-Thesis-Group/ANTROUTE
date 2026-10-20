@@ -1,109 +1,95 @@
 {
-  "status": "Uncalibrated, source-documented estimates; not recorded historical traffic",
-  "capacity_note": "c = directional lanes * 1900 * effective green ratio. Green ratio is assumed 0.5 at mapped downstream signals and 1 elsewhere. Unsignalized use is a rough proxy, not a validated link-capacity model.",
-  "traffic_note": "Traffic is estimated, not observed and not counted: an assumed hourly demand-to-capacity index per road segment (hourly profile x road-type factor x weekend factor x repeatable city, area and road variation) is converted to congestion and travel-time factors with the published BPR function. Preprocessed into data/processed/temporal/traffic_hourly.csv, one row per segment per hour.",
+  "status": "Uncalibrated, source-documented assumptions; congestion is an assumed scenario, not recorded or estimated historical traffic",
+  "capacity_note": "K = directional lanes x saturation flow x g/C. 1,900 veh/h/lane is an assumed base saturation flow (not validated locally); g/C = 0.5 is assumed at approaches to a mapped signal, 1 elsewhere. Unsignalized use is a rough proxy, not a validated link-capacity model. Uncertainty: lanes often fall back to road-type defaults and signal timings are unmeasured.",
+  "traffic_note": "Assumed congestion scenario, not observed, counted or independently estimated traffic: a seeded, assumed hourly demand-to-capacity index per road segment (hourly profile x road-type factor x weekend factor x repeatable city, area and road variation) passed through the BPR function. Preprocessed into data/processed/temporal/traffic_hourly.csv, one row per segment per hour.",
   "weather_scenarios": {
     "clear": {
-      "cost": 0,
+      "severity": 0,
       "travel_time_multiplier": 1
     },
     "rain": {
-      "cost": 0.4,
+      "severity": 0.4,
       "travel_time_multiplier": 1.081081081081081
     },
     "heavy_rain": {
-      "cost": 0.8,
+      "severity": 0.8,
       "travel_time_multiplier": 1.1299435028248588
     }
   },
-  "weather_note": "Weather per road = scenario cost x ((1 - share) + share x NOAH flood risk): part of the rain cost applies to every road (wet pavement), the rest scales with mapped flood hazard. Share is an uncalibrated assumption.",
+  "weather_note": "Weather severity a per road = assumed severity of the hourly weather category; it is kept separate from mapped flood exposure. Severities and travel-time multipliers are assumptions, not calibrated. Category from hourly provider precipitation: Weatherstack ws_precip_mm is a 1-hour accumulation in mm (verified: the 24 hourly values sum to the daily total). heavy_rain: >= 7.5 mm/h; rain: > 0 mm/h; clear: 0 mm/h. When precipitation is missing, the description decides ('heavy rain'/'torrential' -> heavy_rain; 'rain'/'drizzle'/'thunder' -> rain) and the record is flagged; when both are missing the observation is missing and the request fails instead of assuming clear.",
   "road_types": {
     "motorway": {
       "speed_kph": 80,
       "lanes": 2,
-      "cost": 0.1,
       "traffic_factor": 1.1
     },
     "motorway_link": {
       "speed_kph": 40,
       "lanes": 1,
-      "cost": 0.2,
       "traffic_factor": 1.0
     },
     "trunk": {
       "speed_kph": 60,
       "lanes": 2,
-      "cost": 0.2,
       "traffic_factor": 1.1
     },
     "trunk_link": {
       "speed_kph": 35,
       "lanes": 1,
-      "cost": 0.3,
       "traffic_factor": 1.0
     },
     "primary": {
       "speed_kph": 50,
       "lanes": 2,
-      "cost": 0.3,
       "traffic_factor": 1.0
     },
     "primary_link": {
       "speed_kph": 30,
       "lanes": 1,
-      "cost": 0.4,
       "traffic_factor": 1.0
     },
     "secondary": {
       "speed_kph": 40,
       "lanes": 1,
-      "cost": 0.4,
       "traffic_factor": 0.9
     },
     "secondary_link": {
       "speed_kph": 25,
       "lanes": 1,
-      "cost": 0.5,
       "traffic_factor": 0.9
     },
     "tertiary": {
       "speed_kph": 30,
       "lanes": 1,
-      "cost": 0.5,
       "traffic_factor": 0.8
     },
     "tertiary_link": {
       "speed_kph": 25,
       "lanes": 1,
-      "cost": 0.6,
       "traffic_factor": 0.8
     },
     "residential": {
       "speed_kph": 20,
       "lanes": 1,
-      "cost": 0.7,
       "traffic_factor": 0.5
     },
     "living_street": {
       "speed_kph": 10,
       "lanes": 1,
-      "cost": 0.9,
       "traffic_factor": 0.4
     },
     "unclassified": {
       "speed_kph": 25,
       "lanes": 1,
-      "cost": 0.65,
       "traffic_factor": 0.6
     },
     "service": {
       "speed_kph": 15,
       "lanes": 1,
-      "cost": 0.85,
       "traffic_factor": 0.4
     }
   },
-  "traffic_model": "bpr",
+  "traffic_model": "bpr_on_assumed_demand_index",
   "bpr_alpha": 0.15,
   "bpr_beta": 4.0,
   "saturation_flow_vph_per_lane": 1900,
@@ -152,6 +138,36 @@
     "map": "https://www.openstreetmap.org/copyright",
     "flood": "https://noah.up.edu.ph/know-your-hazards"
   },
-  "time_of_day_note": "Time of day per road = hourly_demand_capacity_ratio[hour] / its daily maximum x road_types.traffic_factor / the largest traffic_factor: how busy this type of road typically is at this hour (0-1). Same assumed profile as the traffic table, without the date-specific variation or the BPR curve.",
-  "weather_flood_exposure_share": 0.5
+  "weather_category_thresholds_mm_per_h": {
+    "heavy_rain": 7.5,
+    "rain": 0.0
+  },
+  "road_class_severity": {
+    "method": "speed_median",
+    "status": "assumed_preference",
+    "definition": "p_k = 1 - median free-flow speed of class k / largest class median, over development roads; a stated preference for faster road classes, not a published penalty."
+  },
+  "flood_class_severity": {
+    "scenario": "class_over_three",
+    "status": "assumed_scoring_scenario",
+    "values": {
+      "1": 0.333333,
+      "2": 0.666667,
+      "3": 1.0
+    },
+    "alternatives": {
+      "equal": {
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0
+      },
+      "convex": {
+        "1": 0.2,
+        "2": 0.5,
+        "3": 1.0
+      }
+    },
+    "note": "NOAH five-year hazard classes 1-3 are mapped susceptibility, not current inundation or road closure. Overlapping polygons resolve to the highest class."
+  },
+  "time_profile_note": "Time-profile severity h per road group (city x road type), day category (weekday/weekend) and local hour = mean congestion of the group's roads over development dates only. Fallbacks: road type over all cities, then all roads. The clock hour itself is never a penalty."
 }

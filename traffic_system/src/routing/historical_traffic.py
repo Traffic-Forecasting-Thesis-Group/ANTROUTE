@@ -1,9 +1,10 @@
-"""Hourly traffic table with one row per road segment per hour.
+"""Hourly traffic table with one row per road segment per hour: an assumed congestion scenario.
 
-The table plays the role weatherstack_hourly.csv plays for weather, but its values are
-estimated: no hourly traffic observations exist for this period. Congestion and travel
-time come from the published BPR form applied to an assumed demand-to-capacity index;
-no vehicle counts are stored or produced.
+The table plays the role weatherstack_hourly.csv plays for weather, but its values are not
+observations or independent demand estimates: no hourly traffic observations or demand inputs
+exist for this period. Congestion and travel time come from the published BPR form applied to a
+seeded, assumed demand-to-capacity index; no vehicle counts or flows are stored or produced, and
+index x capacity is never presented as demand.
 
 The full year is 8760 hours x every segment (hundreds of millions of rows), so the CSV is
 written once with a byte-offset index; routing reads only the requested hour.
@@ -84,6 +85,17 @@ def demand_indices(roads, assumptions, hours=HOURS):
         yield day, hour, scale * base * np.exp(exponent)
 
 
+def bpr_time(free_flow_time, demand_vph, capacity_vph, alpha=0.15, beta=4.0):
+    """BPR traversal time t0 * (1 + alpha * (q/K)^beta) for independently specified demand q and capacity K.
+
+    q and K must share direction, vehicle units and time interval. No independent demand exists in this
+    study's inputs, so routing does not call this; it is kept for scenarios that supply q.
+    """
+    if capacity_vph <= 0 or demand_vph < 0 or free_flow_time <= 0:
+        raise ValueError("BPR needs positive free-flow time and capacity and nonnegative demand")
+    return free_flow_time * (1 + alpha * (demand_vph / capacity_vph) ** beta)
+
+
 def bpr(index, assumptions):
     """BPR travel-time factor 1 + alpha * x^beta and congestion index 1 - 1/factor (scalars or arrays)."""
     factor = 1 + assumptions["bpr_alpha"] * index ** assumptions["bpr_beta"]
@@ -99,14 +111,15 @@ def estimated_hours(roads, assumptions, hours=HOURS):
         yield day, hour, ids, congestion, factor, free_flow * factor
 
 
-def weekday_profile(roads, assumptions):
-    """Mean weekday (congestion, travel_time_factor) per road and hour: {road_id: [(c, f)] * 24}.
+def weekday_profile(roads, assumptions, development_days):
+    """Mean weekday (congestion, travel_time_factor) per road and hour over development days only: {road_id: [(c, f)] * 24}.
 
     Stored on each road as a 24-hour fallback; routing uses the dated hourly table.
     """
+    development_days = set(development_days)
     sums, counts = np.zeros((2, 24, len(roads))), np.zeros(24)
     for day, hour, index in demand_indices(roads, assumptions):
-        if day.weekday() < 5:
+        if day in development_days and day.weekday() < 5:
             factor, congestion = bpr(index, assumptions)
             sums[0, hour] += congestion
             sums[1, hour] += factor
@@ -160,7 +173,7 @@ def write_table(path, hourly, description=None):
     index = {"table": path.name, "columns": FIELDS, "rows": rows, "roads": roads or 0, "hours": len(offsets),
              "bytes": position, "sha256": digest.hexdigest(),
              "generated_at": datetime.now(timezone.utc).isoformat(),
-             "classification": "estimated_not_observed", **(description or {}), "offsets": offsets}
+             "classification": "assumed_congestion_scenario", **(description or {}), "offsets": offsets}
     index_path(path).write_text(json.dumps(index), encoding="utf-8")
     return {key: value for key, value in index.items() if key != "offsets"}
 

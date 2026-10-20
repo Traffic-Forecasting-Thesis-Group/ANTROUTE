@@ -10,5 +10,20 @@
   "data_status": "documented_estimation_release",
   "static_features": "September 2026 OSM inventory used as an explicitly estimated static surrogate for this period; historical road changes are not reconstructed.",
   "dynamic_features": "Historical provider weather records plus date/hour-specific traffic estimates; not 8760 independent traffic observations.",
-  "flood_risk": "Static mapped NOAH hazard exposure proxy, not observed hourly flooding."
+  "flood_risk": "Static mapped NOAH hazard exposure proxy, not observed hourly flooding.",
+  "calibration_split": {
+    "development": {
+      "start": null,
+      "end": null
+    },
+    "tuning": {
+      "start": null,
+      "end": null
+    },
+    "test": {
+      "start": null,
+      "end": null
+    },
+    "note": "Declare chronological, non-overlapping ISO dates within the study period. Weights, scales, class summaries and profiles are fitted on development only; tuning freezes search budgets; test is held out for the comparison. Unset boundaries block calibration and routing."
+  }
 }

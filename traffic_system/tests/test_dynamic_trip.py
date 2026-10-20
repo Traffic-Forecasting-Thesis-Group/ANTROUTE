@@ -6,9 +6,11 @@ from fastapi.testclient import TestClient
 from app.main import app
 from src.routing.baseline_cheng import rescale_pheromone
 from src.routing.dynamic_trip import TripEvent, changed_roads, simulate_trip
+from src.routing.condition_update import MANILA
+from src.routing.dynamic_trip import ReplanConfig
 from src.routing.network import RoadNetwork
 
-DEPARTURE = datetime(2025, 6, 2, 8, 0)
+DEPARTURE = datetime(2025, 6, 2, 8, 0, tzinfo=MANILA)
 
 
 @pytest.fixture
@@ -58,10 +60,45 @@ def test_closure_mid_trip_reroutes_from_the_current_node(loop_network):
 
 def test_cheng_reroutes_with_eq9_after_closure_and_reopening(loop_network):
     events = [TripEvent(at_minute=0.1, close_road_ids={"bd"}, reopen_road_ids={"ad"})]
-    result = simulate_trip(loop_network, "a", "d", DEPARTURE, "clear", frozenset({"ad"}), events, "cheng")
+    reference = ReplanConfig(policy="cheng_reference_printed")
+    result = simulate_trip(loop_network, "a", "d", DEPARTURE, "clear", frozenset({"ad"}), events, "cheng", replan=reference)
     assert [road.id for road in result.roads] == ["ab", "ba", "ad"]
     assert result.searches[1].affected_roads == 2  # bd closed, ad reopened
-    assert result.searches[1].stop_reason == "convergence_rule"  # Same 20-iteration rule as ANTROUTE.
+    assert result.searches[1].stop_reason == "converged"  # Same convergence rule as ANTROUTE.
+    assert result.searches[1].decision == "adopted_incumbent_invalid"  # The closure invalidated the remainder.
+    with pytest.raises(ValueError, match="Cheng baseline only"):
+        simulate_trip(loop_network, "a", "d", DEPARTURE, "clear", frozenset(), [], "antroute", replan=reference)
+
+
+def test_naive_departure_is_rejected(network):
+    with pytest.raises(ValueError, match="timezone-aware"):
+        simulate_trip(network, "a", "d", datetime(2025, 6, 2, 8, 0), "clear", frozenset(), [], "antroute")
+
+
+@pytest.mark.parametrize("cost_factor, decision", [
+    (2.0, "kept_incumbent"),  # A candidate scored worse than the incumbent remainder b -> d.
+    (1.0, "kept_incumbent"),  # A tie never replaces the incumbent.
+    (None, "kept_incumbent_search_failed"),  # A failed search keeps the valid incumbent.
+])
+def test_valid_incumbent_survives_worse_tied_or_failed_candidates(loop_network, monkeypatch, cost_factor, decision):
+    from dataclasses import replace
+    import src.routing.dynamic_trip as trip
+    from src.routing.aco_kernel import SearchExhausted, SearchResult
+    real = trip.ant_colony_route
+
+    def candidate(adjacency, origin, destination, *args, **kwargs):
+        if origin == "a":  # The departure plan is a real search: a -> b -> d.
+            return real(adjacency, origin, destination, *args, **kwargs)
+        if cost_factor is None:
+            raise SearchExhausted("no route found")
+        route = [replace(edge, cost=edge.cost * cost_factor) for edge in adjacency["b"] if edge.road.id == "bd"]
+        return SearchResult(route, [route[0].cost], "converged", 1, 21, 21, 1.0)
+    monkeypatch.setattr(trip, "ant_colony_route", candidate)
+    rain = [TripEvent(at_minute=0.1, weather="rain")]  # Changes every native cost, so a re-plan runs at b.
+    result = simulate_trip(loop_network, "a", "d", DEPARTURE, "clear", frozenset(), rain, "antroute")
+    assert [road.id for road in result.roads] == ["ab", "bd"]
+    assert result.searches[1].decision == decision
+    assert result.searches[1].incumbent_cost is not None
 
 
 def test_weather_change_triggers_replanning(network):
@@ -76,7 +113,7 @@ def test_weather_change_triggers_replanning(network):
 def test_hour_change_without_cost_change_does_not_replan(network):
     # Fixture profiles are flat, so crossing 09:00 changes no cost or travel time.
     for algorithm in ("antroute", "cheng"):
-        result = simulate_trip(network, "a", "d", datetime(2025, 6, 2, 8, 59, 55), "clear", frozenset({"ad"}), [], algorithm)
+        result = simulate_trip(network, "a", "d", datetime(2025, 6, 2, 8, 59, 55, tzinfo=MANILA), "clear", frozenset({"ad"}), [], algorithm)
         assert len(result.searches) == 1
         assert result.unsearched_changes[0]["change"] == "hour 08:00 -> 09:00"
         evaluation = result.evaluation()
@@ -112,8 +149,10 @@ def test_trip_api(loop_network, monkeypatch):
         body = client.post("/routes/trip", json=payload).json()  # algorithm defaults to antroute
         assert body["algorithm"]["name"] == "antroute"
         assert body["route"]["road_ids"] == ["ab", "ba", "ad"]
-        assert set(body["evaluation"]) == {"distance_travel_m", "path_cost", "computational_time_ms", "initial_routing_time_ms",
-                                           "dynamic_rerouting_time_ms", "reroutes", "mean_rerouting_time_ms", "convergence"}
+        assert {"distance_travel_m", "path_cost", "search_time_ms", "response_time_ms", "recalculation_time_ms", "detection_delay_s",
+                "computational_time_ms", "reroutes", "convergence"} <= set(body["evaluation"])
+        assert body["evaluation"]["detection_delay_s"] == [pytest.approx(4)]  # Closure at 6 s, seen on arrival at b at 10 s.
+        assert body["decision"]["road_ids"] == ["ab", "bd"]  # The departure decision, before the closure.
         assert body["evaluation"]["path_cost"] == pytest.approx(sum(s["path_cost"] for s in body["route"]["segments"]))
         stops = {**payload, "destination": None, "destinations": ["b", "d"], "events": []}
         body = client.post("/routes/trip", json=stops).json()

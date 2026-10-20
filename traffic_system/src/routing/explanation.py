@@ -66,20 +66,21 @@ def _stretches(chosen, reference):
 
 
 def _facts(edges, score):
-    """What is on these roads: the ten features' raw values, summarized as a driver would read them."""
-    raws = [score(edge)[0] for edge in edges]
-    normalized = [score(edge)[1] for edge in edges]
-    length = sum(raw["distance"] for raw in raws)
+    """What is on these roads, summarized as a driver would read them. Severities are length-weighted means."""
+    scores = [score(edge) for edge in edges]
+    kilometres = sum(item.criteria["distance"] for item in scores)
 
-    def by_length(name, values=raws):
-        return sum(value[name] * raw["distance"] for value, raw in zip(values, raws)) / length if length else 0.0
-    return {"distance_m": length, "cost": sum(score(edge)[2] for edge in edges),
-            "roads": len(edges), "intersections": sum(raw["number_of_intersections"] for raw in raws),
-            "signals": sum(raw["traffic_signal"] for raw in raws), "travel_time_s": sum(raw["travel_time"] for raw in raws),
-            "max_flood_risk": max(raw["flood_risk"] for raw in raws), "flood_risk": by_length("flood_risk"),
-            "congestion": by_length("traffic_congestion"), "capacity_vph": by_length("road_capacity"),
-            "weather_cost": by_length("weather"), "time_of_day_load": by_length("time_of_day", normalized),
-            "road_types": list(dict.fromkeys(raw["road_type"] for raw in raws)),
+    def per_km(name):
+        return sum(item.criteria[name] for item in scores) / kilometres if kilometres else 0.0
+    return {"distance_m": sum(item.physical["distance_m"] for item in scores), "cost": sum(item.cost for item in scores),
+            "roads": len(edges), "intersections": sum(item.physical["intersection"] for item in scores),
+            "signals": sum(item.physical["signal"] for item in scores),
+            "travel_time_s": sum(item.physical["travel_time_s"] for item in scores),
+            "max_flood_severity": max(item.physical["flood_severity"] for item in scores), "flood_severity": per_km("flood_exposure"),
+            "congestion": per_km("congestion"), "weather_severity": per_km("weather"), "time_profile_severity": per_km("time_profile"),
+            # Length-weighted harmonic mean: total length / total capacity burden.
+            "capacity_vph": kilometres / sum(item.criteria["capacity_burden"] for item in scores) if kilometres else 0.0,
+            "road_types": list(dict.fromkeys(item.physical["road_type"] for item in scores)),
             "road_names": list(dict.fromkeys(e.road.name for e in edges if e.road.name))}
 
 
@@ -91,7 +92,7 @@ def _geometry(edges):
 
 
 def explain(network, adjacency, chosen, colony, origin, destination, segment_score):
-    """segment_score(road) -> (raw, normalized, cost) under this snapshot, as used for routing."""
+    """segment_score(road) -> SegmentScore under this snapshot, as used for routing."""
     weights = network.cost_config.weights
     cache = {}
 
@@ -115,8 +116,8 @@ def explain(network, adjacency, chosen, colony, origin, destination, segment_sco
             seen.add(key)
             taken = chosen[start:end]
             mine, other = _facts(taken, score), _facts(detour, score)
-            difference = {name: sum(weights[name] * score(e)[1][name] for e in detour)
-                          - sum(weights[name] * score(e)[1][name] for e in taken) for name in FEATURES}
+            difference = {name: sum(weights[name] * (score(e).scaled[name] or 0) for e in detour)
+                          - sum(weights[name] * (score(e).scaled[name] or 0) for e in taken) for name in FEATURES}
             visits = [colony.visits.get(edge.road.id, 0) for edge in detour]
             costlier = other["cost"] > mine["cost"] + EPSILON
             geometry = _geometry(detour)

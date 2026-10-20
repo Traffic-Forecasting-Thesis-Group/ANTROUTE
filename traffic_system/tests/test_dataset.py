@@ -70,10 +70,12 @@ def test_table_generation_is_repeatable_and_varies_by_day_and_road(tmp_path):
 
 def test_routing_uses_dated_table_values(table_network):
     rows = {row["road_id"]: row for row in snapshot_rows(table_network, conditions())}
-    assert rows["ab"]["traffic_congestion"] == .2 and rows["ab"]["travel_time"] == pytest.approx(25)
-    assert rows["ad"]["traffic_congestion"] == .5 and rows["ad"]["travel_time"] == pytest.approx(40)
+    assert rows["ab"]["congestion"] == .2 and rows["ab"]["travel_time_s"] == pytest.approx(25)
+    assert rows["ad"]["congestion"] == .5 and rows["ad"]["travel_time_s"] == pytest.approx(40)
+    # Criteria are additive and separate from physical values: congestion criterion = km x severity.
+    assert rows["ad"]["criterion_congestion"] == pytest.approx(1.0 * .5) and rows["ad"]["criterion_travel_time"] == pytest.approx(40 / 60)
     later = {row["road_id"]: row for row in snapshot_rows(table_network, conditions(time_of_day=9))}
-    assert later["ab"]["travel_time"] == pytest.approx(50)
+    assert later["ab"]["travel_time_s"] == pytest.approx(50)
     graph = prepare_graph(table_network, conditions(), traffic=historical_traffic.traffic_snapshot(date(2025, 6, 2), 8))
     for edges in graph.values():
         for edge in edges:
@@ -91,7 +93,8 @@ def test_closed_rows_are_retained_but_not_routable_and_csv_quotes_names(table_ne
     decoded = list(csv.DictReader(io.StringIO("".join(csv_chunks(iter(rows))))))
     assert len(decoded) == len(table_network.roads)
     assert decoded[0]["road_name"] == 'Road, "test"'
-    assert decoded[0]["traffic_classification"] == "estimated_not_measured"
+    assert decoded[0]["traffic_classification"] == "assumed_congestion_scenario"
+    assert decoded[0]["contract_version"] == "2"
 
 
 def test_dataset_api_pagination_city_validation_export_map_and_route(table_network, monkeypatch):
@@ -118,10 +121,18 @@ def test_dataset_api_pagination_city_validation_export_map_and_route(table_netwo
         # ACO parameters are fixed by the study; a request cannot change them.
         assert client.post("/routes/plan", json={"origin": "a", "destination": "d", **body, "aco": {"n_ants": 5}}).status_code == 422
         assert route["aco"]["n_ants"] == 20
-        explained = client.post("/routes/explain", json={"origin": "a", "destination": "d", **body}).json()
-        assert explained["chosen"]["road_types"] == ["residential"] and explained["ant_routes"] > 0
-        assert all(item["features"]["traffic_congestion"] in {.2, .5} for item in route["route"]["segment_features"])
-        assert route["traffic"]["classification"] == "estimated_not_measured"
+        # The explanation is of the selected decision and its snapshot: same roads, snapshot and calibration, no new search.
+        decision = route["decision"]
+        assert decision["road_ids"] == route["route"]["road_ids"] and decision["stop_reason"] == "converged"
+        explained = client.post("/routes/explain", json={"search_id": decision["search_id"]}).json()
+        assert explained["decision"]["snapshot_id"] == decision["snapshot_id"]
+        assert explained["chosen"]["roads"] == len(decision["road_ids"]) and explained["chosen"]["road_types"] == ["residential"]
+        assert explained["chosen"]["cost"] == pytest.approx(decision["common_evaluation_cost"])
+        assert explained["ant_routes"] > 0
+        missing = client.post("/routes/explain", json={"search_id": "unknown"})
+        assert missing.status_code == 404 and missing.json()["detail"]["outcome"] == "decision_not_found"
+        assert all(item["physical"]["congestion"] in {.2, .5} for item in route["route"]["segment_features"])
+        assert route["traffic"]["classification"] == "assumed_congestion_scenario"
     summary = coverage(table_network)
     assert sum(summary["segments_by_city"].values()) == 3
     assert summary["traffic_locations"] == 3
@@ -139,13 +150,13 @@ def test_road_grid_weather_can_differ_inside_one_city(table_network, tmp_path, m
         "node_grid_assignment": {"a": "clear", "b": "rain"},
         "records_by_grid": {"clear": {key: clear}, "rain": {key: rain}}}))
     table_network.provenance["assumptions"] = {"weather_scenarios": {
-        "clear": {"cost": 0, "travel_time_multiplier": 1},
-        "heavy_rain": {"cost": .8, "travel_time_multiplier": 1.2}}}
+        "clear": {"severity": 0, "travel_time_multiplier": 1},
+        "heavy_rain": {"severity": .8, "travel_time_multiplier": 1.2}}}
     for road in table_network.roads:
         road.weather["historical"] = road.weather["clear"]
     snapshot = Conditions(departure_date=date(2025, 6, 2), time_of_day=8, weather="historical")
     effects, _ = historical_weather.historical_snapshot(snapshot.departure_date, 8, table_network)
-    assert effects["a"].cost == 0 and effects["b"].cost == .8
+    assert effects["a"].severity == 0 and effects["b"].severity == .8
     rows = {row["road_id"]: row for row in snapshot_rows(table_network, snapshot)}
-    assert rows["bd"]["travel_time"] == pytest.approx(25 * 1.2)
+    assert rows["bd"]["travel_time_s"] == pytest.approx(25 * 1.2)
     assert rows["bd"]["weather_grid"] == "rain" and rows["ab"]["weather_grid"] == "clear"

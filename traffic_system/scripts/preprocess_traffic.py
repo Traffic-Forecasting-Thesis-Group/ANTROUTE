@@ -7,7 +7,7 @@ Output: data/processed/temporal/traffic_hourly.csv
         date, hour, road_id, traffic_congestion, travel_time_factor, travel_time_s
         data/processed/temporal/traffic_hourly.index.json (byte offset of every hour, row count, SHA-256)
 
-Values are estimated, not observed. travel_time_s is the OSM free-flow time multiplied by
+Values are an assumed congestion scenario, not observations or demand estimates. travel_time_s is the OSM free-flow time multiplied by
 travel_time_factor, before any weather adjustment; traffic_congestion is the congestion feature.
 The full table is large (about 15 GB); it is gitignored and reproducible from the inputs.
 
@@ -48,14 +48,14 @@ def main():
     assumptions = json.loads((ROOT / "configs/study_assumptions.json").read_text(encoding="utf-8"))
     roads = segment_inputs(ROOT / "data/processed/features/road_segments.csv")
     checks = write_table(ROOT / TABLE, progress(estimated_hours(roads, assumptions)), {
-        "method": "BPR on an assumed per-road demand-to-capacity index",
+        "method": "Assumed congestion scenario: BPR on a seeded, assumed per-road demand-to-capacity index (not observed, not independent demand)",
         "traffic_variation": assumptions["traffic_variation"]})
     if checks["hours"] != HOURS or checks["roads"] != len(roads):
         raise ValueError("Incomplete hourly traffic coverage")
     quality = ROOT / "data/quality/feature_preprocessing.json"
     existing = json.loads(quality.read_text(encoding="utf-8")) if quality.exists() else {}
     existing["traffic"] = {"generated_at": datetime.now(timezone.utc).isoformat(), "table": TABLE,
-                           "classification": "estimated_not_observed", "rows": checks["rows"],
+                           "classification": "assumed_congestion_scenario", "rows": checks["rows"],
                            "road_segments": checks["roads"], "hours_per_segment": checks["hours"],
                            "bytes": checks["bytes"], "sha256": checks["sha256"],
                            "no_duplicates": True, "values_in_range": True}

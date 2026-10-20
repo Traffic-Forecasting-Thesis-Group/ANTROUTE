@@ -9,11 +9,16 @@ from .condition_update import validate_conditions
 from .dynamic_weight import segment_values
 from .historical_traffic import traffic_for
 from .historical_weather import historical_snapshot, historical_grid_assignments, historical_grid_records
+from .criteria import CONTRACT_VERSION, UNITS as CRITERION_UNITS
 from .network import FEATURES, CITIES
 
-FIELDS = ["timestamp", "road_id", "road_name", "city", "source_node", "target_node", *FEATURES,
-          "weather_condition", "weather_grid", "precip_mm", "traffic_location", "closed", "path_cost",
-          "traffic_classification"]
+# Physical measurements, the ten additive criteria (criterion_*) and scaled routing values (scaled_*) are kept apart.
+PHYSICAL = ["distance_m", "travel_time_s", "congestion", "road_type", "class_severity", "time_profile", "day_category",
+            "weather_severity", "flood_severity", "flood_coverage", "capacity_vph", "intersection", "signal"]
+FIELDS = ["timestamp", "road_id", "road_name", "city", "source_node", "target_node", *PHYSICAL,
+          *(f"criterion_{name}" for name in FEATURES), *(f"scaled_{name}" for name in FEATURES),
+          "weather_condition", "weather_grid", "precip_mm", "traffic_location", "closed", "path_cost", "flags",
+          "contract_version", "calibration_id", "traffic_classification"]
 
 
 def snapshot_rows(network, conditions, city=None):
@@ -30,17 +35,21 @@ def snapshot_rows(network, conditions, city=None):
         source = nodes[road.source]
         if city is not None and source.city != city:
             continue
-        raw, _, cost = segment_values(network, road, conditions, nodes, effects, traffic)
+        score = segment_values(network, road, conditions, nodes, effects, traffic)
         closed = road.id in conditions.closed_road_ids
         grid = grids.get(road.source, "")
         record = records.get(grid, {})
+        rounded = lambda value: round(value, 10) if isinstance(value, float) else value
         yield {"timestamp": timestamp, "road_id": road.id, "road_name": road.name,
                "city": source.city, "source_node": road.source, "target_node": road.target,
-               **{name: round(value, 8) if isinstance(value, float) else value for name, value in raw.items()},
+               **{name: rounded(score.physical[name]) for name in PHYSICAL},
+               **{f"criterion_{name}": rounded(score.criteria[name]) for name in FEATURES},
+               **{f"scaled_{name}": rounded(score.scaled[name]) for name in FEATURES},
                "weather_condition": conditions.weather, "weather_grid": grid,
                "precip_mm": record.get("precip_mm", ""), "traffic_location": road.traffic_location or "",
-               "closed": closed, "path_cost": None if closed else round(cost, 10),
-               "traffic_classification": "estimated_not_measured"}
+               "closed": closed, "path_cost": None if closed else round(score.cost, 10), "flags": ";".join(score.flags),
+               "contract_version": CONTRACT_VERSION, "calibration_id": network.cost_config.calibration_id,
+               "traffic_classification": "assumed_congestion_scenario"}
 
 
 def csv_chunks(rows):
@@ -76,6 +85,7 @@ def coverage(network):
             "excluded_source_segments": network.provenance.get("excluded_roads", {}),
             "complete_road_coverage_verified": False,
             "traffic_locations": len({road.traffic_location for road in network.roads if road.traffic_location}),
-            "units": {"distance": "m", "travel_time": "s", "road_capacity": "equivalent vehicles/hour",
-                      "weather": "estimated categorical cost [0,1]", "flood_risk": "static hazard proxy [0,1]"},
+            "units": {"physical": {"distance_m": "m", "travel_time_s": "s", "capacity_vph": "vehicles/hour (estimated, this direction)",
+                                   "weather_severity": "assumed category severity [0,1]", "flood_severity": "length-weighted mapped class severity [0,1]"},
+                      "criteria": {name: unit for name, unit in CRITERION_UNITS.items()}},
             "note": "All retained public-driving segments are available for snapshots, including disconnected components. Counts do not establish map completeness."}

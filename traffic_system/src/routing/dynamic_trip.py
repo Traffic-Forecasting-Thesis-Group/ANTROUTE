@@ -1,17 +1,22 @@
-"""Simulated trips: plan at departure, drive, and react when conditions change at a node.
+"""Simulated trips: plan at departure, drive, and protect a valid route when conditions change at a node.
 
-The two algorithms share this simulator, its inputs, check points and scoring, so only the
-way each adapts to a change differs:
-  antroute  ANTROUTE: re-plans from the current node with fresh pheromone when a road's
-            ten-feature cost changed by >= threshold (default 10%), or a road closed or reopened.
-  cheng     Cheng (2023) baseline: eq. 9 on every road whose travel time changed, then a full
-            NC_max re-search from the current node with the rescaled pheromone.
+Both algorithms share this simulator, its inputs, update opportunities and scoring. At each node arrival:
+  1. apply the events that are due (closures, reopenings, weather);
+  2. form a new immutable snapshot (hour from the Asia/Manila trip clock, weather, closures);
+  3. rebuild eligibility and the algorithm's native edge costs;
+  4. rescore the incumbent remainder under the new native objective (invalid if it uses a closed road);
+  5. when the trigger policy fires, run a bounded ACO search with fresh pheromone;
+  6. compare candidate and incumbent under the same new native objective;
+  7. adopt the candidate only if the incumbent is invalid or the candidate improves beyond tolerance.
+A valid incumbent is kept after a worse candidate, a tie, a time limit or a failed search.
 
-Conditions are checked on arrival at each node. The hour follows the trip clock and brings the
-hourly traffic, time of day and historical weather with it; scheduled events close or reopen
-roads or switch the weather. Every driven road is scored with the ten-feature cost and travel
-time of the moment it is entered, whichever cost the algorithm routes by. The vehicle does not
-re-enter nodes it has driven through unless no other route remains.
+Trigger policies (ReplanConfig.policy):
+  controlled_common        every snapshot change is an update opportunity for both algorithms (SOP experiments);
+  antroute_cost_threshold  full-system ANTROUTE: a road's native cost changed by >= threshold, or a road closed/reopened;
+  cheng_reference_printed  full-system Cheng reference: eq. 9 as printed on roads whose travel time changed, warm pheromone.
+Every driven road is scored with the ten-criterion cost and travel time of the moment it is entered (the common
+evaluation cost), whichever native cost the algorithm routes by. The vehicle does not re-enter driven nodes
+unless no other route remains.
 """
 from __future__ import annotations
 
@@ -23,15 +28,17 @@ from typing import Literal
 
 from pydantic import Field
 
-from .aco_routing import AntColonyConfig, NoFeasibleRoute, ant_colony_route
+from .aco_kernel import NoFeasibleRoute, SearchExhausted, SearchResult
+from .aco_routing import AntColonyConfig, ant_colony_route, distance_reference, node_positions
 from .baseline_cheng import ChengConfig, cheng_route, cheng_snapshot, rescale_pheromone
-from .condition_update import Conditions
-from .dynamic_weight import WeightedRoad, prepare_graph, segment_values
+from .condition_update import Conditions, manila_time, snapshot_id
+from .dynamic_weight import SegmentScore, WeightedRoad, prepare_graph, segment_values
 from .historical_traffic import traffic_for
 from .historical_weather import historical_snapshot
 from .network import Road, RoadNetwork, StudyModel
 
 Algorithm = Literal["antroute", "cheng"]
+Policy = Literal["controlled_common", "antroute_cost_threshold", "cheng_reference_printed"]
 
 
 class TripEvent(StudyModel):
@@ -42,11 +49,15 @@ class TripEvent(StudyModel):
 
 
 class ReplanConfig(StudyModel):
-    threshold: float = Field(default=0.10, gt=0, le=10)
+    policy: Policy = "controlled_common"
+    threshold: float = Field(default=0.10, gt=0, le=10)  # antroute_cost_threshold only.
+    # A candidate replaces a valid incumbent only when cost < incumbent - (abs + rel * incumbent).
+    adopt_abs_tol: float = Field(default=0, ge=0)
+    adopt_rel_tol: float = Field(default=1e-9, ge=0, lt=1)
 
 
 def changed_roads(old_costs: dict[str, float], new_costs: dict[str, float], threshold: float) -> int:
-    """ANTROUTE's re-plan trigger: roads whose cost changed by >= threshold, closed or reopened."""
+    """Roads whose native cost changed by >= threshold, plus roads closed or reopened."""
     changed = sum(1 for road_id, old in old_costs.items()
                   if road_id in new_costs and abs(new_costs[road_id] - old) >= threshold * old)
     return changed + len(old_costs.keys() ^ new_costs.keys())
@@ -58,13 +69,17 @@ class SearchRecord:
     at_node: str
     at_minute: float
     trigger: str
+    snapshot_id: str
     affected_roads: int
     iterations: int
-    iterations_to_convergence: int | None  # N_conv: iteration that first met the convergence rule; None if not converged.
+    iterations_to_convergence: int | None  # N_conv; None when the search did not converge.
     best_found_at: int  # Iteration that first found this search's final best route.
-    stop_reason: str
-    route_cost: float  # In the algorithm's own objective.
-    routing_time_ms: float  # Graph build, change handling and search for this routing.
+    stop_reason: str  # converged, iteration_limit, time_limit, search_exhausted
+    route_cost: float | None  # Candidate cost in the algorithm's native objective.
+    incumbent_cost: float | None  # Remainder of the current route under the same new objective; None if invalid.
+    decision: str  # initial, adopted_incumbent_invalid, adopted_better, kept_incumbent, kept_incumbent_search_failed
+    search_time_ms: float  # ACO search only.
+    routing_time_ms: float  # Recalculation: snapshot rebuild, rescoring and search for this routing.
     best_cost_by_iteration: list[float | None]
 
 
@@ -74,36 +89,43 @@ class TripResult:
     entered_at_s: list[float] = field(default_factory=list)
     travel_time_s: list[float] = field(default_factory=list)
     path_costs: list[float] = field(default_factory=list)
-    segment_features: list[tuple[dict, dict]] = field(default_factory=list)  # (raw, normalized) when entered.
+    segment_features: list[SegmentScore] = field(default_factory=list)  # Score of each road when entered.
     searches: list[SearchRecord] = field(default_factory=list)
     unsearched_changes: list[dict] = field(default_factory=list)
-    monitoring_time_ms: float = 0.0  # Condition checks that did not lead to re-routing.
+    monitoring_time_ms: float = 0.0  # Condition checks that did not lead to a search.
     stop_arrivals_s: list[float] = field(default_factory=list)
+    detection_delays_s: list[float] = field(default_factory=list)  # Simulated time from an event to its detection at a node.
+    # The departure decision (leg 1), kept so it can be explained without searching again.
+    departure_conditions: Conditions | None = None
+    departure_plan: list[str] = field(default_factory=list)
+    departure_visits: dict[str, int] = field(default_factory=dict)
+    departure_ant_routes: int = 0
 
     def evaluation(self) -> dict:
-        """The SOP measures for the trip as driven.
-
-        Initial routing time = planning each leg when it starts (one leg: the routing at departure).
-        Computational time = initial routing + dynamic re-routing + condition checks without a re-route.
-        Convergence rate is N_conv of the routing at departure: the iteration at which the best path cost
-        had not improved for 20 consecutive iterations; None (not converged) if the iteration limit came first.
-        """
+        """Measures of the trip as driven. Service durations (ms) are separate from simulated journey time (s)."""
         initial = self.searches[0]
         converged = [search.iterations_to_convergence for search in self.searches if search.iterations_to_convergence is not None]
         reroutes = [search for search in self.searches if search.kind == "reroute"]
         planning = sum(search.routing_time_ms for search in self.searches if search.kind == "initial")
-        rerouting = sum(search.routing_time_ms for search in reroutes)
+        recalculation = sum(search.routing_time_ms for search in reroutes)
         return {
             "distance_travel_m": sum(road.distance_m for road in self.roads),
-            "path_cost": sum(self.path_costs),
-            "computational_time_ms": planning + rerouting + self.monitoring_time_ms,
+            "path_cost": sum(self.path_costs),  # Common evaluation cost: ten-criterion cost when each road was entered.
+            "search_time_ms": sum(search.search_time_ms for search in self.searches),
+            "initial_search_time_ms": initial.search_time_ms,
+            "computational_time_ms": planning + recalculation + self.monitoring_time_ms,
             "initial_routing_time_ms": planning,
-            "dynamic_rerouting_time_ms": rerouting,
+            "dynamic_rerouting_time_ms": recalculation,
+            "recalculation_time_ms": recalculation,
             "reroutes": len(reroutes),
-            "mean_rerouting_time_ms": rerouting / len(reroutes) if reroutes else None,
+            "routes_adopted": sum(1 for search in reroutes if search.decision.startswith("adopted")),
+            "mean_rerouting_time_ms": recalculation / len(reroutes) if reroutes else None,
+            "detection_delay_s": self.detection_delays_s,
             "convergence": {
                 "iterations_to_convergence": initial.iterations_to_convergence,
                 "converged": initial.iterations_to_convergence is not None,
+                "stop_reason": initial.stop_reason,
+                "first_best_found_iteration": initial.best_found_at,
                 "mean_iterations_to_convergence": sum(converged) / len(converged) if converged else None,
                 "searches_not_converged": len(self.searches) - len(converged),
                 "searches": [asdict(search) for search in self.searches],
@@ -126,15 +148,23 @@ def simulate_trip(network: RoadNetwork, origin: str, destination: str | Sequence
                   closures: frozenset[str], events: list[TripEvent], algorithm: Algorithm,
                   aco: AntColonyConfig = AntColonyConfig(), baseline: ChengConfig = ChengConfig(),
                   replan: ReplanConfig = ReplanConfig()) -> TripResult:
-    """destination: one node, or the stops to visit in order. Each leg is routed when it starts,
-    with fresh pheromone; the trip clock, events and conditions carry across legs."""
+    """destination: one node, or the stops to visit in order (fixed order). Each leg is planned when it starts with
+    fresh pheromone; the trip clock, events and conditions carry across legs. departure must be timezone-aware."""
     stops = [destination] if isinstance(destination, str) else list(destination)
     if not stops:
         raise ValueError("At least one destination is required")
     if any(a == b for a, b in zip([origin, *stops], stops)):
         raise ValueError("Each stop must differ from the one before it")
+    if replan.policy == "cheng_reference_printed" and algorithm != "cheng":
+        raise ValueError("The printed eq. 9 reference policy applies to the Cheng baseline only")
+    departure = manila_time(departure)
     nodes = {node.id: node for node in network.nodes}
-    positions = {node.id: (node.longitude, node.latitude) for node in network.nodes}
+    positions = node_positions(network)
+    reference = distance_reference(network, algorithm)
+    calibration = network.cost_config.calibration_id
+    config = baseline if algorithm == "cheng" else aco
+    if algorithm == "cheng" and replan.policy == "cheng_reference_printed" and baseline.mode != "cheng_reference_printed":
+        config = baseline.model_copy(update={"mode": "cheng_reference_printed"})
     inputs: dict[tuple, tuple] = {}
     pending = sorted(events, key=lambda event: event.at_minute)
     state_weather, state_closed = weather, set(closures)
@@ -155,36 +185,40 @@ def simulate_trip(network: RoadNetwork, origin: str, destination: str | Sequence
         return inputs[key]
 
     def build(conditions: Conditions):
-        """Graph the algorithm routes on, and the per-road values its trigger compares."""
+        """Graph of native edge costs (eligible roads only) and the per-road values the trigger compares."""
         weather_by_city, traffic = snapshot_inputs(conditions)
         if algorithm == "cheng":
             return cheng_snapshot(network, conditions, weather_by_city, traffic)
         graph = prepare_graph(network, conditions, weather_by_city, traffic)
         return graph, {edge.road.id: edge.cost for roads in graph.values() for edge in roads}
 
-    def search(graph: dict[str, list[WeightedRoad]], start: str, trigger: str, affected: int,
-               visited: list[str], pheromone: dict[str, float] | None, preparation_ms: float, kind: str = "reroute"):
-        started = perf_counter()
-        driven = set(visited[:-1])
+    def run(graph, start: str, driven: set[str], pheromone, started: float) -> SearchResult:
         view = {node: [edge for edge in roads if edge.road.target not in driven] for node, roads in graph.items()}
 
-        def run(adjacency):
+        def solve(adjacency):
             if algorithm == "cheng":
-                return cheng_route(adjacency, start, destination, baseline, positions, pheromone)
-            return ant_colony_route(adjacency, start, destination, aco, positions)
+                return cheng_route(adjacency, start, destination, config, positions, reference, pheromone, started)
+            return ant_colony_route(adjacency, start, destination, config, positions, reference, started)
         try:
-            found = run(view)
+            return solve(view)
         except NoFeasibleRoute:
             if not driven:
                 raise
-            found = run(graph)  # Only a route back through driven nodes remains.
-        elapsed = (perf_counter() - started) * 1000
-        stop = "convergence_rule" if found.converged else "iteration_limit"
+            return solve(graph)  # Only a route back through driven nodes remains.
+
+    def rescore(graph, remainder: list[Road]) -> float | None:
+        """Incumbent remainder cost under the new native objective; None when a road is no longer eligible."""
+        costs = {edge.road.id: edge.cost for roads in graph.values() for edge in roads}
+        if any(road.id not in costs for road in remainder):
+            return None
+        return sum(costs[road.id] for road in remainder)
+
+    def record(kind, start, trigger, conditions, affected, found, stop, candidate, incumbent, decision, search_ms, routing_ms):
         result.searches.append(SearchRecord(
-            kind, start, (clock - departure).total_seconds() / 60,
-            trigger, affected, len(found.best_cost_by_iteration), found.converged_at, found.best_found_at, stop,
-            sum(edge.cost for edge in found.roads), preparation_ms + elapsed, found.best_cost_by_iteration))
-        return [edge.road for edge in found.roads], found.pheromone
+            kind, start, (clock - departure).total_seconds() / 60, trigger, snapshot_id(conditions, calibration), affected,
+            found.iterations_completed if found else 0, found.converged_at if found else None,
+            found.first_best_found_iteration if found else 0, stop, candidate, incumbent, decision, search_ms, routing_ms,
+            found.best_cost_by_iteration if found else []))
 
     def apply_events():
         nonlocal state_weather
@@ -194,11 +228,11 @@ def simulate_trip(network: RoadNetwork, origin: str, destination: str | Sequence
             state_closed.update(event.close_road_ids)
             state_closed.difference_update(event.reopen_road_ids)
             state_weather = event.weather or state_weather
+            result.detection_delays_s.append((minute - event.at_minute) * 60)
 
     current = origin
     conditions = graph = values = None
     for leg, destination in enumerate(stops):
-        # Plan this leg from the stop just reached (or the origin) under the conditions of now.
         started = perf_counter()
         apply_events()
         latest = conditions_now()
@@ -206,39 +240,61 @@ def simulate_trip(network: RoadNetwork, origin: str, destination: str | Sequence
             conditions = latest
             graph, values = build(conditions)
         trigger = "departure" if leg == 0 else f"leg {leg + 1} starts at stop {leg}"
-        plan, pheromone = search(graph, current, trigger, 0, [current], None, (perf_counter() - started) * 1000, "initial")
+        found = run(graph, current, set(), None, started)  # A failed initial search fails the trip.
+        record("initial", current, trigger, conditions, 0, found, found.stop_reason, sum(edge.cost for edge in found.roads),
+               None, "initial", found.search_time_ms, (perf_counter() - started) * 1000)
+        plan, pheromone = [edge.road for edge in found.roads], found.pheromone
+        if leg == 0:
+            result.departure_conditions, result.departure_plan = conditions, [road.id for road in plan]
+            result.departure_visits, result.departure_ant_routes = found.visits, found.ant_routes
         visited = [current]
         while current != destination:
             apply_events()
-            minute = (clock - departure).total_seconds() / 60
             latest = conditions_now()
-            affected, trigger, check_ms = 0, "", 0.0
             if latest != conditions:
                 started = perf_counter()
                 new_graph, new_values = build(latest)
                 trigger = _changes(conditions, latest)
-                if algorithm == "cheng":
+                if replan.policy == "cheng_reference_printed":
                     affected = len(rescale_pheromone(pheromone, values, new_values))
-                else:
+                elif replan.policy == "antroute_cost_threshold":
                     affected = changed_roads(values, new_values, replan.threshold)
-                check_ms = (perf_counter() - started) * 1000
-                if not affected:
-                    result.unsearched_changes.append({"at_node": current, "at_minute": minute, "change": trigger})
-                    result.monitoring_time_ms += check_ms
+                else:
+                    affected = len(values.keys() ^ new_values.keys()) + sum(
+                        1 for road_id, old in values.items() if road_id in new_values and new_values[road_id] != old)
                 conditions, graph, values = latest, new_graph, new_values
-            if not affected and plan and plan[0].id in conditions.closed_road_ids:
-                affected, trigger = 1, "next planned road closed"
-            if affected:
-                plan, pheromone = search(graph, current, trigger, affected, visited, pheromone, check_ms)
+                incumbent = rescore(graph, plan)
+                if affected or incumbent is None:
+                    try:
+                        # Fresh pheromone except in the printed eq. 9 reference mode (cheng_route decides).
+                        found = run(graph, current, set(visited[:-1]), pheromone, started)
+                    except (NoFeasibleRoute, SearchExhausted) as error:
+                        if incumbent is None:
+                            raise  # No valid route remains: the trip fails as a whole.
+                        stop = "search_exhausted" if not isinstance(error, NoFeasibleRoute) else "no_feasible_route"
+                        record("reroute", current, trigger, conditions, affected, None, stop, None, incumbent,
+                               "kept_incumbent_search_failed", 0.0, (perf_counter() - started) * 1000)
+                    else:
+                        candidate = sum(edge.cost for edge in found.roads)
+                        better = incumbent is None or candidate < incumbent - (replan.adopt_abs_tol + replan.adopt_rel_tol * incumbent)
+                        decision = ("adopted_incumbent_invalid" if incumbent is None else "adopted_better") if better else "kept_incumbent"
+                        if better:
+                            plan, pheromone = [edge.road for edge in found.roads], found.pheromone
+                        record("reroute", current, trigger, conditions, affected, found, found.stop_reason, candidate, incumbent,
+                               decision, found.search_time_ms, (perf_counter() - started) * 1000)
+                else:
+                    result.unsearched_changes.append({"at_node": current, "at_minute": (clock - departure).total_seconds() / 60,
+                                                      "change": trigger})
+                    result.monitoring_time_ms += (perf_counter() - started) * 1000
             road = plan.pop(0)
             weather_by_city, traffic = snapshot_inputs(conditions)
-            raw, features, cost = segment_values(network, road, conditions, nodes, weather_by_city, traffic)
+            score = segment_values(network, road, conditions, nodes, weather_by_city, traffic)
             result.roads.append(road)
             result.entered_at_s.append((clock - departure).total_seconds())
-            result.travel_time_s.append(raw["travel_time"])
-            result.path_costs.append(cost)
-            result.segment_features.append((raw, features))
-            clock += timedelta(seconds=raw["travel_time"])
+            result.travel_time_s.append(score.physical["travel_time_s"])
+            result.path_costs.append(score.cost)
+            result.segment_features.append(score)
+            clock += timedelta(seconds=score.physical["travel_time_s"])
             current = road.target
             visited.append(current)
             if len(result.roads) > len(network.roads) * len(stops):

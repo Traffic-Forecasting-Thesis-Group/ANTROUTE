@@ -8,18 +8,34 @@ from shapely.geometry import shape
 from .network import WeatherEffect
 
 
+HEAVY_RAIN_MM_PER_H = 7.5  # configs/study_assumptions.json weather_category_thresholds_mm_per_h
+
+
+class MissingWeatherObservation(ValueError):
+    """Neither precipitation nor a description is available; the hour is not assumed clear."""
+
+
 def weather_condition(observation: dict) -> str:
+    """Category of one hourly observation. precip is a 1-hour accumulation in mm.
+
+    heavy_rain >= 7.5 mm/h, rain > 0 mm/h, clear 0 mm/h. A rain description raises the category even when
+    precipitation reads 0, and decides it alone when precipitation is missing.
+    """
     current = observation.get("current", {})
-    precipitation = float(current.get("precip") or 0)
-    description = " ".join(current.get("weather_descriptions", [])).lower()
-    if precipitation >= 7.5 or "heavy rain" in description or "torrential" in description:
+    raw = current.get("precip")
+    description = " ".join(current.get("weather_descriptions") or []).lower()
+    if raw in (None, "") and not description.strip():
+        raise MissingWeatherObservation("Weather observation has neither precipitation nor a description")
+    precipitation = None if raw in (None, "") else float(raw)
+    if (precipitation is not None and precipitation >= HEAVY_RAIN_MM_PER_H) or "heavy rain" in description or "torrential" in description:
         return "heavy_rain"
-    if precipitation > 0 or any(word in description for word in ("rain", "drizzle", "thunder")):
+    if (precipitation is not None and precipitation > 0) or any(word in description for word in ("rain", "drizzle", "thunder")):
         return "rain"
     return "clear"
 
 
 def observed_effect(observation: dict, scenarios: dict) -> WeatherEffect:
+    """Assumed severity and travel-time multiplier of the observation's category (not calibrated)."""
     return WeatherEffect.model_validate(scenarios[weather_condition(observation)])
 
 

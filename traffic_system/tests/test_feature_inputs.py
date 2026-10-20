@@ -49,13 +49,25 @@ def test_documented_osmnx_geometry_convention():
 
 
 def test_observed_weather_conversion_is_separate_from_measurement():
-    scenarios = {"clear": {"cost": 0, "travel_time_multiplier": 1},
-                 "rain": {"cost": 0.4, "travel_time_multiplier": 1.15},
-                 "heavy_rain": {"cost": 0.8, "travel_time_multiplier": 1.35}}
+    scenarios = {"clear": {"severity": 0, "travel_time_multiplier": 1},
+                 "rain": {"severity": 0.4, "travel_time_multiplier": 1.15},
+                 "heavy_rain": {"severity": 0.8, "travel_time_multiplier": 1.35}}
     rain = {"current": {"precip": 1, "weather_descriptions": ["Rain"]}}
     assert weather_condition(rain) == "rain"
     assert observed_effect(rain, scenarios).travel_time_multiplier == 1.15
-    assert weather_condition({"current": {"precip": 9}}) == "heavy_rain"
+    # Thresholds on 1-hour accumulations: >= 7.5 mm/h heavy rain, > 0 rain, 0 clear.
+    assert weather_condition({"current": {"precip": 7.5}}) == "heavy_rain"
+    assert weather_condition({"current": {"precip": 7.4}}) == "rain"
+    assert weather_condition({"current": {"precip": 0, "weather_descriptions": ["Clear"]}}) == "clear"
+
+
+def test_missing_weather_observation_is_not_assumed_clear():
+    from src.routing.weather import MissingWeatherObservation
+    # Missing precipitation: the description decides.
+    assert weather_condition({"current": {"precip": None, "weather_descriptions": ["Patchy light drizzle"]}}) == "rain"
+    assert weather_condition({"current": {"precip": None, "weather_descriptions": ["Sunny"]}}) == "clear"
+    with pytest.raises(MissingWeatherObservation):
+        weather_condition({"current": {"precip": None, "weather_descriptions": []}})
 
 
 def test_weather_provider_errors_never_echo_key(monkeypatch):
@@ -87,14 +99,18 @@ def test_current_weather_age_and_refresh_cooldown(network, tmp_path, monkeypatch
 
 def test_current_weather_override_does_not_mutate_road_snapshot(network_data):
     for road in network_data["roads"]:
-        road["weather"]["current"] = {"cost": 0, "travel_time_multiplier": 1}
+        road["weather"]["current"] = {"severity": 0, "travel_time_multiplier": 1}
     network = RoadNetwork.model_validate(network_data)
     before = copy.deepcopy(network.model_dump())
     from src.routing.network import WeatherEffect
-    override = {city: WeatherEffect(cost=1, travel_time_multiplier=3) for city in CITIES}
+    from src.routing.criteria import CriterionInputError
+    calm = {city: WeatherEffect(severity=0, travel_time_multiplier=1) for city in CITIES}
+    override = {city: WeatherEffect(severity=1, travel_time_multiplier=3) for city in CITIES}
     snapshot = Conditions(time_of_day=8, weather="current")
     graph = prepare_graph(network, snapshot, override)
-    assert graph["a"][0].cost > prepare_graph(network, snapshot)["a"][0].cost
+    assert graph["a"][0].cost > prepare_graph(network, snapshot, calm)["a"][0].cost
+    with pytest.raises(CriterionInputError, match="observed weather"):  # Never silently the road's default.
+        prepare_graph(network, snapshot)
     assert network.model_dump() == before
 
 
@@ -158,8 +174,10 @@ def test_builder_uses_mapped_flood_and_labels_estimates(tmp_path):
     from scripts import preprocess_road_features as static
     from src.routing.historical_traffic import FIELDS, bpr
     assumptions = {"saturation_flow_vph_per_lane": 1500, "assumed_effective_green_ratio": .5, "peak_hours": [8],
-        "road_types": {"residential": {"speed_kph": 20, "lanes": 1, "cost": 0.7, "traffic_factor": 0.5}},
-        "weather_scenarios": {"clear": {"cost": 0, "travel_time_multiplier": 1}},
+        "road_types": {"residential": {"speed_kph": 20, "lanes": 1, "traffic_factor": 0.5}},
+        "weather_scenarios": {"clear": {"severity": 0, "travel_time_multiplier": 1}},
+        "road_class_severity": {"method": "speed_median", "status": "assumed_preference"},
+        "flood_class_severity": {"values": {"1": 1 / 3, "2": 2 / 3, "3": 1}, "status": "assumed_scoring_scenario"},
         "bpr_alpha": .15, "bpr_beta": 4, "weekend_demand_factor": .75, "hourly_demand_capacity_ratio": [1] * 24,
         "traffic_variation": {"seed": 1, "strength": 0, "day_coefficient": .2, "area_coefficient": .25,
                               "road_coefficient": .35, "location_hour_coefficient": .25},
@@ -174,14 +192,38 @@ def test_builder_uses_mapped_flood_and_labels_estimates(tmp_path):
     static.write_csv(features / "segment_flood.csv", static.FLOOD_FIELDS, floods)
     assert segments[0]["traffic_location"] == segments[0]["road_id"]
     assert "lanes_source" in segments[0] and not any("volume" in field for field in static.SEGMENT_FIELDS + FIELDS)
-    network = build(features, boundary_path, assumptions_path)
+    from datetime import date, timedelta
+    development = [date(2025, 6, 1) + timedelta(days=offset) for offset in range(14)]
+    network = build(features, boundary_path, assumptions_path, development)
     road = network.roads[0]
-    assert road.flood_risk == 1
+    # The whole road lies in the class 3 polygon: its flood portion is its full length, by class.
+    assert road.flood_km_by_class == {"3": pytest.approx(road.distance_m / 1000, rel=1e-6)} and road.flood_coverage == "mapped"
     assert road.road_capacity_vph == 1500  # two-way lanes=2 is one lane per direction; no signal at b
+    assert segments[0]["capacity_method"] == "directional_lanes_x_assumed_base_saturation_flow_x_gC"
+    assert "unvalidated" in segments[0]["capacity_uncertainty"]
     factor, congestion = bpr(.5, assumptions)
     assert road.traffic_congestion == pytest.approx([congestion] * 24, abs=1e-6)
     assert road.travel_time_s[0] == pytest.approx(road.free_flow_time_s * factor, rel=1e-5)
     assert road.distance_m > 100
     assert network.nodes[0].traffic_signal
-    assert "estimated" in road.feature_sources["road_capacity"]
-    assert network.provenance["mode"] == "historical_period_with_estimates"
+    assert "estimated" in road.feature_sources["capacity_burden"]
+    assert network.provenance["mode"] == "historical_period_with_estimates" and network.provenance["contract_version"] == 2
+    assert network.cost_config.calibration_id == "provisional-uncalibrated"  # Never published before calibration.
+    assert network.cost_config.road_class_severity == {"residential": 0.0}  # The only class is the fastest class.
+
+
+def test_flood_portions_resolve_overlaps_to_the_highest_class():
+    from shapely.geometry import LineString
+    from shapely.strtree import STRtree
+    from scripts.preprocess_road_features import flood_portions, geodesic_km
+    line = LineString([(121.000, 14.5), (121.010, 14.5)])
+    class2 = box(120.999, 14.49, 121.005, 14.51)  # First half.
+    class3 = box(121.003, 14.49, 121.008, 14.51)  # Overlaps class 2 on 121.003-121.005.
+    polygons = [class2, class3]
+    portions, coverage = flood_portions(line, STRtree(polygons), [2, 3], box(120, 14, 122, 15))
+    total = geodesic_km(line)
+    assert portions[3] == pytest.approx(total * 0.5, rel=1e-3)  # 121.003-121.008
+    assert portions[2] == pytest.approx(total * 0.3, rel=1e-3)  # 121.000-121.003 only; the overlap counts once, as class 3
+    assert 1 not in portions and coverage == "mapped"
+    _, outside = flood_portions(line, STRtree(polygons), [2, 3], box(121.001, 14.4, 121.002, 14.6))
+    assert outside == "unknown"  # Beyond the hazard dataset's extent: unknown, not safe.

@@ -34,7 +34,9 @@ def test_estimation_registry_covers_exactly_ten_features():
     registry = estimation_registry(assumptions)
     assert set(registry) == set(FEATURES)
     assert all(record["basis"] and record["source"] and record["classification"] for record in registry.values())
-    assert "project assumptions" in registry["traffic_congestion"]["basis"]
+    assert "not measurements" in registry["congestion"]["basis"] and registry["congestion"]["classification"] == "assumed_congestion_scenario"
+    assert "provisional study mapping" in registry["capacity_burden"]["basis"]
+    assert assumptions["flood_class_severity"]["status"] == "assumed_scoring_scenario" and assumptions["flood_class_severity"]["alternatives"]
     assert assumptions["weather_scenarios"]["rain"]["travel_time_multiplier"] == pytest.approx(1 / .925)
 
 
@@ -47,8 +49,8 @@ def test_historical_weather_is_date_specific(network, tmp_path, monkeypatch):
               "2025-06-02T08:00": {"precip_mm": 9, "description": "Heavy rain", "grid_cell": "292_2420"}}
     path.write_text(json.dumps({"source": "test provider", "spatial_method": "test grid", "records": dict.fromkeys(CITIES, record)}))
     network.provenance["assumptions"] = {"weather_scenarios": {
-        "clear": {"cost": 0, "travel_time_multiplier": 1},
-        "heavy_rain": {"cost": .8, "travel_time_multiplier": 1.2}}}
+        "clear": {"severity": 0, "travel_time_multiplier": 1},
+        "heavy_rain": {"severity": .8, "travel_time_multiplier": 1.2}}}
     clear, first = historical_weather.historical_snapshot(date(2025, 6, 1), 8, network)
     rainy, second = historical_weather.historical_snapshot(date(2025, 6, 2), 8, network)
     assert clear["Manila"].travel_time_multiplier == 1

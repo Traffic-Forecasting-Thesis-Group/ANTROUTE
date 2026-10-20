@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from src.routing.critic import CriticAccumulator, critic_weights
+from src.routing.critic import CriticAccumulator, UndefinedCriticError, critic_weights
 
 CRITERIA = ("a", "b", "c")
 
@@ -30,41 +30,48 @@ def test_streamed_chunks_equal_one_pass():
     assert accumulator.result()["weights"] == pytest.approx(critic_weights(rows, CRITERIA)["weights"])
 
 
-def test_duplicate_criteria_lose_weight_and_constants_get_none():
+def test_duplicate_criteria_lose_weight():
     rng = np.random.default_rng(2)
     independent = rng.random((1000, 2))
     rows = np.column_stack([independent[:, 0], independent[:, 0], independent[:, 1]])
     weights = critic_weights(rows, CRITERIA)["weights"]
     assert weights["a"] == pytest.approx(weights["b"])
     assert weights["c"] > weights["a"]
-    rows[:, 2] = 0.5
-    assert critic_weights(rows, CRITERIA)["weights"]["c"] == 0
+
+
+def test_constant_column_is_invariant():
+    # A constant criterion gets weight 0 and leaves the other weights exactly as if it were absent.
+    rows = np.random.default_rng(3).random((400, 2)) * [1, 7]
+    without = critic_weights(rows, ("a", "b"))
+    with_constant = critic_weights(np.column_stack([rows, np.full(400, 0.4)]), CRITERIA)
+    assert with_constant["weights"]["c"] == 0 and not with_constant["active"]["c"]
+    assert [with_constant["weights"][name] for name in ("a", "b")] == pytest.approx([without["weights"][name] for name in ("a", "b")])
+    # Unavailable correlations are None, not an artificial zero.
+    assert with_constant["correlation"]["a"]["c"] is None and with_constant["conflict"]["c"] is None
+
+
+def test_perfectly_concordant_varying_columns_are_undefined():
+    x = np.linspace(0, 1, 50)
+    with pytest.raises(UndefinedCriticError, match="concordant"):
+        critic_weights(np.column_stack([x, 2 * x + 1, np.full(50, 3.0)]), CRITERIA)
+
+
+def test_centred_statistics_survive_large_offsets():
+    rows = np.random.default_rng(4).random((500, 3))
+    shifted = rows + [1e9, -1e9, 5e8]  # Raw-moment formulas lose these variances to cancellation.
+    assert critic_weights(shifted, CRITERIA)["weights"] == pytest.approx(critic_weights(rows, CRITERIA)["weights"], rel=1e-5)
+    streamed = CriticAccumulator(CRITERIA)
+    for chunk in np.array_split(shifted, 9):
+        streamed.add(chunk)
+    assert streamed.result()["weights"] == pytest.approx(critic_weights(rows, CRITERIA)["weights"], rel=1e-5)
 
 
 def test_rejects_bad_input():
     with pytest.raises(ValueError):
         critic_weights([[1, 2, np.nan], [0, 1, 2]], CRITERIA)
     with pytest.raises(ValueError):
+        critic_weights([[1, 2], [0, 1]], CRITERIA)
+    with pytest.raises(UndefinedCriticError, match="constant"):
         critic_weights([[1, 1, 1], [1, 1, 1]], CRITERIA)
-
-
-def test_within_hour_critic_gives_no_weight_to_a_feature_constant_within_each_hour():
-    import random
-    from scripts.build_study_network import critic_within_hours
-    from src.routing.network import FEATURES
-    rng = random.Random(1)
-    peak, weather = FEATURES.index("time_of_day"), FEATURES.index("weather")
-    hours = []
-    for hour_value in (0.0, 1.0):  # Off-peak hour, then peak hour: same value on every road within an hour.
-        rows = [[rng.random() for _ in FEATURES] for _ in range(50)]
-        for row in rows:
-            row[peak] = hour_value
-        hours.append(rows)
-    hours[0] = [row[:weather] + [0.0] + row[weather + 1:] for row in hours[0]]  # Dry hour: weather constant.
-    hours.append([[0.5] * len(FEATURES)] * 3)  # Every feature constant: skipped.
-    result = critic_within_hours(hours)
-    assert result["weights"]["time_of_day"] == 0 and result["active_hours"]["time_of_day"] == 0
-    # Weather's weight comes only from the hour in which it varies, not diluted by the dry hour.
-    assert result["active_hours"]["weather"] == 1 and result["weights"]["weather"] > 0
-    assert sum(result["weights"].values()) == pytest.approx(1)
-    assert result["hours_used"] == 2
+    with pytest.raises(UndefinedCriticError, match="two alternatives"):
+        critic_weights([[1, 2, 3]], CRITERIA)

@@ -25,7 +25,7 @@ PAPER_GRID = {"O": (0, 0), "1": (1, 0), "2": (3, 0), "3": (0, 1), "4": (1, 1), "
 
 
 def paper_network():
-    costs = comprehensive_costs(list(PAPER_EDGES.values()))
+    costs = comprehensive_costs(list(PAPER_EDGES.values()), (1, 1, 1))  # Already dimensionless (Tables 5-7).
     adjacency = {node: [] for node in PAPER_GRID}
     for ((source, target), (length, _, _)), cost in zip(PAPER_EDGES.items(), costs):
         road = Road.model_construct(id=f"{source}-{target}", source=source, target=target, distance_m=length)
@@ -65,7 +65,7 @@ def test_finds_least_comprehensive_cost_path_on_paper_network(seed):
     adjacency, positions = paper_network()
     optimum = min(sum(edge.cost for edge in path) for path in all_paths(adjacency, "O", "D"))
     # Sec. 5.1.2: 23 ants for 15 nodes; Sec. 4.2.1: q0 = 0.2 for a small network.
-    result = cheng_route(adjacency, "O", "D", ChengConfig(n_ants=23, max_iterations=100, q0=0.2, seed=seed), positions)
+    result = cheng_route(adjacency, "O", "D", ChengConfig(n_ants=23, max_iterations=100, q0=0.2, seed=seed), positions, 1.0)
     assert sum(edge.cost for edge in result.roads) == pytest.approx(optimum)
     # The study's convergence rule: stop once the best cost has not improved for 20 consecutive iterations.
     assert result.converged_at == result.best_found_at + 20 == len(result.best_cost_by_iteration)
@@ -73,7 +73,7 @@ def test_finds_least_comprehensive_cost_path_on_paper_network(seed):
 
 def test_reaching_the_iteration_limit_is_not_converged():
     adjacency, positions = paper_network()
-    result = cheng_route(adjacency, "O", "D", ChengConfig(n_ants=23, max_iterations=10, q0=0.2), positions)
+    result = cheng_route(adjacency, "O", "D", ChengConfig(n_ants=23, max_iterations=10, q0=0.2), positions, 1.0)
     assert not result.converged and result.converged_at is None
     assert len(result.best_cost_by_iteration) == 10
 
@@ -87,11 +87,17 @@ def test_flow_estimate_inverts_the_bpr_congestion():
 def test_cost_uses_the_three_criteria_of_the_snapshot(network):
     graph = cheng_graph(network, Conditions(time_of_day=8, weather="clear"))
     costs = {edge.road.id: edge.cost for roads in graph.values() for edge in roads}
-    # Fixture: 100/100/1000 m, 10 s each, no congestion so no flow.
-    w1, w2, _ = ahp().weights
-    assert costs == pytest.approx({"ab": w1 * .1 + w2, "bd": w1 * .1 + w2, "ad": w1 + w2})
+    # Fixture: 100/100/1000 m, 10 s each, no congestion so no flow; fixed references 1000 m, 600 s, 4000 veh/h.
+    assert costs == pytest.approx({"ab": .637 * .1 + .258 * 10 / 600, "bd": .637 * .1 + .258 * 10 / 600, "ad": .637 + .258 * 10 / 600})
     rainy = cheng_graph(network, Conditions(time_of_day=8, weather="rain"))
-    assert {edge.road.id: edge.cost for roads in rainy.values() for edge in roads} == pytest.approx(costs)  # time doubles everywhere
+    # Rain doubles travel time; fixed references mean the time term doubles too (it no longer cancels out).
+    assert {edge.road.id: edge.cost for roads in rainy.values() for edge in roads}["ab"] == pytest.approx(.637 * .1 + .258 * 20 / 600)
+
+
+def test_unrelated_closure_leaves_remaining_scores_unchanged(network):
+    open_costs = {edge.road.id: edge.cost for roads in cheng_graph(network, Conditions(time_of_day=8, weather="clear")).values() for edge in roads}
+    closed = cheng_graph(network, Conditions(time_of_day=8, weather="clear", closed_road_ids={"ad"}))  # ad is the longest road
+    assert {edge.road.id: edge.cost for roads in closed.values() for edge in roads} == {key: open_costs[key] for key in ("ab", "bd")}
 
 
 def test_closures_apply_as_in_antroute(network):
@@ -99,7 +105,7 @@ def test_closures_apply_as_in_antroute(network):
 
     def route(closed):
         graph = cheng_graph(network, Conditions(time_of_day=8, weather="clear", closed_road_ids=closed))
-        return [edge.road.id for edge in cheng_route(graph, "a", "d", ChengConfig(), positions).roads]
+        return [edge.road.id for edge in cheng_route(graph, "a", "d", ChengConfig(), positions, 1e9).roads]
 
     assert route({"ad"}) == ["ab", "bd"]
     assert route({"ab"}) == ["ad"]
@@ -110,8 +116,8 @@ def test_closures_apply_as_in_antroute(network):
 def test_seed_makes_runs_repeatable(network):
     positions = {node.id: (node.longitude, node.latitude) for node in network.nodes}
     graph = cheng_graph(network, Conditions(time_of_day=8, weather="clear"))
-    first = cheng_route(graph, "a", "d", ChengConfig(seed=7), positions)
-    assert cheng_route(graph, "a", "d", ChengConfig(seed=7), positions).best_cost_by_iteration == first.best_cost_by_iteration
+    first = cheng_route(graph, "a", "d", ChengConfig(seed=7), positions, 1e9)
+    assert cheng_route(graph, "a", "d", ChengConfig(seed=7), positions, 1e9).best_cost_by_iteration == first.best_cost_by_iteration
 
 
 def test_baseline_api_scores_path_cost_like_antroute(network, monkeypatch):
@@ -127,8 +133,11 @@ def test_baseline_api_scores_path_cost_like_antroute(network, monkeypatch):
         assert baseline.status_code == 200
         body = baseline.json()
         assert body["route"]["road_ids"] == antroute["route"]["road_ids"] == ["ab", "bd"]
-        assert set(body["evaluation"]) == {"distance_travel_m", "path_cost", "computational_time_ms", "convergence_rule"}
+        assert {"distance_travel_m", "path_cost", "search_time_ms", "response_time_ms", "convergence_rule"} <= set(body["evaluation"])
+        assert body["baseline"]["ahp_weights"] == {"path_length": .637, "travel_time": .258, "traffic_flow": .105}
+        assert body["decision"]["algorithm"] == "cheng" and body["baseline"]["flow_provenance"] == "simulation_adaptation_inverse_bpr"
         assert body["evaluation"]["path_cost"] == pytest.approx(antroute["evaluation"]["path_cost"])
         assert body["baseline"]["doi"] == "10.1155/2023/7651100"
         payload["conditions"]["closed_road_ids"] = ["ab", "ad"]
-        assert client.post("/routes/baseline", json=payload).status_code == 404
+        failed = client.post("/routes/baseline", json=payload)
+        assert failed.status_code == 404 and failed.json()["detail"]["outcome"] == "no_feasible_route"
