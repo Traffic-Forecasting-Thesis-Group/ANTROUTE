@@ -1,0 +1,245 @@
+{
+ "weights": {
+  "distance": 0.02010476164336074,
+  "congestion": 0.041650651505221195,
+  "travel_time": 0.05174359354615325,
+  "intersections": 0.3719101522965125,
+  "signals": 0.3667667318740061,
+  "road_type": 0.051408479674523326,
+  "time_profile": 0.021836235835627667,
+  "weather": 0.0,
+  "flood_exposure": 0.030561954587770133,
+  "capacity_burden": 0.04401743903682503
+ },
+ "valid_hours": [
+  "2026-10-21T23:49:00+08:00",
+  "2026-10-22T00:00:00+08:00"
+ ],
+ "excluded_hours": {},
+ "hourly_weights": {
+  "2026-10-21T23:49:00+08:00": [
+   0.019795097556926773,
+   0.046270396109584035,
+   0.05067609494064904,
+   0.3713188829627372,
+   0.367360897132676,
+   0.05004438777897533,
+   0.02111443829302138,
+   0.0,
+   0.030488186950096086,
+   0.04293161827533419
+  ],
+  "2026-10-22T00:00:00+08:00": [
+   0.020414425729794704,
+   0.03703090690085835,
+   0.05281109215165747,
+   0.3725014216302878,
+   0.36617256661533626,
+   0.05277257157007132,
+   0.022558033378233953,
+   0.0,
+   0.030635722225444185,
+   0.045103259798315865
+  ]
+ },
+ "active_masks": {
+  "2026-10-21T23:49:00+08:00": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   false,
+   true,
+   true
+  ],
+  "2026-10-22T00:00:00+08:00": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   false,
+   true,
+   true
+  ]
+ },
+ "criteria": [
+  "distance",
+  "congestion",
+  "travel_time",
+  "intersections",
+  "signals",
+  "road_type",
+  "time_profile",
+  "weather",
+  "flood_exposure",
+  "capacity_burden"
+ ],
+ "development_max": {
+  "distance": 3.078344,
+  "congestion": 0.4101669615789776,
+  "travel_time": 3.3806143031428233,
+  "intersections": 1.0,
+  "signals": 1.0,
+  "road_type": 0.8350449999999999,
+  "time_profile": 0.3583336090916285,
+  "weather": 0.0,
+  "flood_exposure": 1.269806510439847,
+  "capacity_burden": 0.0007031957894736841
+ },
+ "units": {
+  "distance": "km",
+  "congestion": "km x congestion severity",
+  "travel_time": "min",
+  "intersections": "encounters",
+  "signals": "encounters",
+  "road_type": "km x class severity",
+  "time_profile": "km x profile severity",
+  "weather": "km x weather severity",
+  "flood_exposure": "km x flood class severity",
+  "capacity_burden": "km per veh/h"
+ },
+ "sample": "First saved capture of each development hour; alternatives are all 30511 directed segments",
+ "live_coverage_share": {
+  "min": 0.19540493592474845,
+  "mean": 0.1954377109894792,
+  "max": 0.19547048605420997
+ },
+ "cheng_references": {
+  "distance_m": 3078.344,
+  "travel_time_s": 202.8368581885694,
+  "flow_vph": 24542.6195220954,
+  "flow_provenance": "simulation_adaptation_inverse_bpr_of_live_congestion",
+  "ahp_weights": [
+   0.637,
+   0.258,
+   0.105
+  ]
+ },
+ "distance_reference_m": {
+  "antroute": 3078.344,
+  "cheng": 3078.344
+ },
+ "status": "provisional_pipeline_check",
+ "contract_version": 2,
+ "generated_at": "2026-10-21T16:04:04.361482+00:00",
+ "code_commit": "3eebccd6ed4b6477c1c18bbb40a529a132f5b9a1",
+ "split": {
+  "development": [
+   "2026-10-22",
+   "2026-10-28"
+  ],
+  "tuning": [
+   "2026-10-29",
+   "2026-10-30"
+  ],
+  "excluded": [
+   "2026-10-31",
+   "2026-11-02"
+  ],
+  "test": [
+   "2026-11-03",
+   "2026-11-07"
+  ]
+ },
+ "road_class_severity": {
+  "values": {
+   "living_street": 0.875,
+   "motorway": 0.0,
+   "motorway_link": 0.5,
+   "primary": 0.25,
+   "primary_link": 0.625,
+   "residential": 0.75,
+   "secondary": 0.5,
+   "secondary_link": 0.6875,
+   "tertiary": 0.625,
+   "tertiary_link": 0.6875,
+   "trunk": 0.25,
+   "trunk_link": 0.5625,
+   "unclassified": 0.6875
+  },
+  "method": "speed_median",
+  "status": "assumed_preference",
+  "definition": "p_k = 1 - median free-flow speed of class k / largest class median, over development roads; a stated preference for faster road classes, not a published penalty."
+ },
+ "flood_class_severity": {
+  "scenario": "class_over_three",
+  "status": "assumed_scoring_scenario",
+  "values": {
+   "1": 0.333333,
+   "2": 0.666667,
+   "3": 1.0
+  },
+  "alternatives": {
+   "equal": {
+    "1": 1.0,
+    "2": 1.0,
+    "3": 1.0
+   },
+   "convex": {
+    "1": 0.2,
+    "2": 0.5,
+    "3": 1.0
+   }
+  },
+  "note": "NOAH five-year hazard classes 1-3 are mapped susceptibility, not current inundation or road closure. Overlapping polygons resolve to the highest class."
+ },
+ "live_assumptions": {
+  "status": "Assumed values for the live features; not calibrated. Each value is reported with the results and can be varied in sensitivity runs.",
+  "min_speed_mps": 1.0,
+  "min_free_flow_mps": 2.0,
+  "min_free_flow_note": "HERE flow lines with a free-flow speed below 2 m/s (7.2 km/h) are not usable (for example ferry routes reported at 0.28 m/s) and are left out before matching.",
+  "max_congestion": 0.999,
+  "closure_min_share": 0.4,
+  "incident_min_share": 0.4,
+  "flood_report": {
+   "types": [
+    "flooding"
+   ],
+   "words": [
+    "flood",
+    "flooding",
+    "flooded",
+    "baha",
+    "submerged",
+    "impassable",
+    "high water"
+   ],
+   "severity": 1.0,
+   "note": "A HERE incident whose type is flooding or whose description mentions flooding marks the matched segments as flooded now. Their flood exposure becomes the whole segment length at the highest severity; other segments keep the NOAH hazard exposure."
+  },
+  "capacity_factors": {
+   "lane_blocking_incident_types": [
+    "accident",
+    "disabledVehicle",
+    "construction",
+    "laneRestriction",
+    "roadHazard",
+    "plannedEvent",
+    "massEvent"
+   ],
+   "single_lane_floor": 0.5,
+   "flood_reported": 0.5,
+   "weather": {
+    "clear": 1.0,
+    "rain": 0.95,
+    "heavy_rain": 0.9
+   },
+   "note": "Live effective capacity = base capacity (directional lanes x 1,900 veh/h/lane x g/C) x incident factor x flood factor x weather factor. A lane-blocking incident removes one lane: (lanes - 1) / lanes, but not below single_lane_floor. Flooding and rain reduce capacity by the assumed factors (supported in direction by Mamuyac et al., 2025, for flooding)."
+  },
+  "time_of_day_note": "Live time-of-day load = length-weighted mean live congestion of the matched roads in the same city at the snapshot time: how busy the city is right now. It differs from a road's own congestion, so the two features are not duplicates.",
+  "uncovered_roads_note": "A road without a live HERE line takes the median live congestion of matched roads of the same city and road type; then of the same road type; then of all matched roads. These values are flagged group_estimate."
+ },
+ "input_hashes": {
+  "live_assumptions": "f5c84240356cfd13b431533d9673c7ef162726fdbdfc47c077b54cec8c09a2db",
+  "live_study": "64092f32c1c6027cfa8b4073ab9fb294c2ba38b1b925321a17b846696d527cb0",
+  "road_nodes.csv": "3955115d525356ce46048faf665aab4127a12f2455e9fb44d76f4f2f9db28c40",
+  "road_segments.csv": "1f491803ca319afbda5c9774ff35a9b4ecd89a2d597d222a515712e3d737cf61",
+  "segment_flood.csv": "8300a4474066c791accade86f2c2ec1a6830f40e65159edf931101da8db3c3c9"
+ }
+}

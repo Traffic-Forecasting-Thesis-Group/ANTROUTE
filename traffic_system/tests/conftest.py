@@ -6,6 +6,12 @@ from src.routing.criteria import CRITERIA
 from src.routing.network import CITIES, RoadNetwork
 
 
+@pytest.fixture(autouse=True)
+def historical_serving_mode(monkeypatch):
+    """API tests exercise the historical release unless a test selects live mode itself."""
+    monkeypatch.setenv("ANTROUTE_MODE", "historical")
+
+
 @pytest.fixture
 def network_data():
     nodes = [

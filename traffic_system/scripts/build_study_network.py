@@ -62,8 +62,11 @@ def build(features_dir, boundary_path, assumption_path, development_days, qualit
         raise ValueError("Exactly the five study boundaries are required")
     assumptions = json.loads(assumption_path.read_text(encoding="utf-8"))
     segments = read_csv(features_dir / "road_segments.csv")
-    print(f"Development weekday fallback profiles for {len(segments)} segments", flush=True)
-    profiles = weekday_profile(traffic_inputs(features_dir / "road_segments.csv"), assumptions, development_days)
+    if development_days is None:  # Live release: dynamic inputs come from the saved captures, not profiles.
+        profiles = {row["road_id"]: [(0.0, 1.0)] * 24 for row in segments}
+    else:
+        print(f"Development weekday fallback profiles for {len(segments)} segments", flush=True)
+        profiles = weekday_profile(traffic_inputs(features_dir / "road_segments.csv"), assumptions, development_days)
     floods = {row["road_id"]: row for row in read_csv(features_dir / "segment_flood.csv")}
     speeds = defaultdict(list)
     for row in segments:

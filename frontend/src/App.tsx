@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
-import { RouteError, explainRoute, loadNetwork, loadStudyStatus, loadWeather, planTrip, snapNode, snapRoad } from './api/routeService';
-import type { HistoricalStudyStatus as StudyStatus, NetworkInfo, RoadSelection, StudyNode, TripEvent, TripResult, WeatherSnapshot } from './api/routeService';
+import { RouteError, explainRoute, loadLiveStatus, loadNetwork, loadStudyStatus, loadWeather, planTrip, snapNode, snapRoad } from './api/routeService';
+import type { HistoricalStudyStatus as StudyStatus, LiveStatus, NetworkInfo, RoadSelection, StudyNode, TripEvent, TripResult, WeatherSnapshot } from './api/routeService';
 import RouteMap, { BASELINE_COLOR, ROUTE_COLOR } from './features/map/RouteMap';
 import PlaceInput from './features/trip/PlaceInput';
 import CostBreakdown from './features/trip/CostBreakdown';
@@ -39,6 +39,11 @@ const pairedDifference = (proposed: number | null, baseline: number | null, show
 const convergenceText = ({ iterations_to_convergence: n, stop_reason: stop, mean_iterations_to_convergence: mean, searches_not_converged: missed }: TripResult['evaluation']['convergence']) =>
   `${n === null ? `Not converged: ${STOP_REASONS[stop] ?? stop}` : `Converged at ${n} iteration${n === 1 ? '' : 's'}`}${mean === null ? '' : ` (all searches: ${mean.toFixed(1)})`}${missed ? ` · ${missed} search${missed === 1 ? '' : 'es'} not converged` : ''}`;
 const pad = (value: number) => String(value).padStart(2, '0');
+/** "2026-10-22T08:15:00+08:00" -> "Thu, Oct 22 · 08:15" (the capture's own Asia/Manila clock). */
+const captureLabel = (iso: string) => {
+  const day = new Date(`${iso.slice(0, 10)}T00:00:00`);
+  return `${day.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })} · ${iso.slice(11, 16)}`;
+};
 const MAX_STOPS = 5;
 const closeIcon = <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>;
 const swapIcon = <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4v15M8 4L4.5 7.5M8 4l3.5 3.5M16 20V5M16 20l-3.5-3.5M16 20l3.5-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>;
@@ -72,6 +77,10 @@ function CostHistory({ values, caption, color, marker }: { values: (number | nul
 
 export default function App() {
   const [studyStatus, setStudyStatus] = useState<StudyStatus | null>(null);
+  // Live mode: every route is scored on the latest saved HERE traffic, incident and weather capture.
+  const [liveStatus, setLiveStatus] = useState<LiveStatus | null>(null);
+  const live = !!liveStatus?.ready;
+  const liveAt = live ? liveStatus?.latest_capture ?? null : null;
   const [network, setNetwork] = useState<NetworkInfo | null>(null);
   const [origin, setOrigin] = useState<StudyNode | null>(null);
   const [originKey, setOriginKey] = useState(0);
@@ -98,8 +107,11 @@ export default function App() {
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
   const [datasetMap, setDatasetMap] = useState<DatasetMap | null>(null);
-  const conditions = useMemo(() => ({ departure_date: departureDate, time_of_day: hour, weather,
-    closed_road_ids: closures.map(road => road.id) }), [departureDate, hour, weather, closures]);
+  const conditions = useMemo(() => liveAt
+    ? { departure_date: liveAt.slice(0, 10), time_of_day: Number(liveAt.slice(11, 13)), weather: 'live', live_at: liveAt,
+        closed_road_ids: closures.map(road => road.id) }
+    : { departure_date: departureDate, time_of_day: hour, weather, closed_road_ids: closures.map(road => road.id) },
+  [liveAt, departureDate, hour, weather, closures]);
   const activeRequest = useRef<AbortController | null>(null);
   const [baseline, setBaseline] = useState<TripResult | null>(null);
   const [baselineBusy, setBaselineBusy] = useState(false);
@@ -110,14 +122,17 @@ export default function App() {
 
   useEffect(() => {
     const controller = new AbortController();
-    loadStudyStatus(controller.signal).then(status => {
-      setStudyStatus(status);
-      if (!status.ready) return null;
-      return loadNetwork(controller.signal);
+    // Live first; the historical estimation release is the fallback when no live release is ready.
+    loadLiveStatus(controller.signal).catch(() => null).then(status => {
+      if (status?.ready) { setLiveStatus(status); return loadNetwork(controller.signal); }
+      return loadStudyStatus(controller.signal).then(historical => {
+        setStudyStatus(historical);
+        return historical.ready ? loadNetwork(controller.signal) : null;
+      });
     }).then(async data => {
       if (!data) return;
       setNetwork(data);
-      setWeather(data.weather_conditions.includes('historical') ? 'historical' : data.weather_conditions[0]);
+      setWeather(data.serving_mode === 'live' ? 'live' : data.weather_conditions.includes('historical') ? 'historical' : data.weather_conditions[0]);
 
     }).catch((reason: Error) => {
       if (reason.name !== 'AbortError') setError(reason.message);
@@ -128,13 +143,13 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (!network) return;
+    if (!network || live) return;
     const controller = new AbortController();
     setSnapshot(null);
     loadWeather(departureDate, hour, controller.signal).then(value => { setSnapshot(value); setWeatherError(''); })
       .catch((reason: Error) => { if (reason.name !== 'AbortError') setWeatherError('Historical provider weather is unavailable for this timestamp.'); });
     return () => controller.abort();
-  }, [network, departureDate, hour]);
+  }, [network, live, departureDate, hour]);
 
   const invalidate = () => {
     activeRequest.current?.abort(); activeRequest.current = null;
@@ -152,11 +167,10 @@ export default function App() {
     const controller = new AbortController();
     activeRequest.current = controller;
     const closedIds = closures.map(road => road.id);
-    const tripConditions = { departure_date: departureDate, time_of_day: hour, weather,
-      closed_road_ids: closureMinute === null ? closedIds : [] };
+    const tripConditions = { ...conditions, closed_road_ids: closureMinute === null ? closedIds : [] };
     const events: TripEvent[] = [];
     if (closureMinute !== null && closedIds.length) events.push({ at_minute: closureMinute, close_road_ids: closedIds });
-    if (weatherChange) events.push({ at_minute: weatherChangeMinute, weather: weatherChange });
+    if (weatherChange && !live) events.push({ at_minute: weatherChangeMinute, weather: weatherChange });
     setBusy(true);
     let recommended: TripResult;
     try {
@@ -209,6 +223,14 @@ export default function App() {
     finally { setPicking(false); }
   };
 
+  // A new capture is saved every 15 minutes; reloading picks it up for the next route.
+  const refreshLive = async () => {
+    setRefreshing(true); setWeatherError('');
+    try { setLiveStatus(await loadLiveStatus()); invalidate(); }
+    catch (reason) { if (reason instanceof Error) setWeatherError(reason.message); }
+    finally { setRefreshing(false); }
+  };
+
   const updateWeather = async () => {
     setRefreshing(true); setWeatherError('');
     try {
@@ -258,7 +280,19 @@ export default function App() {
                 {stops.length < MAX_STOPS && <button type="button" className="add-stop" onClick={() => setStops(previous => [...previous, { key: nextStopKey.current++, node: null }])}>
                   <span aria-hidden="true">+</span>Add Destination</button>}
               </div>
+              {live && liveStatus && <><div className="form-section">
+                <h3>Departure</h3>
+                <p><strong>Now, live traffic</strong></p>
+                <p className="hint">Latest capture {liveAt ? captureLabel(liveAt) : '–'} · Asia/Manila. HERE traffic and incidents are saved every 15 minutes; a trip uses each newer capture as it drives. <button type="button" className="link-button" onClick={refreshLive}>{refreshing ? 'Reloading…' : 'Reload'}</button></p>
+                {liveStatus.latest?.segments ? <p className="hint">{(liveStatus.latest.live_matched ?? 0).toLocaleString()} of {liveStatus.latest.segments.toLocaleString()} road segments have a live HERE speed; the rest use the median of matched roads of the same city and road type. Reported closures: {liveStatus.latest.closed ?? 0}; flooding reports: {liveStatus.latest.flood_reported ?? 0}.</p> : null}
+                {liveStatus.release?.status !== 'development_calibration' && <p className="hint">Weights are provisional until the live development week is calibrated.</p>}
+              </div>
               <div className="form-section">
+                <h3>Weather</h3>
+                <p className="hint">Observed now{liveStatus.latest?.weather_at ? ` (${liveStatus.latest.weather_at.slice(11, 16)})` : ''}: {Object.entries(liveStatus.latest?.weather ?? {}).map(([city, value]) => `${city} ${value.replaceAll('_', ' ')}`).join(' · ') || 'unavailable'}</p>
+                {weatherError && <p className="error" role="status">{weatherError}</p>}
+              </div></>}
+              {!live && <><div className="form-section">
                 <h3>Departure</h3>
                 <div className="field-row">
                   <label>Date<input aria-label="Study date" type="date" min="2025-06-01" max="2026-05-31" required value={departureDate} onChange={event => { if (event.target.value) { setDepartureDate(event.target.value); invalidate(); } }} /></label>
@@ -280,10 +314,10 @@ export default function App() {
                 </div>
                 {cityWeather && <p className="hint">{origin?.city ?? 'Manila'} at {cityWeather.localtime.slice(11)}: {cityWeather.description.join(', ')}, {cityWeather.precip_mm} mm. <button type="button" className="link-button" onClick={updateWeather}>{refreshing ? 'Reloading…' : 'Reload'}</button></p>}
                 {weatherError && <p className="error" role="status">{weatherError}</p>}
-              </div>
+              </div></>}
               <div className="form-section">
                 <h3>Road closures</h3>
-                <p className="hint">Choose “Close road” above the map, then click a road. Closures are hypothetical scenarios.</p>
+                <p className="hint">Choose “Close road” above the map, then click a road. {live ? 'Closures reported by HERE are applied automatically; roads you close here are added as scenarios.' : 'Closures are hypothetical scenarios.'}</p>
                 <label className="checkbox"><input type="checkbox" checked={bothDirections} onChange={event => setBothDirections(event.target.checked)} />Close both directions</label>
                 {closures.length > 0 ? <ul className="closure-list">{closures.map(road => <li key={road.id}><span>{road.name}</span><button type="button" aria-label={`Reopen ${road.name}`} onClick={() => { setClosures(previous => previous.filter(item => item.id !== road.id)); invalidate(); }}>Reopen</button></li>)}</ul>
                   : <p className="hint">No roads closed.</p>}
@@ -300,7 +334,7 @@ export default function App() {
           {error && <p className="error" role="alert">{error}</p>}
         </aside>
       <main className="content">
-        <div className="page-title"><div><h1>ROUTE PLANNER</h1><p>{cities.join(' · ')}</p></div><span className="badge">Five-city study</span></div>
+        <div className="page-title"><div><h1>ROUTE PLANNER</h1><p>{cities.join(' · ')}</p></div><span className="badge">{live ? 'Live traffic · HERE' : 'Five-city study'}</span></div>
         <section className="card map-card" id="route-map">
           <div className="map-head">
             <h2>Route within the study area</h2>

@@ -6,7 +6,7 @@ from collections import Counter
 import networkx as nx
 
 from .condition_update import validate_conditions
-from .dynamic_weight import segment_values
+from .dynamic_weight import closed_roads, segment_values
 from .historical_traffic import traffic_for
 from .historical_weather import historical_snapshot, historical_grid_assignments, historical_grid_records
 from .criteria import CONTRACT_VERSION, UNITS as CRITERION_UNITS
@@ -25,18 +25,20 @@ def snapshot_rows(network, conditions, city=None):
     validate_conditions(network, conditions)
     traffic = traffic_for(network, conditions)
     nodes = {node.id: node for node in network.nodes}
+    closed_ids = closed_roads(conditions)
     effects, grids, records = None, {}, {}
     if conditions.weather == "historical":
         effects, _ = historical_snapshot(conditions.departure_date, conditions.time_of_day, network)
         grids = historical_grid_assignments()
         records = historical_grid_records(conditions.departure_date, conditions.time_of_day)
-    timestamp = f"{conditions.departure_date.isoformat()}T{conditions.time_of_day:02d}:00:00+08:00"
+    timestamp = (conditions.live_at.isoformat() if conditions.live_at is not None
+                 else f"{conditions.departure_date.isoformat()}T{conditions.time_of_day:02d}:00:00+08:00")
     for road in network.roads:
         source = nodes[road.source]
         if city is not None and source.city != city:
             continue
         score = segment_values(network, road, conditions, nodes, effects, traffic)
-        closed = road.id in conditions.closed_road_ids
+        closed = road.id in closed_ids
         grid = grids.get(road.source, "")
         record = records.get(grid, {})
         rounded = lambda value: round(value, 10) if isinstance(value, float) else value
@@ -45,11 +47,13 @@ def snapshot_rows(network, conditions, city=None):
                **{name: rounded(score.physical[name]) for name in PHYSICAL},
                **{f"criterion_{name}": rounded(score.criteria[name]) for name in FEATURES},
                **{f"scaled_{name}": rounded(score.scaled[name]) for name in FEATURES},
-               "weather_condition": conditions.weather, "weather_grid": grid,
+               "weather_condition": score.physical.get("weather_condition", conditions.weather), "weather_grid": grid,
                "precip_mm": record.get("precip_mm", ""), "traffic_location": road.traffic_location or "",
                "closed": closed, "path_cost": None if closed else round(score.cost, 10), "flags": ";".join(score.flags),
                "contract_version": CONTRACT_VERSION, "calibration_id": network.cost_config.calibration_id,
-               "traffic_classification": "assumed_congestion_scenario"}
+               "traffic_classification": ("live_observed" if score.physical.get("congestion_source") == "live" else
+                                          "live_group_estimate" if conditions.live_at is not None else
+                                          "assumed_congestion_scenario")}
 
 
 def csv_chunks(rows):

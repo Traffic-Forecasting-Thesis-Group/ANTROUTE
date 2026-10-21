@@ -38,6 +38,25 @@ Open **http://127.0.0.1:5173/**. The frontend connects to the backend on port 80
 
 Choose an origin and destination, a study date, local hour, and historical weather or an explicit scenario. Optional map-selected closures are hypothetical conditions, not verified historical closure records. Calculate the ACO route, inspect the evaluation (common path cost, ACO search time, convergence behavior), and expand **Where each feature and estimate comes from** for the full basis. The routing contract (criteria, calibration, search, evaluation) is in [routing_contract.md](traffic_system/docs/routing_contract.md).
 
+## Live data (HERE traffic and incidents, Weatherstack weather)
+
+The served release is now live (`ANTROUTE_MODE=live`, the default; set `historical` for the June 2025 – May 2026
+estimation release). Put `HERE_API_KEY` and `WEATHERSTACK_API_KEY` in `traffic_system/.env`.
+
+| Step | When | Command (from `traffic_system`) |
+|---|---|---|
+| Collect every 15 min (Task Scheduler task "ANTROUTE live collection") | Oct 22 – Nov 7, 2026 | `python -m scripts.collect_live --once` |
+| Check coverage of the latest snapshot | any time | `python -m scripts.live_coverage` |
+| Calibrate on the development week (Oct 22–28) | after Oct 28 | `python -m scripts.calibrate_live` |
+| Tune q0, beta and the time limit (Oct 29–30) | after Oct 30 | `python -m scripts.tune_search --live` |
+| Freeze the 30 test requests (before the test period) | Oct 31 – Nov 2 | `python -m scripts.evaluate_sop --live freeze` |
+| Run and analyse the comparison (test period Nov 3–7) | after Nov 7 | `python -m scripts.evaluate_sop --live run --dynamic` |
+
+`configs/live_study.json` declares the periods (Oct 31 – Nov 2, Undas, is excluded) and `configs/live_assumptions.json`
+the assumed capacity, flood and matching values. `python -m scripts.calibrate_live --provisional` checks the pipeline
+on whatever has been collected; a provisional release is labelled and refused by tuning and evaluation. Raw responses
+are kept unchanged in `data/live/raw` (not in git — back them up). The collecting PC must stay on and awake.
+
 ## Algorithms and dynamic experiment
 
 - `POST /routes/plan`: ANTROUTE ACO on the ten features with CRITIC weights, one date/hour snapshot.

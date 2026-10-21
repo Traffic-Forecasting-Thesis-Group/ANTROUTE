@@ -83,3 +83,41 @@ def require_historical_release():
     status = study_status()
     if not status["ready"]:
         raise HTTPException(503, status["message"])
+
+
+LIVE_RELEASE = ROOT / "data/processed/live_release.json"
+
+
+def live_status():
+    """Live release (calibrated, provisional or missing) and the latest saved capture, read from disk."""
+    from src.live.snapshot import LiveDataUnavailable, captures, live_snapshot
+    saved = captures()
+    status = {"mode": "live", "captures": len(saved), "first_capture": saved[0].isoformat() if saved else None,
+              "latest_capture": saved[-1].isoformat() if saved else None, "release": None, "ready": False,
+              "policy": json.loads((ROOT / "configs/live_study.json").read_text(encoding="utf-8"))}
+    try:
+        release = json.loads(LIVE_RELEASE.read_text(encoding="utf-8"))
+        for name, expected in release["artifacts"].items():
+            path = ROOT / "data/processed" / name
+            stat = path.stat()
+            if _hash(str(path), stat.st_mtime_ns, stat.st_size) != expected:
+                raise ValueError("Live release artifact changed; run python -m scripts.calibrate_live again")
+        status["release"] = {key: release[key] for key in ("status", "calibration_id", "valid_hours", "split")}
+        status["ready"] = bool(saved)
+        status["message"] = ("Live routing enabled" if release["status"] == "development_calibration" else
+                             "Live routing enabled with a PROVISIONAL calibration (pipeline check; not for the evaluation)")
+    except (OSError, ValueError, KeyError) as exc:
+        status["message"] = str(exc) if isinstance(exc, ValueError) else "Live release has not been built; run python -m scripts.calibrate_live"
+    if saved:
+        try:
+            latest = live_snapshot(saved[-1])
+            status["latest"] = {"weather_at": latest.weather_at.isoformat(), **latest.summary}
+        except LiveDataUnavailable as exc:
+            status["latest"] = {"unavailable": str(exc)}
+    return status
+
+
+def require_live_release():
+    status = live_status()
+    if not status["ready"]:
+        raise HTTPException(503, status["message"])

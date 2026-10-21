@@ -17,10 +17,17 @@ when both algorithms returned a route for every seed. Execution order is counter
 Distance travelled and convergence behaviour are secondary and descriptive. Dynamic trips are a separate,
 descriptive experiment (--dynamic).
 
+Live evaluation (--live, after scripts.calibrate_live): the same protocol on the live release. Each request's
+snapshot is a random 15-minute tick of the live test period (configs/live_study.json), frozen before the test data
+exists; at run time it is scored on the latest saved capture at or before that tick (within 15 minutes), or recorded
+as data_unavailable. Live dynamic trips replay the saved captures: peak-onset departures at 06:45 and 16:45, the
+request's own capture, and a road closure 2 minutes in; rain is whatever the captures observed.
+
 Usage (from traffic_system):
   python -m scripts.evaluate_sop freeze --requests 30 --seeds 5   writes configs/experiment_manifest.json
   python -m scripts.evaluate_sop run [--dynamic]                    runs the frozen manifest
   python -m scripts.evaluate_sop analyse                            re-analyses outputs/sop_runs.csv
+  add --live before the command for the live release (configs/live_experiment_manifest.json, outputs/live_sop_*)
 Writes outputs/sop_runs.csv, outputs/sop_results.json and outputs/sop_report.md.
 """
 import argparse
@@ -39,6 +46,8 @@ from scipy import stats
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "configs/experiment_manifest.json"
+LIVE_MANIFEST = ROOT / "configs/live_experiment_manifest.json"
+LIVE = {"enabled": False}  # Set by --live.
 ALPHA = 0.05
 ALGORITHMS = ("antroute", "cheng")
 NAMES = {"antroute": "ANTROUTE (proposed)", "cheng": "Cheng (2023) baseline"}
@@ -52,6 +61,38 @@ DYNAMIC_SCENARIOS = {
     "road_closure": "Road closure 2 min into the trip (08:10 departure)",
     "heavy_rain_onset": "Clear to heavy rain 3 min into the trip (08:10 departure)",
 }
+LIVE_DYNAMIC_SCENARIOS = {
+    "morning_peak_onset": "Live captures from a 06:45 departure on the request's test date",
+    "evening_peak_onset": "Live captures from a 16:45 departure on the request's test date",
+    "live_replay": "Live captures from the request's own capture",
+    "road_closure": "Road closure 2 min into the trip, live captures from the request's own capture",
+}
+
+
+def manifest_path() -> Path:
+    return LIVE_MANIFEST if LIVE["enabled"] else MANIFEST
+
+
+def output_name(name: str) -> str:
+    return f"live_{name}" if LIVE["enabled"] else name
+
+
+def scenarios() -> dict:
+    return LIVE_DYNAMIC_SCENARIOS if LIVE["enabled"] else DYNAMIC_SCENARIOS
+
+
+def release_network():
+    """The release the mode evaluates; a provisional live calibration is refused."""
+    if LIVE["enabled"]:
+        from app.main import get_live_network
+        network = get_live_network()
+        if network.cost_config.calibration_id.startswith("provisional-"):
+            sys.exit("The live release is provisional; run python -m scripts.calibrate_live after the development week.")
+        return network
+    from app.main import get_network
+    from app.study_policy import require_historical_release
+    require_historical_release()
+    return get_network()
 
 
 # ---------------------------------------------------------------- analysis (pure)
@@ -144,35 +185,52 @@ def _connected_pairs(network, count, rng):
     return pairs
 
 
+def live_ticks(split) -> list[datetime]:
+    """Every 15-minute tick of the live test period (Asia/Manila)."""
+    from src.routing.condition_update import MANILA
+    start, end = split["test"]
+    tick = datetime(start.year, start.month, start.day, tzinfo=MANILA)
+    ticks = []
+    while tick.date() <= end:
+        ticks.append(tick)
+        tick += timedelta(minutes=15)
+    return ticks
+
+
 def freeze(requests: int, seeds: int, force: bool) -> None:
     """Freeze OD pairs, held-out test-period snapshots, seeds and order against the current release."""
-    from app.main import get_network
-    from app.study_policy import require_historical_release
     from src.routing.calibration import days, load_split
-    if MANIFEST.exists() and not force:
-        sys.exit(f"{MANIFEST.relative_to(ROOT)} already exists; it is frozen. Pass --force only to replace it deliberately.")
-    policy = json.loads((ROOT / "configs/historical_study.json").read_text(encoding="utf-8"))
-    split = load_split(policy)  # Blocked until declared.
-    require_historical_release()
-    network = get_network()
+    target = manifest_path()
+    if target.exists() and not force:
+        sys.exit(f"{target.relative_to(ROOT)} already exists; it is frozen. Pass --force only to replace it deliberately.")
+    if LIVE["enabled"]:
+        from scripts.calibrate_live import POLICY, load_split as load_live_split
+        split = load_live_split(json.loads(POLICY.read_text(encoding="utf-8")))
+    else:
+        split = load_split(json.loads((ROOT / "configs/historical_study.json").read_text(encoding="utf-8")))  # Blocked until declared.
+    network = release_network()
     rng = random.Random(2025)
     test_days = list(days(split["test"]))
+    ticks = live_ticks(split) if LIVE["enabled"] else []
     pairs = _connected_pairs(network, requests, rng)
     manifest = {
         "manifest_version": 1, "frozen_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "release": {"calibration_id": network.cost_config.calibration_id, "contract_version": network.cost_config.contract_version},
         "seeds": list(range(seeds)),
         "order": "counterbalanced: ANTROUTE runs first when (request index + seed) is even, Cheng first otherwise",
-        "requests": [{"id": f"r{index:03d}", "origin": origin, "destination": destination, "straight_line_km": km,
-                      "departure_date": rng.choice(test_days).isoformat(), "hour": rng.randrange(24), "weather": "historical"}
+        "mode": "live" if LIVE["enabled"] else "historical",
+        "requests": [({"id": f"r{index:03d}", "origin": origin, "destination": destination, "straight_line_km": km,
+                       "live_at": rng.choice(ticks).isoformat(), "weather": "live"} if LIVE["enabled"] else
+                      {"id": f"r{index:03d}", "origin": origin, "destination": destination, "straight_line_km": km,
+                       "departure_date": rng.choice(test_days).isoformat(), "hour": rng.randrange(24), "weather": "historical"})
                      for index, (origin, destination, km) in enumerate(pairs)],
         "analysis": {"primary": list(PRIMARY), "difference": "baseline - ANTROUTE", "alpha": ALPHA,
                      "test": "two-sided Wilcoxon signed-rank", "zero_method": "wilcox", "method": "auto", "correction": False,
                      "precision": {measure: precision for measure, (_, _, precision) in PRIMARY.items()},
                      "unit_summary": "median over the complete matched seed set", "multiplicity": "Holm, m = 2"},
     }
-    MANIFEST.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
-    print(f"Froze {len(manifest['requests'])} requests x {seeds} seeds -> {MANIFEST.relative_to(ROOT)}")
+    target.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    print(f"Froze {len(manifest['requests'])} requests x {seeds} seeds -> {target.relative_to(ROOT)}")
 
 
 # ---------------------------------------------------------------- runs
@@ -190,11 +248,19 @@ def static_run(network, request: dict, algorithm: str, seed: int) -> dict:
     from src.routing.historical_weather import historical_snapshot
     from src.routing.weather import MissingWeatherObservation
     row = {"experiment": "static", "request": request["id"], "algorithm": algorithm, "seed": seed}
-    conditions = Conditions(departure_date=date.fromisoformat(request["departure_date"]), time_of_day=request["hour"],
-                            weather=request["weather"])
     try:
-        weather = historical_snapshot(conditions.departure_date, conditions.time_of_day, network)[0] if conditions.weather == "historical" else None
-        traffic = traffic_for(network, conditions)
+        if "live_at" in request:
+            from src.live.snapshot import live_snapshot, nearest_capture
+            from src.routing.condition_update import live_conditions
+            captured = nearest_capture(datetime.fromisoformat(request["live_at"]))
+            conditions, weather, traffic = live_conditions(captured), None, None
+            summary = live_snapshot(captured).summary
+            row.update(captured_at=captured.isoformat(), live_coverage_share=summary["live_matched"] / summary["segments"])
+        else:
+            conditions = Conditions(departure_date=date.fromisoformat(request["departure_date"]), time_of_day=request["hour"],
+                                    weather=request["weather"])
+            weather = historical_snapshot(conditions.departure_date, conditions.time_of_day, network)[0] if conditions.weather == "historical" else None
+            traffic = traffic_for(network, conditions)
         started = perf_counter()
         if algorithm == "cheng":
             config = ChengConfig(seed=seed)
@@ -236,11 +302,22 @@ def dynamic_runs(network, manifest: dict) -> list[dict]:
     from src.routing.condition_update import MANILA
     from src.routing.dynamic_trip import ReplanConfig, TripEvent, simulate_trip
     rows = []
+    live = manifest.get("mode") == "live"
     for index, request in enumerate(manifest["requests"]):
-        day = date.fromisoformat(request["departure_date"])
-        for scenario in DYNAMIC_SCENARIOS:
-            hour, minute = {"morning_peak_onset": (6, 50), "evening_peak_onset": (16, 50)}.get(scenario, (8, 10))
-            weather, events = "historical", []
+        if live:
+            from src.live.snapshot import nearest_capture
+            requested = datetime.fromisoformat(request["live_at"]).astimezone(MANILA)
+            day = requested.date()
+        else:
+            day = date.fromisoformat(request["departure_date"])
+        for scenario in scenarios():
+            if live:
+                hour, minute = {"morning_peak_onset": (6, 45), "evening_peak_onset": (16, 45)}.get(
+                    scenario, (requested.hour, requested.minute))
+                weather, events = "live", []
+            else:
+                hour, minute = {"morning_peak_onset": (6, 50), "evening_peak_onset": (16, 50)}.get(scenario, (8, 10))
+                weather, events = "historical", []
             if scenario == "heavy_rain_onset":
                 weather, events = "clear", [TripEvent(at_minute=3, weather="heavy_rain")]
             for seed in manifest["seeds"]:
@@ -248,6 +325,8 @@ def dynamic_runs(network, manifest: dict) -> list[dict]:
                     row = {"experiment": f"dynamic:{scenario}", "request": request["id"], "algorithm": algorithm, "seed": seed}
                     departure = datetime(day.year, day.month, day.day, hour, minute, tzinfo=MANILA)
                     try:
+                        if live:
+                            departure = nearest_capture(departure)
                         trip_events = events
                         if scenario == "road_closure":
                             trip_events = [TripEvent(at_minute=2, close_road_ids=shortest_distance_closure(network, request))]
@@ -266,13 +345,10 @@ def dynamic_runs(network, manifest: dict) -> list[dict]:
 
 
 def run(dynamic: bool) -> list[dict]:
-    from app.main import get_network
-    from app.study_policy import require_historical_release
-    if not MANIFEST.exists():
-        sys.exit("No frozen manifest. Run: python -m scripts.evaluate_sop freeze")
-    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
-    require_historical_release()
-    network = get_network()
+    if not manifest_path().exists():
+        sys.exit(f"No frozen manifest. Run: python -m scripts.evaluate_sop {'--live ' if LIVE['enabled'] else ''}freeze")
+    manifest = json.loads(manifest_path().read_text(encoding="utf-8"))
+    network = release_network()
     if network.cost_config.calibration_id != manifest["release"]["calibration_id"]:
         sys.exit("The release calibration differs from the frozen manifest; re-freeze deliberately or restore the release.")
     rows = []
@@ -296,8 +372,12 @@ def report(results: dict) -> str:
     lines = ["# ANTROUTE vs Cheng (2023): frozen-manifest comparison", "",
              f"Generated {results['generated_at']} · manifest {results['manifest']['frozen_at']} · calibration "
              f"{results['manifest']['calibration_id'][:12]} · scipy {results['scipy_version']}", "",
-             "Software verification and modeled-scenario evaluation only: traffic is an assumed congestion scenario, "
-             "so these results are not external empirical validation.", "",
+             (f"Live evaluation on saved HERE traffic, incident and weather captures of the test period. Roads without a live "
+              f"HERE speed use the median live congestion of matched roads of the same city and road type; mean live "
+              f"coverage of the evaluated captures: {results['live_coverage_share']:.1%} of segments."
+              if results.get("mode") == "live" else
+              "Software verification and modeled-scenario evaluation only: traffic is an assumed congestion scenario, "
+              "so these results are not external empirical validation."), "",
              "## Primary outcomes", "",
              f"Requests: {analysis['requests']}; complete matched pairs: {analysis['complete_requests']} "
              f"(seeds {analysis['seeds']}, median per request). d = Cheng − ANTROUTE; positive favours ANTROUTE. "
@@ -330,7 +410,7 @@ def report(results: dict) -> str:
 def dynamic_summary(rows: list[dict]) -> dict:
     """Descriptive dynamic-trip results by scenario and algorithm; failed trips are counted, not averaged."""
     summary = {}
-    for scenario in DYNAMIC_SCENARIOS:
+    for scenario in scenarios():
         summary[scenario] = {}
         for algorithm in ALGORITHMS:
             selected = [row for row in rows if row["experiment"] == f"dynamic:{scenario}" and row["algorithm"] == algorithm]
@@ -342,8 +422,11 @@ def dynamic_summary(rows: list[dict]) -> dict:
 
 
 def write(rows: list[dict]) -> None:
-    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    manifest = json.loads(manifest_path().read_text(encoding="utf-8"))
+    shares = [float(row["live_coverage_share"]) for row in rows if row.get("live_coverage_share") not in (None, "")]
     results = {"generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"), "scipy_version": scipy.__version__,
+               "mode": manifest.get("mode", "historical"),
+               "live_coverage_share": statistics.fmean(shares) if shares else None,
                "manifest": {"frozen_at": manifest["frozen_at"], **manifest["release"]}, "alpha": ALPHA,
                "primary_measures": {measure: {"label": label, "unit": unit, "precision": precision} for measure, (label, unit, precision) in PRIMARY.items()},
                "algorithms": NAMES, "analysis": analyse(rows, manifest["seeds"]), "dynamic": dynamic_summary(rows), "runs": rows}
@@ -352,17 +435,19 @@ def write(rows: list[dict]) -> None:
     fields = []
     for row in rows:
         fields += [key for key in row if key not in fields]
-    with (output / "sop_runs.csv").open("w", newline="", encoding="utf-8") as stream:
+    names = [output_name(name) for name in ("sop_runs.csv", "sop_results.json", "sop_report.md")]
+    with (output / names[0]).open("w", newline="", encoding="utf-8") as stream:
         writer = csv.DictWriter(stream, fieldnames=fields)
         writer.writeheader()
         writer.writerows(rows)
-    (output / "sop_results.json").write_text(json.dumps(results, indent=2), encoding="utf-8")
-    (output / "sop_report.md").write_text(report(results), encoding="utf-8")
-    print(f"Saved {len(rows)} runs: outputs/sop_runs.csv, outputs/sop_results.json, outputs/sop_report.md")
+    (output / names[1]).write_text(json.dumps(results, indent=2), encoding="utf-8")
+    (output / names[2]).write_text(report(results), encoding="utf-8")
+    print(f"Saved {len(rows)} runs: " + ", ".join(f"outputs/{name}" for name in names))
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--live", action="store_true", help="evaluate the live release on live test captures")
     commands = parser.add_subparsers(dest="command", required=True)
     frozen = commands.add_parser("freeze")
     frozen.add_argument("--requests", type=int, default=30)
@@ -372,12 +457,13 @@ def main():
     running.add_argument("--dynamic", action="store_true", help="also run the descriptive dynamic-trip experiment")
     commands.add_parser("analyse")
     args = parser.parse_args()
+    LIVE["enabled"] = args.live
     if args.command == "freeze":
         freeze(args.requests, args.seeds, args.force)
     elif args.command == "run":
         write(run(args.dynamic))
     else:
-        with (ROOT / "outputs/sop_runs.csv").open(encoding="utf-8") as stream:
+        with (ROOT / "outputs" / output_name("sop_runs.csv")).open(encoding="utf-8") as stream:
             write(list(csv.DictReader(stream)))
 
 

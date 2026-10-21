@@ -38,6 +38,7 @@ export interface NetworkInfo {
   cities: string[];
   nodes: StudyNode[];
   weather_conditions: string[];
+  serving_mode?: 'live' | 'historical';
   road_ids: string[];
   boundaries: Record<string, BoundaryGeometry>;
   node_count: number;
@@ -50,6 +51,22 @@ export interface Conditions {
   time_of_day: number;
   weather: string;
   closed_road_ids: string[];
+  /** Live mode: the saved HERE/weather capture (Asia/Manila ISO time) that scores every road. */
+  live_at?: string | null;
+}
+
+export interface LiveStatus {
+  mode: 'live';
+  ready: boolean;
+  message: string;
+  captures: number;
+  first_capture: string | null;
+  latest_capture: string | null;
+  release: { status: string; calibration_id: string; valid_hours: number } | null;
+  latest?: {
+    weather_at?: string; live_matched?: number; segments?: number; closed?: number; flood_reported?: number;
+    lane_blocking?: number; weather?: Record<string, string>; city_load?: Record<string, number>; unavailable?: string;
+  };
 }
 
 export interface DatasetInfo {
@@ -200,6 +217,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 
 export const loadNetwork = (signal: AbortSignal) => request<NetworkInfo>('/network?include_nodes=false', { signal });
 export const loadStudyStatus = (signal: AbortSignal) => request<HistoricalStudyStatus>('/study/status', { signal });
+export const loadLiveStatus = (signal?: AbortSignal) => request<LiveStatus>('/conditions/live', { signal });
 export const loadSopResults = (signal: AbortSignal) => request<SopResults>('/study/results', { signal });
 export const searchPlaces = (query: string, signal: AbortSignal) => request<{ results: StudyNode[] }>(`/places/search?query=${encodeURIComponent(query)}`, { signal });
 export const snapNode = (latitude: number, longitude: number) => request<StudyNode>(`/places/nearest?latitude=${latitude}&longitude=${longitude}`);
@@ -218,7 +236,9 @@ export async function downloadSnapshot(conditions: Conditions, city: string | nu
   if (signal.aborted) return;
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
-  link.href = url; link.download = `antroute_${conditions.departure_date}_${conditions.time_of_day}.csv`;
+  link.href = url; link.download = conditions.live_at
+    ? `antroute_live_${conditions.live_at.slice(0, 16).replace(':', '')}.csv`
+    : `antroute_${conditions.departure_date}_${conditions.time_of_day}.csv`;
   link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 // ACO parameters are fixed by the study; the server's defaults always apply.

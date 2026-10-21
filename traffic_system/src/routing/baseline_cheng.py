@@ -35,7 +35,7 @@ from pydantic import Field
 
 from .aco_kernel import SearchConfig, SearchResult, aco_search
 from .condition_update import Conditions, validate_conditions
-from .dynamic_weight import WeightedRoad, segment_values
+from .dynamic_weight import WeightedRoad, closed_roads, segment_values
 from .network import RoadNetwork, WeatherEffect
 
 REFERENCE = {"name": "Improved ant colony algorithm (Cheng, 2023)", "doi": "10.1155/2023/7651100",
@@ -117,9 +117,10 @@ def cheng_snapshot(network: RoadNetwork, conditions: Conditions, weather_by_city
     bpr_alpha, bpr_beta = assumptions.get("bpr_alpha", 0.15), assumptions.get("bpr_beta", 4.0)
     fixed = references(network)
     nodes = {node.id: node for node in network.nodes}
+    closed = closed_roads(conditions)
     roads, criteria = [], []
     for road in network.roads:
-        if road.id in conditions.closed_road_ids:
+        if road.id in closed:
             continue
         physical = segment_values(network, road, conditions, nodes, weather_by_city, traffic).physical
         roads.append(road)

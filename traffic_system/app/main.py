@@ -1,4 +1,9 @@
-"""Route requests use a fresh, consistent snapshot of the three dynamic inputs."""
+"""Route requests use a fresh, consistent snapshot of the dynamic inputs.
+
+Two releases: the historical estimation release (dates June 2025 - May 2026) and the live release, scored from
+the saved HERE traffic, incident and weather captures. Conditions with weather "live" use the live release;
+without live_at they take the latest saved capture.
+"""
 import json
 import os
 from collections import OrderedDict
@@ -18,7 +23,7 @@ from pydantic import Field, ValidationError, model_validator
 from dotenv import load_dotenv
 
 from app import places
-from app.study_policy import require_historical_release, study_status
+from app.study_policy import live_status, require_historical_release, require_live_release, study_status
 
 from src.routing.aco_routing import (AntColonyConfig, NoFeasibleRoute, SearchExhausted, SearchTimeLimit, ant_colony_route,
                                       distance_reference, node_positions)
@@ -26,10 +31,10 @@ from src.routing.contributions import route_contributions
 from src.routing.explanation import explain
 from src.routing.baseline_cheng import AHP_WEIGHTS, REFERENCE, ChengConfig, ahp, cheng_graph, cheng_route
 from src.routing.dynamic_trip import Algorithm, ReplanConfig, TripEvent, simulate_trip
-from src.routing.condition_update import MANILA, Conditions, snapshot_id, validate_conditions
+from src.routing.condition_update import LIVE_WEATHER, MANILA, Conditions, live_conditions, snapshot_id, validate_conditions
 from src.routing.criteria import CONTRACT_VERSION, CriterionInputError
 from src.routing.weather import MissingWeatherObservation
-from src.routing.dynamic_weight import prepare_graph, segment_values
+from src.routing.dynamic_weight import closed_roads, prepare_graph, segment_values
 from src.routing.datasets import coverage, snapshot_rows, csv_chunks
 from src.routing.metrics import evaluate
 from src.routing.network import CITIES, FEATURES, City, RoadNetwork, StudyModel, load_network
@@ -72,6 +77,46 @@ def get_network() -> RoadNetwork:
             detail="Study network unavailable. Prepare a validated five-city network with all ten features. "
                    "See traffic_system/docs/network_data.md.",
         ) from exc
+
+
+def get_live_network() -> RoadNetwork:
+    path = (Path(__file__).resolve().parents[1] / "data/processed/live_network.json").resolve()
+    try:
+        stat = path.stat()
+        return _load_live(str(path), stat.st_mtime_ns, stat.st_size)
+    except (OSError, ValidationError, ValueError) as exc:
+        raise HTTPException(503, "Live network unavailable. Run python -m scripts.calibrate_live.") from exc
+
+
+@lru_cache(maxsize=1)
+def _load_live(path: str, modified_ns: int, size: int) -> RoadNetwork:
+    return load_network(Path(path))
+
+
+def serving_mode() -> str:
+    """Which release the map, places and dataset pages use: live (default) or historical."""
+    return os.getenv("ANTROUTE_MODE", "live")
+
+
+def serving_network() -> RoadNetwork:
+    return get_live_network() if serving_mode() == "live" else get_network()
+
+
+def _release(conditions: Conditions) -> tuple[RoadNetwork, Conditions]:
+    """The release and the resolved snapshot for a request: live conditions without live_at take the latest capture."""
+    # The release checks honour FastAPI dependency overrides, as when they were route dependencies.
+    gate = lambda check: app.dependency_overrides.get(check, check)()
+    if conditions.weather != LIVE_WEATHER and conditions.live_at is None:
+        gate(require_historical_release)
+        return get_network(), conditions
+    gate(require_live_release)
+    from src.live.snapshot import LiveDataUnavailable, captures, nearest_capture
+    try:
+        moment = nearest_capture(conditions.live_at) if conditions.live_at is not None else captures()[-1]
+        resolved = live_conditions(moment, conditions.closed_road_ids)
+    except (LiveDataUnavailable, IndexError, ValueError) as exc:
+        raise HTTPException(503, f"Live snapshot unavailable: {exc}") from None
+    return get_live_network(), resolved
 
 
 # ACO parameters are fixed by the study, not set per request.
@@ -128,36 +173,48 @@ TRAFFIC_DISCLOSURE = {"classification": "assumed_congestion_scenario",
                       "source": "data/processed/temporal/traffic_hourly.csv",
                       "note": "Hourly congestion and travel-time factors per road segment from an assumed, seeded demand-to-capacity "
                               "index passed through the BPR function. A modeled scenario: no vehicle counts or traffic measurements."}
+LIVE_DISCLOSURE = {"classification": "live_observed",
+                   "source": "HERE Traffic API v7 flow and incidents, Weatherstack current weather (data/live/raw)",
+                   "note": "Live speeds where HERE reports them; other roads take the median live congestion of matched roads "
+                           "of the same city and road type (flagged live_group_estimate)."}
 
 
-@app.get("/dataset/info", dependencies=[Depends(require_historical_release)])
+def _disclosure(conditions: Conditions) -> dict:
+    return LIVE_DISCLOSURE if conditions.live_at is not None else TRAFFIC_DISCLOSURE
+
+
+@app.get("/dataset/info")
 def dataset_info():
-    return {**coverage(get_network()), "traffic": TRAFFIC_DISCLOSURE,
+    live = serving_mode() == "live"
+    return {**coverage(serving_network()), "traffic": LIVE_DISCLOSURE if live else TRAFFIC_DISCLOSURE,
             "features": FEATURES, "period": study_status()["requirements"]}
 
 
-@app.post("/dataset/snapshot", dependencies=[Depends(require_historical_release)])
+@app.post("/dataset/snapshot")
 def dataset_snapshot(request: SnapshotRequest, offset: int = Query(default=0, ge=0),
                         limit: int = Query(default=100, ge=1, le=1000)):
-    network = get_network()
+    network, conditions = _release(request.conditions)
     try:
-        rows = list(islice(snapshot_rows(network, request.conditions, request.city), offset, offset + limit))
+        rows = list(islice(snapshot_rows(network, conditions, request.city), offset, offset + limit))
     except ValueError as exc:
         raise HTTPException(422, str(exc)) from exc
     cities = {node.id: node.city for node in network.nodes}
     total = sum(1 for road in network.roads if request.city is None or cities[road.source] == request.city)
     return {"rows": rows, "total": total, "offset": offset, "limit": limit,
-            "traffic": TRAFFIC_DISCLOSURE}
+            "traffic": _disclosure(conditions)}
 
 
-@app.post("/dataset/export", dependencies=[Depends(require_historical_release)])
+@app.post("/dataset/export")
 def dataset_export(request: SnapshotRequest):
+    network, conditions = _release(request.conditions)
     try:
-        rows = iter(snapshot_rows(get_network(), request.conditions, request.city))
+        rows = iter(snapshot_rows(network, conditions, request.city))
         first = next(rows, None)  # Validate inputs and weather before sending response headers.
     except ValueError as exc:
         raise HTTPException(422, str(exc)) from exc
-    filename = f"antroute_{request.conditions.departure_date}_{request.conditions.time_of_day:02d}.csv"
+    stamp = (f"live_{conditions.live_at:%Y-%m-%d_%H%M}" if conditions.live_at is not None
+             else f"{conditions.departure_date}_{conditions.time_of_day:02d}")
+    filename = f"antroute_{stamp}.csv"
     return StreamingResponse(csv_chunks(chain([] if first is None else [first], rows)),
                              media_type="text/csv", headers={"Content-Disposition": f'attachment; filename="{filename}"'})
 
@@ -173,7 +230,7 @@ class CoverageRequest(StudyModel):
 @app.post("/dataset/map")
 def dataset_map(request: CoverageRequest):
     """Every road segment included in the study, grouped by the city it starts in."""
-    network = get_network()
+    network = serving_network()
     nodes = {node.id: node for node in network.nodes}
     bands = {city: {"label": city, "color": CITY_COLORS[city], "lines": []} for city in CITIES
              if request.city is None or city == request.city}
@@ -196,10 +253,12 @@ def historical_study_status():
 
 @app.get("/study/results")
 def sop_results():
-    """Latest SOP experiment summary written by scripts.evaluate_sop (per-run rows omitted)."""
-    path = Path(__file__).resolve().parents[1] / "outputs/sop_results.json"
+    """Latest SOP experiment summary written by scripts.evaluate_sop (per-run rows omitted), for the serving mode."""
+    live = serving_mode() == "live"
+    path = Path(__file__).resolve().parents[1] / ("outputs/live_sop_results.json" if live else "outputs/sop_results.json")
     if not path.exists():
-        raise HTTPException(404, "No SOP results yet. From traffic_system run: python -m scripts.evaluate_sop")
+        raise HTTPException(404, "No SOP results yet. From traffic_system run: python -m scripts.evaluate_sop"
+                                 + (" --live run (after the live test period)" if live else ""))
     results = json.loads(path.read_text(encoding="utf-8"))
     results.pop("runs", None)
     return results
@@ -207,7 +266,7 @@ def sop_results():
 
 @app.get("/network")
 def network_info(include_nodes: bool = True):
-    network = get_network()
+    network = serving_network()
     return {
         "cities": CITIES,
         "features": FEATURES,
@@ -217,6 +276,7 @@ def network_info(include_nodes: bool = True):
         "cost_config": network.cost_config.model_dump(),
         "boundaries": network.boundaries,
         "node_count": len(network.nodes), "road_count": len(network.roads),
+        "serving_mode": serving_mode(),
         "data_quality": {
             "mode": network.provenance.get("mode", "supplied_feature_data"),
             "limitations": network.provenance.get("limitations", []),
@@ -228,17 +288,17 @@ def network_info(include_nodes: bool = True):
 
 @app.get("/places/search")
 def search_places(query: str = Query(min_length=2, max_length=120)):
-    return {"results": places.search_nodes(get_network(), query)}
+    return {"results": places.search_nodes(serving_network(), query)}
 
 
 @app.get("/places/nearest")
 def snap_node(latitude: float = Query(ge=-90, le=90), longitude: float = Query(ge=-180, le=180)):
-    return places.nearest_node(get_network(), latitude, longitude)
+    return places.nearest_node(serving_network(), latitude, longitude)
 
 
 @app.get("/roads/nearest")
 def snap_road(latitude: float = Query(ge=-90, le=90), longitude: float = Query(ge=-180, le=180)):
-    return places.nearest_road(get_network(), latitude, longitude)
+    return places.nearest_road(serving_network(), latitude, longitude)
 
 
 @app.get("/conditions/weather")
@@ -256,11 +316,25 @@ def weather_refresh():
     raise HTTPException(410, "Live weather is outside June 2025–May 2026. Select a historical date/hour to load the archived provider records.")
 
 
+@app.get("/conditions/live")
+def live_conditions_status():
+    """Live collection and release status, and the latest capture's coverage, closures and weather."""
+    return live_status()
+
+
 def _route_inputs(network: RoadNetwork, conditions: Conditions):
     try:
         validate_conditions(network, conditions)
     except ValueError as exc:
         raise HTTPException(422, str(exc)) from exc
+    if conditions.live_at is not None:
+        from src.live.snapshot import LiveDataUnavailable, live_snapshot
+        try:
+            live = live_snapshot(conditions.live_at)
+        except LiveDataUnavailable as exc:
+            raise HTTPException(503, f"Live snapshot unavailable: {exc}") from None
+        return None, {"captured_at": live.captured_at.isoformat(), "weather_at": live.weather_at.isoformat(),
+                      **{key: value for key, value in live.summary.items()}}, None
     weather_by_city, observation = None, None
     if conditions.weather == "historical":
         try:
@@ -339,24 +413,24 @@ def _route_response(network, roads, origin, conditions, weather_by_city, observa
         "weather_observation": observation,
         "data_quality": network.provenance.get("mode", "supplied_feature_data"),
         "estimation_registry": network.provenance.get("estimation_registry", {}),
-        "traffic": TRAFFIC_DISCLOSURE,
+        "traffic": _disclosure(conditions),
     }
 
 
 @app.post("/routes/plan")
-def plan_route(request: RouteRequest, _historical_release: None = Depends(require_historical_release)):
+def plan_route(request: RouteRequest):
     received = perf_counter()
-    network = get_network()
-    weather_by_city, observation, traffic = _route_inputs(network, request.conditions)
+    network, conditions = _release(request.conditions)
+    weather_by_city, observation, traffic = _route_inputs(network, conditions)
     started = perf_counter()  # Search budget includes graph preparation; input loading is not search time.
-    result = _search(lambda: ant_colony_route(prepare_graph(network, request.conditions, weather_by_city, traffic),
+    result = _search(lambda: ant_colony_route(prepare_graph(network, conditions, weather_by_city, traffic),
                                               request.origin, request.destination, ACO, node_positions(network),
                                               distance_reference(network, "antroute"), started))
     roads = [edge.road for edge in result.roads]
-    response = _route_response(network, roads, request.origin, request.conditions, weather_by_city, observation, traffic)
+    response = _route_response(network, roads, request.origin, conditions, weather_by_city, observation, traffic)
     common = sum(segment["path_cost"] for segment in response["route"]["segment_features"])
     decision = _remember(network, "antroute", "controlled", ACO.seed, request.origin, request.destination, [road.id for road in roads],
-                         request.conditions, sum(edge.cost for edge in result.roads), common, result.stop_reason,
+                         conditions, sum(edge.cost for edge in result.roads), common, result.stop_reason,
                          result.visits, result.ant_routes)
     return {**response, "aco": ACO.model_dump(), "decision": decision,
             "evaluation": {**evaluate(result, ACO), "response_time_ms": (perf_counter() - received) * 1000}}
@@ -367,7 +441,7 @@ class ExplainRequest(StudyModel):
 
 
 @app.post("/routes/explain")
-def explain_route(request: ExplainRequest, _historical_release: None = Depends(require_historical_release)):
+def explain_route(request: ExplainRequest):
     """Why the selected ANTROUTE decision left out shorter or cheaper roads, on that decision's immutable snapshot.
 
     The reference routes (Dijkstra) explain; they never plan, and no ACO search is run here.
@@ -377,7 +451,8 @@ def explain_route(request: ExplainRequest, _historical_release: None = Depends(r
         raise SearchOutcomeError(404, "decision_not_found", "Unknown or expired search_id; plan the route again")
     if record["algorithm"] != "antroute":
         raise SearchOutcomeError(422, "invalid_request", "Explanations cover ANTROUTE's ten-criterion decisions")
-    network = get_network()
+    conditions = record["_conditions"]
+    network = _release(conditions)[0]
     if network.cost_config.calibration_id != record["calibration_id"]:
         raise SearchOutcomeError(409, "calibration_changed", "The release changed since this decision; plan the route again")
     conditions = record["_conditions"]
@@ -394,20 +469,20 @@ def explain_route(request: ExplainRequest, _historical_release: None = Depends(r
 
 
 @app.post("/routes/baseline")
-def plan_baseline_route(request: BaselineRequest, _historical_release: None = Depends(require_historical_release)):
-    """Cheng (2023) on the same eligibility, scenario traffic and weather as /routes/plan, with its own native cost."""
+def plan_baseline_route(request: BaselineRequest):
+    """Cheng (2023) on the same eligibility, traffic and weather as /routes/plan, with its own native cost."""
     received = perf_counter()
-    network = get_network()
-    weather_by_city, observation, traffic = _route_inputs(network, request.conditions)
+    network, conditions = _release(request.conditions)
+    weather_by_city, observation, traffic = _route_inputs(network, conditions)
     started = perf_counter()
-    result = _search(lambda: cheng_route(cheng_graph(network, request.conditions, weather_by_city, traffic),
+    result = _search(lambda: cheng_route(cheng_graph(network, conditions, weather_by_city, traffic),
                                          request.origin, request.destination, request.baseline, node_positions(network),
                                          distance_reference(network, "cheng"), None, started))
     roads = [edge.road for edge in result.roads]
-    response = _route_response(network, roads, request.origin, request.conditions, weather_by_city, observation, traffic)
+    response = _route_response(network, roads, request.origin, conditions, weather_by_city, observation, traffic)
     common = sum(segment["path_cost"] for segment in response["route"]["segment_features"])
     decision = _remember(network, "cheng", request.baseline.mode, request.baseline.seed, request.origin, request.destination,
-                         [road.id for road in roads], request.conditions, sum(edge.cost for edge in result.roads), common,
+                         [road.id for road in roads], conditions, sum(edge.cost for edge in result.roads), common,
                          result.stop_reason, result.visits, result.ant_routes)
     computed = ahp()
     return {**response, "decision": decision,
@@ -421,16 +496,19 @@ def plan_baseline_route(request: BaselineRequest, _historical_release: None = De
 
 
 @app.post("/routes/trip")
-def simulate_route_trip(request: TripRequest, _historical_release: None = Depends(require_historical_release)):
-    """Plan, drive and re-plan as the hour, weather or closures change during the trip."""
+def simulate_route_trip(request: TripRequest):
+    """Plan, drive and re-plan as the hour, weather, closures or (live) the saved capture change during the trip."""
     received = perf_counter()
-    network = get_network()
-    _route_inputs(network, request.conditions)  # Rejects invalid departure conditions before simulating.
-    departure = datetime.combine(request.conditions.departure_date,
-                                 time(request.conditions.time_of_day, request.departure_minute), tzinfo=MANILA)
+    network, conditions = _release(request.conditions)
+    _route_inputs(network, conditions)  # Rejects invalid departure conditions before simulating.
+    if conditions.live_at is not None:
+        departure = conditions.live_at  # Live trips replay the saved captures from this one.
+    else:
+        departure = datetime.combine(conditions.departure_date, time(conditions.time_of_day, request.departure_minute),
+                                     tzinfo=MANILA)
     result = _search(lambda: simulate_trip(
-        network, request.origin, request.stops, departure, request.conditions.weather,
-        request.conditions.closed_road_ids, request.events, request.algorithm, ACO, request.baseline, request.replan))
+        network, request.origin, request.stops, departure, conditions.weather,
+        conditions.closed_road_ids, request.events, request.algorithm, ACO, request.baseline, request.replan))
     coordinates = []
     for road in result.roads:
         coordinates.extend(road.geometry if not coordinates else road.geometry[1:])
@@ -457,9 +535,9 @@ def simulate_route_trip(request: TripRequest, _historical_release: None = Depend
                  "stops": request.stops, "stop_arrival_minutes": [seconds / 60 for seconds in result.stop_arrivals_s],
                  "events": [event.model_dump(mode="json") for event in request.events],
                  "changes_without_replanning": result.unsearched_changes},
-        "conditions": request.conditions.model_dump(mode="json"),
+        "conditions": conditions.model_dump(mode="json"),
         "evaluation": {**evaluation, "response_time_ms": (perf_counter() - received) * 1000},
         "contributions": route_contributions(network, result.roads, result.segment_features),
         "data_quality": network.provenance.get("mode", "supplied_feature_data"),
-        "traffic": TRAFFIC_DISCLOSURE,
+        "traffic": _disclosure(conditions),
     }

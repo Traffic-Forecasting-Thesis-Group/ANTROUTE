@@ -1,0 +1,24 @@
+{
+  "status": "Assumed values for the live features; not calibrated. Each value is reported with the results and can be varied in sensitivity runs.",
+  "min_speed_mps": 1.0,
+  "min_free_flow_mps": 2.0,
+  "min_free_flow_note": "HERE flow lines with a free-flow speed below 2 m/s (7.2 km/h) are not usable (for example ferry routes reported at 0.28 m/s) and are left out before matching.",
+  "max_congestion": 0.999,
+  "closure_min_share": 0.4,
+  "incident_min_share": 0.4,
+  "flood_report": {
+    "types": ["flooding"],
+    "words": ["flood", "flooding", "flooded", "baha", "submerged", "impassable", "high water"],
+    "severity": 1.0,
+    "note": "A HERE incident whose type is flooding or whose description mentions flooding marks the matched segments as flooded now. Their flood exposure becomes the whole segment length at the highest severity; other segments keep the NOAH hazard exposure."
+  },
+  "capacity_factors": {
+    "lane_blocking_incident_types": ["accident", "disabledVehicle", "construction", "laneRestriction", "roadHazard", "plannedEvent", "massEvent"],
+    "single_lane_floor": 0.5,
+    "flood_reported": 0.5,
+    "weather": {"clear": 1.0, "rain": 0.95, "heavy_rain": 0.9},
+    "note": "Live effective capacity = base capacity (directional lanes x 1,900 veh/h/lane x g/C) x incident factor x flood factor x weather factor. A lane-blocking incident removes one lane: (lanes - 1) / lanes, but not below single_lane_floor. Flooding and rain reduce capacity by the assumed factors (supported in direction by Mamuyac et al., 2025, for flooding)."
+  },
+  "time_of_day_note": "Live time-of-day load = length-weighted mean live congestion of the matched roads in the same city at the snapshot time: how busy the city is right now. It differs from a road's own congestion, so the two features are not duplicates.",
+  "uncovered_roads_note": "A road without a live HERE line takes the median live congestion of matched roads of the same city and road type; then of the same road type; then of all matched roads. These values are flagged group_estimate."
+}

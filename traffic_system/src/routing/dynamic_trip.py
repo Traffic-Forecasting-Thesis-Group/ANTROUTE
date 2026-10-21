@@ -14,6 +14,9 @@ Trigger policies (ReplanConfig.policy):
   controlled_common        every snapshot change is an update opportunity for both algorithms (SOP experiments);
   antroute_cost_threshold  full-system ANTROUTE: a road's native cost changed by >= threshold, or a road closed/reopened;
   cheng_reference_printed  full-system Cheng reference: eq. 9 as printed on roads whose travel time changed, warm pheromone.
+Live trips (weather "live") replay the saved live captures: the snapshot at each node is the latest capture at
+or before the trip clock (held up to LIVE_HOLD, the information a driver would have), so a new 15-minute capture
+is a condition change like a new hour.
 Every driven road is scored with the ten-criterion cost and travel time of the moment it is entered (the common
 evaluation cost), whichever native cost the algorithm routes by. The vehicle does not re-enter driven nodes
 unless no other route remains.
@@ -31,13 +34,14 @@ from pydantic import Field
 from .aco_kernel import NoFeasibleRoute, SearchExhausted, SearchResult
 from .aco_routing import AntColonyConfig, ant_colony_route, distance_reference, node_positions
 from .baseline_cheng import ChengConfig, cheng_route, cheng_snapshot, rescale_pheromone
-from .condition_update import Conditions, manila_time, snapshot_id
+from .condition_update import LIVE_WEATHER, Conditions, live_conditions, manila_time, snapshot_id
 from .dynamic_weight import SegmentScore, WeightedRoad, prepare_graph, segment_values
 from .historical_traffic import traffic_for
 from .historical_weather import historical_snapshot
 from .network import Road, RoadNetwork, StudyModel
 
 Algorithm = Literal["antroute", "cheng"]
+LIVE_HOLD = timedelta(minutes=60)  # A live trip fails if collection has no capture this recent.
 Policy = Literal["controlled_common", "antroute_cost_threshold", "cheng_reference_printed"]
 
 
@@ -135,7 +139,9 @@ class TripResult:
 
 def _changes(old: Conditions, new: Conditions) -> str:
     parts = []
-    if (old.departure_date, old.time_of_day) != (new.departure_date, new.time_of_day):
+    if old.live_at != new.live_at and new.live_at is not None:
+        parts.append(f"live capture {old.live_at:%H:%M} -> {new.live_at:%H:%M}")
+    elif (old.departure_date, old.time_of_day) != (new.departure_date, new.time_of_day):
         parts.append(f"hour {old.time_of_day:02d}:00 -> {new.time_of_day:02d}:00")
     if old.weather != new.weather:
         parts.append(f"weather {old.weather} -> {new.weather}")
@@ -155,6 +161,8 @@ def simulate_trip(network: RoadNetwork, origin: str, destination: str | Sequence
         raise ValueError("At least one destination is required")
     if any(a == b for a, b in zip([origin, *stops], stops)):
         raise ValueError("Each stop must differ from the one before it")
+    if weather == LIVE_WEATHER and any(event.weather for event in events):
+        raise ValueError("Live trips take their weather from the saved captures; weather events do not apply")
     if replan.policy == "cheng_reference_printed" and algorithm != "cheng":
         raise ValueError("The printed eq. 9 reference policy applies to the Cheng baseline only")
     departure = manila_time(departure)
@@ -172,11 +180,16 @@ def simulate_trip(network: RoadNetwork, origin: str, destination: str | Sequence
     result = TripResult()
 
     def conditions_now() -> Conditions:
+        if state_weather == LIVE_WEATHER:
+            from ..live.snapshot import nearest_capture
+            return live_conditions(nearest_capture(clock, tolerance=LIVE_HOLD), frozenset(state_closed))
         return Conditions(departure_date=clock.date(), time_of_day=clock.hour, weather=state_weather,
                           closed_road_ids=frozenset(state_closed))
 
     def snapshot_inputs(conditions: Conditions):
-        key = (conditions.departure_date, conditions.time_of_day, conditions.weather)
+        key = (conditions.departure_date, conditions.time_of_day, conditions.weather, conditions.live_at)
+        if conditions.live_at is not None:
+            return None, None  # Live inputs come from the capture itself.
         if key not in inputs:
             weather_by_city = None
             if conditions.weather == "historical":

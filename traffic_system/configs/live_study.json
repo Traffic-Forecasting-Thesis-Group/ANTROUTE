@@ -1,0 +1,28 @@
+{
+  "mode": "live",
+  "timezone": "Asia/Manila",
+  "collection": {
+    "start": "2026-10-22",
+    "end": "2026-11-07",
+    "traffic_interval_minutes": 15,
+    "weather_interval_minutes": 60,
+    "sources": {
+      "traffic_flow": "HERE Traffic API v7 /flow (speed, free-flow speed, jam factor, traversability)",
+      "incidents": "HERE Traffic API v7 /incidents (closures, accidents, construction, flooding reports)",
+      "weather": "Weatherstack current observations at one point per city"
+    }
+  },
+  "calibration_split": {
+    "development": {"start": "2026-10-22", "end": "2026-10-28"},
+    "tuning": {"start": "2026-10-29", "end": "2026-10-30"},
+    "excluded": {"start": "2026-10-31", "end": "2026-11-02"},
+    "test": {"start": "2026-11-03", "end": "2026-11-07"},
+    "note": "Declared before any live data was used. Development (7 days, every weekday and the weekend once) fits the hourly CRITIC weights, development maxima and Cheng references; tuning fixes q0, beta and the search time limit; test is held out for the comparison. October 31 to November 2 (Undas: All Saints' and All Souls' Days) is collected but excluded because holiday travel makes Metro Manila traffic atypical.",
+    "declared_by": "study team, 2026-10-22"
+  },
+  "sampling": {
+    "calibration": "the first capture of every development hour (up to 168 hours); all 30,511 directed segments are the alternatives in each hour",
+    "tuning": "12 origin-destination pairs on random tuning-period captures",
+    "test": "30 origin-destination pairs on random test-period captures, 5 seeds each"
+  }
+}
