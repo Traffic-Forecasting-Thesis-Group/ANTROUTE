@@ -181,7 +181,7 @@ def test_builder_uses_mapped_flood_and_labels_estimates(tmp_path):
         "bpr_alpha": .15, "bpr_beta": 4, "weekend_demand_factor": .75, "hourly_demand_capacity_ratio": [1] * 24,
         "traffic_variation": {"seed": 1, "strength": 0, "day_coefficient": .2, "area_coefficient": .25,
                               "road_coefficient": .35, "location_hour_coefficient": .25},
-        "sources": dict.fromkeys(["map", "bpr", "rain", "flood", "capacity"], "test")}
+        "sources": dict.fromkeys(["map", "flood", "weather", "here", "assumptions", "live_assumptions"], "test")}
     assumptions_path = tmp_path / "assumptions.json"
     assumptions_path.write_text(json.dumps(assumptions), encoding="utf-8")
     nodes, segments, floods, excluded, _ = static.preprocess(boundary_path, graph_path, flood_path, assumptions)

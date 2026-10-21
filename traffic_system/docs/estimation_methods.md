@@ -23,15 +23,27 @@ The criteria, their formulas, units and encodings are defined once in [routing_c
 | Flood exposure | Σ km in each NOAH class × assumed class severity | Mapped susceptibility, not inundation or closure; class/3 severity is an assumed scenario with declared alternatives. |
 | Capacity burden | L / K | A provisional study mapping; K uses an assumed 1,900 veh/h/lane base saturation flow. |
 
-## Published functional forms
+## Assumed functional forms and values
 
-**BPR travel time.** The implementation uses `t = t0 * (1 + alpha*x^beta)`, where `x` is the assumed demand-to-capacity index, with reference coefficients `alpha=0.15`, `beta=4`. This supplies a functional form, not evidence for our assumed demand. [FHWA reference](https://www.fhwa.dot.gov/Environment/air_quality/conformity/research/sample_methodologies/emismeth03.cfm).
+The data sources the study uses are OpenStreetMap, Project NOAH, Weatherstack and, in live mode, the HERE Traffic API.
+Every value below is a project assumption recorded in `configs/study_assumptions.json` (and, for live capacity
+factors, `configs/live_assumptions.json`); none is calibrated for Metro Manila.
 
-**Signalized capacity.** The reference relationship is `c = s * g/C`. The model uses `s = 1900` passenger-car-equivalent vehicles/hour/lane, assumes `g/C=0.5` at a mapped downstream signal, and otherwise uses 1. It does not model detailed lane movements, vehicle mix, or signal plans. Applying this simplified proxy to unsignalized links is a project extrapolation. [Capacity relationship](https://ops.fhwa.dot.gov/publications/fhwahop08024/chapter3.htm) · [Saturation-flow reference](https://ops.fhwa.dot.gov/publications/fhwahop09008/chapter3.htm).
+**BPR travel time (historical scenario only).** `t = t0 * (1 + alpha*x^beta)` with the standard coefficients
+`alpha=0.15`, `beta=4`, where `x` is the assumed demand-to-capacity index. It supplies a functional form, not evidence
+for the assumed demand. Live mode does not use it: live travel time comes from HERE speeds.
 
-**Rain speed effects.** FHWA reports light-rain free-flow speed reductions of 2–13% and heavy-rain reductions of 6–17%. The model chooses the range midpoints, 7.5% and 11.5%, and converts speed reduction `r` to time multiplier `1/(1-r)`. These are transferred assumptions, not Philippine urban-road calibration. [FHWA road-weather reference](https://ops.fhwa.dot.gov/weather/roadimpact.htm).
+**Capacity.** `K = directional lanes × s × g/C` with an assumed base saturation flow `s = 1900` vehicles/hour/lane,
+`g/C = 0.5` at a mapped downstream signal and 1 otherwise. It does not model lane movements, vehicle mix or signal
+plans, and applying it to unsignalized links is a project extrapolation.
 
-Weather scenarios have categorical costs 0, 0.4, and 0.8. Historical precipitation/description chooses clear, rain, or heavy rain; the threshold of 7.5 mm in the provider precipitation field is a project classification rule. Neither categorical costs nor this threshold are claimed to come from the FHWA speed study. Weather does not invent flood closures.
+**Rain speed effects (historical scenario only).** Assumed free-flow speed reductions of 7.5% for rain and 11.5% for
+heavy rain (midpoints of published foreign ranges), converted to the time multiplier `1/(1-r)`. Live mode does not
+apply them, because HERE live speeds already reflect current weather.
+
+Weather categories have assumed severities 0, 0.4 and 0.8. Precipitation (or the description when it is missing)
+chooses clear, rain or heavy rain; the 7.5 mm/h threshold is a project classification rule. Weather does not invent
+flood closures.
 
 ## Project assumptions without empirical calibration
 

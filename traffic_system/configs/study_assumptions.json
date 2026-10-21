@@ -131,12 +131,12 @@
     "note": "Repeatable variation per road segment: daily (per city), three-hour (per ~1.1 km area, shared by neighbouring roads), static (per road) and three-hour (per road). Uncalibrated scenario coefficients, not measurements."
   },
   "sources": {
-    "bpr": "https://www.fhwa.dot.gov/Environment/air_quality/conformity/research/sample_methodologies/emismeth03.cfm",
-    "capacity": "https://ops.fhwa.dot.gov/publications/fhwahop08024/chapter3.htm",
-    "saturation_flow": "https://ops.fhwa.dot.gov/publications/fhwahop09008/chapter3.htm",
-    "rain": "https://ops.fhwa.dot.gov/weather/roadimpact.htm",
     "map": "https://www.openstreetmap.org/copyright",
-    "flood": "https://noah.up.edu.ph/know-your-hazards"
+    "flood": "https://noah.up.edu.ph/know-your-hazards",
+    "weather": "https://weatherstack.com/documentation",
+    "here": "https://www.here.com/docs/bundle/traffic-api-developer-guide-v7/page/README.html",
+    "assumptions": "Project assumptions: traffic_system/configs/study_assumptions.json",
+    "live_assumptions": "Project assumptions: traffic_system/configs/live_assumptions.json"
   },
   "weather_category_thresholds_mm_per_h": {
     "heavy_rain": 7.5,

@@ -1,61 +1,36 @@
 {
  "weights": {
-  "distance": 0.02010476164336074,
-  "congestion": 0.041650651505221195,
-  "travel_time": 0.05174359354615325,
-  "intersections": 0.3719101522965125,
-  "signals": 0.3667667318740061,
-  "road_type": 0.051408479674523326,
-  "time_profile": 0.021836235835627667,
+  "distance": 0.020783707760459923,
+  "congestion": 0.04716859352923879,
+  "travel_time": 0.05236383803864843,
+  "intersections": 0.3680243028607526,
+  "signals": 0.36209422316126866,
+  "road_type": 0.052685085813291344,
+  "time_profile": 0.02082300953307669,
   "weather": 0.0,
-  "flood_exposure": 0.030561954587770133,
-  "capacity_burden": 0.04401743903682503
+  "flood_exposure": 0.030674316789498557,
+  "capacity_burden": 0.04538292251376498
  },
  "valid_hours": [
-  "2026-10-21T23:49:00+08:00",
-  "2026-10-22T00:00:00+08:00"
+  "2026-10-22T00:45:00+08:00"
  ],
  "excluded_hours": {},
  "hourly_weights": {
-  "2026-10-21T23:49:00+08:00": [
-   0.019795097556926773,
-   0.046270396109584035,
-   0.05067609494064904,
-   0.3713188829627372,
-   0.367360897132676,
-   0.05004438777897533,
-   0.02111443829302138,
+  "2026-10-22T00:45:00+08:00": [
+   0.020783707760459923,
+   0.04716859352923879,
+   0.05236383803864843,
+   0.3680243028607526,
+   0.36209422316126866,
+   0.052685085813291344,
+   0.02082300953307669,
    0.0,
-   0.030488186950096086,
-   0.04293161827533419
-  ],
-  "2026-10-22T00:00:00+08:00": [
-   0.020414425729794704,
-   0.03703090690085835,
-   0.05281109215165747,
-   0.3725014216302878,
-   0.36617256661533626,
-   0.05277257157007132,
-   0.022558033378233953,
-   0.0,
-   0.030635722225444185,
-   0.045103259798315865
+   0.030674316789498557,
+   0.04538292251376498
   ]
  },
  "active_masks": {
-  "2026-10-21T23:49:00+08:00": [
-   true,
-   true,
-   true,
-   true,
-   true,
-   true,
-   true,
-   false,
-   true,
-   true
-  ],
-  "2026-10-22T00:00:00+08:00": [
+  "2026-10-22T00:45:00+08:00": [
    true,
    true,
    true,
@@ -82,12 +57,12 @@
  ],
  "development_max": {
   "distance": 3.078344,
-  "congestion": 0.4101669615789776,
-  "travel_time": 3.3806143031428233,
+  "congestion": 0.26540050000000004,
+  "travel_time": 3.1928024500000003,
   "intersections": 1.0,
   "signals": 1.0,
   "road_type": 0.8350449999999999,
-  "time_profile": 0.3583336090916285,
+  "time_profile": 0.2835435893433326,
   "weather": 0.0,
   "flood_exposure": 1.269806510439847,
   "capacity_burden": 0.0007031957894736841
@@ -106,14 +81,14 @@
  },
  "sample": "First saved capture of each development hour; alternatives are all 30511 directed segments",
  "live_coverage_share": {
-  "min": 0.19540493592474845,
-  "mean": 0.1954377109894792,
-  "max": 0.19547048605420997
+  "min": 0.1956999115073252,
+  "mean": 0.1956999115073252,
+  "max": 0.1956999115073252
  },
  "cheng_references": {
   "distance_m": 3078.344,
-  "travel_time_s": 202.8368581885694,
-  "flow_vph": 24542.6195220954,
+  "travel_time_s": 191.568147,
+  "flow_vph": 19311.883593025756,
   "flow_provenance": "simulation_adaptation_inverse_bpr_of_live_congestion",
   "ahp_weights": [
    0.637,
@@ -127,8 +102,8 @@
  },
  "status": "provisional_pipeline_check",
  "contract_version": 2,
- "generated_at": "2026-10-21T16:04:04.361482+00:00",
- "code_commit": "3eebccd6ed4b6477c1c18bbb40a529a132f5b9a1",
+ "generated_at": "2026-10-21T17:56:07.490927+00:00",
+ "code_commit": "dd950a04fe7d93726558207231bdeed2e3546458",
  "split": {
   "development": [
    "2026-10-22",
@@ -237,7 +212,7 @@
  },
  "input_hashes": {
   "live_assumptions": "f5c84240356cfd13b431533d9673c7ef162726fdbdfc47c077b54cec8c09a2db",
-  "live_study": "64092f32c1c6027cfa8b4073ab9fb294c2ba38b1b925321a17b846696d527cb0",
+  "live_study": "507d321b48a1e9a25a9ee49688483717b03a54cb6132756ed4ef64c357130790",
   "road_nodes.csv": "3955115d525356ce46048faf665aab4127a12f2455e9fb44d76f4f2f9db28c40",
   "road_segments.csv": "1f491803ca319afbda5c9774ff35a9b4ecd89a2d597d222a515712e3d737cf61",
   "segment_flood.csv": "8300a4474066c791accade86f2c2ec1a6830f40e65159edf931101da8db3c3c9"

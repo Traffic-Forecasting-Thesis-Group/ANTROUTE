@@ -35,6 +35,7 @@ from src.routing.calibration import hourly_critic  # noqa: E402
 from src.routing.condition_update import live_conditions  # noqa: E402
 from src.routing.criteria import CONTRACT_VERSION, CRITERIA, CriterionInputError, UNITS, criteria  # noqa: E402
 from src.routing.dynamic_weight import segment_inputs  # noqa: E402
+from src.routing.estimation import estimation_registry  # noqa: E402
 
 POLICY = ROOT / "configs/live_study.json"
 OUTPUT = ROOT / "data/processed"
@@ -193,6 +194,8 @@ def main(argv=None):
         "weights": calibration["weights"], "development_max": calibration["development_max"]}
     network.provenance["cheng_references"] = calibration["cheng_references"]
     network.provenance["distance_reference_m"] = calibration["distance_reference_m"]
+    # Live criteria come from HERE and Weatherstack captures, so the registry describes those, not the historical scenario.
+    network.provenance["estimation_registry"] = estimation_registry(assumptions, live=True)
     temporary = NETWORK.with_suffix(".tmp")
     temporary.write_text(network.model_dump_json(), encoding="utf-8")
     temporary.replace(NETWORK)
