@@ -12,6 +12,7 @@ from types import SimpleNamespace
 from uuid import uuid4
 from functools import lru_cache
 from pathlib import Path
+from typing import Literal
 from datetime import date, datetime, time
 from time import perf_counter
 from itertools import chain, islice
@@ -93,13 +94,16 @@ def _load_live(path: str, modified_ns: int, size: int) -> RoadNetwork:
     return load_network(Path(path))
 
 
-def serving_mode() -> str:
-    """Which release the map, places and dataset pages use: live (default) or historical."""
-    return os.getenv("ANTROUTE_MODE", "live")
+Mode = Literal["live", "historical"]
 
 
-def serving_network() -> RoadNetwork:
-    return get_live_network() if serving_mode() == "live" else get_network()
+def serving_mode(requested: str | None = None) -> str:
+    """Which release a page uses: the client's choice (the data tab) when given, else ANTROUTE_MODE (live by default)."""
+    return requested or os.getenv("ANTROUTE_MODE", "live")
+
+
+def serving_network(requested: str | None = None) -> RoadNetwork:
+    return get_live_network() if serving_mode(requested) == "live" else get_network()
 
 
 def _release(conditions: Conditions) -> tuple[RoadNetwork, Conditions]:
@@ -184,9 +188,9 @@ def _disclosure(conditions: Conditions) -> dict:
 
 
 @app.get("/dataset/info")
-def dataset_info():
-    live = serving_mode() == "live"
-    return {**coverage(serving_network()), "traffic": LIVE_DISCLOSURE if live else TRAFFIC_DISCLOSURE,
+def dataset_info(mode: Mode | None = None):
+    live = serving_mode(mode) == "live"
+    return {**coverage(serving_network(mode)), "traffic": LIVE_DISCLOSURE if live else TRAFFIC_DISCLOSURE,
             "features": FEATURES, "period": study_status()["requirements"]}
 
 
@@ -252,9 +256,9 @@ def historical_study_status():
 
 
 @app.get("/study/results")
-def sop_results():
-    """Latest SOP experiment summary written by scripts.evaluate_sop (per-run rows omitted), for the serving mode."""
-    live = serving_mode() == "live"
+def sop_results(mode: Mode | None = None):
+    """Latest SOP experiment summary written by scripts.evaluate_sop (per-run rows omitted), for the chosen mode."""
+    live = serving_mode(mode) == "live"
     path = Path(__file__).resolve().parents[1] / ("outputs/live_sop_results.json" if live else "outputs/sop_results.json")
     if not path.exists():
         raise HTTPException(404, "No SOP results yet. From traffic_system run: python -m scripts.evaluate_sop"
@@ -265,8 +269,8 @@ def sop_results():
 
 
 @app.get("/network")
-def network_info(include_nodes: bool = True):
-    network = serving_network()
+def network_info(include_nodes: bool = True, mode: Mode | None = None):
+    network = serving_network(mode)
     return {
         "cities": CITIES,
         "features": FEATURES,
@@ -276,7 +280,7 @@ def network_info(include_nodes: bool = True):
         "cost_config": network.cost_config.model_dump(),
         "boundaries": network.boundaries,
         "node_count": len(network.nodes), "road_count": len(network.roads),
-        "serving_mode": serving_mode(),
+        "serving_mode": serving_mode(mode),
         "data_quality": {
             "mode": network.provenance.get("mode", "supplied_feature_data"),
             "limitations": network.provenance.get("limitations", []),

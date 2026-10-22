@@ -215,16 +215,18 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   return body as T;
 }
 
-export const loadNetwork = (signal: AbortSignal) => request<NetworkInfo>('/network?include_nodes=false', { signal });
+/** Which data a page uses: live HERE captures or the historical June 2025 – May 2026 simulation. */
+export type DataMode = 'live' | 'historical';
+export const loadNetwork = (signal: AbortSignal, mode?: DataMode) => request<NetworkInfo>(`/network?include_nodes=false${mode ? `&mode=${mode}` : ''}`, { signal });
 export const loadStudyStatus = (signal: AbortSignal) => request<HistoricalStudyStatus>('/study/status', { signal });
 export const loadLiveStatus = (signal?: AbortSignal) => request<LiveStatus>('/conditions/live', { signal });
-export const loadSopResults = (signal: AbortSignal) => request<SopResults>('/study/results', { signal });
+export const loadSopResults = (signal: AbortSignal, mode?: DataMode) => request<SopResults>(`/study/results${mode ? `?mode=${mode}` : ''}`, { signal });
 export const searchPlaces = (query: string, signal: AbortSignal) => request<{ results: StudyNode[] }>(`/places/search?query=${encodeURIComponent(query)}`, { signal });
 export const snapNode = (latitude: number, longitude: number) => request<StudyNode>(`/places/nearest?latitude=${latitude}&longitude=${longitude}`);
 export const snapRoad = (latitude: number, longitude: number) => request<RoadSelection>(`/roads/nearest?latitude=${latitude}&longitude=${longitude}`);
 export const loadWeather = (departureDate: string, hour: number, signal?: AbortSignal) => request<WeatherSnapshot>(`/conditions/weather?departure_date=${departureDate}&time_of_day=${hour}`, { signal });
 export const refreshWeather = () => request<WeatherSnapshot>('/conditions/weather/refresh', { method: 'POST' });
-export const loadDatasetInfo = (signal: AbortSignal) => request<DatasetInfo>('/dataset/info', { signal });
+export const loadDatasetInfo = (signal: AbortSignal, mode?: DataMode) => request<DatasetInfo>(`/dataset/info${mode ? `?mode=${mode}` : ''}`, { signal });
 /** Every road segment included in the study, grouped by city; it does not depend on date, hour or weather. */
 export const loadDatasetMap = (city: string | null, signal: AbortSignal) =>
   request<DatasetMap>('/dataset/map', { method: 'POST', signal, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ city }) });

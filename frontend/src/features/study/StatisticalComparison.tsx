@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
-import { loadSopResults, type SopResults } from '../../api/routeService';
+import { loadSopResults, type DataMode, type SopResults } from '../../api/routeService';
 
 const pValue = (p: number | null) => p === null ? '–' : p < 0.0001 ? '< 0.0001' : p.toFixed(4);
 const ranks = (value?: number) => value === undefined ? '–' : value.toFixed(1);
 const NAMES = { antroute: 'ANTROUTE', cheng: 'Baseline' } as const;
 
 /** Primary comparison from scripts/evaluate_sop.py: paired d = baseline − ANTROUTE over request medians, Wilcoxon, Holm (m = 2). */
-export default function StatisticalComparison() {
+export default function StatisticalComparison({ mode }: { mode: DataMode }) {
   const [results, setResults] = useState<SopResults | null>(null);
   const [error, setError] = useState('');
   useEffect(() => {
     const controller = new AbortController();
-    loadSopResults(controller.signal).then(setResults).catch(reason => { if (!controller.signal.aborted) setError(reason.message); });
+    setResults(null); setError('');
+    loadSopResults(controller.signal, mode).then(setResults).catch(reason => { if (!controller.signal.aborted) setError(reason.message); });
     return () => controller.abort();
-  }, []);
+  }, [mode]);
   if (error) return <section className="card" id="statistics"><h2>Statistical comparison</h2><p className="muted">{error}</p></section>;
   if (!results?.analysis) return null;
   const { analysis } = results;

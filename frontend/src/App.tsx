@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
 import { RouteError, explainRoute, loadLiveStatus, loadNetwork, loadStudyStatus, loadWeather, planTrip, snapNode, snapRoad } from './api/routeService';
-import type { HistoricalStudyStatus as StudyStatus, LiveStatus, NetworkInfo, RoadSelection, StudyNode, TripEvent, TripResult, WeatherSnapshot } from './api/routeService';
+import type { DataMode, HistoricalStudyStatus as StudyStatus, LiveStatus, NetworkInfo, RoadSelection, StudyNode, TripEvent, TripResult, WeatherSnapshot } from './api/routeService';
 import RouteMap, { BASELINE_COLOR, ROUTE_COLOR } from './features/map/RouteMap';
 import PlaceInput from './features/trip/PlaceInput';
 import CostBreakdown from './features/trip/CostBreakdown';
@@ -79,7 +79,11 @@ export default function App() {
   const [studyStatus, setStudyStatus] = useState<StudyStatus | null>(null);
   // Live mode: every route is scored on the latest saved HERE traffic, incident and weather capture.
   const [liveStatus, setLiveStatus] = useState<LiveStatus | null>(null);
-  const live = !!liveStatus?.ready;
+  // Data tab: live HERE captures (primary) or the historical June 2025 – May 2026 simulation.
+  const [dataMode, setDataMode] = useState<DataMode>('live');
+  const liveReady = !!liveStatus?.ready;
+  const historicalReady = !!studyStatus?.ready;
+  const live = dataMode === 'live' && liveReady;
   const liveAt = live ? liveStatus?.latest_capture ?? null : null;
   const [network, setNetwork] = useState<NetworkInfo | null>(null);
   const [origin, setOrigin] = useState<StudyNode | null>(null);
@@ -120,27 +124,40 @@ export default function App() {
   const [explanationNote, setExplanationNote] = useState('');
   const [focusedStretch, setFocusedStretch] = useState<number | null>(null);
 
+  // Both releases are checked once; the live tab is primary, the historical simulation is the other tab.
+  const [statusesLoaded, setStatusesLoaded] = useState(false);
   useEffect(() => {
     const controller = new AbortController();
-    // Live first; the historical estimation release is the fallback when no live release is ready.
-    loadLiveStatus(controller.signal).catch(() => null).then(status => {
-      if (status?.ready) { setLiveStatus(status); return loadNetwork(controller.signal); }
-      return loadStudyStatus(controller.signal).then(historical => {
-        setStudyStatus(historical);
-        return historical.ready ? loadNetwork(controller.signal) : null;
+    Promise.all([loadLiveStatus(controller.signal).catch(() => null), loadStudyStatus(controller.signal).catch(() => null)])
+      .then(([liveState, historical]) => {
+        if (controller.signal.aborted) return;
+        setLiveStatus(liveState); setStudyStatus(historical);
+        setDataMode(liveState?.ready ? 'live' : 'historical');
+        setStatusesLoaded(true);
       });
-    }).then(async data => {
-      if (!data) return;
-      setNetwork(data);
-      setWeather(data.serving_mode === 'live' ? 'live' : data.weather_conditions.includes('historical') ? 'historical' : data.weather_conditions[0]);
+    return () => { controller.abort(); activeRequest.current?.abort(); };
+  }, []);
 
+  // The network (and its source registry) of the chosen tab.
+  useEffect(() => {
+    if (!statusesLoaded || !(dataMode === 'live' ? liveReady : historicalReady)) { if (statusesLoaded) setLoading(false); return; }
+    const controller = new AbortController();
+    setLoading(true);
+    loadNetwork(controller.signal, dataMode).then(data => {
+      setNetwork(data);
+      setWeather(dataMode === 'live' ? 'live' : data.weather_conditions.includes('historical') ? 'historical' : data.weather_conditions[0]);
     }).catch((reason: Error) => {
       if (reason.name !== 'AbortError') setError(reason.message);
     }).finally(() => {
       if (!controller.signal.aborted) setLoading(false);
     });
-    return () => { controller.abort(); activeRequest.current?.abort(); };
-  }, []);
+    return () => controller.abort();
+  }, [statusesLoaded, dataMode, liveReady, historicalReady]);
+
+  const switchMode = (mode: DataMode) => {
+    if (mode === dataMode) return;
+    invalidate(); setWeatherChange(''); setSnapshot(null); setWeatherError(''); setDataMode(mode);
+  };
 
   useEffect(() => {
     if (!network || live) return;
@@ -249,7 +266,8 @@ export default function App() {
     .filter((run): run is { name: string; color: string; trip: TripResult } => !!run);
   const cityWeather = snapshot?.cities[origin?.city ?? 'Manila'];
 
-  if (studyStatus && !studyStatus.ready) return <HistoricalStudyStatus status={studyStatus} />;
+  // Only when neither the live nor the historical release can route.
+  if (statusesLoaded && !liveReady && !historicalReady && studyStatus) return <HistoricalStudyStatus status={studyStatus} />;
 
   return <>
     <header className="topbar">
@@ -279,6 +297,18 @@ export default function App() {
                   </>} />)}
                 {stops.length < MAX_STOPS && <button type="button" className="add-stop" onClick={() => setStops(previous => [...previous, { key: nextStopKey.current++, node: null }])}>
                   <span aria-hidden="true">+</span>Add Destination</button>}
+              </div>
+              <div className="form-section">
+                <h3>Traffic data</h3>
+                <div className="mode-tabs" role="tablist" aria-label="Traffic data">
+                  {(['live', 'historical'] as const).map(mode => <button type="button" role="tab" key={mode} aria-selected={dataMode === mode}
+                    disabled={mode === 'live' ? !liveReady : !historicalReady} onClick={() => switchMode(mode)}>
+                    {mode === 'live' ? 'Live traffic' : 'Historical simulation'}</button>)}
+                </div>
+                <p className="hint">{dataMode === 'live'
+                  ? 'Current HERE traffic, incidents and Weatherstack weather, saved every 15 minutes.'
+                  : 'The June 2025 – May 2026 study period: an assumed congestion scenario with archived provider weather.'}
+                  {!liveReady && ' Live data is not available yet.'}{!historicalReady && ` Historical simulation unavailable: ${studyStatus?.message ?? 'not built'}.`}</p>
               </div>
               {live && liveStatus && <><div className="form-section">
                 <h3>Departure</h3>
@@ -399,7 +429,7 @@ export default function App() {
           {result && <details><summary>Roads driven by ANTROUTE</summary><p>{result.route.road_names.filter((name, index, array) => index === 0 || name !== array[index - 1]).join(' → ')}</p></details>}
         </> : <p className="muted">Distance travelled, path cost, ACO search time and convergence behavior appear for both algorithms after a completed trip.</p>}
       </section>
-      <StatisticalComparison />
+      <StatisticalComparison mode={dataMode} />
       <section className="card" id="features"><h2>Routing features</h2><div className="feature-list">{features.map(feature => <span key={feature}>{feature}</span>)}</div>
         <details className="source-details"><summary>Where each feature and estimate comes from</summary>
           <div className="audit-table"><table><thead><tr><th>Feature</th><th>Classification</th><th>Basis and assumptions</th><th>Reference</th></tr></thead><tbody>
@@ -408,7 +438,7 @@ export default function App() {
         </details>
         <details className="source-details"><summary>Data sources and estimate limitations</summary><ul>{network?.data_quality.limitations.map(item => <li key={item}>{item}</li>)}</ul></details>
       </section>
-      <div id="dataset">{network && <DatasetExplorer conditions={conditions} onMap={setDatasetMap} disabled={disabled} />}</div>
+      <div id="dataset">{network && <DatasetExplorer conditions={conditions} mode={dataMode} onMap={setDatasetMap} disabled={disabled} />}</div>
       </main>
     </div>
   </>;

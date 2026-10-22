@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { downloadSnapshot, loadDatasetInfo, loadDatasetMap } from '../../api/routeService';
-import type { Conditions, DatasetInfo, DatasetMap } from '../../api/routeService';
+import type { Conditions, DataMode, DatasetInfo, DatasetMap } from '../../api/routeService';
 
 interface Props {
   conditions: Conditions;
+  mode: DataMode;
   onMap: (value: DatasetMap | null) => void;
   disabled: boolean;
 }
 
-export default function DatasetExplorer({ conditions, onMap, disabled }: Props) {
+export default function DatasetExplorer({ conditions, mode, onMap, disabled }: Props) {
   const [info, setInfo] = useState<DatasetInfo | null>(null);
   const [city, setCity] = useState('');
   const [busy, setBusy] = useState(false);
@@ -16,11 +17,12 @@ export default function DatasetExplorer({ conditions, onMap, disabled }: Props) 
   const active = useRef<AbortController | null>(null);
   useEffect(() => {
     const controller = new AbortController();
-    loadDatasetInfo(controller.signal).then(setInfo).catch((reason: Error) => {
+    setInfo(null);
+    loadDatasetInfo(controller.signal, mode).then(setInfo).catch((reason: Error) => {
       if (reason.name !== 'AbortError') setError('Dataset coverage is unavailable.');
     });
     return () => controller.abort();
-  }, []);
+  }, [mode]);
   // The coverage map depends only on the city choice; the CSV uses the current conditions when downloaded.
   useEffect(() => {
     active.current?.abort(); setBusy(false); onMap(null); setError('');

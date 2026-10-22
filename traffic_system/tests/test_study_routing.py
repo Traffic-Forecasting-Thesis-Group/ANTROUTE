@@ -275,3 +275,15 @@ def test_network_reload_on_changed_file(network, tmp_path, monkeypatch):
     data["roads"][0]["distance_m"] = 8000
     path.write_text(json.dumps(data), encoding="utf-8")
     assert get_network().roads[0].distance_m == 8000
+
+
+def test_network_mode_follows_the_data_tab(network, monkeypatch):
+    import app.main as service
+    monkeypatch.setattr(service, "get_network", lambda: network)
+    monkeypatch.setattr(service, "get_live_network", lambda: network.model_copy(update={"provenance": {**network.provenance, "mode": "live"}}))
+    with TestClient(app) as client:
+        assert client.get("/network?mode=historical").json()["serving_mode"] == "historical"
+        live = client.get("/network?mode=live").json()
+        assert live["serving_mode"] == "live" and live["data_quality"]["mode"] == "live"
+        assert client.get("/network").json()["serving_mode"] == "historical"  # Tests run with ANTROUTE_MODE=historical.
+        assert client.get("/network?mode=forecast").status_code == 422
