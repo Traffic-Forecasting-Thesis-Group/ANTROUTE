@@ -6,13 +6,13 @@
   },
   "congestion": {
     "classification": "assumed_congestion_scenario",
-    "basis": "L x g, where g = 1 - 1/(1 + 0.15*x^4) per road segment and hour from data/processed/temporal/traffic_hourly.csv and x is a seeded, assumed demand-to-capacity index (hourly profile, road-type factor, weekend factor, repeatable daily per-city, three-hour per-area, static per-road and three-hour per-road variation). Project assumptions, not measurements, vehicle counts or independently estimated demand.",
-    "source": "https://www.fhwa.dot.gov/Environment/air_quality/conformity/research/sample_methodologies/emismeth03.cfm"
+    "basis": "L x g, where g = 1 - 1/(1 + 0.15*x^4) per road segment and hour from data/processed/temporal/traffic_hourly.csv and x is a seeded, assumed demand-to-capacity index (hourly profile, road-type factor, weekend factor, repeatable daily per-city, three-hour per-area, static per-road and three-hour per-road variation). The BPR form and its coefficients 0.15 and 4 are standard values adopted as assumptions. Project assumptions, not measurements, vehicle counts or independently estimated demand.",
+    "source": "Project assumptions: traffic_system/configs/study_assumptions.json"
   },
   "travel_time": {
     "classification": "assumed_congestion_scenario",
     "basis": "T (min) = free-flow time x BPR travel-time factor of the same assumed scenario x assumed weather multiplier. Posted OSM speed is only a free-flow proxy; fallback speeds are assumptions.",
-    "source": "https://www.fhwa.dot.gov/Environment/air_quality/conformity/research/sample_methodologies/emismeth03.cfm"
+    "source": "Project assumptions: traffic_system/configs/study_assumptions.json"
   },
   "intersections": {
     "classification": "calculated",
@@ -32,12 +32,12 @@
   "time_profile": {
     "classification": "fitted_on_assumed_scenario",
     "basis": "L x h, h = mean congestion of the road's group (city x road type) for the day category (weekday/weekend) and local hour over development dates only; falls back to road type, then all roads. The clock hour itself is not a penalty.",
-    "source": "https://www.fhwa.dot.gov/Environment/air_quality/conformity/research/sample_methodologies/emismeth03.cfm"
+    "source": "Project assumptions: traffic_system/configs/study_assumptions.json"
   },
   "weather": {
     "classification": "historical_provider_record_with_assumed_effect",
-    "basis": "L x a, a = assumed severity of the hourly category from the nearest 0.05-degree provider grid (1-hour precipitation: >= 7.5 mm heavy rain, > 0 rain). Kept separate from flood exposure. Severities and speed multipliers are assumptions, not calibrated.",
-    "source": "https://ops.fhwa.dot.gov/weather/roadimpact.htm"
+    "basis": "L x a, a = assumed severity of the hourly category from the nearest 0.05-degree Weatherstack grid (1-hour precipitation: >= 7.5 mm heavy rain, > 0 rain). Kept separate from flood exposure. Severities and the rain speed reductions (7.5% rain, 11.5% heavy rain, the midpoints of published foreign ranges) are assumptions, not calibrated for Metro Manila.",
+    "source": "https://weatherstack.com/documentation"
   },
   "flood_exposure": {
     "classification": "mapped_hazard_with_assumed_severity",
@@ -46,7 +46,7 @@
   },
   "capacity_burden": {
     "classification": "provisional_study_mapping",
-    "basis": "L / K, K = directional lanes x assumed 1,900 veh/h/lane base saturation flow x g/C (0.5 assumed at a mapped signal, else 1). Inverse capacity is a provisional study mapping, not a universal published road penalty; lanes and signal timings are unvalidated.",
-    "source": "https://ops.fhwa.dot.gov/publications/fhwahop08024/chapter3.htm"
+    "basis": "L / K, K = directional lanes x assumed 1,900 veh/h/lane base saturation flow (a standard value adopted as an assumption, not validated locally) x g/C (0.5 assumed at a mapped signal, else 1). Inverse capacity is a provisional study mapping, not a universal published road penalty; lanes and signal timings are unvalidated.",
+    "source": "Project assumptions: traffic_system/configs/study_assumptions.json"
   }
 }

@@ -428,9 +428,7 @@ export default function App() {
             {([
               ['Distance travelled', trip => `${(trip.evaluation.distance_travel_m / 1000).toFixed(3)} km`, trip => trip.evaluation.distance_travel_m, value => `${(value / 1000).toFixed(3)} km`],
               ['Path cost', trip => trip.evaluation.path_cost.toFixed(4), trip => trip.evaluation.path_cost, value => value.toFixed(4)],
-              ['ACO search time', trip => seconds(trip.evaluation.search_time_ms), trip => trip.evaluation.search_time_ms, seconds],
-              ['Re-routing (recalculation) time', trip => seconds(trip.evaluation.recalculation_time_ms), trip => trip.evaluation.recalculation_time_ms, seconds],
-              ['Convergence behavior', trip => convergenceText(trip.evaluation.convergence), trip => trip.evaluation.convergence.iterations_to_convergence, value => `${value} iteration${value === 1 ? '' : 's'}`],
+              ['ACO search time', trip => seconds(trip.evaluation.search_time_ms), trip => trip.evaluation.search_time_ms, seconds],              ['Convergence behavior', trip => convergenceText(trip.evaluation.convergence), trip => trip.evaluation.convergence.iterations_to_convergence, value => `${value} iteration${value === 1 ? '' : 's'}`],
             ] as [string, (trip: TripResult) => string, (trip: TripResult) => number | null, (value: number) => string][]).map(([name, show, value, unit]) => <tr key={name}><th scope="row">{name}</th>
               {runs.map(run => <td key={run.name}>{show(run.trip)}</td>)}{!baseline && <td>{baselineBusy ? 'Running…' : '–'}</td>}
               <td>{result && baseline ? pairedDifference(value(result), value(baseline), unit) : '–'}</td></tr>)}
