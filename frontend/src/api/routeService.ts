@@ -62,11 +62,16 @@ export interface LiveStatus {
   captures: number;
   first_capture: string | null;
   latest_capture: string | null;
+  newest_saved?: string; updating?: boolean;
   release: { status: string; calibration_id: string; valid_hours: number } | null;
   latest?: {
     weather_at?: string; live_matched?: number; segments?: number; closed?: number; flood_reported?: number;
     lane_blocking?: number; weather?: Record<string, string>; city_load?: Record<string, number>; unavailable?: string;
+    preparing?: boolean;
   };
+  /** The in-app collector (app/live_collector.py): every 15 minutes while the backend serves live mode. */
+  collector?: { enabled: boolean; interval_minutes: number; last_tick: string | null; next_tick: string | null;
+    last_result: Record<string, string> | null; error: string | null };
 }
 
 export interface DatasetInfo {

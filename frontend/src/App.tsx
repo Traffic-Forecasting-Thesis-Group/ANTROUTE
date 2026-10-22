@@ -154,6 +154,18 @@ export default function App() {
     return () => controller.abort();
   }, [statusesLoaded, dataMode, liveReady, historicalReady]);
 
+  // The backend saves a HERE capture every 15 minutes; check each minute and move to a newer capture once it is saved.
+  // A route already on screen stays until the next calculation, which uses the newer capture.
+  useEffect(() => {
+    if (!liveReady) return;
+    const timer = window.setInterval(() => {
+      loadLiveStatus().then(status => setLiveStatus(previous =>
+        status.ready && (status.latest_capture !== previous?.latest_capture || (!previous?.latest?.segments && !!status.latest?.segments))
+          ? status : previous)).catch(() => undefined);
+    }, 60_000);
+    return () => window.clearInterval(timer);
+  }, [liveReady]);
+
   const switchMode = (mode: DataMode) => {
     if (mode === dataMode) return;
     invalidate(); setWeatherChange(''); setSnapshot(null); setWeatherError(''); setDataMode(mode);
@@ -313,7 +325,9 @@ export default function App() {
               {live && liveStatus && <><div className="form-section">
                 <h3>Departure</h3>
                 <p><strong>Now, live traffic</strong></p>
-                <p className="hint">Latest capture {liveAt ? captureLabel(liveAt) : '–'} · Asia/Manila. HERE traffic and incidents are saved every 15 minutes; a trip uses each newer capture as it drives. <button type="button" className="link-button" onClick={refreshLive}>{refreshing ? 'Reloading…' : 'Reload'}</button></p>
+                <p className="hint">Latest capture {liveAt ? captureLabel(liveAt) : '–'} · Asia/Manila. HERE traffic and incidents are saved every 15 minutes and this page updates on its own; a trip uses each newer capture as it drives. <button type="button" className="link-button" onClick={refreshLive}>{refreshing ? 'Checking…' : 'Check now'}</button></p>
+                {liveStatus.collector?.error && <p className="hint">Collection: {liveStatus.collector.error}</p>}
+                {liveStatus.latest?.preparing && <p className="hint">Preparing the latest capture (matching HERE traffic to every road, about a minute)…</p>}
                 {liveStatus.latest?.segments ? <p className="hint">{(liveStatus.latest.live_matched ?? 0).toLocaleString()} of {liveStatus.latest.segments.toLocaleString()} road segments have a live HERE speed; the rest use the median of matched roads of the same city and road type. Reported closures: {liveStatus.latest.closed ?? 0}; flooding reports: {liveStatus.latest.flood_reported ?? 0}.</p> : null}
                 {liveStatus.release?.status !== 'development_calibration' && <p className="hint">Weights are provisional until the live development week is calibrated.</p>}
               </div>

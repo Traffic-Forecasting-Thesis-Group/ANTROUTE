@@ -49,7 +49,12 @@ load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 async def lifespan(_app):
     # Controlled startup: verify the release once, including the traffic table's content digest (cached per file version).
     study_status()
+    # Live mode: collect a HERE capture every 15 minutes while the API runs (app/live_collector.py).
+    from app.live_collector import collector
+    if serving_mode() == "live":
+        collector.start()
     yield
+    collector.stop()
 
 
 app = FastAPI(title="ANTROUTE ACO Study", lifespan=lifespan)
@@ -322,8 +327,9 @@ def weather_refresh():
 
 @app.get("/conditions/live")
 def live_conditions_status():
-    """Live collection and release status, and the latest capture's coverage, closures and weather."""
-    return live_status()
+    """Live collection and release status, the in-app collector's state, and the latest capture's coverage."""
+    from app.live_collector import collector
+    return {**live_status(), "collector": collector.state}
 
 
 def _route_inputs(network: RoadNetwork, conditions: Conditions):

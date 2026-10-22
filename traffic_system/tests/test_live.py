@@ -282,3 +282,49 @@ def test_live_split_and_hourly_sample():
     with pytest.raises(ValueError, match="chronological"):
         calibrate_live.load_split({"calibration_split": {name: {"start": "2026-10-22", "end": "2026-10-23"}
                                                          for name in calibrate_live.PERIODS}})
+
+
+def test_weather_comes_from_the_captures_own_hour(tmp_path):
+    raw = tmp_path / "raw"
+    save(raw, AT - timedelta(minutes=15), "weather")  # 07:45, previous hour
+    save(raw, AT + timedelta(minutes=15), "weather")  # 08:15: this hour's observation (the 08:00 request failed)
+    save(raw, AT + timedelta(minutes=60), "weather")  # 09:00, next hour
+    assert live_files.weather_at(AT + timedelta(minutes=45), raw)[0] == AT + timedelta(minutes=15)  # same hour
+    assert live_files.weather_at(AT, raw)[0] == AT - timedelta(minutes=15)  # nothing yet this hour: latest within 90 min
+    assert live_files.weather_at(AT + timedelta(minutes=60), raw)[0] == AT + timedelta(minutes=60)  # never a later hour
+
+
+def test_weather_is_requested_once_per_clock_hour(tmp_path, monkeypatch):
+    out = tmp_path / "live" / "raw"
+    calls = []
+    monkeypatch.setattr(collect_live.here, "api_key", lambda: "key")
+    monkeypatch.setattr(collect_live, "snapshot", lambda moment, out, log_path, bbox, geometries, weather_due, tiles:
+                        calls.append((moment.strftime("%H:%M"), weather_due)) or [])
+    for minute in (0, 15):
+        collect_live.collect_tick(AT + timedelta(minutes=minute), out)
+    assert calls == [("08:00", True), ("08:15", True)]  # 08:00 saved no weather file here, so 08:15 asks again
+    save(out, AT + timedelta(minutes=15), "weather")
+    collect_live.collect_tick(AT + timedelta(minutes=30), out)
+    collect_live.collect_tick(AT + timedelta(minutes=60), out)
+    assert calls[2:] == [("08:30", False), ("09:00", True)]
+
+
+def test_status_uses_newest_usable_capture_without_waiting(monkeypatch):
+    from app.study_policy import usable_capture
+    times = [AT, AT + timedelta(minutes=15), AT + timedelta(minutes=30)]
+    built = {AT: "snapshot 08:00"}
+    state = {"building": True}
+    monkeypatch.setattr(live_files, "cached_snapshot", lambda moment, raw=None: built.get(moment))
+    monkeypatch.setattr(live_files, "building", lambda: state["building"])
+
+    def build(moment, raw=None):
+        if moment == times[2]:
+            raise live_files.LiveDataUnavailable("No weather observation in the hour")
+        built[moment] = f"snapshot {moment:%H:%M}"
+        return built[moment]
+    monkeypatch.setattr(live_files, "live_snapshot", build)
+    # A build is running for the newest captures: report the newest one already built, do not wait.
+    assert usable_capture(times) == ("snapshot 08:00", None)
+    # Nothing building: the newest (no weather for its hour) is skipped for the one before it, which is built now.
+    state["building"] = False
+    assert usable_capture(times) == ("snapshot 08:15", "No weather observation in the hour")

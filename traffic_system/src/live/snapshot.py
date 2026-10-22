@@ -1,7 +1,7 @@
 """Saved live captures as routing inputs.
 
-A capture is one collector tick with both a HERE flow and a HERE incidents file. Its weather is the latest
-saved weather observation at or before the capture, no older than WEATHER_MAX_AGE; otherwise the capture is
+A capture is one collector tick with both a HERE flow and a HERE incidents file. Its weather is the observation of
+its own clock hour (else the latest within WEATHER_MAX_AGE before it); otherwise the capture is
 unavailable (weather is never assumed clear). live_snapshot() turns one capture into per-road live inputs
 (src/live/conditions.py) and caches the result, so every road of one search reads the same snapshot.
 """
@@ -9,8 +9,10 @@ from __future__ import annotations
 
 import gzip
 import json
+import threading
 from dataclasses import dataclass
 from datetime import datetime, timedelta
+from collections import OrderedDict
 from functools import lru_cache
 from pathlib import Path
 
@@ -68,11 +70,20 @@ def read(path: Path) -> dict:
 
 
 def weather_at(moment: datetime, raw: Path = RAW) -> tuple[datetime, dict]:
-    observations = [t for t in _files("weather", raw) if moment - WEATHER_MAX_AGE <= t <= moment]
-    if not observations:
-        raise LiveDataUnavailable(f"No weather observation within {WEATHER_MAX_AGE} before {moment:%Y-%m-%d %H:%M}")
-    latest = max(observations)
-    return latest, read(_files("weather", raw)[latest])["payload"]
+    """The weather of the capture's own clock hour: the observation in that hour at or before the capture.
+
+    When that hour's request failed, the latest observation within WEATHER_MAX_AGE before the capture is used.
+    A later observation is never used, so a saved capture always reads the same weather.
+    """
+    files = _files("weather", raw)
+    hour_start = moment.replace(minute=0, second=0, microsecond=0)
+    same_hour = [t for t in files if hour_start <= t <= moment]
+    recent = same_hour or [t for t in files if moment - WEATHER_MAX_AGE <= t <= moment]
+    if not recent:
+        raise LiveDataUnavailable(f"No weather observation in the hour of, or within {WEATHER_MAX_AGE} before, "
+                                  f"{moment:%Y-%m-%d %H:%M}")
+    chosen = max(recent)
+    return chosen, read(files[chosen])["payload"]
 
 
 @lru_cache(maxsize=1)
@@ -97,14 +108,41 @@ def _build(captured_at: datetime, raw: Path) -> LiveSnapshot:
     return LiveSnapshot(captured_at, observed_at, built["segments"], built["summary"], closed)
 
 
+_BUILDING = threading.Lock()
+_CACHE: OrderedDict[tuple[datetime, Path], LiveSnapshot] = OrderedDict()
+CACHE_SIZE = 8
+
+
+def _key(captured_at: datetime, raw: Path) -> tuple[datetime, Path]:
+    return captured_at.astimezone(MANILA).replace(second=0, microsecond=0), raw
+
+
+def cached_snapshot(captured_at: datetime, raw: Path = RAW) -> LiveSnapshot | None:
+    """The built snapshot of a capture, or None when it has not been built; never builds or waits."""
+    return _CACHE.get(_key(captured_at, raw))
+
+
+def building() -> bool:
+    """Whether a snapshot is being built right now (by the collector or a request)."""
+    return _BUILDING.locked()
+
+
 def live_snapshot(captured_at: datetime, raw: Path = RAW) -> LiveSnapshot:
     """Live inputs of one saved capture (an exact capture time; see nearest_capture). Saved captures never change,
-    so a built snapshot is cached; a missing one raises and is looked up again next time."""
-    return _cached(captured_at.astimezone(MANILA).replace(second=0, microsecond=0), raw)
+    so a built snapshot is cached; a missing or unusable one raises and is looked up again next time.
 
-
-@lru_cache(maxsize=8)
-def _cached(captured_at: datetime, raw: Path) -> LiveSnapshot:
-    if captured_at not in _files("flow", raw) or captured_at not in _files("incidents", raw):
-        raise LiveDataUnavailable(f"No saved live capture at {captured_at:%Y-%m-%d %H:%M}")
-    return _build(captured_at, raw)
+    Building one takes tens of seconds (matching every road). Built snapshots are read without waiting; a missing one
+    is built once under a lock, so concurrent callers (the in-app collector, status checks, route requests) wait for
+    that build instead of each repeating it."""
+    key = _key(captured_at, raw)
+    if key in _CACHE:
+        return _CACHE[key]
+    with _BUILDING:
+        if key not in _CACHE:
+            moment, folder = key
+            if moment not in _files("flow", folder) or moment not in _files("incidents", folder):
+                raise LiveDataUnavailable(f"No saved live capture at {moment:%Y-%m-%d %H:%M}")
+            _CACHE[key] = _build(moment, folder)
+            while len(_CACHE) > CACHE_SIZE:
+                _CACHE.popitem(last=False)
+        return _CACHE[key]

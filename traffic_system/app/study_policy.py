@@ -90,7 +90,7 @@ LIVE_RELEASE = ROOT / "data/processed/live_release.json"
 
 def live_status():
     """Live release (calibrated, provisional or missing) and the latest saved capture, read from disk."""
-    from src.live.snapshot import LiveDataUnavailable, captures, live_snapshot
+    from src.live.snapshot import building, cached_snapshot, captures
     saved = captures()
     status = {"mode": "live", "captures": len(saved), "first_capture": saved[0].isoformat() if saved else None,
               "latest_capture": saved[-1].isoformat() if saved else None, "release": None, "ready": False,
@@ -109,12 +109,42 @@ def live_status():
     except (OSError, ValueError, KeyError) as exc:
         status["message"] = str(exc) if isinstance(exc, ValueError) else "Live release has not been built; run python -m scripts.calibrate_live"
     if saved:
-        try:
-            latest = live_snapshot(saved[-1])
-            status["latest"] = {"weather_at": latest.weather_at.isoformat(), **latest.summary}
-        except LiveDataUnavailable as exc:
-            status["latest"] = {"unavailable": str(exc)}
+        chosen, unusable = usable_capture(saved)
+        status["newest_saved"] = saved[-1].isoformat()
+        status["updating"] = building() and cached_snapshot(saved[-1]) is None
+        if chosen is not None:
+            status["latest_capture"] = chosen.captured_at.isoformat()
+            status["latest"] = {"weather_at": chosen.weather_at.isoformat(), **chosen.summary}
+        elif building():
+            # Right after a restart nothing is built yet: the capture is being prepared, and a route waits for it.
+            status["latest"] = {"preparing": True}
+        else:
+            status["latest"] = {"unavailable": unusable or "No usable live capture"}
+            status["ready"] = False
+            status["message"] = status["latest"]["unavailable"]
     return status
+
+
+def usable_capture(saved, lookback: int = 4):
+    """The newest saved capture that can be routed on, without waiting behind a snapshot being built.
+
+    A capture already built is used at once. When none of the newest is built and nothing is building, the newest is
+    built here (the first request after a restart waits for it). A capture that cannot be used (for example, no weather
+    for its hour) is skipped for the one before it. Returns (snapshot or None, reason the newest is unusable).
+    """
+    from src.live.snapshot import LiveDataUnavailable, building, cached_snapshot, live_snapshot
+    reason = None
+    for moment in reversed(saved[-lookback:]):
+        ready = cached_snapshot(moment)
+        if ready is not None:
+            return ready, reason
+        if building():
+            continue  # The collector is preparing this capture; fall back to an older one already built.
+        try:
+            return live_snapshot(moment), reason
+        except LiveDataUnavailable as exc:
+            reason = reason or str(exc)
+    return None, reason
 
 
 def require_live_release():

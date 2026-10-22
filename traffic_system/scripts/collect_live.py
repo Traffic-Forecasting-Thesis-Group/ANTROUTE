@@ -3,7 +3,8 @@
 Every --interval minutes (aligned to the clock, Asia/Manila) the collector saves one snapshot:
   data/live/raw/<YYYY-MM-DD>/<HHMM>_flow.json.gz       HERE flow (speeds, free-flow speeds, jam factor)
   data/live/raw/<YYYY-MM-DD>/<HHMM>_incidents.json.gz  HERE incidents (including road closures)
-  data/live/raw/<YYYY-MM-DD>/<HHMM>_weather.json.gz    Weatherstack current weather, every --weather-interval
+  data/live/raw/<YYYY-MM-DD>/<HHMM>_weather.json.gz    Weatherstack current weather, once per clock hour (first tick
+                                                       of the hour; retried on the next tick if it failed)
 and appends one row per request to data/live/collection_log.csv. A failed request is logged and retried
 at the next tick; it is never replaced by invented values. Raw responses are kept unchanged so that
 matching, calibration and evaluation can be repeated later from the same files.
@@ -110,10 +111,29 @@ def next_tick(now: datetime, interval_minutes: int) -> datetime:
     return start.replace(hour=0, minute=0) + timedelta(minutes=minutes)
 
 
+def weather_saved_for_hour(moment: datetime, out: Path) -> bool:
+    """Whether a weather observation is already saved for this Asia/Manila clock hour."""
+    folder = out / moment.strftime("%Y-%m-%d")
+    return any(folder.glob(f"{moment:%H}??_weather.json.gz"))
+
+
+def collect_tick(moment: datetime, out: Path = ROOT / "data/live/raw", tile_degrees: float = 0.5,
+                 force_weather: bool = False) -> list[dict]:
+    """One collector tick: HERE flow and incidents, and weather when this hour has no observation yet.
+
+    Weather is requested once per clock hour (about 24 Weatherstack calls a day): on the first tick of the hour,
+    and again on a later tick of the same hour only if the earlier request failed.
+    """
+    load_dotenv(ROOT / ".env")
+    here.api_key()  # Raises LiveSourceError when the key is missing.
+    bbox, geometries = study_area()
+    weather_due = force_weather or not weather_saved_for_hour(moment, out)
+    return snapshot(moment, out, out.parent / "collection_log.csv", bbox, geometries, weather_due, tile_degrees)
+
+
 def main(argv=None) -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--interval", type=int, default=15, help="minutes between traffic snapshots")
-    parser.add_argument("--weather-interval", type=int, default=60, help="minutes between weather requests")
     parser.add_argument("--tile-degrees", type=float, default=0.5, help="largest bbox side per HERE request")
     parser.add_argument("--out", type=Path, default=ROOT / "data/live/raw")
     parser.add_argument("--once", action="store_true", help="take one snapshot now and exit")
@@ -124,12 +144,8 @@ def main(argv=None) -> None:
         here.api_key()  # Fail early when the key is missing.
     except here.LiveSourceError as error:
         sys.exit(f"{error}. Add HERE_API_KEY=<your key> to traffic_system/.env and run again.")
-    bbox, geometries = study_area()
-    log_path = args.out.parent / "collection_log.csv"
-
     def take(moment: datetime, force_weather: bool = False) -> None:
-        weather_due = force_weather or (moment.hour * 60 + moment.minute) % args.weather_interval == 0
-        rows = snapshot(moment, args.out, log_path, bbox, geometries, weather_due, args.tile_degrees)
+        rows = collect_tick(moment, args.out, args.tile_degrees, force_weather)
         print(moment.strftime("%Y-%m-%d %H:%M"), " ".join(f"{r['kind']}={r['status']}" for r in rows), flush=True)
 
     if args.once:
