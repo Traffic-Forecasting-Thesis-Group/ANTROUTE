@@ -9,6 +9,9 @@ Everything fitted here uses development captures only (configs/live_study.json):
   weights    hourly CRITIC over all directed segments of each hour; fixed weight = mean over the valid hours
   maxima     the largest value of each criterion over the valid development hours (the routing scale)
   Cheng      the largest length, live travel time and inverse-BPR flow over the same hours (fixed references)
+  peaks      per day category (weekday/weekend), the two most prominent peaks of the mean hourly live city load and
+             the steepest rise into each; no clock hours are assumed (the dynamic experiment departs one collection
+             interval before each onset)
 Road-class severity is the static OSM speed mapping of the historical release; it does not change live.
 
 --provisional calibrates on every capture saved so far, whatever its period, to check the pipeline before the
@@ -51,6 +54,7 @@ LIVE_SOURCES = {
     "flood_exposure": "noah_hazard_or_here_live_flood_report",
     "capacity_burden": "base_capacity_x_live_incident_flood_weather_factors",
 }
+PEAKS = ("first", "second")  # The two most prominent daily load peaks, in clock order.
 
 
 def load_split(policy: dict) -> dict[str, tuple[date, date]]:
@@ -75,6 +79,52 @@ def hourly_captures(moments) -> list[datetime]:
     for moment in sorted(moments):
         first.setdefault((moment.date(), moment.hour), moment)
     return list(first.values())
+
+
+def day_category(day: date) -> str:
+    return "weekend" if day.weekday() >= 5 else "weekday"
+
+
+def peak_onsets(loads: dict[tuple[str, int], list[float]], lead_minutes: int) -> dict:
+    """Peaks and onsets of the mean live load per day category, found in the data with no assumed clock hours.
+
+    loads: {(category, hour): [mean of the city loads of each development hour]}. The measured hours form a circular
+    daily curve (midnight joins the previous evening). Peaks are its local maxima; the two with the largest
+    topographic prominence are kept, in clock order. A peak's onset is the measured hour with the largest rise from
+    the hour before, between the lowest point since the other peak and the peak. The departure is lead_minutes (one
+    collection interval) before the onset hour, so a trip crosses into the rise. A curve with fewer than two peaks
+    leaves the missing ones out; their trips are then recorded as unavailable."""
+    from scipy.signal import find_peaks
+    result = {}
+    for category in ("weekday", "weekend"):
+        means = {hour: sum(v) / len(v) for (c, hour), v in loads.items() if c == category and v}
+        hours = sorted(means)
+        count, onsets = len(hours), {}
+        if count >= 3:
+            curve = [means[h] for h in hours] * 3  # Tiled so peaks and rises wrap around midnight.
+            found, properties = find_peaks(curve, prominence=0)
+            middle = [(p, i) for i, p in zip(found, properties["prominences"]) if count <= i < 2 * count]
+            kept = sorted(i for _, i in sorted(middle, reverse=True)[:len(PEAKS)])
+            for number, (name, top) in enumerate(zip(PEAKS, kept)):
+                other = kept[number - 1] if len(kept) > 1 else top - count
+                if other >= top:
+                    other -= count
+                trough = min(range(other + 1, top + 1), key=lambda i: curve[i])
+                steps = [(curve[i] - curve[i - 1], i) for i in range(trough + 1, top + 1)
+                         if (hours[i % count] - hours[(i - 1) % count]) % 24 == 1]  # Consecutive measured hours only.
+                if steps:
+                    rise, index = max(steps)
+                    hour = hours[index % count]
+                    start = (hour * 60 - lead_minutes) % (24 * 60)
+                    onsets[name] = {"peak_hour": hours[top % count], "prominence": float(properties["prominences"][list(found).index(top)]),
+                                    "onset_hour": hour, "rise": rise, "departure": f"{start // 60:02d}:{start % 60:02d}"}
+        result[category] = {"hourly_mean_load": {str(h): means[h] for h in hours},
+                            "samples": {str(h): len(loads[(category, h)]) for h in hours}, "onsets": onsets}
+    return {"method": "Per day category, the two most prominent local maxima of the circular mean hourly live city load "
+                      "(length-weighted mean live congestion, averaged over the five cities), in clock order; each onset "
+                      "is the steepest hourly rise between the preceding low point and the peak; departure one "
+                      f"collection interval ({lead_minutes} min) before the onset hour. No clock hours are assumed.",
+            **result}
 
 
 def live_network():
@@ -125,6 +175,7 @@ def calibrate(network, sample, assumptions) -> dict:
     maxima = dict.fromkeys(CRITERIA, 0.0)
     references = [0.0, 0.0, 0.0]
     coverage = []
+    loads = {}
 
     def hours():
         for number, moment in enumerate(sample, 1):
@@ -136,6 +187,9 @@ def calibrate(network, sample, assumptions) -> dict:
                     references[k] = max(references[k], max(item[k] for item in cheng))
                 summary = live_snapshot(moment).summary
                 coverage.append(summary["live_matched"] / summary["segments"])
+                if summary["city_load"]:
+                    loads.setdefault((day_category(moment.date()), moment.hour), []).append(
+                        sum(summary["city_load"].values()) / len(summary["city_load"]))
             print(f"Live CRITIC sample: {number}/{len(sample)} hours ({moment:%Y-%m-%d %H:%M})"
                   f"{'' if rows is not None else ' excluded: ' + reason}", flush=True)
             yield moment.isoformat(), rows, reason
@@ -144,6 +198,7 @@ def calibrate(network, sample, assumptions) -> dict:
         **result, "development_max": maxima, "units": UNITS,
         "sample": f"First saved capture of each development hour; alternatives are all {len(network.roads)} directed segments",
         "live_coverage_share": {"min": min(coverage), "mean": sum(coverage) / len(coverage), "max": max(coverage)},
+        "peak_onsets": peak_onsets(loads, json.loads(POLICY.read_text(encoding="utf-8"))["collection"]["traffic_interval_minutes"]),
         "cheng_references": {"distance_m": references[0], "travel_time_s": references[1], "flow_vph": references[2],
                              "flow_provenance": "simulation_adaptation_inverse_bpr_of_live_congestion",
                              "ahp_weights": list(AHP_WEIGHTS)},

@@ -20,8 +20,10 @@ descriptive experiment (--dynamic).
 Live evaluation (--live, after scripts.calibrate_live): the same protocol on the live release. Each request's
 snapshot is a random 15-minute tick of the live test period (configs/live_study.json), frozen before the test data
 exists; at run time it is scored on the latest saved capture at or before that tick (within 15 minutes), or recorded
-as data_unavailable. Live dynamic trips replay the saved captures: peak-onset departures at 06:45 and 16:45, the
-request's own capture, and a road closure 2 minutes in; rain is whatever the captures observed.
+as data_unavailable. Live dynamic trips replay the saved captures: departures at the onsets of the day's two load
+peaks, found in the development week for the request's day category (scripts.calibrate_live, frozen into the
+manifest; no clock hours assumed), the request's own capture, and a road closure 2 minutes in; rain is whatever the
+captures observed.
 
 Usage (from traffic_system):
   python -m scripts.evaluate_sop freeze --requests 30 --seeds 5   writes configs/experiment_manifest.json
@@ -62,8 +64,8 @@ DYNAMIC_SCENARIOS = {
     "heavy_rain_onset": "Clear to heavy rain 3 min into the trip (08:10 departure)",
 }
 LIVE_DYNAMIC_SCENARIOS = {
-    "morning_peak_onset": "Live captures from a 06:45 departure on the request's test date",
-    "evening_peak_onset": "Live captures from a 16:45 departure on the request's test date",
+    "first_peak_onset": "Live captures from the onset of the day's first load peak (development week, request's day category) on the request's test date",
+    "second_peak_onset": "Live captures from the onset of the day's second load peak (development week, request's day category) on the request's test date",
     "live_replay": "Live captures from the request's own capture",
     "road_closure": "Road closure 2 min into the trip, live captures from the request's own capture",
 }
@@ -209,6 +211,12 @@ def freeze(requests: int, seeds: int, force: bool) -> None:
     else:
         split = load_split(json.loads((ROOT / "configs/historical_study.json").read_text(encoding="utf-8")))  # Blocked until declared.
     network = release_network()
+    peaks = None
+    if LIVE["enabled"]:
+        from scripts.calibrate_live import CALIBRATION
+        peaks = json.loads(CALIBRATION.read_text(encoding="utf-8")).get("peak_onsets")
+        if not peaks:
+            sys.exit("The live calibration has no peak onsets; re-run python -m scripts.calibrate_live.")
     rng = random.Random(2025)
     test_days = list(days(split["test"]))
     ticks = live_ticks(split) if LIVE["enabled"] else []
@@ -229,6 +237,8 @@ def freeze(requests: int, seeds: int, force: bool) -> None:
                      "precision": {measure: precision for measure, (_, _, precision) in PRIMARY.items()},
                      "unit_summary": "median over the complete matched seed set", "multiplicity": "Holm, m = 2"},
     }
+    if peaks:
+        manifest["peak_onsets"] = {category: peaks[category]["onsets"] for category in ("weekday", "weekend")}
     target.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     print(f"Froze {len(manifest['requests'])} requests x {seeds} seeds -> {target.relative_to(ROOT)}")
 
@@ -297,6 +307,19 @@ def shortest_distance_closure(network, request: dict) -> frozenset:
     return frozenset({route[len(route) // 2].road.id}) if route else frozenset()
 
 
+def peak_departure(manifest: dict, day: date, scenario: str) -> tuple[int, int] | None:
+    """The frozen live onset departure (hour, minute) of a peak scenario for the day's category; None for other scenarios."""
+    peak = {"first_peak_onset": "first", "second_peak_onset": "second"}.get(scenario)
+    if peak is None:
+        return None
+    category = "weekend" if day.weekday() >= 5 else "weekday"
+    onset = manifest.get("peak_onsets", {}).get(category, {}).get(peak)
+    if onset is None:
+        raise ValueError(f"No {peak} load peak for {category}s in the frozen manifest")
+    hour, minute = onset["departure"].split(":")
+    return int(hour), int(minute)
+
+
 def dynamic_runs(network, manifest: dict) -> list[dict]:
     """Secondary, descriptive: the same trips under scenario changes, both algorithms, common trigger policy."""
     from src.routing.condition_update import MANILA
@@ -312,8 +335,13 @@ def dynamic_runs(network, manifest: dict) -> list[dict]:
             day = date.fromisoformat(request["departure_date"])
         for scenario in scenarios():
             if live:
-                hour, minute = {"morning_peak_onset": (6, 45), "evening_peak_onset": (16, 45)}.get(
-                    scenario, (requested.hour, requested.minute))
+                try:
+                    hour, minute = peak_departure(manifest, day, scenario) or (requested.hour, requested.minute)
+                except ValueError as error:  # Recorded per run like any other unavailable trip.
+                    rows += [{"experiment": f"dynamic:{scenario}", "request": request["id"], "algorithm": algorithm,
+                              "seed": seed, "status": f"ValueError: {error}"}
+                             for seed in manifest["seeds"] for algorithm in ALGORITHMS]
+                    continue
                 weather, events = "live", []
             else:
                 hour, minute = {"morning_peak_onset": (6, 50), "evening_peak_onset": (16, 50)}.get(scenario, (8, 10))

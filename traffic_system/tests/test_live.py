@@ -284,6 +284,33 @@ def test_live_split_and_hourly_sample():
                                                          for name in calibrate_live.PERIODS}})
 
 
+def test_peak_onsets_come_from_the_development_loads():
+    from datetime import date
+    from scripts.evaluate_sop import peak_departure
+    # Weekday: a big peak at 09 (steepest rise into 08), a smaller one at 18 (steepest into 17), a small bump at 13,
+    # and the low point after midnight; nothing tells the code which hours are "rush hours".
+    weekday = [.1, .08, .06, .05, .05, .08, .12, .2, .45, .5, .4, .35, .34, .36, .33, .3, .32, .45, .55, .4, .3, .2, .15, .12]
+    loads = {("weekday", h): [v, v] for h, v in enumerate(weekday)}
+    # Weekend: one late peak only, with 01:00-03:00 unmeasured.
+    weekend = {0: .1, 4: .05, 5: .05, 6: .06, 7: .08, 8: .1, 9: .15, 10: .2, 11: .35, 12: .4, 13: .38, 14: .36, 15: .35,
+               16: .34, 17: .33, 18: .32, 19: .3, 20: .25, 21: .2, 22: .15, 23: .12}
+    loads |= {("weekend", h): [v] for h, v in weekend.items()}
+    peaks = calibrate_live.peak_onsets(loads, 15)
+    first, second = peaks["weekday"]["onsets"]["first"], peaks["weekday"]["onsets"]["second"]
+    assert (first["peak_hour"], first["onset_hour"], first["departure"]) == (9, 8, "07:45")
+    assert first["rise"] == pytest.approx(.25)
+    assert (second["peak_hour"], second["onset_hour"], second["departure"]) == (18, 17, "16:45")
+    assert first["prominence"] == pytest.approx(.2) and second["prominence"] == pytest.approx(.5)  # The 13:00 bump (.03) is dropped.
+    assert peaks["weekend"]["onsets"]["first"]["onset_hour"] == 11  # 10->11 is the steepest measured rise.
+    manifest = {"peak_onsets": {c: peaks[c]["onsets"] for c in ("weekday", "weekend")}}
+    assert peak_departure(manifest, date(2026, 11, 4), "first_peak_onset") == (7, 45)
+    assert peak_departure(manifest, date(2026, 11, 7), "first_peak_onset") == (10, 45)  # Saturday
+    assert peak_departure(manifest, date(2026, 11, 4), "road_closure") is None
+    # A midnight onset wraps to the previous evening.
+    night = calibrate_live.peak_onsets({("weekday", h): [v] for h, v in enumerate([.5, .3, .2, .1] + [.1] * 19 + [.2])}, 15)
+    assert night["weekday"]["onsets"]["first"]["departure"] == "23:45"
+
+
 def test_weather_comes_from_the_captures_own_hour(tmp_path):
     raw = tmp_path / "raw"
     save(raw, AT - timedelta(minutes=15), "weather")  # 07:45, previous hour
