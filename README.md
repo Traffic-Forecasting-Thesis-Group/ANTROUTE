@@ -45,14 +45,14 @@ estimation release). Put `HERE_API_KEY` and `WEATHERSTACK_API_KEY` in `traffic_s
 
 | Step | When | Command (from `traffic_system`) |
 |---|---|---|
-| Collect every 15 min (Task Scheduler task "ANTROUTE live collection") | Oct 22 – Nov 7, 2026 | `python -m scripts.collect_live --once` |
+| Collect every 15 min (Task Scheduler task "ANTROUTE live collection"; the app also collects while running, and a saved slot is never requested twice) | Oct 22 – Nov 21, 2026 | `python -m scripts.collect_live --once` |
 | Check coverage of the latest snapshot | any time | `python -m scripts.live_coverage` |
-| Calibrate on the development week (Oct 22–28) | after Oct 28 | `python -m scripts.calibrate_live` |
-| Tune q0, beta and the time limit (Oct 29–30) | after Oct 30 | `python -m scripts.tune_search --live` |
-| Freeze the 30 test requests (before the test period) | Oct 31 – Nov 2 | `python -m scripts.evaluate_sop --live freeze` |
-| Run and analyse the comparison (test period Nov 3–7) | after Nov 7 | `python -m scripts.evaluate_sop --live run --dynamic` |
+| Calibrate on the development period (Oct 22 – Nov 8, Undas included) | Nov 9 | `python -m scripts.calibrate_live` |
+| Freeze the 30 test requests (before the test period) | Nov 9 – 10 | `python -m scripts.evaluate_sop --live freeze` |
+| Tune q0, beta and the time limit (Nov 9–10) | Nov 11 | `python -m scripts.tune_search --live` |
+| Run and analyse the comparison (test period Nov 11–21) | Nov 22 | `python -m scripts.evaluate_sop --live run --dynamic` |
 
-`configs/live_study.json` declares the periods (Oct 31 – Nov 2, Undas, is excluded) and `configs/live_assumptions.json`
+`configs/live_study.json` declares the periods (Undas, Oct 31 – Nov 2, is part of development) and `configs/live_assumptions.json`
 the assumed capacity, flood and matching values. `python -m scripts.calibrate_live --provisional` checks the pipeline
 on whatever has been collected; a provisional release is labelled and refused by tuning and evaluation. Raw responses
 are kept unchanged in `data/live/raw` (not in git — back them up). The collecting PC must stay on and awake.

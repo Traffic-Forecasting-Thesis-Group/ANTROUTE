@@ -3,18 +3,22 @@
 Primary evaluation (static, one snapshot per request; revised protocol):
   outcomes     1. common evaluation path cost (ten-criterion contract cost of the returned route)
                2. ACO search time (ms, the kernel's own monotonic timing)
+               3. distance travelled (m)
+               4. convergence rate = iterations to convergence / maximum iterations (a run that does not converge
+                  before the iteration limit is kept, with the limit as its iteration count and a rate of 1)
   unit         one request (origin, destination, test-period date and hour, historical weather);
-               each algorithm's value is the median over the complete matched seed set
+               each algorithm's value is the mean over the complete matched seed set
   difference   d_i = C_baseline,i - C_ANTROUTE,i (positive favours ANTROUTE; lower is better for both outcomes)
   test         two-sided Wilcoxon signed-rank, zero_method="wilcox" (zero differences dropped), tied absolute
                differences given average ranks, scipy method="auto" (exact when n <= 50 without ties or zeros,
                otherwise the normal approximation without continuity correction), W = min(W+, W-)
   precision    differences are rounded before ranking: path cost to 1e-9, search time to 1e-3 ms
-  correction   Holm over the two primary p-values (m = 2); significant when the adjusted p < alpha = 0.05
+  correction   Holm over the four primary p-values (m = 4); significant when the adjusted p < alpha = 0.05
 Failures (no feasible route, search exhaustion, time limit without a route, unavailable data) stay in the
 all-request report and are never converted to zero cost or time; a request enters the paired analysis only
 when both algorithms returned a route for every seed. Execution order is counterbalanced by request and seed.
-Distance travelled and convergence behaviour are secondary and descriptive. Dynamic trips are a separate,
+N_conv, the first iteration that found the final best route and the share of converged runs are secondary and
+descriptive. Dynamic trips are a separate,
 descriptive experiment (--dynamic).
 
 Live evaluation (--live, after scripts.calibrate_live): the same protocol on the live release. Each request's
@@ -30,6 +34,7 @@ Usage (from traffic_system):
   python -m scripts.evaluate_sop run [--dynamic]                    runs the frozen manifest
   python -m scripts.evaluate_sop analyse                            re-analyses outputs/sop_runs.csv
   add --live before the command for the live release (configs/live_experiment_manifest.json, outputs/live_sop_*)
+Each static run also records the road segments of its route (length and common cost per segment) in the run log.
 Writes outputs/sop_runs.csv, outputs/sop_results.json and outputs/sop_report.md.
 """
 import argparse
@@ -53,8 +58,9 @@ LIVE = {"enabled": False}  # Set by --live.
 ALPHA = 0.05
 ALGORITHMS = ("antroute", "cheng")
 NAMES = {"antroute": "ANTROUTE (proposed)", "cheng": "Cheng (2023) baseline"}
-PRIMARY = {"path_cost": ("Common evaluation path cost", "", 1e-9), "search_time_ms": ("ACO search time", "ms", 1e-3)}
-SECONDARY = {"distance_travel_m": ("Distance travelled", "m"), "iterations_to_convergence": ("N_conv (converged runs)", "iterations"),
+PRIMARY = {"path_cost": ("Common evaluation path cost", "", 1e-9), "search_time_ms": ("ACO search time", "ms", 1e-3),
+           "distance_travel_m": ("Distance travelled", "m", 1e-3), "convergence_rate": ("Convergence rate", "", 1e-9)}
+SECONDARY = {"iterations_to_convergence": ("Iterations to convergence (the limit for runs that did not converge)", "iterations"),
              "first_best_found_iteration": ("First iteration that found the final best route", "iterations")}
 ROUTED = {"converged", "iteration_limit", "time_limit"}  # Statuses that returned a route.
 DYNAMIC_SCENARIOS = {
@@ -104,6 +110,10 @@ def wilcoxon(proposed: list[float], baseline: list[float], precision: float) -> 
     differences = [round((b - a) / precision) * precision for a, b in zip(proposed, baseline)]
     result = {"n": len(differences), "proposed_median": statistics.median(proposed) if proposed else None,
               "baseline_median": statistics.median(baseline) if baseline else None,
+              "proposed_mean": statistics.fmean(proposed) if proposed else None, "baseline_mean": statistics.fmean(baseline) if baseline else None,
+              "proposed_sd": statistics.stdev(proposed) if len(proposed) > 1 else None,
+              "baseline_sd": statistics.stdev(baseline) if len(baseline) > 1 else None,
+              "difference_sd": statistics.stdev(differences) if len(differences) > 1 else None,
               "mean_difference": statistics.fmean(differences) if differences else None,
               "median_difference": statistics.median(differences) if differences else None}
     nonzero = [d for d in differences if d != 0]
@@ -156,7 +166,7 @@ def analyse(rows: list[dict], seeds: list[int]) -> dict:
         (complete if ok else incomplete)[request] = sides
     primary = {}
     for measure, (_, _, precision) in PRIMARY.items():
-        medians = {algorithm: [statistics.median(float(sides[algorithm][seed][measure]) for seed in seeds)
+        medians = {algorithm: [statistics.fmean(float(sides[algorithm][seed][measure]) for seed in seeds)
                                for sides in complete.values()] for algorithm in ALGORITHMS}
         primary[measure] = wilcoxon(medians["antroute"], medians["cheng"], precision)
     holm(list(primary.values()))
@@ -168,7 +178,9 @@ def analyse(rows: list[dict], seeds: list[int]) -> dict:
         if row["status"] in ROUTED:
             stop_reasons[row["algorithm"]][row["status"]] = stop_reasons[row["algorithm"]].get(row["status"], 0) + 1
     return {"requests": len(by_request), "complete_requests": len(complete), "incomplete_requests": sorted(incomplete),
-            "seeds": seeds, "outcomes": outcomes, "stop_reasons": stop_reasons, "primary": primary, "secondary": secondary}
+            "seeds": seeds, "outcomes": outcomes, "stop_reasons": stop_reasons,
+            "converged_share": {algorithm: (stop_reasons[algorithm].get("converged", 0) / sum(stop_reasons[algorithm].values())
+                                            if stop_reasons[algorithm] else None) for algorithm in ALGORITHMS}, "primary": primary, "secondary": secondary}
 
 
 # ---------------------------------------------------------------- manifest
@@ -235,7 +247,9 @@ def freeze(requests: int, seeds: int, force: bool) -> None:
         "analysis": {"primary": list(PRIMARY), "difference": "baseline - ANTROUTE", "alpha": ALPHA,
                      "test": "two-sided Wilcoxon signed-rank", "zero_method": "wilcox", "method": "auto", "correction": False,
                      "precision": {measure: precision for measure, (_, _, precision) in PRIMARY.items()},
-                     "unit_summary": "median over the complete matched seed set", "multiplicity": "Holm, m = 2"},
+                     "unit_summary": "mean over the complete matched seed set",
+                     "convergence_rate": "iterations to convergence / maximum iterations; a run is converged when the stopping criterion is met before the iteration limit, otherwise the rate is 1",
+                     "multiplicity": "Holm, m = 4"},
     }
     if peaks:
         manifest["peak_onsets"] = {category: peaks[category]["onsets"] for category in ("weekday", "weekend")}
@@ -289,11 +303,16 @@ def static_run(network, request: dict, algorithm: str, seed: int) -> dict:
     except (CriterionInputError, MissingWeatherObservation, KeyError, ValueError) as error:
         return {**row, "status": f"data_unavailable: {error}"}
     nodes = {node.id: node for node in network.nodes}
-    common = sum(segment_values(network, edge.road, conditions, nodes, weather, traffic).cost for edge in result.roads)
+    segments = [{"road": edge.road.id, "from": edge.road.source, "to": edge.road.target, "distance_m": edge.road.distance_m,
+                 "cost": segment_values(network, edge.road, conditions, nodes, weather, traffic).cost} for edge in result.roads]
+    common = sum(segment["cost"] for segment in segments)
+    converged_at = result.converged_at
     return {**row, "status": result.stop_reason, "path_cost": common, "native_cost": sum(edge.cost for edge in result.roads),
             "search_time_ms": result.search_time_ms, "distance_travel_m": sum(edge.road.distance_m for edge in result.roads),
-            "iterations_to_convergence": result.converged_at, "first_best_found_iteration": result.first_best_found_iteration,
-            "iterations_completed": result.iterations_completed}
+            "iterations_to_convergence": config.max_iterations if converged_at is None else converged_at, "max_iterations": config.max_iterations,
+            "convergence_rate": 1.0 if converged_at is None else converged_at / config.max_iterations,
+            "first_best_found_iteration": result.first_best_found_iteration,
+            "iterations_completed": result.iterations_completed, "segments": json.dumps(segments)}
 
 
 def shortest_distance_closure(network, request: dict) -> frozenset:
@@ -408,15 +427,16 @@ def report(results: dict) -> str:
               "so these results are not external empirical validation."), "",
              "## Primary outcomes", "",
              f"Requests: {analysis['requests']}; complete matched pairs: {analysis['complete_requests']} "
-             f"(seeds {analysis['seeds']}, median per request). d = Cheng − ANTROUTE; positive favours ANTROUTE. "
-             f"Two-sided Wilcoxon signed-rank, Holm over the two primary outcomes, α = {ALPHA}.", "",
-             "| Outcome | n | ANTROUTE median | Cheng median | Median d | W+ | W− | W | p | Holm p | Significant |",
-             "|---|---|---|---|---|---|---|---|---|---|---|"]
+             f"(seeds {analysis['seeds']}, mean per request). d = Cheng − ANTROUTE; positive favours ANTROUTE. "
+             f"Two-sided Wilcoxon signed-rank, Holm over the four primary outcomes, α = {ALPHA}.", "",
+             "| Outcome | n | ANTROUTE mean ± SD | Cheng mean ± SD | Mean d ± SD | Median d | W+ | W− | W | p | Holm p | Significant |",
+             "|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for measure, (label, unit, _) in PRIMARY.items():
         t = analysis["primary"][measure]
         ranks = " | ".join(f"{t[key]:.1f}" if key in t else "–" for key in ("W_plus", "W_minus", "W"))
         significant = {True: "**Yes**", False: "No", None: "–"}[t["significant"]]
-        lines.append(f"| {label}{f' ({unit})' if unit else ''} | {t['n']} | {number(t['proposed_median'])} | {number(t['baseline_median'])} | "
+        lines.append(f"| {label}{f' ({unit})' if unit else ''} | {t['n']} | {number(t['proposed_mean'])} ± {number(t['proposed_sd'])} | "
+                     f"{number(t['baseline_mean'])} ± {number(t['baseline_sd'])} | {number(t['mean_difference'])} ± {number(t['difference_sd'])} | "
                      f"{number(t['median_difference'])} | {ranks} | {p_text(t['p'])} | {p_text(t['p_holm'])} | {significant} |")
     lines += ["", "## All requests: outcomes", "", "| Algorithm | Outcome | Runs |", "|---|---|---|"]
     for algorithm, counts in analysis["outcomes"].items():
@@ -431,7 +451,9 @@ def report(results: dict) -> str:
             cells.append("–" if not d["n"] else f"{number(d['mean'], 2)} ± {number(d['sd'], 2)} [{number(d['min'], 2)}–{number(d['max'], 2)}] (n={d['n']})")
         lines.append(f"| {label} ({unit}) | {cells[0]} | {cells[1]} |")
     lines += ["", "Stop reasons of runs that returned a route: " + "; ".join(
-        f"{NAMES[a]}: " + ", ".join(f"{k} {v}" for k, v in sorted(c.items())) for a, c in analysis["stop_reasons"].items())]
+        f"{NAMES[a]}: " + ", ".join(f"{k} {v}" for k, v in sorted(c.items())) for a, c in analysis["stop_reasons"].items()),
+              "Share of runs that converged before the iteration limit: " + "; ".join(
+        f"{NAMES[a]}: " + ("–" if share is None else f"{share:.1%}") for a, share in analysis["converged_share"].items())]
     return "\n".join(lines) + "\n"
 
 

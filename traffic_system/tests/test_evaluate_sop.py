@@ -1,4 +1,5 @@
-"""Frozen-manifest evaluator: paired units, failures, Wilcoxon and Holm (m = 2)."""
+"""Frozen-manifest evaluator: paired units, failures, Wilcoxon and Holm (m = 4)."""
+import json
 import statistics
 
 import pytest
@@ -14,11 +15,11 @@ def rows_for(request, antroute, cheng, status="converged"):
         for seed, (cost, time) in zip(SEEDS, values):
             rows.append({"experiment": "static", "request": request, "algorithm": algorithm, "seed": seed, "status": status,
                          "path_cost": cost, "search_time_ms": time, "distance_travel_m": 1000,
-                         "iterations_to_convergence": 21, "first_best_found_iteration": 1})
+                         "iterations_to_convergence": 21, "first_best_found_iteration": 1, "convergence_rate": 21 / 60})
     return rows
 
 
-def test_units_are_matched_seed_medians_and_failures_are_kept_out_of_pairs():
+def test_units_are_matched_seed_means_and_failures_are_kept_out_of_pairs():
     rows = []
     for index in range(8):
         rows += rows_for(f"r{index}", [(1 + index, 10), (2 + index, 30), (100, 20)], [(2 + index, 40), (3 + index, 50), (200, 60)])
@@ -28,11 +29,14 @@ def test_units_are_matched_seed_medians_and_failures_are_kept_out_of_pairs():
     assert result["requests"] == 9 and result["complete_requests"] == 8 and result["incomplete_requests"] == ["r9"]
     assert result["outcomes"]["antroute"]["search_time_limit"] == 1  # Kept in the all-request report, not zeroed.
     primary = result["primary"]
-    # Request r0: ANTROUTE median cost 2, Cheng median 3 -> d = 1 for every request.
-    assert primary["path_cost"]["median_difference"] == pytest.approx(1)
-    assert primary["path_cost"]["proposed_median"] == pytest.approx(statistics.median([2 + i for i in range(8)]))
-    assert primary["search_time_ms"]["median_difference"] == pytest.approx(30)  # 50 - 20
-    assert {measure: test["p_holm"] is not None for measure, test in primary.items()} == {"path_cost": True, "search_time_ms": True}
+    # Request r0: ANTROUTE seed mean (1 + 2 + 100) / 3, Cheng (2 + 3 + 200) / 3 -> d = 102 / 3 for r0, larger for later requests.
+    assert primary["path_cost"]["median_difference"] == pytest.approx((2 + 3 + 200) / 3 - (1 + 2 + 100) / 3)
+    assert primary["path_cost"]["proposed_mean"] == pytest.approx(statistics.fmean([(1 + i + 2 + i + 100) / 3 for i in range(8)]))
+    assert primary["search_time_ms"]["median_difference"] == pytest.approx((40 + 50 + 60) / 3 - (10 + 30 + 20) / 3)
+    assert set(primary) == {"path_cost", "search_time_ms", "distance_travel_m", "convergence_rate"}
+    assert primary["convergence_rate"]["proposed_median"] == pytest.approx(21 / 60)  # Mean over seeds of identical rates.
+    assert result["converged_share"] == {"antroute": 1.0, "cheng": 1.0}
+    assert all(test["p_holm"] is not None or test["p"] is None for test in primary.values())
 
 
 def test_all_zero_differences_are_handled_explicitly():
@@ -41,7 +45,7 @@ def test_all_zero_differences_are_handled_explicitly():
     assert wilcoxon([1.0, 2.0], [2.0, 3.0], precision=1e-9)["p"] is None  # Too few pairs.
 
 
-def test_wilcoxon_statistic_and_holm_over_two_outcomes():
+def test_wilcoxon_statistic_and_holm_over_the_family():
     proposed = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0]
     baseline = [2.0, 2.5, 5.0, 4.5, 9.0, 6.25, 8.0, 7.5]  # One negative difference (8 -> 7.5).
     result = wilcoxon(proposed, baseline, precision=1e-9)
@@ -60,6 +64,11 @@ def test_static_run_records_common_cost_and_outcomes(network):
     request = {"id": "r0", "origin": "a", "destination": "d", "departure_date": "2025-06-02", "hour": 8, "weather": "clear"}
     antroute, cheng = static_run(network, request, "antroute", 0), static_run(network, request, "cheng", 0)
     assert antroute["status"] == cheng["status"] == "converged"
+    segments = json.loads(antroute["segments"])
+    assert sum(segment["cost"] for segment in segments) == pytest.approx(antroute["path_cost"])
+    assert sum(segment["distance_m"] for segment in segments) == pytest.approx(antroute["distance_travel_m"])
+    assert antroute["iterations_to_convergence"] <= antroute["max_iterations"]
+    assert 0 < antroute["convergence_rate"] <= 1 and antroute["max_iterations"] == 60
     assert antroute["path_cost"] == pytest.approx(antroute["native_cost"])  # ANTROUTE's native cost is the common cost.
     assert cheng["path_cost"] == pytest.approx(antroute["path_cost"])  # Same route here, scored by the same contract.
     blocked = static_run(network, {**request, "origin": "d", "destination": "a"}, "antroute", 0)

@@ -3,7 +3,7 @@
   "timezone": "Asia/Manila",
   "collection": {
     "start": "2026-10-22",
-    "end": "2026-11-07",
+    "end": "2026-11-21",
     "traffic_interval_minutes": 15,
     "weather_interval_minutes": 60,
     "sources": {
@@ -13,15 +13,15 @@
     }
   },
   "calibration_split": {
-    "development": {"start": "2026-10-22", "end": "2026-10-28"},
-    "tuning": {"start": "2026-10-29", "end": "2026-10-30"},
-    "excluded": {"start": "2026-10-31", "end": "2026-11-02"},
-    "test": {"start": "2026-11-03", "end": "2026-11-07"},
-    "note": "Declared before any live data was used. Development (7 days, every weekday and the weekend once) fits the hourly CRITIC weights, development maxima and Cheng references; tuning fixes q0, beta and the search time limit; test is held out for the comparison. October 31 to November 2 (Undas: All Saints' and All Souls' Days) is collected but excluded because holiday travel makes Metro Manila traffic atypical.",
-    "declared_by": "study team, 2026-10-22"
+    "development": {"start": "2026-10-22", "end": "2026-11-08"},
+    "tuning": {"start": "2026-11-09", "end": "2026-11-10"},
+    "test": {"start": "2026-11-11", "end": "2026-11-21"},
+    "note": "Development (October 22 to November 8: 18 days covering every day of the week, with three weekends) fits the hourly CRITIC weights, development maxima and Cheng references; tuning fixes q0, beta and the search time limit; test is held out for the comparison. October 31 to November 2 (Undas: All Saints' and All Souls' Days) is kept in development, so the weights also reflect holiday traffic; no holiday falls in the tuning or test periods.",
+    "declared_by": "study team, 2026-10-22",
+    "revised": "2026-10-23: collection extended from 2 to about 4.5 weeks after the timeline changed to 5 weeks; no tuning or test data existed and no weights had been fitted when the periods were revised (the earlier split was development October 22-28, tuning October 29-30, test November 3-7). Same day: Undas (October 31 to November 2) is kept in development instead of being excluded."
   },
   "sampling": {
-    "calibration": "the first capture of every development hour (up to 168 hours); all 30,511 directed segments are the alternatives in each hour",
+    "calibration": "the first capture of every development hour (up to 432 hours); all 30,511 directed segments are the alternatives in each hour",
     "tuning": "12 origin-destination pairs on random tuning-period captures",
     "test": "30 origin-destination pairs on random test-period captures, 5 seeds each"
   }

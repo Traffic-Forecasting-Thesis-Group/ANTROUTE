@@ -275,8 +275,10 @@ def test_live_trip_replays_captures_and_reroutes_around_a_new_closure(network_da
 
 def test_live_split_and_hourly_sample():
     split = calibrate_live.load_split(json.loads(calibrate_live.POLICY.read_text(encoding="utf-8")))
-    assert calibrate_live.period_of(datetime(2026, 11, 1, 9, tzinfo=MANILA), split) == "excluded"
-    assert calibrate_live.period_of(datetime(2026, 10, 28, 23, 45, tzinfo=MANILA), split) == "development"
+    assert calibrate_live.period_of(datetime(2026, 11, 1, 9, tzinfo=MANILA), split) == "development"  # Undas is kept
+    assert calibrate_live.period_of(datetime(2026, 11, 8, 23, 45, tzinfo=MANILA), split) == "development"
+    assert calibrate_live.period_of(datetime(2026, 11, 10, 8, tzinfo=MANILA), split) == "tuning"
+    assert calibrate_live.period_of(datetime(2026, 11, 21, 8, tzinfo=MANILA), split) == "test"
     sample = calibrate_live.hourly_captures([AT + timedelta(minutes=m) for m in (45, 0, 15, 60)])
     assert sample == [AT, AT + timedelta(minutes=60)]
     with pytest.raises(ValueError, match="chronological"):
@@ -355,3 +357,23 @@ def test_status_uses_newest_usable_capture_without_waiting(monkeypatch):
     # Nothing building: the newest (no weather for its hour) is skipped for the one before it, which is built now.
     state["building"] = False
     assert usable_capture(times) == ("snapshot 08:15", "No weather observation in the hour")
+
+
+def test_excluded_days_must_lie_inside_development():
+    split = {"development": {"start": "2026-10-22", "end": "2026-10-30"}, "excluded": {"start": "2026-10-31", "end": "2026-11-02"},
+             "tuning": {"start": "2026-11-09", "end": "2026-11-10"}, "test": {"start": "2026-11-11", "end": "2026-11-21"}}
+    with pytest.raises(ValueError, match="inside the development"):
+        calibrate_live.load_split({"calibration_split": split})
+    inside = {**split, "development": {"start": "2026-10-22", "end": "2026-11-08"}}
+    assert calibrate_live.period_of(datetime(2026, 11, 1, tzinfo=MANILA), calibrate_live.load_split({"calibration_split": inside})) == "excluded"
+
+
+def test_a_slot_saved_by_another_collector_is_not_requested_again(tmp_path, monkeypatch):
+    raw = tmp_path / "raw"
+    moment = datetime(2026, 10, 23, 14, 15, tzinfo=MANILA)
+    for kind in ("flow", "incidents", "weather"):
+        collect_live.write_snapshot(raw, moment, kind, {"results": []})
+    monkeypatch.setenv("HERE_API_KEY", "test-key")
+    monkeypatch.setattr(collect_live, "study_area", lambda: ((0, 0, 1, 1), {}))
+    monkeypatch.setattr(collect_live, "snapshot", lambda *a, **k: pytest.fail("HERE was requested again"))
+    assert collect_live.collect_tick(moment, raw) == []

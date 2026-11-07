@@ -74,7 +74,7 @@ def log(log_path: Path, row: dict) -> None:
 
 
 def snapshot(moment: datetime, out: Path, log_path: Path, bbox, geometries, with_weather: bool,
-             tile_degrees: float, fetchers=None) -> list[dict]:
+             tile_degrees: float, fetchers=None, weather_only: bool = False) -> list[dict]:
     """Capture the sources due at this moment; each source succeeds or fails on its own."""
     fetchers = fetchers or {
         "flow": lambda: here.fetch("flow", bbox, tile_degrees),
@@ -82,7 +82,7 @@ def snapshot(moment: datetime, out: Path, log_path: Path, bbox, geometries, with
         "weather": lambda: fetch_current_weather(geometries),
     }
     rows = []
-    for kind in ("flow", "incidents", "weather"):
+    for kind in ("weather",) if weather_only else ("flow", "incidents", "weather"):
         if kind == "weather" and not with_weather:
             continue
         row = {"captured_at_manila": moment.isoformat(), "captured_at_utc": moment.astimezone(timezone.utc).isoformat(),
@@ -111,6 +111,12 @@ def next_tick(now: datetime, interval_minutes: int) -> datetime:
     return start.replace(hour=0, minute=0) + timedelta(minutes=minutes)
 
 
+def slot_saved(moment: datetime, out: Path) -> bool:
+    """Whether this tick's HERE flow and incidents are already saved, so they are not requested twice."""
+    folder = out / moment.strftime("%Y-%m-%d")
+    return all((folder / f"{moment:%H%M}_{kind}.json.gz").exists() for kind in ("flow", "incidents"))
+
+
 def weather_saved_for_hour(moment: datetime, out: Path) -> bool:
     """Whether a weather observation is already saved for this Asia/Manila clock hour."""
     folder = out / moment.strftime("%Y-%m-%d")
@@ -128,6 +134,11 @@ def collect_tick(moment: datetime, out: Path = ROOT / "data/live/raw", tile_degr
     here.api_key()  # Raises LiveSourceError when the key is missing.
     bbox, geometries = study_area()
     weather_due = force_weather or not weather_saved_for_hour(moment, out)
+    if slot_saved(moment, out) and not force_weather:
+        if not weather_due:
+            return []  # Another collector (the app or the scheduled task) already saved this slot.
+        return snapshot(moment, out, out.parent / "collection_log.csv", bbox, geometries, True, tile_degrees,
+                        weather_only=True)
     return snapshot(moment, out, out.parent / "collection_log.csv", bbox, geometries, weather_due, tile_degrees)
 
 

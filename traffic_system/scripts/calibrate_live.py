@@ -45,7 +45,8 @@ OUTPUT = ROOT / "data/processed"
 CALIBRATION = OUTPUT / "live_calibration.json"
 NETWORK = OUTPUT / "live_network.json"
 RELEASE = OUTPUT / "live_release.json"
-PERIODS = ("development", "tuning", "excluded", "test")
+PERIODS = ("development", "tuning", "test")  # Chronological and non-overlapping.
+OPTIONAL = ("excluded",)  # Optional days inside development that are left out of it (none declared at present).
 LIVE_SOURCES = {
     "congestion": "here_flow_live_speed_over_free_flow_or_group_median",
     "travel_time": "here_flow_live_speed_or_group_median",
@@ -58,19 +59,30 @@ PEAKS = ("first", "second")  # The two most prominent daily load peaks, in clock
 
 
 def load_split(policy: dict) -> dict[str, tuple[date, date]]:
+    """Development, tuning and test are chronological and do not overlap. Optional excluded days must lie inside
+    development and are left out of it."""
     declared = policy["calibration_split"]
-    split = {name: (date.fromisoformat(declared[name]["start"]), date.fromisoformat(declared[name]["end"])) for name in PERIODS}
+    names = PERIODS + tuple(name for name in OPTIONAL if declared.get(name))
+    split = {name: (date.fromisoformat(declared[name]["start"]), date.fromisoformat(declared[name]["end"])) for name in names}
     previous = None
     for name in PERIODS:
         start, end = split[name]
         if start > end or (previous is not None and start <= previous):
             raise ValueError("Live periods must be chronological and must not overlap")
         previous = end
+    if "excluded" in split:
+        excluded, development = split["excluded"], split["development"]
+        if not development[0] <= excluded[0] <= excluded[1] <= development[1]:
+            raise ValueError("The excluded days must lie inside the development period")
     return split
 
 
 def period_of(moment: datetime, split) -> str | None:
-    return next((name for name, (start, end) in split.items() if start <= moment.date() <= end), None)
+    """The period of a capture; declared excluded days belong to no fitting period."""
+    day = moment.date()
+    if "excluded" in split and split["excluded"][0] <= day <= split["excluded"][1]:
+        return "excluded"
+    return next((name for name in PERIODS if split[name][0] <= day <= split[name][1]), None)
 
 
 def hourly_captures(moments) -> list[datetime]:
