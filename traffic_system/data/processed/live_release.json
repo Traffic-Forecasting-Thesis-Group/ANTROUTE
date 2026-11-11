@@ -1,31 +1,27 @@
 {
   "mode": "live",
-  "status": "provisional_pipeline_check",
+  "status": "development_calibration",
   "contract_version": 2,
-  "calibration_id": "provisional-24a8a41654f2253dda8c50563abf63a7f00bf18c86cf2e15dd99baafed209c33",
-  "code_commit": "dd950a04fe7d93726558207231bdeed2e3546458",
+  "calibration_id": "f948d5a348ddbd4a2374a1d9a6cc7fe5d6ae4b57dc13c00e212f38a146bf8030",
+  "code_commit": "d45843a987b630421397a960ff741dce266da3c9",
   "split": {
     "development": [
       "2026-10-22",
-      "2026-10-28"
+      "2026-11-08"
     ],
     "tuning": [
-      "2026-10-29",
-      "2026-10-30"
-    ],
-    "excluded": [
-      "2026-10-31",
-      "2026-11-02"
+      "2026-11-09",
+      "2026-11-10"
     ],
     "test": [
-      "2026-11-03",
-      "2026-11-07"
+      "2026-11-11",
+      "2026-11-21"
     ]
   },
-  "valid_hours": 1,
+  "valid_hours": 398,
   "artifacts": {
-    "live_calibration.json": "24a8a41654f2253dda8c50563abf63a7f00bf18c86cf2e15dd99baafed209c33",
-    "live_network.json": "4f54d44d987826fe3cb310e2e96798314ad3109db8f529ea19b0cbd9e16b3ca7"
+    "live_calibration.json": "f948d5a348ddbd4a2374a1d9a6cc7fe5d6ae4b57dc13c00e212f38a146bf8030",
+    "live_network.json": "d5247de44c9e9541b7739c41bcd4c75cbd01c4512279a635744e23d3d38610cc"
   },
-  "network_sha256": "4f54d44d987826fe3cb310e2e96798314ad3109db8f529ea19b0cbd9e16b3ca7"
+  "network_sha256": "d5247de44c9e9541b7739c41bcd4c75cbd01c4512279a635744e23d3d38610cc"
 }

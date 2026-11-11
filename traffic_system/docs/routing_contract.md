@@ -97,7 +97,7 @@ Both models use one kernel and differ only in their native edge cost:
   below a positive floor.
 - Stopping uses a cumulative window: B[k−p] − B[k] ≤ abs_tol + rel_tol·|B[k−p]|. The defaults (p = 20, tolerances 0)
   reproduce "no improvement for 20 consecutive iterations".
-- q0 = 0, beta = 1 and an 18 s wall-time budget were frozen on the tuning period by `scripts/tune_search.py` (`outputs/search_tuning.json`). At the deadline the search returns its best route
+- q0 = 0, beta = 1 and a 15 s wall-time budget were frozen on the live tuning period by `scripts/tune_search.py --live` (`outputs/live_search_tuning.json`). At the deadline the search returns its best route
   labelled `time_limit`; with no route it raises `SearchTimeLimit`. A disconnected graph raises `NoFeasibleRoute`.
 - Cheng (2023) uses s_ij = 0.637·L/L_ref + 0.258·T/T_ref + 0.105·F/F_ref with fixed development references, so an
   unrelated closure does not change the remaining roads' scores. Flow is a simulation adaptation (inverse BPR of the

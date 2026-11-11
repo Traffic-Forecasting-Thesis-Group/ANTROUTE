@@ -1,0 +1,308 @@
+{
+  "generated_at": "2026-11-10T23:45:03+00:00",
+  "mode": "live",
+  "calibration_id": "f948d5a348ddbd4a2374a1d9a6cc7fe5d6ae4b57dc13c00e212f38a146bf8030",
+  "tuning_period": [
+    "2026-11-09",
+    "2026-11-10"
+  ],
+  "rule": "requests   12 origin-destination pairs (3-10 km straight line, seed 2026) on random tuning-period dates and hours,\n             historical weather; never development or test dates\n  grid       q0 in {0, 0.3, 0.5, 0.7} x beta in {1, 2, 3, 5}; every other setting and the heuristic form stay declared\n  measure    optimality gap = ACO route cost / exact lowest cost - 1, each algorithm under its own native objective\n             (exact Dijkstra reference on the same snapshot graph; never given to ACO, never timed with it)\n  seeds      0 and 1; the wall-time budget is disabled during tuning so time limits cannot bias the gap\n  selection  lowest mean gap pooled over both algorithms; ties (within 1e-9) go to the lower median search time\n  budget     wall_time_ms = 2 x the longest search time of the chosen setting, rounded up to the next second",
+  "requests": [
+    {
+      "origin": "394430480",
+      "destination": "4223876367",
+      "straight_line_km": 5.68,
+      "live_at": "2026-11-10T23:30:00+08:00"
+    },
+    {
+      "origin": "79641358",
+      "destination": "134288976",
+      "straight_line_km": 3.665,
+      "live_at": "2026-11-10T08:45:00+08:00"
+    },
+    {
+      "origin": "1941045522",
+      "destination": "6636993464",
+      "straight_line_km": 9.42,
+      "live_at": "2026-11-10T16:45:00+08:00"
+    },
+    {
+      "origin": "6988666620",
+      "destination": "5621422761",
+      "straight_line_km": 6.124,
+      "live_at": "2026-11-09T04:45:00+08:00"
+    },
+    {
+      "origin": "313503107",
+      "destination": "61091102",
+      "straight_line_km": 8.061,
+      "live_at": "2026-11-10T22:15:00+08:00"
+    },
+    {
+      "origin": "360801058",
+      "destination": "6507588270",
+      "straight_line_km": 5.62,
+      "live_at": "2026-11-09T21:45:00+08:00"
+    },
+    {
+      "origin": "321740669",
+      "destination": "21717771",
+      "straight_line_km": 3.768,
+      "live_at": "2026-11-09T05:30:00+08:00"
+    },
+    {
+      "origin": "1020322643",
+      "destination": "68071451",
+      "straight_line_km": 3.851,
+      "live_at": "2026-11-10T11:30:00+08:00"
+    },
+    {
+      "origin": "32541447",
+      "destination": "1085382851",
+      "straight_line_km": 9.137,
+      "live_at": "2026-11-10T10:15:00+08:00"
+    },
+    {
+      "origin": "8342837484",
+      "destination": "246044947",
+      "straight_line_km": 7.652,
+      "live_at": "2026-11-09T18:30:00+08:00"
+    },
+    {
+      "origin": "1892060110",
+      "destination": "304906528",
+      "straight_line_km": 6.534,
+      "live_at": "2026-11-09T18:15:00+08:00"
+    },
+    {
+      "origin": "261682824",
+      "destination": "286959621",
+      "straight_line_km": 9.828,
+      "live_at": "2026-11-10T05:15:00+08:00"
+    }
+  ],
+  "seeds": [
+    0,
+    1
+  ],
+  "grid": [
+    {
+      "q0": 0.0,
+      "beta": 1.0,
+      "mean_gap": 0.3901633470135979,
+      "mean_gap_antroute": 0.47397428878965403,
+      "mean_gap_cheng": 0.30635240523754187,
+      "optimal_share": 0.0,
+      "median_search_time_ms": 4166.231950046495,
+      "max_search_time_ms": 7078.620200045407,
+      "stop_reasons": {
+        "converged": 32,
+        "iteration_limit": 16
+      }
+    },
+    {
+      "q0": 0.0,
+      "beta": 2.0,
+      "mean_gap": 0.44451326613466996,
+      "mean_gap_antroute": 0.6095946080538401,
+      "mean_gap_cheng": 0.2794319242154998,
+      "optimal_share": 0.0,
+      "median_search_time_ms": 4234.4216499477625,
+      "max_search_time_ms": 8317.4246000126,
+      "stop_reasons": {
+        "converged": 36,
+        "iteration_limit": 12
+      }
+    },
+    {
+      "q0": 0.0,
+      "beta": 3.0,
+      "mean_gap": 0.4183579116203788,
+      "mean_gap_antroute": 0.593178205305639,
+      "mean_gap_cheng": 0.2435376179351186,
+      "optimal_share": 0.0,
+      "median_search_time_ms": 4000.342400278896,
+      "max_search_time_ms": 7282.932300120592,
+      "stop_reasons": {
+        "converged": 43,
+        "iteration_limit": 5
+      }
+    },
+    {
+      "q0": 0.0,
+      "beta": 5.0,
+      "mean_gap": 0.4054346800584184,
+      "mean_gap_antroute": 0.6191547398746605,
+      "mean_gap_cheng": 0.1917146202421763,
+      "optimal_share": 0.0,
+      "median_search_time_ms": 3295.4988998826593,
+      "max_search_time_ms": 6630.641200114042,
+      "stop_reasons": {
+        "converged": 43,
+        "iteration_limit": 5
+      }
+    },
+    {
+      "q0": 0.3,
+      "beta": 1.0,
+      "mean_gap": 0.5641633006335465,
+      "mean_gap_antroute": 0.702757529829606,
+      "mean_gap_cheng": 0.42556907143748696,
+      "optimal_share": 0.0,
+      "median_search_time_ms": 2657.6795000582933,
+      "max_search_time_ms": 4575.404800008982,
+      "stop_reasons": {
+        "converged": 47,
+        "iteration_limit": 1
+      }
+    },
+    {
+      "q0": 0.3,
+      "beta": 2.0,
+      "mean_gap": 0.49388834780478463,
+      "mean_gap_antroute": 0.6903010231203539,
+      "mean_gap_cheng": 0.29747567248921536,
+      "optimal_share": 0.0,
+      "median_search_time_ms": 2494.544449960813,
+      "max_search_time_ms": 4982.4724001809955,
+      "stop_reasons": {
+        "converged": 48
+      }
+    },
+    {
+      "q0": 0.3,
+      "beta": 3.0,
+      "mean_gap": 0.5576999868012681,
+      "mean_gap_antroute": 0.8005504079581867,
+      "mean_gap_cheng": 0.31484956564434957,
+      "optimal_share": 0.0,
+      "median_search_time_ms": 2179.9204498529434,
+      "max_search_time_ms": 5220.7116996869445,
+      "stop_reasons": {
+        "converged": 48
+      }
+    },
+    {
+      "q0": 0.3,
+      "beta": 5.0,
+      "mean_gap": 0.5354383503641685,
+      "mean_gap_antroute": 0.7860856338044253,
+      "mean_gap_cheng": 0.28479106692391165,
+      "optimal_share": 0.0,
+      "median_search_time_ms": 2067.734300158918,
+      "max_search_time_ms": 4789.220999926329,
+      "stop_reasons": {
+        "converged": 48
+      }
+    },
+    {
+      "q0": 0.5,
+      "beta": 1.0,
+      "mean_gap": 0.5219317327159286,
+      "mean_gap_antroute": 0.6710816545989985,
+      "mean_gap_cheng": 0.3727818108328587,
+      "optimal_share": 0.0,
+      "median_search_time_ms": 1701.8874001223594,
+      "max_search_time_ms": 3877.043499611318,
+      "stop_reasons": {
+        "converged": 48
+      }
+    },
+    {
+      "q0": 0.5,
+      "beta": 2.0,
+      "mean_gap": 0.5435207188313328,
+      "mean_gap_antroute": 0.7074143475460785,
+      "mean_gap_cheng": 0.379627090116587,
+      "optimal_share": 0.0,
+      "median_search_time_ms": 1565.2079498395324,
+      "max_search_time_ms": 3896.9868002459407,
+      "stop_reasons": {
+        "converged": 48
+      }
+    },
+    {
+      "q0": 0.5,
+      "beta": 3.0,
+      "mean_gap": 0.6043320391788903,
+      "mean_gap_antroute": 0.8836294157980958,
+      "mean_gap_cheng": 0.3250346625596848,
+      "optimal_share": 0.0,
+      "median_search_time_ms": 1473.9847499877214,
+      "max_search_time_ms": 4848.779799882323,
+      "stop_reasons": {
+        "converged": 48
+      }
+    },
+    {
+      "q0": 0.5,
+      "beta": 5.0,
+      "mean_gap": 0.6599668260065705,
+      "mean_gap_antroute": 1.0167516078537748,
+      "mean_gap_cheng": 0.30318204415936617,
+      "optimal_share": 0.0,
+      "median_search_time_ms": 1423.6496000085026,
+      "max_search_time_ms": 3369.5250996388495,
+      "stop_reasons": {
+        "converged": 48
+      }
+    },
+    {
+      "q0": 0.7,
+      "beta": 1.0,
+      "mean_gap": 0.574895390444692,
+      "mean_gap_antroute": 0.783857327877458,
+      "mean_gap_cheng": 0.365933453011926,
+      "optimal_share": 0.0,
+      "median_search_time_ms": 1068.268250208348,
+      "max_search_time_ms": 3165.715599898249,
+      "stop_reasons": {
+        "converged": 48
+      }
+    },
+    {
+      "q0": 0.7,
+      "beta": 2.0,
+      "mean_gap": 0.629641348528424,
+      "mean_gap_antroute": 0.909079902525547,
+      "mean_gap_cheng": 0.35020279453130104,
+      "optimal_share": 0.0,
+      "median_search_time_ms": 1013.5292501654476,
+      "max_search_time_ms": 2582.544700242579,
+      "stop_reasons": {
+        "converged": 48
+      }
+    },
+    {
+      "q0": 0.7,
+      "beta": 3.0,
+      "mean_gap": 0.6645304567730438,
+      "mean_gap_antroute": 0.9931062178155828,
+      "mean_gap_cheng": 0.3359546957305047,
+      "optimal_share": 0.0,
+      "median_search_time_ms": 1015.5932502821088,
+      "max_search_time_ms": 5014.671100303531,
+      "stop_reasons": {
+        "converged": 48
+      }
+    },
+    {
+      "q0": 0.7,
+      "beta": 5.0,
+      "mean_gap": 0.7725709621822516,
+      "mean_gap_antroute": 1.1928863721730563,
+      "mean_gap_cheng": 0.35225555219144705,
+      "optimal_share": 0.0,
+      "median_search_time_ms": 1107.6947499532253,
+      "max_search_time_ms": 4512.723899912089,
+      "stop_reasons": {
+        "converged": 48
+      }
+    }
+  ],
+  "chosen": {
+    "q0": 0.0,
+    "beta": 1.0,
+    "wall_time_ms": 15000
+  }
+}

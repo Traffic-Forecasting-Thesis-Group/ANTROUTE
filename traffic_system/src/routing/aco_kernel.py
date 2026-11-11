@@ -63,8 +63,8 @@ class SearchConfig(StudyModel):
     patience: int = Field(default=20, ge=1, le=1000, strict=True)
     abs_tol: float = Field(default=0, ge=0)
     rel_tol: float = Field(default=0, ge=0, lt=1)
-    # Frozen from the tuning period: 2 x the longest tuning search of the chosen setting (8.9 s), rounded up.
-    wall_time_ms: float | None = Field(default=18000, gt=0)
+    # Frozen from the live tuning period: 2 x the longest tuning search of the chosen setting (7.1 s), rounded up.
+    wall_time_ms: float | None = Field(default=15000, gt=0)
     deadline_check_steps: int = Field(default=256, ge=1, strict=True)
     max_steps: int = Field(default=10000, ge=1, le=100000, strict=True)
     seed: int = Field(default=0, strict=True)
