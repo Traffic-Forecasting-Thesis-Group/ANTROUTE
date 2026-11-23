@@ -101,7 +101,8 @@ button:disabled { cursor: default; opacity: .6; }
 .hint { font-size: 11.5px; color: var(--muted); margin: calc(6px - var(--field-gap)) 0 var(--field-gap); line-height: 1.5; }
 .form-section > h3 + .hint { margin-top: 0; }
 .form-section > .hint:last-child { margin-bottom: 0; }
-.planner form > fieldset > button[type="submit"] { margin-top: 20px; height: 46px; font-size: 14px; border-radius: 12px; box-shadow: 0 6px 16px #3b6cf040; }
+.planner form > fieldset > .form-section:last-of-type { padding-bottom: 0; }
+.planner form > fieldset > button[type="submit"] { margin-top: 12px; height: 46px; font-size: 14px; border-radius: 12px; box-shadow: 0 6px 16px #3b6cf040; }
 .planner details.form-section { padding-bottom: 0; }
 .planner details.form-section[open] { padding-bottom: 4px; }
 /* Trip rows: the start (white, target icon) and numbered destinations (amber) */

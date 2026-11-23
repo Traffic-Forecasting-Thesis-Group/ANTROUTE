@@ -5,7 +5,6 @@ import type { DataMode, HistoricalStudyStatus as StudyStatus, LiveStatus, Networ
 import RouteMap, { BASELINE_COLOR, ROUTE_COLOR } from './features/map/RouteMap';
 import PlaceInput from './features/trip/PlaceInput';
 import CostBreakdown from './features/trip/CostBreakdown';
-import HistoricalStudyStatus from './features/study/HistoricalStudyStatus';
 import DatasetExplorer from './features/study/DatasetExplorer';
 import StatisticalComparison from './features/study/StatisticalComparison';
 import type { DatasetMap, RouteExplanation } from './api/routeService';
@@ -79,11 +78,11 @@ export default function App() {
   const [studyStatus, setStudyStatus] = useState<StudyStatus | null>(null);
   // Live mode: every route is scored on the latest saved HERE traffic, incident and weather capture.
   const [liveStatus, setLiveStatus] = useState<LiveStatus | null>(null);
-  // Data tab: live HERE captures (primary) or the historical June 2025 – May 2026 simulation.
+  // The planner uses HERE captures; historical simulation is not a planner option.
   const [dataMode, setDataMode] = useState<DataMode>('live');
   const liveReady = !!liveStatus?.ready;
   const historicalReady = !!studyStatus?.ready;
-  const live = dataMode === 'live' && liveReady;
+  const live = dataMode === 'live';
   const liveAt = live ? liveStatus?.latest_capture ?? null : null;
   const [network, setNetwork] = useState<NetworkInfo | null>(null);
   const [origin, setOrigin] = useState<StudyNode | null>(null);
@@ -124,7 +123,7 @@ export default function App() {
   const [explanationNote, setExplanationNote] = useState('');
   const [focusedStretch, setFocusedStretch] = useState<number | null>(null);
 
-  // Both releases are checked once; the live tab is primary, the historical simulation is the other tab.
+  // Keep the planner on HERE captures even when the live release is unavailable.
   const [statusesLoaded, setStatusesLoaded] = useState(false);
   useEffect(() => {
     const controller = new AbortController();
@@ -132,7 +131,7 @@ export default function App() {
       .then(([liveState, historical]) => {
         if (controller.signal.aborted) return;
         setLiveStatus(liveState); setStudyStatus(historical);
-        setDataMode(liveState?.ready ? 'live' : 'historical');
+        setDataMode('live');
         setStatusesLoaded(true);
       });
     return () => { controller.abort(); activeRequest.current?.abort(); };
@@ -165,11 +164,6 @@ export default function App() {
     }, 60_000);
     return () => window.clearInterval(timer);
   }, [liveReady]);
-
-  const switchMode = (mode: DataMode) => {
-    if (mode === dataMode) return;
-    invalidate(); setWeatherChange(''); setSnapshot(null); setWeatherError(''); setDataMode(mode);
-  };
 
   useEffect(() => {
     if (!network || live) return;
@@ -252,14 +246,6 @@ export default function App() {
     finally { setPicking(false); }
   };
 
-  // A new capture is saved every 15 minutes; reloading picks it up for the next route.
-  const refreshLive = async () => {
-    setRefreshing(true); setWeatherError('');
-    try { setLiveStatus(await loadLiveStatus()); invalidate(); }
-    catch (reason) { if (reason instanceof Error) setWeatherError(reason.message); }
-    finally { setRefreshing(false); }
-  };
-
   const updateWeather = async () => {
     setRefreshing(true); setWeatherError('');
     try {
@@ -278,9 +264,6 @@ export default function App() {
     .filter((run): run is { name: string; color: string; trip: TripResult } => !!run);
   const cityWeather = snapshot?.cities[origin?.city ?? 'Manila'];
 
-  // Only when neither the live nor the historical release can route.
-  if (statusesLoaded && !liveReady && !historicalReady && studyStatus) return <HistoricalStudyStatus status={studyStatus} />;
-
   return <>
     <header className="topbar">
       <a className="logo" href="#planner" aria-label="ANTRoute home"><img src="/logo-no-bg.png" alt="" /><span>ANT<b>Route</b></span></a>
@@ -291,6 +274,7 @@ export default function App() {
         <aside className="sidebar planner" id="planner">
           <h2>Plan a route</h2>
           {loading && <p role="status">Loading the study network…</p>}
+          {statusesLoaded && !liveReady && <p className="error" role="alert">{liveStatus?.message ?? 'HERE traffic data is unavailable. Please try again later.'}</p>}
           <form onSubmit={submit}>
             <fieldset disabled={disabled}>
               <div className="form-section first">
@@ -310,32 +294,11 @@ export default function App() {
                 {stops.length < MAX_STOPS && <button type="button" className="add-stop" onClick={() => setStops(previous => [...previous, { key: nextStopKey.current++, node: null }])}>
                   <span aria-hidden="true">+</span>Add Destination</button>}
               </div>
-              <div className="form-section">
-                <h3>Traffic data</h3>
-                <div className="mode-tabs" role="tablist" aria-label="Traffic data">
-                  {(['live', 'historical'] as const).map(mode => <button type="button" role="tab" key={mode} aria-selected={dataMode === mode}
-                    disabled={mode === 'live' ? !liveReady : !historicalReady} onClick={() => switchMode(mode)}>
-                    {mode === 'live' ? 'Live traffic' : 'Historical simulation'}</button>)}
-                </div>
-                <p className="hint">{dataMode === 'live'
-                  ? 'Current HERE traffic, incidents and Weatherstack weather, saved every 15 minutes.'
-                  : 'The June 2025 – May 2026 study period: an assumed congestion scenario with archived provider weather.'}
-                  {!liveReady && ' Live data is not available yet.'}{!historicalReady && ` Historical simulation unavailable: ${studyStatus?.message ?? 'not built'}.`}</p>
-              </div>
-              {live && liveStatus && <><div className="form-section">
-                <h3>Departure</h3>
-                <p><strong>Now, live traffic</strong></p>
-                <p className="hint">Latest capture {liveAt ? captureLabel(liveAt) : '–'} · Asia/Manila. HERE traffic and incidents are saved every 15 minutes and this page updates on its own; a trip uses each newer capture as it drives. <button type="button" className="link-button" onClick={refreshLive}>{refreshing ? 'Checking…' : 'Check now'}</button></p>
-                {liveStatus.collector?.error && <p className="hint">Collection: {liveStatus.collector.error}</p>}
-                {liveStatus.latest?.preparing && <p className="hint">Preparing the latest capture (matching HERE traffic to every road, about a minute)…</p>}
-                {liveStatus.latest?.segments ? <p className="hint">{(liveStatus.latest.live_matched ?? 0).toLocaleString()} of {liveStatus.latest.segments.toLocaleString()} road segments have a live HERE speed; the rest use the median of matched roads of the same city and road type. Reported closures: {liveStatus.latest.closed ?? 0}; flooding reports: {liveStatus.latest.flood_reported ?? 0}.</p> : null}
-                {liveStatus.release?.status !== 'development_calibration' && <p className="hint">Weights are provisional until the live development week is calibrated.</p>}
-              </div>
-              <div className="form-section">
+              {live && liveStatus && <div className="form-section">
                 <h3>Weather</h3>
-                <p className="hint">Observed now{liveStatus.latest?.weather_at ? ` (${liveStatus.latest.weather_at.slice(11, 16)})` : ''}: {Object.entries(liveStatus.latest?.weather ?? {}).map(([city, value]) => `${city} ${value.replaceAll('_', ' ')}`).join(' · ') || 'unavailable'}</p>
+                <p className="hint">Recorded weather{liveStatus.latest?.weather_at ? ` (${liveStatus.latest.weather_at.slice(11, 16)})` : ''}: {Object.entries(liveStatus.latest?.weather ?? {}).map(([city, value]) => `${city} ${value.replaceAll('_', ' ')}`).join(' · ') || 'unavailable'}</p>
                 {weatherError && <p className="error" role="status">{weatherError}</p>}
-              </div></>}
+              </div>}
               {!live && <><div className="form-section">
                 <h3>Departure</h3>
                 <div className="field-row">
@@ -378,7 +341,7 @@ export default function App() {
           {error && <p className="error" role="alert">{error}</p>}
         </aside>
       <main className="content">
-        <div className="page-title"><div><h1>ROUTE PLANNER</h1><p>{cities.join(' · ')}</p></div><span className="badge">{live ? 'Live traffic · HERE' : 'Five-city study'}</span></div>
+        <div className="page-title"><div><h1>ROUTE PLANNER</h1><p>{cities.join(' · ')}</p></div><span className="badge" title={liveAt ? `Latest capture: ${captureLabel(liveAt)} · Asia/Manila` : undefined}>{live ? `HERE traffic · ${liveStatus?.collector?.enabled ? 'Live collection' : 'Saved capture'}` : 'Five-city study'}</span></div>
         <section className="card map-card" id="route-map">
           <div className="map-head">
             <h2>Route within the study area</h2>
